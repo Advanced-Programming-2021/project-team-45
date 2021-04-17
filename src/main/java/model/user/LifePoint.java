@@ -1,24 +1,24 @@
 package model.user;
-public class LifePoint {
-    private int lifePoint;
+public class Lifepoint {
+    private int lifepoint;
 
-    public LifePoint(int lifePoint) {
-        this.lifePoint = lifePoint;
+    public Lifepoint(int lifepoint) {
+        this.lifepoint = lifepoint;
     }
 
-    public int getLifePoint() {
-        return lifePoint;
+    public int getLifepoint() {
+        return lifepoint;
     }
 
-    public void setLifePoint(int lifePoint) {
-        this.lifePoint = lifePoint;
+    public void setLifepoint(int lifepoint) {
+        this.lifepoint = lifePoint;
     }
 
-    public void increaseLifePoint(int num){
-        this.lifePoint+=num;
+    public void increaseLifepoint(int num){
+        this.lifepoint+=num;
     }
 
-    public void decreaseLifePoint(int num){
-        this.lifePoint-=num;
+    public void decreaseLifepoint(int num){
+        this.lifepoint-=num;
     }
 }
