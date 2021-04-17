@@ -11,7 +11,7 @@ public class Lifepoint {
     }
 
     public void setLifepoint(int lifepoint) {
-        this.lifepoint = lifePoint;
+        this.lifepoint = lifepoint;
     }
 
     public void increaseLifepoint(int num){
