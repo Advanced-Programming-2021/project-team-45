@@ -12,9 +12,8 @@ public abstract class Menu {
 
     private String name;
     private Menu parentMenu;
-    private Controller menuController;
     private User user;
-    private HashMap<MenuNames, Menu> subMenus;
+    protected HashMap<MenuName, Menu> subMenus;
 
     static {
         scanner = new Scanner(System.in);
@@ -38,7 +37,7 @@ public abstract class Menu {
         return this.user;
     }
 
-    public void setSubMenus(HashMap<MenuNames, Menu> subMenus) {
+    public void setSubMenus(HashMap<MenuName, Menu> subMenus) {
         this.subMenus = subMenus;
     }
 

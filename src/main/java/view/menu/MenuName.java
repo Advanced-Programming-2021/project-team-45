@@ -1,6 +1,6 @@
 package view.menu;
 
-public enum MenuNames {
+public enum MenuName {
     LOGIN,
     MAIN,
     DUEL,
