@@ -30,6 +30,8 @@ public class User {
         this.lifepoint = new Lifepoint();
         this.cardInventory = new CardInventory();
         this.userDeck = new UserDeck();
+
+        users.add(this);
     }
 
 
