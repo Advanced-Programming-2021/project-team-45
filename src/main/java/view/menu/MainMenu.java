@@ -1,7 +1,6 @@
 package view.menu;
 
 import controller.Regex;
-import model.user.User;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -11,33 +10,34 @@ public class MainMenu extends Menu {
     private final String[] MAIN_MENU_REGEX = {
             // i = 0
             "^(menu exit|user logout)$|" +
-                "^(menu show-current)$|" +
-                "^(menu enter Duel)$|" +
-                "^(menu enter Deck)$|" +
-                "^(menu enter Scoreboard)$|" +
-                "^(menu enter Profile)$|" +
-                "^(menu enter Shop)$|" +
-                "^(menu enter Import/Export)$"
+                    "^(menu show-current)$|" +
+                    "^(menu enter Duel)$|" +
+                    "^(menu enter Deck)$|" +
+                    "^(menu enter Scoreboard)$|" +
+                    "^(menu enter Profile)$|" +
+                    "^(menu enter Shop)$|" +
+                    "^(menu enter Import/Export)$"
     };
 
 
-    public MainMenu(User user, Menu parentMenu) {
+    public MainMenu(String username, Menu parentMenu) {
         super("Main Menu", parentMenu);
-        setUser(user);
+        setUsername(username);
 
         subMenus = new HashMap<>();
-        subMenus.put(MenuName.DUEL, new DuelMenu(user, this));
-        subMenus.put(MenuName.DECK, new DeckMenu(user, this));
-        subMenus.put(MenuName.SCOREBOARD, new ScoreboardMenu(user, this));
-        subMenus.put(MenuName.PROFILE, new ProfileMenu(user, this));
-        subMenus.put(MenuName.SHOP, new ShopMenu(user, this));
-        subMenus.put(MenuName.IMPORT_EXPORT, new ImportExportMenu(user, this));
+        subMenus.put(MenuName.DUEL, new DuelMenu(username, this));
+        subMenus.put(MenuName.DECK, new DeckMenu(username, this));
+        subMenus.put(MenuName.SCOREBOARD, new ScoreboardMenu(username, this));
+        subMenus.put(MenuName.PROFILE, new ProfileMenu(username, this));
+        subMenus.put(MenuName.SHOP, new ShopMenu(username, this));
+        subMenus.put(MenuName.IMPORT_EXPORT, new ImportExportMenu(username, this));
     }
 
-
+    @Override
     public void show() {
     }
 
+    @Override
     public void execute() {
         Menu nextMenu = null;
         while (true) {

@@ -12,7 +12,7 @@ public abstract class Menu {
 
     private final String name;
     private final Menu parentMenu;
-    private User user;
+    protected String username;
     protected HashMap<MenuName, Menu> subMenus;
 
     static {
@@ -30,16 +30,12 @@ public abstract class Menu {
         return this.name;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setSubMenus(HashMap<MenuName, Menu> subMenus) {
-        this.subMenus = subMenus;
+    public String getUsername() {
+        return this.username;
     }
 
     public void showCurrentMenu() {
