@@ -15,7 +15,7 @@ public class LoginMenu extends Menu {
                 "^(menu show-current)$|" +
                 "^(menu enter \\w+)$|" +
                 "^(user create --username \\w+ --nickname \\w+ --password \\w+)$|" +
-                "^(user login --username \\w+ --password \\w+)$|",
+                "^(user login --username \\w+ --password \\w+)$",
             // i = 1
             "user create --username (\\w+) --nickname (\\w+) --password (\\w+)",
             // i = 2
@@ -24,11 +24,7 @@ public class LoginMenu extends Menu {
 
 
     public LoginMenu() {
-        super("Login Menu");
-
-        HashMap<MenuName, Menu> subMenus = new HashMap<>();
-        subMenus.put(MenuName.MAIN, new MainMenu());
-        setSubMenus(subMenus);
+        super("Login Menu", null);
 
         loginController = new LoginController();
     }
@@ -48,7 +44,7 @@ public class LoginMenu extends Menu {
                     break;
 
                 } else if (matcher.group(2) != null) {
-                    super.showCurrentMenu();
+                    showCurrentMenu();
 
                 } else if (matcher.group(3) != null) {
                     System.out.println("please login first");
@@ -59,7 +55,7 @@ public class LoginMenu extends Menu {
                 } else if (matcher.group(5) != null) {
                     User user = loginUser(Regex.getMatcher(input, LOGIN_MENU_REGEX[2]));
                     if (user != null) {
-                        nextMenu = new MainMenu(user);
+                        nextMenu = new MainMenu(user, this);
                         break;
                     }
                 }

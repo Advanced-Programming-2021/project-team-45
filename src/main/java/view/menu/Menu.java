@@ -10,8 +10,8 @@ public abstract class Menu {
 
     protected static final Scanner scanner;
 
-    private String name;
-    private Menu parentMenu;
+    private final String name;
+    private final Menu parentMenu;
     private User user;
     protected HashMap<MenuName, Menu> subMenus;
 
@@ -20,8 +20,9 @@ public abstract class Menu {
     }
 
 
-    public Menu(String name) {
+    public Menu(String name, Menu parentMenu) {
         this.name = name;
+        this.parentMenu = parentMenu;
     }
 
 
