@@ -1,9 +1,8 @@
 package view.menu;
 
+import controller.LoginController;
 import controller.Regex;
-import model.user.User;
 
-import java.util.HashMap;
 import java.util.regex.Matcher;
 
 public class LoginMenu extends Menu {
@@ -12,10 +11,10 @@ public class LoginMenu extends Menu {
     private final String[] LOGIN_MENU_REGEX = {
             // i = 0
             "^(menu exit)$|" +
-                "^(menu show-current)$|" +
-                "^(menu enter \\w+)$|" +
-                "^(user create --username \\w+ --nickname \\w+ --password \\w+)$|" +
-                "^(user login --username \\w+ --password \\w+)$|",
+                    "^(menu show-current)$|" +
+                    "^(menu enter \\w+)$|" +
+                    "^(user create --username \\w+ --nickname \\w+ --password \\w+)$|" +
+                    "^(user login --username \\w+ --password \\w+)$",
             // i = 1
             "user create --username (\\w+) --nickname (\\w+) --password (\\w+)",
             // i = 2
@@ -24,19 +23,55 @@ public class LoginMenu extends Menu {
 
 
     public LoginMenu() {
-        super("Login Menu");
-
-        HashMap<MenuName, Menu> subMenus = new HashMap<>();
-        subMenus.put(MenuName.MAIN, new MainMenu());
-        setSubMenus(subMenus);
+        super("Login Menu", null);
 
         loginController = new LoginController();
     }
 
 
+    private void createUser(Matcher matcher) {
+        if (matcher.find()) {
+            String username = matcher.group(1);
+            String nickname = matcher.group(2);
+            String password = matcher.group(3);
+            int error = loginController.createUserErrorHandler(username, nickname, password);
+
+            if (error == 0) {
+                System.out.println("user created successfully!");
+
+            } else if (error == 1) {
+                System.out.println("user with username " + username + " exists");
+
+            } else if (error == 2) {
+                System.out.println("user with nickname " + nickname + " exists");
+
+            }
+        }
+    }
+
+    private boolean loginUser(Matcher matcher) {
+        if (matcher.find()) {
+            String username = matcher.group(1);
+            String password = matcher.group(2);
+            int error = loginController.loginUserErrorHandler(username, password);
+
+            if (error == 0) {
+                System.out.println("user logged in successfully!");
+                return true;
+
+            } else if (error == 1) {
+                System.out.println("Username and password didn't match!");
+
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void show() {
     }
 
+    @Override
     public void execute() {
         Menu nextMenu = null;
         while (true) {
@@ -48,7 +83,7 @@ public class LoginMenu extends Menu {
                     break;
 
                 } else if (matcher.group(2) != null) {
-                    super.showCurrentMenu();
+                    showCurrentMenu();
 
                 } else if (matcher.group(3) != null) {
                     System.out.println("please login first");
@@ -57,11 +92,13 @@ public class LoginMenu extends Menu {
                     createUser(Regex.getMatcher(input, LOGIN_MENU_REGEX[1]));
 
                 } else if (matcher.group(5) != null) {
-                    User user = loginUser(Regex.getMatcher(input, LOGIN_MENU_REGEX[2]));
-                    if (user != null) {
-                        nextMenu = new MainMenu(user);
+                    Matcher loginMatcher = Regex.getMatcher(input, LOGIN_MENU_REGEX[2]);
+                    if (loginUser(loginMatcher)) {
+                        String username = loginMatcher.group(1);
+                        nextMenu = new MainMenu(username, this);
                         break;
                     }
+
                 }
 
             } else {
@@ -77,56 +114,7 @@ public class LoginMenu extends Menu {
         }
     }
 
-    private void createUser(Matcher matcher) {
-        if (matcher.find()) {
-            String username = matcher.group(1);
-            String nickname = matcher.group(2);
-            String password = matcher.group(3);
-
-            if (createUserErrorHandler(username, nickname)) {
-                System.out.println("user created successfully!");
-                loginController.createUser(username, nickname, password);
-
-            }
-        }
-    }
-
-    private boolean createUserErrorHandler(String username, String nickname) {
-        if (loginController.doesUsernameExist(username)) {
-            System.out.println("user with username " + username + " exists");
-            return false;
-
-        } else if (loginController.doesNicknameExist(nickname)) {
-            System.out.println("user with nickname " + nickname + " exists");
-            return false;
-
-        }
-        return true;
-    }
-
-    private User loginUser(Matcher matcher) {
-        if (matcher.find()) {
-            String username = matcher.group(1);
-            String password = matcher.group(2);
-
-            if (loginUserErrorHandler(username, password)) {
-                System.out.println("user logged in successfully!");
-                return loginController.getUserByUsername(username);
-
-            }
-        }
-        return null;
-    }
-
-    private boolean loginUserErrorHandler(String username, String password) {
-        if (!loginController.isUserPasswordCorrect(username, password)) {
-            System.out.println("Username and password didn't match!");
-            return false;
-
-        }
-        return true;
-    }
-
+    @Override
     public void exitMenu() {
         System.exit(1);
     }
