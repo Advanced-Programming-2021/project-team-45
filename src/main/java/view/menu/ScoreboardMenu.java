@@ -12,6 +12,7 @@ public class ScoreboardMenu extends Menu {
             // i = 0
             "^(menu exit|user logout)$|" +
                     "^(menu show-current)$|" +
+                    "^(menu enter \\w+)$|" +
                     "^(scoreboard show)$"
     };
 
@@ -54,6 +55,9 @@ public class ScoreboardMenu extends Menu {
                     showCurrentMenu();
 
                 } else if (matcher.group(3) != null) {
+                    System.out.println("menu navigation is not possible");
+
+                } else if (matcher.group(4) != null) {
                     showScoreboard();
 
                 }
