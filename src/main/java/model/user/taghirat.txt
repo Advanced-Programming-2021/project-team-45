@@ -1,9 +1,0 @@
-vojood nadashtan tostring in card class
-
-continuous instead of CONTINUOS
-
-set and summon method
-
-Delete summon and set method in monstercard class
-
-DefendMonster method not needed
