@@ -27,38 +27,6 @@ public class ProfileMenu extends Menu {
         profileController = new ProfileController();
     }
 
-    @Override
-    public void show() {
-    }
-
-    @Override
-    public void execute() {
-        while (true) {
-            String input = scanner.nextLine();
-            Matcher matcher = Regex.getMatcher(input, PROFILE_MENU_REGEX[0]);
-
-            if (matcher.find()) {
-                if (matcher.group(1) != null) {
-                    break;
-
-                } else if (matcher.group(2) != null) {
-                    showCurrentMenu();
-
-                } else if (matcher.group(3) != null) {
-                    changeNickname(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
-
-                } else if (matcher.group(4) != null) {
-                    changePassword(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
-
-                }
-
-            } else {
-                System.out.println("invalid command");
-            }
-        }
-
-        exitMenu();
-    }
 
     private void changeNickname(Matcher matcher) {
         if (matcher.find()) {
@@ -92,6 +60,39 @@ public class ProfileMenu extends Menu {
 
             }
         }
+    }
+
+    @Override
+    public void show() {
+    }
+
+    @Override
+    public void execute() {
+        while (true) {
+            String input = scanner.nextLine();
+            Matcher matcher = Regex.getMatcher(input, PROFILE_MENU_REGEX[0]);
+
+            if (matcher.find()) {
+                if (matcher.group(1) != null) {
+                    break;
+
+                } else if (matcher.group(2) != null) {
+                    showCurrentMenu();
+
+                } else if (matcher.group(3) != null) {
+                    changeNickname(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
+
+                } else if (matcher.group(4) != null) {
+                    changePassword(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
+
+                }
+
+            } else {
+                System.out.println("invalid command");
+            }
+        }
+
+        exitMenu();
     }
 
 }

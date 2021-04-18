@@ -23,6 +23,18 @@ public class ScoreboardMenu extends Menu {
         scoreboardController = new ScoreboardController();
     }
 
+    private void showScoreboard() {
+        HashMap<String, Integer> scoreboard = scoreboardController.getSortedNicknameScore();
+        int rank = 0;
+        int lastScore = -1;
+        for (String nickname : scoreboard.keySet()) {
+            int score = scoreboard.get(nickname);
+            if (lastScore != score) rank++;
+            lastScore = score;
+            System.out.println(rank + "- " + nickname + ": " + score);
+        }
+    }
+
     @Override
     public void show() {
     }
@@ -52,18 +64,6 @@ public class ScoreboardMenu extends Menu {
         }
 
         exitMenu();
-    }
-
-    private void showScoreboard() {
-        HashMap<String, Integer> scoreboard = scoreboardController.getSortedNicknameScore();
-        int rank = 0;
-        int lastScore = -1;
-        for (String nickname : scoreboard.keySet()) {
-            int score = scoreboard.get(nickname);
-            if (lastScore != score) rank++;
-            lastScore = score;
-            System.out.println(rank + "- " + nickname + ": " + score);
-        }
     }
 
 }
