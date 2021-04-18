@@ -12,6 +12,7 @@ public class ScoreboardMenu extends Menu {
             // i = 0
             "^(menu exit|user logout)$|" +
                     "^(menu show-current)$|" +
+                    "^(menu enter \\w+)$|" +
                     "^(scoreboard show)$"
     };
 
@@ -21,6 +22,18 @@ public class ScoreboardMenu extends Menu {
         setUsername(username);
 
         scoreboardController = new ScoreboardController();
+    }
+
+    private void showScoreboard() {
+        HashMap<String, Integer> scoreboard = scoreboardController.getSortedNicknameScore();
+        int rank = 0;
+        int lastScore = -1;
+        for (String nickname : scoreboard.keySet()) {
+            int score = scoreboard.get(nickname);
+            if (lastScore != score) rank++;
+            lastScore = score;
+            System.out.println(rank + "- " + nickname + ": " + score);
+        }
     }
 
     @Override
@@ -42,6 +55,9 @@ public class ScoreboardMenu extends Menu {
                     showCurrentMenu();
 
                 } else if (matcher.group(3) != null) {
+                    System.out.println("menu navigation is not possible");
+
+                } else if (matcher.group(4) != null) {
                     showScoreboard();
 
                 }
@@ -52,18 +68,6 @@ public class ScoreboardMenu extends Menu {
         }
 
         exitMenu();
-    }
-
-    private void showScoreboard() {
-        HashMap<String, Integer> scoreboard = scoreboardController.getSortedNicknameScore();
-        int rank = 0;
-        int lastScore = -1;
-        for (String nickname : scoreboard.keySet()) {
-            int score = scoreboard.get(nickname);
-            if (lastScore != score) rank++;
-            lastScore = score;
-            System.out.println(rank + "- " + nickname + ": " + score);
-        }
     }
 
 }
