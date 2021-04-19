@@ -1,8 +1,5 @@
 package view.menu;
 
-import controller.Controller;
-import model.user.User;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -20,29 +17,29 @@ public abstract class Menu {
     }
 
 
-    public Menu(String name, Menu parentMenu) {
+    protected Menu(String name, Menu parentMenu) {
         this.name = name;
         this.parentMenu = parentMenu;
     }
 
 
-    public String getName() {
+    protected String getName() {
         return this.name;
     }
 
-    public void setUsername(String username) {
+    protected void setUsername(String username) {
         this.username = username;
     }
 
-    public String getUsername() {
+    protected String getUsername() {
         return this.username;
     }
 
-    public void showCurrentMenu() {
+    protected void showCurrentMenu() {
         System.out.println(this.getName());
     }
 
-    public void exitMenu() {
+    protected void exitMenu() {
         parentMenu.show();
         parentMenu.execute();
     }

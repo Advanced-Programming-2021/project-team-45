@@ -6,5 +6,5 @@ public enum MenuName {
     SCOREBOARD,
     PROFILE,
     SHOP,
-    IMPORT_EXPORT;
+    IMPORT_EXPORT
 }
