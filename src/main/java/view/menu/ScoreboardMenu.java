@@ -1,13 +1,13 @@
 package view.menu;
 
 import controller.Regex;
+import controller.ScoreboardController;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 
 public class ScoreboardMenu extends Menu {
 
-    private final ScoreboardController scoreboardController;
     private final String[] SCOREBOARD_MENU_REGEX = {
             // i = 0
             "^(menu exit|user logout)$|" +
@@ -21,11 +21,10 @@ public class ScoreboardMenu extends Menu {
         super("Scoreboard", parentMenu);
         setUsername(username);
 
-        scoreboardController = new ScoreboardController();
     }
 
     private void showScoreboard() {
-        HashMap<String, Integer> scoreboard = scoreboardController.getSortedNicknameScore();
+        LinkedHashMap<String, Integer> scoreboard = ScoreboardController.getSortedNicknameScore();
         int rank = 0;
         int lastScore = -1;
         for (String nickname : scoreboard.keySet()) {

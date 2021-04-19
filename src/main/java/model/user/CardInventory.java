@@ -5,7 +5,8 @@ import model.card.Card;
 import java.util.ArrayList;
 
 public class CardInventory {
-    private ArrayList<Card> cardInventory;
+
+    private final ArrayList<Card> cardInventory;
 
     public CardInventory(){
         this.cardInventory = new ArrayList<>();
@@ -18,4 +19,5 @@ public class CardInventory {
     public void deleteCardFromCardInventory(Card card){
         (this.cardInventory).remove(card);
     }
+
 }

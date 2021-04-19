@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class User {
 
-    private static ArrayList<User> users;
+    private static final ArrayList<User> users;
 
     private final String username;
     private String password;
     private String nickname;
     private int money;
-    private Score score;
+    private int score;
     private Lifepoint lifepoint;
     private CardInventory cardInventory;
     private UserDeck userDeck;
@@ -25,8 +25,8 @@ public class User {
         this.password = password;
         this.nickname = nickname;
 
-        this.money = 0;
-        this.score = new Score();
+        this.money = 100000;
+        this.score = 0;
         this.lifepoint = new Lifepoint();
         this.cardInventory = new CardInventory();
         this.userDeck = new UserDeck();
@@ -34,6 +34,10 @@ public class User {
         users.add(this);
     }
 
+
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
 
     public static boolean doesNicknameExist(String nickname) {
         for (User user : users) {
@@ -88,8 +92,16 @@ public class User {
         this.nickname = nickname;
     }
 
-    public Score getScore() {
-        return this.score;
+    public int getScore() {
+        return score;
+    }
+
+    public void increaseScore(int score) {
+        this.score += score;
+    }
+
+    public void decreaseScore(int score) {
+        this.score -= score;
     }
 
     public Lifepoint getLifepoint() {
