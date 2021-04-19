@@ -20,6 +20,7 @@ public class LoginController {
     public int loginUserErrorHandler(String username, String password) {
         if (!User.isUserPassCorrect(username, password)) {
             return 1;
+
         }
         return 0;
     }
