@@ -9,6 +9,10 @@ public class Card {
     protected int price;
     protected User owner;
 
+    public Card(String cardName) {
+        this.cardName = cardName;
+    }
+
     public String getCardName() {
         return cardName;
     }

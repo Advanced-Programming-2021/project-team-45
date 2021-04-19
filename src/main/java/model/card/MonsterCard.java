@@ -2,13 +2,76 @@ package model.card;
 
 import model.user.User;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
 public class MonsterCard extends Card {
     protected int level;
-    protected MonsterAttribute attribute;
+    protected String attribute;
     protected String type;
     protected int attack;
     protected int defense;
     protected PositionMonsters position;
+    public MonsterCard(String cardName) throws IOException {
+        super(cardName);
+        String[] data=allDataAboutMonster(cardName);
+        this.level=Integer.parseInt(data[1]);
+        this.attribute=data[2];
+        this.type=data[3];
+        this.cardType=data[4];
+        this.attack=Integer.parseInt(data[5]);
+        this.defense=Integer.parseInt(data[6]);
+        this.cardDescription=data[7];
+        this.price=Integer.parseInt(data[8]);
+    }
+
+    private String[] allDataAboutMonster(String cardName) throws IOException {
+        FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\Monster.xlsx"));
+        Workbook workbook = new XSSFWorkbook(inputStream);
+        Sheet firstSheet = workbook.getSheetAt(0);
+        Iterator<Row> iterator = firstSheet.iterator();
+        String[][] data=new String[42][9];
+        int a=0;
+        int b=0;
+        while (iterator.hasNext()) {
+            Row nextRow = iterator.next();
+            Iterator<Cell> cellIterator = nextRow.cellIterator();
+            while (cellIterator.hasNext()) {
+                Cell cell = cellIterator.next();
+                switch (cell.getCellType()) {
+                    case Cell.CELL_TYPE_STRING:
+                        data[a][b]=(cell.getStringCellValue());
+                        break;
+                    case Cell.CELL_TYPE_NUMERIC:
+                        data[a][b]=(String.valueOf(cell.getNumericCellValue()));
+                        break;
+                }
+                b++;
+            }
+            a++;
+            b=0;
+        }
+        workbook.close();
+        inputStream.close();
+        int answer=0;
+        for(int i=0;i<42;i++){
+            if(data[i][0].equals(cardName)) {
+                answer=i;
+                break;
+            }
+        }
+        return data[answer];
+    }
+
 
     public void increaseAttack(int num){
         this.attack+=num;
