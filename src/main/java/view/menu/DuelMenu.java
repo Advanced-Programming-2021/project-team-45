@@ -4,7 +4,7 @@ import controller.Regex;
 
 import java.util.regex.Matcher;
 
-public class DeulMenu extends Menu {
+public class DuelMenu extends Menu {
 
     private final GameController gameController;
     private final String[] DUEL_MENU_REGEX = {
@@ -35,7 +35,7 @@ public class DeulMenu extends Menu {
     };
 
 
-    public DeulMenu(String username, Menu parentMenu) {
+    public DuelMenu(String username, Menu parentMenu) {
         super("Duel", parentMenu);
         setUsername(username);
 

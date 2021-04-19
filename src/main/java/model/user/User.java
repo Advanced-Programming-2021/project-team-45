@@ -35,7 +35,16 @@ public class User {
     }
 
 
-    public static boolean doesUserExist(String username) {
+    public static boolean doesNicknameExist(String nickname) {
+        for (User user : users) {
+            if (user.getNickname().equals(nickname)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean doesUsernameExist(String username) {
         User user = getUserByUsername(username);
         return !(user == null);
     }
@@ -47,6 +56,15 @@ public class User {
             }
         }
         return null;
+    }
+
+    public static boolean isUserPassCorrect(String username, String password) {
+        User user = getUserByUsername(username);
+        if (user == null) {
+            return false;
+        } else {
+            return user.isPasswordCorrect(password);
+        }
     }
 
 

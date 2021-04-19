@@ -1,6 +1,7 @@
 package view.menu;
 
 import controller.Regex;
+import controller.ProfileController;
 
 import java.util.regex.Matcher;
 
