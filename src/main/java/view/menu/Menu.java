@@ -1,8 +1,5 @@
 package view.menu;
 
-import controller.Controller;
-import model.user.User;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
