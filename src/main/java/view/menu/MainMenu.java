@@ -2,6 +2,7 @@ package view.menu;
 
 import controller.Regex;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
@@ -38,7 +39,7 @@ public class MainMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         Menu nextMenu = null;
         while (true) {
             String input = scanner.nextLine();
