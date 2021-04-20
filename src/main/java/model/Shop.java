@@ -55,6 +55,7 @@ public class Shop {
     public void buy(String cardName) throws IOException {
         Card card = Card.getCardByName(cardName);
         user.getCardInventory().addCardToCardInventory(card);
+        user.decreaseMoney(card.getPrice());
     }
 
 }
