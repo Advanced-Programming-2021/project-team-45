@@ -24,7 +24,7 @@ public class MonsterCard extends Card {
     protected PositionMonsters position;
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
-        String[] data=allDataAboutMonster(cardName);
+        String[] data=dataAboutAMonster(cardName);
         this.level=Integer.parseInt(data[1]);
         this.attribute=data[2];
         this.type=data[3];
@@ -35,7 +35,7 @@ public class MonsterCard extends Card {
         this.price=Integer.parseInt(data[8]);
     }
 
-    private String[] allDataAboutMonster(String cardName) throws IOException {
+    public String[][] allDataAboutMonster() throws IOException {
         FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\Monster.xlsx"));
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet firstSheet = workbook.getSheetAt(0);
@@ -63,6 +63,11 @@ public class MonsterCard extends Card {
         }
         workbook.close();
         inputStream.close();
+        return data;
+    }
+
+    private String[] dataAboutAMonster(String cardNAme) throws IOException {
+        String[][] data=allDataAboutMonster();
         int answer=0;
         for(int i=0;i<42;i++){
             if(data[i][0].equals(cardName)) {
