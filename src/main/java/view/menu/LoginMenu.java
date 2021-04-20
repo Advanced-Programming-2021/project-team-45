@@ -3,6 +3,7 @@ package view.menu;
 import controller.LoginController;
 import controller.Regex;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class LoginMenu extends Menu {
@@ -72,7 +73,7 @@ public class LoginMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         Menu nextMenu = null;
         while (true) {
             String input = scanner.nextLine();

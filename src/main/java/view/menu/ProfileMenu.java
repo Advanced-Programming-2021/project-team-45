@@ -3,6 +3,7 @@ package view.menu;
 import controller.Regex;
 import controller.ProfileController;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class ProfileMenu extends Menu {
@@ -69,7 +70,7 @@ public class ProfileMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, PROFILE_MENU_REGEX[0]);

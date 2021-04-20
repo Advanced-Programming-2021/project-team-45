@@ -3,6 +3,7 @@ package view.menu;
 import controller.Regex;
 import controller.ScoreboardController;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 
@@ -40,7 +41,7 @@ public class ScoreboardMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, SCOREBOARD_MENU_REGEX[0]);
