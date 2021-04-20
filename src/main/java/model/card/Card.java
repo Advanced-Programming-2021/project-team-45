@@ -13,6 +13,7 @@ public class Card {
         this.cardName = cardName;
     }
 
+
     public String getCardName() {
         return cardName;
     }

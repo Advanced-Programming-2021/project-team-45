@@ -22,7 +22,7 @@ public class SpellTrapCard extends Card{
 
     public SpellTrapCard(String cardName) throws IOException {
         super(cardName);
-        String[] data=allDataAboutSpellTrap(cardName);
+        String[] data=dataAboutASpellOrTrap(cardName);
         this.cardType=
         this.icon=data[1];
         this.type=data[2];
@@ -32,11 +32,7 @@ public class SpellTrapCard extends Card{
         this.isSpell=isASpell(this);
     }
 
-    private boolean isASpell(SpellTrapCard card){
-        return !this.type.equals("Trap");
-    }
-
-    private String[] allDataAboutSpellTrap(String cardName) throws IOException {
+    public String[][] allDataAboutSpellTrap() throws IOException {
         FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\SpellTrap.xlsx"));
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet firstSheet = workbook.getSheetAt(0);
@@ -64,6 +60,11 @@ public class SpellTrapCard extends Card{
         }
         workbook.close();
         inputStream.close();
+        return data;
+    }
+
+    private String[] dataAboutASpellOrTrap(String cardName) throws IOException {
+        String[][] data=allDataAboutSpellTrap();
         int answer=0;
         for(int i=0;i<36;i++){
             if(data[i][0].equals(cardName)) {
@@ -72,6 +73,10 @@ public class SpellTrapCard extends Card{
             }
         }
         return data[answer];
+    }
+
+    private boolean isASpell(SpellTrapCard card){
+        return !this.type.equals("Trap");
     }
 
     public boolean isActivated(){
