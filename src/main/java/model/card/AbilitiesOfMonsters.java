@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AbilitiesOfMonsters {
-    public static HashMap<String, Integer> abilities =new HashMap<>();
+
  /*
       Name Of Effect Monsters
    ****************************
