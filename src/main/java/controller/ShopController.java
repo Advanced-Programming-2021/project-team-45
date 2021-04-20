@@ -2,6 +2,7 @@ package controller;
 
 import model.Shop;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class ShopController extends Controller {
@@ -14,7 +15,7 @@ public class ShopController extends Controller {
     }
 
 
-    public int buyCardErrorHandler(String cardName) {
+    public int buyCardErrorHandler(String cardName) throws IOException {
         if (!Shop.doesCardExist(cardName)) {
             return 1;
 

@@ -3,16 +3,21 @@ package model;
 import model.card.Card;
 import model.user.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Shop {
 
     private final User user;
-    private final static ArrayList<Card> allCards;
+    private static ArrayList<Card> allCards;
 
     static {
-        allCards = Card.getAllCards();
+        try {
+            allCards = Card.getAllCards();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -41,12 +46,13 @@ public class Shop {
     }
 
 
-    public boolean hasEnoughMoney(String cardName) {
+    public boolean hasEnoughMoney(String cardName) throws IOException {
         Card card = Card.getCardByName(cardName);
+        assert card != null;
         return user.getMoney() >= card.getPrice();
     }
 
-    public void buy(String cardName) {
+    public void buy(String cardName) throws IOException {
         Card card = Card.getCardByName(cardName);
         user.getCardInventory().addCardToCardInventory(card);
     }

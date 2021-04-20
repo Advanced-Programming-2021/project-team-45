@@ -23,7 +23,7 @@ public class SpellTrapCard extends Card{
     public SpellTrapCard(String cardName) throws IOException {
         super(cardName);
         String[] data=dataAboutASpellOrTrap(cardName);
-        this.cardType=
+      //  this.cardType=
         this.icon=data[1];
         this.type=data[2];
         this.cardDescription=data[3];
@@ -72,7 +72,9 @@ public class SpellTrapCard extends Card{
                 break;
             }
         }
-        return data[answer];
+        if(answer==0){
+            return new String[]{"1","1","1","1","1","1"};
+        }else return data[answer];
     }
 
     private boolean isASpell(SpellTrapCard card){
