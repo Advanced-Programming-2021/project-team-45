@@ -11,7 +11,7 @@ public class ScoreboardMenu extends Menu {
 
     private final String[] SCOREBOARD_MENU_REGEX = {
             // i = 0
-            "^(menu exit|user logout)$|" +
+            "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
                     "^(scoreboard show)$"

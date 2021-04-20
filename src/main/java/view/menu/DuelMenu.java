@@ -13,19 +13,19 @@ public class DuelMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(select --(?:monster|spell|field|hand)(?: --opponent)? \\d+)$|" +
-                    "^(select -d$|" +
+                    "^(select (?:--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (?:--opponent|-O))? \\d+)$|" +
+                    "^(select -d)$|" +
                     "^(summon)$|" +
                     "^(set)$|" +
-                    "^(set --position (?:attack|defense))$|" +
+                    "^(set (?:--position|-p) (?:attack|defense))$|" +
                     "^(flip-summon)$|" +
                     "^(attack \\d)$|" +
                     "^(attack direct)$|" +
                     "^(activate effect)$|" +
                     "^(show graveyard)$|" +
-                    "^(card show --selected)$",
+                    "^(card show (?:--selected|-X))$",
             // i = 1
-            "select --(?:monster|spell|field|hand)(?: --opponent)? (\\d+)",
+            "select (--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (--opponent|-O))? (\\d+)",
             // i = 2
             "attack (\\d)"
     };
