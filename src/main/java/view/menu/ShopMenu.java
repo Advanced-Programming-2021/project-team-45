@@ -3,6 +3,7 @@ package view.menu;
 import controller.Regex;
 import controller.ShopController;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
@@ -29,7 +30,7 @@ public class ShopMenu extends Menu {
     }
 
 
-    private void buyCard(Matcher matcher) {
+    private void buyCard(Matcher matcher) throws IOException {
         if (matcher.find()) {
             String cardName = matcher.group(1);
             int error = shopController.buyCardErrorHandler(cardName);
@@ -56,7 +57,7 @@ public class ShopMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, SHOP_MENU_REGEX[0]);

@@ -1,5 +1,6 @@
 package view.menu;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -46,6 +47,6 @@ public abstract class Menu {
 
     public abstract void show();
 
-    public abstract void execute();
+    public abstract void execute() throws IOException;
 
 }

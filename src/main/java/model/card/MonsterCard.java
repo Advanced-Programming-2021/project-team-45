@@ -75,7 +75,9 @@ public class MonsterCard extends Card {
                 break;
             }
         }
-        return data[answer];
+        if(answer==0){
+            return new String[]{"1","1","1","1","1","1","1","1","1"};
+        }else return data[answer];
     }
 
 
