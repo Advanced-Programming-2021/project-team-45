@@ -28,14 +28,14 @@ public class Card {
                 allCards.add(new SpellTrapCard(SpellAndTraps[i][0]));
             }
             return allCards;
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return allCards;
     }
 
     public static Card getCardByName(String cardName) {
-        ArrayList<Card> allCards= null;
+        ArrayList<Card> allCards = null;
         allCards = getAllCards();
         for (Card allCard : allCards) {
             if (allCard.cardName.equals(cardName)) return allCard;
@@ -59,16 +59,21 @@ public class Card {
         return owner;
     }
 
-    public void showCard(Card card){
-        if(card instanceof MonsterCard){
-            MonsterCard monsterCard=(MonsterCard) card;
-            System.out.println("Name: "+card.cardName);
-        }
-        else{
-            SpellTrapCard spellOrTrapCard=(SpellTrapCard) card;
-            if(spellOrTrapCard.isSpell){
-
-            }
+    public void showCard(Card card) {
+        if (card instanceof MonsterCard) {
+            MonsterCard monsterCard = (MonsterCard) card;
+            System.out.println("Name: " + monsterCard.cardName);
+            System.out.println("Level: " + monsterCard.level);
+            System.out.println("Type: " + monsterCard.type);
+            System.out.println("ATK: " + monsterCard.attack);
+            System.out.println("DEF: " + monsterCard.defense);
+            System.out.println("Description: " + monsterCard.cardDescription);
+        } else {
+            SpellTrapCard spellOrTrapCard = (SpellTrapCard) card;
+            System.out.println("Name: " + spellOrTrapCard.cardName);
+            System.out.println((spellOrTrapCard.isSpell?"Spell":"Trap"));
+            System.out.println("Type: "+spellOrTrapCard.type);
+            System.out.println("Description: "+spellOrTrapCard.cardDescription);
         }
     }
 
