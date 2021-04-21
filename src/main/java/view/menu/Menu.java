@@ -40,17 +40,13 @@ public abstract class Menu {
         System.out.println(this.getName());
     }
 
-    protected void exitMenu() throws IOException {
+    protected void exitMenu() {
         parentMenu.show();
-        try {
-            parentMenu.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        parentMenu.execute();
     }
 
     public abstract void show();
 
-    public abstract void execute() throws IOException;
+    public abstract void execute() ;
 
 }

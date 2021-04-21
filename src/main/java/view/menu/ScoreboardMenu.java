@@ -41,7 +41,7 @@ public class ScoreboardMenu extends Menu {
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute(){
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, SCOREBOARD_MENU_REGEX[0]);

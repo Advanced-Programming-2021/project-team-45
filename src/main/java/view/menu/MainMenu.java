@@ -39,7 +39,7 @@ public class MainMenu extends Menu {
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute()  {
         Menu nextMenu = null;
         while (true) {
             String input = scanner.nextLine();

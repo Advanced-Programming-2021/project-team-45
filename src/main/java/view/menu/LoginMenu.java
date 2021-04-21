@@ -73,7 +73,7 @@ public class LoginMenu extends Menu {
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute() {
         Menu nextMenu = null;
         while (true) {
             String input = scanner.nextLine();
@@ -111,11 +111,7 @@ public class LoginMenu extends Menu {
             exitMenu();
         } else {
             nextMenu.show();
-            try {
-                nextMenu.execute();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            nextMenu.execute();
         }
     }
 
