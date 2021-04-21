@@ -51,6 +51,7 @@ public class Shop {
     public void buy(String cardName)  {
         Card card = Card.getCardByName(cardName);
         user.getCardInventory().addCardToCardInventory(card);
+        user.getCardInventory().addCardToBoughtCards(card);
         assert card != null;
         user.decreaseMoney(card.getPrice());
     }
