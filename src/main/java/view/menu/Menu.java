@@ -1,6 +1,5 @@
 package view.menu;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 

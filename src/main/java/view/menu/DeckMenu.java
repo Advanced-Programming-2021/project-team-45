@@ -3,7 +3,6 @@ package view.menu;
 import controller.DeckController;
 import controller.Regex;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -18,23 +17,14 @@ public class DeckMenu extends Menu {
                     "^(deck create \\w+)$|" +
                     "^(deck delete \\w+)$|" +
                     "^(deck set-activate \\w+)$|" +
-                    "^(deck add-card (?:--card|-C) \\w+ (?:--deck|-D) \\w+(?: (?:--side|-s))?)$|" +
-                    "^(deck rm-card (?:--card|-C) \\w+ (?:--deck|-D) \\w+(?: (?:--side|-s))?)$|" +
                     "^(deck show (?:--all|-A))$|" +
-                    "^(deck show (?:--deck-name|-d) \\w+(?: (?:--side|-s))?)$|" +
                     "^(deck show (?:--cards|-c))$",
             // i = 1
             "deck create (\\w+)",
             // i = 2
             "deck delete (\\w+)",
             // i = 3
-            "deck set-activate (\\w+)",
-            // i = 4
-            "deck add-card (?:--card|-C) (\\w+) (?:--deck|-D) (\\w+)(?: (--side|-s))?",
-            // i = 5
-            "deck rm-card (?:--card|-C) (\\w+) (?:--deck|-D) (\\w+)(?: (--side|-s))?",
-            // i = 6
-            "deck show (?:--deck-name|-d) (\\w+)(?: (--side|-s))?"
+            "deck set-activate (\\w+)"
     };
 
 
@@ -91,11 +81,28 @@ public class DeckMenu extends Menu {
         }
     }
 
-    private void addCard(Matcher matcher) {
-        if (matcher.find()) {
-            String cardName = matcher.group(1);
-            String deckName = matcher.group(2);
-            boolean isSideDeck = matcher.group(3).matches("--side|-s");
+    private void addCard(String input) {
+        int inputError = 0;
+
+        String cardName = "";
+        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) (\\w+)");
+        if (cardNameMatcher.find()) {
+            cardName = cardNameMatcher.group(1);
+            inputError++;
+        }
+
+        String deckName = "";
+        Matcher deckNameMatcher = Regex.getMatcher(input, " (?:--deck|-D) (\\w+)");
+        if (deckNameMatcher.find()) {
+            deckName = deckNameMatcher.group(1);
+            inputError++;
+        }
+
+        if (inputError < 2) {
+            System.out.println("invalid command");
+
+        } else {
+            boolean isSideDeck = input.matches("--side|-s");
             int error = deckController.addCardErrorHandler(deckName, cardName, isSideDeck);
 
             if (error == 0) {
@@ -118,11 +125,28 @@ public class DeckMenu extends Menu {
         }
     }
 
-    private void removeCard(Matcher matcher) {
-        if (matcher.find()) {
-            String cardName = matcher.group(1);
-            String deckName = matcher.group(2);
-            boolean isSideDeck = matcher.group(3).matches("--side|-s");
+    private void removeCard(String input) {
+        int inputError = 0;
+
+        String cardName = "";
+        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) (\\w+)");
+        if (cardNameMatcher.find()) {
+            cardName = cardNameMatcher.group(1);
+            inputError++;
+        }
+
+        String deckName = "";
+        Matcher deckNameMatcher = Regex.getMatcher(input, " (?:--deck|-D) (\\w+)");
+        if (deckNameMatcher.find()) {
+            deckName = deckNameMatcher.group(1);
+            inputError++;
+        }
+
+        if (inputError < 2) {
+            System.out.println("invalid command");
+
+        } else {
+            boolean isSideDeck = input.matches("--side|-s");
             int error = deckController.removeCardErrorHandler(deckName, cardName, isSideDeck);
 
             if (error == 0) {
@@ -195,12 +219,20 @@ public class DeckMenu extends Menu {
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, DECK_MENU_REGEX[0]);
 
-            if (matcher.find()) {
+            if (input.startsWith("deck add-card ")) {
+                input = input.replace("deck add-card", "");
+                addCard(input);
+
+            } else if (input.startsWith("deck rm-card ")) {
+                input = input.replace("deck rm-card", "");
+                removeCard(input);
+
+            } else if (matcher.find()) {
                 if (matcher.group(1) != null) {
                     break;
 
@@ -220,18 +252,9 @@ public class DeckMenu extends Menu {
                     activateDeck(Regex.getMatcher(input, DECK_MENU_REGEX[3]));
 
                 } else if (matcher.group(7) != null) {
-                    addCard(Regex.getMatcher(input, DECK_MENU_REGEX[4]));
-
-                } else if (matcher.group(8) != null) {
-                    removeCard(Regex.getMatcher(input, DECK_MENU_REGEX[5]));
-
-                } else if (matcher.group(9) != null) {
                     showAllDecks();
 
-                } else if (matcher.group(10) != null) {
-                    showDeck(Regex.getMatcher(input, DECK_MENU_REGEX[6]));
-
-                } else if (matcher.group(11) != null) {
+                } else if (matcher.group(8) != null) {
                     showCards();
 
                 }
