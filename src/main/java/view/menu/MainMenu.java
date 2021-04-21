@@ -1,6 +1,7 @@
 package view.menu;
 
 import controller.Regex;
+import model.card.MonsterCard;
 
 import java.io.IOException;
 import java.util.HashMap;

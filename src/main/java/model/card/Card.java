@@ -59,7 +59,18 @@ public class Card {
         return owner;
     }
 
+    public void showCard(Card card){
+        if(card instanceof MonsterCard){
+            MonsterCard monsterCard=(MonsterCard) card;
+            System.out.println("Name: "+card.cardName);
+        }
+        else{
+            SpellTrapCard spellOrTrapCard=(SpellTrapCard) card;
+            if(spellOrTrapCard.isSpell){
 
+            }
+        }
+    }
 
 
 }

@@ -35,49 +35,54 @@ public class MonsterCard extends Card {
         this.price=Integer.parseInt(data[8]);
     }
 
-    public String[][] allDataAboutMonster() throws IOException {
-        FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\Monster.xlsx"));
-        Workbook workbook = new XSSFWorkbook(inputStream);
-        Sheet firstSheet = workbook.getSheetAt(0);
-        Iterator<Row> iterator = firstSheet.iterator();
-        String[][] data=new String[42][9];
-        int a=0;
-        int b=0;
-        while (iterator.hasNext()) {
-            Row nextRow = iterator.next();
-            Iterator<Cell> cellIterator = nextRow.cellIterator();
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                switch (cell.getCellType()) {
-                    case Cell.CELL_TYPE_STRING:
-                        data[a][b]=(cell.getStringCellValue());
-                        break;
-                    case Cell.CELL_TYPE_NUMERIC:
-                        data[a][b]=(String.valueOf(cell.getNumericCellValue()));
-                        break;
+    public String[][] allDataAboutMonster()  {
+        String[][] data = new String[42][9];
+        try {
+            FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\Monster.xlsx"));
+            Workbook workbook = new XSSFWorkbook(inputStream);
+            Sheet firstSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = firstSheet.iterator();
+            int a = 0;
+            int b = 0;
+            while (iterator.hasNext()) {
+                Row nextRow = iterator.next();
+                Iterator<Cell> cellIterator = nextRow.cellIterator();
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    switch (cell.getCellType()) {
+                        case Cell.CELL_TYPE_STRING:
+                            data[a][b] = (cell.getStringCellValue());
+                            break;
+                        case Cell.CELL_TYPE_NUMERIC:
+                            data[a][b] = (String.valueOf(cell.getNumericCellValue()));
+                            break;
+                    }
+                    b++;
                 }
-                b++;
+                a++;
+                b = 0;
             }
-            a++;
-            b=0;
+            workbook.close();
+            inputStream.close();
+            return data;
+        }catch (IOException e) {
+            e.printStackTrace();
         }
-        workbook.close();
-        inputStream.close();
         return data;
     }
 
-    private String[] dataAboutAMonster(String cardNAme) throws IOException {
-        String[][] data=allDataAboutMonster();
-        int answer=0;
-        for(int i=0;i<42;i++){
-            if(data[i][0].equals(cardName)) {
-                answer=i;
+    private String[] dataAboutAMonster(String cardNAme){
+        String[][] data = allDataAboutMonster();
+        int answer = 0;
+        for (int i = 0; i < 42; i++) {
+            if (data[i][0].equals(cardName)) {
+                answer = i;
                 break;
             }
         }
-        if(answer==0){
-            return new String[]{"1","1","1","1","1","1","1","1","1"};
-        }else return data[answer];
+        if (answer == 0) {
+            return new String[]{"1", "1", "1", "1", "1", "1", "1", "1", "1"};
+        } else return data[answer];
     }
 
 
