@@ -3,6 +3,7 @@ package view.menu;
 import controller.LoginController;
 import controller.Regex;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class LoginMenu extends Menu {
@@ -13,12 +14,12 @@ public class LoginMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(user create --username \\w+ --nickname \\w+ --password \\w+)$|" +
-                    "^(user login --username \\w+ --password \\w+)$",
+                    "^(user create (?:--username|-U) \\w+ (?:--nickname|-N) \\w+ (?:--password|-P) \\w+)$|" +
+                    "^(user login (?:--username|-U) \\w+ (?:--password|-P) \\w+)$",
             // i = 1
-            "user create --username (\\w+) --nickname (\\w+) --password (\\w+)",
+            "user create (?:--username|-U) (\\w+) (?:--nickname|-N) (\\w+) (?:--password|-P) (\\w+)",
             // i = 2
-            "user login --username (\\w+) --password (\\w+)"
+            "user login (?:--username|-U) (\\w+) (?:--password|-P) (\\w+)"
     };
 
 

@@ -13,11 +13,7 @@ public class Shop {
     private static ArrayList<Card> allCards;
 
     static {
-        try {
-            allCards = Card.getAllCards();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        allCards = Card.getAllCards();
     }
 
 
@@ -46,16 +42,17 @@ public class Shop {
     }
 
 
-    public boolean hasEnoughMoney(String cardName) throws IOException {
+    public boolean hasEnoughMoney(String cardName){
         Card card = Card.getCardByName(cardName);
         assert card != null;
         return user.getMoney() >= card.getPrice();
     }
 
-    public void buy(String cardName) throws IOException {
+    public void buy(String cardName)  {
         Card card = Card.getCardByName(cardName);
         user.getCardInventory().addCardToCardInventory(card);
-        user.getCardInventory().addCardToBoughtCards(card);
+        assert card != null;
+        user.decreaseMoney(card.getPrice());
     }
 
 }

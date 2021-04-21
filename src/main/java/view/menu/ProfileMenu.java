@@ -3,6 +3,7 @@ package view.menu;
 import controller.Regex;
 import controller.ProfileController;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class ProfileMenu extends Menu {
@@ -13,12 +14,12 @@ public class ProfileMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(profile change --nickname \\w+)$|" +
-                    "^(profile change --password --current \\w+ --new \\w+)$",
+                    "^(profile change (?:--nickname|-N) \\w+)$|" +
+                    "^(profile change (?:--password|-P) (?:--current|-u) \\w+ (--new|-n) \\w+)$",
             // i = 1
-            "profile change --nickname (\\w+)",
+            "profile change (?:--nickname|-N) (\\w+)",
             // i = 2
-            "profile change --password --current (\\w+) --new (\\w+)"
+            "profile change (?:--password|-P) (?:--current|-u) (\\w+) (--new|-n) (\\w+)"
     };
 
 

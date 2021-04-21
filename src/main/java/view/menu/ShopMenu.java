@@ -16,7 +16,7 @@ public class ShopMenu extends Menu {
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
                     "^(shop buy \\w+)$|" +
-                    "^(shop show --all)$",
+                    "^(shop show (?:--all|-A))$",
             // i = 1
             "shop buy (\\w+)"
     };
@@ -30,10 +30,15 @@ public class ShopMenu extends Menu {
     }
 
 
-    private void buyCard(Matcher matcher) throws IOException {
+    private void buyCard(Matcher matcher){
         if (matcher.find()) {
             String cardName = matcher.group(1);
-            int error = shopController.buyCardErrorHandler(cardName);
+            int error = 0;
+            try {
+                error = shopController.buyCardErrorHandler(cardName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             if (error == 1) {
                 System.out.println("there is no card with this name");
@@ -57,7 +62,7 @@ public class ShopMenu extends Menu {
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute(){
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, SHOP_MENU_REGEX[0]);
@@ -84,7 +89,6 @@ public class ShopMenu extends Menu {
                 System.out.println("invalid command");
             }
         }
-
         exitMenu();
     }
 

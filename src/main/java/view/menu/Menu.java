@@ -47,6 +47,6 @@ public abstract class Menu {
 
     public abstract void show();
 
-    public abstract void execute() throws IOException;
+    public abstract void execute() ;
 
 }

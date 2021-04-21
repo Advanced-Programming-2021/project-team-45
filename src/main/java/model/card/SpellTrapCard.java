@@ -20,7 +20,7 @@ public class SpellTrapCard extends Card{
     protected String status;
     protected SpellsAndTrapPosition position;
 
-    public SpellTrapCard(String cardName) throws IOException {
+    public SpellTrapCard(String cardName)  {
         super(cardName);
         String[] data=dataAboutASpellOrTrap(cardName);
       //  this.cardType=
@@ -32,38 +32,43 @@ public class SpellTrapCard extends Card{
         this.isSpell=isASpell(this);
     }
 
-    public String[][] allDataAboutSpellTrap() throws IOException {
-        FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\SpellTrap.xlsx"));
-        Workbook workbook = new XSSFWorkbook(inputStream);
-        Sheet firstSheet = workbook.getSheetAt(0);
-        Iterator<Row> iterator = firstSheet.iterator();
-        String[][] data=new String[36][6];
-        int a=0;
-        int b=0;
-        while (iterator.hasNext()) {
-            Row nextRow = iterator.next();
-            Iterator<Cell> cellIterator = nextRow.cellIterator();
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                switch (cell.getCellType()) {
-                    case Cell.CELL_TYPE_STRING:
-                        data[a][b]=(cell.getStringCellValue());
-                        break;
-                    case Cell.CELL_TYPE_NUMERIC:
-                        data[a][b]=(String.valueOf(cell.getNumericCellValue()));
-                        break;
+    public String[][] allDataAboutSpellTrap()  {
+        String[][] data = new String[36][6];
+        try {
+            FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\SpellTrap.xlsx"));
+            Workbook workbook = new XSSFWorkbook(inputStream);
+            Sheet firstSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = firstSheet.iterator();
+            int a = 0;
+            int b = 0;
+            while (iterator.hasNext()) {
+                Row nextRow = iterator.next();
+                Iterator<Cell> cellIterator = nextRow.cellIterator();
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    switch (cell.getCellType()) {
+                        case Cell.CELL_TYPE_STRING:
+                            data[a][b] = (cell.getStringCellValue());
+                            break;
+                        case Cell.CELL_TYPE_NUMERIC:
+                            data[a][b] = (String.valueOf(cell.getNumericCellValue()));
+                            break;
+                    }
+                    b++;
                 }
-                b++;
+                a++;
+                b = 0;
             }
-            a++;
-            b=0;
+            workbook.close();
+            inputStream.close();
+            return data;
+        }catch (IOException e) {
+            e.printStackTrace();
         }
-        workbook.close();
-        inputStream.close();
         return data;
     }
 
-    private String[] dataAboutASpellOrTrap(String cardName) throws IOException {
+    private String[] dataAboutASpellOrTrap(String cardName)  {
         String[][] data=allDataAboutSpellTrap();
         int answer=0;
         for(int i=0;i<36;i++){
