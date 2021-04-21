@@ -148,7 +148,7 @@ public class DeckMenu extends Menu {
 
         System.out.println("Decks:");
         System.out.println("Active deck:");
-        if (!activeDeckStr.equals("")) System.out.println(activeDecksStr);
+        if (!activeDeckStr.equals("")) System.out.println(activeDeckStr);
         System.out.println("Other decks:");
         for (int i = 0; i < otherDecksStr.size(); i++) {
             System.out.println(otherDecksStr.get(i));
