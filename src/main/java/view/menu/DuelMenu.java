@@ -2,6 +2,7 @@ package view.menu;
 
 import controller.Regex;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class DuelMenu extends Menu {
@@ -12,34 +13,30 @@ public class DuelMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(deck create \\w+)$|" +
-                    "^(deck delete \\w+)$|" +
-                    "^(deck set-activate \\w+)$|" +
-                    "^(deck add-card --card \\w+ --deck \\w+(?: --side)?)$|" +
-                    "^(deck rm-card --card \\w+ --deck \\w+(?: --side)?)$|" +
-                    "^(deck show --all)$|" +
-                    "^(deck show --deck-name \\w+(?: --side)?)$|" +
-                    "^(deck show --cards)$",
+                    "^(select (?:--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (?:--opponent|-O))? \\d+)$|" +
+                    "^(select -d)$|" +
+                    "^(summon)$|" +
+                    "^(set)$|" +
+                    "^(set (?:--position|-p) (?:attack|defense))$|" +
+                    "^(flip-summon)$|" +
+                    "^(attack \\d)$|" +
+                    "^(attack direct)$|" +
+                    "^(activate effect)$|" +
+                    "^(show graveyard)$|" +
+                    "^(card show (?:--selected|-X))$",
             // i = 1
-            "deck create (\\w+)",
+            "select (--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (--opponent|-O))? (\\d+)",
             // i = 2
-            "deck delete (\\w+)",
-            // i = 3
-            "deck set-activate (\\w+)",
-            // i = 4
-            "deck add-card --card (\\w+) --deck (\\w+)( --side)?",
-            // i = 5
-            "deck rm-card --card (\\w+) --deck (\\w+)( --side)?",
-            // i = 6
-            "deck show --deck-name (\\w+)( --side)?"
+            "attack (\\d)"
     };
+    private String selectedCard;
 
 
     public DuelMenu(String username, Menu parentMenu) {
         super("Duel", parentMenu);
         setUsername(username);
 
-
+        gameController = new GameController(username);
     }
 
 
@@ -48,7 +45,7 @@ public class DuelMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);

@@ -14,12 +14,12 @@ public class LoginMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(user create --username \\w+ --nickname \\w+ --password \\w+)$|" +
-                    "^(user login --username \\w+ --password \\w+)$",
+                    "^(user create (?:--username|-U) \\w+ (?:--nickname|-N) \\w+ (?:--password|-P) \\w+)$|" +
+                    "^(user login (?:--username|-U) \\w+ (?:--password|-P) \\w+)$",
             // i = 1
-            "user create --username (\\w+) --nickname (\\w+) --password (\\w+)",
+            "user create (?:--username|-U) (\\w+) (?:--nickname|-N) (\\w+) (?:--password|-P) (\\w+)",
             // i = 2
-            "user login --username (\\w+) --password (\\w+)"
+            "user login (?:--username|-U) (\\w+) (?:--password|-P) (\\w+)"
     };
 
 
@@ -73,7 +73,7 @@ public class LoginMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         Menu nextMenu = null;
         while (true) {
             String input = scanner.nextLine();

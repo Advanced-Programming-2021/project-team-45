@@ -3,6 +3,7 @@ package view.menu;
 import controller.DeckController;
 import controller.Regex;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -17,11 +18,11 @@ public class DeckMenu extends Menu {
                     "^(deck create \\w+)$|" +
                     "^(deck delete \\w+)$|" +
                     "^(deck set-activate \\w+)$|" +
-                    "^(deck add-card --card \\w+ --deck \\w+(?: --side)?)$|" +
-                    "^(deck rm-card --card \\w+ --deck \\w+(?: --side)?)$|" +
-                    "^(deck show --all)$|" +
-                    "^(deck show --deck-name \\w+(?: --side)?)$|" +
-                    "^(deck show --cards)$",
+                    "^(deck add-card (?:--card|-C) \\w+ (?:--deck|-D) \\w+(?: (?:--side|-s))?)$|" +
+                    "^(deck rm-card (?:--card|-C) \\w+ (?:--deck|-D) \\w+(?: (?:--side|-s))?)$|" +
+                    "^(deck show (?:--all|-A))$|" +
+                    "^(deck show (?:--deck-name|-d) \\w+(?: (?:--side|-s))?)$|" +
+                    "^(deck show (?:--cards|-c))$",
             // i = 1
             "deck create (\\w+)",
             // i = 2
@@ -29,11 +30,11 @@ public class DeckMenu extends Menu {
             // i = 3
             "deck set-activate (\\w+)",
             // i = 4
-            "deck add-card --card (\\w+) --deck (\\w+)( --side)?",
+            "deck add-card (?:--card|-C) (\\w+) (?:--deck|-D) (\\w+)(?: (--side|-s))?",
             // i = 5
-            "deck rm-card --card (\\w+) --deck (\\w+)( --side)?",
+            "deck rm-card (?:--card|-C) (\\w+) (?:--deck|-D) (\\w+)(?: (--side|-s))?",
             // i = 6
-            "deck show --deck-name (\\w+)( --side)?"
+            "deck show (?:--deck-name|-d) (\\w+)(?: (--side|-s))?"
     };
 
 
@@ -94,7 +95,7 @@ public class DeckMenu extends Menu {
         if (matcher.find()) {
             String cardName = matcher.group(1);
             String deckName = matcher.group(2);
-            boolean isSideDeck = matcher.group(3).equals(" --side");
+            boolean isSideDeck = matcher.group(3).matches("--side|-s");
             int error = deckController.addCardErrorHandler(deckName, cardName, isSideDeck);
 
             if (error == 0) {
@@ -121,7 +122,7 @@ public class DeckMenu extends Menu {
         if (matcher.find()) {
             String cardName = matcher.group(1);
             String deckName = matcher.group(2);
-            boolean isSideDeck = matcher.group(3).equals(" --side");
+            boolean isSideDeck = matcher.group(3).matches("--side|-s");
             int error = deckController.removeCardErrorHandler(deckName, cardName, isSideDeck);
 
             if (error == 0) {
@@ -157,7 +158,7 @@ public class DeckMenu extends Menu {
     private void showDeck(Matcher matcher) {
         if (matcher.find()) {
             String deckName = matcher.group(1);
-            boolean isSideDeck = matcher.group(2).equals(" --side");
+            boolean isSideDeck = matcher.group(2).matches("--side|-s");
             int error = deckController.showDeckErrorHandler(deckName, isSideDeck);
 
             if (error == 0) {
@@ -194,7 +195,7 @@ public class DeckMenu extends Menu {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, DECK_MENU_REGEX[0]);

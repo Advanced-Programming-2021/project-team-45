@@ -40,7 +40,7 @@ public abstract class Menu {
         System.out.println(this.getName());
     }
 
-    protected void exitMenu() {
+    protected void exitMenu() throws IOException {
         parentMenu.show();
         try {
             parentMenu.execute();
