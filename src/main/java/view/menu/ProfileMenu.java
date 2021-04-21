@@ -46,16 +46,16 @@ public class ProfileMenu extends Menu {
         int inputError = 0;
 
         String currentPassword = "";
-        Matcher usernameMatcher = Regex.getMatcher(input, " (?:--current|-u) (\\w+)");
-        if (usernameMatcher.find()) {
-            currentPassword = usernameMatcher.group(1);
+        Matcher currentPasswordMatcher = Regex.getMatcher(input, " (?:--current|-u) (\\w+)");
+        if (currentPasswordMatcher.find()) {
+            currentPassword = currentPasswordMatcher.group(1);
             inputError++;
         }
 
         String newPassword = "";
-        Matcher nicknameMatcher = Regex.getMatcher(input, " (--new|-n) (\\w+)");
-        if (nicknameMatcher.find()) {
-            newPassword = nicknameMatcher.group(1);
+        Matcher newPasswordMatcher = Regex.getMatcher(input, " (--new|-n) (\\w+)");
+        if (newPasswordMatcher.find()) {
+            newPassword = newPasswordMatcher.group(1);
             inputError++;
         }
 
