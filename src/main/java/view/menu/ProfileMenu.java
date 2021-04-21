@@ -3,7 +3,6 @@ package view.menu;
 import controller.Regex;
 import controller.ProfileController;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class ProfileMenu extends Menu {
@@ -14,12 +13,9 @@ public class ProfileMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(profile change (?:--nickname|-N) \\w+)$|" +
-                    "^(profile change (?:--password|-P) (?:--current|-u) \\w+ (--new|-n) \\w+)$",
+                    "^(profile change (?:--nickname|-N) \\w+)$",
             // i = 1
-            "profile change (?:--nickname|-N) (\\w+)",
-            // i = 2
-            "profile change (?:--password|-P) (?:--current|-u) (\\w+) (--new|-n) (\\w+)"
+            "profile change (?:--nickname|-N) (\\w+)"
     };
 
 
@@ -46,10 +42,28 @@ public class ProfileMenu extends Menu {
         }
     }
 
-    private void changePassword(Matcher matcher) {
-        if (matcher.find()) {
-            String currentPassword = matcher.group(1);
-            String newPassword = matcher.group(2);
+    private void changePassword(String input) {
+        int inputError = 0;
+
+        String currentPassword = "";
+        Matcher usernameMatcher = Regex.getMatcher(input, " (?:--current|-u) (\\w+)");
+        if (usernameMatcher.find()) {
+            currentPassword = usernameMatcher.group(1);
+            inputError++;
+        }
+
+        String newPassword = "";
+        Matcher nicknameMatcher = Regex.getMatcher(input, " (--new|-n) (\\w+)");
+        if (nicknameMatcher.find()) {
+            newPassword = nicknameMatcher.group(1);
+            inputError++;
+        }
+
+        if (inputError < 2) {
+            System.out.println("invalid command");
+
+        } else {
+
             int error = profileController.changePasswordErrorHandler(currentPassword, newPassword);
 
             if (error == 0) {
@@ -75,7 +89,11 @@ public class ProfileMenu extends Menu {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, PROFILE_MENU_REGEX[0]);
 
-            if (matcher.find()) {
+            if (input.startsWith("profile change (?:--password|-P) ")) {
+                input = input.replace("profile change (?:--password|-P)", "");
+                changePassword(input);
+
+            } else if (matcher.find()) {
                 if (matcher.group(1) != null) {
                     break;
 
@@ -87,9 +105,6 @@ public class ProfileMenu extends Menu {
 
                 } else if (matcher.group(4) != null) {
                     changeNickname(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
-
-                } else if (matcher.group(5) != null) {
-                    changePassword(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
 
                 }
 

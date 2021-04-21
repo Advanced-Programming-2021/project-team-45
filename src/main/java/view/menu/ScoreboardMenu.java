@@ -3,7 +3,6 @@ package view.menu;
 import controller.Regex;
 import controller.ScoreboardController;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 

@@ -2,7 +2,6 @@ package view.menu;
 
 import controller.Regex;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class ImportExportMenu extends Menu {

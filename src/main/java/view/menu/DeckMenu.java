@@ -3,7 +3,6 @@ package view.menu;
 import controller.DeckController;
 import controller.Regex;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
