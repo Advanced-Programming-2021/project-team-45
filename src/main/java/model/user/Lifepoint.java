@@ -1,10 +1,8 @@
 package model.user;
 public class Lifepoint {
-    private int lifepoint;
+    private int lifepoint=8000;
 
-    public Lifepoint(int lifepoint) {
-        this.lifepoint = lifepoint;
-    }
+
 
     public int getLifepoint() {
         return lifepoint;

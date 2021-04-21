@@ -128,4 +128,5 @@ public class UserDeck {
         return deck.getSpellAndTrapStr(isSideDeck);
     }
 
+
 }

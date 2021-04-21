@@ -68,5 +68,6 @@ public class DuelMenu extends Menu {
 
         exitMenu();
     }
+    public show
 
 }

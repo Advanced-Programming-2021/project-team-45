@@ -102,6 +102,7 @@ public class SpellTrapCard extends Card{
         this.position=SpellsAndTrapPosition.SET;
     }
 
-
-
+    public SpellsAndTrapPosition getPosition() {
+        return position;
+    }
 }
