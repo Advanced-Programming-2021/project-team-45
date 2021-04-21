@@ -42,7 +42,11 @@ public abstract class Menu {
 
     protected void exitMenu() {
         parentMenu.show();
-        parentMenu.execute();
+        try {
+            parentMenu.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public abstract void show();
