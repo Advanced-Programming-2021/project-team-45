@@ -86,12 +86,12 @@ public class DeckController extends Controller{
 
     public ArrayList<String> getMonstersStr(String deckName, boolean isSideDeck){
         UserDeck userDeck = (super.user).getUserDeck();
-        return userDeck.getMonstersDeckStr(isSideDeck);
+        return userDeck.getMonstersDeckStr(deckName, isSideDeck);
     }
 
     public ArrayList<String> getSpellAndTrapsStr(String deckName, boolean isSideDeck){
         UserDeck userDeck = (super.user).getUserDeck();
-        return (user.getUserDeck()).getSpellAndTrapsDeckStr(isSideDeck);
+        return (user.getUserDeck()).getSpellAndTrapsDeckStr(deckName, isSideDeck);
     }
 
     public ArrayList<String> getAllCardsStr(){

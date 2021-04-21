@@ -3,6 +3,7 @@ package model.card;
 import model.user.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
     private String name;
@@ -67,6 +68,12 @@ public class Deck {
         if(existence == 0) return false; else return true;
     }
 
+    public boolean doesDeckValid(){
+        if((this.mainDeckCards).size() > 60 || (this.mainDeckCards).size() < 40 || (this.sideDeckCards).size() > 15)
+            return false;
+        else return true;
+    }
+
     public void deleteCard(String cardName, boolean isSideDeck){
         ArrayList<Card> targetCard = new ArrayList<>();
         if(isSideDeck){
@@ -93,5 +100,39 @@ public class Deck {
 
         return this.name + ": main deck " + (this.mainDeckCards).size() +
                 ", side deck " + (this.sideDeckCards).size() + ", " + validity;
+    }
+
+    public ArrayList<String> getMonstersStr(boolean isSideDeck){
+        ArrayList<String> monstersStr = new ArrayList<>();
+        if(isSideDeck){
+            for(Card card : this.sideDeckCards){
+                if(card instanceof MonsterCard)
+                    monstersStr.add(card.getCardName() +": " + card.getCardDescription());
+            }
+        } else{
+            for(Card card : this.mainDeckCards){
+                if(card instanceof MonsterCard)
+                    monstersStr.add(card.getCardName() +": " + card.getCardDescription());
+            }
+        }
+        Collections.sort(monstersStr);
+        return monstersStr;
+    }
+
+    public ArrayList<String> getSpellAndTrapStr(boolean isSideDeck){
+        ArrayList<String> spellAndTrapStr = new ArrayList<>();
+        if(isSideDeck){
+            for(Card card : this.sideDeckCards){
+                if(card instanceof SpellTrapCard)
+                    spellAndTrapStr.add(card.getCardName() + ": " + card.getCardDescription());
+            }
+        } else{
+            for(Card card : this.mainDeckCards){
+                if(card instanceof SpellTrapCard)
+                    spellAndTrapStr.add(card.getCardName() + ": " + card.getCardDescription());
+            }
+        }
+        Collections.sort(spellAndTrapStr);
+        return spellAndTrapStr;
     }
 }

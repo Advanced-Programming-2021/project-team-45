@@ -117,24 +117,15 @@ public class UserDeck {
         Collections.sort(otherDecksStr);
         return otherDecksStr;
     }
-    private void isMainDeckValid(Deck deck){
 
+    public ArrayList<String> getMonstersDeckStr(String deckName ,boolean isSideDeck){
+        Deck deck = this.getDeckByName(deckName);
+        return deck.getMonstersStr(isSideDeck);
     }
 
-    private void isSlideDeckValid(Deck deck){
-
-    }
-
-    private void isDeckFullFromXCard(Card card){
-
-    }
-
-    private void canUseSlideDeck(Deck deck){
-
-    }
-
-    public void changeActiveDeck(Deck deck){
-
+    public ArrayList<String> getSpellAndTrapsDeckStr(String deckName, boolean isSideDeck){
+        Deck deck = this.getDeckByName(deckName);
+        return deck.getSpellAndTrapStr(isSideDeck);
     }
 
 }
