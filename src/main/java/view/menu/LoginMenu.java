@@ -14,10 +14,7 @@ public class LoginMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(user create (?:--username|-U) \\w+ (?:--nickname|-N) \\w+ (?:--password|-P) \\w+)$|" +
                     "^(user login (?:--username|-U) \\w+ (?:--password|-P) \\w+)$",
-            // i = 1
-            "user create (?:--username|-U) (\\w+) (?:--nickname|-N) (\\w+) (?:--password|-P) (\\w+)",
             // i = 2
             "user login (?:--username|-U) (\\w+) (?:--password|-P) (\\w+)"
     };
@@ -30,11 +27,34 @@ public class LoginMenu extends Menu {
     }
 
 
-    private void createUser(Matcher matcher) {
-        if (matcher.find()) {
-            String username = matcher.group(1);
-            String nickname = matcher.group(2);
-            String password = matcher.group(3);
+    private void createUser(String input) {
+        int inputError = 0;
+
+        String username = "";
+        Matcher usernameMatcher = Regex.getMatcher(input, " (?:--username|-U) (\\w+)");
+        if (usernameMatcher.find()) {
+            username = usernameMatcher.group(1);
+            inputError++;
+        }
+
+        String nickname = "";
+        Matcher nicknameMatcher = Regex.getMatcher(input, " (?:--nickname|-N) (\\w+)");
+        if (nicknameMatcher.find()) {
+            nickname = nicknameMatcher.group(1);
+            inputError++;
+        }
+
+        String password = "";
+        Matcher passwordMatcher = Regex.getMatcher(input, " (?:--password|-P) (\\w+)");
+        if (passwordMatcher.find()) {
+            password = passwordMatcher.group(1);
+            inputError++;
+        }
+
+        if (inputError < 3) {
+            System.out.println("invalid command");
+
+        } else {
             int error = loginController.createUserErrorHandler(username, nickname, password);
 
             if (error == 0) {
@@ -50,10 +70,27 @@ public class LoginMenu extends Menu {
         }
     }
 
-    private boolean loginUser(Matcher matcher) {
-        if (matcher.find()) {
-            String username = matcher.group(1);
-            String password = matcher.group(2);
+    private boolean loginUser(String input) {
+        int inputError = 0;
+
+        String username = "";
+        Matcher usernameMatcher = Regex.getMatcher(input, " (?:--username|-U) (\\w+)");
+        if (usernameMatcher.find()) {
+            username = usernameMatcher.group(1);
+            inputError++;
+        }
+
+        String password = "";
+        Matcher passwordMatcher = Regex.getMatcher(input, " (?:--password|-P) (\\w+)");
+        if (passwordMatcher.find()) {
+            password = passwordMatcher.group(1);
+            inputError++;
+        }
+
+        if (inputError < 2) {
+            System.out.println("invalid command");
+
+        } else {
             int error = loginController.loginUserErrorHandler(username, password);
 
             if (error == 0) {
@@ -79,7 +116,20 @@ public class LoginMenu extends Menu {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, LOGIN_MENU_REGEX[0]);
 
-            if (matcher.find()) {
+            if (input.startsWith("user create ")) {
+                input = input.replace("user create", "");
+                createUser(input);
+
+            } else if (input.startsWith("user login ")) {
+                input = input.replace("user login", "");
+                if (loginUser(input)) {
+                    Matcher usernameMatcher = Regex.getMatcher(input, " (?:--username|-U) (\\w+)");
+                    if (usernameMatcher.find()) username = usernameMatcher.group(1);
+                    nextMenu = new MainMenu(username, this);
+                    break;
+                }
+
+            } else if (matcher.find()) {
                 if (matcher.group(1) != null) {
                     break;
 
@@ -88,17 +138,6 @@ public class LoginMenu extends Menu {
 
                 } else if (matcher.group(3) != null) {
                     System.out.println("please login first");
-
-                } else if (matcher.group(4) != null) {
-                    createUser(Regex.getMatcher(input, LOGIN_MENU_REGEX[1]));
-
-                } else if (matcher.group(5) != null) {
-                    Matcher loginMatcher = Regex.getMatcher(input, LOGIN_MENU_REGEX[2]);
-                    if (loginUser(loginMatcher)) {
-                        String username = loginMatcher.group(1);
-                        nextMenu = new MainMenu(username, this);
-                        break;
-                    }
 
                 }
 
