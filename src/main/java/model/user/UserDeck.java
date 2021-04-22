@@ -27,6 +27,9 @@ public class UserDeck {
         else return true;
     }
 
+    public boolean doesExistActiveDeck(){
+        return this.activeDeck != null;
+    }
     public void createDeck(String deckName, User user){
         Deck deck = new Deck(deckName,user);
         (this.userDecks).add(deck);

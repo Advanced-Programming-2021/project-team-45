@@ -4,6 +4,7 @@ import model.user.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class Deck {
     private String name;
@@ -52,6 +53,19 @@ public class Deck {
         }
     }
 
+    public Card getCard(){
+        Card card =(this.mainDeckCards).get(0);
+        (this.mainDeckCards).remove(card);
+        return card;
+    }
+
+    public Card getRandomCard(){
+        Random random = new Random();
+        int index = random.nextInt((this.mainDeckCards).size());
+        Card card = (this.mainDeckCards).get(index);
+        (this.mainDeckCards).remove(card);
+        return card;
+    }
     public boolean doesCardExist(String cardName, boolean isSideDeck){
         int existence = 0;
         if(isSideDeck){
