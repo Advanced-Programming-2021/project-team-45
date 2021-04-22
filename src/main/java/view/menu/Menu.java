@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public abstract class Menu {
 
-    protected static final Scanner scanner;
+    public static final Scanner scanner;
 
     private final String name;
     private final Menu parentMenu;

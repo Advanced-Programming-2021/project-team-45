@@ -163,4 +163,7 @@ public class MonsterCard extends Card {
         else Opponent.getLifepoint().setLifepoint(0);
     }
 
+    public int getLevel() {
+        return level;
+    }
 }

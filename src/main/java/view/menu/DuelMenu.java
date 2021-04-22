@@ -1,12 +1,15 @@
 package view.menu;
 
+import controller.GameController;
 import controller.Regex;
+import model.Game.Game;
 
 import java.util.regex.Matcher;
 
 public class DuelMenu extends Menu {
 
     private final GameController gameController;
+
     private final String[] DUEL_MENU_REGEX = {
             // i = 0
             "^(menu exit)$|" +
@@ -14,6 +17,7 @@ public class DuelMenu extends Menu {
                     "^(menu enter \\w+)$|" +
                     "^(select (?:--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (?:--opponent|-O))? \\d+)$|" +
                     "^(select -d)$|" +
+                    "^(next phase)$" +
                     "^(summon)$|" +
                     "^(set)$|" +
                     "^(set (?:--position|-p) (?:attack|defense))$|" +
@@ -44,7 +48,8 @@ public class DuelMenu extends Menu {
     }
 
     @Override
-    public void execute()  {
+    public void execute() {
+        gameController.createNewGame();
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
@@ -59,15 +64,81 @@ public class DuelMenu extends Menu {
                 } else if (matcher.group(3) != null) {
                     System.out.println("menu navigation is not possible");
 
+                } else if (matcher.group(4) != null) {
+                    int returnedNumber = gameController.setCardErrorHandler(input);
+                    if (returnedNumber == 0) System.out.println("card selected");
+                    else if (returnedNumber == 1) System.out.println("invalid selection");
+                    else System.out.println("no card found in the given position");
+
+                } else if (matcher.group(5) != null) {
+                    int returnedNumber = gameController.deSelectErrorHAndler(input);
+                    if (returnedNumber == 0) System.out.println("card deselected");
+                    else System.out.println("no card is selected yet");
+
+                } else if (matcher.group(6) != null) {
+                    int returnedNumber=gameController.nextPhaseInController();
+                    if(returnedNumber==1){
+                        System.out.println("phase: draw phase");
+                        System.out.println("new card added to the hand : "+
+                                gameController.getGame().getAddedCardInDrawPhase().getCardName());
+
+                    }else if(returnedNumber==2){
+                        System.out.println("phase: Main phase1");
+
+                    } else if(returnedNumber==3) {
+                        System.out.println("phase: End Phase");
+                        System.out.println("its" + gameController.getGame().getOpponent() + "'s turn");
+                    }
+                    else if(returnedNumber==0) {
+                        System.out.println("phase: standby phase");
+                    }
+                }else if(matcher.group(7)!=null){
+                    int returnedNumber=gameController.summonErrorHandler();
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("you can’t summon this card");
+                            break;
+                        case 3:
+                            System.out.println("action not allowed in this phase");
+                            break;
+                        case 4:
+                            System.out.println("monster card zone is full");
+                            break;
+                        case 5:
+                            System.out.println("you already summoned/set on this turn");
+                            break;
+                        case 6:
+                            System.out.println("summoned successfully");
+                            break;
+                        case 7:
+                            System.out.println("there are not enough cards for tribute");
+                            break;
+                        case 8:
+                            System.out.println("there no monsters one this address");
+                            break;
+                        case 9:
+                            System.out.println("there is no monster on one of these addresses");
+                            break;;
+                    }
                 }
 
             } else {
                 System.out.println("invalid command");
             }
+            if(gameController.getGame().getPhase().equals("Main Phase1")){
+                showGameBoard();
+            }
         }
 
         exitMenu();
     }
-    public show
+
+    private void showGameBoard(){
+
+    }
+
 
 }
