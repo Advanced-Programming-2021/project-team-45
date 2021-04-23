@@ -169,6 +169,25 @@ public class DuelMenu extends Menu {
                         case 6:
                             System.out.println("monster card position changed successfully");
                     }
+                }else if(matcher.group(10)!=null){
+                    int returnedNumber=gameController.flipSummonErrorHandler();
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("you can’t change this card position");
+                            break;
+                        case 3:
+                            System.out.println("you can’t do this action in this phase");
+                            break;
+                        case 4:
+                            System.out.println("you can’t flip summon this card");
+                            break;
+                        case 5:
+                            System.out.println("flip summoned successfully");
+                            break;
+                    }
                 }
 
             } else {
