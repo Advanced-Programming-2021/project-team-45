@@ -202,6 +202,59 @@ public class DuelMenu extends Menu {
                 } else if (matcher.group(11) != null) {
                     Matcher matcher1 = Regex.getMatcher(input,DUEL_MENU_REGEX[2]);
                     int returnedNumber = gameController.attackErrorHandler(Integer.parseInt(matcher1.group(1)));
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("you can’t attack with this card");
+                            break;
+                        case 3:
+                            System.out.println("you can’t do this action in this phase");
+                            break;
+                        case 4:
+                            System.out.println("this card already attacked");
+                            break;
+                        case 5:
+                            System.out.println("there is no card to attack here");
+                            break;
+                        case 6:
+                            System.out.println("your opponent’s monster is destroyed and your opponent receives\n" +
+                                    gameController.damageOnOpponent()+"battle damage");
+                            break;
+                        case 7:
+                            System.out.println("both you and your opponent monster cards are destroyed and no\n" +
+                                    "one receives damage");
+                            break;
+                        case 8:
+                            System.out.println("Your monster card is destroyed and you received"+
+                                    gameController.damageOnPlayer()+" battle\n" +
+                                    "damage");
+                            break;
+                        case 9:
+                            System.out.println("the defense position monster is destroyed");
+                            break;
+                        case 10:
+                            System.out.println("no card is destroyed");
+                            break;
+                        case 11:
+                            System.out.println("no card is destroyed and you received"+gameController.damageOnPlayer()
+                                    +" battle damage");
+                            break;
+                        case 12:
+                            System.out.println("the defense position monster "+
+                                    gameController.getDefenseTargetCardName()+" is destroyed");
+                            break;
+                        case 13:
+                            System.out.println("opponent’s monster card was "+gameController.getDefenseTargetCardName()
+                                    +" and no card is\n" + "destroyed");
+                            break;
+                        case 14:
+                            System.out.println("opponent’s monster card was "+gameController.getDefenseTargetCardName()
+                            +"and no card is destroyed and you received"+
+                                    gameController.damageOnPlayer() + " battle damage");
+                            break;
+                    }
 
 
                 }

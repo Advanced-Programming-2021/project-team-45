@@ -192,6 +192,17 @@ public class GameController extends Controller {
         } else return 1;
     }
 
+    public String damageOnOpponent(){
+
+    }
+
+    public String damageOnPlayer(){
+
+    }
+
+    public String getDefenseTargetCardName(){
+
+    }
     public Game getGame() {
         return game;
     }
