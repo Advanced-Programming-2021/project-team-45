@@ -3,6 +3,7 @@ package controller;
 import model.Game.Game;
 import model.Game.GameBoard;
 import model.Game.MonsterField;
+import model.Game.SpellTrapField;
 import model.card.MonsterCard;
 import view.menu.DuelMenu;
 import view.menu.Menu;
@@ -19,7 +20,7 @@ public class GameController extends Controller {
         super(username);
     }
 
-    public int setCardErrorHandler(String input) {
+    public int selectCardErrorHandler(String input) {
         if (game.isInputForSelectCardValid(input)) {
             if (game.isThereAnyCardHere(input)) return 0;
             else return 2;
@@ -57,13 +58,13 @@ public class GameController extends Controller {
                         if (!game.wasSummonOrSetCardBeforeInThisTurn()) {
                             int cardLevel = ((MonsterCard) game.getSelectedCard()).getLevel();
                             if ((cardLevel <= 4) {
-                                game.summonCardLevelLowerThan5();
+                                game.summonMonster();
                                 return 6;
                             }else if (cardLevel == 5 || cardLevel == 6) {
                                 if (game.isThereCardForTribute5Or6()) {
                                     int house = Menu.scanner.nextInt();
                                     if (!game.getGameBoard().isThisCellEmpty(house)) {
-                                        game.summonMonsterLevel5Or6();
+                                        game.summonMonster();
                                         return 6;
                                     } else return 8;
 
@@ -74,7 +75,7 @@ public class GameController extends Controller {
                                     A=Menu.scanner.nextInt();
                                     B=Menu.scanner.nextInt();
                                     if(game.canUseAorBForSummon(A,B)){
-                                        game.summonMonsterLevel7Or8();
+                                        game.summonMonster();
                                         return 6;
                                     }else return 9;
                                 }else return 7;
@@ -84,6 +85,30 @@ public class GameController extends Controller {
                 } else return 3;
             } else return 2;
         } else return 1;
+    }
+
+    public int setCardErrorHandler(){
+        if(game.isThereSelectedCard()){
+            if(game.isThereInHAnd()){
+                if(game.isSelectedCardMonster()){
+                    if((game.getPhase().equals("Main Phase1")||game.getPhase().equals("Main Phase2"))){
+                        if(!MonsterField.isFull()){
+                            if(!game.wasSummonOrSetCardBeforeInThisTurn()){
+                                game.setMonster();
+                                return 6;
+                            }else return 5;
+                        }else return 4;
+                    }else return 3;
+                }else{
+                    if((game.getPhase().equals("Main Phase1")||game.getPhase().equals("Main Phase2"))){
+                        if(!SpellTrapField.isFull()){
+                            game.setSpellOrTrap();
+                            return 6;
+                        }else return 7;
+                    }else return 3;
+                }
+            }else return 2;
+        }else return 1;
     }
 
     public Game getGame() {

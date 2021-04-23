@@ -2,8 +2,8 @@ package view.menu;
 
 import controller.GameController;
 import controller.Regex;
-import model.Game.Game;
 
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.regex.Matcher;
 
 public class DuelMenu extends Menu {
@@ -65,7 +65,7 @@ public class DuelMenu extends Menu {
                     System.out.println("menu navigation is not possible");
 
                 } else if (matcher.group(4) != null) {
-                    int returnedNumber = gameController.setCardErrorHandler(input);
+                    int returnedNumber = gameController.selectCardErrorHandler(input);
                     if (returnedNumber == 0) System.out.println("card selected");
                     else if (returnedNumber == 1) System.out.println("invalid selection");
                     else System.out.println("no card found in the given position");
@@ -121,7 +121,34 @@ public class DuelMenu extends Menu {
                             break;
                         case 9:
                             System.out.println("there is no monster on one of these addresses");
-                            break;;
+                            break;
+                    }
+                }else if(matcher.group(8)!=null){
+                    int returnedNumber=gameController.setCardErrorHandler();
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("you can’t set this card");
+                            break;
+                        case 3:
+                            System.out.println("you can’t do this action in this phase");
+                            break;
+                        case 4:
+                            System.out.println("monster card zone is full");
+                            break;
+                        case 5:
+                            System.out.println("you already summoned/set on this turn");
+                            break;
+                        case 6:
+                            System.out.println("set successfully");
+                            break;
+                        case 7:
+                            System.out.println("spell card zone is full");
+                            break;
+                        case 8:
+
                     }
                 }
 
