@@ -3,7 +3,6 @@ package view.menu;
 import controller.GameController;
 import controller.Regex;
 
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.regex.Matcher;
 
 public class DuelMenu extends Menu {
@@ -32,7 +31,6 @@ public class DuelMenu extends Menu {
             // i = 2
             "attack (\\d)"
     };
-    private String selectedCard;
 
 
     public DuelMenu(String username, Menu parentMenu) {
@@ -255,8 +253,61 @@ public class DuelMenu extends Menu {
                                     gameController.damageOnPlayer() + " battle damage");
                             break;
                     }
+                }else if(matcher.group(12)!=null){
+                    int returnedNumber=gameController.directAttackErrorHandler();
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("you can’t attack with this card");
+                            break;
+                        case 3:
+                            System.out.println("you can’t do this action in this phase");
+                            break;
+                        case 4:
+                            System.out.println("this card already attacked");
+                            break;
+                        case 5:
+                            System.out.println("you can’t attack the opponent directly");
+                            break;
+                        case 6:
+                            System.out.println("you opponent receives"+gameController.damageOnOpponent()
+                                    +" battale damage");
+                            break;
+                    }
+                }else if(matcher.group(13)!=null){
+                    int returnedNumber=gameController.activeEffectErrorHandler();
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("activate effect is only for spell cards.");
+                            break;
+                        case 3:
+                            System.out.println("you can’t activate an effect on this turn");
+                            break;
+                        case 4:
+                            System.out.println("you have already activated this card");
+                            break;
+                        case 5:
+                            System.out.println("spell card zone is full");
+                            break;
+                        case 6:
+                            System.out.println("preparations of this spell are not done yet");
+                            break;
+                        case 7:
+                            System.out.println("spell activated");
+                            break;
 
-
+                    }
+                }else if(matcher.group(14)!=null){
+                    String answer=gameController.controlGraveyard();
+                    System.out.println(answer);
+                }else if(matcher.group(15)!=null){
+                    String answer=gameController.controlCardShow();
+                    System.out.println(answer);
                 }
 
             } else {

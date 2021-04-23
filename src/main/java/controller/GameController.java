@@ -192,6 +192,21 @@ public class GameController extends Controller {
         } else return 1;
     }
 
+    public int directAttackErrorHandler(){
+
+    }
+
+    public int activeEffectErrorHandler(){
+
+    }
+
+    public String controlGraveyard(){
+
+    }
+
+    public String controlCardShow(){
+
+    }
     public String damageOnOpponent(){
 
     }
