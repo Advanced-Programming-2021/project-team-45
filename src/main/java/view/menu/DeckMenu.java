@@ -179,10 +179,18 @@ public class DeckMenu extends Menu {
         }
     }
 
-    private void showDeck(Matcher matcher) {
-        if (matcher.find()) {
-            String deckName = matcher.group(1);
-            boolean isSideDeck = matcher.group(2).matches("--side|-s");
+    private void showDeck(String input) {
+        String deckName = "";
+        Matcher deckNameMatcher = Regex.getMatcher(input, " (?:--deck-name|-d) (\\w+)");
+        if (deckNameMatcher.find()) {
+            deckName = deckNameMatcher.group(1);
+        }
+
+        if (deckName.equals("")) {
+            System.out.println("invalid command");
+
+        } else {
+            boolean isSideDeck = input.matches("--side|-s");
             int error = deckController.showDeckErrorHandler(deckName, isSideDeck);
 
             if (error == 0) {
@@ -231,6 +239,12 @@ public class DeckMenu extends Menu {
             } else if (input.startsWith("deck rm-card ")) {
                 input = input.replace("deck rm-card", "");
                 removeCard(input);
+
+            } else if (input.matches("^deck show (?:--deck-name|-d) ")) {
+                showDeck(input);
+
+            } else if (input.matches("^deck show (?:--side|-s) (?:--deck-name|-d) ")) {
+                showDeck(input);
 
             } else if (matcher.find()) {
                 if (matcher.group(1) != null) {
