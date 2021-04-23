@@ -28,7 +28,7 @@ public class GameController extends Controller {
     }
 
     public int deSelectErrorHAndler(String input) {
-        if (DuelMenu.getGame().isCardSelected(input)) return 0;
+        if (game.getGame().isCardSelected(input)) return 0;
         else return 1;
     }
 
@@ -38,15 +38,26 @@ public class GameController extends Controller {
         if (phase.equals("draw phase")) {
             game.drawPhase();
             return 1;
+
         } else if (phase.equals("standby phase")) {
             game.standbyPhase();
             return 0;
+
         } else if (phase.equals("Main Phase1") {
             game.mainPhase1();
             return 2;
+
         }else if (phase.equals("End Phase") {
             game.EndPhase();
+            return 5;
+
+        }else if (phase.equals("battle phase")) {
+            game.battlePhase();
             return 3;
+
+        } else if (phase.equals("Main Phase2")) {
+            game.mainPhase2();
+            return 4;
         }
     }
 
@@ -69,16 +80,16 @@ public class GameController extends Controller {
                                     } else return 8;
 
                                 } else return 7;
-                            } else if (cardLevel == 7 || cardLevel == 8){
-                                if(game.isEnoughCardForTribute7Or8()){
-                                    int A,B;
-                                    A=Menu.scanner.nextInt();
-                                    B=Menu.scanner.nextInt();
-                                    if(game.canUseAorBForSummon(A,B)){
+                            } else if (cardLevel == 7 || cardLevel == 8) {
+                                if (game.isEnoughCardForTribute7Or8()) {
+                                    int A, B;
+                                    A = Menu.scanner.nextInt();
+                                    B = Menu.scanner.nextInt();
+                                    if (game.canUseAorBForSummon(A, B)) {
                                         game.summonMonster();
                                         return 6;
-                                    }else return 9;
-                                }else return 7;
+                                    } else return 9;
+                                } else return 7;
                             }
                         } else return 5;
                     } else return 4;
@@ -87,55 +98,66 @@ public class GameController extends Controller {
         } else return 1;
     }
 
-    public int setCardErrorHandler(){
-        if(game.isThereSelectedCard()){
-            if(game.isThereInHAnd()){
-                if(game.isSelectedCardMonster()){
-                    if((game.getPhase().equals("Main Phase1")||game.getPhase().equals("Main Phase2"))){
-                        if(!MonsterField.isFull()){
-                            if(!game.wasSummonOrSetCardBeforeInThisTurn()){
+    public int setCardErrorHandler() {
+        if (game.isThereSelectedCard()) {
+            if (game.isThereInHAnd()) {
+                if (game.isSelectedCardMonster()) {
+                    if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
+                        if (!MonsterField.isFull()) {
+                            if (!game.wasSummonOrSetCardBeforeInThisTurn()) {
                                 game.setMonster();
                                 return 6;
-                            }else return 5;
-                        }else return 4;
-                    }else return 3;
-                }else{
-                    if((game.getPhase().equals("Main Phase1")||game.getPhase().equals("Main Phase2"))){
-                        if(!SpellTrapField.isFull()){
+                            } else return 5;
+                        } else return 4;
+                    } else return 3;
+                } else {
+                    if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
+                        if (!SpellTrapField.isFull()) {
                             game.setSpellOrTrap();
                             return 6;
-                        }else return 7;
-                    }else return 3;
+                        } else return 7;
+                    } else return 3;
                 }
-            }else return 2;
-        }else return 1;
-    }
-    public int changePositionErrorHandler(){
-        if(game.isThereSelectedCard()){
-            if(MonsterField.isThereSelectedCard()){
-                if(game.getPhase().equals("Main Phase1")||game.getPhase().equals("Main Phase2")){
-                    if(game.isChangeCorrect()){
-                        if(!game.wasChangePositionInThisTurn()){
-                            game.changePosition();
-                            return 6;
-                        }else return 5;
-                    }else return 4;
-                }else return 3;
-            }else return 2;
-        }else return 1;
+            } else return 2;
+        } else return 1;
     }
 
-    public int flipSummonErrorHandler(){
-        if(game.isThereSelectedCard()){
-            if(MonsterField.isThereSelectedCard()){
-                if(game.getPhase().equals("Main Phase1"||game.getPhase().equals("Main Phase2"))){
-                    if(game.canFlipSummonSelectedCard()){
+    public int changePositionErrorHandler() {
+        if (game.isThereSelectedCard()) {
+            if (MonsterField.isThereSelectedCard()) {
+                if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
+                    if (game.isChangeCorrect()) {
+                        if (!game.wasChangePositionInThisTurn()) {
+                            game.changePosition();
+                            return 6;
+                        } else return 5;
+                    } else return 4;
+                } else return 3;
+            } else return 2;
+        } else return 1;
+    }
+
+    public int flipSummonErrorHandler() {
+        if (game.isThereSelectedCard()) {
+            if (MonsterField.isThereSelectedCard()) {
+                if (game.getPhase().equals("Main Phase1" || game.getPhase().equals("Main Phase2"))) {
+                    if (game.canFlipSummonSelectedCard()) {
                         game.flipSummon();
                         return 5;
-                    }else return 4;
-                }else return 3;
-            }else return 2;
-        }else return 1;
+                    } else return 4;
+                } else return 3;
+            } else return 2;
+        } else return 1;
+    }
+
+    public int attackErrorHandler() {
+        if (game.isThereSelectedCard()) {
+            if (MonsterField.isThereSelectedCard()) {
+                if (game.getPhase().equals("battle phase")) {
+                    //hanooz takmil nashode
+                }
+            } else return 2;
+        } else return 1;
     }
 
     public Game getGame() {

@@ -76,25 +76,35 @@ public class DuelMenu extends Menu {
                     else System.out.println("no card is selected yet");
 
                 } else if (matcher.group(6) != null) {
-                    int returnedNumber=gameController.nextPhaseInController();
-                    if(returnedNumber==1){
+                    int returnedNumber = gameController.nextPhaseInController();
+
+                    if (returnedNumber == 1) {
                         System.out.println("phase: draw phase");
-                        System.out.println("new card added to the hand : "+
+
+                        System.out.println("new card added to the hand : " +
                                 gameController.getGame().getAddedCardInDrawPhase().getCardName());
 
-                    }else if(returnedNumber==2){
-                        System.out.println("phase: Main phase1");
+                    } else if (returnedNumber == 2) {
+                        System.out.println("phase: Main phase 1");
 
-                    } else if(returnedNumber==3) {
+                    } else if (returnedNumber == 6) {
                         System.out.println("phase: End Phase");
+
                         System.out.println("its" + gameController.getGame().getOpponent() + "'s turn");
-                    }
-                    else if(returnedNumber==0) {
+
+                    } else if (returnedNumber == 0) {
                         System.out.println("phase: standby phase");
+
+                    } else if (returnedNumber == 3) {
+                        System.out.println("phase: battle Phase");
+
+                    } else if (returnedNumber == 4) {
+                        System.out.println("phase: Main Phase 2");
+
                     }
-                }else if(matcher.group(7)!=null){
-                    int returnedNumber=gameController.summonErrorHandler();
-                    switch (returnedNumber){
+                } else if (matcher.group(7) != null) {
+                    int returnedNumber = gameController.summonErrorHandler();
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -123,9 +133,9 @@ public class DuelMenu extends Menu {
                             System.out.println("there is no monster on one of these addresses");
                             break;
                     }
-                }else if(matcher.group(8)!=null){
-                    int returnedNumber=gameController.setCardErrorHandler();
-                    switch (returnedNumber){
+                } else if (matcher.group(8) != null) {
+                    int returnedNumber = gameController.setCardErrorHandler();
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -148,9 +158,9 @@ public class DuelMenu extends Menu {
                             System.out.println("spell card zone is full");
                             break;
                     }
-                }else if(matcher.group(9)!=null){
-                    int returnedNumber=gameController.changePositionErrorHandler();
-                    switch (returnedNumber){
+                } else if (matcher.group(9) != null) {
+                    int returnedNumber = gameController.changePositionErrorHandler();
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -169,9 +179,9 @@ public class DuelMenu extends Menu {
                         case 6:
                             System.out.println("monster card position changed successfully");
                     }
-                }else if(matcher.group(10)!=null){
-                    int returnedNumber=gameController.flipSummonErrorHandler();
-                    switch (returnedNumber){
+                } else if (matcher.group(10) != null) {
+                    int returnedNumber = gameController.flipSummonErrorHandler();
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -188,12 +198,15 @@ public class DuelMenu extends Menu {
                             System.out.println("flip summoned successfully");
                             break;
                     }
+                } else if (matcher.group(11) != null) {
+                    int returnedNumber = gameController.attackErrorHandler();
+
                 }
 
             } else {
                 System.out.println("invalid command");
             }
-            if(gameController.getGame().getPhase().equals("Main Phase1")){
+            if (gameController.getGame().getPhase().equals("Main Phase1")) {
                 showGameBoard();
             }
         }
@@ -201,7 +214,7 @@ public class DuelMenu extends Menu {
         exitMenu();
     }
 
-    private void showGameBoard(){
+    private void showGameBoard() {
 
     }
 
