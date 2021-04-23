@@ -147,8 +147,6 @@ public class DuelMenu extends Menu {
                         case 7:
                             System.out.println("spell card zone is full");
                             break;
-                        case 8:
-
                     }
                 }
 
