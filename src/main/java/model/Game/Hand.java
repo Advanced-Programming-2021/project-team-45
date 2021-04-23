@@ -21,4 +21,9 @@ public class Hand {
     public Card getCardFromHand(int numberOfHandAddress){
         return (this.cardsInHand).get(numberOfHandAddress -1);
     }
+
+    public boolean doesCardExistInHand(Card card){
+        if(this.cardsInHand.contains(card)) return true;
+        else return false;
+    }
 }

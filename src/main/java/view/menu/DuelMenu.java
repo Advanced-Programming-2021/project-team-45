@@ -49,6 +49,7 @@ public class DuelMenu extends Menu {
 
     @Override
     public void execute() {
+        // regex duel new nist
         gameController.createNewGame();
         while (true) {
             String input = scanner.nextLine();
@@ -65,13 +66,13 @@ public class DuelMenu extends Menu {
                     System.out.println("menu navigation is not possible");
 
                 } else if (matcher.group(4) != null) {
-                    int returnedNumber = gameController.selectCardErrorHandler(input);
+                    int returnedNumber = gameController.selectCardErrorHandler(input);//s
                     if (returnedNumber == 0) System.out.println("card selected");
                     else if (returnedNumber == 1) System.out.println("invalid selection");
                     else System.out.println("no card found in the given position");
 
                 } else if (matcher.group(5) != null) {
-                    int returnedNumber = gameController.deSelectErrorHAndler(input);
+                    int returnedNumber = gameController.deSelectErrorHAndler();//s
                     if (returnedNumber == 0) System.out.println("card deselected");
                     else System.out.println("no card is selected yet");
 
@@ -90,7 +91,7 @@ public class DuelMenu extends Menu {
                     } else if (returnedNumber == 6) {
                         System.out.println("phase: End Phase");
 
-                        System.out.println("its" + gameController.getGame().getOpponent() + "'s turn");
+                        System.out.println("its" + gameController.getGame().getOpponent().getNickname() + "'s turn");
 
                     } else if (returnedNumber == 0) {
                         System.out.println("phase: standby phase");

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class GameBoard {
     private User owner;
+    private DeckField deckField;
     private Graveyard graveyard;
     private Hand hand;
     private MonsterField monsterField;
@@ -14,13 +15,22 @@ public class GameBoard {
     private FieldZone fieldZone;
 
     public GameBoard(User owner, Graveyard graveyard,
-                     Hand hand, MonsterField monsterField, SpellTrapField spellTrapField, FieldZone fieldZone) {
+                     Hand hand, MonsterField monsterField, SpellTrapField spellTrapField, FieldZone fieldZone, DeckField deckField) {
         this.owner = owner;
         this.graveyard = graveyard;
         this.hand = hand;
         this.monsterField = monsterField;
         this.spellTrapField = spellTrapField;
         this.fieldZone = fieldZone;
+        this.deckField = deckField;
+    }
+
+    public MonsterField getMonsterField() {
+        return monsterField;
+    }
+
+    public SpellTrapField getSpellTrapField() {
+        return spellTrapField;
     }
 
     public User getOwner() {
@@ -29,6 +39,10 @@ public class GameBoard {
 
     public Hand getHand() {
         return hand;
+    }
+
+    public DeckField getDeckField() {
+        return deckField;
     }
 
     public String GameBoardOfPlayer(GameBoard gameBoardOfPlayer){

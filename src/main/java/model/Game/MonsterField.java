@@ -1,5 +1,6 @@
 package model.Game;
 
+import model.card.Card;
 import model.card.MonsterCard;
 
 public class MonsterField {
@@ -16,10 +17,49 @@ public class MonsterField {
         }
     }
 
+    public int getNumberOfMonstersInField(){
+        int numberOfMonsters = 0;
+        for(int i = 0; i < 5; i++){
+            if(this.monstersOnField[i] != null)
+                numberOfMonsters++;
+        }
+        return numberOfMonsters;
+    }
+
+    public boolean isThisCellEmpty(int house){
+        if(this.monstersOnField[house] == null)
+            return true;
+        else return false;
+    }
+    public  boolean isFull(){
+        int fullPlace = 0;
+        for(int i = 0; i < 5; i++){
+            if(this.monstersOnField != null)
+                fullPlace++;
+        }
+        return fullPlace == 5;
+    }
     public MonsterCard getMonster(int index){
         return this.monstersOnField[index - 1];
     }
+
+    public boolean doesExistCardInMonsterField(Card card){
+        if(!(card instanceof MonsterCard))
+            return false;
+        else{
+            MonsterCard targetCard = (MonsterCard) card;
+            int existence = 0;
+            for(int i = 0; i < 5; i++){
+                if(this.monstersOnField[i] != null){
+                    if(this.monstersOnField[i].getCardName().equals(targetCard.getCardName()))
+                        existence++;
+                }
+            }
+            return existence != 0;
+        }
+    }
     // nemiddonam ina chian -haji
+
     public String toStringForOpponent(){
 
     }

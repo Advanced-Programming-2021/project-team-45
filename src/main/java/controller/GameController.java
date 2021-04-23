@@ -5,6 +5,7 @@ import model.Game.GameBoard;
 import model.Game.MonsterField;
 import model.Game.SpellTrapField;
 import model.card.MonsterCard;
+import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.Menu;
 
@@ -13,7 +14,7 @@ public class GameController extends Controller {
     private Game game;
 
     public void createNewGame() {
-        this.game = new Game();
+        this.game = new Game(player, opponent);
     }
 
     public GameController(String username) {
@@ -27,8 +28,8 @@ public class GameController extends Controller {
         } else return 1;
     }
 
-    public int deSelectErrorHAndler(String input) {
-        if (game.getGame().isCardSelected(input)) return 0;
+    public int deSelectErrorHAndler() {
+        if (game.isThereSelectedCard()) return 0;
         else return 1;
     }
 
@@ -48,7 +49,7 @@ public class GameController extends Controller {
             return 2;
 
         }else if (phase.equals("End Phase") {
-            game.EndPhase();
+            game.endPhase();
             return 5;
 
         }else if (phase.equals("battle phase")) {
@@ -63,25 +64,25 @@ public class GameController extends Controller {
 
     public int summonErrorHandler() {
         if (game.isThereSelectedCard()) {
-            if (game.canSummonThisMonster() && game.isSelectedCardMonster() && game.isThereInHAnd()) {
+            if (game.canSummonThisMonster() && game.isSelectedCardMonster() && game.isThereInHand()) {
                 if (!(game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
-                    if (MonsterField.isFull()) {
+                    if (game.isMonsterFieldFull()) {
                         if (!game.wasSummonOrSetCardBeforeInThisTurn()) {
                             int cardLevel = ((MonsterCard) game.getSelectedCard()).getLevel();
-                            if ((cardLevel <= 4) {
+                            if (cardLevel <= 4) {
                                 game.summonMonster();
                                 return 6;
                             }else if (cardLevel == 5 || cardLevel == 6) {
                                 if (game.isThereCardForTribute5Or6()) {
                                     int house = Menu.scanner.nextInt();
-                                    if (!game.getGameBoard().isThisCellEmpty(house)) {
+                                    if (!game.getGameBoard().getMonsterField().isThisCellEmpty(house)) {
                                         game.summonMonster();
                                         return 6;
                                     } else return 8;
 
                                 } else return 7;
                             } else if (cardLevel == 7 || cardLevel == 8) {
-                                if (game.isEnoughCardForTribute7Or8()) {
+                                if (game.isEnoughCardForTribute7OrMore()) {
                                     int A, B;
                                     A = Menu.scanner.nextInt();
                                     B = Menu.scanner.nextInt();
@@ -100,10 +101,10 @@ public class GameController extends Controller {
 
     public int setCardErrorHandler() {
         if (game.isThereSelectedCard()) {
-            if (game.isThereInHAnd()) {
+            if (game.isThereInHand()) {
                 if (game.isSelectedCardMonster()) {
                     if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
-                        if (!MonsterField.isFull()) {
+                        if (!game.isMonsterFieldFull()) {
                             if (!game.wasSummonOrSetCardBeforeInThisTurn()) {
                                 game.setMonster();
                                 return 6;
@@ -112,7 +113,7 @@ public class GameController extends Controller {
                     } else return 3;
                 } else {
                     if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
-                        if (!SpellTrapField.isFull()) {
+                        if (!game.isSpellTrapFieldFull()) {
                             game.setSpellOrTrap();
                             return 6;
                         } else return 7;
@@ -124,7 +125,7 @@ public class GameController extends Controller {
 
     public int changePositionErrorHandler() {
         if (game.isThereSelectedCard()) {
-            if (MonsterField.isThereSelectedCard()) {
+            if (game.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
                     if (game.isChangeCorrect()) {
                         if (!game.wasChangePositionInThisTurn()) {
@@ -139,7 +140,7 @@ public class GameController extends Controller {
 
     public int flipSummonErrorHandler() {
         if (game.isThereSelectedCard()) {
-            if (MonsterField.isThereSelectedCard()) {
+            if (game.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1" || game.getPhase().equals("Main Phase2"))) {
                     if (game.canFlipSummonSelectedCard()) {
                         game.flipSummon();
@@ -152,7 +153,7 @@ public class GameController extends Controller {
 
     public int attackErrorHandler() {
         if (game.isThereSelectedCard()) {
-            if (MonsterField.isThereSelectedCard()) {
+            if (game.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("battle phase")) {
                     //hanooz takmil nashode
                 }

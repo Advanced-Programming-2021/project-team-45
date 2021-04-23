@@ -1,5 +1,7 @@
 package model.Game;
 
+import model.card.Card;
+import model.card.MonsterCard;
 import model.card.SpellTrapCard;
 import model.user.User;
 
@@ -25,10 +27,17 @@ public class SpellTrapField {
         }
     }
 
+    public boolean isFull(){
+        int fullPlace = 0;
+        for(int i = 0; i < 5; i++){
+            if(this.spellTrapCardsOnField[i] != null)
+                fullPlace++;
+        }
+        return fullPlace == 5;
+    }
     public SpellTrapCard getSpellTrap(int index){
         return this.spellTrapCardsOnField[index - 1];
     }
-
     // nemiddonam ina chian -haji
     public String toStringForOpponent(){
 
