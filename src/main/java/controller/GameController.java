@@ -36,30 +36,32 @@ public class GameController extends Controller {
     public int nextPhaseInController() {
         game.nextPhase();
         String phase = game.getPhase();
-        if (phase.equals("draw phase")) {
-            game.drawPhase();
-            return 1;
+        switch (phase) {
+            case "draw phase":
+                game.drawPhase();
+                return 1;
 
-        } else if (phase.equals("standby phase")) {
-            game.standbyPhase();
-            return 0;
+            case "standby phase":
+                game.standbyPhase();
+                return 0;
 
-        } else if (phase.equals("Main Phase1") {
-            game.mainPhase1();
-            return 2;
+            case "Main Phase1":
+                game.mainPhase1();
+                return 2;
 
-        }else if (phase.equals("End Phase") {
-            game.endPhase();
-            return 5;
+            case "End Phase":
+                game.endPhase();
+                return 5;
 
-        }else if (phase.equals("battle phase")) {
-            game.battlePhase();
-            return 3;
+            case "battle phase":
+                game.battlePhase();
+                return 3;
 
-        } else if (phase.equals("Main Phase2")) {
-            game.mainPhase2();
-            return 4;
+            case "Main Phase2":
+                game.mainPhase2();
+                return 4;
         }
+        return -1;
     }
 
     public int summonErrorHandler() {
@@ -72,7 +74,7 @@ public class GameController extends Controller {
                             if (cardLevel <= 4) {
                                 game.summonMonster();
                                 return 6;
-                            }else if (cardLevel == 5 || cardLevel == 6) {
+                            } else if (cardLevel == 5 || cardLevel == 6) {
                                 if (game.isThereCardForTribute5Or6()) {
                                     int house = Menu.scanner.nextInt();
                                     if (!game.getGameBoard().getMonsterField().isThisCellEmpty(house)) {
@@ -151,12 +153,41 @@ public class GameController extends Controller {
         } else return 1;
     }
 
-    public int attackErrorHandler() {
+    public int attackErrorHandler(int numberOfEnemyMonsterZone) {
         if (game.isThereSelectedCard()) {
             if (game.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("battle phase")) {
-                    //hanooz takmil nashode
-                }
+                    if (!game.wasThisCardAttackedInThisTurn()) {
+                        if (game.isThereAnyMonsterInThisCell(numberOfEnemyMonsterZone)) {
+                            if(game.isTargetCellInAttackPosition(numberOfEnemyMonsterZone)){
+                                if(game.isTargetCellAttackPowerMoreThanMe()){
+                                    game.attackToOfensiveCard();// needed argument
+                                    return 6;
+                                }else if(game.isTargetCellAttackPowerEqualWithMe()){
+                                    game.attackToOfensiveCard();
+                                    return 7;
+                                }else{
+                                    game.attackToOfensiveCard();
+                                    return 8;
+                                }
+                            }else{
+                                if(game.isTargetDefenseLowerThanMyAttackPower()){
+                                    game.attackToDefensiveCard();
+                                    if(game.isDefenseCardOnDHStyle()) return 12;
+                                    else return 9;
+                                }else if(game.isTargetDefenseEqualMyAttackPower()){
+                                    game.attackToDefensiveCard();
+                                    if(game.isDefenseCardOnDHStyle()) return 13;
+                                    else return 10;
+                                }else{
+                                    game.attackToDefensiveCard();
+                                    if(game.isDefenseCardOnDHStyle()) return 14;
+                                    else return 11;
+                                }
+                            }
+                        } else return 5;
+                    } else return 4;
+                } else return 3;
             } else return 2;
         } else return 1;
     }

@@ -200,7 +200,9 @@ public class DuelMenu extends Menu {
                             break;
                     }
                 } else if (matcher.group(11) != null) {
-                    int returnedNumber = gameController.attackErrorHandler();
+                    Matcher matcher1 = Regex.getMatcher(input,DUEL_MENU_REGEX[2]);
+                    int returnedNumber = gameController.attackErrorHandler(Integer.parseInt(matcher1.group(1)));
+
 
                 }
 
