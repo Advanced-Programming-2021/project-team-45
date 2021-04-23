@@ -110,7 +110,20 @@ public class GameController extends Controller {
             }else return 2;
         }else return 1;
     }
-
+    public int changePositionErrorHandler(){
+        if(game.isThereSelectedCard()){
+            if(MonsterField.isThereSelectedCard()){
+                if(game.getPhase().equals("Main Phase1")||game.getPhase().equals("Main Phase2")){
+                    if(game.isChangeCorrect()){
+                        if(!game.wasChangePositionInThisTurn()){
+                            game.changePosition();
+                            return 6;
+                        }else return 5;
+                    }else return 4;
+                }else return 3;
+            }else return 2;
+        }else return 1;
+    }
     public Game getGame() {
         return game;
     }

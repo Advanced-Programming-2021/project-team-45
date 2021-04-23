@@ -148,6 +148,27 @@ public class DuelMenu extends Menu {
                             System.out.println("spell card zone is full");
                             break;
                     }
+                }else if(matcher.group(9)!=null){
+                    int returnedNumber=gameController.changePositionErrorHandler();
+                    switch (returnedNumber){
+                        case 1:
+                            System.out.println("no card is selected yet");
+                            break;
+                        case 2:
+                            System.out.println("you can’t change this card position");
+                            break;
+                        case 3:
+                            System.out.println("you can’t do this action in this phase");
+                            break;
+                        case 4:
+                            System.out.println("this card is already in the wanted position");
+                            break;
+                        case 5:
+                            System.out.println("you already changed this card position in this turn");
+                            break;
+                        case 6:
+                            System.out.println("monster card position changed successfully");
+                    }
                 }
 
             } else {
