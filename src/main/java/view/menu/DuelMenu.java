@@ -128,8 +128,197 @@ public class DuelMenu extends Menu {
 
         } else if (error == 9) {
             System.out.println("there is no monster on one of these addresses");
-                
+
         }
+    }
+
+    private void setCard() {
+        int error = gameController.setCardErrorHandler();
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("you can’t set this card");
+
+        } else if (error == 3) {
+            System.out.println("you can’t do this action in this phase");
+
+        } else if (error == 4) {
+            System.out.println("monster card zone is full");
+
+        } else if (error == 5) {
+            System.out.println("you already summoned/set on this turn");
+
+        } else if (error == 6) {
+            System.out.println("set successfully");
+
+        } else if (error == 7) {
+            System.out.println("spell card zone is full");
+
+        }
+    }
+
+    private void changePosition() {
+        int error = gameController.changePositionErrorHandler();
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("you can’t change this card position");
+
+        } else if (error == 3) {
+            System.out.println("you can’t do this action in this phase");
+
+        } else if (error == 4) {
+            System.out.println("this card is already in the wanted position");
+
+        } else if (error == 5) {
+            System.out.println("you already changed this card position in this turn");
+
+        } else if (error == 6) {
+            System.out.println("monster card position changed successfully");
+
+        }
+    }
+
+    private void flipSummon() {
+        int error = gameController.flipSummonErrorHandler();
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("you can’t change this card position");
+
+        } else if (error == 3) {
+            System.out.println("you can’t do this action in this phase");
+
+        } else if (error == 4) {
+            System.out.println("you can’t flip summon this card");
+
+        } else if (error == 5) {
+            System.out.println("flip summoned successfully");
+
+        }
+    }
+
+    private void attackCard(Matcher matcher) {
+        int error = gameController.attackErrorHandler(Integer.parseInt(matcher.group(1)));
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("you can’t attack with this card");
+
+        } else if (error == 3) {
+            System.out.println("you can’t do this action in this phase");
+
+        } else if (error == 4) {
+            System.out.println("this card already attacked");
+
+        } else if (error == 5) {
+            System.out.println("there is no card to attack here");
+
+        } else if (error == 6) {
+            System.out.println("your opponent’s monster is destroyed and your opponent receives\n" +
+                    gameController.damageOnOpponent() + "battle damage");
+
+        } else if (error == 7) {
+            System.out.println("both you and your opponent monster cards are destroyed and no\n" +
+                    "one receives damage");
+
+        } else if (error == 8) {
+            System.out.println("Your monster card is destroyed and you received" +
+                    gameController.damageOnPlayer() + " battle\n" +
+                    "damage");
+
+        } else if (error == 9) {
+            System.out.println("the defense position monster is destroyed");
+
+        } else if (error == 10) {
+            System.out.println("no card is destroyed");
+
+        } else if (error == 11) {
+            System.out.println("no card is destroyed and you received" + gameController.damageOnPlayer()
+                    + " battle damage");
+
+        } else if (error == 12) {
+            System.out.println("the defense position monster " +
+                    gameController.getDefenseTargetCardName() + " is destroyed");
+
+        } else if (error == 13) {
+            System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
+                    + " and no card is\n" + "destroyed");
+
+        } else if (error == 14) {
+            System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
+                    + "and no card is destroyed and you received" +
+                    gameController.damageOnPlayer() + " battle damage");
+
+        }
+    }
+
+    private void directAttack() {
+        int error = gameController.directAttackErrorHandler();
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("you can’t attack with this card");
+
+        } else if (error == 3) {
+            System.out.println("you can’t do this action in this phase");
+
+        } else if (error == 4) {
+            System.out.println("this card already attacked");
+
+        } else if (error == 5) {
+            System.out.println("you can’t attack the opponent directly");
+
+        } else if (error == 6) {
+            System.out.println("you opponent receives" + gameController.damageOnOpponent()
+                    + " battle damage");
+
+        }
+    }
+
+    private void activateEffect() {
+        int error = gameController.activeEffectErrorHandler();
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("activate effect is only for spell cards.");
+
+        } else if (error == 3) {
+            System.out.println("you can’t activate an effect on this turn");
+
+        } else if (error == 4) {
+            System.out.println("you have already activated this card");
+
+        } else if (error == 5) {
+            System.out.println("spell card zone is full");
+
+        } else if (error == 6) {
+            System.out.println("preparations of this spell are not done yet");
+
+        } else if (error == 7) {
+            System.out.println("spell activated");
+
+        }
+    }
+
+    private void showGraveyard() {
+        String answer = gameController.controlGraveyard();
+        System.out.println(answer);
+    }
+
+    private void showCard() {
+        String answer = gameController.controlCardShow();
+        System.out.println(answer);
+    }
+
+    private void showGameBoard() {
+
     }
 
     @Override
@@ -167,197 +356,43 @@ public class DuelMenu extends Menu {
                     summonCard();
 
                 } else if (matcher.group(8) != null) {
-                    int returnedNumber = gameController.setCardErrorHandler();
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("you can’t set this card");
-                            break;
-                        case 3:
-                            System.out.println("you can’t do this action in this phase");
-                            break;
-                        case 4:
-                            System.out.println("monster card zone is full");
-                            break;
-                        case 5:
-                            System.out.println("you already summoned/set on this turn");
-                            break;
-                        case 6:
-                            System.out.println("set successfully");
-                            break;
-                        case 7:
-                            System.out.println("spell card zone is full");
-                            break;
-                    }
-                } else if (matcher.group(9) != null) {
-                    int returnedNumber = gameController.changePositionErrorHandler();
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("you can’t change this card position");
-                            break;
-                        case 3:
-                            System.out.println("you can’t do this action in this phase");
-                            break;
-                        case 4:
-                            System.out.println("this card is already in the wanted position");
-                            break;
-                        case 5:
-                            System.out.println("you already changed this card position in this turn");
-                            break;
-                        case 6:
-                            System.out.println("monster card position changed successfully");
-                    }
-                } else if (matcher.group(10) != null) {
-                    int returnedNumber = gameController.flipSummonErrorHandler();
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("you can’t change this card position");
-                            break;
-                        case 3:
-                            System.out.println("you can’t do this action in this phase");
-                            break;
-                        case 4:
-                            System.out.println("you can’t flip summon this card");
-                            break;
-                        case 5:
-                            System.out.println("flip summoned successfully");
-                            break;
-                    }
-                } else if (matcher.group(11) != null) {
-                    Matcher matcher1 = Regex.getMatcher(input, DUEL_MENU_REGEX[2]);
-                    int returnedNumber = gameController.attackErrorHandler(Integer.parseInt(matcher1.group(1)));
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("you can’t attack with this card");
-                            break;
-                        case 3:
-                            System.out.println("you can’t do this action in this phase");
-                            break;
-                        case 4:
-                            System.out.println("this card already attacked");
-                            break;
-                        case 5:
-                            System.out.println("there is no card to attack here");
-                            break;
-                        case 6:
-                            System.out.println("your opponent’s monster is destroyed and your opponent receives\n" +
-                                    gameController.damageOnOpponent() + "battle damage");
-                            break;
-                        case 7:
-                            System.out.println("both you and your opponent monster cards are destroyed and no\n" +
-                                    "one receives damage");
-                            break;
-                        case 8:
-                            System.out.println("Your monster card is destroyed and you received" +
-                                    gameController.damageOnPlayer() + " battle\n" +
-                                    "damage");
-                            break;
-                        case 9:
-                            System.out.println("the defense position monster is destroyed");
-                            break;
-                        case 10:
-                            System.out.println("no card is destroyed");
-                            break;
-                        case 11:
-                            System.out.println("no card is destroyed and you received" + gameController.damageOnPlayer()
-                                    + " battle damage");
-                            break;
-                        case 12:
-                            System.out.println("the defense position monster " +
-                                    gameController.getDefenseTargetCardName() + " is destroyed");
-                            break;
-                        case 13:
-                            System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
-                                    + " and no card is\n" + "destroyed");
-                            break;
-                        case 14:
-                            System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
-                                    + "and no card is destroyed and you received" +
-                                    gameController.damageOnPlayer() + " battle damage");
-                            break;
-                    }
-                } else if (matcher.group(12) != null) {
-                    int returnedNumber = gameController.directAttackErrorHandler();
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("you can’t attack with this card");
-                            break;
-                        case 3:
-                            System.out.println("you can’t do this action in this phase");
-                            break;
-                        case 4:
-                            System.out.println("this card already attacked");
-                            break;
-                        case 5:
-                            System.out.println("you can’t attack the opponent directly");
-                            break;
-                        case 6:
-                            System.out.println("you opponent receives" + gameController.damageOnOpponent()
-                                    + " battale damage");
-                            break;
-                    }
-                } else if (matcher.group(13) != null) {
-                    int returnedNumber = gameController.activeEffectErrorHandler();
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("activate effect is only for spell cards.");
-                            break;
-                        case 3:
-                            System.out.println("you can’t activate an effect on this turn");
-                            break;
-                        case 4:
-                            System.out.println("you have already activated this card");
-                            break;
-                        case 5:
-                            System.out.println("spell card zone is full");
-                            break;
-                        case 6:
-                            System.out.println("preparations of this spell are not done yet");
-                            break;
-                        case 7:
-                            System.out.println("spell activated");
-                            break;
+                    setCard();
 
-                    }
+                } else if (matcher.group(9) != null) {
+                    changePosition();
+
+                } else if (matcher.group(10) != null) {
+                    flipSummon();
+
+                } else if (matcher.group(11) != null) {
+                    attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
+
+                } else if (matcher.group(12) != null) {
+                    directAttack();
+
+                } else if (matcher.group(13) != null) {
+                    activateEffect();
+
                 } else if (matcher.group(14) != null) {
-                    String answer = gameController.controlGraveyard();
-                    System.out.println(answer);
+                    showGraveyard();
+
                 } else if (matcher.group(15) != null) {
-                    String answer = gameController.controlCardShow();
-                    System.out.println(answer);
+                    showCard();
+
                 }
 
             } else {
                 System.out.println("invalid command");
+
             }
+
             if (gameController.getGame().getPhase().equals("Main Phase1")) {
                 showGameBoard();
+
             }
         }
 
         exitMenu();
     }
-
-    private void showGameBoard() {
-
-    }
-
 
 }
