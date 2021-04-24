@@ -35,6 +35,13 @@ public class SpellTrapField {
         }
         return fullPlace == 5;
     }
+
+    public boolean isThisCellOfSpellTrapFieldEmpty(int cardPosition){
+        if(this.spellTrapCardsOnField[cardPosition - 1] == null)
+            return true;
+        else return false;
+    }
+
     public SpellTrapCard getSpellTrap(int index){
         return this.spellTrapCardsOnField[index - 1];
     }

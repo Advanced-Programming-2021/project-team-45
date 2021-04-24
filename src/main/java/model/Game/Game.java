@@ -2,6 +2,7 @@ package model.Game;
 
 import model.card.Card;
 import model.card.MonsterCard;
+import model.card.PositionMonsters;
 import model.card.SpellTrapCard;
 import model.user.User;
 
@@ -10,7 +11,9 @@ public class Game {
     private Card addedCardInDrawPhase;
     private User player;
     private User opponent;
-    private GameBoard gameBoard;
+    private User playerOfThisTurn;
+    private GameBoard playerGameBoard;
+    private GameBoard opponentGameBoard;
     private Card selectedCard;
     private int numberOfSummonsInThisTurn;
     private int numberOfSetsInThisTurn;
@@ -21,7 +24,56 @@ public class Game {
         this.opponent = opponent;
     }
 
-    public boolean isThereSelectedCard(){
+    private void setPlayerOfNextTurn(){
+        if((this.playerOfThisTurn).equals(this.player))
+            this.playerOfThisTurn = opponent;
+        else this.playerOfThisTurn = player;
+    }
+
+    private User getPlayerOfThisTurn(){
+        return this.playerOfThisTurn;
+    }
+
+    private GameBoard getGameBoardOfPlayerOfThisTurn(){
+        if((this.playerOfThisTurn).equals(this.player))
+            return this.playerGameBoard;
+        else return this.opponentGameBoard;
+    }
+
+    public boolean isInputForSelectCardValid(String cardType, int cardPosition, boolean isOpponentCard){
+        if(cardType.equals("--monster") || cardType.equals("-M") || cardType.equals("--spell") || cardType.equals("-S") ||
+        cardType.equals("--field") || cardType.equals("-F") || cardType.equals("--hand") || cardType.equals("-H")){
+            if(!(cardType.equals("--hand") || cardType.equals("-H") ||
+                    cardType.equals("--field") || cardType.equals("-F")) && cardPosition <= 5) return true;
+            else{
+                if((cardType.equals("--field") || cardType.equals("-F")) && cardPosition == -1) return true;
+                else{
+                    if(isOpponentCard){
+                        return cardPosition <= this.opponentGameBoard.getHand().getCardsInHand().size();
+                    } else{
+                        return cardPosition <= this.playerGameBoard.getHand().getCardsInHand().size();
+                    }
+                }
+            }
+        } else return false;
+    }
+
+    public boolean isThereAnyCardHere(String cardType, int cardPosition, boolean isOpponentCard){
+        GameBoard gameBoard;
+        boolean result = false;
+        if(isOpponentCard) gameBoard = this.opponentGameBoard;
+        else gameBoard = this.playerGameBoard;
+        if(cardType.equals("--monster") || cardType.equals("-M")){
+            if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(cardPosition)) result = true;
+            else result = true;
+        }
+        else if(cardType.equals("--spell") || cardType.equals("-S")){
+            if(gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmpty(cardPosition)) result = true;
+            else result = false;
+        }
+        return result;
+    }
+    public boolean doesExistSelectedCard(){
         if(this.selectedCard == null) return false;
         else return true;
     }
@@ -42,6 +94,7 @@ public class Game {
     }
 
     public GameBoard getGameBoard() {
+        // which one? opponent or player -haji
         return gameBoard;
     }
 
@@ -60,7 +113,9 @@ public class Game {
     }
 
     public void drawPhase(){
-        this.addedCardInDrawPhase = this.gameBoard.getDeckField().getCard();
+        // new -haji
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        this.addedCardInDrawPhase = gameBoard.getDeckField().getCard();
     }
 
     public void standbyPhase(){
@@ -90,7 +145,8 @@ public class Game {
     }
 
     public boolean isThereInHand(){
-        return this.gameBoard.getHand().doesCardExistInHand(this.selectedCard);
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        return gameBoard.getHand().doesCardExistInHand(this.selectedCard);
     }
 
     public boolean wasSummonOrSetCardBeforeInThisTurn(){
@@ -101,52 +157,81 @@ public class Game {
     }
 
     public void summonMonster(){
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.summon();
-        this.gameBoard.getMonsterField().addMonsterToField(monsterCard);
+        gameBoard.getMonsterField().addMonsterToField(monsterCard);
         this.selectedCard = null;
     }
 
     public boolean isThereCardForTribute5Or6(){
-        if(this.gameBoard.getMonsterField().getNumberOfMonstersInField() > 0)
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        if(gameBoard.getMonsterField().getNumberOfMonstersInField() > 0)
             return true;
         else return false;
     }
 
     public boolean isEnoughCardForTribute7OrMore(){
-        if(this.gameBoard.getMonsterField().getNumberOfMonstersInField() > 1)
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        if(gameBoard.getMonsterField().getNumberOfMonstersInField() > 1)
             return true;
         else return false;
     }
 
     public boolean canUseAorBForSummon(int A, int B){
-        if(this.gameBoard.getMonsterField().isThisCellEmpty(A) ||
-        this.gameBoard.getMonsterField().isThisCellEmpty(B))
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(A) ||
+        gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(B))
             return false;
         else return true;
     }
 
     public boolean isMonsterFieldFull(){
-       return this.gameBoard.getMonsterField().isFull();
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+       return gameBoard.getMonsterField().isFull();
     }
 
     public void setMonster(){
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.set();
-        this.gameBoard.getMonsterField().addMonsterToField(monsterCard);
+        gameBoard.getMonsterField().addMonsterToField(monsterCard);
     }
 
     public boolean isSpellTrapFieldFull(){
-        return this.gameBoard.getSpellTrapField().isFull();
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        return gameBoard.getSpellTrapField().isFull();
     }
 
     public void setSpellOrTrap(){
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         SpellTrapCard spellTrapCard = (SpellTrapCard) this.selectedCard;
         spellTrapCard.set();
-        this.gameBoard.getSpellTrapField().addSpellTrapCard(spellTrapCard);
+        gameBoard.getSpellTrapField().addSpellTrapCard(spellTrapCard);
     }
 
     public boolean isThereSelectedCardInMonsterField(){
-        return this.gameBoard.getMonsterField().doesExistCardInMonsterField(this.selectedCard);
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        return gameBoard.getMonsterField().doesExistCardInMonsterField(this.selectedCard);
+    }
+
+    public boolean isChangeCorrect(String newCardPosition){
+        MonsterCard monsterCard = (MonsterCard) this.selectedCard;
+        boolean result = true;
+        if(newCardPosition.equals("attack")){
+            if(monsterCard.getPosition() == PositionMonsters.ATTACK)
+                result = false;
+            else result = true;
+        } else if(newCardPosition.equals("defense")){
+            if(monsterCard.getPosition() == PositionMonsters.DEFENSE)
+                result = true;
+            else result = false;
+        }
+        return result;
+    }
+
+    public void changePosition(){
+        MonsterCard monsterCard = (MonsterCard) this.selectedCard;
+        monsterCard.changePosition();
     }
 }

@@ -26,8 +26,8 @@ public class MonsterField {
         return numberOfMonsters;
     }
 
-    public boolean isThisCellEmpty(int house){
-        if(this.monstersOnField[house] == null)
+    public boolean isThisCellOfMonsterFieldEmpty(int cardPosition){
+        if(this.monstersOnField[cardPosition] == null)
             return true;
         else return false;
     }

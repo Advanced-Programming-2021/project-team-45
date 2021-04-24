@@ -166,4 +166,8 @@ public class MonsterCard extends Card {
     public int getLevel() {
         return level;
     }
+
+    public PositionMonsters getPosition() {
+        return position;
+    }
 }
