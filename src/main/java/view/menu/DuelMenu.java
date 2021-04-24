@@ -8,7 +8,6 @@ import java.util.regex.Matcher;
 public class DuelMenu extends Menu {
 
     private final GameController gameController;
-
     private final String[] DUEL_MENU_REGEX = {
             // i = 0
             "^(menu exit)$|" +
@@ -41,6 +40,98 @@ public class DuelMenu extends Menu {
     }
 
 
+    private void selectCard(Matcher matcher) {
+        if (matcher.find()) {
+            String cardType = matcher.group(1);
+            boolean isOpponentCard = matcher.group(2).matches("--opponent|-O");
+            int cardPosition = Integer.parseInt(matcher.group(3));
+
+            int error = gameController.selectCardErrorHandler(cardType, cardPosition, isOpponentCard);
+            if (error == 0) {
+                System.out.println("card selected");
+
+            } else if (error == 1) {
+                System.out.println("invalid selection");
+
+            } else {
+                System.out.println("no card found in the given position");
+
+            }
+        }
+    }
+
+    private void deselectCard() {
+        int error = gameController.deselectErrorHandler();
+        if (error == 0) {
+            System.out.println("card deselected");
+
+        } else {
+            System.out.println("no card is selected yet");
+
+        }
+    }
+
+    private void nextPhase() {
+        int error = gameController.nextPhaseInController();
+
+        if (error == 1) {
+            System.out.println("phase: draw phase");
+
+            System.out.println("new card added to the hand : " +
+                    gameController.getGame().getAddedCardInDrawPhase().getCardName());
+
+        } else if (error == 2) {
+            System.out.println("phase: Main phase 1");
+
+        } else if (error == 6) {
+            System.out.println("phase: End Phase");
+
+            System.out.println("its" + gameController.getGame().getOpponent().getNickname() + "'s turn");
+
+        } else if (error == 0) {
+            System.out.println("phase: standby phase");
+
+        } else if (error == 3) {
+            System.out.println("phase: battle Phase");
+
+        } else if (error == 4) {
+            System.out.println("phase: Main Phase 2");
+
+        }
+    }
+
+    private void summonCard() {
+        int error = gameController.summonErrorHandler();
+        if (error == 1) {
+            System.out.println("no card is selected yet");
+
+        } else if (error == 2) {
+            System.out.println("you can’t summon this card");
+
+        } else if (error == 3) {
+            System.out.println("action not allowed in this phase");
+
+        } else if (error == 4) {
+            System.out.println("monster card zone is full");
+
+        } else if (error == 5) {
+            System.out.println("you already summoned/set on this turn");
+
+        } else if (error == 6) {
+            System.out.println("summoned successfully");
+
+        } else if (error == 7) {
+            System.out.println("there are not enough cards for tribute");
+
+        } else if (error == 8) {
+            System.out.println("there no monsters one this address");
+
+        } else if (error == 9) {
+            System.out.println("there is no monster on one of these addresses");
+                
+        }
+    }
+
     @Override
     public void show() {
     }
@@ -64,74 +155,17 @@ public class DuelMenu extends Menu {
                     System.out.println("menu navigation is not possible");
 
                 } else if (matcher.group(4) != null) {
-                    int returnedNumber = gameController.selectCardErrorHandler(input);//s
-                    if (returnedNumber == 0) System.out.println("card selected");
-                    else if (returnedNumber == 1) System.out.println("invalid selection");
-                    else System.out.println("no card found in the given position");
+                    selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
 
                 } else if (matcher.group(5) != null) {
-                    int returnedNumber = gameController.deSelectErrorHAndler();//s
-                    if (returnedNumber == 0) System.out.println("card deselected");
-                    else System.out.println("no card is selected yet");
+                    deselectCard();
 
                 } else if (matcher.group(6) != null) {
-                    int returnedNumber = gameController.nextPhaseInController();
+                    nextPhase();
 
-                    if (returnedNumber == 1) {
-                        System.out.println("phase: draw phase");
-
-                        System.out.println("new card added to the hand : " +
-                                gameController.getGame().getAddedCardInDrawPhase().getCardName());
-
-                    } else if (returnedNumber == 2) {
-                        System.out.println("phase: Main phase 1");
-
-                    } else if (returnedNumber == 6) {
-                        System.out.println("phase: End Phase");
-
-                        System.out.println("its" + gameController.getGame().getOpponent().getNickname() + "'s turn");
-
-                    } else if (returnedNumber == 0) {
-                        System.out.println("phase: standby phase");
-
-                    } else if (returnedNumber == 3) {
-                        System.out.println("phase: battle Phase");
-
-                    } else if (returnedNumber == 4) {
-                        System.out.println("phase: Main Phase 2");
-
-                    }
                 } else if (matcher.group(7) != null) {
-                    int returnedNumber = gameController.summonErrorHandler();
-                    switch (returnedNumber) {
-                        case 1:
-                            System.out.println("no card is selected yet");
-                            break;
-                        case 2:
-                            System.out.println("you can’t summon this card");
-                            break;
-                        case 3:
-                            System.out.println("action not allowed in this phase");
-                            break;
-                        case 4:
-                            System.out.println("monster card zone is full");
-                            break;
-                        case 5:
-                            System.out.println("you already summoned/set on this turn");
-                            break;
-                        case 6:
-                            System.out.println("summoned successfully");
-                            break;
-                        case 7:
-                            System.out.println("there are not enough cards for tribute");
-                            break;
-                        case 8:
-                            System.out.println("there no monsters one this address");
-                            break;
-                        case 9:
-                            System.out.println("there is no monster on one of these addresses");
-                            break;
-                    }
+                    summonCard();
+
                 } else if (matcher.group(8) != null) {
                     int returnedNumber = gameController.setCardErrorHandler();
                     switch (returnedNumber) {
@@ -198,9 +232,9 @@ public class DuelMenu extends Menu {
                             break;
                     }
                 } else if (matcher.group(11) != null) {
-                    Matcher matcher1 = Regex.getMatcher(input,DUEL_MENU_REGEX[2]);
+                    Matcher matcher1 = Regex.getMatcher(input, DUEL_MENU_REGEX[2]);
                     int returnedNumber = gameController.attackErrorHandler(Integer.parseInt(matcher1.group(1)));
-                    switch (returnedNumber){
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -218,15 +252,15 @@ public class DuelMenu extends Menu {
                             break;
                         case 6:
                             System.out.println("your opponent’s monster is destroyed and your opponent receives\n" +
-                                    gameController.damageOnOpponent()+"battle damage");
+                                    gameController.damageOnOpponent() + "battle damage");
                             break;
                         case 7:
                             System.out.println("both you and your opponent monster cards are destroyed and no\n" +
                                     "one receives damage");
                             break;
                         case 8:
-                            System.out.println("Your monster card is destroyed and you received"+
-                                    gameController.damageOnPlayer()+" battle\n" +
+                            System.out.println("Your monster card is destroyed and you received" +
+                                    gameController.damageOnPlayer() + " battle\n" +
                                     "damage");
                             break;
                         case 9:
@@ -236,26 +270,26 @@ public class DuelMenu extends Menu {
                             System.out.println("no card is destroyed");
                             break;
                         case 11:
-                            System.out.println("no card is destroyed and you received"+gameController.damageOnPlayer()
-                                    +" battle damage");
+                            System.out.println("no card is destroyed and you received" + gameController.damageOnPlayer()
+                                    + " battle damage");
                             break;
                         case 12:
-                            System.out.println("the defense position monster "+
-                                    gameController.getDefenseTargetCardName()+" is destroyed");
+                            System.out.println("the defense position monster " +
+                                    gameController.getDefenseTargetCardName() + " is destroyed");
                             break;
                         case 13:
-                            System.out.println("opponent’s monster card was "+gameController.getDefenseTargetCardName()
-                                    +" and no card is\n" + "destroyed");
+                            System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
+                                    + " and no card is\n" + "destroyed");
                             break;
                         case 14:
-                            System.out.println("opponent’s monster card was "+gameController.getDefenseTargetCardName()
-                            +"and no card is destroyed and you received"+
+                            System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
+                                    + "and no card is destroyed and you received" +
                                     gameController.damageOnPlayer() + " battle damage");
                             break;
                     }
-                }else if(matcher.group(12)!=null){
-                    int returnedNumber=gameController.directAttackErrorHandler();
-                    switch (returnedNumber){
+                } else if (matcher.group(12) != null) {
+                    int returnedNumber = gameController.directAttackErrorHandler();
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -272,13 +306,13 @@ public class DuelMenu extends Menu {
                             System.out.println("you can’t attack the opponent directly");
                             break;
                         case 6:
-                            System.out.println("you opponent receives"+gameController.damageOnOpponent()
-                                    +" battale damage");
+                            System.out.println("you opponent receives" + gameController.damageOnOpponent()
+                                    + " battale damage");
                             break;
                     }
-                }else if(matcher.group(13)!=null){
-                    int returnedNumber=gameController.activeEffectErrorHandler();
-                    switch (returnedNumber){
+                } else if (matcher.group(13) != null) {
+                    int returnedNumber = gameController.activeEffectErrorHandler();
+                    switch (returnedNumber) {
                         case 1:
                             System.out.println("no card is selected yet");
                             break;
@@ -302,11 +336,11 @@ public class DuelMenu extends Menu {
                             break;
 
                     }
-                }else if(matcher.group(14)!=null){
-                    String answer=gameController.controlGraveyard();
+                } else if (matcher.group(14) != null) {
+                    String answer = gameController.controlGraveyard();
                     System.out.println(answer);
-                }else if(matcher.group(15)!=null){
-                    String answer=gameController.controlCardShow();
+                } else if (matcher.group(15) != null) {
+                    String answer = gameController.controlCardShow();
                     System.out.println(answer);
                 }
 

@@ -21,14 +21,14 @@ public class GameController extends Controller {
         super(username);
     }
 
-    public int selectCardErrorHandler(String input) {
-        if (game.isInputForSelectCardValid(input)) {
-            if (game.isThereAnyCardHere(input)) return 0;
+    public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
+        if (game.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
+            if (game.isThereAnyCardHere(cardType, cardPosition, isOpponentCard)) return 0;
             else return 2;
         } else return 1;
     }
 
-    public int deSelectErrorHAndler() {
+    public int deselectErrorHandler() {
         if (game.isThereSelectedCard()) return 0;
         else return 1;
     }
