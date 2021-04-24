@@ -143,7 +143,7 @@ public class GameController extends Controller {
     public int flipSummonErrorHandler() {
         if (game.doesExistSelectedCard()) {
             if (game.isThereSelectedCardInMonsterField()) {
-                if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
+                if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
                     if (game.canFlipSummonSelectedCard()) {
                         game.flipSummon();
                         return 5;
@@ -160,10 +160,10 @@ public class GameController extends Controller {
                     if (!game.wasThisCardAttackedInThisTurn()) {
                         if (game.isThereAnyMonsterInThisCell(numberOfEnemyMonsterZone)) {
                             if(game.isTargetCellInAttackPosition(numberOfEnemyMonsterZone)){
-                                if(game.isTargetCellAttackPowerMoreThanMe()){
+                                if(game.isTargetCellAttackPowerMoreThanMe(numberOfEnemyMonsterZone)){
                                     game.attackToOfensiveCard();// needed argument
                                     return 6;
-                                }else if(game.isTargetCellAttackPowerEqualWithMe()){
+                                }else if(game.isTargetCellAttackPowerEqualWithMe(numberOfEnemyMonsterZone)){
                                     game.attackToOfensiveCard();
                                     return 7;
                                 }else{
@@ -171,11 +171,11 @@ public class GameController extends Controller {
                                     return 8;
                                 }
                             }else{
-                                if(game.isTargetDefenseLowerThanMyAttackPower()){
+                                if(game.isTargetDefenseLowerThanMyAttackPower(numberOfEnemyMonsterZone)){
                                     game.attackToDefensiveCard();
                                     if(game.isDefenseCardOnDHStyle()) return 12;
                                     else return 9;
-                                }else if(game.isTargetDefenseEqualMyAttackPower()){
+                                }else if(game.isTargetDefenseEqualMyAttackPower(numberOfEnemyMonsterZone)){
                                     game.attackToDefensiveCard();
                                     if(game.isDefenseCardOnDHStyle()) return 13;
                                     else return 10;

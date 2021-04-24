@@ -40,6 +40,12 @@ public class Game {
         else return this.opponentGameBoard;
     }
 
+    private GameBoard getGameBoardOfOpponentPlayerOfThisTurn(){
+        if((this.playerOfThisTurn).equals(this.player))
+            return this.opponentGameBoard;
+        else return this.playerGameBoard;
+    }
+
     public boolean isInputForSelectCardValid(String cardType, int cardPosition, boolean isOpponentCard){
         if(cardType.equals("--monster") || cardType.equals("-M") || cardType.equals("--spell") || cardType.equals("-S") ||
         cardType.equals("--field") || cardType.equals("-F") || cardType.equals("--hand") || cardType.equals("-H")){
@@ -233,5 +239,20 @@ public class Game {
     public void changePosition(){
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.changePosition();
+    }
+
+    public boolean isThereAnyMonsterInThisCell(int numberOfEnemyMonsterZone){
+        GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(numberOfEnemyMonsterZone))
+            return false;
+        else return true;
+    }
+
+    public boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone){
+        GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        if(gameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+         == PositionMonsters.ATTACK)
+            return true;
+        else return false;
     }
 }

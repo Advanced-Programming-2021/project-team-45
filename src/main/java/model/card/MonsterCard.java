@@ -167,6 +167,14 @@ public class MonsterCard extends Card {
         return level;
     }
 
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
     public PositionMonsters getPosition() {
         return position;
     }

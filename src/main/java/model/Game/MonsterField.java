@@ -6,6 +6,10 @@ import model.card.MonsterCard;
 public class MonsterField {
     private MonsterCard[] monstersOnField = new MonsterCard[5];
 
+    public MonsterCard getMonsterCardFromMonsterField(int cardPosition){
+        return this.monstersOnField[cardPosition - 1];
+    }
+
     public void addMonsterToField(MonsterCard monster){
         int index = 0;
         while(index < 5){
@@ -57,15 +61,6 @@ public class MonsterField {
             }
             return existence != 0;
         }
-    }
-    // nemiddonam ina chian -haji
-
-    public String toStringForOpponent(){
-
-    }
-
-    public String toString(){
-
     }
 
 }
