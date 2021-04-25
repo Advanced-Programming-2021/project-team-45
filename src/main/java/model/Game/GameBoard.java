@@ -1,9 +1,9 @@
 package model.Game;
 
+import model.card.PositionMonsters;
 import model.card.SpellsAndTrapPosition;
 import model.user.User;
 
-import java.util.ArrayList;
 
 public class GameBoard {
     private User owner;
@@ -13,9 +13,11 @@ public class GameBoard {
     private MonsterField monsterField;
     private SpellTrapField spellTrapField;
     private FieldZone fieldZone;
+    private Game game;
 
     public GameBoard(User owner, Graveyard graveyard,
-                     Hand hand, MonsterField monsterField, SpellTrapField spellTrapField, FieldZone fieldZone, DeckField deckField) {
+                     Hand hand, MonsterField monsterField, SpellTrapField spellTrapField, FieldZone fieldZone,
+                     DeckField deckField, Game game) {
         this.owner = owner;
         this.graveyard = graveyard;
         this.hand = hand;
@@ -23,6 +25,7 @@ public class GameBoard {
         this.spellTrapField = spellTrapField;
         this.fieldZone = fieldZone;
         this.deckField = deckField;
+        this.game = game;
     }
 
     public MonsterField getMonsterField() {
@@ -49,35 +52,58 @@ public class GameBoard {
         return graveyard;
     }
 
-    public String GameBoardOfPlayer(GameBoard gameBoardOfPlayer){
-        String[][] gameBoard=new String[7][gameBoardOfPlayer.getHand().getCardsInHand().size()+12];
-        gameBoard[0][0]=(gameBoardOfPlayer.getOwner().getNickname()+": ");
-        gameBoard[0][1]=String.valueOf(gameBoardOfPlayer.getOwner().getLifepoint().getLifepoint());
-        gameBoard[1][0]="    ";
-        for (int i=1;i<gameBoardOfPlayer.getHand().getCardsInHand().size()*2;i+=2){
-            gameBoard[1][i]="c";
-            gameBoard[1][i+1]="    ";
+    public String GameBoardOfPlayer() {
+        String[][] gameBoard = new String[7][12];
+        gameBoard[0][0] = (getOwner().getNickname() + ": ");
+        gameBoard[0][1] = String.valueOf(getOwner().getLifepoint().getLifepoint());
+        gameBoard[1][0] = "    ";
+        for (int i = 1; i < getHand().getCardsInHand().size() * 2; i += 2) {
+            gameBoard[1][i] = "c";
+            gameBoard[1][i + 1] = "    ";
         }
-        gameBoard[2][0]=String.valueOf(gameBoardOfPlayer.getOwner().getUserDeck().getActiveDeck());
-        gameBoard[3][0]="    ";
-        int  forIndex=0;
-        for(int i=1;i<10;i+=2){
-            if(gameBoardOfPlayer.spellTrapField.getSpellTrapCardsOnField()[forIndex].getPosition().
-                    equals(SpellsAndTrapPosition.SUMMON)){
-                gameBoard[3][i]="O";
-                gameBoard[3][i+1]="    ";
-            }
-            else {
-                gameBoard[3][i]="H";
-                gameBoard[3][i+1]="    ";
+        gameBoard[2][0] = String.valueOf(getOwner().getUserDeck().getActiveDeck());
+        gameBoard[3][0] = "    ";
+        int forIndex = 0;
+        for (int i = 1; i < 10; i += 2) {
+            if (spellTrapField.isItFull(i)) {
+                gameBoard[3][i] = "E";
+                gameBoard[3][i] = "    ";
+            } else {
+                if (spellTrapField.getSpellTrapCardsOnField()[forIndex].getPosition().
+                        equals(SpellsAndTrapPosition.SUMMON)) {
+                    gameBoard[3][i] = "O";
+                    gameBoard[3][i + 1] = "    ";
+                } else {
+                    gameBoard[3][i] = "H";
+                    gameBoard[3][i + 1] = "    ";
+                }
             }
             forIndex++;
         }
-        gameBoard[4][0]="    ";
-
-
-        //hanooz takmil nashode
-
-
+        gameBoard[4][0] = "    ";
+        forIndex = 0;
+        for (int i = 0; i < 10; i += 2) {
+            if (monsterField.isFull()) {
+                gameBoard[4][i] = "E";
+                gameBoard[4][i + 1] = "    ";
+            } else {
+                if (gameBoardOfPlayer.monsterField.getMonstersOnField()[forIndex].getPosition()
+                        .equals(PositionMonsters.DEFENSE)) {
+                    if () {//a method for understand DH or DO . I have a algorithm for handle this problem but i think it doesn't best solution so i don't change code until have conversation for it.
+                        gameBoard[4][i] = "DH";
+                        gameBoard[4][i + 1] = "    ";
+                    } else {
+                        gameBoard[4][i] = "DO";
+                        gameBoard[4][i + 1] = "    ";
+                    }
+                } else {
+                    gameBoard[4][i] = "OO";
+                    gameBoard[4][i + 1] = "OO";
+                }
+            }
+        }
+        gameBoard[5][0] = String.valueOf(getGraveyard().getGraveyardStr().size());
+        gameBoard[5][11] = fieldZone.isFull() ? "O" : "E";
     }
+
 }

@@ -16,10 +16,10 @@ public class SpellTrapField {
         return spellTrapCardsOnField;
     }
 
-    public void addSpellTrapCard(SpellTrapCard spellTrapCard){
+    public void addSpellTrapCard(SpellTrapCard spellTrapCard) {
         int index = 0;
-        while(index < 5){
-            if(this.spellTrapCardsOnField[index] == null){
+        while (index < 5) {
+            if (this.spellTrapCardsOnField[index] == null) {
                 this.spellTrapCardsOnField[index] = spellTrapCard;
                 break;
             }
@@ -27,30 +27,36 @@ public class SpellTrapField {
         }
     }
 
-    public boolean isFull(){
+    public boolean isFull() {
         int fullPlace = 0;
-        for(int i = 0; i < 5; i++){
-            if(this.spellTrapCardsOnField[i] != null)
+        for (int i = 0; i < 5; i++) {
+            if (this.spellTrapCardsOnField[i] != null)
                 fullPlace++;
         }
         return fullPlace == 5;
     }
 
-    public boolean isThisCellOfSpellTrapFieldEmpty(int cardPosition){
-        if(this.spellTrapCardsOnField[cardPosition - 1] == null)
+    public boolean isThisCellOfSpellTrapFieldEmpty(int cardPosition) {
+        if (this.spellTrapCardsOnField[cardPosition - 1] == null)
             return true;
         else return false;
     }
 
-    public SpellTrapCard getSpellTrap(int index){
+    public boolean isItFull(int index) {
+        index = (index + 1) / 2 - 1;
+        return this.spellTrapCardsOnField[index] != null;
+    }
+
+    public SpellTrapCard getSpellTrap(int index) {
         return this.spellTrapCardsOnField[index - 1];
     }
+
     // nemiddonam ina chian -haji
-    public String toStringForOpponent(){
+    public String toStringForOpponent() {
 
     }
 
-    public String toString(){
+    public String toString() {
 
     }
 }
