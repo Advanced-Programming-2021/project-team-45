@@ -34,6 +34,12 @@ public class Game {
         return this.playerOfThisTurn;
     }
 
+    private User getOpponentOfThisTurn(){
+        if(this.playerOfThisTurn.equals(this.player))
+            return opponent;
+        else return player;
+    }
+
     private GameBoard getGameBoardOfPlayerOfThisTurn(){
         if((this.playerOfThisTurn).equals(this.player))
             return this.playerGameBoard;
@@ -248,11 +254,118 @@ public class Game {
         else return true;
     }
 
-    public boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone){
+    private boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone){
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         if(gameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone).getPosition()
          == PositionMonsters.ATTACK)
             return true;
         else return false;
+    }
+
+    private boolean isTargetCellInDefensePosition(int numberOfEnemyMonsterZone){
+        GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        if(gameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+                == PositionMonsters.DEFENSE)
+            return true;
+        else return false;
+    }
+
+    public int attack(int numberOfEnemyMonsterZone){
+        int result = 0;
+        GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
+        MonsterCard playerCard = (MonsterCard) this.selectedCard;
+        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone);
+        if(isTargetCellInAttackPosition(numberOfEnemyMonsterZone)){
+            result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
+        }
+        else if(isTargetCellInDefensePosition(numberOfEnemyMonsterZone)){
+            result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
+        }
+        this.selectedCard = null;
+        return result;
+    }
+
+    private int attackToOpponentCardInAttackPosition(MonsterCard playerCard, MonsterCard opponentCard,
+                                                     GameBoard opponentGameBoard, GameBoard playerGameBoard){
+        int result = 0;
+        if(playerCard.getAttack() > opponentCard.getAttack()){
+            result = 6;
+            playerCard.attackMonster(opponentCard);
+            opponentGameBoard.getMonsterField().deleteAnDestroyedMonster(opponentCard);
+        }
+        else if(playerCard.getAttack() == opponentCard.getAttack()){
+            result = 7;
+            playerCard.attackMonster(opponentCard);
+            opponentGameBoard.getMonsterField().deleteAnDestroyedMonster(opponentCard);
+            playerGameBoard.getMonsterField().deleteAnDestroyedMonster(playerCard);
+        }
+        else if(playerCard.getAttack() < opponentCard.getAttack()){
+            result = 8;
+            playerCard.attackMonster(opponentCard);
+            playerGameBoard.getMonsterField().deleteAnDestroyedMonster(playerCard);
+        }
+        return result;
+    }
+
+    private int attackToOpponentCardInDefensePosition(MonsterCard playerCard, MonsterCard opponentCard,
+                                                      GameBoard playerGameBoard, GameBoard opponentGameBoard){
+        int result = 0;
+        /*
+        ?
+         */
+        return result;
+    }
+
+    public boolean canDoDirectAttack(){
+        GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        if(opponentGameBoard.getMonsterField().getNumberOfMonstersInField() != 0) return true;
+        else{
+            /*
+            another reasons
+             */
+        }
+    }
+
+    public void directAttack(){
+        MonsterCard monsterCard = (MonsterCard) this.selectedCard;
+        User opponent = getOpponentOfThisTurn();
+        monsterCard.attackOpponent(opponent);
+        this.selectedCard = null;
+    }
+
+    public boolean isSelectedCardSpell(){
+        if(this.selectedCard instanceof SpellTrapCard)
+            return true;
+        else return false;
+    }
+
+    public boolean isSelectedSpellActive(){
+        SpellTrapCard spellTrapCard = (SpellTrapCard) this.selectedCard;
+        return spellTrapCard.isActivated();
+    }
+
+    public boolean isSelectedCardInHand(){
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        if(gameBoard.getHand().doesCardExistInHand(this.selectedCard))
+            return true;
+        else return false;
+    }
+
+    public String showGraveyard(){
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        return gameBoard.getGraveyard().toString();
+    }
+
+    public String calculateDamageOnMe(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.playerOfThisTurn.getLastDamageAmount());
+        return stringBuilder.toString();
+    }
+
+    public String calculateDamageOnEnemy(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getOpponentOfThisTurn().getLastDamageAmount());
+        return stringBuilder.toString();
     }
 }

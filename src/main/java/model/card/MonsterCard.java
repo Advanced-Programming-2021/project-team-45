@@ -129,6 +129,7 @@ public class MonsterCard extends Card {
                 int decreaseFromOpponentLifepoint = this.attack - card.attack;
                 int newLifepoint = card.owner.getLifepoint().getLifepoint() - decreaseFromOpponentLifepoint;
                 card.owner.getLifepoint().setLifepoint(newLifepoint);
+                card.owner.setLastDamageAmount(decreaseFromOpponentLifepoint);
                 card.attack = -1; //when a monster was destroyed, Its' attack and defence change to -1.
                 card.defense = -1;
             } else if (this.attack == card.attack){
@@ -141,6 +142,7 @@ public class MonsterCard extends Card {
                 int decreaseFromAttacker=card.attack-this.attack;
                 int newLifepoint=this.owner.getLifepoint().getLifepoint()-decreaseFromAttacker;
                 this.owner.getLifepoint().setLifepoint(newLifepoint);
+                this.owner.setLastDamageAmount(decreaseFromAttacker);
                 this.attack=-1;
                 this.defense=-1;
             }
@@ -153,6 +155,7 @@ public class MonsterCard extends Card {
                 int decreaseFromAttacker=card.defense-this.attack;
                 int newLifepoint=this.owner.getLifepoint().getLifepoint()-decreaseFromAttacker;
                 this.owner.getLifepoint().setLifepoint(newLifepoint);
+                this.owner.setLastDamageAmount(decreaseFromAttacker);
             }
         }
     }
@@ -161,10 +164,7 @@ public class MonsterCard extends Card {
         int newLifepoint=Opponent.getLifepoint().getLifepoint()-this.attack;
         if(newLifepoint>0) Opponent.getLifepoint().setLifepoint(newLifepoint);
         else Opponent.getLifepoint().setLifepoint(0);
-    }
-
-    public int getLevel() {
-        return level;
+        Opponent.setLastDamageAmount(this.attack);
     }
 
     public int getAttack() {
@@ -173,6 +173,10 @@ public class MonsterCard extends Card {
 
     public int getDefense() {
         return defense;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public PositionMonsters getPosition() {

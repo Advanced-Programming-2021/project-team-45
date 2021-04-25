@@ -14,6 +14,7 @@ public class User {
     private Lifepoint lifepoint;
     private CardInventory cardInventory;
     private UserDeck userDeck;
+    private int lastDamageAmount;
 
     static {
         users = new ArrayList<>();
@@ -130,6 +131,14 @@ public class User {
 
     public boolean isPasswordCorrect(String password) {
         return this.password.equals(password);
+    }
+
+    public int getLastDamageAmount() {
+        return lastDamageAmount;
+    }
+
+    public void setLastDamageAmount(int lastDamageAmount) {
+        this.lastDamageAmount = lastDamageAmount;
     }
 
     @Override

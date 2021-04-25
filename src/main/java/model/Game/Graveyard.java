@@ -40,4 +40,14 @@ public class Graveyard {
         }
          return graveyardStr;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < this.graveyardCards.size(); i++){
+            Card card = this.graveyardCards.get(i);
+            stringBuilder.append(i + 1 + ". " + card.getCardName() +":" + card.getCardDescription() + "\n");
+        }
+        return stringBuilder.toString();
+    }
 }

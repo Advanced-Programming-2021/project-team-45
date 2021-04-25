@@ -5,6 +5,11 @@ import model.card.MonsterCard;
 
 public class MonsterField {
     private MonsterCard[] monstersOnField = new MonsterCard[5];
+    private Graveyard graveyard;
+
+    public MonsterField(Graveyard graveyard){
+        this.graveyard = graveyard;
+    }
 
     public MonsterCard getMonsterCardFromMonsterField(int cardPosition){
         return this.monstersOnField[cardPosition - 1];
@@ -18,6 +23,15 @@ public class MonsterField {
                 break;
             }
             index++;
+        }
+    }
+
+    public void deleteAnDestroyedMonster(MonsterCard monsterCard){
+        for(int i = 0; i < 5; i++){
+            if(this.monstersOnField[i].getCardName().equals(monsterCard.getCardName())){
+                this.graveyard.addCardToGraveyard(this.monstersOnField[i]);
+                this.monstersOnField[i] = null;
+            }
         }
     }
 

@@ -159,7 +159,7 @@ public class GameController extends Controller {
                 if (game.getPhase().equals("battle phase")) {
                     if (!game.wasThisCardAttackedInThisTurn()) {
                         if (game.isThereAnyMonsterInThisCell(numberOfEnemyMonsterZone)) {
-                            int returnedNumber=game.attack();
+                            int returnedNumber=game.attack(numberOfEnemyMonsterZone);
                             return returnedNumber;
                             /*
                             some order have to done for attack method in model{
@@ -206,7 +206,7 @@ public class GameController extends Controller {
         if(game.doesExistSelectedCard()){
             if(game.isSelectedCardSpell()){
                 if(game.getPhase().equals("Main Phase 1")||game.getPhase().equals("Main Phase 2")){
-                    if(!game.isSelectedSpellActive){
+                    if(!game.isSelectedSpellActive()){
                         if(game.isSelectedCardInHand()&&game.isSpellTrapFieldFull()
                                 &&game.isSelectedCardHaveToPutInField()){
                             return 5;
@@ -222,7 +222,7 @@ public class GameController extends Controller {
     }
 
     public String controlGraveyard(){
-        String answer=game.showGraveyard;
+        String answer=game.showGraveyard();
         return answer;
     }
 

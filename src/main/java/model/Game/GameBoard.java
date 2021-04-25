@@ -45,6 +45,10 @@ public class GameBoard {
         return deckField;
     }
 
+    public Graveyard getGraveyard() {
+        return graveyard;
+    }
+
     public String GameBoardOfPlayer(GameBoard gameBoardOfPlayer){
         String[][] gameBoard=new String[7][gameBoardOfPlayer.getHand().getCardsInHand().size()+12];
         gameBoard[0][0]=(gameBoardOfPlayer.getOwner().getNickname()+": ");
