@@ -159,32 +159,27 @@ public class GameController extends Controller {
                 if (game.getPhase().equals("battle phase")) {
                     if (!game.wasThisCardAttackedInThisTurn()) {
                         if (game.isThereAnyMonsterInThisCell(numberOfEnemyMonsterZone)) {
-                            if(game.isTargetCellInAttackPosition(numberOfEnemyMonsterZone)){
-                                if(game.isTargetCellAttackPowerMoreThanMe(numberOfEnemyMonsterZone)){
-                                    game.attackToOfensiveCard();// needed argument
-                                    return 6;
-                                }else if(game.isTargetCellAttackPowerEqualWithMe(numberOfEnemyMonsterZone)){
-                                    game.attackToOfensiveCard();
-                                    return 7;
-                                }else{
-                                    game.attackToOfensiveCard();
-                                    return 8;
-                                }
-                            }else{
-                                if(game.isTargetDefenseLowerThanMyAttackPower(numberOfEnemyMonsterZone)){
-                                    game.attackToDefensiveCard();
-                                    if(game.isDefenseCardOnDHStyle()) return 12;
-                                    else return 9;
-                                }else if(game.isTargetDefenseEqualMyAttackPower(numberOfEnemyMonsterZone)){
-                                    game.attackToDefensiveCard();
-                                    if(game.isDefenseCardOnDHStyle()) return 13;
-                                    else return 10;
-                                }else{
-                                    game.attackToDefensiveCard();
-                                    if(game.isDefenseCardOnDHStyle()) return 14;
-                                    else return 11;
-                                }
-                            }
+                            int returnedNumber=game.attack();
+                            return returnedNumber;
+                            /*
+                            some order have to done for attack method in model{
+                            enemy card in attack position:
+                            my attack power > enemy attack power -> return 6
+                            my attack power = enemy attack power -> return 7
+                            my attack power < enemy attack power -> return 8
+                            enemy card in defense position:
+                            my attack power > enemy defense power :
+                                DH mode -> return 12
+                                Not DH mode -> return 9;
+                            my attack power = enemy defense power :
+                                DH mode -> return 13
+                                Not DH mode -> return 10;
+                            my attack power > enemy defense power :
+                                DH mode -> return 14
+                                Not DH mode -> return 11;
+                             }
+                             */
+
                         } else return 5;
                     } else return 4;
                 } else return 3;
@@ -193,30 +188,61 @@ public class GameController extends Controller {
     }
 
     public int directAttackErrorHandler(){
-
+        if(game.doesExistSelectedCard()){
+            if(game.isThereSelectedCardInMonsterField()){
+                if(game.getPhase().equals("battle phase")){
+                    if(!game.wasThisCardAttackedInThisTurn()){
+                        if(game.canDoDirectAttack()){
+                            game.directAttack();
+                            return 6;
+                        }return 5;
+                    }return 4;
+                }return 3;
+            }return 2;
+        }return 1;
     }
 
     public int activeEffectErrorHandler(){
-
+        if(game.doesExistSelectedCard()){
+            if(game.isSelectedCardSpell()){
+                if(game.getPhase().equals("Main Phase 1")||game.getPhase().equals("Main Phase 2")){
+                    if(!game.isSelectedSpellActive){
+                        if(game.isSelectedCardInHand()&&game.isSpellTrapFieldFull()
+                                &&game.isSelectedCardHaveToPutInField()){
+                            return 5;
+                        }
+                        if(game.canActiveSpell()){
+                            game.activeSpell();
+                            return 7;
+                        }return 6;
+                    }return 4;
+                }return 3;
+            }return 2;
+        }return 1;
     }
 
     public String controlGraveyard(){
-
+        String answer=game.showGraveyard;
+        return answer;
     }
 
     public String controlCardShow(){
-
+        String answer=game.showCard();
+        return answer;
     }
     public String damageOnOpponent(){
-
+        String answer=game.calculateDamageOnEnemy();
+        return answer;
     }
 
     public String damageOnPlayer(){
-
+        String answer=game.calculateDamageOnMe();
+        return answer;
     }
 
     public String getDefenseTargetCardName(){
-
+        String answer=game.getEnemyCardName();
+        return answer;
     }
     public Game getGame() {
         return game;
