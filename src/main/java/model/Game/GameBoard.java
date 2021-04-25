@@ -52,7 +52,7 @@ public class GameBoard {
         return graveyard;
     }
 
-    public String GameBoardOfPlayer() {
+    public String[][] GameBoardOfPlayer() {
         String[][] gameBoard = new String[7][12];
         gameBoard[0][0] = (getOwner().getNickname() + ": ");
         gameBoard[0][1] = String.valueOf(getOwner().getLifepoint().getLifepoint());
@@ -104,6 +104,8 @@ public class GameBoard {
         }
         gameBoard[5][0] = String.valueOf(getGraveyard().getGraveyardStr().size());
         gameBoard[5][11] = fieldZone.isFull() ? "O" : "E";
+        return gameBoard;
     }
+
 
 }
