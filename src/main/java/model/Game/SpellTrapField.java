@@ -36,10 +36,18 @@ public class SpellTrapField {
         return fullPlace == 5;
     }
 
-    public boolean isThisCellOfSpellTrapFieldEmpty(int cardPosition) {
-        if (this.spellTrapCardsOnField[cardPosition - 1] == null)
-            return true;
-        else return false;
+    public boolean isThisCellOfSpellTrapFieldEmptyInPlayerMode(int cardPosition) {
+        return this.spellTrapCardsOnField[cardPosition - 1] == null;
+    }
+
+    public boolean isThisCellOfSpellTrapFieldEmptyInOpponentMode(int cardPosition){
+        int newPosition = 0;
+        if(cardPosition == 1)
+            newPosition  = cardPosition;
+        else if(cardPosition % 2 == 0)
+            newPosition = cardPosition + 1;
+        else newPosition = cardPosition - 1;
+        return this.spellTrapCardsOnField[newPosition - 1] == null;
     }
 
     public boolean isItFull(int index) {
@@ -51,12 +59,4 @@ public class SpellTrapField {
         return this.spellTrapCardsOnField[index - 1];
     }
 
-    // nemiddonam ina chian -haji
-    public String toStringForOpponent() {
-
-    }
-
-    public String toString() {
-
-    }
 }

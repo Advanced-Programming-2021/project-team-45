@@ -73,18 +73,27 @@ public class Game {
     public boolean isThereAnyCardHere(String cardType, int cardPosition, boolean isOpponentCard){
         GameBoard gameBoard;
         boolean result = false;
-        if(isOpponentCard) gameBoard = this.opponentGameBoard;
-        else gameBoard = this.playerGameBoard;
-        if(cardType.equals("--monster") || cardType.equals("-M")){
-            if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(cardPosition)) result = true;
-            else result = true;
+        if(isOpponentCard) {
+            gameBoard = this.opponentGameBoard;
+            if (cardType.equals("--monster") || cardType.equals("-M")) {
+                if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(cardPosition)) result = true;
+                else result = true;
+            } else if (cardType.equals("--spell") || cardType.equals("-S")) {
+                result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInOpponentMode(cardPosition);
+            }
         }
-        else if(cardType.equals("--spell") || cardType.equals("-S")){
-            if(gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmpty(cardPosition)) result = true;
-            else result = false;
+        else{
+            gameBoard = this.playerGameBoard;
+            if (cardType.equals("--monster") || cardType.equals("-M")) {
+                if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInPlayerMode(cardPosition)) result = true;
+                else result = true;
+            } else if (cardType.equals("--spell") || cardType.equals("-S")) {
+                result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInPlayerMode(cardPosition);
+            }
         }
         return result;
     }
+
     public boolean doesExistSelectedCard(){
         if(this.selectedCard == null) return false;
         else return true;
@@ -150,6 +159,8 @@ public class Game {
     public void mainPhase2(){
         this.numberOfSetsInThisTurn = 0;
         this.numberOfSummonsInThisTurn = 0;
+        this.player.setLastDamageAmount(0);
+        this.opponent.setLastDamageAmount(0);
     }
 
     public boolean isSelectedCardMonster(){
@@ -192,8 +203,8 @@ public class Game {
 
     public boolean canUseAorBForSummon(int A, int B){
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(A) ||
-        gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(B))
+        if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(A) ||
+        gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(B))
             return false;
         else return true;
     }
@@ -249,7 +260,7 @@ public class Game {
 
     public boolean isThereAnyMonsterInThisCell(int numberOfEnemyMonsterZone){
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmpty(numberOfEnemyMonsterZone))
+        if(gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(numberOfEnemyMonsterZone))
             return false;
         else return true;
     }

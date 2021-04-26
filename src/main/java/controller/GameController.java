@@ -87,7 +87,7 @@ public class GameController extends Controller {
                             } else if (cardLevel == 5 || cardLevel == 6) {
                                 if (game.isThereCardForTribute5Or6()) {
                                     int house = Menu.scanner.nextInt();
-                                    if (!game.getGameBoard().getMonsterField().isThisCellOfMonsterFieldEmpty(house)) {
+                                    if (!game.getGameBoard().getMonsterField().isThisCellOfMonsterFieldEmptyInPlayerMode(house)) {
                                         game.summonMonster();
                                         return 6;
                                     } else {

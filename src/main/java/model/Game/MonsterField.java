@@ -49,10 +49,18 @@ public class MonsterField {
         return numberOfMonsters;
     }
 
-    public boolean isThisCellOfMonsterFieldEmpty(int cardPosition) {
-        if (this.monstersOnField[cardPosition] == null)
-            return true;
-        else return false;
+    public boolean isThisCellOfMonsterFieldEmptyInOpponentMode(int cardPosition) {
+        int newPosition = 0;
+        if(cardPosition == 1)
+            newPosition  = cardPosition;
+        else if(cardPosition % 2 == 0)
+            newPosition = cardPosition + 1;
+        else newPosition = cardPosition - 1;
+        return this.monstersOnField[newPosition - 1] == null;
+    }
+
+    public boolean isThisCellOfMonsterFieldEmptyInPlayerMode(int cardPosition){
+        return this.monstersOnField[cardPosition - 1] == null;
     }
 
     public boolean isFull() {

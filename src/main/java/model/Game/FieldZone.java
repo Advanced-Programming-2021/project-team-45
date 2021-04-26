@@ -21,4 +21,8 @@ public class FieldZone {
         (this.graveyard).addCardToGraveyard(this.fieldCard);
         this.fieldCard = fieldCard;
     }
+
+    public boolean isFull(){
+        return this.fieldCard != null;
+    }
 }
