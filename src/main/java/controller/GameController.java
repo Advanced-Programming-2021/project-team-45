@@ -17,7 +17,12 @@ public class GameController extends Controller {
         this.game = new Game(player, opponent);
     }
 
-    public GameController(String username) {
+    public GameController(String username, String opponentUsername) {
+
+
+        // make modifications in order to start the game correctly between username and opponentUsername
+
+
         super(username);
     }
 
