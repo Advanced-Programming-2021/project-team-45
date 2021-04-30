@@ -19,5 +19,5 @@ SHORTS:
 --current       : -u
 --new       	: -n
 --second-player : -o
---rounds	: -R
---ai		: -I
+--rounds    	: -R
+--ai	    	: -I
