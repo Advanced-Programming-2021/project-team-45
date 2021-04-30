@@ -1,5 +1,6 @@
 package view.menu;
 
+import controller.MainMenuController;
 import controller.Regex;
 
 import java.util.HashMap;
@@ -7,11 +8,11 @@ import java.util.regex.Matcher;
 
 public class MainMenu extends Menu {
 
+    private final MainMenuController mainMenuController;
     private final String[] MAIN_MENU_REGEX = {
             // i = 0
             "^(menu exit|user logout)$|" +
                     "^(menu show-current)$|" +
-                    "^(menu enter Duel)$|" +
                     "^(menu enter Deck)$|" +
                     "^(menu enter Scoreboard)$|" +
                     "^(menu enter Profile)$|" +
@@ -24,13 +25,79 @@ public class MainMenu extends Menu {
         super("Main Menu", parentMenu);
         setUsername(username);
 
+        mainMenuController = new MainMenuController(username);
+
         subMenus = new HashMap<>();
-//        subMenus.put(MenuName.DUEL, new DuelMenu(username, this));
         subMenus.put(MenuName.DECK, new DeckMenu(username, this));
         subMenus.put(MenuName.SCOREBOARD, new ScoreboardMenu(username, this));
         subMenus.put(MenuName.PROFILE, new ProfileMenu(username, this));
         subMenus.put(MenuName.SHOP, new ShopMenu(username, this));
         subMenus.put(MenuName.IMPORT_EXPORT, new ImportExportMenu(username, this));
+    }
+
+
+    private Menu startGame(String input) {
+        int inputError = 0;
+
+        if (input.matches("( --new| -n)")) {
+            inputError++;
+        }
+
+        int rounds = 0;
+        Matcher roundsMatcher = Regex.getMatcher(input, " (?:--rounds|-R) (1|3)");
+        if (roundsMatcher.find()) {
+            rounds = Integer.parseInt(roundsMatcher.group(1));
+            inputError++;
+        }
+        
+        String opponentUsername = "";
+        Matcher opponentUsernameMatcher = Regex.getMatcher(input, " (?:--second-player|-o) (\\w+)");
+        if (opponentUsernameMatcher.find()) {
+            opponentUsername = opponentUsernameMatcher.group(1);
+            inputError++;
+        }
+
+        if (opponentUsername.equals("")) {
+            if (input.matches(" (--ai|-I)")) {
+                inputError++;
+            }
+        }
+
+        if (inputError < 3) {
+            System.out.println("invalid command");
+            return null;
+
+        } else {
+            int error = mainMenuController.startGameErrorHandler(opponentUsername, rounds);
+
+            if (error == 1) {
+                System.out.println("there is no player with this username");
+                return null;
+
+            } else if (error == 2) {
+                System.out.println(username + " has no active deck");
+                return null;
+
+            } else if (error == 3) {
+                System.out.println(opponentUsername + " has no active deck");
+                return null;
+
+            } else if (error == 4) {
+                System.out.println(username + "'s deck is invalid");
+                return null;
+
+            } else if (error == 5) {
+                System.out.println(opponentUsername + "'s deck is invalid");
+                return null;
+
+            } else if (error == 6) {
+                System.out.println("number of rounds is not supported");
+                return null;
+
+            }
+        }
+
+        return new DuelMenu(username, opponentUsername, rounds, this);
     }
 
     @Override
@@ -44,7 +111,13 @@ public class MainMenu extends Menu {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, MAIN_MENU_REGEX[0]);
 
-            if (matcher.find()) {
+            if (input.startsWith("duel ")) {
+                nextMenu = startGame(input);
+                if (nextMenu != null) {
+                    break;
+                }
+
+            } else if (matcher.find()) {
                 if (matcher.group(1) != null) {
                     System.out.println("user logged out successfully!");
                     break;
@@ -53,27 +126,22 @@ public class MainMenu extends Menu {
                     showCurrentMenu();
 
                 } else if (matcher.group(3) != null) {
-                    String opponentUsername =
-                    nextMenu = new DuelMenu(username, opponentUsername, this);
-                    break;
-
-                } else if (matcher.group(4) != null) {
                     nextMenu = subMenus.get(MenuName.DECK);
                     break;
 
-                } else if (matcher.group(5) != null) {
+                } else if (matcher.group(4) != null) {
                     nextMenu = subMenus.get(MenuName.SCOREBOARD);
                     break;
 
-                } else if (matcher.group(6) != null) {
+                } else if (matcher.group(5) != null) {
                     nextMenu = subMenus.get(MenuName.PROFILE);
                     break;
 
-                } else if (matcher.group(7) != null) {
+                } else if (matcher.group(6) != null) {
                     nextMenu = subMenus.get(MenuName.SHOP);
                     break;
 
-                } else if (matcher.group(8) != null) {
+                } else if (matcher.group(7) != null) {
                     nextMenu = subMenus.get(MenuName.IMPORT_EXPORT);
                     break;
 
