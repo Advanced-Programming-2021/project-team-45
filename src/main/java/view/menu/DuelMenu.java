@@ -32,11 +32,11 @@ public class DuelMenu extends Menu {
     };
 
 
-    public DuelMenu(String username, String opponentUsername, Menu parentMenu) {
+    public DuelMenu(String username, String opponentUsername, int rounds, Menu parentMenu) {
         super("Duel", parentMenu);
         setUsername(username);
 
-        gameController = new GameController(username, opponentUsername);
+        gameController = new GameController(username, opponentUsername, rounds);
     }
 
 
