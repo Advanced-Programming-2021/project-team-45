@@ -65,39 +65,35 @@ public class MainMenu extends Menu {
 
         if (inputError < 3) {
             System.out.println("invalid command");
-            return null;
 
         } else {
             int error = mainMenuController.startGameErrorHandler(opponentUsername, rounds);
 
-            if (error == 1) {
+            if (error == 0) {
+                return new DuelMenu(username, opponentUsername, rounds, this);
+
+            } else if (error == 1) {
                 System.out.println("there is no player with this username");
-                return null;
 
             } else if (error == 2) {
                 System.out.println(username + " has no active deck");
-                return null;
 
             } else if (error == 3) {
                 System.out.println(opponentUsername + " has no active deck");
-                return null;
 
             } else if (error == 4) {
                 System.out.println(username + "'s deck is invalid");
-                return null;
 
             } else if (error == 5) {
                 System.out.println(opponentUsername + "'s deck is invalid");
-                return null;
 
             } else if (error == 6) {
                 System.out.println("number of rounds is not supported");
-                return null;
 
             }
         }
 
-        return new DuelMenu(username, opponentUsername, rounds, this);
+        return null;
     }
 
     @Override
