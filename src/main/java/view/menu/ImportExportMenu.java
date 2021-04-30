@@ -1,12 +1,13 @@
 package view.menu;
 
+import controller.DatabaseController;
 import controller.Regex;
 
 import java.util.regex.Matcher;
 
 public class ImportExportMenu extends Menu {
 
-    private final DatebaseController databaseController;
+    private final DatabaseController databaseController;
     private final String[] IMPORT_EXPORT_MENU_REGEX = {
             // i = 0
             "^(menu exit)$|" +
@@ -25,7 +26,7 @@ public class ImportExportMenu extends Menu {
         super("Import/Export", parentMenu);
         setUsername(username);
 
-        datebaseController = new DatebaseController(username);
+        databaseController = new DatabaseController(username);
     }
 
 
@@ -33,7 +34,7 @@ public class ImportExportMenu extends Menu {
         if (matcher.find()) {
             String cardName = matcher.group(1);
 
-            datebaseController.importCard(cardName);
+            databaseController.importCard(cardName);
         }
     }
 
@@ -41,7 +42,7 @@ public class ImportExportMenu extends Menu {
         if (matcher.find()) {
             String cardName = matcher.group(1);
 
-            datebaseController.exportCard(cardName);
+            databaseController.exportCard(cardName);
         }
     }
 
