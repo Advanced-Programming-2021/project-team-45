@@ -25,7 +25,7 @@ public class MainMenu extends Menu {
         setUsername(username);
 
         subMenus = new HashMap<>();
-        subMenus.put(MenuName.DUEL, new DuelMenu(username, this));
+//        subMenus.put(MenuName.DUEL, new DuelMenu(username, this));
         subMenus.put(MenuName.DECK, new DeckMenu(username, this));
         subMenus.put(MenuName.SCOREBOARD, new ScoreboardMenu(username, this));
         subMenus.put(MenuName.PROFILE, new ProfileMenu(username, this));
@@ -53,7 +53,8 @@ public class MainMenu extends Menu {
                     showCurrentMenu();
 
                 } else if (matcher.group(3) != null) {
-                    nextMenu = subMenus.get(MenuName.DUEL);
+                    String opponentUsername =
+                    nextMenu = new DuelMenu(username, opponentUsername, this);
                     break;
 
                 } else if (matcher.group(4) != null) {
