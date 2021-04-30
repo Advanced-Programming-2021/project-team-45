@@ -22,6 +22,7 @@ public class MonsterCard extends Card {
     protected int attack;
     protected int defense;
     protected PositionMonsters position;
+    protected DOorDH defenceMode;
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
         String[] data=dataAboutAMonster(cardName);
@@ -181,5 +182,13 @@ public class MonsterCard extends Card {
 
     public PositionMonsters getPosition() {
         return position;
+    }
+
+    public void setPosition(PositionMonsters position) {
+        this.position = position;
+    }
+
+    public DOorDH getDefenceMode() {
+        return defenceMode;
     }
 }

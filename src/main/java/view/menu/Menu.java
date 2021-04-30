@@ -44,8 +44,12 @@ public abstract class Menu {
         parentMenu.execute();
     }
 
+    public static int inputInt() {
+        return scanner.nextInt();
+    }
+
     public abstract void show();
 
-    public abstract void execute() ;
+    public abstract void execute();
 
 }
