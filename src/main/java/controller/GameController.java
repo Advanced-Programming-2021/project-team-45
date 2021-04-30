@@ -9,6 +9,8 @@ import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.Menu;
 
+import java.util.regex.Matcher;
+
 public class GameController extends Controller {
 
     private Game game;
@@ -30,8 +32,7 @@ public class GameController extends Controller {
         if (game.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
             if (game.isThereAnyCardHere(cardType, cardPosition, isOpponentCard)) {
                 return 0;
-            }
-            else{
+            } else {
                 return 2;
             }
         } else {
@@ -40,10 +41,9 @@ public class GameController extends Controller {
     }
 
     public int deselectErrorHandler() {
-        if (game.doesExistSelectedCard()){
+        if (game.doesExistSelectedCard()) {
             return 0;
-        }
-        else{
+        } else {
             return 1;
         }
     }
@@ -92,7 +92,8 @@ public class GameController extends Controller {
                             } else if (cardLevel == 5 || cardLevel == 6) {
                                 if (game.isThereCardForTribute5Or6()) {
                                     int house = Menu.scanner.nextInt();
-                                    if (!game.getGameBoard().getMonsterField().isThisCellOfMonsterFieldEmptyInPlayerMode(house)) {
+                                    if (!game.getGameBoard().getMonsterField()
+                                            .isThisCellOfMonsterFieldEmptyInPlayerMode(house)) {
                                         game.summonMonster();
                                         return 6;
                                     } else {
@@ -105,8 +106,8 @@ public class GameController extends Controller {
                             } else if (cardLevel == 7 || cardLevel == 8) {
                                 if (game.isEnoughCardForTribute7OrMore()) {
                                     int A, B;
-                                    A = Menu.scanner.nextInt();
-                                    B = Menu.scanner.nextInt();
+                                    A = Menu.inputInt();
+                                    B = Menu.inputInt();
                                     if (game.canUseAorBForSummon(A, B)) {
                                         game.summonMonster();
                                         return 6;
@@ -146,7 +147,7 @@ public class GameController extends Controller {
                             } else {
                                 return 5;
                             }
-                        } else{
+                        } else {
                             return 4;
                         }
                     } else {
@@ -160,39 +161,39 @@ public class GameController extends Controller {
                         } else {
                             return 7;
                         }
-                    } else{
+                    } else {
                         return 3;
                     }
                 }
-            } else{
+            } else {
                 return 2;
             }
-        } else{
+        } else {
             return 1;
         }
     }
 
-    public int changePositionErrorHandler() {
+    public int changePositionErrorHandler(Matcher matcher) {
         if (game.doesExistSelectedCard()) {
             if (game.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
-                    if (game.isChangeCorrect()) { //needed argument -haji
+                    if (game.isChangeCorrect(matcher)) {
                         if (!game.wasChangePositionInThisTurn()) {
                             game.changePosition();
                             return 6;
                         } else {
                             return 5;
                         }
-                    } else{
+                    } else {
                         return 4;
                     }
-                } else{
+                } else {
                     return 3;
                 }
             } else {
                 return 2;
             }
-        } else{
+        } else {
             return 1;
         }
     }
@@ -204,16 +205,16 @@ public class GameController extends Controller {
                     if (game.canFlipSummonSelectedCard()) {
                         game.flipSummon();
                         return 5;
-                    } else{
+                    } else {
                         return 4;
                     }
-                } else{
+                } else {
                     return 3;
                 }
-            } else{
+            } else {
                 return 2;
             }
-        } else{
+        } else {
             return 1;
         }
     }

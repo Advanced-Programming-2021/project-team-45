@@ -1,5 +1,6 @@
 package model.Game;
 
+import model.card.DOorDH;
 import model.card.PositionMonsters;
 import model.card.SpellsAndTrapPosition;
 import model.user.User;
@@ -87,9 +88,9 @@ public class GameBoard {
                 gameBoard[4][i] = "E";
                 gameBoard[4][i + 1] = "    ";
             } else {
-                if (gameBoardOfPlayer.monsterField.getMonstersOnField()[forIndex].getPosition()
+                if (monsterField.getMonstersOnField()[forIndex].getPosition()
                         .equals(PositionMonsters.DEFENSE)) {
-                    if () {//a method for understand DH or DO . I have a algorithm for handle this problem but i think it doesn't best solution so i don't change code until have conversation for it.
+                    if (monsterField.getMonstersOnField()[forIndex].getDefenceMode().equals(DOorDH.DH)) {
                         gameBoard[4][i] = "DH";
                         gameBoard[4][i + 1] = "    ";
                     } else {
@@ -106,6 +107,4 @@ public class GameBoard {
         gameBoard[5][11] = fieldZone.isFull() ? "O" : "E";
         return gameBoard;
     }
-
-
 }

@@ -158,8 +158,8 @@ public class DuelMenu extends Menu {
         }
     }
 
-    private void changePosition() {
-        int error = gameController.changePositionErrorHandler();
+    private void changePosition(String input) {
+        int error = gameController.changePositionErrorHandler(Regex.getMatcher(input,"(?:attack|defense)"));
         if (error == 1) {
             System.out.println("no card is selected yet");
 
@@ -359,7 +359,7 @@ public class DuelMenu extends Menu {
                     setCard();
 
                 } else if (matcher.group(9) != null) {
-                    changePosition();
+                    changePosition(input);
 
                 } else if (matcher.group(10) != null) {
                     flipSummon();
