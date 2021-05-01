@@ -86,7 +86,7 @@ public class DuelMenu extends Menu {
         } else if (error == 6) {
             System.out.println("phase: End Phase");
 
-            System.out.println("its" + gameController.getGame().getOpponent().getNickname() + "'s turn");
+            System.out.println("its" + gameController.getGame().getOpponentOfThisTurn().getNickname() + "'s turn");
 
         } else if (error == 0) {
             System.out.println("phase: standby phase");

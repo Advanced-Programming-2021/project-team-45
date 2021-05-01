@@ -39,23 +39,23 @@ public class Game {
 
     }
 
-    private User getPlayerOfThisTurn() {
+    public User getPlayerOfThisTurn() {
         return this.playerOfThisTurn;
     }
 
-    private User getOpponentOfThisTurn() {
+    public User getOpponentOfThisTurn() {
         if (this.playerOfThisTurn.equals(this.player))
             return opponent;
         else return player;
     }
 
-    private GameBoard getGameBoardOfPlayerOfThisTurn() {
+    public GameBoard getGameBoardOfPlayerOfThisTurn() {
         if ((this.playerOfThisTurn).equals(this.player))
             return this.playerGameBoard;
         else return this.opponentGameBoard;
     }
 
-    private GameBoard getGameBoardOfOpponentPlayerOfThisTurn() {
+    public GameBoard getGameBoardOfOpponentPlayerOfThisTurn() {
         if ((this.playerOfThisTurn).equals(this.player))
             return this.opponentGameBoard;
         else return this.playerGameBoard;
@@ -70,9 +70,9 @@ public class Game {
                 if ((cardType.equals("--field") || cardType.equals("-F")) && cardPosition == -1) return true;
                 else {
                     if (isOpponentCard) {
-                        return cardPosition <= this.opponentGameBoard.getHand().getCardsInHand().size();
+                        return cardPosition <= this.getGameBoardOfOpponentPlayerOfThisTurn().getHand().getCardsInHand().size();
                     } else {
-                        return cardPosition <= this.playerGameBoard.getHand().getCardsInHand().size();
+                        return cardPosition <= this.getGameBoardOfPlayerOfThisTurn().getHand().getCardsInHand().size();
                     }
                 }
             }
@@ -83,7 +83,7 @@ public class Game {
         GameBoard gameBoard;
         boolean result = false;
         if (isOpponentCard) {
-            gameBoard = this.opponentGameBoard;
+            gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(cardPosition))
                     result = true;
@@ -92,7 +92,7 @@ public class Game {
                 result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInOpponentMode(cardPosition);
             }
         } else {
-            gameBoard = this.playerGameBoard;
+            gameBoard = getGameBoardOfPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInPlayerMode(cardPosition)) result = true;
                 else result = true;
@@ -112,9 +112,6 @@ public class Game {
         return selectedCard;
     }
 
-    public User getOpponent() {
-        return opponent;
-    }
 
     public String getPhase() {
         return phase;
