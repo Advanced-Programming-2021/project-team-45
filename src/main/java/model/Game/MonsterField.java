@@ -16,6 +16,13 @@ public class MonsterField {
         return monstersOnField;
     }
 
+    public void deleteAttackedHistory(){
+        MonsterCard[] cards=getMonstersOnField();
+        for(int i=0;i<5;i++){
+            cards[i].setWasAttackedInThisTurn(false);
+        }
+    }
+
     public MonsterCard getMonsterCardFromMonsterField(int cardPosition) {
         return this.monstersOnField[cardPosition - 1];
     }

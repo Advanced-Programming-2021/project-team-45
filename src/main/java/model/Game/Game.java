@@ -22,7 +22,6 @@ public class Game {
     private int numberOfSetsInThisTurn;
 
 
-
     // selected faghat card nist
     public Game(User player, User opponent) {
         this.player = player;
@@ -30,9 +29,14 @@ public class Game {
     }
 
     private void setPlayerOfNextTurn() {
+        getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAttackedHistory();
         if ((this.playerOfThisTurn).equals(this.player))
             this.playerOfThisTurn = opponent;
         else this.playerOfThisTurn = player;
+        this.numberOfSummonsInThisTurn=0;
+        this.numberOfSetsInThisTurn=0;
+
+
     }
 
     private User getPlayerOfThisTurn() {
@@ -121,8 +125,9 @@ public class Game {
     }
 
     public GameBoard getGameBoard() {
-        // which one? opponent or player -haji
-        return gameBoard;
+        if(playerOfThisTurn.equals(player)) return playerGameBoard;
+        else return opponentGameBoard;
+
     }
 
     public void nextPhase() {
@@ -326,11 +331,14 @@ public class Game {
     }
 
     public boolean wasThisCardAttackedInThisTurn() {
-        //I have question for this function after i get my answer i'll complete it.
+        MonsterCard answer=(MonsterCard) selectedCard;
+        return answer.isWasAttackedInThisTurn();
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
+        MonsterCard handle=(MonsterCard) selectedCard;
+        handle.setWasAttackedInThisTurn(true);
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
@@ -410,14 +418,20 @@ public class Game {
     }
 
     public boolean isSelectedCardHaveToPutInField() {
-        //marboot be field zone nafahamidam chie
+        /*
+        statements
+         */
+        return true;
     }
 
     public boolean canActiveSpell() {
-
+        /*
+        statements
+         */
+        return false;
     }
 
-    public void activeSpell(){
+    public void activeSpell() {
         // seda zadan method spell
     }
 
@@ -438,8 +452,9 @@ public class Game {
         return stringBuilder.toString();
     }
 
-
-
+    public String showCard() {
+        return Card.showCard(selectedCard);
+    }
 
 
 }
