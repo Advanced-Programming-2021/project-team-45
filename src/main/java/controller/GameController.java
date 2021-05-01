@@ -103,7 +103,7 @@ public class GameController extends Controller {
                                 } else {
                                     return 7;
                                 }
-                            } else if (cardLevel == 7 || cardLevel == 8) {
+                            } else  {   //cardLevel == 7 Or cardLevel == 8
                                 if (game.isEnoughCardForTribute7OrMore()) {
                                     int A, B;
                                     A = Menu.inputInt();
@@ -313,7 +313,7 @@ public class GameController extends Controller {
     }
 
     public String controlCardShow() {
-        String answer = game.showCard();
+        String answer =game.showCard();
         return answer;
     }
 

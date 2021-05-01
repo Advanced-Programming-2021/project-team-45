@@ -22,7 +22,6 @@ public class Game {
     private int numberOfSetsInThisTurn;
 
 
-
     // selected faghat card nist
     public Game(User player, User opponent) {
         this.player = player;
@@ -30,28 +29,33 @@ public class Game {
     }
 
     private void setPlayerOfNextTurn() {
+        getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAttackedHistory();
         if ((this.playerOfThisTurn).equals(this.player))
             this.playerOfThisTurn = opponent;
         else this.playerOfThisTurn = player;
+        this.numberOfSummonsInThisTurn=0;
+        this.numberOfSetsInThisTurn=0;
+
+
     }
 
-    private User getPlayerOfThisTurn() {
+    public User getPlayerOfThisTurn() {
         return this.playerOfThisTurn;
     }
 
-    private User getOpponentOfThisTurn() {
+    public User getOpponentOfThisTurn() {
         if (this.playerOfThisTurn.equals(this.player))
             return opponent;
         else return player;
     }
 
-    private GameBoard getGameBoardOfPlayerOfThisTurn() {
+    public GameBoard getGameBoardOfPlayerOfThisTurn() {
         if ((this.playerOfThisTurn).equals(this.player))
             return this.playerGameBoard;
         else return this.opponentGameBoard;
     }
 
-    private GameBoard getGameBoardOfOpponentPlayerOfThisTurn() {
+    public GameBoard getGameBoardOfOpponentPlayerOfThisTurn() {
         if ((this.playerOfThisTurn).equals(this.player))
             return this.opponentGameBoard;
         else return this.playerGameBoard;
@@ -66,9 +70,9 @@ public class Game {
                 if ((cardType.equals("--field") || cardType.equals("-F")) && cardPosition == -1) return true;
                 else {
                     if (isOpponentCard) {
-                        return cardPosition <= this.opponentGameBoard.getHand().getCardsInHand().size();
+                        return cardPosition <= this.getGameBoardOfOpponentPlayerOfThisTurn().getHand().getCardsInHand().size();
                     } else {
-                        return cardPosition <= this.playerGameBoard.getHand().getCardsInHand().size();
+                        return cardPosition <= this.getGameBoardOfPlayerOfThisTurn().getHand().getCardsInHand().size();
                     }
                 }
             }
@@ -79,7 +83,7 @@ public class Game {
         GameBoard gameBoard;
         boolean result = false;
         if (isOpponentCard) {
-            gameBoard = this.opponentGameBoard;
+            gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(cardPosition))
                     result = true;
@@ -88,7 +92,7 @@ public class Game {
                 result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInOpponentMode(cardPosition);
             }
         } else {
-            gameBoard = this.playerGameBoard;
+            gameBoard = getGameBoardOfPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInPlayerMode(cardPosition)) result = true;
                 else result = true;
@@ -108,9 +112,6 @@ public class Game {
         return selectedCard;
     }
 
-    public User getOpponent() {
-        return opponent;
-    }
 
     public String getPhase() {
         return phase;
@@ -121,8 +122,9 @@ public class Game {
     }
 
     public GameBoard getGameBoard() {
-        // which one? opponent or player -haji
-        return gameBoard;
+        if(playerOfThisTurn.equals(player)) return playerGameBoard;
+        else return opponentGameBoard;
+
     }
 
     public void nextPhase() {
@@ -326,11 +328,14 @@ public class Game {
     }
 
     public boolean wasThisCardAttackedInThisTurn() {
-        //I have question for this function after i get my answer i'll complete it.
+        MonsterCard answer=(MonsterCard) selectedCard;
+        return answer.isWasAttackedInThisTurn();
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
+        MonsterCard handle=(MonsterCard) selectedCard;
+        handle.setWasAttackedInThisTurn(true);
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
@@ -410,14 +415,20 @@ public class Game {
     }
 
     public boolean isSelectedCardHaveToPutInField() {
-        //marboot be field zone nafahamidam chie
+        /*
+        statements
+         */
+        return true;
     }
 
     public boolean canActiveSpell() {
-
+        /*
+        statements
+         */
+        return false;
     }
 
-    public void activeSpell(){
+    public void activeSpell() {
         // seda zadan method spell
     }
 
@@ -438,8 +449,9 @@ public class Game {
         return stringBuilder.toString();
     }
 
-
-
+    public String showCard() {
+        return Card.showCard(selectedCard);
+    }
 
 
 }

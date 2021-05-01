@@ -59,22 +59,24 @@ public class Card {
         return owner;
     }
 
-    public void showCard(Card card) {
+    public static String showCard(Card card) {
+        String answer="";
         if (card instanceof MonsterCard) {
             MonsterCard monsterCard = (MonsterCard) card;
-            System.out.println("Name: " + monsterCard.cardName);
-            System.out.println("Level: " + monsterCard.level);
-            System.out.println("Type: " + monsterCard.type);
-            System.out.println("ATK: " + monsterCard.attack);
-            System.out.println("DEF: " + monsterCard.defense);
-            System.out.println("Description: " + monsterCard.cardDescription);
+            answer+="Name: " + monsterCard.cardName+"\n";
+            answer+="Level: " + monsterCard.level;
+            answer+="Type: " + monsterCard.type+"\n";
+            answer+="ATK: " + monsterCard.attack+"\n";
+            answer+="DEF: " + monsterCard.defense+"\n";
+            answer+="Description: " + monsterCard.cardDescription+"\n";
         } else {
             SpellTrapCard spellOrTrapCard = (SpellTrapCard) card;
-            System.out.println("Name: " + spellOrTrapCard.cardName);
-            System.out.println((spellOrTrapCard.isSpell?"Spell":"Trap"));
-            System.out.println("Type: "+spellOrTrapCard.type);
-            System.out.println("Description: "+spellOrTrapCard.cardDescription);
+            answer+="Name: " + spellOrTrapCard.cardName+"\n";
+            answer+=(spellOrTrapCard.isSpell?"Spell":"Trap")+"\n";
+            answer+="Type: "+spellOrTrapCard.type+"\n";
+            answer+="Description: "+spellOrTrapCard.cardDescription+"\n";
         }
+        return answer;
     }
 
 

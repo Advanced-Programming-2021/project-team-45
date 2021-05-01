@@ -23,6 +23,7 @@ public class MonsterCard extends Card {
     protected int defense;
     protected PositionMonsters position;
     protected DOorDH defenceMode;
+    private boolean wasAttackedInThisTurn=false;
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
         String[] data=dataAboutAMonster(cardName);
@@ -190,5 +191,17 @@ public class MonsterCard extends Card {
 
     public DOorDH getDefenceMode() {
         return defenceMode;
+    }
+
+    public String getAttribute() {
+        return attribute;
+    }
+
+    public boolean isWasAttackedInThisTurn() {
+        return wasAttackedInThisTurn;
+    }
+
+    public void setWasAttackedInThisTurn(boolean wasAttackedInThisTurn) {
+        this.wasAttackedInThisTurn = wasAttackedInThisTurn;
     }
 }
