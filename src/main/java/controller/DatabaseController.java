@@ -16,7 +16,7 @@ public class DatabaseController extends Controller {
     }
 
 
-    private void writeToImportedCards(String json) {
+    private void writeToExportedCards(String json) {
         try {
             FileWriter writer = new FileWriter("..\\..\\resources\\ImportedCards.txt");
             writer.write(json);
@@ -29,6 +29,10 @@ public class DatabaseController extends Controller {
     }
 
     public void importCard(String cardName) {
+
+    }
+
+    public void exportCard(String cardName) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Card card = user.getCardInventory().getCardByCardName(cardName);
@@ -42,14 +46,7 @@ public class DatabaseController extends Controller {
             jsonString = gson.toJson(spellTrapCard);
         }
 
-        writeToImportedCards(jsonString);
-    }
-
-    public void exportCard(String cardName) {
-
-
-
-
+        writeToExportedCards(jsonString);
     }
 
 }
