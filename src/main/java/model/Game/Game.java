@@ -9,7 +9,7 @@ import model.user.User;
 import java.util.regex.Matcher;
 
 public class Game {
-    private boolean changeCardPosition = false; //change card position have to been false in change turn method .
+    private boolean changeCardPosition = false; //change card position have to been false in change turn method.
     private String phase;
     private Card addedCardInDrawPhase;
     private User player;
