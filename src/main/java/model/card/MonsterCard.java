@@ -40,7 +40,8 @@ public class MonsterCard extends Card {
     public String[][] allDataAboutMonster()  {
         String[][] data = new String[42][9];
         try {
-            FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Hossein Mohammadi\\Desktop\\AP PROJECT MOLAYEE\\project-team-45\\src\\main\\java\\model\\card\\Monster.xlsx"));
+            File initialFile = new File("src/main/resources/Monster.xlsx");
+            FileInputStream inputStream=new FileInputStream(initialFile);
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet firstSheet = workbook.getSheetAt(0);
             Iterator<Row> iterator = firstSheet.iterator();
