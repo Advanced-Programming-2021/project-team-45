@@ -1,5 +1,6 @@
 package model.user;
 
+import model.card.Card;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,13 +32,28 @@ class UserTest {
 
     @Test
     void isUserPassCorrect() {
+        assertFalse(User.isUserPassCorrect("test", "test1"));
+        assertFalse(User.isUserPassCorrect("test1", "test"));
+        assertTrue(User.isUserPassCorrect("test1", "test1"));
     }
 
     @Test
     void isPasswordCorrect() {
+        User user = User.getUserByUsername("test1");
+        assert user != null;
+        assertFalse(user.isPasswordCorrect("test"));
+        assertTrue(user.isPasswordCorrect("test1"));
     }
 
     @Test
     void testEquals() {
+        User user1 = User.getUserByUsername("test1");
+        User user2 = User.getUserByUsername("test2");
+        User user3 = User.getUserByUsername("test1");
+
+        assertNotEquals(user1, null);
+        assertNotEquals(user2, user1);
+        assertNotEquals(user1, new Card("test"));
+        assertEquals(user3, user1);
     }
 }
