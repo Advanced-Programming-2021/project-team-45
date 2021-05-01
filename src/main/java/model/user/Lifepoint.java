@@ -1,7 +1,8 @@
 package model.user;
-public class Lifepoint {
-    private int lifepoint=8000;
 
+public class Lifepoint {
+
+    private int lifepoint = 8000;
 
 
     public int getLifepoint() {
@@ -12,11 +13,11 @@ public class Lifepoint {
         this.lifepoint = lifepoint;
     }
 
-    public void increaseLifepoint(int num){
-        this.lifepoint+=num;
+    public void increaseLifepoint(int num) {
+        this.lifepoint += num;
     }
 
-    public void decreaseLifepoint(int num){
-        this.lifepoint-=num;
+    public void decreaseLifepoint(int num) {
+        this.lifepoint -= num;
     }
 }
