@@ -32,15 +32,7 @@ public class UserDeck {
     }
 
     public boolean isActiveDeckValid() {
-
-
-
-
-        // inja bezan
-        return true;
-
-
-
+        return this.activeDeck.isDeckValid();
     }
 
     public void createDeck(String deckName, User user) {

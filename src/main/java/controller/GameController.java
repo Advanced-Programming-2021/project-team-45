@@ -15,17 +15,13 @@ public class GameController extends Controller {
 
     private Game game;
 
-    public void createNewGame() {
-        this.game = new Game(player, opponent);
+    public void createNewGame(User player, User opponentPlayer, int rounds) {
+        this.game = new Game(player, opponentPlayer, rounds);
     }
 
     public GameController(String username, String opponentUsername, int rounds) {
-
-
-        // make modifications in order to start the game correctly between username and opponentUsername
-
-
         super(username);
+        createNewGame(User.getUserByUsername(username), User.getUserByUsername(opponentUsername), rounds);
     }
 
     public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {

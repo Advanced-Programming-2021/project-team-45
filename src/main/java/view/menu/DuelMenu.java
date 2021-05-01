@@ -328,7 +328,7 @@ public class DuelMenu extends Menu {
     @Override
     public void execute() {
         // regex duel new nist
-        gameController.createNewGame();
+        //gameController.createNewGame();
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);

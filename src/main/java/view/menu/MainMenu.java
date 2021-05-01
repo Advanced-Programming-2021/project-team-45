@@ -18,7 +18,6 @@ public class MainMenu extends Menu {
                     "^(menu enter Profile)$|" +
                     "^(menu enter Shop)$|" +
                     "^(menu enter Import/Export)$"
-
     };
 
 

@@ -14,18 +14,20 @@ public class Game {
     private Card addedCardInDrawPhase;
     private User player;
     private User opponent;
+    private int totalRounds;
     private User playerOfThisTurn;
     private GameBoard playerGameBoard;
     private GameBoard opponentGameBoard;
     private Card selectedCard;
     private int numberOfSummonsInThisTurn;
     private int numberOfSetsInThisTurn;
+    private Card lastOpponentMonsterCard;
 
 
-    // selected faghat card nist
-    public Game(User player, User opponent) {
+    public Game(User player, User opponent, int round) {
         this.player = player;
         this.opponent = opponent;
+        this.totalRounds = round;
     }
 
     private void setPlayerOfNextTurn() {
@@ -447,6 +449,10 @@ public class Game {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getOpponentOfThisTurn().getLastDamageAmount());
         return stringBuilder.toString();
+    }
+
+    public String getEnemyCardName(){
+        return this.lastOpponentMonsterCard.getCardName();
     }
 
     public String showCard() {
