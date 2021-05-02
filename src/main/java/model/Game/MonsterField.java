@@ -16,9 +16,9 @@ public class MonsterField {
         return monstersOnField;
     }
 
-    public void deleteAttackedHistory(){
-        MonsterCard[] cards=getMonstersOnField();
-        for(int i=0;i<5;i++){
+    public void deleteAttackedHistory() {
+        MonsterCard[] cards = getMonstersOnField();
+        for (int i = 0; i < 5; i++) {
             cards[i].setWasAttackedInThisTurn(false);
         }
     }
@@ -58,15 +58,15 @@ public class MonsterField {
 
     public boolean isThisCellOfMonsterFieldEmptyInOpponentMode(int cardPosition) {
         int newPosition = 0;
-        if(cardPosition == 1)
-            newPosition  = cardPosition;
-        else if(cardPosition % 2 == 0)
+        if (cardPosition == 1)
+            newPosition = cardPosition;
+        else if (cardPosition % 2 == 0)
             newPosition = cardPosition + 1;
         else newPosition = cardPosition - 1;
         return this.monstersOnField[newPosition - 1] == null;
     }
 
-    public boolean isThisCellOfMonsterFieldEmptyInPlayerMode(int cardPosition){
+    public boolean isThisCellOfMonsterFieldEmptyInPlayerMode(int cardPosition) {
         return this.monstersOnField[cardPosition - 1] == null;
     }
 
@@ -100,7 +100,6 @@ public class MonsterField {
     }
 
     public boolean isItFull(int index) {
-        index = (index + 1) / 2 - 1;
         return monstersOnField[index] != null;
     }
 

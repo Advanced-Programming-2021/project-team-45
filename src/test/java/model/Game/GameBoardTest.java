@@ -2,16 +2,8 @@ package model.Game;
 
 import model.card.*;
 import model.user.User;
-import model.user.UserDeck;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.imageio.IIOException;
-
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameBoardTest {
     @Test
@@ -19,6 +11,7 @@ class GameBoardTest {
         MonsterCard MCard=new MonsterCard("Axe Raider");
         SpellTrapCard SCard=new SpellTrapCard("Wall of Revealing Light");
         SCard.setPosition(SpellsAndTrapPosition.SUMMON);
+        MCard.setPosition(PositionMonsters.ATTACK);
         User owner=new User("a","b","c");
         User opponent=new User("q","w","e");
         owner.getUserDeck().createDeck("hello",owner);
@@ -41,10 +34,10 @@ class GameBoardTest {
         monsterField.addMonsterToField(MCard);
         monsterField.addMonsterToField(MCard);
         monsterField.addMonsterToField(MCard);
-        monsterField.addMonsterToField(MCard);
         spellTrapField.addSpellTrapCard(SCard);
         spellTrapField.addSpellTrapCard(SCard);
-        GameBoard gameBoard=new GameBoard(owner,graveyard,hand,monsterField,spellTrapField,fieldZone,deckField,game);
+        GameBoard gameBoard=new GameBoard(owner,graveyard,hand,
+                monsterField,spellTrapField,fieldZone,deckField,game);
         String[][] answer=gameBoard.GameBoardOfPlayer();
         for(int i=0;i<6;i++){
             for(int j=0;j<12;j++){
@@ -54,6 +47,5 @@ class GameBoardTest {
             }
             System.out.println();
         }
-
     }
 }

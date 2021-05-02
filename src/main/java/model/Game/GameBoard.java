@@ -65,47 +65,48 @@ public class GameBoard {
         Integer u = getOwner().getUserDeck().getActiveDeck().getMainDeckCards().size();
         gameBoard[2][0] = String.valueOf(u);
         gameBoard[3][0] = "    ";
-        int forIndex = 0;
         for (int i = 1; i < 10; i += 2) {
             if (!spellTrapField.isItFull((i + 1) / 2 - 1)) {
-                gameBoard[3][i] = "E";
-                gameBoard[3][i + 1] = "    ";
+                gameBoard[3][i] = "E ";
+                gameBoard[3][i + 1] = "   ";
             } else {
                 if (spellTrapField.getSpellTrapCardsOnField()[(i + 1) / 2 - 1].getPosition().
                         equals(SpellsAndTrapPosition.SUMMON)) {
-                    gameBoard[3][i] = "O";
-                    gameBoard[3][i + 1] = "    ";
+                    gameBoard[3][i] = "O ";
+                    gameBoard[3][i + 1] = "   ";
                 } else {
-                    gameBoard[3][i] = "H";
-                    gameBoard[3][i + 1] = "    ";
+                    gameBoard[3][i] = "H ";
+                    gameBoard[3][i + 1] = "   ";
                 }
             }
-            forIndex++;
         }
         gameBoard[4][0] = "    ";
-        forIndex = 0;
-        for (int i = 0; i < 10; i += 2) {
-            if (monsterField.isFull()) {
-                gameBoard[4][i] = "E";
-                gameBoard[4][i + 1] = "    ";
+
+        for (int i = 1; i < 10; i += 2) {
+            if (!monsterField.isItFull((i + 1) / 2 - 1)) {
+                gameBoard[4][i] = "E ";
+                gameBoard[4][i + 1] = "   ";
             } else {
-                if (monsterField.getMonstersOnField()[forIndex].getPosition()
+                if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getPosition()
                         .equals(PositionMonsters.DEFENSE)) {
-                    if (monsterField.getMonstersOnField()[forIndex].getDefenceMode().equals(DOorDH.DH)) {
+                    if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getDefenceMode().equals(DOorDH.DH)) {
                         gameBoard[4][i] = "DH";
-                        gameBoard[4][i + 1] = "    ";
+                        gameBoard[4][i + 1] = "   ";
                     } else {
                         gameBoard[4][i] = "DO";
-                        gameBoard[4][i + 1] = "    ";
+                        gameBoard[4][i + 1] = "   ";
                     }
                 } else {
                     gameBoard[4][i] = "OO";
-                    gameBoard[4][i + 1] = "OO";
+                    gameBoard[4][i + 1] = "   ";
                 }
             }
         }
-        gameBoard[5][0] = String.valueOf(getGraveyard().getGraveyardStr().size());
-        gameBoard[5][11] = fieldZone.isFull() ? "O" : "E";
+        gameBoard[5][0] = String.valueOf(getGraveyard().getGraveyardStr().size()) + " ";
+        for (int i = 1; i < 11; i++) {
+            gameBoard[5][i] = i % 2 == 0 ? "  " : "   ";
+        }
+        gameBoard[5][11] = fieldZone.isFull() ? " O" : " E";
         return gameBoard;
     }
 }
