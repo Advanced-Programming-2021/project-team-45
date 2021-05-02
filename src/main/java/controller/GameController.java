@@ -100,7 +100,7 @@ public class GameController extends Controller {
                                 } else {
                                     return 7;
                                 }
-                            } else  {   //cardLevel == 7 Or cardLevel == 8
+                            } else {   //cardLevel == 7 Or cardLevel == 8
                                 if (game.isEnoughCardForTribute7OrMore()) {
                                     int A, B;
                                     A = Menu.inputInt();
@@ -237,7 +237,7 @@ public class GameController extends Controller {
                             my attack power = enemy defense power :
                                 DH mode -> return 13
                                 Not DH mode -> return 10;
-                            my attack power > enemy defense power :
+                            my attack power < enemy defense power :
                                 DH mode -> return 14
                                 Not DH mode -> return 11;
                              }
@@ -310,7 +310,7 @@ public class GameController extends Controller {
     }
 
     public String controlCardShow() {
-        String answer =game.showCard();
+        String answer = game.showCard();
         return answer;
     }
 

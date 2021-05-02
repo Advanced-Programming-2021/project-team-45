@@ -42,8 +42,7 @@ public class Deck {
             if ((card.getCardName()).equals(cardName))
                 numberOfCard++;
         }
-        if (numberOfCard > 3) return true;
-        else return false;
+        if(numberOfCard == 3) return true;else return false;
     }
 
     public void addCard(String cardName, boolean isSideDeck, User user) {
