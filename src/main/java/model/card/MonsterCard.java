@@ -116,8 +116,11 @@ public class MonsterCard extends Card {
     }
 
     public void changePosition() {
-        if (this.position == PositionMonsters.DEFENSE) this.position = PositionMonsters.ATTACK;
-        else this.position = PositionMonsters.DEFENSE;
+        if (this.position == PositionMonsters.DEFENSE) {
+            this.position = PositionMonsters.ATTACK;
+        } else {
+            this.position = PositionMonsters.DEFENSE;
+        }
     }
 
     public void summon() {
