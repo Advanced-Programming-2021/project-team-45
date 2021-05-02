@@ -1,9 +1,6 @@
 package model.Game;
 
-import model.card.Card;
-import model.card.MonsterCard;
-import model.card.PositionMonsters;
-import model.card.SpellTrapCard;
+import model.card.*;
 import model.user.User;
 
 import java.util.regex.Matcher;
@@ -35,8 +32,8 @@ public class Game {
         if ((this.playerOfThisTurn).equals(this.player))
             this.playerOfThisTurn = opponent;
         else this.playerOfThisTurn = player;
-        this.numberOfSummonsInThisTurn=0;
-        this.numberOfSetsInThisTurn=0;
+        this.numberOfSummonsInThisTurn = 0;
+        this.numberOfSetsInThisTurn = 0;
 
 
     }
@@ -108,6 +105,10 @@ public class Game {
                 else result = true;
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInOpponentMode(cardPosition);
+            } else if (cardType.equals("--field") || cardType.equals("-F")) {
+                result = gameBoard.getFieldZone().isFull();
+            } else {
+                result = gameBoard.getHand().doesCardExistInThesePlace(cardPosition);
             }
         } else {
             gameBoard = getGameBoardOfPlayerOfThisTurn();
@@ -116,9 +117,39 @@ public class Game {
                 else result = true;
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInPlayerMode(cardPosition);
+            } else if (cardType.equals("--field") || cardType.equals("-F")) {
+                result = gameBoard.getFieldZone().isFull();
+            } else {
+                result = gameBoard.getHand().doesCardExistInThesePlace(cardPosition);
             }
         }
         return result;
+    }
+
+    public void select(String cardType, int cardPosition, boolean isOpponent) {
+        if (isOpponent) {
+            GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+            if (cardType.equals("--monster") || cardType.equals("-M")) {
+                this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(cardPosition);
+            } else if (cardType.equals("--spell") || cardType.equals("-S")) {
+                this.selectedCard = gameBoard.getSpellTrapField().getSpellTrapCardInOpponentMode(cardPosition);
+            } else if (cardType.equals("--field") || cardType.equals("-F")) {
+                this.selectedCard = gameBoard.getFieldZone().getFieldCard();
+            } else {
+                this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
+            }
+        } else {
+            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+            if (cardType.equals("--monster") || cardType.equals("-M")) {
+                this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInPlayerMode(cardPosition);
+            } else if (cardType.equals("--spell") || cardType.equals("-S")) {
+                this.selectedCard = gameBoard.getSpellTrapField().getSpellTrapCardInPlayerMode(cardPosition);
+            } else if (cardType.equals("--field") || cardType.equals("-F")) {
+                this.selectedCard = gameBoard.getFieldZone().getFieldCard();
+            } else {
+                this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
+            }
+        }
     }
 
     public boolean doesExistSelectedCard() {
@@ -140,7 +171,7 @@ public class Game {
     }
 
     public GameBoard getGameBoard() {
-        if(playerOfThisTurn.equals(player)) return playerGameBoard;
+        if (playerOfThisTurn.equals(player)) return playerGameBoard;
         else return opponentGameBoard;
 
     }
@@ -318,7 +349,7 @@ public class Game {
 
     private boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+        if (gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.ATTACK)
             return true;
         else return false;
@@ -326,7 +357,7 @@ public class Game {
 
     private boolean isTargetCellInDefensePosition(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+        if (gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.DEFENSE)
             return true;
         else return false;
@@ -346,18 +377,17 @@ public class Game {
     }
 
     public boolean wasThisCardAttackedInThisTurn() {
-        MonsterCard answer=(MonsterCard) selectedCard;
+        MonsterCard answer = (MonsterCard) selectedCard;
         return answer.isWasAttackedInThisTurn();
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
-        MonsterCard handle=(MonsterCard) selectedCard;
-        handle.setWasAttackedInThisTurn(true);
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
-        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterField(numberOfEnemyMonsterZone);
+        playerCard.setWasAttackedInThisTurn(true);
+        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone);
         if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
             result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
         } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
@@ -370,19 +400,17 @@ public class Game {
     private int attackToOpponentCardInAttackPosition(MonsterCard playerCard, MonsterCard opponentCard,
                                                      GameBoard opponentGameBoard, GameBoard playerGameBoard) {
         int result = 0;
+        playerCard.attackMonster(opponentCard);
         if (playerCard.getAttack() > opponentCard.getAttack()) {
             result = 6;
-            playerCard.attackMonster(opponentCard);
-            opponentGameBoard.getMonsterField().deleteAnDestroyedMonster(opponentCard);
+            opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
         } else if (playerCard.getAttack() == opponentCard.getAttack()) {
             result = 7;
-            playerCard.attackMonster(opponentCard);
-            opponentGameBoard.getMonsterField().deleteAnDestroyedMonster(opponentCard);
-            playerGameBoard.getMonsterField().deleteAnDestroyedMonster(playerCard);
+            opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
+            playerGameBoard.getMonsterField().deleteADestroyedMonster(playerCard);
         } else if (playerCard.getAttack() < opponentCard.getAttack()) {
             result = 8;
-            playerCard.attackMonster(opponentCard);
-            playerGameBoard.getMonsterField().deleteAnDestroyedMonster(playerCard);
+            playerGameBoard.getMonsterField().deleteADestroyedMonster(playerCard);
         }
         return result;
     }
@@ -390,9 +418,23 @@ public class Game {
     private int attackToOpponentCardInDefensePosition(MonsterCard playerCard, MonsterCard opponentCard,
                                                       GameBoard playerGameBoard, GameBoard opponentGameBoard) {
         int result = 0;
-        /*
-        ?
-         */
+        playerCard.attackMonster(opponentCard);
+        if (opponentCard.getDefenceMode() == DOorDH.DO) {
+            if (opponentCard.getDefense() < playerCard.getAttack()) {
+                result = 9;
+                opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
+            } else if (opponentCard.getDefense() == playerCard.getAttack()) {
+                result = 10;
+            } else result = 11;
+        } else {
+            this.lastOpponentMonsterCard = opponentCard;
+            if (opponentCard.getDefense() < playerCard.getAttack()) {
+                result = 12;
+                opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
+            } else if (opponentCard.getDefense() == playerCard.getAttack()) {
+                result = 13;
+            } else result = 14;
+        }
         return result;
     }
 
@@ -467,7 +509,7 @@ public class Game {
         return stringBuilder.toString();
     }
 
-    public String getEnemyCardName(){
+    public String getEnemyCardName() {
         return this.lastOpponentMonsterCard.getCardName();
     }
 

@@ -45,6 +45,10 @@ public class GameBoard {
         return hand;
     }
 
+    public FieldZone getFieldZone() {
+        return fieldZone;
+    }
+
     public DeckField getDeckField() {
         return deckField;
     }

@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -23,25 +24,26 @@ public class MonsterCard extends Card {
     protected int defense;
     protected PositionMonsters position;
     protected DOorDH defenceMode;
-    private boolean wasAttackedInThisTurn=false;
+    private boolean wasAttackedInThisTurn = false;
+
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
-        String[] data=dataAboutAMonster(cardName);
-        this.level=(int)Double.parseDouble(data[1]);
-        this.attribute=data[2];
-        this.type=data[3];
-        this.cardType=data[4];
-        this.attack=(int)Double.parseDouble(data[5]);
-        this.defense=(int)Double.parseDouble(data[6]);
-        this.cardDescription=data[7];
-        this.price=(int)Double.parseDouble(data[8]);
+        String[] data = dataAboutAMonster(cardName);
+        this.level = (int) Double.parseDouble(data[1]);
+        this.attribute = data[2];
+        this.type = data[3];
+        this.cardType = data[4];
+        this.attack = (int) Double.parseDouble(data[5]);
+        this.defense = (int) Double.parseDouble(data[6]);
+        this.cardDescription = data[7];
+        this.price = (int) Double.parseDouble(data[8]);
     }
 
-    public static String[][] allDataAboutMonster()  {
+    public static String[][] allDataAboutMonster() {
         String[][] data = new String[42][9];
         try {
             File initialFile = new File("src/main/resources/Monster.xlsx");
-            FileInputStream inputStream=new FileInputStream(initialFile);
+            FileInputStream inputStream = new FileInputStream(initialFile);
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet firstSheet = workbook.getSheetAt(0);
             Iterator<Row> iterator = firstSheet.iterator();
@@ -68,13 +70,13 @@ public class MonsterCard extends Card {
             workbook.close();
             inputStream.close();
             return data;
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return data;
     }
 
-    private String[] dataAboutAMonster(String cardNAme){
+    private String[] dataAboutAMonster(String cardNAme) {
         String[][] data = allDataAboutMonster();
         int answer = 0;
         for (int i = 0; i < 42; i++) {
@@ -89,20 +91,20 @@ public class MonsterCard extends Card {
     }
 
 
-    public void increaseAttack(int num){
-        this.attack+=num;
+    public void increaseAttack(int num) {
+        this.attack += num;
     }
 
-    public void decreaseAttack(int num){
-        this.attack-=num;
+    public void decreaseAttack(int num) {
+        this.attack -= num;
     }
 
-    public void increaseDefense(int num){
-        this.defense+=num;
+    public void increaseDefense(int num) {
+        this.defense += num;
     }
 
-    public void decreaseDefense(int num){
-        this.defense-=num;
+    public void decreaseDefense(int num) {
+        this.defense -= num;
     }
 
     public void setAttack(int attack) {
@@ -113,59 +115,46 @@ public class MonsterCard extends Card {
         this.defense = defense;
     }
 
-    public void changePosition(){
-        if(this.position==PositionMonsters.DEFENSE) this.position=PositionMonsters.ATTACK;
-        else this.position=PositionMonsters.DEFENSE;
+    public void changePosition() {
+        if (this.position == PositionMonsters.DEFENSE) this.position = PositionMonsters.ATTACK;
+        else this.position = PositionMonsters.DEFENSE;
     }
 
-    public void summon(){
-        this.position=PositionMonsters.ATTACK;
+    public void summon() {
+        this.position = PositionMonsters.ATTACK;
     }
 
-    public void set(){
-        this.position=PositionMonsters.DEFENSE;
+    public void set() {
+        this.position = PositionMonsters.DEFENSE;
     }
 
-    public void attackMonster(MonsterCard card){
-        if(card.position==PositionMonsters.ATTACK) {
+    public void attackMonster(MonsterCard card) {
+        if (card.position == PositionMonsters.ATTACK) {
             if (this.attack > card.attack) {
                 int decreaseFromOpponentLifepoint = this.attack - card.attack;
                 int newLifepoint = card.owner.getLifepoint().getLifepoint() - decreaseFromOpponentLifepoint;
                 card.owner.getLifepoint().setLifepoint(newLifepoint);
                 card.owner.setLastDamageAmount(decreaseFromOpponentLifepoint);
-                card.attack = -1; //when a monster was destroyed, Its' attack and defence change to -1.
-                card.defense = -1;
-            } else if (this.attack == card.attack){
-                this.attack=-1;
-                this.defense=-1;
-                card.attack=-1;
-                card.defense=-1;
-            }
-            else{
-                int decreaseFromAttacker=card.attack-this.attack;
-                int newLifepoint=this.owner.getLifepoint().getLifepoint()-decreaseFromAttacker;
+
+            } else if (this.attack < card.attack) {
+                int decreaseFromAttacker = card.attack - this.attack;
+                int newLifepoint = this.owner.getLifepoint().getLifepoint() - decreaseFromAttacker;
                 this.owner.getLifepoint().setLifepoint(newLifepoint);
                 this.owner.setLastDamageAmount(decreaseFromAttacker);
-                this.attack=-1;
-                this.defense=-1;
             }
-        }
-        else{
-            if(this.attack> card.defense){
-                card.defense=-1;
-                card.attack=-1;
-            }else if(this.attack< card.defense){
-                int decreaseFromAttacker=card.defense-this.attack;
-                int newLifepoint=this.owner.getLifepoint().getLifepoint()-decreaseFromAttacker;
+        } else {
+            if (this.attack < card.defense) {
+                int decreaseFromAttacker = card.defense - this.attack;
+                int newLifepoint = this.owner.getLifepoint().getLifepoint() - decreaseFromAttacker;
                 this.owner.getLifepoint().setLifepoint(newLifepoint);
                 this.owner.setLastDamageAmount(decreaseFromAttacker);
             }
         }
     }
 
-    public void attackOpponent(User Opponent){
-        int newLifepoint=Opponent.getLifepoint().getLifepoint()-this.attack;
-        if(newLifepoint>0) Opponent.getLifepoint().setLifepoint(newLifepoint);
+    public void attackOpponent(User Opponent) {
+        int newLifepoint = Opponent.getLifepoint().getLifepoint() - this.attack;
+        if (newLifepoint > 0) Opponent.getLifepoint().setLifepoint(newLifepoint);
         else Opponent.getLifepoint().setLifepoint(0);
         Opponent.setLastDamageAmount(this.attack);
     }

@@ -16,15 +16,25 @@ public class MonsterField {
         return monstersOnField;
     }
 
-    public void deleteAttackedHistory(){
-        MonsterCard[] cards=getMonstersOnField();
-        for(int i=0;i<5;i++){
+    public void deleteAttackedHistory() {
+        MonsterCard[] cards = getMonstersOnField();
+        for (int i = 0; i < 5; i++) {
             cards[i].setWasAttackedInThisTurn(false);
         }
     }
 
-    public MonsterCard getMonsterCardFromMonsterField(int cardPosition) {
+    public MonsterCard getMonsterCardFromMonsterFieldInPlayerMode(int cardPosition) {
         return this.monstersOnField[cardPosition - 1];
+    }
+
+    public MonsterCard getMonsterCardFromMonsterFieldInOpponentMode(int cardPosition) {
+        int newPosition = 0;
+        if (cardPosition == 1)
+            newPosition = cardPosition;
+        else if (cardPosition % 2 == 0)
+            newPosition = cardPosition + 1;
+        else newPosition = cardPosition - 1;
+        return this.monstersOnField[newPosition - 1];
     }
 
     public void addMonsterToField(MonsterCard monster) {
@@ -38,7 +48,8 @@ public class MonsterField {
         }
     }
 
-    public void deleteAnDestroyedMonster(MonsterCard monsterCard) {
+    public void deleteADestroyedMonster(MonsterCard monsterCard) {
+        //bug
         for (int i = 0; i < 5; i++) {
             if (this.monstersOnField[i].getCardName().equals(monsterCard.getCardName())) {
                 this.graveyard.addCardToGraveyard(this.monstersOnField[i]);
@@ -58,15 +69,15 @@ public class MonsterField {
 
     public boolean isThisCellOfMonsterFieldEmptyInOpponentMode(int cardPosition) {
         int newPosition = 0;
-        if(cardPosition == 1)
-            newPosition  = cardPosition;
-        else if(cardPosition % 2 == 0)
+        if (cardPosition == 1)
+            newPosition = cardPosition;
+        else if (cardPosition % 2 == 0)
             newPosition = cardPosition + 1;
         else newPosition = cardPosition - 1;
         return this.monstersOnField[newPosition - 1] == null;
     }
 
-    public boolean isThisCellOfMonsterFieldEmptyInPlayerMode(int cardPosition){
+    public boolean isThisCellOfMonsterFieldEmptyInPlayerMode(int cardPosition) {
         return this.monstersOnField[cardPosition - 1] == null;
     }
 
