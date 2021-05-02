@@ -66,11 +66,11 @@ public class GameBoard {
         gameBoard[3][0] = "    ";
         int forIndex = 0;
         for (int i = 1; i < 10; i += 2) {
-            if (spellTrapField.isItFull(i)) {
+            if (!spellTrapField.isItFull((i + 1) / 2 - 1)) {
                 gameBoard[3][i] = "E";
-                gameBoard[3][i] = "    ";
-            } else {
-                if (spellTrapField.getSpellTrapCardsOnField()[forIndex].getPosition().
+                gameBoard[3][i + 1] = "    ";
+            } else{
+                if (spellTrapField.getSpellTrapCardsOnField()[(i + 1) / 2 - 1].getPosition().
                         equals(SpellsAndTrapPosition.SUMMON)) {
                     gameBoard[3][i] = "O";
                     gameBoard[3][i + 1] = "    ";

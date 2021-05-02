@@ -51,7 +51,7 @@ public class SpellTrapField {
     }
 
     public boolean isItFull(int index) {
-        index = (index + 1) / 2 - 1;
+
         return this.spellTrapCardsOnField[index] != null;
     }
 
