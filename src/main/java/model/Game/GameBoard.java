@@ -4,6 +4,7 @@ import model.card.DOorDH;
 import model.card.PositionMonsters;
 import model.card.SpellsAndTrapPosition;
 import model.user.User;
+import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
 
 
 public class GameBoard {
@@ -16,16 +17,14 @@ public class GameBoard {
     private FieldZone fieldZone;
     private Game game;
 
-    public GameBoard(User owner, Graveyard graveyard,
-                     Hand hand, MonsterField monsterField, SpellTrapField spellTrapField, FieldZone fieldZone,
-                     DeckField deckField, Game game) {
+    public GameBoard(User owner,Game game) {
         this.owner = owner;
-        this.graveyard = graveyard;
-        this.hand = hand;
-        this.monsterField = monsterField;
-        this.spellTrapField = spellTrapField;
-        this.fieldZone = fieldZone;
-        this.deckField = deckField;
+        this.graveyard = new Graveyard();
+        this.hand = new Hand();
+        this.monsterField = new MonsterField(graveyard);
+        this.spellTrapField = new SpellTrapField();
+        this.fieldZone = new FieldZone(graveyard);
+        this.deckField = new DeckField(owner);
         this.game = game;
     }
 
