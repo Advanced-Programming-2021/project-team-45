@@ -5,10 +5,10 @@ import model.card.Card;
 import java.util.ArrayList;
 
 public class Graveyard {
-    private ArrayList<Card> graveyardCards;
+    private ArrayList<Card> graveyardCards=new ArrayList<>();
 
     public void addCardToGraveyard(Card card){
-        (this.graveyardCards).add(card);
+        graveyardCards.add(card);
     }
 
     public void deleteCardFromGraveyard(Card card){

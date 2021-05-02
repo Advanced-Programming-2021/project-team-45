@@ -1,35 +1,25 @@
 package model.Game;
 
-import model.card.Card;
-import model.card.Deck;
-import model.card.MonsterCard;
-import model.card.SpellTrapCard;
+import model.card.*;
 import model.user.User;
-import model.user.UserDeck;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.imageio.IIOException;
-
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class GameBoardTest {
-
-    @BeforeEach
-    public void set() throws IOException {
-
+    @Test
+    void gameBoardOfPlayer() throws IOException {
         MonsterCard MCard=new MonsterCard("Axe Raider");
         SpellTrapCard SCard=new SpellTrapCard("Wall of Revealing Light");
+        SCard.setPosition(SpellsAndTrapPosition.SUMMON);
+        MCard.setPosition(PositionMonsters.ATTACK);
         User owner=new User("a","b","c");
         User opponent=new User("q","w","e");
-        Deck deck=new Deck("hello",owner);
+        owner.getUserDeck().createDeck("hello",owner);
         owner.getCardInventory().addCardToCardInventory(MCard);
         owner.getCardInventory().addCardToCardInventory(SCard);
-        deck.addCard("Axe Raider",false,owner);
         owner.getUserDeck().activateDeck("hello");
+        owner.getUserDeck().getActiveDeck().addCard("Axe Raider",false,owner);
+        owner.getUserDeck().getActiveDeck().addCard("Axe Raider",false,owner);
         Graveyard graveyard=new Graveyard();
         Hand hand=new Hand();
         MonsterField monsterField=new MonsterField(graveyard);
@@ -44,14 +34,18 @@ class GameBoardTest {
         monsterField.addMonsterToField(MCard);
         monsterField.addMonsterToField(MCard);
         monsterField.addMonsterToField(MCard);
-        monsterField.addMonsterToField(MCard);
         spellTrapField.addSpellTrapCard(SCard);
         spellTrapField.addSpellTrapCard(SCard);
-    }
-
-
-    @Test
-    void gameBoardOfPlayer() {
-        System.out.println("ddd");
+        GameBoard gameBoard=new GameBoard(owner,graveyard,hand,
+                monsterField,spellTrapField,fieldZone,deckField,game);
+        String[][] answer=gameBoard.GameBoardOfPlayer();
+        for(int i=0;i<6;i++){
+            for(int j=0;j<12;j++){
+                if(answer[i][j]!=null) {
+                    System.out.print(answer[i][j]);
+                }
+            }
+            System.out.println();
+        }
     }
 }

@@ -106,4 +106,8 @@ public class SpellTrapCard extends Card{
     public SpellsAndTrapPosition getPosition() {
         return position;
     }
+
+    public void setPosition(SpellsAndTrapPosition position) {
+        this.position = position;
+    }
 }
