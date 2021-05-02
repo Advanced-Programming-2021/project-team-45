@@ -41,6 +41,22 @@ public class Game {
 
     }
 
+    public User getPlayer() {
+        return player;
+    }
+
+    public User getOpponent() {
+        return opponent;
+    }
+
+    public GameBoard getPlayerGameBoard() {
+        return playerGameBoard;
+    }
+
+    public GameBoard getOpponentGameBoard() {
+        return opponentGameBoard;
+    }
+
     public User getPlayerOfThisTurn() {
         return this.playerOfThisTurn;
     }

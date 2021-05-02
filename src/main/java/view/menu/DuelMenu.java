@@ -159,7 +159,7 @@ public class DuelMenu extends Menu {
     }
 
     private void changePosition(String input) {
-        int error = gameController.changePositionErrorHandler(Regex.getMatcher(input,"(?:attack|defense)"));
+        int error = gameController.changePositionErrorHandler(Regex.getMatcher(input, "(?:attack|defense)"));
         if (error == 1) {
             System.out.println("no card is selected yet");
 
@@ -318,6 +318,11 @@ public class DuelMenu extends Menu {
     }
 
     private void showGameBoard() {
+        String playerGameBoard[][]=gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+        String opponentGameBoard[][]=gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+
+
+
 
     }
 
