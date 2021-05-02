@@ -82,7 +82,7 @@ public class Deck {
         if(existence == 0) return false; else return true;
     }
 
-    public boolean doesDeckValid(){
+    public boolean isDeckValid(){
         if((this.mainDeckCards).size() > 60 || (this.mainDeckCards).size() < 40 || (this.sideDeckCards).size() > 15)
             return false;
         else return true;
