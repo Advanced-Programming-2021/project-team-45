@@ -55,21 +55,22 @@ public class GameBoard {
 
     public String[][] GameBoardOfPlayer() {
         String[][] gameBoard = new String[7][12];
-        gameBoard[0][0] = (getOwner().getNickname() + ": ");
+        gameBoard[0][0] = ("        " + getOwner().getNickname() + ": ");
         gameBoard[0][1] = String.valueOf(getOwner().getLifepoint().getLifepoint());
         gameBoard[1][0] = "    ";
         for (int i = 1; i < getHand().getCardsInHand().size() * 2; i += 2) {
             gameBoard[1][i] = "c";
             gameBoard[1][i + 1] = "    ";
         }
-        gameBoard[2][0] = String.valueOf(getOwner().getUserDeck().getActiveDeck());
+        Integer u = getOwner().getUserDeck().getActiveDeck().getMainDeckCards().size();
+        gameBoard[2][0] = String.valueOf(u);
         gameBoard[3][0] = "    ";
         int forIndex = 0;
         for (int i = 1; i < 10; i += 2) {
             if (!spellTrapField.isItFull((i + 1) / 2 - 1)) {
                 gameBoard[3][i] = "E";
                 gameBoard[3][i + 1] = "    ";
-            } else{
+            } else {
                 if (spellTrapField.getSpellTrapCardsOnField()[(i + 1) / 2 - 1].getPosition().
                         equals(SpellsAndTrapPosition.SUMMON)) {
                     gameBoard[3][i] = "O";

@@ -14,41 +14,6 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameBoardTest {
-
-//    @BeforeEach
-//    public void set() throws IOException {
-//
-//        MonsterCard MCard=new MonsterCard("Axe Raider");
-//        SpellTrapCard SCard=new SpellTrapCard("Wall of Revealing Light");
-//        User owner=new User("a","b","c");
-//        User opponent=new User("q","w","e");
-//        Deck deck=new Deck("hello",owner);
-//        owner.getCardInventory().addCardToCardInventory(MCard);
-//        owner.getCardInventory().addCardToCardInventory(SCard);
-//        deck.addCard("Axe Raider",false,owner);
-//        owner.getUserDeck().activateDeck("hello");
-//        Graveyard graveyard=new Graveyard();
-//        Hand hand=new Hand();
-//        MonsterField monsterField=new MonsterField(graveyard);
-//        SpellTrapField spellTrapField=new SpellTrapField();
-//        FieldZone fieldZone=new FieldZone(graveyard);
-//        DeckField deckField=new DeckField(owner);
-//        Game game=new Game(owner,opponent,10);
-//        graveyard.addCardToGraveyard(MCard);
-//        hand.addCard(MCard);
-//        hand.addCard(SCard);
-//        monsterField.addMonsterToField(MCard);
-//        monsterField.addMonsterToField(MCard);
-//        monsterField.addMonsterToField(MCard);
-//        monsterField.addMonsterToField(MCard);
-//        monsterField.addMonsterToField(MCard);
-//        spellTrapField.addSpellTrapCard(SCard);
-//        spellTrapField.addSpellTrapCard(SCard);
-//        GameBoard gameBoard=new GameBoard(owner,graveyard,hand,monsterField,spellTrapField,fieldZone,deckField,game);
-//
-//    }
-
-
     @Test
     void gameBoardOfPlayer() throws IOException {
         MonsterCard MCard=new MonsterCard("Axe Raider");
@@ -56,11 +21,12 @@ class GameBoardTest {
         SCard.setPosition(SpellsAndTrapPosition.SUMMON);
         User owner=new User("a","b","c");
         User opponent=new User("q","w","e");
-        Deck deck=new Deck("hello",owner);
+        owner.getUserDeck().createDeck("hello",owner);
         owner.getCardInventory().addCardToCardInventory(MCard);
         owner.getCardInventory().addCardToCardInventory(SCard);
-        deck.addCard("Axe Raider",false,owner);
         owner.getUserDeck().activateDeck("hello");
+        owner.getUserDeck().getActiveDeck().addCard("Axe Raider",false,owner);
+        owner.getUserDeck().getActiveDeck().addCard("Axe Raider",false,owner);
         Graveyard graveyard=new Graveyard();
         Hand hand=new Hand();
         MonsterField monsterField=new MonsterField(graveyard);

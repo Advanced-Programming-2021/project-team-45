@@ -40,11 +40,11 @@ public class SpellTrapField {
         return this.spellTrapCardsOnField[cardPosition - 1] == null;
     }
 
-    public boolean isThisCellOfSpellTrapFieldEmptyInOpponentMode(int cardPosition){
+    public boolean isThisCellOfSpellTrapFieldEmptyInOpponentMode(int cardPosition) {
         int newPosition = 0;
-        if(cardPosition == 1)
-            newPosition  = cardPosition;
-        else if(cardPosition % 2 == 0)
+        if (cardPosition == 1)
+            newPosition = cardPosition;
+        else if (cardPosition % 2 == 0)
             newPosition = cardPosition + 1;
         else newPosition = cardPosition - 1;
         return this.spellTrapCardsOnField[newPosition - 1] == null;
