@@ -111,7 +111,6 @@ public class MonsterField {
     }
 
     public boolean isItFull(int index) {
-        index = (index + 1) / 2 - 1;
         return monstersOnField[index] != null;
     }
 
