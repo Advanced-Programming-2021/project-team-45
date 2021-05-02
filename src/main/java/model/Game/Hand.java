@@ -8,6 +8,10 @@ public class Hand {
     private ArrayList<Card> cardsInHand=new ArrayList<>();
     private User handOwner;
 
+    public void addCard(Card card){
+        this.cardsInHand.add(card);
+    }
+
     public ArrayList<Card> getCardsInHand() {
         return cardsInHand;
     }

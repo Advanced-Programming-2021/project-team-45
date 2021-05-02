@@ -19,8 +19,8 @@ public class Card {
     public static ArrayList<Card> getAllCards() {
         ArrayList<Card> allCards = new ArrayList<>();
         try {
-            String[][] Monsters = new MonsterCard("fake").allDataAboutMonster();
-            String[][] SpellAndTraps = new SpellTrapCard("fake").allDataAboutSpellTrap();
+            String[][] Monsters = MonsterCard.allDataAboutMonster();
+            String[][] SpellAndTraps = SpellTrapCard.allDataAboutSpellTrap();
             for (int i = 1; i < 42; i++) {
                 allCards.add(new MonsterCard(Monsters[i][0]));
             }
@@ -60,21 +60,21 @@ public class Card {
     }
 
     public static String showCard(Card card) {
-        String answer="";
+        String answer = "";
         if (card instanceof MonsterCard) {
             MonsterCard monsterCard = (MonsterCard) card;
-            answer+="Name: " + monsterCard.cardName+"\n";
-            answer+="Level: " + monsterCard.level;
-            answer+="Type: " + monsterCard.type+"\n";
-            answer+="ATK: " + monsterCard.attack+"\n";
-            answer+="DEF: " + monsterCard.defense+"\n";
-            answer+="Description: " + monsterCard.cardDescription+"\n";
+            answer += "Name: " + monsterCard.cardName + "\n";
+            answer += "Level: " + monsterCard.level;
+            answer += "Type: " + monsterCard.type + "\n";
+            answer += "ATK: " + monsterCard.attack + "\n";
+            answer += "DEF: " + monsterCard.defense + "\n";
+            answer += "Description: " + monsterCard.cardDescription + "\n";
         } else {
             SpellTrapCard spellOrTrapCard = (SpellTrapCard) card;
-            answer+="Name: " + spellOrTrapCard.cardName+"\n";
-            answer+=(spellOrTrapCard.isSpell?"Spell":"Trap")+"\n";
-            answer+="Type: "+spellOrTrapCard.type+"\n";
-            answer+="Description: "+spellOrTrapCard.cardDescription+"\n";
+            answer += "Name: " + spellOrTrapCard.cardName + "\n";
+            answer += (spellOrTrapCard.isSpell ? "Spell" : "Trap") + "\n";
+            answer += "Type: " + spellOrTrapCard.type + "\n";
+            answer += "Description: " + spellOrTrapCard.cardDescription + "\n";
         }
         return answer;
     }

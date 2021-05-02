@@ -32,7 +32,7 @@ public class SpellTrapCard extends Card{
         this.isSpell=isASpell(this);
     }
 
-    public String[][] allDataAboutSpellTrap()  {
+    public static String[][] allDataAboutSpellTrap()  {
         String[][] data = new String[36][6];
         try {
             File initialFile = new File("src/main/resources/SpellTrap.xlsx");

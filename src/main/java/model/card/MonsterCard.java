@@ -37,7 +37,7 @@ public class MonsterCard extends Card {
         this.price=Integer.parseInt(data[8]);
     }
 
-    public String[][] allDataAboutMonster()  {
+    public static String[][] allDataAboutMonster()  {
         String[][] data = new String[42][9];
         try {
             File initialFile = new File("src/main/resources/Monster.xlsx");
