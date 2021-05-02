@@ -61,7 +61,7 @@ public class UserDeck {
     }
 
     public void activateDeck(String deckName) {
-        ArrayList<Deck> activeDeck = new ArrayList<>();
+        ArrayList<Deck> activeDeck = new ArrayList<>();   //Hossein : ghazie in chie? cherra ye array list gozashtid
         for (Deck deck : this.userDecks) {
             if ((deck.getName()).equals(deckName)) {
                 this.activeDeck = deck;
