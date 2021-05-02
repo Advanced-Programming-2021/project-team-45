@@ -1,44 +1,45 @@
 package controller;
 
-import model.Game.Game;
-import model.Game.GameBoard;
-import model.Game.MonsterField;
-import model.Game.SpellTrapField;
+import model.Game.*;
 import model.card.MonsterCard;
 import model.user.User;
-import view.menu.DuelMenu;
 import view.menu.Menu;
 
 import java.util.regex.Matcher;
 
 public class GameController extends Controller {
 
-    private Game game;
-
-    public void createNewGame(User player, User opponentPlayer, int rounds) {
-        this.game = new Game(player, opponentPlayer, rounds);
-    }
+    private final Game game;
+    private final GameErrorHandler gameErrorHandler;
 
     public GameController(String username, String opponentUsername, int rounds) {
         super(username);
-        createNewGame(User.getUserByUsername(username), User.getUserByUsername(opponentUsername), rounds);
+
+        User player = User.getUserByUsername(username);
+        User opponentPlayer = User.getUserByUsername(opponentUsername);
+        this.game = new Game(player, opponentPlayer, rounds);
+        this.gameErrorHandler = new GameErrorHandler(game);
     }
 
-    public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
-        if (game.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
-            if (game.isThereAnyCardHere(cardType, cardPosition, isOpponentCard)) {
 
+    public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
+        if (gameErrorHandler.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
+
+            if (gameErrorHandler.isThereAnyCardHere(cardType, cardPosition, isOpponentCard)) {
+                game.selectCard(cardType, cardPosition, isOpponentCard);
                 return 0;
             } else {
                 return 2;
             }
+
         } else {
             return 1;
         }
     }
 
     public int deselectErrorHandler() {
-        if (game.doesExistSelectedCard()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            game.deselectCard();
             return 0;
         } else {
             return 1;
@@ -77,11 +78,11 @@ public class GameController extends Controller {
     }
 
     public int summonErrorHandler() {
-        if (game.doesExistSelectedCard()) {
-            if (game.canSummonThisMonster() && game.isSelectedCardMonster() && game.isThereInHand()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isSelectedCardMonster() && gameErrorHandler.isCardInHand() && game.canSummonThisMonster()) {
                 if (!(game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
-                    if (game.isMonsterFieldFull()) {
-                        if (!game.wasSummonOrSetCardBeforeInThisTurn()) {
+                    if (gameErrorHandler.isMonsterFieldFull()) {
+                        if (!gameErrorHandler.wasSummonOrSetCardBeforeInThisTurn()) {
                             int cardLevel = ((MonsterCard) game.getSelectedCard()).getLevel();
                             if (cardLevel <= 4) {
                                 game.summonMonster();
@@ -133,12 +134,12 @@ public class GameController extends Controller {
     }
 
     public int setCardErrorHandler() {
-        if (game.doesExistSelectedCard()) {
-            if (game.isThereInHand()) {
-                if (game.isSelectedCardMonster()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isCardInHand()) {
+                if (gameErrorHandler.isSelectedCardMonster()) {
                     if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
-                        if (!game.isMonsterFieldFull()) {
-                            if (!game.wasSummonOrSetCardBeforeInThisTurn()) {
+                        if (!gameErrorHandler.isMonsterFieldFull()) {
+                            if (!gameErrorHandler.wasSummonOrSetCardBeforeInThisTurn()) {
                                 game.setMonster();
                                 return 6;
                             } else {
@@ -152,7 +153,7 @@ public class GameController extends Controller {
                     }
                 } else {
                     if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
-                        if (!game.isSpellTrapFieldFull()) {
+                        if (!gameErrorHandler.isSpellTrapFieldFull()) {
                             game.setSpellOrTrap();
                             return 6;
                         } else {
@@ -171,11 +172,11 @@ public class GameController extends Controller {
     }
 
     public int changePositionErrorHandler(Matcher matcher) {
-        if (game.doesExistSelectedCard()) {
-            if (game.isThereSelectedCardInMonsterField()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
-                    if (game.isChangeCorrect(matcher)) {
-                        if (!game.wasChangePositionInThisTurn()) {
+                    if (gameErrorHandler.isChangeCorrect(matcher)) {
+                        if (!gameErrorHandler.wasChangePositionInThisTurn()) {
                             game.changePosition();
                             return 6;
                         } else {
@@ -196,10 +197,10 @@ public class GameController extends Controller {
     }
 
     public int flipSummonErrorHandler() {
-        if (game.doesExistSelectedCard()) {
-            if (game.isThereSelectedCardInMonsterField()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
-                    if (game.canFlipSummonSelectedCard()) {
+                    if (gameErrorHandler.canFlipSummonSelectedCard()) {
                         game.flipSummon();
                         return 5;
                     } else {
@@ -217,11 +218,11 @@ public class GameController extends Controller {
     }
 
     public int attackErrorHandler(int numberOfEnemyMonsterZone) {
-        if (game.doesExistSelectedCard()) {
-            if (game.isThereSelectedCardInMonsterField()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("battle phase")) {
-                    if (!game.wasThisCardAttackedInThisTurn()) {
-                        if (game.isThereAnyMonsterInThisCell(numberOfEnemyMonsterZone)) {
+                    if (!gameErrorHandler.wasThisCardAttackedInThisTurn()) {
+                        if (gameErrorHandler.isThereAnyMonsterInThisCell(numberOfEnemyMonsterZone)) {
                             int returnedNumber = game.attack(numberOfEnemyMonsterZone);
                             return returnedNumber;
                             /*
@@ -261,11 +262,11 @@ public class GameController extends Controller {
     }
 
     public int directAttackErrorHandler() {
-        if (game.doesExistSelectedCard()) {
-            if (game.isThereSelectedCardInMonsterField()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("battle phase")) {
-                    if (!game.wasThisCardAttackedInThisTurn()) {
-                        if (game.canDoDirectAttack()) {
+                    if (!gameErrorHandler.wasThisCardAttackedInThisTurn()) {
+                        if (game.canDirectAttack()) {
                             game.directAttack();
                             return 6;
                         }
@@ -281,16 +282,16 @@ public class GameController extends Controller {
     }
 
     public int activeEffectErrorHandler() {
-        if (game.doesExistSelectedCard()) {
-            if (game.isSelectedCardSpell()) {
+        if (gameErrorHandler.doesSelectedCardExist()) {
+            if (gameErrorHandler.isSelectedCardSpell()) {
                 if (game.getPhase().equals("Main Phase 1") || game.getPhase().equals("Main Phase 2")) {
-                    if (!game.isSelectedSpellActive()) {
-                        if (game.isSelectedCardInHand() && game.isSpellTrapFieldFull()
+                    if (!gameErrorHandler.isSelectedSpellActive()) {
+                        if (gameErrorHandler.isSelectedCardInHand() && gameErrorHandler.isSpellTrapFieldFull()
                                 && game.isSelectedCardHaveToPutInField()) {
                             return 5;
                         }
-                        if (game.canActiveSpell()) {
-                            game.activeSpell();
+                        if (game.canActivateSpell()) {
+                            game.activateSpell();
                             return 7;
                         }
                         return 6;
@@ -305,28 +306,23 @@ public class GameController extends Controller {
     }
 
     public String controlGraveyard() {
-        String answer = game.showGraveyard();
-        return answer;
+        return game.showGraveyard();
     }
 
     public String controlCardShow() {
-        String answer = game.showCard();
-        return answer;
+        return game.showCard();
     }
 
     public String damageOnOpponent() {
-        String answer = game.calculateDamageOnEnemy();
-        return answer;
+        return game.calculateDamageOnEnemy();
     }
 
     public String damageOnPlayer() {
-        String answer = game.calculateDamageOnMe();
-        return answer;
+        return game.calculateDamageOnMe();
     }
 
     public String getDefenseTargetCardName() {
-        String answer = game.getEnemyCardName();
-        return answer;
+        return game.getEnemyCardName();
     }
 
     public Game getGame() {
