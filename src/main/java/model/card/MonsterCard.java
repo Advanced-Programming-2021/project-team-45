@@ -27,14 +27,14 @@ public class MonsterCard extends Card {
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
         String[] data=dataAboutAMonster(cardName);
-        this.level=Integer.parseInt(data[1]);
+        this.level=(int)Double.parseDouble(data[1]);
         this.attribute=data[2];
         this.type=data[3];
         this.cardType=data[4];
-        this.attack=Integer.parseInt(data[5]);
-        this.defense=Integer.parseInt(data[6]);
+        this.attack=(int)Double.parseDouble(data[5]);
+        this.defense=(int)Double.parseDouble(data[6]);
         this.cardDescription=data[7];
-        this.price=Integer.parseInt(data[8]);
+        this.price=(int)Double.parseDouble(data[8]);
     }
 
     public static String[][] allDataAboutMonster()  {
@@ -78,7 +78,7 @@ public class MonsterCard extends Card {
         String[][] data = allDataAboutMonster();
         int answer = 0;
         for (int i = 0; i < 42; i++) {
-            if (data[i][0].equals(cardName)) {
+            if (data[i][0].equals(cardNAme)) {
                 answer = i;
                 break;
             }

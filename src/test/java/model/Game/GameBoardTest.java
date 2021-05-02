@@ -1,5 +1,6 @@
 package model.Game;
 
+import model.card.Card;
 import model.card.Deck;
 import model.card.MonsterCard;
 import model.card.SpellTrapCard;
@@ -22,7 +23,6 @@ class GameBoardTest {
 
         MonsterCard MCard=new MonsterCard("Axe Raider");
         SpellTrapCard SCard=new SpellTrapCard("Wall of Revealing Light");
-
         User owner=new User("a","b","c");
         User opponent=new User("q","w","e");
         Deck deck=new Deck("hello",owner);
@@ -37,7 +37,6 @@ class GameBoardTest {
         FieldZone fieldZone=new FieldZone(graveyard);
         DeckField deckField=new DeckField(owner);
         Game game=new Game(owner,opponent,10);
-
         graveyard.addCardToGraveyard(MCard);
         hand.addCard(MCard);
         hand.addCard(SCard);
@@ -48,13 +47,11 @@ class GameBoardTest {
         monsterField.addMonsterToField(MCard);
         spellTrapField.addSpellTrapCard(SCard);
         spellTrapField.addSpellTrapCard(SCard);
-
-
     }
 
 
     @Test
     void gameBoardOfPlayer() {
-
+        System.out.println("ddd");
     }
 }
