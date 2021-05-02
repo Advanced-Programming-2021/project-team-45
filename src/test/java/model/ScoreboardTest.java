@@ -4,6 +4,7 @@ import model.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,6 +48,7 @@ class ScoreboardTest {
 
     @Test
     public void testScoreSorting() {
+        // make test
         user1.increaseScore(10);
         user2.increaseScore(20);
         user3.increaseScore(30);
@@ -65,15 +67,18 @@ class ScoreboardTest {
         linkedMap.put("ali", 10);
         linkedMap.put("hossein2", -10);
 
-        
+        ArrayList<String> linkedMapKeys = new ArrayList<>();
+        linkedMapKeys.addAll(linkedMap.keySet());
+
+        // get scoreboard output keys ArrayList
         LinkedHashMap<String, Integer> testMap = Scoreboard.getSortedNicknameScore();
+        ArrayList<String> testMapKeys = new ArrayList<>();
+        testMapKeys.addAll(testMap.keySet());
 
+        assertEquals(linkedMapKeys.size(), testMapKeys.size());
 
-
-
-    }
-
-    @Test
-    public void testSameScoreSorting() {
+        for (int i = 0; i < linkedMapKeys.size(); i++) {
+            assertEquals(linkedMapKeys.get(i), testMapKeys.get(i));
+        }
     }
 }
