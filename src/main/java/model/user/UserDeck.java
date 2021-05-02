@@ -61,14 +61,14 @@ public class UserDeck {
     }
 
     public void activateDeck(String deckName) {
-        ArrayList<Deck> activeDeck = new ArrayList<>();
+       // ArrayList<Deck> activeDeck = new ArrayList<>();   //Hossein : ghazie in chie? cherra ye array list gozashtid
         for (Deck deck : this.userDecks) {
             if ((deck.getName()).equals(deckName)) {
                 this.activeDeck = deck;
-                activeDeck.add(deck);
+       //         activeDeck.add(deck);
             }
         }
-        (this.userDecks).remove(activeDeck.get(0));
+       // (this.userDecks).remove(activeDeck.get(0));
     }
 
     private Deck getDeckByName(String deckName) {

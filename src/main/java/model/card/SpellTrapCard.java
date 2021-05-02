@@ -28,7 +28,7 @@ public class SpellTrapCard extends Card{
         this.type=data[2];
         this.cardDescription=data[3];
         this.status=data[4];
-        this.price=Integer.parseInt(data[5]);
+        this.price=(int)Double.parseDouble(data[5]);
         this.isSpell=isASpell(this);
     }
 
