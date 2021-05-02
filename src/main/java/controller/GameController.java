@@ -27,6 +27,7 @@ public class GameController extends Controller {
     public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
         if (game.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
             if (game.isThereAnyCardHere(cardType, cardPosition, isOpponentCard)) {
+
                 return 0;
             } else {
                 return 2;
