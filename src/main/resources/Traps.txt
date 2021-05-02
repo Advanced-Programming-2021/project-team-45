@@ -1,0 +1,19 @@
+    ON SUMMON:
+
+
+
+
+
+    ON SPELL:
+
+
+
+
+
+    OTHER:
+
+
+
+
+
+    
