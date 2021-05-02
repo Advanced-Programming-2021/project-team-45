@@ -25,6 +25,8 @@ public class Game {
         this.player = player;
         this.opponent = opponent;
         this.totalRounds = round;
+        this.playerGameBoard=new GameBoard(player,this);
+        this.opponentGameBoard=new GameBoard(opponent,this);
     }
 
     private void setPlayerOfNextTurn() {
