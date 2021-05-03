@@ -47,15 +47,8 @@ public class GameController extends Controller {
         DuelMenu playerDuelMenu = new DuelMenu(player.getUsername(), this);
         playerDuelMenu.show();
 
-        boolean finishRound = false;
         while (!game.isFinished()) {
-
             playerDuelMenu.getNextCommand();
-
-
-
-
-
         }
     }
 
