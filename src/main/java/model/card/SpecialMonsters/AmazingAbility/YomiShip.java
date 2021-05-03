@@ -24,15 +24,15 @@ public class YomiShip {
 
         if(invaderCard.getAttack() > yomiShip.getAttack()){
 
-            game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(yomiShip);
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+            game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(yomiShip);
+            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
         } else if(yomiShip.getAttack() == invaderCard.getAttack()){
 
-            game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(yomiShip);
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+            game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(yomiShip);
+            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
         } else {
 
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
         }
 
     }
@@ -42,15 +42,15 @@ public class YomiShip {
         if(yomiShip.getDefenceMode() == DOorDH.DO){
             if(yomiShip.getDefense() < invaderCard.getAttack()){
 
-                game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(yomiShip);
-                game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+                game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(yomiShip);
+                game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
             } else if(yomiShip.getDefense() == invaderCard.getAttack()) result = 10;
 
         } else {
             game.setLastOpponentMonsterCard(yomiShip);
             if(yomiShip.getDefense() < invaderCard.getAttack()){
-                game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(yomiShip);
-                game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+                game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(yomiShip);
+                game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
             }
 //            else if(yomiShip.getDefense() == invaderCard.getAttack()) result = 13;
 //            else result = 14;

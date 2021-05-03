@@ -2,11 +2,13 @@ package controller;
 
 import model.Game.*;
 import model.card.MonsterCard;
+import model.card.SpecialMonsterEnum;
 import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.MainMenu;
 import view.menu.Menu;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class GameController extends Controller {
@@ -18,6 +20,7 @@ public class GameController extends Controller {
     private GameErrorHandler gameErrorHandler;
     private int playerWins = 0;
     private int opponentWins = 0;
+    private DuelMenu playerDuelMenu;
 
 
     public GameController(String username, String opponentUsername, int rounds) {
@@ -45,7 +48,7 @@ public class GameController extends Controller {
     }
 
     private void playRound() {
-        DuelMenu playerDuelMenu = new DuelMenu(player.getUsername(), this);
+        playerDuelMenu = new DuelMenu(player.getUsername(), this);
         playerDuelMenu.show();
 
         while (!game.isFinished()) {
@@ -123,38 +126,14 @@ public class GameController extends Controller {
                 if (!(game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
                     if (gameErrorHandler.isMonsterFieldFull()) {
                         if (!gameErrorHandler.wasSummonOrSetCardBeforeInThisTurn()) {
-                            int cardLevel = ((MonsterCard) game.getSelectedCard()).getLevel();
-                            if (cardLevel <= 4) {
+                            MonsterCard monster = (MonsterCard) game.getSelectedCard();
+                            if (monster.getLevel() < 5) {
                                 game.summonMonster();
                                 return 6;
-                            } else if (cardLevel == 5 || cardLevel == 6) {
-                                if (game.isThereCardForTribute5Or6()) {
-                                    int house = Menu.scanner.nextInt();
-                                    if (!game.getGameBoard().getMonsterField()
-                                            .isThisCellOfMonsterFieldEmptyInPlayerMode(house)) {
-                                        game.summonMonster();
-                                        return 6;
-                                    } else {
-                                        return 8;
-                                    }
 
-                                } else {
-                                    return 7;
-                                }
-                            } else {   //cardLevel == 7 Or cardLevel == 8
-                                if (game.isEnoughCardForTribute7OrMore()) {
-                                    int A, B;
-                                    A = Menu.inputInt();
-                                    B = Menu.inputInt();
-                                    if (game.canUseAorBForSummon(A, B)) {
-                                        game.summonMonster();
-                                        return 6;
-                                    } else {
-                                        return 9;
-                                    }
-                                } else {
-                                    return 7;
-                                }
+                            } else {
+                                return tributeSummonErrorHandler(monster);
+
                             }
                         } else {
                             return 5;
@@ -168,8 +147,44 @@ public class GameController extends Controller {
             } else {
                 return 2;
             }
+        }
+
+        return 1;
+    }
+
+    private int tributeSummonErrorHandler(MonsterCard monster) {
+        ArrayList<Integer> cardsToTribute = new ArrayList<>();
+        if (!gameErrorHandler.isThereEnoughCardsToTribute(monster)) {
+            return 7;
         } else {
-            return 1;
+            if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
+
+
+            } else if (monster.getLevel() > 10) {
+                cardsToTribute = playerDuelMenu.getCardsForTribute(3);
+                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+                    game.tributeSummon(cardsToTribute);
+                    return 6;
+                } else {
+                    return 9;
+                }
+            } else if (monster.getLevel() >= 7) {
+                cardsToTribute = playerDuelMenu.getCardsForTribute(2);
+                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+                    game.tributeSummon(cardsToTribute);
+                    return 6;
+                } else {
+                    return 9;
+                }
+            } else {
+                cardsToTribute = playerDuelMenu.getCardsForTribute(1);
+                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+                    game.tributeSummon(cardsToTribute);
+                    return 6;
+                } else {
+                    return 8;
+                }
+            }
         }
     }
 

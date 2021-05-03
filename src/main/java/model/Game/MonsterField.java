@@ -48,10 +48,9 @@ public class MonsterField {
         }
     }
 
-    public void deleteADestroyedMonster(MonsterCard monsterCard) {
-        //bug
+    public void deleteAndDestroyMonster(MonsterCard monsterCard) {
         for (int i = 0; i < 4; i++) {
-            if (this.monstersOnField[i].getCardName().equals(monsterCard.getCardName())) {
+            if (this.monstersOnField[i].equals(monsterCard)) {
                 this.graveyard.addCardToGraveyard(this.monstersOnField[i]);
                 this.monstersOnField[i] = null;
             }
