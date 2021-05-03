@@ -48,7 +48,13 @@ public class GameController extends Controller {
         playerDuelMenu.show();
 
         boolean finishRound = false;
-        while (!finishRound) {
+        while (!game.isFinished()) {
+
+            playerDuelMenu.getNextCommand();
+
+
+
+
 
         }
     }
