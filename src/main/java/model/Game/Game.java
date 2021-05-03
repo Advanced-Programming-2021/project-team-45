@@ -73,6 +73,14 @@ public class Game {
         return opponentGameBoard;
     }
 
+    public Card getLastOpponentMonsterCard() {
+        return lastOpponentMonsterCard;
+    }
+
+    public void setLastOpponentMonsterCard(Card lastOpponentMonsterCard) {
+        this.lastOpponentMonsterCard = lastOpponentMonsterCard;
+    }
+
     public User getPlayerOfThisTurn() {
         return this.playerOfThisTurn;
     }
@@ -214,13 +222,12 @@ public class Game {
 
     public void summonMonster() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        MonsterCard monsterCard = (MonsterCard) this.selectedCard;
         CommandKnight.isCommandKnightOnFieldWithSummonMode(selectedCard);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnSummonMode(selectedCard)) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON,this);
         }
-        monsterCard.summon();
-        gameBoard.getMonsterField().addMonsterToField(monsterCard);
+        ((MonsterCard) this.selectedCard).summon();
+        gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
         this.selectedCard = null;
     }
 
@@ -304,7 +311,7 @@ public class Game {
         if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
             result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
         } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
-            result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
+            result = attackToOpponentCardInDefensePosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
         }
         this.selectedCard = null;
         return result;
