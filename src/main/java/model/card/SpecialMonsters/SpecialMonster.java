@@ -3,7 +3,7 @@ package model.card.SpecialMonsters;
 import model.Game.Game;
 import model.card.Card;
 import model.card.MonsterCard;
-import model.card.SpecialMonsters.AmazingAbility.*;
+import model.card.SpecialMonsterEnum.AmazingAbility.*;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,11 @@
 package model.Game;
 
 import model.card.*;
-import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
-import model.card.SpecialMonsters.AmazingAbility.Scanner;
-import model.card.SpecialMonsters.AmazingAbility.Texchanger;
-import model.card.SpecialMonsters.EffectPlace;
-import model.card.SpecialMonsters.SpecialMonster;
+import model.card.SpecialMonsterEnum.AmazingAbility.CommandKnight;
+import model.card.SpecialMonsterEnum.AmazingAbility.Scanner;
+import model.card.SpecialMonsterEnum.AmazingAbility.Texchanger;
+import model.card.SpecialMonsterEnum.EffectPlace;
+import model.card.SpecialMonsterEnum.SpecialMonster;
 import model.user.User;
 
 public class Game {
