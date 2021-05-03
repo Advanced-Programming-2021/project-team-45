@@ -10,6 +10,7 @@ public class ManEatBug {
     public static int abilityOfmanEatBug(Game game) {
         // bugs -haji
         //int targetMonsterFieldPosition = Integer.parseInt(Menu.scanner.nextLine());
+
         GameBoard opponentGameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
         if(opponentGameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(targetMonsterFieldPosition)){
             return 1;
