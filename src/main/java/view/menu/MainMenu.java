@@ -1,5 +1,6 @@
 package view.menu;
 
+import controller.GameController;
 import controller.MainMenuController;
 import controller.Regex;
 
@@ -21,8 +22,8 @@ public class MainMenu extends Menu {
     };
 
 
-    public MainMenu(String username, Menu parentMenu) {
-        super("Main Menu", parentMenu);
+    public MainMenu(String username) {
+        super("Main Menu", new LoginMenu());
         setUsername(username);
 
         mainMenuController = new MainMenuController(username);
@@ -36,7 +37,7 @@ public class MainMenu extends Menu {
     }
 
 
-    private Menu startGame(String input) {
+    private GameController startGame(String input) {
         int inputError = 0;
 
         if (input.matches("( --new| -n)")) {
@@ -70,7 +71,7 @@ public class MainMenu extends Menu {
             int error = mainMenuController.startGameErrorHandler(opponentUsername, rounds);
 
             if (error == 0) {
-                return new DuelMenu(username, opponentUsername, rounds, this);
+                return new GameController(username, opponentUsername, rounds);
 
             } else if (error == 1) {
                 System.out.println("there is no player with this username");
@@ -103,13 +104,14 @@ public class MainMenu extends Menu {
     @Override
     public void execute()  {
         Menu nextMenu = null;
+        GameController gameController = null;
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, MAIN_MENU_REGEX[0]);
 
             if (input.startsWith("duel ")) {
-                nextMenu = startGame(input);
-                if (nextMenu != null) {
+                gameController = startGame(input);
+                if (gameController != null) {
                     break;
                 }
 
@@ -148,12 +150,15 @@ public class MainMenu extends Menu {
             }
         }
 
-        if (nextMenu == null) {
-            exitMenu();
+        if (gameController != null) {
+            gameController.startGame();
         } else {
-            nextMenu.show();
-            nextMenu.execute();
+            if (nextMenu == null) {
+                exitMenu();
+            } else {
+                nextMenu.show();
+                nextMenu.execute();
+            }
         }
     }
-
 }

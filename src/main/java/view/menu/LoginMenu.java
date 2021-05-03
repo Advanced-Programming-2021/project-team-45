@@ -121,7 +121,7 @@ public class LoginMenu extends Menu {
                 if (loginUser(input)) {
                     Matcher usernameMatcher = Regex.getMatcher(input, " (?:--username|-U) (\\w+)");
                     if (usernameMatcher.find()) username = usernameMatcher.group(1);
-                    nextMenu = new MainMenu(username, this);
+                    nextMenu = new MainMenu(username);
                     break;
                 }
 

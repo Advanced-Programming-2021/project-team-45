@@ -25,11 +25,11 @@ public class SpecialMonster {
             if (selectedOrTargetCard.getCardName().equals("Command knight")) {
                 return CommandKnight.abilityOfCommandKnightAtDefense();
             } else if (selectedOrTargetCard.getCardName().equals("Yomi Ship")) {
-                return YomiShip.abilityOfYomiShip();
+                return YomiShip.abilityOfYomiShip(selectedOrTargetCard ,game);
             } else if (selectedOrTargetCard.getCardName().equals("Suijin")) {
                 return SuijinAbility.suijinAbility(selectedOrTargetCard);
             } else if (selectedOrTargetCard.getCardName().equals("Marshmallon")){
-                return Marshmallon.abilityOfMarshmallon();
+                return Marshmallon.abilityOfMarshmallon(selectedOrTargetCard ,game);
             }else if(selectedOrTargetCard.getCardName().equals("Texchanger")){
 
             }
@@ -38,7 +38,7 @@ public class SpecialMonster {
             if (selectedOrTargetCard.getCardName().equals("Command knight")) {
                 return CommandKnight.abilityOfCommandKnightAtSummon();
             }else if(selectedOrTargetCard.getCardName().equals("The Calculator")){
-                TheCalculator.abilityOfTheCalculator();
+                TheCalculator.abilityOfTheCalculator(selectedOrTargetCard, game);
             }
         } else if (effectPlace.equals(EffectPlace.SELECT)) {
             if(selectedOrTargetCard.getCardName().equals("Scanner")){
@@ -46,7 +46,7 @@ public class SpecialMonster {
             }
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             if (selectedOrTargetCard.getCardName().equals("Man-Eater Bug")) {
-                return ManEatBug.abilityOfmanEatBug();
+                return ManEatBug.abilityOfmanEatBug(game);
             }
         }else if(effectPlace.equals(EffectPlace.SPELLACTIVE)){
             if(MirageDragon.checkField(game.getGameBoardOfOpponentPlayerOfThisTurn())){

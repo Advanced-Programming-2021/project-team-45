@@ -3,24 +3,64 @@ package controller;
 import model.Game.*;
 import model.card.MonsterCard;
 import model.user.User;
+import view.menu.DuelMenu;
+import view.menu.MainMenu;
 import view.menu.Menu;
 
 import java.util.regex.Matcher;
 
 public class GameController extends Controller {
 
-    private final Game game;
-    private final GameErrorHandler gameErrorHandler;
+    private final User player;
+    private final User opponentPlayer;
+    private final int rounds;
+    private Game game;
+    private GameErrorHandler gameErrorHandler;
+    private int playerWins = 0;
+    private int opponentWins = 0;
+
 
     public GameController(String username, String opponentUsername, int rounds) {
         super(username);
+        this.player = User.getUserByUsername(username);
+        this.opponentPlayer = User.getUserByUsername(opponentUsername);
+        this.rounds = rounds;
+    }
 
-        User player = User.getUserByUsername(username);
-        User opponentPlayer = User.getUserByUsername(opponentUsername);
+
+    private void createNewGame() {
         this.game = new Game(player, opponentPlayer, rounds);
         this.gameErrorHandler = new GameErrorHandler(game);
     }
 
+    public void startGame() {
+        while (playerWins < rounds && opponentWins < rounds) {
+            createNewGame();
+            playRound();
+        }
+        // go back to first player's MainMenu:
+        MainMenu playerMainMenu = new MainMenu(player.getUsername());
+        playerMainMenu.show();
+        playerMainMenu.execute();
+    }
+
+    private void playRound() {
+        DuelMenu playerDuelMenu = new DuelMenu(player.getUsername(), this);
+        playerDuelMenu.show();
+
+        while (!game.isFinished()) {
+            playerDuelMenu.getNextCommand();
+        }
+    }
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////////// ERROR HANDLING:
 
     public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
         if (gameErrorHandler.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
