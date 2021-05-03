@@ -19,6 +19,7 @@ public class GameController extends Controller {
     private int playerWins = 0;
     private int opponentWins = 0;
 
+
     public GameController(String username, String opponentUsername, int rounds) {
         super(username);
         this.player = User.getUserByUsername(username);
