@@ -10,8 +10,7 @@ public class DuelMenu extends Menu {
     private final GameController gameController;
     private final String[] DUEL_MENU_REGEX = {
             // i = 0
-            "^(menu exit)$|" +
-                    "^(menu show-current)$|" +
+            "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
                     "^(select (?:--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (?:--opponent|-O))? \\d+)$|" +
                     "^(select -d)$|" +
@@ -30,13 +29,101 @@ public class DuelMenu extends Menu {
             // i = 2
             "attack (\\d)"
     };
+    private boolean isCommandEnded = false;
 
 
-    public DuelMenu(String username, String opponentUsername, int rounds, Menu parentMenu) {
-        super("Duel", parentMenu);
+    public DuelMenu(String username, GameController gameController) {
+        super("Duel", new MainMenu(username));
         setUsername(username);
+        this.gameController = gameController;
+    }
 
-        gameController = new GameController(username, opponentUsername, rounds);
+
+    public void getNextCommand() {
+        // regex duel new nist
+        isCommandEnded = false;
+        while (!isCommandEnded) {
+            String input = scanner.nextLine();
+            Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+
+            if (matcher.find()) {
+                if (matcher.group(1) != null) {
+                    showCurrentMenu();
+
+                } else if (matcher.group(2) != null) {
+                    System.out.println("menu navigation is not possible");
+
+                } else if (matcher.group(3) != null) {
+                    selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
+
+                } else if (matcher.group(4) != null) {
+                    deselectCard();
+
+                } else if (matcher.group(5) != null) {
+                    nextPhase();
+
+                } else if (matcher.group(6) != null) {
+                    summonCard();
+
+                } else if (matcher.group(7) != null) {
+                    setCard();
+
+                } else if (matcher.group(8) != null) {
+                    changePosition(input);
+
+                } else if (matcher.group(9) != null) {
+                    flipSummon();
+
+                } else if (matcher.group(10) != null) {
+                    attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
+
+                } else if (matcher.group(11) != null) {
+                    directAttack();
+
+                } else if (matcher.group(12) != null) {
+                    activateEffect();
+
+                } else if (matcher.group(13) != null) {
+                    showGraveyard();
+
+                } else if (matcher.group(14) != null) {
+                    showCard();
+
+                }
+
+            } else {
+                System.out.println("invalid command");
+
+            }
+        }
+    }
+
+    public void showGameBoard() {
+        String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+        String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (opponentGameBoard[i][j] != null) {
+                    System.out.print(opponentGameBoard[i][j]);
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("--------------------------");
+        System.out.println();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (playerGameBoard[4 - i][11 - j] != null) {
+                    System.out.print(playerGameBoard[4 - i][11 - j]);
+                }
+                System.out.println();
+            }
+        }
+        System.out.println(playerGameBoard[0][0] + playerGameBoard[0][1]);
+    }
+
+    public void showOpponentGameBoard() {
+
     }
 
 
@@ -73,6 +160,8 @@ public class DuelMenu extends Menu {
 
     private void nextPhase() {
         int error = gameController.nextPhaseInController();
+
+        isCommandEnded = true;
 
         if (error == 1) {
             System.out.println("phase: draw phase");
@@ -119,6 +208,7 @@ public class DuelMenu extends Menu {
 
         } else if (error == 6) {
             System.out.println("summoned successfully");
+            isCommandEnded = true;
 
         } else if (error == 7) {
             System.out.println("there are not enough cards for tribute");
@@ -151,6 +241,7 @@ public class DuelMenu extends Menu {
 
         } else if (error == 6) {
             System.out.println("set successfully");
+            isCommandEnded = true;
 
         } else if (error == 7) {
             System.out.println("spell card zone is full");
@@ -177,6 +268,7 @@ public class DuelMenu extends Menu {
 
         } else if (error == 6) {
             System.out.println("monster card position changed successfully");
+            isCommandEnded = true;
 
         }
     }
@@ -197,6 +289,7 @@ public class DuelMenu extends Menu {
 
         } else if (error == 5) {
             System.out.println("flip summoned successfully");
+            isCommandEnded = true;
 
         }
     }
@@ -221,38 +314,47 @@ public class DuelMenu extends Menu {
         } else if (error == 6) {
             System.out.println("your opponent’s monster is destroyed and your opponent receives\n" +
                     gameController.damageOnOpponent() + "battle damage");
+            isCommandEnded = true;
 
         } else if (error == 7) {
             System.out.println("both you and your opponent monster cards are destroyed and no\n" +
                     "one receives damage");
+            isCommandEnded = true;
 
         } else if (error == 8) {
             System.out.println("Your monster card is destroyed and you received" +
                     gameController.damageOnPlayer() + " battle\n" +
                     "damage");
+            isCommandEnded = true;
 
         } else if (error == 9) {
             System.out.println("the defense position monster is destroyed");
+            isCommandEnded = true;
 
         } else if (error == 10) {
             System.out.println("no card is destroyed");
+            isCommandEnded = true;
 
         } else if (error == 11) {
             System.out.println("no card is destroyed and you received" + gameController.damageOnPlayer()
                     + " battle damage");
+            isCommandEnded = true;
 
         } else if (error == 12) {
             System.out.println("the defense position monster " +
                     gameController.getDefenseTargetCardName() + " is destroyed");
+            isCommandEnded = true;
 
         } else if (error == 13) {
             System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
-                    + " and no card is\n" + "destroyed");
+                    + " and no card is destroyed");
+            isCommandEnded = true;
 
         } else if (error == 14) {
             System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
                     + "and no card is destroyed and you received" +
                     gameController.damageOnPlayer() + " battle damage");
+            isCommandEnded = true;
 
         }
     }
@@ -277,6 +379,7 @@ public class DuelMenu extends Menu {
         } else if (error == 6) {
             System.out.println("you opponent receives" + gameController.damageOnOpponent()
                     + " battle damage");
+            isCommandEnded = true;
 
         }
     }
@@ -303,6 +406,7 @@ public class DuelMenu extends Menu {
 
         } else if (error == 7) {
             System.out.println("spell activated");
+            isCommandEnded = true;
 
         }
     }
@@ -317,102 +421,12 @@ public class DuelMenu extends Menu {
         System.out.println(answer);
     }
 
-    private void showGameBoard() {
-        String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
-        String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 12; j++) {
-                if (opponentGameBoard[i][j] != null) {
-                    System.out.print(opponentGameBoard[i][j]);
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("--------------------------");
-        System.out.println();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 12; j++) {
-                if (playerGameBoard[4 - i][11 - j] != null) {
-                    System.out.print(playerGameBoard[4 - i][11 - j]);
-                }
-                System.out.println();
-            }
-        }
-        System.out.println(playerGameBoard[0][0] + playerGameBoard[0][1]);
-    }
-
     @Override
     public void show() {
     }
 
     @Override
     public void execute() {
-        // regex duel new nist
-        //gameController.createNewGame();
-        while (true) {
-            String input = scanner.nextLine();
-            Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
-
-            if (matcher.find()) {
-                if (matcher.group(1) != null) {
-                    break;
-
-                } else if (matcher.group(2) != null) {
-                    showCurrentMenu();
-
-                } else if (matcher.group(3) != null) {
-                    System.out.println("menu navigation is not possible");
-
-                } else if (matcher.group(4) != null) {
-                    selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
-
-                } else if (matcher.group(5) != null) {
-                    deselectCard();
-
-                } else if (matcher.group(6) != null) {
-                    nextPhase();
-
-                } else if (matcher.group(7) != null) {
-                    summonCard();
-
-                } else if (matcher.group(8) != null) {
-                    setCard();
-
-                } else if (matcher.group(9) != null) {
-                    changePosition(input);
-
-                } else if (matcher.group(10) != null) {
-                    flipSummon();
-
-                } else if (matcher.group(11) != null) {
-                    attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
-
-                } else if (matcher.group(12) != null) {
-                    directAttack();
-
-                } else if (matcher.group(13) != null) {
-                    activateEffect();
-
-                } else if (matcher.group(14) != null) {
-                    showGraveyard();
-
-                } else if (matcher.group(15) != null) {
-                    showCard();
-
-                }
-
-            } else {
-                System.out.println("invalid command");
-
-            }
-
-            if (gameController.getGame().getPhase().equals("Main Phase1")) {
-                showGameBoard();
-
-            }
-        }
-
-        exitMenu();
     }
 
 }
