@@ -1,9 +1,12 @@
 package model.Game;
 
 import model.card.*;
+import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
+import model.card.SpecialMonsters.AmazingAbility.Scanner;
+import model.card.SpecialMonsters.AmazingAbility.Texchanger;
+import model.card.SpecialMonsters.EffectPlace;
+import model.card.SpecialMonsters.SpecialMonster;
 import model.user.User;
-
-import java.util.regex.Matcher;
 
 public class Game {
 
@@ -139,6 +142,9 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         }
+        if(SpecialMonster.isSelectedCardASpecialMonsterOnSelectMode(selectedCard)) {
+            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
+        }
     }
 
     public void deselectCard() {
@@ -175,6 +181,10 @@ public class Game {
     }
 
     public void endPhase() {
+        Scanner.deActiveAbilityOfScanner()//ehtemalan argoman mikhad alan tavanayee fekr nadaram
+
+        Texchanger.setTrueAllCanUse();
+
 
     }
 
@@ -205,6 +215,10 @@ public class Game {
     public void summonMonster() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
+        CommandKnight.isCommandKnightOnFieldWithSummonMode(selectedCard);
+        if (SpecialMonster.isSelectedCardASpecialMonsterOnSummonMode(selectedCard)) {
+            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON,this);
+        }
         monsterCard.summon();
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
         this.selectedCard = null;
@@ -248,6 +262,9 @@ public class Game {
 
     public void changePosition() {
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
+        if(SpecialMonster.isSelectedCardASpecialMonsterOnChangePositionMode(monsterCard)){
+            SpecialMonster.specialMonsterController(monsterCard,EffectPlace.CHANGEPOSITION,this);
+        }
         monsterCard.changePosition();
         this.changeCardPosition = true;
     }
@@ -281,6 +298,9 @@ public class Game {
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
         playerCard.setWasAttackedInThisTurn(true);
         MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone);
+        if (SpecialMonster.isSelectedCardASpecialMonsterOnDefenseMode(opponentCard)) {
+            return SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY,this);
+        }
         if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
             result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
         } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
@@ -357,6 +377,7 @@ public class Game {
     }
 
     public boolean canActivateSpell() {
+        int answer=SpecialMonster.specialMonsterController(selectedCard,EffectPlace.SPELLACTIVE,this);
         /*
         statements
          */

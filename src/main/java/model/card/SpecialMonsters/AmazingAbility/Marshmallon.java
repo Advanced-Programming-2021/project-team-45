@@ -1,0 +1,7 @@
+package model.card.SpecialMonsters.AmazingAbility;
+
+public class Marshmallon {
+    public static int abilityOfMarshmallon(){
+
+    }
+}
