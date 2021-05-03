@@ -14,7 +14,7 @@ public enum SpecialMonsterEnum {
     MARSHMALLON,
     MIRAGE_DRAGON,
     TEXCHANGER,
-    GATE_GUARDIAN,
+//    GATE_GUARDIAN,
     CRAB_TURTLE,
     TERRATIGER,
     YOMI_SHIP;

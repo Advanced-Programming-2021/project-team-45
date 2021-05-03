@@ -1,15 +1,17 @@
 package model.Game;
 
 import model.card.*;
-import model.card.SpecialMonsterEnum.AmazingAbility.CommandKnight;
-import model.card.SpecialMonsterEnum.AmazingAbility.Scanner;
-import model.card.SpecialMonsterEnum.AmazingAbility.Texchanger;
-import model.card.SpecialMonsterEnum.EffectPlace;
-import model.card.SpecialMonsterEnum.SpecialMonster;
+import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
+import model.card.SpecialMonsters.AmazingAbility.Scanner;
+import model.card.SpecialMonsters.AmazingAbility.Texchanger;
+import model.card.SpecialMonsters.EffectPlace;
+import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.user.User;
+
+import java.util.ArrayList;
 
 public class Game {
 
@@ -234,26 +236,14 @@ public class Game {
         this.selectedCard = null;
     }
 
-    public boolean isThereCardForTribute5Or6() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getNumberOfMonstersInField() > 0)
-            return true;
-        else return false;
-    }
-
-    public boolean isEnoughCardForTribute7OrMore() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getNumberOfMonstersInField() > 1)
-            return true;
-        else return false;
-    }
-
-    public boolean canUseAorBForSummon(int A, int B) {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(A) ||
-                gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(B))
-            return false;
-        else return true;
+    public void tributeSummon(ArrayList<Integer> cardsToTribute) {
+        MonsterField monsterField = getGameBoardOfPlayerOfThisTurn().getMonsterField();
+        for (int position : cardsToTribute) {
+            MonsterCard monsterCard = monsterField.getMonster(position);
+            monsterField.deleteAndDestroyMonster(monsterCard);
+        }
+        monsterField.addMonsterToField((MonsterCard) selectedCard);
+        selectedCard = null;
     }
 
     public void setMonster() {
@@ -327,14 +317,14 @@ public class Game {
         playerCard.attackMonster(opponentCard);
         if (playerCard.getAttack() > opponentCard.getAttack()) {
             result = 6;
-            opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
+            opponentGameBoard.getMonsterField().deleteAndDestroyMonster(opponentCard);
         } else if (playerCard.getAttack() == opponentCard.getAttack()) {
             result = 7;
-            opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
-            playerGameBoard.getMonsterField().deleteADestroyedMonster(playerCard);
+            opponentGameBoard.getMonsterField().deleteAndDestroyMonster(opponentCard);
+            playerGameBoard.getMonsterField().deleteAndDestroyMonster(playerCard);
         } else if (playerCard.getAttack() < opponentCard.getAttack()) {
             result = 8;
-            playerGameBoard.getMonsterField().deleteADestroyedMonster(playerCard);
+            playerGameBoard.getMonsterField().deleteAndDestroyMonster(playerCard);
         }
         return result;
     }
@@ -346,7 +336,7 @@ public class Game {
         if (opponentCard.getDefenceMode() == DOorDH.DO) {
             if (opponentCard.getDefense() < playerCard.getAttack()) {
                 result = 9;
-                opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
+                opponentGameBoard.getMonsterField().deleteAndDestroyMonster(opponentCard);
             } else if (opponentCard.getDefense() == playerCard.getAttack()) {
                 result = 10;
             } else result = 11;
@@ -354,7 +344,7 @@ public class Game {
             this.lastOpponentMonsterCard = opponentCard;
             if (opponentCard.getDefense() < playerCard.getAttack()) {
                 result = 12;
-                opponentGameBoard.getMonsterField().deleteADestroyedMonster(opponentCard);
+                opponentGameBoard.getMonsterField().deleteAndDestroyMonster(opponentCard);
             } else if (opponentCard.getDefense() == playerCard.getAttack()) {
                 result = 13;
             } else result = 14;

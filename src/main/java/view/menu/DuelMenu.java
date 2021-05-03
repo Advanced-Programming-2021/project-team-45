@@ -3,6 +3,7 @@ package view.menu;
 import controller.GameController;
 import controller.Regex;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class DuelMenu extends Menu {
@@ -214,12 +215,21 @@ public class DuelMenu extends Menu {
             System.out.println("there are not enough cards for tribute");
 
         } else if (error == 8) {
-            System.out.println("there no monsters one this address");
+            System.out.println("there no monsters on this address");
 
         } else if (error == 9) {
             System.out.println("there is no monster on one of these addresses");
 
         }
+    }
+
+    public ArrayList<Integer> getCardsForTribute(int n) {
+        ArrayList<Integer> cards = new ArrayList<>();
+        System.out.println("enter " + n + " cards to tribute: (each in 1 line)");
+        for (int i = 0; i < n; i++) {
+            cards.add(Integer.parseInt(scanner.nextLine()));
+        }
+        return cards;
     }
 
     private void setCard() {

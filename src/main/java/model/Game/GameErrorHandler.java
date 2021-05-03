@@ -2,8 +2,10 @@ package model.Game;
 
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
+import model.card.SpecialMonsterEnum;
 import model.card.SpellTrapCard;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class GameErrorHandler {
@@ -145,5 +147,32 @@ public class GameErrorHandler {
     public boolean isSelectedCardInHand() {
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
         return gameBoard.getHand().doesCardExistInHand(game.getSelectedCard());
+    }
+
+    public boolean isThereEnoughCardsToTribute(MonsterCard monster) {
+        MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
+        if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
+            return true;
+
+        } else if (monster.getLevel() > 10) {
+            return monsterField.getNumberOfMonstersInField() > 2;
+
+        } else if (monster.getLevel() >= 7) {
+            return monsterField.getNumberOfMonstersInField() > 1;
+
+        } else {
+            return monsterField.getNumberOfMonstersInField() > 0;
+
+        }
+    }
+
+    public boolean isTributeCardsValid(ArrayList<Integer> cardsToTribute) {
+        MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
+        for (int i : cardsToTribute) {
+            if (monsterField.isThisCellOfMonsterFieldEmptyInPlayerMode(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

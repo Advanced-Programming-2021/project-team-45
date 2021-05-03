@@ -3,7 +3,6 @@ package model.card.SpecialMonsters.AmazingAbility;
 import model.Game.Game;
 import model.Game.GameBoard;
 import model.card.MonsterCard;
-import view.menu.Menu;
 
 public class ManEatBug {
 
@@ -15,7 +14,7 @@ public class ManEatBug {
             return 1;
         } else{
             MonsterCard monsterCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(targetMonsterFieldPosition);
-            opponentGameBoard.getMonsterField().deleteADestroyedMonster(monsterCard);
+            opponentGameBoard.getMonsterField().deleteAndDestroyMonster(monsterCard);
             return 0;
         }
     }
