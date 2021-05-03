@@ -6,6 +6,9 @@ import model.card.SpecialMonsterEnum.AmazingAbility.Scanner;
 import model.card.SpecialMonsterEnum.AmazingAbility.Texchanger;
 import model.card.SpecialMonsterEnum.EffectPlace;
 import model.card.SpecialMonsterEnum.SpecialMonster;
+import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
+import model.card.SpecialMonsters.EffectPlace;
+import model.card.SpecialMonsters.SpecialMonster;
 import model.user.User;
 
 public class Game {
@@ -306,7 +309,8 @@ public class Game {
         playerCard.setWasAttackedInThisTurn(true);
         MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnDefenseMode(opponentCard)) {
-            return SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY,this);
+            SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY,this);
+            return 0;
         }
         if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
             result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
@@ -384,7 +388,7 @@ public class Game {
     }
 
     public boolean canActivateSpell() {
-        int answer=SpecialMonster.specialMonsterController(selectedCard,EffectPlace.SPELLACTIVE,this);
+        SpecialMonster.specialMonsterController(selectedCard,EffectPlace.SPELLACTIVE,this);
         /*
         statements
          */

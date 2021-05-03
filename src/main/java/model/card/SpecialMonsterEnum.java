@@ -17,5 +17,5 @@ public enum SpecialMonsterEnum {
     GATE_GUARDIAN,
     CRAB_TURTLE,
     TERRATIGER,
-    YOMI_SHIP
+    YOMI_SHIP;
 }
