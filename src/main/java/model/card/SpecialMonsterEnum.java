@@ -1,9 +1,6 @@
 package model.card;
 
 public enum SpecialMonsterEnum {
-<<<<<<< HEAD
-
-=======
     BEAST_KING_BARBAROS,
     THE_TRICKY,
     SKULL_GUARDIAN,
@@ -20,6 +17,5 @@ public enum SpecialMonsterEnum {
     GATE_GUARDIAN,
     CRAB_TURTLE,
     TERRATIGER,
-    YOMI_SHIP
->>>>>>> main
+    YOMI_SHIP;
 }
