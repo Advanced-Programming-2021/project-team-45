@@ -27,10 +27,10 @@ public class Marshmallon {
             result = 6;
         }
         else if (marshmallon.getAttack() == invaderCard.getAttack()) {
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
             result = 7;
         } else {
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteADestroyedMonster(invaderCard);
+            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
             result = 8;
         }
         return result;

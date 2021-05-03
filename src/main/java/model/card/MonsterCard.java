@@ -26,6 +26,9 @@ public class MonsterCard extends Card {
     protected DOorDH defenceMode;
     private boolean wasAttackedInThisTurn = false;
 
+    //////////////////////// set enum in constructor
+
+    private final SpecialMonsterEnum special = null;
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
         String[] data = dataAboutAMonster(cardName);
@@ -168,6 +171,10 @@ public class MonsterCard extends Card {
 
     public int getDefense() {
         return defense;
+    }
+
+    public SpecialMonsterEnum getSpecial() {
+        return special;
     }
 
     public int getLevel() {
