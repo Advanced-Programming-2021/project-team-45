@@ -11,6 +11,10 @@ public class Graveyard {
         graveyardCards.add(card);
     }
 
+    public ArrayList<Card> getGraveyardCards() {
+        return graveyardCards;
+    }
+
     public void deleteCardFromGraveyard(Card card){
         (this.graveyardCards).remove(card);
     }

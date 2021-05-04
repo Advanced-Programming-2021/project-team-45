@@ -29,19 +29,19 @@ public class SpellCardController {
         }else if(selectedCard.getCardName().equals("Messenger of peace")){
             MessengerOfPeace.ability();
         }else if(selectedCard.getCardName().equals("Twin Twisters")){
-            TwinTwisters.ability();
+            TwinTwisters.ability(game);
         }else if(selectedCard.getCardName().equals("Mystical space typhoon")){
             MysticalSpaceTyphon.ability(game);
         }else if(selectedCard.getCardName().equals("Ring of Defense")){
             RingOfDefense.ability();
         }else if(selectedCard.getCardName().equals("Yami")){
-            Yami.ability();
+            Yami.ability(game);
         }else if(selectedCard.getCardName().equals("Forest")){
-            Forest.ability();
+            Forest.ability(game);
         }else if(selectedCard.getCardName().equals("Closed Forest")){
-            ClosedForest.ability();
+            ClosedForest.ability(game);
         }else if(selectedCard.getCardName().equals("UMIIRUKA")){
-            Umiiruka.ability();
+            Umiiruka.ability(game);
         }else if(selectedCard.getCardName().equals("Sword of Dark Destruction")){
             SwordOfDarkDestruction.ability();
         }else if(selectedCard.getCardName().equals("Black Pendant")){

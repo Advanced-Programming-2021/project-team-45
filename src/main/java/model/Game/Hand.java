@@ -30,4 +30,15 @@ public class Hand {
         if(this.cardsInHand.contains(card)) return true;
         else return false;
     }
+
+    public void deleteCard(Card card) {
+        ArrayList<Card> targetCard = new ArrayList<>();
+        for(int i = 0; i < this.cardsInHand.size(); i++) {
+            if(this.cardsInHand.get(i).equals(card)){
+                targetCard.add(this.cardsInHand.get(i));
+                break;
+            }
+        }
+        this.cardsInHand.remove(targetCard.get(0));
+    }
 }
