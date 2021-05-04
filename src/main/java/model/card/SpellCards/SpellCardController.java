@@ -29,13 +29,13 @@ public class SpellCardController {
         }else if(selectedCard.getCardName().equals("Messenger of peace")){
             MessengerOfPeace.ability();
         }else if(selectedCard.getCardName().equals("Twin Twisters")){
-            TwinTwisters.ability();
+            TwinTwisters.ability(game);
         }else if(selectedCard.getCardName().equals("Mystical space typhoon")){
             MysticalSpaceTyphon.ability(game);
         }else if(selectedCard.getCardName().equals("Ring of Defense")){
             RingOfDefense.ability();
         }else if(selectedCard.getCardName().equals("Yami")){
-            Yami.ability();
+            Yami.ability(game);
         }else if(selectedCard.getCardName().equals("Forest")){
             Forest.ability();
         }else if(selectedCard.getCardName().equals("Closed Forest")){
