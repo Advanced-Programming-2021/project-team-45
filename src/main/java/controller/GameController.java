@@ -354,61 +354,61 @@ public class GameController extends Controller {
         return 1;
     }
 
-    public void activeSpellAndTrapInOtherTurn(){
-        playerDuelMenu.activeSpellOrTrapInOtherPlayerTurn();
-    }
-    public int activeSpellOrTrapInOtherPlayerTurnErrorHandler() {
-        getGame().changeTurnForSpecials();
-        String answer = Menu.inputString();
-
-        if (answer.equals("yes") || answer.equals("YES") || answer.equals("Yes")) {
-            getGame().changeTurnForSpecials();
-            return getNextCommandForActiveSpellOrTrap();
-        } else {
-            getGame().changeTurnForSpecials();
-            return 1;
-        }
-
-    }
-    public int getNextCommandForActiveSpellOrTrap() {
-        String input = Menu.inputString();
-        Matcher matcher = Regex.getMatcher(input, playerDuelMenu.getDUEL_MENU_REGEX()[0]);
-        if (matcher.find()) {
-            if (matcher.group(3) != null) {
-                if (selectCardSpecial(matcher)) {
-                    String newInput =Menu.inputString();
-                    Matcher newMatcher = Regex.getMatcher(newInput, playerDuelMenu.getDUEL_MENU_REGEX()[0]);
-                    if (newMatcher.find() && newMatcher.group(12) != null) {
-                        activateEffectOfTrapAndSpell();
-                        return 3;
-                    } else return 2;
-                } else return 2;
-            } else return 2;
-        } else return 2;
-    }
-
-    private boolean selectCardSpecial(Matcher matcher) {
-        if (matcher.find()) {
-            String cardType = matcher.group(1);
-            boolean isOpponentCard = matcher.group(2).matches("--opponent|-O");
-            int cardPosition = Integer.parseInt(matcher.group(3));
-            int error =selectCardErrorHandler(cardType, cardPosition, isOpponentCard);
-            if (error == 0) {
-                return true;
-            } else if (error == 1) {
-                return false;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
-
-    public void activateEffectOfTrapAndSpell(){
-        game.activeSelectedTrapOrSpell();
-        game.deselectCard();
-    }
+//    public void activeSpellAndTrapInOtherTurn(){
+//        playerDuelMenu.activeSpellOrTrapInOtherPlayerTurn();
+//    }
+//    public int activeSpellOrTrapInOtherPlayerTurnErrorHandler() {
+//        getGame().changeTurnForSpecials();
+//        String answer = Menu.inputString();
+//
+//        if (answer.equals("yes") || answer.equals("YES") || answer.equals("Yes")) {
+//            getGame().changeTurnForSpecials();
+//            return getNextCommandForActiveSpellOrTrap();
+//        } else {
+//            getGame().changeTurnForSpecials();
+//            return 1;
+//        }
+//
+//    }
+//    public int getNextCommandForActiveSpellOrTrap() {
+//        String input = Menu.inputString();
+//        Matcher matcher = Regex.getMatcher(input, playerDuelMenu.getDUEL_MENU_REGEX()[0]);
+//        if (matcher.find()) {
+//            if (matcher.group(3) != null) {
+//                if (selectCardSpecial(matcher)) {
+//                    String newInput =Menu.inputString();
+//                    Matcher newMatcher = Regex.getMatcher(newInput, playerDuelMenu.getDUEL_MENU_REGEX()[0]);
+//                    if (newMatcher.find() && newMatcher.group(12) != null) {
+//                        activateEffectOfTrapAndSpell();
+//                        return 3;
+//                    } else return 2;
+//                } else return 2;
+//            } else return 2;
+//        } else return 2;
+//    }
+//
+//    private boolean selectCardSpecial(Matcher matcher) {
+//        if (matcher.find()) {
+//            String cardType = matcher.group(1);
+//            boolean isOpponentCard = matcher.group(2).matches("--opponent|-O");
+//            int cardPosition = Integer.parseInt(matcher.group(3));
+//            int error =selectCardErrorHandler(cardType, cardPosition, isOpponentCard);
+//            if (error == 0) {
+//                return true;
+//            } else if (error == 1) {
+//                return false;
+//            } else {
+//                return false;
+//            }
+//        }
+//        return false;
+//    }
+//
+//
+//    public void activateEffectOfTrapAndSpell(){
+//        game.activeSelectedTrapOrSpell();
+//        game.deselectCard();
+//    }
 
     public String controlGraveyard() {
         return game.showGraveyard();
