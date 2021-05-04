@@ -17,6 +17,10 @@ public class DeckField {
         return (this.deck).getCard();
     }
 
+    public Card getFieldCard() {
+        return (this.deck).getAFieldCard();
+    }
+
     public int getDeckSize(){
         return (this.deck).getMainDeckCards().size();
     }

@@ -22,7 +22,7 @@ public class GameBoard {
         this.graveyard = new Graveyard();
         this.hand = new Hand();
         this.monsterField = new MonsterField(graveyard);
-        this.spellTrapField = new SpellTrapField();
+        this.spellTrapField = new SpellTrapField(owner, graveyard);
         this.fieldZone = new FieldZone(graveyard);
         this.deckField = new DeckField(owner);
         this.game = game;

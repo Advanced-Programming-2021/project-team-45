@@ -9,7 +9,13 @@ import model.user.User;
 import java.util.ArrayList;
 
 public class SpellTrapField {
-    private User Owner;
+    private User owner;
+    private Graveyard graveyard;
+    public SpellTrapField(User owner, Graveyard graveyard){
+        this.owner = owner;
+        this.graveyard = graveyard;
+    }
+
     private SpellTrapCard[] spellTrapCardsOnField = new SpellTrapCard[5];
 
     public SpellTrapCard[] getSpellTrapCardsOnField() {
@@ -24,6 +30,15 @@ public class SpellTrapField {
                 break;
             }
             index++;
+        }
+    }
+
+    public void deleteAndDestroyAllSpellTrapCards(){
+        for(int i = 0; i < 5; i++){
+            if(this.spellTrapCardsOnField[i] != null){
+                this.graveyard.addCardToGraveyard(this.spellTrapCardsOnField[i]);
+                this.spellTrapCardsOnField[i] = null;
+            }
         }
     }
 
