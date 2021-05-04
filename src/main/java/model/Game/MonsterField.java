@@ -18,7 +18,7 @@ public class MonsterField {
 
     public void deleteAttackedHistory() {
         MonsterCard[] cards = getMonstersOnField();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             cards[i].setWasAttackedInThisTurn(false);
         }
     }
@@ -39,7 +39,7 @@ public class MonsterField {
 
     public void addMonsterToField(MonsterCard monster) {
         int index = 0;
-        while (index < 4) {
+        while (index < 5) {
             if (this.monstersOnField[index] == null) {
                 this.monstersOnField[index] = monster;
                 break;
@@ -49,8 +49,17 @@ public class MonsterField {
     }
 
     public void deleteAndDestroyMonster(MonsterCard monsterCard) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             if (this.monstersOnField[i].equals(monsterCard)) {
+                this.graveyard.addCardToGraveyard(this.monstersOnField[i]);
+                this.monstersOnField[i] = null;
+            }
+        }
+    }
+
+    public void deleteAndDestroyAllMonsters() {
+        for(int i = 0; i < 5; i++) {
+            if(this.monstersOnField[i] != null) {
                 this.graveyard.addCardToGraveyard(this.monstersOnField[i]);
                 this.monstersOnField[i] = null;
             }
@@ -59,7 +68,7 @@ public class MonsterField {
 
     public int getNumberOfMonstersInField() {
         int numberOfMonsters = 0;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             if (this.monstersOnField[i] != null)
                 numberOfMonsters++;
         }
@@ -82,7 +91,7 @@ public class MonsterField {
 
     public boolean isFull() {
         int fullPlace = 0;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             if (this.monstersOnField != null)
                 fullPlace++;
         }
@@ -99,7 +108,7 @@ public class MonsterField {
         else {
             MonsterCard targetCard = (MonsterCard) card;
             int existence = 0;
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 if (this.monstersOnField[i] != null) {
                     if (this.monstersOnField[i].getCardName().equals(targetCard.getCardName()))
                         existence++;

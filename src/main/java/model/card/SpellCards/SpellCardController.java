@@ -9,19 +9,19 @@ public class SpellCardController {
         if(selectedCard.getCardName().equals("Monster Reborn")){
             MonsterReborn.ability();
         }else if(selectedCard.getCardName().equals("Terraforming")){
-            Terraforming.ability();
+            Terraforming.ability(game);
         }else if(selectedCard.getCardName().equals("Pot of Greed")){
-            PotOfGreed.ability();
+            PotOfGreed.ability(game);
         }else if(selectedCard.getCardName().equals("Raigeki")){
             Raigeki.ability();
         }else if(selectedCard.getCardName().equals("Change of Heart")){
             ChangeOfHeart.ability();
         }else if(selectedCard.getCardName().equals("Harpie’s Feather Duster")){
-            HarpieFeatherDuster.ability();
+            HarpieFeatherDuster.ability(game);
         }else if(selectedCard.getCardName().equals("Swords of Revealing Light")){
             SwordOfRevealingLight.ability();
         }else if(selectedCard.getCardName().equals("Dark Hole")){
-            DarkHole.ability();
+            DarkHole.ability(game);
         }else if(selectedCard.getCardName().equals("Supply Squad")){
             SupplySquad.ability();
         }else if(selectedCard.getCardName().equals("Spell Absorption")){

@@ -61,6 +61,20 @@ public class Deck {
         return card;
     }
 
+    public Card getAFieldCard() {
+        ArrayList<Card> targetCard = new ArrayList<>();
+        for(Card card : this.mainDeckCards){
+            if(card instanceof SpellTrapCard){
+                if(((SpellTrapCard) card).getIcon().equals("Field")){
+                    targetCard.add(card);
+                    break;
+                }
+            }
+        }
+        this.mainDeckCards.remove(targetCard.get(0));
+        return targetCard.get(0);
+    }
+
     public Card getRandomCard() {
         Random random = new Random();
         int index = random.nextInt((this.mainDeckCards).size());
