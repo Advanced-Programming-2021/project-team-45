@@ -3,6 +3,8 @@ package controller;
 import model.Game.*;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
+import model.card.SpecialMonsters.EffectPlace;
+import model.card.SpecialMonsters.SpecialMonster;
 import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.MainMenu;
@@ -121,7 +123,8 @@ public class GameController extends Controller {
                     if (gameErrorHandler.isMonsterFieldFull()) {
                         if (!gameErrorHandler.wasSummonOrSetCardBeforeInThisTurn()) {
                             MonsterCard monster = (MonsterCard) game.getSelectedCard();
-                            if (monster.getLevel() < 5) {
+                            if (monster.getLevel() < 5 || monster.getSpecial() == SpecialMonsterEnum.CRAB_TURTLE
+                                    || monster.getSpecial() == SpecialMonsterEnum.SKULL_GUARDIAN) {
                                 game.summonMonster();
                                 return 6;
 
@@ -147,11 +150,30 @@ public class GameController extends Controller {
     }
 
     private int tributeSummonErrorHandler(MonsterCard monster) {
-        ArrayList<Integer> cardsToTribute = new ArrayList<>();
+        ArrayList<Integer> cardsToTribute;
         if (!gameErrorHandler.isThereEnoughCardsToTribute(monster)) {
             return 7;
         } else {
             if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
+                MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
+                if (monsterField.getNumberOfMonstersInField() > 1) {
+                    boolean isTributeSummon = playerDuelMenu.getYesNoAnswer("do you want to tribute summon?");
+                    if (isTributeSummon) {
+                        cardsToTribute = playerDuelMenu.getCardsForTribute(2);
+                        if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+                            game.tributeSummon(cardsToTribute);
+                            return 6;
+                        } else {
+                            return 9;
+                        }
+                    }
+                } else {
+                    // here we have to reduce it's ATK/DFN
+//                SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, game);
+                    cardsToTribute = playerDuelMenu.getCardsForTribute(0);
+                    game.tributeSummon(cardsToTribute);
+                    return 6;
+                }
 
 
             } else if (monster.getLevel() > 10) {
@@ -180,6 +202,7 @@ public class GameController extends Controller {
                 }
             }
         }
+        return 8;
     }
 
     public int setCardErrorHandler() {

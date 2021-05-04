@@ -103,6 +103,20 @@ public class DuelMenu extends Menu {
         }
     }
 
+    public boolean getYesNoAnswer(String question) {
+        System.out.println(question + " (yes/no)");
+        while (true) {
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("yes")) {
+                return true;
+            } else if (answer.equalsIgnoreCase("no")) {
+                return false;
+            } else {
+                System.out.println("invalid command");
+            }
+        }
+    }
+
     public void showGameBoard() {
         String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
         String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();

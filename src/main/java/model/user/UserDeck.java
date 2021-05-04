@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class UserDeck {
-    private ArrayList<Deck> userDecks;
+    private final ArrayList<Deck> userDecks;
     private Deck activeDeck;
 
     public UserDeck() {
-        this.userDecks = new ArrayList<Deck>();
+        this.userDecks = new ArrayList<>();
     }
 
     public ArrayList getUserDecks() {
@@ -23,8 +23,7 @@ public class UserDeck {
     }
 
     public boolean doesDeckExist(String deckName) {
-        if (this.getDeckByName(deckName) == null) return false;
-        else return true;
+        return this.getDeckByName(deckName) != null;
     }
 
     public boolean doesExistActiveDeck() {
