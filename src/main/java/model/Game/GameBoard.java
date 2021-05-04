@@ -4,7 +4,6 @@ import model.card.DOorDH;
 import model.card.PositionMonsters;
 import model.card.SpellsAndTrapPosition;
 import model.user.User;
-import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
 
 
 public class GameBoard {
@@ -65,7 +64,7 @@ public class GameBoard {
             gameBoard[1][i] = "c";
             gameBoard[1][i + 1] = "    ";
         }
-        Integer u = getOwner().getUserDeck().getActiveDeck().getMainDeckCards().size();
+        Integer u = getOwner().getUserDeck().getActiveDeck().getMainDeck().size();
         gameBoard[2][0] = String.valueOf(u);
         gameBoard[3][0] = "    ";
         for (int i = 1; i < 10; i += 2) {

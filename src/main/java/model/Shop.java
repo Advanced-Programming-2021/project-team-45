@@ -3,7 +3,6 @@ package model;
 import model.card.Card;
 import model.user.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -42,16 +41,15 @@ public class Shop {
     }
 
 
-    public boolean hasEnoughMoney(String cardName){
+    public boolean hasEnoughMoney(String cardName) {
         Card card = Card.getCardByName(cardName);
         assert card != null;
         return user.getMoney() >= card.getPrice();
     }
 
-    public void buy(String cardName)  {
+    public void buy(String cardName) {
         Card card = Card.getCardByName(cardName);
-        user.getCardInventory().addCardToCardInventory(card);
-        user.getCardInventory().addCardToBoughtCards(card);
+        user.getCardInventory().addCardToInventory(card);
         assert card != null;
         user.decreaseMoney(card.getPrice());
     }

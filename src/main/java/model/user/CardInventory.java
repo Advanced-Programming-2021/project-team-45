@@ -4,55 +4,58 @@ import model.card.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class CardInventory {
 
-    private final ArrayList<Card> cardInventory;
-    private final ArrayList<Card> boughtCards;
+    HashMap<String, Integer> cardsCount;
+    private final ArrayList<Card> cards;
 
-    public CardInventory(){
-        this.cardInventory = new ArrayList<>();
-        this.boughtCards = new ArrayList<>();
+    public CardInventory() {
+        cardsCount = new HashMap<>();
+        cards = new ArrayList<>();
     }
 
-    public void addCardToCardInventory(Card card){
-        (this.cardInventory).add(card);
-    }
-
-    public void addCardToBoughtCards(Card newCard){
-        int existence = 0;
-        for(Card card : this.boughtCards){
-            if((card.getCardName()).equals(newCard.getCardName()))
-                existence++;
+    public void addCardToInventory(Card card) {
+        if (getCardByCardName(card.getCardName()) != null) {
+            cards.add(card);
+            cardsCount.put(card.getCardName(), 1);
+        } else {
+            int count = cardsCount.get(card.getCardName());
+            cardsCount.put(card.getCardName(), count + 1);
         }
-        if(existence == 0) (this.boughtCards).add(newCard);
     }
 
-    public void deleteCardFromCardInventory(Card card){
-        (this.cardInventory).remove(card);
-    }
-
-    public boolean doesCardExist(String cardName){
-        int existence = 0;
-        for(Card card : this.cardInventory){
-            if((card.getCardName()).equals(cardName))
-                existence++;
+    public int getCardCount(String cardName) {
+        if (cardsCount.containsKey(cardName)) {
+            return cardsCount.get(cardName);
         }
-        if(existence == 0) return false; else return true;
+        return 0;
     }
 
-    public Card getCardByCardName(String cardName){
-        ArrayList<Card> targetCard = new ArrayList<>();
-        for(Card card : this.cardInventory){
-            if((card.getCardName()).equals(cardName))
-                targetCard.add(card);
+    public boolean doesCardExistToAddToDeck(UserDeck userDeck, String deckName, String cardName) {
+        if (getCardByCardName(cardName) == null) {
+            return false;
+        } else if (!userDeck.doesDeckExist(deckName)) {
+            return true;
+        } else {
+            int usedCount = userDeck.getDeckByName(deckName).getCardCountInDeck(cardName);
+            return cardsCount.get(cardName) > usedCount;
         }
-        return targetCard.get(0);
     }
 
-    public ArrayList<String> getAllCardsStr(){
+    public Card getCardByCardName(String cardName) {
+        for (Card card : cards) {
+            if (card.getCardName().equals(cardName)) {
+                return card.clone();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<String> getAllCardsStr() {
         ArrayList<String> cardsStr = new ArrayList<>();
-        for(Card card : this.boughtCards){
+        for (Card card : cards) {
             cardsStr.add(card.getCardName() + ":" + card.getCardDescription());
         }
         Collections.sort(cardsStr);

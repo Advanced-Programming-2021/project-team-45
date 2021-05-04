@@ -32,11 +32,11 @@ public class Game {
     private GameController gameController;
 
 
-    public Game(User player, User opponent, int round,GameController gameController) {
+    public Game(User player, User opponent, int round, GameController gameController) {
         this.player = player;
         this.opponent = opponent;
         this.totalRounds = round;
-        this.gameController=gameController;
+        this.gameController = gameController;
         this.playerGameBoard = new GameBoard(player, this);
         this.opponentGameBoard = new GameBoard(opponent, this);
     }
@@ -52,7 +52,8 @@ public class Game {
 
 
     }
-    public void changeTurnForSpecials(){
+
+    public void changeTurnForSpecials() {
         if ((this.playerOfThisTurn).equals(this.player))
             this.playerOfThisTurn = opponent;
         else this.playerOfThisTurn = player;
@@ -163,7 +164,7 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         }
-        if(SpecialMonster.isSelectedCardASpecialMonsterOnSelectMode(selectedCard)) {
+        if (SpecialMonster.isSelectedCardASpecialMonsterOnSelectMode(selectedCard)) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
         }
     }
@@ -241,7 +242,7 @@ public class Game {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         CommandKnight.isCommandKnightOnFieldWithSummonMode(selectedCard);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnSummonMode(selectedCard)) {
-            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON,this);
+            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
         }
         ((MonsterCard) this.selectedCard).summon();
         gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
@@ -280,8 +281,8 @@ public class Game {
 
     public void changePosition() {
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
-        if(SpecialMonster.isSelectedCardASpecialMonsterOnChangePositionMode(monsterCard)){
-            SpecialMonster.specialMonsterController(monsterCard,EffectPlace.CHANGEPOSITION,this);
+        if (SpecialMonster.isSelectedCardASpecialMonsterOnChangePositionMode(monsterCard)) {
+            SpecialMonster.specialMonsterController(monsterCard, EffectPlace.CHANGEPOSITION, this);
         }
         monsterCard.changePosition();
         this.changeCardPosition = true;
@@ -324,7 +325,7 @@ public class Game {
         playerCard.setWasAttackedInThisTurn(true);
         MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnDefenseMode(opponentCard)) {
-            SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY,this);
+            SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
             return 0;
         }
         if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
@@ -403,7 +404,7 @@ public class Game {
     }
 
     public boolean canActivateSpell() {
-        SpecialMonster.specialMonsterController(selectedCard,EffectPlace.SPELLACTIVE,this);
+        SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SPELLACTIVE, this);
 //        if(canActiveASpellOrTrapInOtherTurn()){
 //            gameController.activeSpellAndTrapInOtherTurn();
 //        }
@@ -417,10 +418,11 @@ public class Game {
         // seda zadan method spell
     }
 
-    public void activeSelectedTrapOrSpell(){
+    public void activeSelectedTrapOrSpell() {
 
     }
-    private boolean canActiveASpellOrTrapInOtherTurn(){
+
+    private boolean canActiveASpellOrTrapInOtherTurn() {
 
     }
 
