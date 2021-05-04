@@ -190,6 +190,9 @@ public class Game {
         // new -haji
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         this.addedCardInDrawPhase = gameBoard.getDeckField().getCard();
+//        if(canActiveASpellOrTrapInOtherTurn()){
+//            gameController.activeSpellAndTrapInOtherTurn();
+//        }
     }
 
     public void standbyPhase() {
@@ -234,6 +237,7 @@ public class Game {
     }
 
     public void summonMonster() {
+
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         CommandKnight.isCommandKnightOnFieldWithSummonMode(selectedCard);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnSummonMode(selectedCard)) {
@@ -242,6 +246,9 @@ public class Game {
         ((MonsterCard) this.selectedCard).summon();
         gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
         this.selectedCard = null;
+//        if(canActiveASpellOrTrapInOtherTurn()){
+//            gameController.activeSpellAndTrapInOtherTurn();
+//        }
     }
 
     public void tributeSummon(ArrayList<Integer> cardsToTribute) {
@@ -252,6 +259,9 @@ public class Game {
         }
         monsterField.addMonsterToField((MonsterCard) selectedCard);
         selectedCard = null;
+//        if(canActiveASpellOrTrapInOtherTurn()){
+//            gameController.activeSpellAndTrapInOtherTurn();
+//        }
     }
 
     public void setMonster() {
@@ -294,16 +304,20 @@ public class Game {
     }
 
     public void flipSummon() {
+
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
         playerCard.setPosition(PositionMonsters.ATTACK);
         this.selectedCard = playerCard;
+//        if(canActiveASpellOrTrapInOtherTurn()){
+//            gameController.activeSpellAndTrapInOtherTurn();
+//        }
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
-        if(canActiveASpellOrTrapInOtherTurn()){
-            gameController.activeSpellAndTrapInOtherTurn();
-        }
+//        if(canActiveASpellOrTrapInOtherTurn()){
+//            gameController.activeSpellAndTrapInOtherTurn();
+//        }
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
@@ -390,6 +404,9 @@ public class Game {
 
     public boolean canActivateSpell() {
         SpecialMonster.specialMonsterController(selectedCard,EffectPlace.SPELLACTIVE,this);
+//        if(canActiveASpellOrTrapInOtherTurn()){
+//            gameController.activeSpellAndTrapInOtherTurn();
+//        }
         /*
         statements
          */

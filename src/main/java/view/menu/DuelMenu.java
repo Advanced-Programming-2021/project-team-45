@@ -425,20 +425,21 @@ public class DuelMenu extends Menu {
         }
     }
 
-    public void activeSpellOrTrapInOtherPlayerTurn() {
-        System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn().getUsername() + "’s turn");
-        showGameBoard();
-        System.out.println("do you want to activate your trap and spell?");
-        int answer = gameController.activeSpellOrTrapInOtherPlayerTurnErrorHandler();
-        if (answer == 1) {
-            System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn() + "’s turn");
-            showGameBoard();
-        } else if (answer == 2) {
-            System.out.println("it’s not your turn to play this kind of moves");
-        } else if (answer == 3) {
-            System.out.println("spell/trap activated");
-        }
-    }
+//    public void activeSpellOrTrapInOtherPlayerTurn() {
+//        System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn().getUsername() + "’s turn");
+//        showGameBoard();
+//        System.out.println("do you want to activate your trap and spell?");
+//
+//        int answer = gameController.activeSpellOrTrapInOtherPlayerTurnErrorHandler();
+//        if (answer == 1) {
+//            System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn() + "’s turn");
+//            showGameBoard();
+//        } else if (answer == 2) {
+//            System.out.println("it’s not your turn to play this kind of moves");
+//        } else if (answer == 3) {
+//            System.out.println("spell/trap activated");
+//        }
+//    }
 
 
 
