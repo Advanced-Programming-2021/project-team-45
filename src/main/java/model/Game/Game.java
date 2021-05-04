@@ -225,9 +225,9 @@ public class Game {
     // SUMMON CARD METHODS:
 
     public boolean canSummonThisMonster() {
-        boolean notNormalSummon = (selectedCard.getCardName().equals("Crab Turtle") ||
-                selectedCard.getCardName().equals("Skull Guardian")
-                || selectedCard.getCardName().equals("Gate Guardian"));
+        MonsterCard monster = (MonsterCard) selectedCard;
+        boolean notNormalSummon = (monster.getSpecial() == SpecialMonsterEnum.CRAB_TURTLE) ||
+                (monster.getSpecial() == SpecialMonsterEnum.SKULL_GUARDIAN);
 
         if (notNormalSummon) {
             return false;
