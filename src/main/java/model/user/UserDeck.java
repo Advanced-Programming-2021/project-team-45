@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class UserDeck {
+
     private final ArrayList<Deck> userDecks;
     private Deck activeDeck;
 
@@ -14,16 +15,12 @@ public class UserDeck {
         this.userDecks = new ArrayList<>();
     }
 
-    public ArrayList getUserDecks() {
-        return userDecks;
-    }
-
     public Deck getActiveDeck() {
         return activeDeck;
     }
 
     public boolean doesDeckExist(String deckName) {
-        return this.getDeckByName(deckName) != null;
+        return getDeckByName(deckName) != null;
     }
 
     public boolean doesExistActiveDeck() {
@@ -46,13 +43,13 @@ public class UserDeck {
                 toDelete.add(deck);
         }
         Deck toDeleteDeck = toDelete.get(0);
-        if ((toDeleteDeck.getMainDeckCards()).size() != 0) {
-            for (Card card : toDeleteDeck.getMainDeckCards()) {
+        if ((toDeleteDeck.getMainDeck()).size() != 0) {
+            for (Card card : toDeleteDeck.getMainDeck()) {
                 (user.getCardInventory()).addCardToCardInventory(card);
             }
         }
-        if ((toDeleteDeck.getSideDeckCards()).size() != 0) {
-            for (Card card : toDeleteDeck.getSideDeckCards()) {
+        if ((toDeleteDeck.getSideDeck()).size() != 0) {
+            for (Card card : toDeleteDeck.getSideDeck()) {
                 (user.getCardInventory()).addCardToCardInventory(card);
             }
         }
@@ -60,33 +57,30 @@ public class UserDeck {
     }
 
     public void activateDeck(String deckName) {
-       // ArrayList<Deck> activeDeck = new ArrayList<>();   //Hossein : ghazie in chie? cherra ye array list gozashtid
+        // ArrayList<Deck> activeDeck = new ArrayList<>();   //Hossein : ghazie in chie? cherra ye array list gozashtid
         for (Deck deck : this.userDecks) {
             if ((deck.getName()).equals(deckName)) {
                 this.activeDeck = deck;
-       //         activeDeck.add(deck);
+                //         activeDeck.add(deck);
             }
         }
-       // (this.userDecks).remove(activeDeck.get(0));
+        // (this.userDecks).remove(activeDeck.get(0));
     }
 
-    private Deck getDeckByName(String deckName) {
-        ArrayList<Deck> selections = new ArrayList<>();
-        for (Deck deck : this.userDecks) {
-            if ((deck.getName()).equals(deckName))
-                selections.add(deck);
+    public Deck getDeckByName(String deckName) {
+        for (Deck deck : userDecks) {
+            if (deck.getName().equals(deckName)) return deck;
         }
-        if (selections.size() == 0) return null;
-        else return selections.get(0);
+        return null;
     }
 
     public boolean isDeckFull(String deckName, boolean isSideDeck) {
         Deck deck = this.getDeckByName(deckName);
         if (isSideDeck) {
-            int size = (deck.getSideDeckCards()).size();
+            int size = (deck.getSideDeck()).size();
             return size > 15;
         } else {
-            int size = (deck.getMainDeckCards()).size();
+            int size = (deck.getMainDeck()).size();
             return size > 60;
         }
     }

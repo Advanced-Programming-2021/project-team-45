@@ -22,6 +22,6 @@ public class DeckField {
     }
 
     public int getDeckSize(){
-        return (this.deck).getMainDeckCards().size();
+        return (this.deck).getMainDeck().size();
     }
 }
