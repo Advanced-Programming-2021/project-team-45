@@ -14,10 +14,10 @@ public class MainMenuController extends Controller {
         if (!User.doesUsernameExist(opponentUsername)) {
             return 1;
 
-        } else if (!user.getUserDeck().doesExistActiveDeck()) {
+        } else if (!user.getUserDeck().doesActiveDeckExist()) {
             return 2;
 
-        } else if (!opponent.getUserDeck().doesExistActiveDeck()) {
+        } else if (!opponent.getUserDeck().doesActiveDeckExist()) {
             return 3;
 
         } else if (!user.getUserDeck().isActiveDeckValid()) {
