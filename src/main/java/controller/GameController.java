@@ -32,7 +32,7 @@ public class GameController extends Controller {
 
 
     private void createNewGame() {
-        this.game = new Game(player, opponentPlayer, rounds);
+        this.game = new Game(player, opponentPlayer, rounds,this);
         this.gameErrorHandler = new GameErrorHandler(game);
     }
 
@@ -362,6 +362,7 @@ public class GameController extends Controller {
         String answer = Menu.inputString();
 
         if (answer.equals("yes") || answer.equals("YES") || answer.equals("Yes")) {
+            getGame().changeTurnForSpecials();
             return getNextCommandForActiveSpellOrTrap();
         } else {
             getGame().changeTurnForSpecials();
@@ -384,7 +385,6 @@ public class GameController extends Controller {
                 } else return 2;
             } else return 2;
         } else return 2;
-        
     }
 
     private boolean selectCardSpecial(Matcher matcher) {

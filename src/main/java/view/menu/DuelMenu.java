@@ -435,7 +435,6 @@ public class DuelMenu extends Menu {
             showGameBoard();
         } else if (answer == 2) {
             System.out.println("it’s not your turn to play this kind of moves");
-            gameController.getGame().changeTurnForSpecials();
         } else if (answer == 3) {
             System.out.println("spell/trap activated");
         }

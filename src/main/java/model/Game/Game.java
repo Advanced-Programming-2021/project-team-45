@@ -1,5 +1,6 @@
 package model.Game;
 
+import controller.GameController;
 import model.card.*;
 import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
 import model.card.SpecialMonsters.AmazingAbility.Scanner;
@@ -28,12 +29,14 @@ public class Game {
     private int numberOfSummonsInThisTurn;
     private int numberOfSetsInThisTurn;
     private Card lastOpponentMonsterCard;
+    private GameController gameController;
 
 
-    public Game(User player, User opponent, int round) {
+    public Game(User player, User opponent, int round,GameController gameController) {
         this.player = player;
         this.opponent = opponent;
         this.totalRounds = round;
+        this.gameController=gameController;
         this.playerGameBoard = new GameBoard(player, this);
         this.opponentGameBoard = new GameBoard(opponent, this);
     }
@@ -298,6 +301,9 @@ public class Game {
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
+        if(canActiveASpellOrTrapInOtherTurn()){
+            gameController.activeSpellAndTrapInOtherTurn();
+        }
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
@@ -395,6 +401,9 @@ public class Game {
     }
 
     public void activeSelectedTrapOrSpell(){
+
+    }
+    private boolean canActiveASpellOrTrapInOtherTurn(){
 
     }
 
