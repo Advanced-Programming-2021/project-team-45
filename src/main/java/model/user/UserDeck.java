@@ -23,37 +23,21 @@ public class UserDeck {
         return getDeckByName(deckName) != null;
     }
 
-    public boolean doesExistActiveDeck() {
-        return this.activeDeck != null;
+    public boolean doesActiveDeckExist() {
+        return activeDeck != null;
     }
 
     public boolean isActiveDeckValid() {
-        return this.activeDeck.isDeckValid();
+        return activeDeck.isDeckValid();
     }
 
     public void createDeck(String deckName, User user) {
         Deck deck = new Deck(deckName, user);
-        (this.userDecks).add(deck);
+        userDecks.add(deck);
     }
 
-    public void deleteDeckFromUserDecks(String deckName, User user) {
-        ArrayList<Deck> toDelete = new ArrayList<>();
-        for (Deck deck : this.userDecks) {
-            if ((deck.getName()).equals(deckName))
-                toDelete.add(deck);
-        }
-        Deck toDeleteDeck = toDelete.get(0);
-        if ((toDeleteDeck.getMainDeck()).size() != 0) {
-            for (Card card : toDeleteDeck.getMainDeck()) {
-                (user.getCardInventory()).addCardToCardInventory(card);
-            }
-        }
-        if ((toDeleteDeck.getSideDeck()).size() != 0) {
-            for (Card card : toDeleteDeck.getSideDeck()) {
-                (user.getCardInventory()).addCardToCardInventory(card);
-            }
-        }
-        (this.userDecks).remove(toDeleteDeck);
+    public void deleteDeckFromUserDecks(String deckName) {
+        userDecks.removeIf(deck -> (deck.getName()).equals(deckName));
     }
 
     public void activateDeck(String deckName) {

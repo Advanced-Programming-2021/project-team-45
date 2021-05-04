@@ -13,28 +13,31 @@ public class DeckController extends Controller {
     }
 
     public int createDeckErrorHandler(String deckName) {
-        UserDeck userDeck = (super.user).getUserDeck();
-        if (userDeck.doesDeckExist(deckName)) return 1;
-        else {
-            (userDeck).createDeck(deckName, super.user);
+        UserDeck userDeck = user.getUserDeck();
+        if (userDeck.doesDeckExist(deckName)) {
+            return 1;
+        } else {
+            userDeck.createDeck(deckName, user);
             return 0;
         }
     }
 
     public int deleteDeckErrorHandler(String deckName) {
-        UserDeck userDeck = (super.user).getUserDeck();
-        if (!(userDeck.doesDeckExist(deckName))) return 1;
-        else {
-            userDeck.deleteDeckFromUserDecks(deckName, super.user);
+        UserDeck userDeck = user.getUserDeck();
+        if (!(userDeck.doesDeckExist(deckName))) {
+            return 1;
+        } else {
+            userDeck.deleteDeckFromUserDecks(deckName);
             return 0;
         }
     }
 
     public int activateDeckErrorHandler(String deckName) {
-        UserDeck userDeck = (super.user).getUserDeck();
-        if (!(userDeck.doesDeckExist(deckName))) return 1;
-        else {
-            (user.getUserDeck()).activateDeck(deckName);
+        UserDeck userDeck = user.getUserDeck();
+        if (!(userDeck.doesDeckExist(deckName))) {
+            return 1;
+        } else {
+            user.getUserDeck().activateDeck(deckName);
             return 0;
         }
     }
@@ -53,7 +56,7 @@ public class DeckController extends Controller {
         } else if (userDeck.isDeckFullFromCard(deckName, cardName)) {
             return 4;
         }
-        userDeck.addCardToDeck(deckName, cardName, isSideDeck, super.user);
+        userDeck.addCardToDeck(deckName, cardName, isSideDeck, user);
         return 0;
     }
 
@@ -64,7 +67,7 @@ public class DeckController extends Controller {
         } else if (!(userDeck.doesCardExistInDeck(deckName, cardName, isSideDeck))) {
             return 2;
         }
-        (user.getUserDeck()).deleteCardFromDeck(deckName, cardName, isSideDeck);
+        user.getUserDeck().deleteCardFromDeck(deckName, cardName, isSideDeck);
         return 0;
     }
 
