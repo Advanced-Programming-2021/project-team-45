@@ -33,6 +33,15 @@ public class SpellTrapField {
         }
     }
 
+    public void deleteAndDestroySpellTrap(SpellTrapCard spellTrapCard){
+        for(int i = 0; i < 5; i++){
+            if(this.spellTrapCardsOnField[i].equals(spellTrapCard)) {
+                this.graveyard.addCardToGraveyard(spellTrapCard);
+                this.spellTrapCardsOnField[i] = null;
+            }
+        }
+    }
+
     public void deleteAndDestroyAllSpellTrapCards(){
         for(int i = 0; i < 5; i++){
             if(this.spellTrapCardsOnField[i] != null){
@@ -70,6 +79,16 @@ public class SpellTrapField {
         return this.spellTrapCardsOnField[index] != null;
     }
 
+    public boolean doesSpellTrapCardExistInField(SpellTrapCard spellTrapCard) {
+        boolean result = false;
+        for(int i = 0; i < 5; i++) {
+            if(this.spellTrapCardsOnField[i].equals(spellTrapCard)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
     public SpellTrapCard getSpellTrapCardInPlayerMode(int cardPosition) {
         return this.spellTrapCardsOnField[cardPosition - 1];
     }
