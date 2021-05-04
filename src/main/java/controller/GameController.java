@@ -384,6 +384,7 @@ public class GameController extends Controller {
                 } else return 2;
             } else return 2;
         } else return 2;
+        
     }
 
     private boolean selectCardSpecial(Matcher matcher) {
