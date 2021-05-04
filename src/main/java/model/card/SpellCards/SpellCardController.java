@@ -31,7 +31,7 @@ public class SpellCardController {
         }else if(selectedCard.getCardName().equals("Twin Twisters")){
             TwinTwisters.ability();
         }else if(selectedCard.getCardName().equals("Mystical space typhoon")){
-            MysticalSpaceTyphon.ability();
+            MysticalSpaceTyphon.ability(game);
         }else if(selectedCard.getCardName().equals("Ring of Defense")){
             RingOfDefense.ability();
         }else if(selectedCard.getCardName().equals("Yami")){
