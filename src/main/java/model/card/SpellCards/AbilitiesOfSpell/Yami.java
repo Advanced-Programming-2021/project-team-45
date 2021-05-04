@@ -9,14 +9,15 @@ public class Yami {
         GameBoard playerGameBoard = game.getGameBoardOfPlayerOfThisTurn();
         GameBoard opponentGameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
         for(MonsterCard monsterCard : playerGameBoard.getMonsterField().getMonstersOnField()) {
-            if(monsterCard.getType().equals("Fairy")) {
-                monsterCard.decreaseAttack(200);
-                monsterCard.decreaseDefense(200);
-            } else if(monsterCard.getType().equals("Fiend") || monsterCard.equals("Spellcaster")) {
-                monsterCard.increaseAttack(200);
-                monsterCard.increaseDefense(200);
+            if (monsterCard != null) {
+                if (monsterCard.getType().equals("Fairy")) {
+                    monsterCard.decreaseAttack(200);
+                    monsterCard.decreaseDefense(200);
+                } else if (monsterCard.getType().equals("Fiend") || monsterCard.equals("Spellcaster")) {
+                    monsterCard.increaseAttack(200);
+                    monsterCard.increaseDefense(200);
+                }
             }
-
         }
     }
 }

@@ -37,9 +37,9 @@ public class SpellCardController {
         }else if(selectedCard.getCardName().equals("Yami")){
             Yami.ability(game);
         }else if(selectedCard.getCardName().equals("Forest")){
-            Forest.ability();
+            Forest.ability(game);
         }else if(selectedCard.getCardName().equals("Closed Forest")){
-            ClosedForest.ability();
+            ClosedForest.ability(game);
         }else if(selectedCard.getCardName().equals("UMIIRUKA")){
             Umiiruka.ability();
         }else if(selectedCard.getCardName().equals("Sword of Dark Destruction")){
