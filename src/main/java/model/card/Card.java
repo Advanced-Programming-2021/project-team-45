@@ -37,8 +37,8 @@ public class Card {
     public static Card getCardByName(String cardName) {
         ArrayList<Card> allCards = null;
         allCards = getAllCards();
-        for (Card allCard : allCards) {
-            if (allCard.cardName.equals(cardName)) return allCard;
+        for (Card card : allCards) {
+            if (card.cardName.equals(cardName)) return card;
         }
         return null;
     }

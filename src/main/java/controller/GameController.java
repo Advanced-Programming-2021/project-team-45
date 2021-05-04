@@ -202,6 +202,7 @@ public class GameController extends Controller {
                 }
             }
         }
+        return 8;
     }
 
     public int setCardErrorHandler() {
