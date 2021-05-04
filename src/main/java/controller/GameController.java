@@ -57,12 +57,6 @@ public class GameController extends Controller {
     }
 
 
-
-
-
-
-
-
     ///////////////////////////////////////////// ERROR HANDLING:
 
     public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
@@ -358,6 +352,28 @@ public class GameController extends Controller {
             return 2;
         }
         return 1;
+    }
+
+    public void activeSpellAndTrapInOtherTurn(){
+        playerDuelMenu.activeSpellOrTrapInOtherPlayerTurn();
+    }
+    public int activeSpellOrTrapInOtherPlayerTurnErrorHandler() {
+        getGame().changeTurnForSpecials();
+        String answer = Menu.inputString();
+
+        if (answer.equals("yes") || answer.equals("YES") || answer.equals("Yes")) {
+            return playerDuelMenu.getNextCommandForActiveSpellOrTrap();
+        } else if (answer.equals("no") || answer.equals("NO") || answer.equals("No")) {
+            getGame().changeTurnForSpecials();
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
+    public void activateEffectOfTrapAndSpell(){
+        game.activeSelectedTrapOrSpell();
+        game.deselectCard();
     }
 
     public String controlGraveyard() {
