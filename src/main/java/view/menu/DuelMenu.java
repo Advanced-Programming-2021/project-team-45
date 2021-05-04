@@ -3,6 +3,7 @@ package view.menu;
 import controller.GameController;
 import controller.Regex;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -420,6 +421,59 @@ public class DuelMenu extends Menu {
 
         }
     }
+
+    public void activeSpellOrTrapInOtherPlayerTurn() {
+        System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn().getUsername() + "’s turn");
+        int answer = gameController.activeSpellOrTrapInOtherPlayerTurnErrorHandler();
+        showGameBoard();
+
+        System.out.println("do you want to activate your trap and spell?");
+
+        if (answer == 1||answer==0) {
+            System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn() + "’s turn");
+            showGameBoard();
+        } else if (answer == 2) {
+            System.out.println("it’s not your turn to play this kind of moves");
+            gameController.getGame().changeTurnForSpecials();
+        } else if (answer == 3) {
+            System.out.println("spell/trap activated");
+        }
+    }
+
+    public int getNextCommandForActiveSpellOrTrap() {
+        String input = scanner.nextLine();
+        Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+        if (matcher.find()) {
+            if (matcher.group(3) != null) {
+                if (selectCardSpecial(matcher)) {
+                    String newInput = scanner.nextLine();
+                    Matcher newMatcher = Regex.getMatcher(newInput, DUEL_MENU_REGEX[0]);
+                    if (newMatcher.find() && newMatcher.group(12) != null) {
+                        gameController.activateEffectOfTrapAndSpell();
+                        return 3;
+                    } else return 2;
+                } else return 2;
+            } else return 2;
+        } else return 2;
+    }
+
+    private boolean selectCardSpecial(Matcher matcher) {
+        if (matcher.find()) {
+            String cardType = matcher.group(1);
+            boolean isOpponentCard = matcher.group(2).matches("--opponent|-O");
+            int cardPosition = Integer.parseInt(matcher.group(3));
+            int error = gameController.selectCardErrorHandler(cardType, cardPosition, isOpponentCard);
+            if (error == 0) {
+                return true;
+            } else if (error == 1) {
+                return false;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
 
     private void showGraveyard() {
         String answer = gameController.controlGraveyard();

@@ -49,6 +49,11 @@ public class Game {
 
 
     }
+    public void changeTurnForSpecials(){
+        if ((this.playerOfThisTurn).equals(this.player))
+            this.playerOfThisTurn = opponent;
+        else this.playerOfThisTurn = player;
+    }
 
     public User getPlayer() {
         return player;
@@ -387,6 +392,10 @@ public class Game {
 
     public void activateSpell() {
         // seda zadan method spell
+    }
+
+    public void activeSelectedTrapOrSpell(){
+
     }
 
     public String showGraveyard() {
