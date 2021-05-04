@@ -13,7 +13,7 @@ public class SpellCardController {
         }else if(selectedCard.getCardName().equals("Pot of Greed")){
             PotOfGreed.ability(game);
         }else if(selectedCard.getCardName().equals("Raigeki")){
-            Raigeki.ability();
+            Raigeki.ability(game);
         }else if(selectedCard.getCardName().equals("Change of Heart")){
             ChangeOfHeart.ability();
         }else if(selectedCard.getCardName().equals("Harpie’s Feather Duster")){
