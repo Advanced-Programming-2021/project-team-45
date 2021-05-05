@@ -2,6 +2,7 @@ package model.card.SpellTrapCards;
 
 import model.Game.Game;
 import model.card.Card;
+import model.card.SpellTrapCard;
 import model.card.SpellTrapCards.AbilitiesOfSpell.*;
 import model.card.SpellTrapCards.AbilitiesOfTraps.CallOfTheHaunted;
 import model.card.SpellTrapCards.AbilitiesOfTraps.MindCrush;
@@ -62,5 +63,10 @@ public class SpellTrapCardController {
         }else if(selectedCard.getCardName().equals("Call of the Haunted")){
             CallOfTheHaunted.ability();
         }
+    }
+
+    public void deleteSpellTrapCard(Card selectedCard, Game game) {
+        SpellTrapCard spellTrapCard = (SpellTrapCard) selectedCard;
+        game.getGameBoardOfPlayerOfThisTurn().getSpellTrapField().deleteAndDestroySpellTrap(spellTrapCard);
     }
 }
