@@ -100,6 +100,14 @@ public class Deck {
         return false;
     }
 
+    public boolean isDeckFull(boolean isSideDeck) {
+        if (isSideDeck) {
+            return sideDeck.size() >= 15;
+        } else {
+            return mainDeck.size() >= 60;
+        }
+    }
+
     public int getCardCountInDeck(String cardName) {
         int count = 0;
         for (Card card : sideDeck) {
@@ -136,22 +144,22 @@ public class Deck {
     @Override
     public String toString() {
         String validity;
-        if ((this.mainDeck).size() < 60 && (this.sideDeck).size() < 15) validity = "valid";
+        if (mainDeck.size() <= 60 && sideDeck.size() <= 15) validity = "valid";
         else validity = "invalid";
 
-        return this.name + ": main deck " + (this.mainDeck).size() +
-                ", side deck " + (this.sideDeck).size() + ", " + validity;
+        return this.name + ": main deck " + mainDeck.size() +
+                ", side deck " + sideDeck.size() + ", " + validity;
     }
 
     public ArrayList<String> getMonstersStr(boolean isSideDeck) {
         ArrayList<String> monstersStr = new ArrayList<>();
         if (isSideDeck) {
-            for (Card card : this.sideDeck) {
+            for (Card card : sideDeck) {
                 if (card instanceof MonsterCard)
                     monstersStr.add(card.getCardName() + ": " + card.getCardDescription());
             }
         } else {
-            for (Card card : this.mainDeck) {
+            for (Card card : mainDeck) {
                 if (card instanceof MonsterCard)
                     monstersStr.add(card.getCardName() + ": " + card.getCardDescription());
             }
