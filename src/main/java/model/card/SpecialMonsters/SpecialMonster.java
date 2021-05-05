@@ -57,20 +57,33 @@ public class SpecialMonster {
         }
     }
 
-    public static boolean isSelectedCardASpecialMonsterOnSummonMode(Card selectedCard) {
 
+    public static boolean isSelectedCardASpecialMonsterOnDestroyMode(Card selectedCard) {
+        if(selectedCard instanceof MonsterCard){
+            SpecialMonsterEnum test=((MonsterCard) selectedCard).getSpecialMonsterEnum();
+            boolean bol=test.equals(SpecialMonsterEnum.COMMAND_KNIGHT)||test.equals(SpecialMonsterEnum.YOMI_SHIP)||
+                    test.equals(SpecialMonsterEnum.SUIJIN)||test.equals(SpecialMonsterEnum.MARSHMALLON)||
+                    test.equals(SpecialMonsterEnum.TEXCHANGER);
+            if(bol){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
     }
 
-    public static boolean isSelectedCardASpecialMonsterOnDefenseMode(Card selectedCard) {
-
-    }
-
-    public static boolean isSelectedCardASpecialMonsterOnSelectMode(Card selectedCard) {
-
-    }
-
-    public static boolean isSelectedCardASpecialMonsterOnChangePositionMode(Card selectedCard) {
-
+    public static boolean isSelectedCardASpecialMonster(Card selectedCard) {
+        if(selectedCard instanceof MonsterCard){
+            if(((MonsterCard) selectedCard).getSpecialMonsterEnum()!=null){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
     }
 
 

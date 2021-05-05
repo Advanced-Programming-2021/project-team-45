@@ -7,9 +7,6 @@ import model.card.SpecialMonsters.AmazingAbility.Scanner;
 import model.card.SpecialMonsters.AmazingAbility.Texchanger;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
-import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
-import model.card.SpecialMonsters.EffectPlace;
-import model.card.SpecialMonsters.SpecialMonster;
 import model.user.User;
 
 import java.util.ArrayList;
@@ -164,7 +161,7 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         }
-        if (SpecialMonster.isSelectedCardASpecialMonsterOnSelectMode(selectedCard)) {
+        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
         }
     }
@@ -241,7 +238,7 @@ public class Game {
 
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         CommandKnight.isCommandKnightOnFieldWithSummonMode(selectedCard);
-        if (SpecialMonster.isSelectedCardASpecialMonsterOnSummonMode(selectedCard)) {
+        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
         }
         ((MonsterCard) this.selectedCard).summon();
@@ -281,11 +278,11 @@ public class Game {
 
     public void changePosition() {
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
-        if (SpecialMonster.isSelectedCardASpecialMonsterOnChangePositionMode(monsterCard)) {
-            SpecialMonster.specialMonsterController(monsterCard, EffectPlace.CHANGEPOSITION, this);
-        }
         monsterCard.changePosition();
         this.changeCardPosition = true;
+        if (SpecialMonster.isSelectedCardASpecialMonster(monsterCard)) {
+            SpecialMonster.specialMonsterController(monsterCard, EffectPlace.CHANGEPOSITION, this);
+        }
     }
 
     private boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone) {
@@ -324,7 +321,7 @@ public class Game {
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
         playerCard.setWasAttackedInThisTurn(true);
         MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone);
-        if (SpecialMonster.isSelectedCardASpecialMonsterOnDefenseMode(opponentCard)) {
+        if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
             SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
             return 0;
         }

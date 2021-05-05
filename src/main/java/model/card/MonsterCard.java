@@ -251,6 +251,8 @@ public class MonsterCard extends Card {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.TERRATIGER);
         }else if(card.getCardName().equals("The Tricky")){
             card.setSpecialMonsterEnum(SpecialMonsterEnum.THE_TRICKY);
+        }else {
+            card.setSpecialMonsterEnum(null);
         }
     }
 }
