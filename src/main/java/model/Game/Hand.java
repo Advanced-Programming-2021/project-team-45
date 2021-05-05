@@ -41,4 +41,8 @@ public class Hand {
         }
         this.cardsInHand.remove(targetCard.get(0));
     }
+
+    public void deleteCardWithNumberOfIt(int num){
+        this.cardsInHand.remove(num);
+    }
 }
