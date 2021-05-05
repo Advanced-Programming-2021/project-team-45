@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class SpellTrapCard extends Card{
-    protected String icon;
+    protected SpellAndTrapIcon icon;
     protected boolean activated;
     protected String type;
     protected boolean isSpell;
@@ -23,9 +23,8 @@ public class SpellTrapCard extends Card{
     public SpellTrapCard(String cardName)  {
         super(cardName);
         String[] data=dataAboutASpellOrTrap(cardName);
-      //  this.cardType=
-        this.icon=data[1];
-        this.type=data[2];
+        this.type=data[1];
+        setSpellAndTrapIcon(data[2]);
         this.cardDescription=data[3];
         this.status=data[4];
         this.price=(int)Double.parseDouble(data[5]);
@@ -109,5 +108,22 @@ public class SpellTrapCard extends Card{
 
     public void setPosition(SpellsAndTrapPosition position) {
         this.position = position;
+    }
+    private void setSpellAndTrapIcon(String icon){
+        if(icon.equals("Normal")){
+            this.icon=SpellAndTrapIcon.NORMAL;
+        }else if(icon.equals("Continuous")){
+            this.icon=SpellAndTrapIcon.CONTINUOUS;
+        }else if(icon.equals("Quick-play")){
+            this.icon=SpellAndTrapIcon.QUICK_PLAY;
+        }else if(icon.equals("Field")){
+            this.icon=SpellAndTrapIcon.FIELD;
+        }else if(icon.equals("Equip")){
+            this.icon=SpellAndTrapIcon.EQUIP;
+        }else if(icon.equals("Counter")){
+            this.icon=SpellAndTrapIcon.COUNTER;
+        }else if(icon.equals("Ritual")){
+            this.icon=SpellAndTrapIcon.RITUAL;
+        }
     }
 }

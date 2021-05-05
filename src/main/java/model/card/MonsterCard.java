@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MonsterCard extends Card {
     protected int level;
-    protected String attribute;
+    protected MonsterAttribute attribute;
     protected String type;
     protected int attack;
     protected int defense;
@@ -34,7 +34,7 @@ public class MonsterCard extends Card {
         super(cardName);
         String[] data = dataAboutAMonster(cardName);
         this.level = (int) Double.parseDouble(data[1]);
-        this.attribute = data[2];
+        setAttribute(data[2]);
         this.type = data[3];
         this.cardType = data[4];
         this.attack = (int) Double.parseDouble(data[5]);
@@ -253,6 +253,21 @@ public class MonsterCard extends Card {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.THE_TRICKY);
         }else {
             card.setSpecialMonsterEnum(null);
+        }
+    }
+    private void setAttribute(String attribute){
+        if(attribute.equals("EARTH")){
+            this.attribute=MonsterAttribute.EARTH;
+        }else if(attribute.equals("WIND")){
+            this.attribute=MonsterAttribute.WIND;
+        }else if(attribute.equals("WATER")){
+            this.attribute=MonsterAttribute.WATER;
+        }else if(attribute.equals("DARK")){
+            this.attribute=MonsterAttribute.DARK;
+        }else if(attribute.equals("FIRE")){
+            this.attribute=MonsterAttribute.FIRE;
+        }else if(attribute.equals("LIGHT")){
+            this.attribute=MonsterAttribute.LIGHT;
         }
     }
 }
