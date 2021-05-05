@@ -28,6 +28,7 @@ public class MonsterCard extends Card {
     //////////////////////// set enum in constructor
 
     private final SpecialMonsterEnum special = null;
+
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
         String[] data = dataAboutAMonster(cardName);
@@ -196,7 +197,7 @@ public class MonsterCard extends Card {
         return defenceMode;
     }
 
-    public String getAttribute() {
+    public MonsterAttribute getAttribute() {
         return attribute;
     }
 
@@ -216,56 +217,67 @@ public class MonsterCard extends Card {
         return specialMonsterEnum;
     }
 
-    private void checkSpecialMonster(MonsterCard card){
-        if(card.getCardName().equals("Beast King Barbaros")){
+    private void checkSpecialMonster(MonsterCard card) {
+        if (card.getCardName().equals("Beast King Barbaros")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.BEAST_KING_BARBAROS);
-        }else if(card.getCardName().equals("Command knight")){
+        } else if (card.getCardName().equals("Command knight")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.COMMAND_KNIGHT);
-        }else if(card.getCardName().equals("Yomi Ship")){
+        } else if (card.getCardName().equals("Yomi Ship")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.YOMI_SHIP);
-        }else if(card.getCardName().equals("Suijin")){
+        } else if (card.getCardName().equals("Suijin")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.SUIJIN);
-        }else if(card.getCardName().equals("Crab Turtle")){
+        } else if (card.getCardName().equals("Crab Turtle")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.CRAB_TURTLE);
-        }else if(card.getCardName().equals("Skull Guardian")){
+        } else if (card.getCardName().equals("Skull Guardian")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.SKULL_GUARDIAN);
-        }else if(card.getCardName().equals("Man-Eater Bug")){
+        } else if (card.getCardName().equals("Man-Eater Bug")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.MAN_EATER_BUG);
-        }else if(card.getCardName().equals("Scanner")){
+        } else if (card.getCardName().equals("Scanner")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.SCANNER);
-        }else if(card.getCardName().equals("Marshmallon")){
+        } else if (card.getCardName().equals("Marshmallon")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.MARSHMALLON);
-        }else if(card.getCardName().equals("Texchanger")){
+        } else if (card.getCardName().equals("Texchanger")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.TEXCHANGER);
-        }else if(card.getCardName().equals("The Calculator")){
+        } else if (card.getCardName().equals("The Calculator")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.THE_CALCULATOR);
-        }else if(card.getCardName().equals("Mirage Dragon")){
+        } else if (card.getCardName().equals("Mirage Dragon")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.MIRAGE_DRAGON);
-        }else if(card.getCardName().equals("Herald of Creation")){
+        } else if (card.getCardName().equals("Herald of Creation")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.HERALD_OF_CREATION);
-        }else if(card.getCardName().equals("Exploder Dragon")){
+        } else if (card.getCardName().equals("Exploder Dragon")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.EXPLODER_DRAGON);
-        }else if(card.getCardName().equals("Terratiger, the Empowered Warrior")){
+        } else if (card.getCardName().equals("Terratiger, the Empowered Warrior")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.TERRATIGER);
-        }else if(card.getCardName().equals("The Tricky")){
+        } else if (card.getCardName().equals("The Tricky")) {
             card.setSpecialMonsterEnum(SpecialMonsterEnum.THE_TRICKY);
-        }else {
+        } else {
             card.setSpecialMonsterEnum(null);
         }
     }
-    private void setAttribute(String attribute){
-        if(attribute.equals("EARTH")){
-            this.attribute=MonsterAttribute.EARTH;
-        }else if(attribute.equals("WIND")){
-            this.attribute=MonsterAttribute.WIND;
-        }else if(attribute.equals("WATER")){
-            this.attribute=MonsterAttribute.WATER;
-        }else if(attribute.equals("DARK")){
-            this.attribute=MonsterAttribute.DARK;
-        }else if(attribute.equals("FIRE")){
-            this.attribute=MonsterAttribute.FIRE;
-        }else if(attribute.equals("LIGHT")){
-            this.attribute=MonsterAttribute.LIGHT;
+
+    private void setAttribute(String attribute) {
+        if (attribute.equals("EARTH")) {
+            this.attribute = MonsterAttribute.EARTH;
+        } else if (attribute.equals("WIND")) {
+            this.attribute = MonsterAttribute.WIND;
+        } else if (attribute.equals("WATER")) {
+            this.attribute = MonsterAttribute.WATER;
+        } else if (attribute.equals("DARK")) {
+            this.attribute = MonsterAttribute.DARK;
+        } else if (attribute.equals("FIRE")) {
+            this.attribute = MonsterAttribute.FIRE;
+        } else if (attribute.equals("LIGHT")) {
+            this.attribute = MonsterAttribute.LIGHT;
         }
+    }
+
+    @Override
+    public MonsterCard clone() {
+        try {
+            return new MonsterCard(this.getCardName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
