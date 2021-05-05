@@ -50,13 +50,13 @@ public class DeckController extends Controller {
         } else if (!(userDeck.doesDeckExist(deckName))) {
             return 2;
 
-        } else if (userDeck.isDeckFull(deckName, isSideDeck)) {
+        } else if (userDeck.getDeckByName(deckName).isDeckFull(isSideDeck)) {
             return 3;
 
-        } else if (userDeck.isDeckFullFromCard(deckName, cardName)) {
+        } else if (userDeck.getDeckByName(deckName).isFullFromCard(cardName)) {
             return 4;
         }
-        userDeck.addCardToDeck(deckName, cardName, isSideDeck, user);
+        userDeck.getDeckByName(deckName).addCard(cardName, isSideDeck, user);
         return 0;
     }
 
@@ -64,40 +64,42 @@ public class DeckController extends Controller {
         UserDeck userDeck = (super.user).getUserDeck();
         if (!(userDeck.doesDeckExist(deckName))) {
             return 1;
-        } else if (!(userDeck.doesCardExistInDeck(deckName, cardName, isSideDeck))) {
+        } else if (!(userDeck.getDeckByName(deckName).doesCardExist(cardName, isSideDeck))) {
             return 2;
         }
-        user.getUserDeck().deleteCardFromDeck(deckName, cardName, isSideDeck);
+        user.getUserDeck().getDeckByName(deckName).deleteCard(cardName, isSideDeck);;
         return 0;
     }
 
     public String getActiveDeckStr() {
-        UserDeck userDeck = (super.user).getUserDeck();
+        UserDeck userDeck = user.getUserDeck();
         return userDeck.getActiveDeckStr();
     }
 
     public ArrayList<String> getOtherDeckStr() {
-        UserDeck userDeck = (super.user).getUserDeck();
-        return userDeck.getSortedOtherDeckStr();
+        return user.getUserDeck().getSortedOtherDeckStr();
     }
 
     public int showDeckErrorHandler(String deckName, boolean isSideDeck) {
-        UserDeck userDeck = (super.user).getUserDeck();
-        if (!(userDeck.doesDeckExist(deckName))) return 1;
-        else return 0;
+        UserDeck userDeck = user.getUserDeck();
+        if (!(userDeck.doesDeckExist(deckName))) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public ArrayList<String> getMonstersStr(String deckName, boolean isSideDeck) {
-        UserDeck userDeck = (super.user).getUserDeck();
-        return userDeck.getMonstersDeckStr(deckName, isSideDeck);
+        UserDeck userDeck = user.getUserDeck();
+        return userDeck.getDeckByName(deckName).getMonstersStr(isSideDeck);
     }
 
     public ArrayList<String> getSpellAndTrapsStr(String deckName, boolean isSideDeck) {
-        UserDeck userDeck = (super.user).getUserDeck();
-        return (user.getUserDeck()).getSpellAndTrapsDeckStr(deckName, isSideDeck);
+        UserDeck userDeck = user.getUserDeck();
+        return userDeck.getDeckByName(deckName).getSpellAndTrapStr(isSideDeck);
     }
 
     public ArrayList<String> getAllCardsStr() {
-        return ((super.user).getCardInventory()).getAllCardsStr();
+        return user.getCardInventory().getAllCardsStr();
     }
 }
