@@ -2,6 +2,7 @@ package model.card;
 
 public enum SpecialMonsterEnum {
     BEAST_KING_BARBAROS,
+
     THE_TRICKY,
     SKULL_GUARDIAN,
     EXPLODER_DRAGON,
