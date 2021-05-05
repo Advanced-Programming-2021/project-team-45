@@ -43,14 +43,12 @@ public class Shop {
 
     public boolean hasEnoughMoney(String cardName) {
         Card card = Card.getCardByName(cardName);
-        assert card != null;
         return user.getMoney() >= card.getPrice();
     }
 
     public void buy(String cardName) {
         Card card = Card.getCardByName(cardName);
         user.getCardInventory().addCardToInventory(card);
-        assert card != null;
         user.decreaseMoney(card.getPrice());
     }
 
