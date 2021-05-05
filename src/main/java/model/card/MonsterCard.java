@@ -25,6 +25,7 @@ public class MonsterCard extends Card {
     protected PositionMonsters position;
     protected DOorDH defenceMode;
     private boolean wasAttackedInThisTurn = false;
+    private SpecialMonsterEnum specialMonsterEnum;
 
     //////////////////////// set enum in constructor
 
@@ -40,6 +41,7 @@ public class MonsterCard extends Card {
         this.defense = (int) Double.parseDouble(data[6]);
         this.cardDescription = data[7];
         this.price = (int) Double.parseDouble(data[8]);
+        checkSpecialMonster(this);
     }
 
     public static String[][] allDataAboutMonster() {
@@ -93,6 +95,9 @@ public class MonsterCard extends Card {
         } else return data[answer];
     }
 
+    public void setSpecialMonsterEnum(SpecialMonsterEnum specialMonsterEnum) {
+        this.specialMonsterEnum = specialMonsterEnum;
+    }
 
     public void increaseAttack(int num) {
         this.attack += num;
@@ -207,5 +212,47 @@ public class MonsterCard extends Card {
 
     public void setWasAttackedInThisTurn(boolean wasAttackedInThisTurn) {
         this.wasAttackedInThisTurn = wasAttackedInThisTurn;
+    }
+
+    public SpecialMonsterEnum getSpecialMonsterEnum() {
+        return specialMonsterEnum;
+    }
+
+    private void checkSpecialMonster(MonsterCard card){
+        if(card.getCardName().equals("Beast King Barbaros")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.BEAST_KING_BARBAROS);
+        }else if(card.getCardName().equals("Command knight")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.COMMAND_KNIGHT);
+        }else if(card.getCardName().equals("Yomi Ship")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.YOMI_SHIP);
+        }else if(card.getCardName().equals("Suijin")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.SUIJIN);
+        }else if(card.getCardName().equals("Crab Turtle")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.CRAB_TURTLE);
+        }else if(card.getCardName().equals("Skull Guardian")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.SKULL_GUARDIAN);
+        }else if(card.getCardName().equals("Man-Eater Bug")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.MAN_EATER_BUG);
+        }else if(card.getCardName().equals("Scanner")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.SCANNER);
+        }else if(card.getCardName().equals("Marshmallon")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.MARSHMALLON);
+        }else if(card.getCardName().equals("Texchanger")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.TEXCHANGER);
+        }else if(card.getCardName().equals("The Calculator")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.THE_CALCULATOR);
+        }else if(card.getCardName().equals("Mirage Dragon")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.MIRAGE_DRAGON);
+        }else if(card.getCardName().equals("Herald of Creation")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.HERALD_OF_CREATION);
+        }else if(card.getCardName().equals("Exploder Dragon")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.EXPLODER_DRAGON);
+        }else if(card.getCardName().equals("Terratiger, the Empowered Warrior")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.TERRATIGER);
+        }else if(card.getCardName().equals("The Tricky")){
+            card.setSpecialMonsterEnum(SpecialMonsterEnum.THE_TRICKY);
+        }else {
+            card.setSpecialMonsterEnum(null);
+        }
     }
 }
