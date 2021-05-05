@@ -401,7 +401,6 @@ public class Game {
     }
 
     public boolean canActivateSpell() {
-        SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SPELLACTIVE, this);
 //        if(canActiveASpellOrTrapInOtherTurn()){
 //            gameController.activeSpellAndTrapInOtherTurn();
 //        }

@@ -476,4 +476,12 @@ public class DuelMenu extends Menu {
     public void execute() {
     }
 
+
+
+
+
+
+    // for special cards
+
+
 }

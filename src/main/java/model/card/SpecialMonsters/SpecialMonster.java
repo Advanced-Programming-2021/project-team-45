@@ -13,15 +13,6 @@ public class SpecialMonster {
     private EffectPlace effectPlace;
     public static boolean suijinActive;
 
-
-    public static ArrayList<MonsterCard> allSpecialMonsterCard = new ArrayList<>();
-
-
-    public void execute() {
-        // all special card
-    }
-
-
     public static void specialMonsterController(Card selectedOrTargetCard, EffectPlace effectPlace, Game game) {
         if (effectPlace.equals(EffectPlace.DESTROY)) {
             if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.COMMAND_KNIGHT)) {
@@ -50,10 +41,6 @@ public class SpecialMonster {
             if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MAN_EATER_BUG)) {
                 ManEatBug.abilityOfmanEatBug(game);
             }
-        }else if(effectPlace.equals(EffectPlace.SPELLACTIVE)){
-            if(MirageDragon.checkField(game.getGameBoardOfOpponentPlayerOfThisTurn())){
-                MirageDragon.abilityOfMirageDragon();
-            }
         }
     }
 
@@ -61,10 +48,10 @@ public class SpecialMonster {
     public static boolean isSelectedCardASpecialMonsterOnDestroyMode(Card selectedCard) {
         if(selectedCard instanceof MonsterCard){
             SpecialMonsterEnum test=((MonsterCard) selectedCard).getSpecialMonsterEnum();
-            boolean bol=test.equals(SpecialMonsterEnum.COMMAND_KNIGHT)||test.equals(SpecialMonsterEnum.YOMI_SHIP)||
+            return test.equals(SpecialMonsterEnum.COMMAND_KNIGHT)||test.equals(SpecialMonsterEnum.YOMI_SHIP)||
                     test.equals(SpecialMonsterEnum.SUIJIN)||test.equals(SpecialMonsterEnum.MARSHMALLON)||
                     test.equals(SpecialMonsterEnum.TEXCHANGER);
-            return bol;
+
         }else {
             return false;
         }
@@ -72,11 +59,7 @@ public class SpecialMonster {
 
     public static boolean isSelectedCardASpecialMonster(Card selectedCard) {
         if(selectedCard instanceof MonsterCard){
-            if(((MonsterCard) selectedCard).getSpecialMonsterEnum()!=null){
-                return true;
-            }else {
-                return false;
-            }
+            return ((MonsterCard) selectedCard).getSpecialMonsterEnum() != null;
         }else {
             return false;
         }
