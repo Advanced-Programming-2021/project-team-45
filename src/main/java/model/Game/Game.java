@@ -28,6 +28,7 @@ public class Game {
     private int numberOfSetsInThisTurn;
     private Card lastOpponentMonsterCard;
     private GameController gameController;
+    private User surrendered;
 
 
     public Game(User player, User opponent, int round, GameController gameController) {
@@ -37,6 +38,8 @@ public class Game {
         this.gameController = gameController;
         this.playerGameBoard = new GameBoard(player, this);
         this.opponentGameBoard = new GameBoard(opponent, this);
+        player.getLifepoint().startNewGame();
+        opponent.getLifepoint().startNewGame();
     }
 
     private void setPlayerOfNextTurn() {
@@ -49,6 +52,12 @@ public class Game {
         this.changeCardPosition = false;
 
 
+    }
+
+    public boolean isFinished() {
+        return player.getLifepoint().getLifepoint() == 0 ||
+                opponent.getLifepoint().getLifepoint() == 0 ||
+                surrendered != null;
     }
 
     public void changeTurnForSpecials() {
@@ -191,7 +200,7 @@ public class Game {
 
     public void drawPhase() {
         // new -haji
-        if(canGetCard()) {
+        if (canGetCard()) {
             GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
             this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
         }
@@ -200,11 +209,13 @@ public class Game {
 //            gameController.activeSpellAndTrapInOtherTurn();
 //        }
     }
-    private boolean canGetCard(){
+
+    private boolean canGetCard() {
         return TimeSeal.canGetCard;
     }
-    private void worksHaveToDoneAfterGetCard(){
-        TimeSeal.canGetCard=true;
+
+    private void worksHaveToDoneAfterGetCard() {
+        TimeSeal.canGetCard = true;
     }
 
     public void standbyPhase() {
@@ -391,7 +402,7 @@ public class Game {
 
     public boolean canDirectAttack() {
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if (opponentGameBoard.getMonsterField().getNumberOfMonstersInField() != 0) return true;
+        if (opponentGameBoard.getMonsterField().getNumberOfMonstersInField() == 0) return true;
         else {
             /*
             another reasons
