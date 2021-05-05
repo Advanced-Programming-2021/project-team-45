@@ -66,7 +66,7 @@ public class UserDeck {
     public ArrayList<String> getSortedOtherDeckStr() {
         ArrayList<String> otherDecksStr = new ArrayList<>();
         for (Deck deck : userDecks) {
-            if (!deck.getName().equals(activeDeck.getName()))
+            if (!deck.equals(activeDeck))
                 otherDecksStr.add(deck.toString());
         }
         Collections.sort(otherDecksStr);
