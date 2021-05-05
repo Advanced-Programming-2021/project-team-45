@@ -6,18 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Card {
+
     protected String cardName;
     protected String cardDescription;
     protected String cardType;
     protected int price;
     protected User owner;
+    private static ArrayList<Card> allCards;
 
-    public Card(String cardName) {
-        this.cardName = cardName;
-    }
-
-    public static ArrayList<Card> getAllCards() {
-        ArrayList<Card> allCards = new ArrayList<>();
+    static {
+        allCards = new ArrayList<>();
         try {
             String[][] Monsters = MonsterCard.allDataAboutMonster();
             String[][] SpellAndTraps = SpellTrapCard.allDataAboutSpellTrap();
@@ -27,15 +25,21 @@ public class Card {
             for (int i = 1; i < 36; i++) {
                 allCards.add(new SpellTrapCard(SpellAndTraps[i][0]));
             }
-            return allCards;
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Card(String cardName) {
+        this.cardName = cardName;
+    }
+
+    public static ArrayList<Card> getAllCards() {
         return allCards;
     }
 
     public static Card getCardByName(String cardName) {
-        ArrayList<Card> allCards = null;
+        ArrayList<Card> allCards;
         allCards = getAllCards();
         for (Card card : allCards) {
             if (card.cardName.equals(cardName)) return card;
@@ -79,5 +83,8 @@ public class Card {
         return answer;
     }
 
-
+    @Override
+    public Card clone() {
+        return new Card(this.getCardName());
+    }
 }
