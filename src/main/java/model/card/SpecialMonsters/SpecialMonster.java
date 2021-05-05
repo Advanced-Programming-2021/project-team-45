@@ -20,7 +20,7 @@ public class SpecialMonster {
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.YOMI_SHIP)) {
                 YomiShip.abilityOfYomiShip(selectedOrTargetCard ,game);
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.SUIJIN)) {
-                SuijinAbility.suijinAbility(selectedOrTargetCard);
+                SuijinAbility.suijinAbility(game.getSelectedCard(),game);
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MARSHMALLON)){
                 Marshmallon.abilityOfMarshmallon(selectedOrTargetCard ,game);
             }else if(((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.TEXCHANGER)){

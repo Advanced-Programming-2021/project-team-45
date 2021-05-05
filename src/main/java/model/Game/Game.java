@@ -7,6 +7,7 @@ import model.card.SpecialMonsters.AmazingAbility.Scanner;
 import model.card.SpecialMonsters.AmazingAbility.Texchanger;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
+import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
 import model.user.User;
 
 import java.util.ArrayList;
@@ -186,11 +187,20 @@ public class Game {
 
     public void drawPhase() {
         // new -haji
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        this.addedCardInDrawPhase = gameBoard.getDeckField().getCard();
+        if(canGetCard()) {
+            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+            this.addedCardInDrawPhase = gameBoard.getDeckField().getCard();
+        }
+        worksHaveToDoneAfterGetCard();
 //        if(canActiveASpellOrTrapInOtherTurn()){
 //            gameController.activeSpellAndTrapInOtherTurn();
 //        }
+    }
+    private boolean canGetCard(){
+        return TimeSeal.canGetCard;
+    }
+    private void worksHaveToDoneAfterGetCard(){
+        TimeSeal.canGetCard=true;
     }
 
     public void standbyPhase() {

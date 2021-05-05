@@ -1,8 +1,10 @@
 package model.card.SpellTrapCards.AbilitiesOfTraps;
 
 import model.Game.Game;
+import model.Game.GameBoard;
 import model.Game.Hand;
 import model.card.Card;
+import model.card.SpellTrapCard;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,6 +25,10 @@ public class MindCrush {
             int num=random.nextInt(game.getGameBoardOfPlayerOfThisTurn().getHand().getCardsInHand().size());
             game.getGameBoardOfPlayerOfThisTurn().getHand().deleteCardWithNumberOfIt(num);
         }
+        deleteMindCrush(game.getPlayerGameBoard(), game);
+    }
+    private void deleteMindCrush(GameBoard gameBoard,Game game){
+        gameBoard.getSpellTrapField().deleteAndDestroySpellTrap((SpellTrapCard) game.getSelectedCard());
     }
     private boolean checkHand(Hand hand,String cardName){
         ArrayList<Card> cards= hand.getCardsInHand();
