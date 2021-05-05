@@ -64,11 +64,7 @@ public class SpecialMonster {
             boolean bol=test.equals(SpecialMonsterEnum.COMMAND_KNIGHT)||test.equals(SpecialMonsterEnum.YOMI_SHIP)||
                     test.equals(SpecialMonsterEnum.SUIJIN)||test.equals(SpecialMonsterEnum.MARSHMALLON)||
                     test.equals(SpecialMonsterEnum.TEXCHANGER);
-            if(bol){
-                return true;
-            }else {
-                return false;
-            }
+            return bol;
         }else {
             return false;
         }
