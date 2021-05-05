@@ -34,7 +34,7 @@ public class GameController extends Controller {
 
 
     private void createNewGame() {
-        this.game = new Game(player, opponentPlayer, rounds,this);
+        this.game = new Game(player, opponentPlayer, rounds, this);
         this.gameErrorHandler = new GameErrorHandler(game);
     }
 
@@ -57,7 +57,6 @@ public class GameController extends Controller {
             playerDuelMenu.getNextCommand();
         }
     }
-
 
     ///////////////////////////////////////////// ERROR HANDLING:
 

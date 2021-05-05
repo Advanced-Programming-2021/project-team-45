@@ -4,6 +4,9 @@ public class Lifepoint {
 
     private int lifepoint = 8000;
 
+    public void startNewGame() {
+        lifepoint = 8000;
+    }
 
     public int getLifepoint() {
         return lifepoint;
