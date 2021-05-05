@@ -213,6 +213,11 @@ public class MonsterCard extends Card {
     public void setWasAttackedInThisTurn(boolean wasAttackedInThisTurn) {
         this.wasAttackedInThisTurn = wasAttackedInThisTurn;
     }
+
+    public SpecialMonsterEnum getSpecialMonsterEnum() {
+        return specialMonsterEnum;
+    }
+
     private void checkSpecialMonster(MonsterCard card){
         if(card.getCardName().equals("Beast King Barbaros")){
             card.setSpecialMonsterEnum(SpecialMonsterEnum.BEAST_KING_BARBAROS);

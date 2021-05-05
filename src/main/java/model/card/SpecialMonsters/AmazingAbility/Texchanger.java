@@ -9,7 +9,7 @@ public class Texchanger {
 
     private static ArrayList<MonsterCard> allTexchanger=new ArrayList<>();
 
-    private int abilityOfTexchanger(MonsterCard card){
+    public static void abilityOfTexchanger(MonsterCard card){
         if(canUse) {
             if (!allTexchanger.contains(card)) {
                 allTexchanger.add(card);
