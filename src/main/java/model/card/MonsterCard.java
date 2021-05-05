@@ -4,9 +4,7 @@ import model.user.User;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -23,7 +21,7 @@ public class MonsterCard extends Card {
     protected int attack;
     protected int defense;
     protected PositionMonsters position;
-    protected DOorDH defenceMode;
+    protected DefensePosition defenceMode;
     private boolean wasAttackedInThisTurn = false;
     private SpecialMonsterEnum specialMonsterEnum;
 
@@ -194,7 +192,7 @@ public class MonsterCard extends Card {
         this.position = position;
     }
 
-    public DOorDH getDefenceMode() {
+    public DefensePosition getDefenceMode() {
         return defenceMode;
     }
 

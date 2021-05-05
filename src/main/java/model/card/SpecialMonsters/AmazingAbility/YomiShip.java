@@ -2,7 +2,7 @@ package model.card.SpecialMonsters.AmazingAbility;
 
 import model.Game.Game;
 import model.card.Card;
-import model.card.DOorDH;
+import model.card.DefensePosition;
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
 
@@ -39,7 +39,7 @@ public class YomiShip {
 
     private static void abilityOfYomiShipInDefensePosition(MonsterCard invaderCard, MonsterCard yomiShip, Game game){
 
-        if(yomiShip.getDefenceMode() == DOorDH.DO){
+        if(yomiShip.getDefenceMode() == DefensePosition.DO){
             if(yomiShip.getDefense() < invaderCard.getAttack()){
 
                 game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(yomiShip);

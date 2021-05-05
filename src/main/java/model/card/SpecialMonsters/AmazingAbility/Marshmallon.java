@@ -2,7 +2,7 @@ package model.card.SpecialMonsters.AmazingAbility;
 
 import model.Game.Game;
 import model.card.Card;
-import model.card.DOorDH;
+import model.card.DefensePosition;
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
 
@@ -38,7 +38,7 @@ public class Marshmallon {
 
     private static int abilityOfMarshmallonInDefensePosition(MonsterCard invaderCard, MonsterCard marshmallon, Game game){
         int result = 0;
-        if(marshmallon.getDefenceMode() == DOorDH.DO){
+        if(marshmallon.getDefenceMode() == DefensePosition.DO){
             if(marshmallon.getDefense() < invaderCard.getAttack()) result = 9;
             else if(marshmallon.getDefense() == invaderCard.getAttack()) result = 10;
             else result = 11;

@@ -189,7 +189,7 @@ public class Game {
         // new -haji
         if(canGetCard()) {
             GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-            this.addedCardInDrawPhase = gameBoard.getDeckField().getCard();
+            this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
         }
         worksHaveToDoneAfterGetCard();
 //        if(canActiveASpellOrTrapInOtherTurn()){
@@ -366,7 +366,7 @@ public class Game {
                                                       GameBoard playerGameBoard, GameBoard opponentGameBoard) {
         int result = 0;
         playerCard.attackMonster(opponentCard);
-        if (opponentCard.getDefenceMode() == DOorDH.DO) {
+        if (opponentCard.getDefenceMode() == DefensePosition.DO) {
             if (opponentCard.getDefense() < playerCard.getAttack()) {
                 result = 9;
                 opponentGameBoard.getMonsterField().deleteAndDestroyMonster(opponentCard);

@@ -1,6 +1,6 @@
 package model.Game;
 
-import model.card.DOorDH;
+import model.card.DefensePosition;
 import model.card.PositionMonsters;
 import model.card.SpellsAndTrapPosition;
 import model.user.User;
@@ -91,7 +91,7 @@ public class GameBoard {
             } else {
                 if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getPosition()
                         .equals(PositionMonsters.DEFENSE)) {
-                    if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getDefenceMode().equals(DOorDH.DH)) {
+                    if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getDefenceMode().equals(DefensePosition.DH)) {
                         gameBoard[4][i] = "DH";
                         gameBoard[4][i + 1] = "   ";
                     } else {

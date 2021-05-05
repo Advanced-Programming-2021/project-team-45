@@ -4,7 +4,6 @@ import model.user.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Deck {
 
@@ -82,39 +81,6 @@ public class Deck {
         return mainDeck.size() <= 60 && mainDeck.size() >= 40 && sideDeck.size() <= 15;
     }
 
-
-    //////////////////////////////////////// DA FUK? //////////////////////////
-
-    public Card getCard() {
-        Card card = mainDeck.get(0);
-        mainDeck.remove(card);
-        return card;
-    }
-
-    public Card getAFieldCard() {
-        ArrayList<Card> targetCard = new ArrayList<>();
-        for (Card card : mainDeck) {
-            if (card instanceof SpellTrapCard) {
-                if (((SpellTrapCard) card).getIcon().equals("Field")) {
-                    targetCard.add(card);
-                    break;
-                }
-            }
-        }
-        this.mainDeck.remove(targetCard.get(0));
-        return targetCard.get(0);
-    }
-
-    public Card getRandomCard() {
-        Random random = new Random();
-        int index = random.nextInt((this.mainDeck).size());
-        Card card = (this.mainDeck).get(index);
-        (this.mainDeck).remove(card);
-        return card;
-    }
-
-    //////////////////////////////////////////////////////////////////////////
-
     public String getName() {
         return name;
     }
@@ -185,5 +151,17 @@ public class Deck {
             Deck deck = (Deck) object;
             return deck.getName().equals(this.name);
         }
+    }
+
+    @Override
+    public Deck clone() {
+        Deck deck = new Deck(this.getName(), this.user);
+        for (Card card : mainDeck) {
+            deck.addCard(card.getCardName(), false, this.user);
+        }
+        for (Card card : sideDeck) {
+            deck.addCard(card.getCardName(), true, this.user);
+        }
+        return deck;
     }
 }

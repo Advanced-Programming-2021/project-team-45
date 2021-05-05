@@ -1,5 +1,5 @@
 package model.card;
 
-public enum DOorDH {
+public enum DefensePosition {
     DO,DH;
 }
