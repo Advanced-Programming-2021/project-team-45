@@ -120,6 +120,10 @@ public class Game {
         return selectedCard;
     }
 
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+
     public String getPhase() {
         return phase;
     }

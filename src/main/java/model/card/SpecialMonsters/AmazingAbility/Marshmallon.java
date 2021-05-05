@@ -44,6 +44,7 @@ public class Marshmallon {
             else result = 11;
         } else {
             game.setLastOpponentMonsterCard(marshmallon);
+            game.getPlayerOfThisTurn().getLifepoint().decreaseLifepoint(1000);
             if(marshmallon.getDefense() < invaderCard.getAttack()) result = 12;
             else if(marshmallon.getDefense() == invaderCard.getAttack()) result = 13;
             else result = 14;
