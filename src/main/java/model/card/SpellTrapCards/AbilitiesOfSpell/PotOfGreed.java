@@ -7,8 +7,8 @@ public class PotOfGreed {
     public static void ability(Game game){
         GameBoard playerGameBoard = game.getGameBoardOfPlayerOfThisTurn();
         if(playerGameBoard.getHand().getCardsInHand().size() < 5){
-            playerGameBoard.getDeckField().getCard();
-            playerGameBoard.getDeckField().getCard();
+            playerGameBoard.getDeckField().drawCard();
+            playerGameBoard.getDeckField().drawCard();
         }
     }
 }
