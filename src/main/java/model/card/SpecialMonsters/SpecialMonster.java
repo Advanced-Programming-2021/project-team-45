@@ -16,7 +16,7 @@ public class SpecialMonster {
     public static void specialMonsterController(Card selectedOrTargetCard, EffectPlace effectPlace, Game game) {
         if (effectPlace.equals(EffectPlace.DESTROY)) {
             if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.COMMAND_KNIGHT)) {
-                CommandKnight.abilityOfCommandKnightAtDefense();
+                CommandKnight.abilityOfCommandKnightAtDefense(game,(MonsterCard) selectedOrTargetCard);
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.YOMI_SHIP)) {
                 YomiShip.abilityOfYomiShip(selectedOrTargetCard ,game);
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.SUIJIN)) {
@@ -29,7 +29,7 @@ public class SpecialMonster {
 
         } else if (effectPlace.equals(EffectPlace.SUMMON)) {
             if ((((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.COMMAND_KNIGHT))) {
-                CommandKnight.abilityOfCommandKnightAtSummon();
+                CommandKnight.abilityOfCommandKnightAtSummon(game);
             }else if(((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.THE_CALCULATOR)){
                 TheCalculator.abilityOfTheCalculator(selectedOrTargetCard, game);
             }
