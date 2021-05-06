@@ -3,7 +3,6 @@ package view.menu;
 import controller.GameController;
 import controller.Regex;
 
-import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -25,7 +24,9 @@ public class DuelMenu extends Menu {
                     "^(attack direct)$|" +
                     "^(activate effect)$|" +
                     "^(show graveyard)$|" +
-                    "^(card show (?:--selected|-X))$",
+                    "^(card show (?:--selected|-X))$|" +
+                    "^(surrender)$|" +
+                    "^(cancel)$",
             // i = 1
             "select (--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (--opponent|-O))? (\\d+)",
             // i = 2
@@ -94,6 +95,12 @@ public class DuelMenu extends Menu {
                 } else if (matcher.group(14) != null) {
                     showCard();
 
+                } else if (matcher.group(15) != null) {
+                    surrender();
+
+                } else if (matcher.group(16) != null) {
+                    cancel();
+
                 }
 
             } else {
@@ -148,6 +155,7 @@ public class DuelMenu extends Menu {
     public void showGameWinner(String username, int playerWins, int opponentWins) {
         System.out.println(username + " won the game and the score is: " + playerWins + "-" + opponentWins);
     }
+
     public void showMatchWinner(String username, int playerWins, int opponentWins) {
         System.out.println(username + " won the the whole match with score: " + playerWins + "-" + opponentWins);
     }
@@ -445,6 +453,15 @@ public class DuelMenu extends Menu {
         }
     }
 
+    private void surrender() {
+        gameController.surrender();
+        isCommandEnded = true;
+    }
+
+    private void cancel() {
+        gameController.cancel();
+    }
+
 //    public void activeSpellOrTrapInOtherPlayerTurn() {
 //        System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn().getUsername() + "’s turn");
 //        showGameBoard();
@@ -460,8 +477,6 @@ public class DuelMenu extends Menu {
 //            System.out.println("spell/trap activated");
 //        }
 //    }
-
-
 
 
     private void showGraveyard() {
@@ -481,10 +496,6 @@ public class DuelMenu extends Menu {
     @Override
     public void execute() {
     }
-
-
-
-
 
 
     // for special cards
