@@ -66,6 +66,14 @@ public class MonsterField {
         }
     }
 
+    public void deleteMonster(MonsterCard monsterCard) {
+        for(int i = 0; i < 5; i++) {
+            if(this.monstersOnField[i].equals(monsterCard)) {
+                this.monstersOnField[i] = null;
+                break;
+            }
+        }
+    }
     public int getNumberOfMonstersInField() {
         int numberOfMonsters = 0;
         for (int i = 0; i < 5; i++) {
