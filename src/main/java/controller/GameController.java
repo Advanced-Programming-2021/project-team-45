@@ -203,7 +203,8 @@ public class GameController extends Controller {
             return 7;
         } else {
             if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
-                return BeastKingBarbaros.summonHandler(monster, game, this);
+                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this)
+                return beastKingBarbaros.summonHandler(monster);
 
             } else if (monster.getLevel() > 10) {
                 cardsToTribute = playerDuelMenu.getCardsForTribute(3);
