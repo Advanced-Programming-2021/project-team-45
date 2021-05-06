@@ -3,12 +3,9 @@ package controller;
 import model.Game.*;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
-import model.card.SpecialMonsters.EffectPlace;
-import model.card.SpecialMonsters.SpecialMonster;
 import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.MainMenu;
-import view.menu.Menu;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -92,6 +89,10 @@ public class GameController extends Controller {
         }
     }
 
+    public void surrender() {
+        game.surrenderGame();
+    }
+
     private void playRound() {
         playerDuelMenu = new DuelMenu(player.getUsername(), this);
         playerDuelMenu.show();
@@ -99,6 +100,10 @@ public class GameController extends Controller {
         while (!game.isFinished()) {
             playerDuelMenu.getNextCommand();
         }
+    }
+
+    public void cancel() {
+        game.cancelCommand();
     }
 
     ///////////////////////////////////////////// ERROR HANDLING:

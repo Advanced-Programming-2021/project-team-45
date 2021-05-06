@@ -168,6 +168,14 @@ public class Game {
         return null;
     }
 
+    public void surrenderGame() {
+        surrendered = getPlayerOfThisTurn();
+    }
+
+    public void cancelCommand() {
+
+    }
+
     public void selectCard(String cardType, int cardPosition, boolean isOpponent) {
         if (isOpponent) {
             GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
