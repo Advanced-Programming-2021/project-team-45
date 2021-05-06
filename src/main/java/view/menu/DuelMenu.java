@@ -145,6 +145,12 @@ public class DuelMenu extends Menu {
 
     }
 
+    public void showGameWinner(String username, int playerWins, int opponentWins) {
+        System.out.println(username + " won the game and the score is: " + playerWins + "-" + opponentWins);
+    }
+    public void showMatchWinner(String username, int playerWins, int opponentWins) {
+        System.out.println(username + " won the the whole match with score: " + playerWins + "-" + opponentWins);
+    }
 
     private void selectCard(Matcher matcher) {
         if (matcher.find()) {

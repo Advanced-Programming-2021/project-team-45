@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class Card {
 
+    private static final ArrayList<Card> allCards;
+
     protected String cardName;
     protected String cardDescription;
     protected String cardType;
     protected int price;
     protected User owner;
-    private static ArrayList<Card> allCards;
 
     static {
         allCards = new ArrayList<>();

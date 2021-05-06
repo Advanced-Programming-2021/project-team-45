@@ -39,14 +39,57 @@ public class GameController extends Controller {
     }
 
     public void startGame() {
-        while (playerWins < rounds && opponentWins < rounds) {
+        int playerMaxLp = 0;
+        int opponentMaxLp = 0;
+        for (int i = 0; i < rounds; i++) {
+            if (playerWins == 2 || opponentWins == 2) break;
+            // create new round and start it:
             createNewGame();
             playRound();
+            // show winner of round:
+            User winner = game.getWinner();
+            if (winner.equals(player)) {
+                playerWins++;
+            } else {
+                opponentWins++;
+            }
+            playerDuelMenu.showGameWinner(winner.getUsername(), playerWins, opponentWins);
+            // save maxLp
+            int playerLp = player.getLifepoint().getLifepoint();
+            if (playerLp > playerMaxLp) playerMaxLp = playerLp;
+            int opponentLp = opponentPlayer.getLifepoint().getLifepoint();
+            if (opponentLp > opponentMaxLp) opponentMaxLp = opponentLp;
         }
+        // calculate and increase score and money after match:
+        increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
         // go back to first player's MainMenu:
         MainMenu playerMainMenu = new MainMenu(player.getUsername());
         playerMainMenu.show();
         playerMainMenu.execute();
+    }
+
+    private void increaseMoneyAndScore(int playerMaxLp, int opponentMaxLp) {
+        if (rounds == 1) {
+            if (playerWins > 0) {
+                player.increaseScore(1000);
+                player.increaseMoney(1000 + playerMaxLp);
+                opponentPlayer.increaseMoney(100);
+            } else {
+                opponentPlayer.increaseScore(1000);
+                opponentPlayer.increaseMoney(1000 + opponentMaxLp);
+                player.increaseMoney(100);
+            }
+        } else {
+            if (playerWins > 1) {
+                player.increaseScore(3000);
+                player.increaseMoney(3000 + playerMaxLp);
+                opponentPlayer.increaseMoney(300);
+            } else {
+                opponentPlayer.increaseScore(3000);
+                opponentPlayer.increaseMoney(3000 + opponentMaxLp);
+                player.increaseMoney(300);
+            }
+        }
     }
 
     private void playRound() {
