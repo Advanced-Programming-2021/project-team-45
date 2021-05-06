@@ -19,7 +19,7 @@ public class SpellTrapCardController {
         }else if(selectedCard.getCardName().equals("Raigeki")){
             Raigeki.ability(game);
         }else if(selectedCard.getCardName().equals("Change of Heart")){
-            ChangeOfHeart.ability();
+            ChangeOfHeart.ability(game);
         }else if(selectedCard.getCardName().equals("Harpie’s Feather Duster")){
             HarpieFeatherDuster.ability(game);
         }else if(selectedCard.getCardName().equals("Swords of Revealing Light")){
@@ -27,7 +27,7 @@ public class SpellTrapCardController {
         }else if(selectedCard.getCardName().equals("Dark Hole")){
             DarkHole.ability(game);
         }else if(selectedCard.getCardName().equals("Supply Squad")){
-            SupplySquad.ability();
+            SupplySquad.ability(game);
         }else if(selectedCard.getCardName().equals("Spell Absorption")){
             SpellAbsorption.ability();
         }else if(selectedCard.getCardName().equals("Messenger of peace")){
@@ -47,13 +47,13 @@ public class SpellTrapCardController {
         }else if(selectedCard.getCardName().equals("UMIIRUKA")){
             Umiiruka.ability(game);
         }else if(selectedCard.getCardName().equals("Sword of Dark Destruction")){
-            SwordOfDarkDestruction.ability();
+            SwordOfDarkDestruction.ability(game);
         }else if(selectedCard.getCardName().equals("Black Pendant")){
-            BlackPendant.ability();
+            BlackPendant.ability(game);
         }else if(selectedCard.getCardName().equals("United We Stand")){
-            UnitedWeStand.ability();
+            UnitedWeStand.ability(game);
         }else if(selectedCard.getCardName().equals("Magnum Shield")){
-            MagnumShield.ability();
+            MagnumShield.ability(game);
         }else if(selectedCard.getCardName().equals("Advanced Ritual Art")){
             AdvancedRitual.ability();
         }else if(selectedCard.getCardName().equals("Mind Crush")){
@@ -61,7 +61,7 @@ public class SpellTrapCardController {
         }else if(selectedCard.getCardName().equals("Time Seal")){
             TimeSeal.ability();
         }else if(selectedCard.getCardName().equals("Call of the Haunted")){
-            CallOfTheHaunted.ability();
+            CallOfTheHaunted.ability(game);
         }
     }
 
