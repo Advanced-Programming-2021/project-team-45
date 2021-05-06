@@ -287,7 +287,8 @@ public class Game {
     public void summonMonster() {
 
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        CommandKnight.isCommandKnightOnFieldWithSummonMode(selectedCard);
+        CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
+                getGameBoardOfPlayerOfThisTurn().getMonsterField());
         if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
         }
@@ -384,7 +385,7 @@ public class Game {
         return result;
     }
 
-    private int attackToOpponentCardInAttackPosition(MonsterCard playerCard, MonsterCard opponentCard,
+    public int attackToOpponentCardInAttackPosition(MonsterCard playerCard, MonsterCard opponentCard,
                                                      GameBoard opponentGameBoard, GameBoard playerGameBoard) {
         int result = 0;
         playerCard.attackMonster(opponentCard);
@@ -402,7 +403,7 @@ public class Game {
         return result;
     }
 
-    private int attackToOpponentCardInDefensePosition(MonsterCard playerCard, MonsterCard opponentCard,
+    public int attackToOpponentCardInDefensePosition(MonsterCard playerCard, MonsterCard opponentCard,
                                                       GameBoard playerGameBoard, GameBoard opponentGameBoard) {
         int result = 0;
         playerCard.attackMonster(opponentCard);
