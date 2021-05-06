@@ -6,34 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GraveyardTest {
+class FieldZoneTest {
     @BeforeEach
     public void set() {
 
     }
 
     @Test
-    void addCardToGraveYard() {
+    public void getFieldCard() {
 
     }
 
     @Test
-    void deleteCardFromGraveyard() {
-
-    }
-
-    @Test
-    void doesCardExistInGraveyard() {
-
-    }
-
-    @Test
-    void getCardFromGraveyard() {
-
-    }
-
-    @Test
-    void getGraveyardStr() {
+    public void isFull() {
 
     }
 
