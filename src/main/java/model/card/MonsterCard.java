@@ -271,6 +271,7 @@ public class MonsterCard extends Card {
         }
     }
 
+
     @Override
     public MonsterCard clone() {
         try {

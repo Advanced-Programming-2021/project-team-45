@@ -253,7 +253,7 @@ public class Game {
     }
 
     public void endPhase() {
-        Scanner.deActiveAbilityOfScanner()//ehtemalan argoman mikhad alan tavanayee fekr nadaram
+        Scanner.deleteSwapMonsterIfHadScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField());
 
         Texchanger.setTrueAllCanUse();
 
