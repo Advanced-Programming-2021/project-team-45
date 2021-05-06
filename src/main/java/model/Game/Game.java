@@ -151,6 +151,23 @@ public class Game {
         return this.lastOpponentMonsterCard.getCardName();
     }
 
+    public User getWinner() {
+        if (surrendered != null) {
+            if (surrendered.equals(player)) {
+                return opponent;
+            } else {
+                return player;
+            }
+        } else {
+            if (player.getLifepoint().getLifepoint() == 0) {
+                return opponent;
+            } else if (opponent.getLifepoint().getLifepoint() == 0) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     public void selectCard(String cardType, int cardPosition, boolean isOpponent) {
         if (isOpponent) {
             GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
