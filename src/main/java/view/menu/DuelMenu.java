@@ -4,6 +4,7 @@ import controller.GameController;
 import controller.Regex;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class DuelMenu extends Menu {

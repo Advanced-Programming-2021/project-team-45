@@ -1,5 +1,5 @@
 package model.card.SpecialMonsters;
 
 public enum EffectPlace {
-    SUMMON, DESTROY,CHANGEPOSITION,SELECT;
+    SUMMON, DESTROY,CHANGEPOSITION,SELECT,CHANGETURN;
 }

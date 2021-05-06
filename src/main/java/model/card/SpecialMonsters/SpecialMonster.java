@@ -33,9 +33,9 @@ public class SpecialMonster {
             }else if(((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.THE_CALCULATOR)){
                 TheCalculator.abilityOfTheCalculator(selectedOrTargetCard, game);
             }
-        } else if (effectPlace.equals(EffectPlace.SELECT)) {
+        } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
             if((((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.SCANNER))){
-                Scanner.activeAbilityOfScanner((MonsterCard) selectedOrTargetCard);
+                Scanner.activeAbilityOfScanner(game);
             }
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MAN_EATER_BUG)) {
