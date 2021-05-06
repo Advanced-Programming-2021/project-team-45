@@ -3,6 +3,7 @@ package controller;
 import model.Game.*;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
+import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.MainMenu;
@@ -202,26 +203,7 @@ public class GameController extends Controller {
             return 7;
         } else {
             if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
-                MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
-                if (monsterField.getNumberOfMonstersInField() > 1) {
-                    boolean isTributeSummon = playerDuelMenu.getYesNoAnswer("do you want to tribute summon?");
-                    if (isTributeSummon) {
-                        cardsToTribute = playerDuelMenu.getCardsForTribute(2);
-                        if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
-                            game.tributeSummon(cardsToTribute);
-                            return 6;
-                        } else {
-                            return 9;
-                        }
-                    }
-                } else {
-                    // here we have to reduce it's ATK/DFN
-//                SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, game);
-                    cardsToTribute = playerDuelMenu.getCardsForTribute(0);
-                    game.tributeSummon(cardsToTribute);
-                    return 6;
-                }
-
+                return BeastKingBarbaros.summonHandler(monster, game, this);
 
             } else if (monster.getLevel() > 10) {
                 cardsToTribute = playerDuelMenu.getCardsForTribute(3);
@@ -249,7 +231,6 @@ public class GameController extends Controller {
                 }
             }
         }
-        return 8;
     }
 
     public int setCardErrorHandler() {
@@ -502,5 +483,13 @@ public class GameController extends Controller {
 
     public Game getGame() {
         return game;
+    }
+
+    public boolean getYesNoAnswer(String question) {
+        return playerDuelMenu.getYesNoAnswer(question);
+    }
+
+    public ArrayList<Integer> getCardsForTribute(int n) {
+        return playerDuelMenu.getCardsForTribute(n);
     }
 }
