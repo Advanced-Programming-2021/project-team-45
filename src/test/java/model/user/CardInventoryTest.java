@@ -2,18 +2,17 @@ package model.user;
 
 
 import model.card.Card;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardInventoryTest {
-    @BeforeEach
+    @BeforeAll
     static void set() {
         User user = new User("amir", "1380", "hajji");
         user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
         user.getUserDeck().createDeck("me", user);
-        user.getUserDeck().addCardToDeck("me", "Yomi Ship", false, user);
+        user.getUserDeck().getDeckByName("me").addCard("Yomi Ship", false, user);
     }
 
     @Test
@@ -37,6 +36,11 @@ class CardInventoryTest {
     @Test
     void getCardByCardName() {
         Card card = (Card.getCardByName("Battle OX")).clone();
-        assertSame(card, User.getUserByUsername("amir").getCardInventory().getCardByCardName("Battle OX"));
+        assertEquals(card, User.getUserByUsername("amir").getCardInventory().getCardByCardName("Battle OX"));
+    }
+
+    @AfterAll
+    public void setAfterTest() {
+        User.deleteUserByUsername("amir");
     }
 }
