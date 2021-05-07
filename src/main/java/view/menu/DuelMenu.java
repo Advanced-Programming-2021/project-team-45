@@ -25,9 +25,7 @@ public class DuelMenu extends Menu {
                     "^(attack direct)$|" +
                     "^(activate effect)$|" +
                     "^(show graveyard)$|" +
-                    "^(card show (?:--selected|-X))$|" +
-                    "^(surrender)$|" +
-                    "^(cancel)$",
+                    "^(card show (?:--selected|-X))$",
             // i = 1
             "select (--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (--opponent|-O))? (\\d+)",
             // i = 2
@@ -61,8 +59,9 @@ public class DuelMenu extends Menu {
         isCommandEnded = false;
         while (!isCommandEnded) {
             String input = getInput();
-            if(input!=null) {
-                Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+            Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+
+            if (input != null) {
                 if (matcher.find()) {
                     if (matcher.group(1) != null) {
                         showCurrentMenu();
@@ -106,12 +105,6 @@ public class DuelMenu extends Menu {
                     } else if (matcher.group(14) != null) {
                         showCard();
 
-                    } else if (matcher.group(15) != null) {
-                        surrender();
-
-                    } else if (matcher.group(16) != null) {
-                        cancel();
-
                     }
 
                 } else {
@@ -122,18 +115,33 @@ public class DuelMenu extends Menu {
         }
     }
 
-    public boolean getYesNoAnswer(String question) {
+    public Boolean getYesNoAnswer(String question) {
         System.out.println(question + " (yes/no)");
         while (true) {
-            String answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("yes")) {
-                return true;
-            } else if (answer.equalsIgnoreCase("no")) {
-                return false;
+            String answer = getInput();
+            if (answer == null) {
+                return null;
             } else {
-                System.out.println("invalid command");
+                if (answer.equalsIgnoreCase("yes")) {
+                    return true;
+                } else if (answer.equalsIgnoreCase("no")) {
+                    return false;
+                } else {
+                    System.out.println("invalid command! try again!!");
+                }
             }
         }
+    }
+
+    public ArrayList<Integer> getCardsForTribute(int n) {
+        ArrayList<Integer> cards = new ArrayList<>();
+        System.out.println("enter " + n + " cards to tribute: (each in 1 line)");
+        for (int i = 0; i < n; i++) {
+            String input = getInput();
+            if (input == null) return null;
+            cards.add(Integer.parseInt(input));
+        }
+        return cards;
     }
 
     public void showGameBoard() {
@@ -170,6 +178,21 @@ public class DuelMenu extends Menu {
 
     public void showMatchWinner(String username, int playerWins, int opponentWins) {
         System.out.println(username + " won the the whole match with score: " + playerWins + "-" + opponentWins);
+    }
+
+    private String getInput() {
+        String input = scanner.nextLine();
+        if (input.equalsIgnoreCase("cancel")) {
+            cancel();
+            return null;
+
+        } else if (input.equalsIgnoreCase("surrender")) {
+            surrender();
+            return null;
+
+        } else {
+            return input;
+        }
     }
 
     private void selectCard(Matcher matcher) {
@@ -265,15 +288,6 @@ public class DuelMenu extends Menu {
             System.out.println("there is no monster on one of these addresses");
 
         }
-    }
-
-    public ArrayList<Integer> getCardsForTribute(int n) {
-        ArrayList<Integer> cards = new ArrayList<>();
-        System.out.println("enter " + n + " cards to tribute: (each in 1 line)");
-        for (int i = 0; i < n; i++) {
-            cards.add(Integer.parseInt(scanner.nextLine()));
-        }
-        return cards;
     }
 
     private void setCard() {
