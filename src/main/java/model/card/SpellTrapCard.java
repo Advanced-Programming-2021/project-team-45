@@ -1,5 +1,7 @@
 package model.card;
 
+import model.Game.Game;
+import model.card.SpellTrapCards.effects.Effect;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -10,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SpellTrapCard extends Card {
@@ -20,6 +23,7 @@ public class SpellTrapCard extends Card {
     protected boolean isSpell;
     protected String status;
     protected SpellsAndTrapPosition position;
+    private ArrayList<Effect> effects;
 
     public SpellTrapCard(String cardName) {
         super(cardName);
@@ -30,6 +34,7 @@ public class SpellTrapCard extends Card {
         this.status = data[4];
         this.price = (int) Double.parseDouble(data[5]);
         this.isSpell = isASpell(this);
+        effects = new ArrayList<>();
     }
 
     public static String[][] allDataAboutSpellTrap() {
@@ -103,6 +108,12 @@ public class SpellTrapCard extends Card {
         this.position = SpellsAndTrapPosition.SET;
     }
 
+    public void activateEffects(Game game) {
+        for (Effect effect : effects) {
+            effect.activate(game);
+        }
+    }
+
     public SpellsAndTrapPosition getPosition() {
         return position;
     }
@@ -127,6 +138,10 @@ public class SpellTrapCard extends Card {
         } else if (icon.equals("Ritual")) {
             this.icon = SpellAndTrapIcon.RITUAL;
         }
+    }
+
+    public void addEffect(Effect effect) {
+        effects.add(effect);
     }
 
     @Override

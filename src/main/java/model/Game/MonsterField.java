@@ -3,6 +3,8 @@ package model.Game;
 import model.card.Card;
 import model.card.MonsterCard;
 
+import java.util.ArrayList;
+
 public class MonsterField {
     private MonsterCard[] monstersOnField = new MonsterCard[5];
     private Graveyard graveyard;
@@ -12,7 +14,7 @@ public class MonsterField {
     }
 
 
-    public MonsterCard[] getMonstersOnField() {
+    public ArrayList<MonsterCard> getMonstersOnField() {
         return monstersOnField;
     }
 
