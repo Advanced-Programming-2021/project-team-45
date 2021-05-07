@@ -6,6 +6,7 @@ import controller.Regex;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DuelMenu extends Menu {
 
@@ -484,6 +485,30 @@ public class DuelMenu extends Menu {
         System.out.println(answer);
     }
 
+    public String getInputNumberOfFieldForSpecialMonster(String view){
+        System.out.println(view);
+        Pattern nums=Pattern.compile("\\d");
+        String input=getInput();
+        if(input!=null) {
+            Matcher matcher = nums.matcher(input);
+            if(matcher.find()){
+                return input;
+            }else {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+
+    public String getCardFromGraveYard(String view){
+        System.out.println(view);
+        String input=getInput();
+        
+        return input;
+
+    }
     @Override
     public void show() {
     }
