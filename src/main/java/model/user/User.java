@@ -63,6 +63,11 @@ public class User {
         return null;
     }
 
+    public static void deleteUserByUsername(String username) {
+        User user = User.getUserByUsername(username);
+        users.remove(user);
+    }
+
     public static boolean isUserPassCorrect(String username, String password) {
         User user = getUserByUsername(username);
         if (user == null) {
