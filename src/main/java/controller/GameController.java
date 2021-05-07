@@ -1,6 +1,7 @@
 package controller;
 
 import model.Game.*;
+import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
@@ -8,6 +9,7 @@ import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.MainMenu;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -498,5 +500,34 @@ public class GameController extends Controller {
 
     public ArrayList<Integer> getCardsForTribute(int n) {
         return playerDuelMenu.getCardsForTribute(n);
+    }
+
+    public String NumberOfField(String view){
+        return playerDuelMenu.getInputNumberOfFieldForSpecialMonster(view);
+    }
+
+    public MonsterCard getACardFromGraveyardForScanner(String view){
+        String input= playerDuelMenu.getCardFromGraveYard(view);
+        if(input!=null){
+            ArrayList<Card> cards=game.getGameBoardOfPlayerOfThisTurn().getGraveyard().getGraveyardCards();
+            for(int i=0;i<cards.size();i++){
+                if(cards.get(i).getCardName().equals(input) && cards.get(i) instanceof MonsterCard){
+                    return (MonsterCard) cards.get(i);
+                }
+            }
+            if(cards.size()==0){
+                try {
+                    return new MonsterCard("Scanner");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                return new MonsterCard("-1");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

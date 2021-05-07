@@ -487,5 +487,7 @@ public class Game {
         return Card.showCard(selectedCard);
     }
 
-
+    public GameController getGameController() {
+        return gameController;
+    }
 }

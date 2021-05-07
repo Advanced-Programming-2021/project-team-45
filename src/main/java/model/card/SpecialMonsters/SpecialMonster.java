@@ -29,13 +29,18 @@ public class SpecialMonster {
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.THE_CALCULATOR)) {
                 TheCalculator.abilityOfTheCalculator(selectedOrTargetCard, game);
             }
+            //terrigiater
         } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
-            if (Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn().getMonsterField())){
-                Scanner.activeAbilityOfScanner(game);
+            while (Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn().getMonsterField()).getCardName().
+                    equals("Scanner")){
+                Scanner.activeAbilityOfScanner(game,Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn()
+                        .getMonsterField()));
             }
             if(HeraldOfCreation.isThereHeraldOfCreation(game.getGameBoardOfPlayerOfThisTurn().getMonsterField())){
                 HeraldOfCreation.abilityOfHeraldOfCreation(game);
             }
+            //tricky
+            //
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MAN_EATER_BUG)) {
                 ManEatBug.abilityOfmanEatBug(game);
