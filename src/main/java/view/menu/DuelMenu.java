@@ -33,9 +33,6 @@ public class DuelMenu extends Menu {
     };
     private boolean isCommandEnded = false;
 
-    public String[] getDUEL_MENU_REGEX() {
-        return DUEL_MENU_REGEX;
-    }
 
     public DuelMenu(String username, GameController gameController) {
         super("Duel", new MainMenu(username));
@@ -43,19 +40,8 @@ public class DuelMenu extends Menu {
         this.gameController = gameController;
     }
 
-    private String getInput(){
-        String input=scanner.nextLine();
-        if(input.equals("Surrender")||input.equals("cancel")){
-            /*
-            do work for surrendr or cancel
-             */
-            return null;
-        }else{
-            return input;
-        }
-    }
+
     public void getNextCommand() {
-        // regex duel new nist
         isCommandEnded = false;
         while (!isCommandEnded) {
             String input = getInput();
