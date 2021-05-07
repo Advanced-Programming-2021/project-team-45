@@ -41,4 +41,8 @@ public class DeckField {
         }
         return null;
     }
+
+    public Deck getDeck() {
+        return deck;
+    }
 }

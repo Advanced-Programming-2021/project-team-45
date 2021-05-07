@@ -16,7 +16,7 @@ public class GameBoard {
     private FieldZone fieldZone;
     private Game game;
 
-    public GameBoard(User owner,Game game) {
+    public GameBoard(User owner, Game game) {
         this.owner = owner;
         this.graveyard = new Graveyard();
         this.hand = new Hand();
@@ -50,6 +50,7 @@ public class GameBoard {
     public DeckField getDeckField() {
         return deckField;
     }
+
 
     public Graveyard getGraveyard() {
         return graveyard;
