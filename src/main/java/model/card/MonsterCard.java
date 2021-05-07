@@ -205,7 +205,7 @@ public class MonsterCard extends Card {
         return attribute;
     }
 
-    public String getType() {
+    public MonsterType getType() {
         return type;
     }
 
