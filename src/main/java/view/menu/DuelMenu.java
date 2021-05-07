@@ -45,68 +45,79 @@ public class DuelMenu extends Menu {
         this.gameController = gameController;
     }
 
-
+    private String getInput(){
+        String input=scanner.nextLine();
+        if(input.equals("Surrender")||input.equals("cancel")){
+            /*
+            do work for surrendr or cancel
+             */
+            return null;
+        }else{
+            return input;
+        }
+    }
     public void getNextCommand() {
         // regex duel new nist
         isCommandEnded = false;
         while (!isCommandEnded) {
-            String input = scanner.nextLine();
-            Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+            String input = getInput();
+            if(input!=null) {
+                Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+                if (matcher.find()) {
+                    if (matcher.group(1) != null) {
+                        showCurrentMenu();
 
-            if (matcher.find()) {
-                if (matcher.group(1) != null) {
-                    showCurrentMenu();
+                    } else if (matcher.group(2) != null) {
+                        System.out.println("menu navigation is not possible");
 
-                } else if (matcher.group(2) != null) {
-                    System.out.println("menu navigation is not possible");
+                    } else if (matcher.group(3) != null) {
+                        selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
 
-                } else if (matcher.group(3) != null) {
-                    selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
+                    } else if (matcher.group(4) != null) {
+                        deselectCard();
 
-                } else if (matcher.group(4) != null) {
-                    deselectCard();
+                    } else if (matcher.group(5) != null) {
+                        nextPhase();
 
-                } else if (matcher.group(5) != null) {
-                    nextPhase();
+                    } else if (matcher.group(6) != null) {
+                        summonCard();
 
-                } else if (matcher.group(6) != null) {
-                    summonCard();
+                    } else if (matcher.group(7) != null) {
+                        setCard();
 
-                } else if (matcher.group(7) != null) {
-                    setCard();
+                    } else if (matcher.group(8) != null) {
+                        changePosition(input);
 
-                } else if (matcher.group(8) != null) {
-                    changePosition(input);
+                    } else if (matcher.group(9) != null) {
+                        flipSummon();
 
-                } else if (matcher.group(9) != null) {
-                    flipSummon();
+                    } else if (matcher.group(10) != null) {
+                        attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
 
-                } else if (matcher.group(10) != null) {
-                    attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
+                    } else if (matcher.group(11) != null) {
+                        directAttack();
 
-                } else if (matcher.group(11) != null) {
-                    directAttack();
+                    } else if (matcher.group(12) != null) {
+                        activateEffect();
 
-                } else if (matcher.group(12) != null) {
-                    activateEffect();
+                    } else if (matcher.group(13) != null) {
+                        showGraveyard();
 
-                } else if (matcher.group(13) != null) {
-                    showGraveyard();
+                    } else if (matcher.group(14) != null) {
+                        showCard();
 
-                } else if (matcher.group(14) != null) {
-                    showCard();
+                    } else if (matcher.group(15) != null) {
+                        surrender();
 
-                } else if (matcher.group(15) != null) {
-                    surrender();
+                    } else if (matcher.group(16) != null) {
+                        cancel();
 
-                } else if (matcher.group(16) != null) {
-                    cancel();
+                    }
+
+                } else {
+                    System.out.println("invalid command");
 
                 }
-
-            } else {
-                System.out.println("invalid command");
-
             }
         }
     }
@@ -463,23 +474,6 @@ public class DuelMenu extends Menu {
         gameController.cancel();
     }
 
-//    public void activeSpellOrTrapInOtherPlayerTurn() {
-//        System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn().getUsername() + "’s turn");
-//        showGameBoard();
-//        System.out.println("do you want to activate your trap and spell?");
-//
-//        int answer = gameController.activeSpellOrTrapInOtherPlayerTurnErrorHandler();
-//        if (answer == 1) {
-//            System.out.println("now it will be" + gameController.getGame().getOpponentOfThisTurn() + "’s turn");
-//            showGameBoard();
-//        } else if (answer == 2) {
-//            System.out.println("it’s not your turn to play this kind of moves");
-//        } else if (answer == 3) {
-//            System.out.println("spell/trap activated");
-//        }
-//    }
-
-
     private void showGraveyard() {
         String answer = gameController.controlGraveyard();
         System.out.println(answer);
@@ -497,9 +491,4 @@ public class DuelMenu extends Menu {
     @Override
     public void execute() {
     }
-
-
-    // for special cards
-
-
 }

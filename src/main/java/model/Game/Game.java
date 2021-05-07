@@ -2,9 +2,7 @@ package model.Game;
 
 import controller.GameController;
 import model.card.*;
-import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
-import model.card.SpecialMonsters.AmazingAbility.Scanner;
-import model.card.SpecialMonsters.AmazingAbility.Texchanger;
+import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
@@ -124,7 +122,6 @@ public class Game {
         else return this.playerGameBoard;
     }
 
-
     public Card getSelectedCard() {
         return selectedCard;
     }
@@ -200,9 +197,9 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         }
-        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
-            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
-        }
+//        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
+//            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
+//        }
     }
 
     public void deselectCard() {
@@ -230,9 +227,7 @@ public class Game {
             this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
         }
         worksHaveToDoneAfterGetCard();
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
+        SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
     }
 
     private boolean canGetCard() {
@@ -254,10 +249,8 @@ public class Game {
 
     public void endPhase() {
         Scanner.deleteSwapMonsterIfHadScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField());
-
-        Texchanger.setTrueAllCanUse();
-
-
+        Suijin.setAllSuijinInEachTurn();
+        Texchanger.setAllTexchanger();
     }
 
     public void battlePhase() {
@@ -285,7 +278,6 @@ public class Game {
     }
 
     public void summonMonster() {
-
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
                 getGameBoardOfPlayerOfThisTurn().getMonsterField());
@@ -295,9 +287,6 @@ public class Game {
         ((MonsterCard) this.selectedCard).summon();
         gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
         this.selectedCard = null;
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
     }
 
     public void tributeSummon(ArrayList<Integer> cardsToTribute) {
@@ -307,10 +296,9 @@ public class Game {
             monsterField.deleteAndDestroyMonster(monsterCard);
         }
         monsterField.addMonsterToField((MonsterCard) selectedCard);
+        CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
+                getGameBoardOfPlayerOfThisTurn().getMonsterField());
         selectedCard = null;
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
     }
 
     public void setMonster() {
@@ -386,7 +374,7 @@ public class Game {
     }
 
     public int attackToOpponentCardInAttackPosition(MonsterCard playerCard, MonsterCard opponentCard,
-                                                     GameBoard opponentGameBoard, GameBoard playerGameBoard) {
+                                                    GameBoard opponentGameBoard, GameBoard playerGameBoard) {
         int result = 0;
         playerCard.attackMonster(opponentCard);
         if (playerCard.getAttack() > opponentCard.getAttack()) {
@@ -404,7 +392,7 @@ public class Game {
     }
 
     public int attackToOpponentCardInDefensePosition(MonsterCard playerCard, MonsterCard opponentCard,
-                                                      GameBoard playerGameBoard, GameBoard opponentGameBoard) {
+                                                     GameBoard playerGameBoard, GameBoard opponentGameBoard) {
         int result = 0;
         playerCard.attackMonster(opponentCard);
         if (opponentCard.getDefenceMode() == DefensePosition.DO) {
@@ -470,7 +458,12 @@ public class Game {
     }
 
     private boolean canActiveASpellOrTrapInOtherTurn() {
-
+        boolean bol1 = MirageDragon.
+                canActiveTrapForMirageDragonOfEnemy(getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField());
+        /*
+        احتمالا دلایل دیگری هم باشد
+         */
+        return bol1;
     }
 
     public String showGraveyard() {

@@ -2,8 +2,11 @@ package model.card.SpecialMonsters.AmazingAbility;
 
 import model.Game.Game;
 import model.Game.GameBoard;
+import model.Game.MonsterField;
 import model.card.Card;
 import model.card.MonsterCard;
+
+import java.util.ArrayList;
 
 public class HeraldOfCreation {
     private static boolean canUse = true;
@@ -17,5 +20,14 @@ public class HeraldOfCreation {
             MonsterCard monsterCard;
             playerGameBoard.getHand().addCard(monsterCard);
         }
+    }
+    public static boolean isThereHeraldOfCreation(MonsterField monsterField){
+        MonsterCard[] cards=monsterField.getMonstersOnField();
+        for(int i=0;i<5;i++){
+            if(cards[i].getCardName().equals("Herald of Creation")){
+                return true;
+            }
+        }
+        return false;
     }
 }
