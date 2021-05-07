@@ -197,6 +197,10 @@ public class MonsterCard extends Card {
         return defenceMode;
     }
 
+    public void setDefenceMode(DefensePosition defenceMode) {
+        this.defenceMode = defenceMode;
+    }
+
     public MonsterAttribute getAttribute() {
         return attribute;
     }
