@@ -8,8 +8,7 @@ import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.*;
 
 public class SpecialMonster {
-    private EffectPlace effectPlace;
-    public static boolean suijinActive;
+    private EffectPlace effectPlace;;
 
     public static void specialMonsterController(Card selectedOrTargetCard, EffectPlace effectPlace, Game game) {
         if (effectPlace.equals(EffectPlace.DESTROY)) {
@@ -22,7 +21,7 @@ public class SpecialMonster {
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MARSHMALLON)) {
                 Marshmallon.abilityOfMarshmallon(selectedOrTargetCard, game);
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.TEXCHANGER)) {
-                Texchanger.abilityOfTexchanger();
+                Texchanger.abilityOfTexchanger((MonsterCard)selectedOrTargetCard,game);
             }
         } else if (effectPlace.equals(EffectPlace.SUMMON)) {
             if ((((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.COMMAND_KNIGHT))) {
@@ -30,9 +29,12 @@ public class SpecialMonster {
             } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.THE_CALCULATOR)) {
                 TheCalculator.abilityOfTheCalculator(selectedOrTargetCard, game);
             }
-        } else if (effectPlace.equals(EffectPlace.CHANGETURN) {
-            if ((((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.SCANNER))) {
+        } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
+            if (Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn().getMonsterField())){
                 Scanner.activeAbilityOfScanner(game);
+            }
+            if(HeraldOfCreation.isThereHeraldOfCreation(game.getGameBoardOfPlayerOfThisTurn().getMonsterField())){
+                HeraldOfCreation.abilityOfHeraldOfCreation(game);
             }
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MAN_EATER_BUG)) {

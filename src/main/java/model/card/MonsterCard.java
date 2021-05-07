@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class MonsterCard extends Card {
     protected int level;
     protected MonsterAttribute attribute;
-    protected String type;
+    protected MonsterType type;
     protected int attack;
     protected int defense;
     protected PositionMonsters position;
@@ -34,7 +34,7 @@ public class MonsterCard extends Card {
         String[] data = dataAboutAMonster(cardName);
         this.level = (int) Double.parseDouble(data[1]);
         setAttribute(data[2]);
-        this.type = data[3];
+        setType(data[3]);
         this.cardType = data[4];
         this.attack = (int) Double.parseDouble(data[5]);
         this.defense = (int) Double.parseDouble(data[6]);
@@ -268,6 +268,40 @@ public class MonsterCard extends Card {
             this.attribute = MonsterAttribute.FIRE;
         } else if (attribute.equals("LIGHT")) {
             this.attribute = MonsterAttribute.LIGHT;
+        }
+    }
+
+    private void setType(String type){
+        if(type.equals("Beast-Warrior")){
+            this.type=MonsterType.Beast_Warrior;
+        }else if(type.equals("Warrior")){
+            this.type=MonsterType.Warrior;
+        }else if(type.equals("Aqua")){
+            this.type=MonsterType.Aqua;
+        }else if(type.equals("Fiend")){
+            this.type=MonsterType.Fiend;
+        }else if(type.equals("Beast")){
+            this.type=MonsterType.Beast;
+        }else if(type.equals("Pyro")){
+            this.type=MonsterType.Pyro;
+        }else if(type.equals("Spell Caster")){
+            this.type=MonsterType.SpellCaster;
+        }else if(type.equals("Thunder")){
+            this.type=MonsterType.Thunder;
+        }else if(type.equals("Dragon")){
+            this.type=MonsterType.Dragon;
+        }else if(type.equals("Machine")){
+            this.type=MonsterType.Machine;
+        }else if(type.equals("Rock")){
+            this.type=MonsterType.Rock;
+        }else if(type.equals("Insect")){
+            this.type=MonsterType.Insect;
+        }else if(type.equals("Cyberse")){
+            this.type=MonsterType.Cyberse;
+        }else if(type.equals("Fairy")){
+            this.type=MonsterType.Fairy;
+        }else if(type.equals("Sea Serpent"){
+            this.type=MonsterType.Sea_Serpent;
         }
     }
 
