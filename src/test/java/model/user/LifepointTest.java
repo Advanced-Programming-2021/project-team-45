@@ -1,12 +1,13 @@
 package model.user;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LifepointTest {
-    @BeforeEach
+    @BeforeAll
     public void set() {
         User user =new User("hajji", "hajji", "hajji");
     }
@@ -32,5 +33,10 @@ class LifepointTest {
     void decreaseLifepoint() {
         User.getUserByUsername("hajji").getLifepoint().decreaseLifepoint(5655);
         assertEquals(2345, User.getUserByUsername("hajji").getLifepoint().getLifepoint());
+    }
+
+    @AfterAll
+    public void setAfterTest() {
+        User.deleteUserByUsername("hajji");
     }
 }
