@@ -45,7 +45,6 @@ public class DuelMenu extends Menu {
 
 
     public void getNextCommand() {
-        // regex duel new nist
         isCommandEnded = false;
         while (!isCommandEnded) {
             String input = getInput();
