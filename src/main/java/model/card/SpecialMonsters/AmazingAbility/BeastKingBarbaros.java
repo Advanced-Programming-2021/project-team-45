@@ -24,11 +24,15 @@ public class BeastKingBarbaros {
     public int summonHandler(MonsterCard monster) {
         MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
         if (monsterField.getNumberOfMonstersInField() > 2) {
-            boolean tribute3 = gameController.getYesNoAnswer("do you want to tribute 3 monsters?");
+            Boolean tribute3 = gameController.getYesNoAnswer("do you want to tribute 3 monsters?");
+            if (tribute3 == null) return -1;
+
             if (tribute3) {
                 return tributeHandler(3, monster);
             } else {
-                boolean tribute2 = gameController.getYesNoAnswer("do you want to tribute 2 monsters?");
+                Boolean tribute2 = gameController.getYesNoAnswer("do you want to tribute 2 monsters?");
+                if (tribute2 == null) return -1;
+
                 if (tribute2) {
                     return tributeHandler(2, monster);
                 } else {
@@ -36,7 +40,9 @@ public class BeastKingBarbaros {
                 }
             }
         } else if (monsterField.getNumberOfMonstersInField() > 1) {
-            boolean tribute2 = gameController.getYesNoAnswer("do you want to tribute 2 monsters?");
+            Boolean tribute2 = gameController.getYesNoAnswer("do you want to tribute 2 monsters?");
+            if (tribute2 == null) return -1;
+
             if (tribute2) {
                 return tributeHandler(2, monster);
             } else {
@@ -49,6 +55,8 @@ public class BeastKingBarbaros {
 
     private int tributeHandler(int n, MonsterCard monster) {
         ArrayList<Integer> cardsToTribute = gameController.getCardsForTribute(n);
+        if (cardsToTribute == null) return -1;
+
         if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
             if (n == 3) {
                 killAllOpponentMonsters();

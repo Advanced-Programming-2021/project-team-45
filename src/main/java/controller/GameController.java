@@ -203,11 +203,13 @@ public class GameController extends Controller {
             return 7;
         } else {
             if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
-                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this)
+                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this);
                 return beastKingBarbaros.summonHandler(monster);
 
             } else if (monster.getLevel() > 10) {
                 cardsToTribute = playerDuelMenu.getCardsForTribute(3);
+                if (cardsToTribute == null) return -1;
+
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
                     game.tributeSummon(cardsToTribute);
                     return 6;
@@ -216,6 +218,8 @@ public class GameController extends Controller {
                 }
             } else if (monster.getLevel() >= 7) {
                 cardsToTribute = playerDuelMenu.getCardsForTribute(2);
+                if (cardsToTribute == null) return -1;
+
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
                     game.tributeSummon(cardsToTribute);
                     return 6;
@@ -224,6 +228,8 @@ public class GameController extends Controller {
                 }
             } else {
                 cardsToTribute = playerDuelMenu.getCardsForTribute(1);
+                if (cardsToTribute == null) return -1;
+
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
                     game.tributeSummon(cardsToTribute);
                     return 6;
@@ -486,7 +492,7 @@ public class GameController extends Controller {
         return game;
     }
 
-    public boolean getYesNoAnswer(String question) {
+    public Boolean getYesNoAnswer(String question) {
         return playerDuelMenu.getYesNoAnswer(question);
     }
 

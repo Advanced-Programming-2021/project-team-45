@@ -25,9 +25,7 @@ public class DuelMenu extends Menu {
                     "^(attack direct)$|" +
                     "^(activate effect)$|" +
                     "^(show graveyard)$|" +
-                    "^(card show (?:--selected|-X))$|" +
-                    "^(surrender)$|" +
-                    "^(cancel)$",
+                    "^(card show (?:--selected|-X))$",
             // i = 1
             "select (--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (--opponent|-O))? (\\d+)",
             // i = 2
@@ -50,79 +48,90 @@ public class DuelMenu extends Menu {
         // regex duel new nist
         isCommandEnded = false;
         while (!isCommandEnded) {
-            String input = scanner.nextLine();
+            String input = getInput();
             Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
 
-            if (matcher.find()) {
-                if (matcher.group(1) != null) {
-                    showCurrentMenu();
+            if (input != null) {
+                if (matcher.find()) {
+                    if (matcher.group(1) != null) {
+                        showCurrentMenu();
 
-                } else if (matcher.group(2) != null) {
-                    System.out.println("menu navigation is not possible");
+                    } else if (matcher.group(2) != null) {
+                        System.out.println("menu navigation is not possible");
 
-                } else if (matcher.group(3) != null) {
-                    selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
+                    } else if (matcher.group(3) != null) {
+                        selectCard(Regex.getMatcher(input, DUEL_MENU_REGEX[1]));
 
-                } else if (matcher.group(4) != null) {
-                    deselectCard();
+                    } else if (matcher.group(4) != null) {
+                        deselectCard();
 
-                } else if (matcher.group(5) != null) {
-                    nextPhase();
+                    } else if (matcher.group(5) != null) {
+                        nextPhase();
 
-                } else if (matcher.group(6) != null) {
-                    summonCard();
+                    } else if (matcher.group(6) != null) {
+                        summonCard();
 
-                } else if (matcher.group(7) != null) {
-                    setCard();
+                    } else if (matcher.group(7) != null) {
+                        setCard();
 
-                } else if (matcher.group(8) != null) {
-                    changePosition(input);
+                    } else if (matcher.group(8) != null) {
+                        changePosition(input);
 
-                } else if (matcher.group(9) != null) {
-                    flipSummon();
+                    } else if (matcher.group(9) != null) {
+                        flipSummon();
 
-                } else if (matcher.group(10) != null) {
-                    attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
+                    } else if (matcher.group(10) != null) {
+                        attackCard(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
 
-                } else if (matcher.group(11) != null) {
-                    directAttack();
+                    } else if (matcher.group(11) != null) {
+                        directAttack();
 
-                } else if (matcher.group(12) != null) {
-                    activateEffect();
+                    } else if (matcher.group(12) != null) {
+                        activateEffect();
 
-                } else if (matcher.group(13) != null) {
-                    showGraveyard();
+                    } else if (matcher.group(13) != null) {
+                        showGraveyard();
 
-                } else if (matcher.group(14) != null) {
-                    showCard();
+                    } else if (matcher.group(14) != null) {
+                        showCard();
 
-                } else if (matcher.group(15) != null) {
-                    surrender();
+                    }
 
-                } else if (matcher.group(16) != null) {
-                    cancel();
+                } else {
+                    System.out.println("invalid command");
 
                 }
-
-            } else {
-                System.out.println("invalid command");
-
             }
         }
     }
 
-    public boolean getYesNoAnswer(String question) {
+    public Boolean getYesNoAnswer(String question) {
         System.out.println(question + " (yes/no)");
         while (true) {
-            String answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("yes")) {
-                return true;
-            } else if (answer.equalsIgnoreCase("no")) {
-                return false;
+            String answer = getInput();
+            if (answer == null) {
+                return null;
             } else {
-                System.out.println("invalid command");
+                if (answer.equalsIgnoreCase("yes")) {
+                    return true;
+                } else if (answer.equalsIgnoreCase("no")) {
+                    return false;
+                } else {
+                    System.out.println("invalid command! try again!!");
+                }
             }
         }
+    }
+
+    public ArrayList<Integer> getCardsForTribute(int n) {
+        ArrayList<Integer> cards = new ArrayList<>();
+        System.out.println("enter " + n + " cards to tribute: (each in 1 line)");
+        for (int i = 0; i < n; i++) {
+            String input = getInput();
+            if (input == null) return null;
+            cards.add(Integer.parseInt(input));
+        }
+        return cards;
     }
 
     public void showGameBoard() {
@@ -159,6 +168,21 @@ public class DuelMenu extends Menu {
 
     public void showMatchWinner(String username, int playerWins, int opponentWins) {
         System.out.println(username + " won the the whole match with score: " + playerWins + "-" + opponentWins);
+    }
+
+    private String getInput() {
+        String input = scanner.nextLine();
+        if (input.equalsIgnoreCase("cancel")) {
+            cancel();
+            return null;
+
+        } else if (input.equalsIgnoreCase("surrender")) {
+            surrender();
+            return null;
+
+        } else {
+            return input;
+        }
     }
 
     private void selectCard(Matcher matcher) {
@@ -254,15 +278,6 @@ public class DuelMenu extends Menu {
             System.out.println("there is no monster on one of these addresses");
 
         }
-    }
-
-    public ArrayList<Integer> getCardsForTribute(int n) {
-        ArrayList<Integer> cards = new ArrayList<>();
-        System.out.println("enter " + n + " cards to tribute: (each in 1 line)");
-        for (int i = 0; i < n; i++) {
-            cards.add(Integer.parseInt(scanner.nextLine()));
-        }
-        return cards;
     }
 
     private void setCard() {

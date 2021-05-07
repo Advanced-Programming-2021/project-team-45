@@ -173,7 +173,7 @@ public class Game {
     }
 
     public void cancelCommand() {
-
+        selectedCard = null;
     }
 
     public void selectCard(String cardType, int cardPosition, boolean isOpponent) {
