@@ -4,6 +4,7 @@ import controller.GameController;
 import model.card.*;
 import model.card.SpecialMonsters.AmazingAbility.CommandKnight;
 import model.card.SpecialMonsters.AmazingAbility.Scanner;
+import model.card.SpecialMonsters.AmazingAbility.Suijin;
 import model.card.SpecialMonsters.AmazingAbility.Texchanger;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
@@ -124,7 +125,6 @@ public class Game {
         else return this.playerGameBoard;
     }
 
-
     public Card getSelectedCard() {
         return selectedCard;
     }
@@ -200,9 +200,9 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         }
-        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
-            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
-        }
+//        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
+//            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
+//        }
     }
 
     public void deselectCard() {
@@ -230,6 +230,9 @@ public class Game {
             this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
         }
         worksHaveToDoneAfterGetCard();
+        while(Scanner.haveScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField())){
+            SpecialMonster.specialMonsterController(selectedCard,EffectPlace.CHANGETURN,this);
+        }
 //        if(canActiveASpellOrTrapInOtherTurn()){
 //            gameController.activeSpellAndTrapInOtherTurn();
 //        }
@@ -254,8 +257,8 @@ public class Game {
 
     public void endPhase() {
         Scanner.deleteSwapMonsterIfHadScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField());
-
-        Texchanger.setTrueAllCanUse();
+        Suijin.setAllSuijinInEachTurn();
+        Texchanger.setAllTexchanger();
 
 
     }
@@ -285,7 +288,6 @@ public class Game {
     }
 
     public void summonMonster() {
-
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
                 getGameBoardOfPlayerOfThisTurn().getMonsterField());
@@ -295,9 +297,6 @@ public class Game {
         ((MonsterCard) this.selectedCard).summon();
         gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
         this.selectedCard = null;
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
     }
 
     public void tributeSummon(ArrayList<Integer> cardsToTribute) {
@@ -307,10 +306,9 @@ public class Game {
             monsterField.deleteAndDestroyMonster(monsterCard);
         }
         monsterField.addMonsterToField((MonsterCard) selectedCard);
+        CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
+                getGameBoardOfPlayerOfThisTurn().getMonsterField());
         selectedCard = null;
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
     }
 
     public void setMonster() {
