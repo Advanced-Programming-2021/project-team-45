@@ -5,45 +5,67 @@ import model.card.MonsterCard;
 
 import java.util.ArrayList;
 
-public class MonsterField {
-    private ArrayList<MonsterCard> monstersOnField = new ArrayList<>();
-    private Graveyard graveyard;
+public class MonsterField extends CardField {
+    private final ArrayList<MonsterCard> monsters;
+
+    private final Graveyard graveyard;
 
     public MonsterField(Graveyard graveyard) {
         this.graveyard = graveyard;
+        monsters = new ArrayList<>();
     }
 
 
     public ArrayList<MonsterCard> getMonstersOnField() {
-        return monstersOnField;
-    }
-
-    public void deleteAttackedHistory() {
-        ArrayList<MonsterCard> cards = getMonstersOnField();
-        for (int i = 0; i < 5; i++) {
-            cards[i].setWasAttackedInThisTurn(false);
-        }
+        return monsters;
     }
 
     public MonsterCard getMonsterCardFromMonsterFieldInPlayerMode(int cardPosition) {
-        return this.monstersOnField.get(cardPosition - 1);
+        return monsters.get(cardPosition - 1);
     }
 
     public MonsterCard getMonsterCardFromMonsterFieldInOpponentMode(int cardPosition) {
         int newPosition = 0;
-        if (cardPosition == 1)
+        if (cardPosition == 1) {
             newPosition = cardPosition;
-        else if (cardPosition % 2 == 0)
+        } else if (cardPosition % 2 == 0) {
             newPosition = cardPosition + 1;
-        else newPosition = cardPosition - 1;
-        return this.monstersOnField.get(newPosition - 1);
+        } else {
+            newPosition = cardPosition - 1;
+        }
+        return monsters.get(newPosition - 1);
+    }
+
+    public MonsterCard getMonster(int index) {
+        return monsters.get(index - 1);
+    }
+
+    @Override
+    public boolean doesCardExist(String cardName) {
+        return getCardByName(cardName) != null;
+    }
+
+    @Override
+    public Card getCardByName(String cardName) {
+        for (Card card : monsters) {
+            if (card.getCardName().equals(cardName)) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public void deleteAttackedHistory() {
+        for (MonsterCard monster : monsters) {
+            monster.setWasAttackedInThisTurn(false);
+        }
     }
 
     public void addMonsterToField(MonsterCard monster) {
         int index = 0;
         while (index < 5) {
-            if (this.monstersOnField.get(index) == null) {
-                this.monstersOnField.set(index, monster);
+            if (monsters.get(index) == null) {
+                monsters.set(index, monster);
                 break;
             }
             index++;
@@ -52,84 +74,69 @@ public class MonsterField {
 
     public void deleteAndDestroyMonster(MonsterCard monsterCard) {
         for (int i = 0; i < 5; i++) {
-            if (this.monstersOnField.get(i).equals(monsterCard)) {
-                this.graveyard.addCardToGraveyard(this.monstersOnField.get(i));
-                this.monstersOnField.set(i, null);
+            if (monsters.get(i).equals(monsterCard)) {
+                graveyard.addCardToGraveyard(this.monsters.get(i));
+                monsters.set(i, null);
             }
         }
     }
 
     public void deleteAndDestroyAllMonsters() {
-        for(int i = 0; i < 5; i++) {
-            if(this.monstersOnField.get(i) != null) {
-                this.graveyard.addCardToGraveyard(this.monstersOnField.get(i));
-                this.monstersOnField.set(i, null);
+        for (int i = 0; i < 5; i++) {
+            if (monsters.get(i) != null) {
+                graveyard.addCardToGraveyard(this.monsters.get(i));
+                monsters.set(i, null);
             }
         }
     }
 
     public void deleteMonster(MonsterCard monsterCard) {
-        for(int i = 0; i < 5; i++) {
-            if(this.monstersOnField.get(i).equals(monsterCard)) {
-                this.monstersOnField.set(i, null);
+        for (int i = 0; i < 5; i++) {
+            if (monsters.get(i).equals(monsterCard)) {
+                monsters.set(i, null);
                 break;
             }
         }
     }
+
     public int getNumberOfMonstersInField() {
         int numberOfMonsters = 0;
         for (int i = 0; i < 5; i++) {
-            if (this.monstersOnField.get(i) != null)
+            if (monsters.get(i) != null) {
                 numberOfMonsters++;
+            }
         }
         return numberOfMonsters;
     }
 
     public boolean isThisCellOfMonsterFieldEmptyInOpponentMode(int cardPosition) {
         int newPosition = 0;
-        if (cardPosition == 1)
+        if (cardPosition == 1) {
             newPosition = cardPosition;
-        else if (cardPosition % 2 == 0)
+        } else if (cardPosition % 2 == 0) {
             newPosition = cardPosition + 1;
-        else newPosition = cardPosition - 1;
-        return this.monstersOnField.get(newPosition - 1) == null;
+        } else {
+            newPosition = cardPosition - 1;
+        }
+        return this.monsters.get(newPosition - 1) == null;
     }
 
     public boolean isThisCellOfMonsterFieldEmptyInPlayerMode(int cardPosition) {
-        return this.monstersOnField.get(cardPosition - 1) == null;
+        return monsters.get(cardPosition - 1) == null;
     }
 
     public boolean isFull() {
         int fullPlace = 0;
         for (int i = 0; i < 5; i++) {
-            if (this.monstersOnField != null)
+            if (monsters != null) {
                 fullPlace++;
+            }
         }
         return fullPlace == 5;
     }
 
-    public MonsterCard getMonster(int index) {
-        return this.monstersOnField.get(index - 1);
-    }
-
-    public boolean doesExistCardInMonsterField(Card card) {
-        if (!(card instanceof MonsterCard))
-            return false;
-        else {
-            MonsterCard targetCard = (MonsterCard) card;
-            int existence = 0;
-            for (int i = 0; i < 5; i++) {
-                if (this.monstersOnField.get(i) != null) {
-                    if (this.monstersOnField.get(i).getCardName().equals(targetCard.getCardName()))
-                        existence++;
-                }
-            }
-            return existence != 0;
-        }
-    }
-
     public boolean isItFull(int index) {
-        return monstersOnField.get(index) != null;
+        return monsters.get(index) != null;
     }
 
 }

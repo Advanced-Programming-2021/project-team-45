@@ -4,41 +4,49 @@ import model.card.Card;
 
 import java.util.ArrayList;
 
-public class Graveyard {
-    private ArrayList<Card> graveyardCards=new ArrayList<>();
+public class Graveyard extends CardField {
 
-    public void addCardToGraveyard(Card card){
-        graveyardCards.add(card);
+    private ArrayList<Card> graveyard;
+
+    public Graveyard() {
+        graveyard = new ArrayList<>();
     }
 
+
     public ArrayList<Card> getGraveyardCards() {
-        return graveyardCards;
+        return graveyard;
+    }
+
+    @Override
+    public boolean doesCardExist(String cardName) {
+        return getCardByName(cardName) != null;
+    }
+
+    @Override
+    public Card getCardByName(String cardName) {
+        for (Card card : graveyard) {
+            if (card.getCardName().equals(cardName)) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public void addCardToGraveyard(Card card){
+        graveyard.add(card);
     }
 
     public void deleteCardFromGraveyard(Card card){
-        (this.graveyardCards).remove(card);
-    }
-
-    public boolean doesCardExistInGraveyard(Card card){
-        return (this.graveyardCards).contains(card);
-    }
-
-    public Card getCardFromGraveyard(String cardName){
-        ArrayList<Card> targetCard = new ArrayList<>();
-        for(Card card : this.graveyardCards){
-            if((card.getCardName()).equals(cardName))
-                targetCard.add(card);
-        }
-        if(targetCard.size() == 0) return null; else return targetCard.get(0);
+        graveyard.remove(card);
     }
 
     public ArrayList<String> getGraveyardStr(){
         ArrayList<String> graveyardStr = new ArrayList<>();
-        if(this.graveyardCards.size() == 0)
+        if(this.graveyard.size() == 0)
             graveyardStr.add("graveyard empty");
         else{
-            for(int i = 0; i < (this.graveyardCards).size(); i++){
-                Card card = (this.graveyardCards).get(i);
+            for(int i = 0; i < (this.graveyard).size(); i++){
+                Card card = (this.graveyard).get(i);
                 graveyardStr.add((i + 1) + ". " + card.getCardName() + ":" + card.getCardDescription());
             }
         }
@@ -48,8 +56,8 @@ public class Graveyard {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < this.graveyardCards.size(); i++){
-            Card card = this.graveyardCards.get(i);
+        for(int i = 0; i < this.graveyard.size(); i++){
+            Card card = this.graveyard.get(i);
             stringBuilder.append(i + 1 + ". " + card.getCardName() +":" + card.getCardDescription() + "\n");
         }
         return stringBuilder.toString();

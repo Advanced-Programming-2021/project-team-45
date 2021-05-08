@@ -8,19 +8,35 @@ import model.user.User;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class DeckField {
+public class DeckField extends CardField {
 
     private final User owner;
     private final Deck deck;
     private final ArrayList<Card> mainDeck;
 
-    public DeckField(User user){
+    public DeckField(User user) {
         owner = user;
         deck = user.getUserDeck().getActiveDeck().clone();
         mainDeck = deck.getMainDeck();
     }
 
-    public Card drawCard(){
+
+    @Override
+    public boolean doesCardExist(String cardName) {
+        return getCardByName(cardName) != null;
+    }
+
+    @Override
+    public Card getCardByName(String cardName) {
+        for (Card card : mainDeck) {
+            if (card.getCardName().equals(cardName)) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public Card drawCard() {
         // generate random card
         Random random = new Random();
         int i = random.nextInt(mainDeck.size());
