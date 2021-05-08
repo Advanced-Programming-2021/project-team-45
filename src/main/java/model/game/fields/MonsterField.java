@@ -11,6 +11,7 @@ public class MonsterField extends CardField {
     private final Graveyard graveyard;
 
     public MonsterField(Graveyard graveyard) {
+        super("Monster Field");
         this.graveyard = graveyard;
         monsters = new MonsterCard[10];
     }

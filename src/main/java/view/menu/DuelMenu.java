@@ -131,6 +131,15 @@ public class DuelMenu extends Menu {
         return cards;
     }
 
+    public String getCardName() {
+        System.out.println("please enter a card Name:");
+        return getInput();
+    }
+
+    public void showOutput(String message) {
+        System.out.println(message);
+    }
+
     public void showGameBoard() {
         String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
         String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();

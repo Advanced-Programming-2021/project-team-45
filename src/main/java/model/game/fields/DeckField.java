@@ -15,6 +15,7 @@ public class DeckField extends CardField {
     private final ArrayList<Card> mainDeck;
 
     public DeckField(User user) {
+        super("Deck");
         owner = user;
         deck = user.getUserDeck().getActiveDeck().clone();
         mainDeck = deck.getMainDeck();

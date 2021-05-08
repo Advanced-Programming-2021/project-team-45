@@ -11,6 +11,7 @@ public class Hand extends CardField {
     private User handOwner;
 
     public Hand() {
+        super("Hand");
         hand = new ArrayList<>();
     }
 
