@@ -16,7 +16,7 @@ public class ChangeOfHeart {
         MonsterCard monsterCard;
         targetMonsterCard = monsterCard;
         for(int i = 0; i < 5; i++) {
-            if(opponentGameBoard.getMonsterField().getMonstersOnField()[i].equals(monsterCard)) {
+            if(opponentGameBoard.getMonsterField().getMonstersOnField().get(i).equals(monsterCard)) {
                 cardPosition = i;
                 break;
             }

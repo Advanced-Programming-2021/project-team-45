@@ -532,6 +532,10 @@ public class GameController extends Controller {
         return null;
     }
 
+    public void specialMonsterErrorHandler(String input){
+
+    }
+
     public ArrayList<Card> getCardFromPlayer(int n, CardField[] fields) {
         ArrayList<Card> selectedCards = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -560,5 +564,9 @@ public class GameController extends Controller {
             }
         }
         return selectedCards;
+    }
+
+    public void showOutput(String text){
+        playerDuelMenu.showOutput(text);
     }
 }
