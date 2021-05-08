@@ -6,7 +6,7 @@ import model.card.MonsterCard;
 
 public class ManEatBug {
 
-    public static void abilityOfmanEatBug(Game game) {
+    public static void ability(Game game) {
         // bugs -haji
         String input = game.getGameController().NumberOfField("man eater bug get actived" +
                 ", which number of his monsterField do you want get destroyed");

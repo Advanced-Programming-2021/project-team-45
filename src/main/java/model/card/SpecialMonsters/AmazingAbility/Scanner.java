@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Scanner {
     private static ArrayList<MonsterCard> convertToScanner=new ArrayList<>();
 
-    public static void activeAbilityOfScanner(Game game,MonsterCard scanner){
+    public static void ability(Game game, MonsterCard scanner){
         MonsterCard selectedMonster=game.getGameController()
                 .getACardFromGraveyardForScanner("enter a card name from graveyard:");;
         while (true){
@@ -38,6 +38,7 @@ public class Scanner {
             }
         }
     }
+
     private static void swapMonsterAndScanner(GameBoard gameBoard,MonsterCard scanner,MonsterCard monster){
         MonsterField monsterField= gameBoard.getMonsterField();
         ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
@@ -49,6 +50,7 @@ public class Scanner {
             }
         }
     }
+
     public static void deleteSwapMonsterIfHadScanner(MonsterField monsterField){
         ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){

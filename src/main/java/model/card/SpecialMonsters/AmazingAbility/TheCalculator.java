@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class TheCalculator {
 
-    public static void abilityOfTheCalculator(Card selectedOrTargetCard, Game game){
+    public static void ability(Card selectedOrTargetCard, Game game){
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
         ArrayList<MonsterCard> monsterCards = gameBoard.getMonsterField().getMonstersOnField();
         int sumLevels = 0;

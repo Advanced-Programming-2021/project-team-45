@@ -15,10 +15,13 @@ public class SpecialMonster {
     public static void specialMonsterController(Card selectedOrTargetCard, EffectPlace effectPlace, Game game) {
         if (effectPlace.equals(EffectPlace.DESTROY)) {
             destroyEffectPlace(selectedOrTargetCard,game);
+
         } else if (effectPlace.equals(EffectPlace.SUMMON)) {
             summonEffectPlace(selectedOrTargetCard,game);
+
         } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
             changeTurnEffectPlace(selectedOrTargetCard,game);
+
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             changePosition(selectedOrTargetCard,game);
         }
@@ -26,34 +29,42 @@ public class SpecialMonster {
 
     private static void destroyEffectPlace(Card selectedOrTargetCard,  Game game){
         if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.COMMAND_KNIGHT)) {
-            CommandKnight.abilityOfCommandKnightAtDefense(game, (MonsterCard) selectedOrTargetCard);
+            CommandKnight.defenseAbility(game, (MonsterCard) selectedOrTargetCard);
+
         } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.YOMI_SHIP)) {
-            YomiShip.abilityOfYomiShip(selectedOrTargetCard, game);
+            YomiShip.ability(selectedOrTargetCard, game);
+
         } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.SUIJIN)) {
-            Suijin.suijinAbility(game.getSelectedCard(), game);
+            Suijin.ability(game.getSelectedCard(), game);
+
         } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MARSHMALLON)) {
-            Marshmallon.abilityOfMarshmallon(selectedOrTargetCard, game);
+            Marshmallon.ability(selectedOrTargetCard, game);
+
         } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.TEXCHANGER)) {
-            Texchanger.abilityOfTexchanger((MonsterCard)selectedOrTargetCard,game);
+            Texchanger.ability((MonsterCard)selectedOrTargetCard,game);
+
         }
     }
 
     private static void summonEffectPlace(Card selectedOrTargetCard, Game game){
         if ((((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.COMMAND_KNIGHT))) {
-            CommandKnight.abilityOfCommandKnightAtSummon(game);
+            CommandKnight.summonAbility(game);
+
         } else if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.THE_CALCULATOR)) {
-            TheCalculator.abilityOfTheCalculator(selectedOrTargetCard, game);
+            TheCalculator.ability(selectedOrTargetCard, game);
+
         }else if( ((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.TERRATIGER)){
-            Terratiger.abilityOfTerratiger(game);
+            Terratiger.ability(game);
         }
     }
 
     private static void changeTurnEffectPlace(Card selectedOrTargetCard, Game game){
         while (Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn().getMonsterField()).getCardName().
                 equals("Scanner")){
-            Scanner.activeAbilityOfScanner(game,Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn()
+            Scanner.ability(game,Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn()
                     .getMonsterField()));
         }
+
         if(Objects.requireNonNull(HeraldOfCreation.isThereHeraldOfCreation(game.getGameBoardOfPlayerOfThisTurn()
                 .getMonsterField())).getCardName().equals("Herald of Creation")){
             HeraldOfCreation.abilityOfHeraldOfCreation(game,HeraldOfCreation
@@ -63,7 +74,7 @@ public class SpecialMonster {
 
     private static void changePosition(Card selectedOrTargetCard, Game game){
         if (((MonsterCard) selectedOrTargetCard).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MAN_EATER_BUG)) {
-            ManEatBug.abilityOfmanEatBug(game);
+            ManEatBug.ability(game);
         }
     }
 

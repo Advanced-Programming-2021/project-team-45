@@ -8,7 +8,8 @@ public class Terratiger {
     public static MonsterCard getInput(){
         return null;
     }
-    public static void abilityOfTerratiger(Game game){
+
+    public static void ability(Game game){
         MonsterCard input=getInput();
         if(!game.getGameBoardOfPlayerOfThisTurn().getMonsterField().isFull()){
             game.getGameBoardOfPlayerOfThisTurn().getMonsterField().addMonsterToField(input);

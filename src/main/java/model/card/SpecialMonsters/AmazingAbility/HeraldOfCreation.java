@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class HeraldOfCreation {
     public static ArrayList<Card> heraldCards=new ArrayList<>();
+
     public static void abilityOfHeraldOfCreation(Game game,Card thisHerald) {
         if(!heraldCards.contains(thisHerald)) {
             heraldCards.add(thisHerald);
@@ -23,6 +24,7 @@ public class HeraldOfCreation {
             playerGameBoard.getHand().addCard(monsterCard);
         }
     }
+
     public static Card isThereHeraldOfCreation(MonsterField monsterField){
         ArrayList<MonsterCard> cards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){

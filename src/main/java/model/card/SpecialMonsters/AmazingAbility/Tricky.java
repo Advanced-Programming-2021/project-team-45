@@ -3,13 +3,13 @@ package model.card.SpecialMonsters.AmazingAbility;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.game.Game;
-import model.game.GameBoard;
 import model.game.fields.Hand;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tricky {
+
     public static void ability(Game game,MonsterCard tricky){
         Card deletedCard;
         game.getGameBoardOfPlayerOfThisTurn().getHand().deleteCard(deletedCard);

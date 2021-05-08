@@ -7,7 +7,8 @@ import model.card.MonsterCard;
 import model.card.PositionMonsters;
 
 public class Marshmallon {
-    public static int abilityOfMarshmallon(Card selectedOrTargetCard, Game game){
+
+    public static int ability(Card selectedOrTargetCard, Game game){
         // problem -haji
         int result = 0;
         MonsterCard invaderCard = (MonsterCard) game.getSelectedCard();
