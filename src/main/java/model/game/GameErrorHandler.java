@@ -42,7 +42,7 @@ public class GameErrorHandler {
         if (isOpponentCard) {
             gameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(cardPosition))
+                if (gameBoard.getMonsterField().isThisCellOfOpponentMonsterFieldEmpty(cardPosition))
                     result = true;
                 else result = true;
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
@@ -55,7 +55,7 @@ public class GameErrorHandler {
         } else {
             gameBoard = game.getGameBoardOfPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                if (gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInPlayerMode(cardPosition)) result = true;
+                if (gameBoard.getMonsterField().isThisCellOfPlayerMonsterFieldEmpty(cardPosition)) result = true;
                 else result = true;
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInPlayerMode(cardPosition);
@@ -133,7 +133,7 @@ public class GameErrorHandler {
 
     public boolean isThereAnyMonsterInThisCell(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
-        return !gameBoard.getMonsterField().isThisCellOfMonsterFieldEmptyInOpponentMode(numberOfEnemyMonsterZone);
+        return !gameBoard.getMonsterField().isThisCellOfOpponentMonsterFieldEmpty(numberOfEnemyMonsterZone);
     }
 
     public boolean isSelectedCardSpell() {
@@ -170,7 +170,7 @@ public class GameErrorHandler {
     public boolean isTributeCardsValid(ArrayList<Integer> cardsToTribute) {
         MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
         for (int i : cardsToTribute) {
-            if (monsterField.isThisCellOfMonsterFieldEmptyInPlayerMode(i)) {
+            if (monsterField.isThisCellOfPlayerMonsterFieldEmpty(i)) {
                 return false;
             }
         }

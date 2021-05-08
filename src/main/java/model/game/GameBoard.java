@@ -87,7 +87,7 @@ public class GameBoard {
         gameBoard[4][0] = "    ";
 
         for (int i = 1; i < 10; i += 2) {
-            if (!monsterField.isItFull((i + 1) / 2 - 1)) {
+            if (!monsterField.isFull((i + 1) / 2 - 1)) {
                 gameBoard[4][i] = "E ";
                 gameBoard[4][i + 1] = "   ";
             } else {

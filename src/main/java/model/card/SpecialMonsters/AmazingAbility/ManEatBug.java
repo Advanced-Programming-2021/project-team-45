@@ -14,9 +14,9 @@ public class ManEatBug {
             int targetMonsterFieldPosition = Integer.parseInt(input);
             GameBoard opponentGameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
             if (!opponentGameBoard.getMonsterField().
-                    isThisCellOfMonsterFieldEmptyInOpponentMode(targetMonsterFieldPosition)) {
+                    isThisCellOfOpponentMonsterFieldEmpty(targetMonsterFieldPosition)) {
                 MonsterCard monsterCard = opponentGameBoard.
-                        getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(targetMonsterFieldPosition);
+                        getMonsterField().getMonsterCardOpponentFromMonsterField(targetMonsterFieldPosition);
                 opponentGameBoard.getMonsterField().deleteAndDestroyMonster(monsterCard);
             }
         }
