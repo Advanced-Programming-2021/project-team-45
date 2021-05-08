@@ -10,16 +10,32 @@ public class SpellTrapField extends CardField {
 
     private final User owner;
     private final Graveyard graveyard;
-    private final ArrayList<SpellTrapCard> spellTraps;
+    private final SpellTrapCard[] spellTraps;
 
     public SpellTrapField(User owner, Graveyard graveyard) {
         this.owner = owner;
         this.graveyard = graveyard;
-        spellTraps = new ArrayList<>();
+        spellTraps = new SpellTrapCard[5];
     }
 
-    public SpellTrapCard[] getSpellTrapCardsOnField() {
+    public SpellTrapCard[] getSpellTrapCardsPositionsArray() {
         return spellTraps;
+    }
+
+    public SpellTrapCard getPlayerSpellTrapCard(int cardPosition) {
+        return spellTraps[cardPosition - 1];
+    }
+
+    public SpellTrapCard getOpponentSpellTrapCard(int cardPosition) {
+        int position;
+        if (cardPosition == 1) {
+            position = cardPosition;
+        } else if (cardPosition % 2 == 0) {
+            position = cardPosition + 1;
+        } else {
+            position = cardPosition - 1;
+        }
+        return spellTraps[position - 1];
     }
 
     @Override
@@ -30,8 +46,10 @@ public class SpellTrapField extends CardField {
     @Override
     public Card getCardByName(String cardName) {
         for (Card card : spellTraps) {
-            if (card.getCardName().equals(cardName)) {
-                return card;
+            if (card != null) {
+                if (card.getCardName().equals(cardName)) {
+                    return card;
+                }
             }
         }
         return null;
@@ -40,8 +58,8 @@ public class SpellTrapField extends CardField {
     public void addSpellTrapCard(SpellTrapCard spellTrapCard) {
         int index = 0;
         while (index < 5) {
-            if (spellTraps.get(index) == null) {
-                spellTraps.get(index) = spellTrapCard;
+            if (spellTraps[index] == null) {
+                spellTraps[index] = spellTrapCard;
                 break;
             }
             index++;
@@ -50,73 +68,46 @@ public class SpellTrapField extends CardField {
 
     public void deleteAndDestroySpellTrap(SpellTrapCard spellTrapCard) {
         for (int i = 0; i < 5; i++) {
-            if (this.spellTraps.get(i).equals(spellTrapCard)) {
-                this.graveyard.addCardToGraveyard(spellTrapCard);
-                this.spellTraps.get(i) = null;
+            if (spellTraps[i] != null) {
+                if (spellTraps[i].equals(spellTrapCard)) {
+                    graveyard.addCardToGraveyard(spellTrapCard);
+                    spellTraps[i] = null;
+                }
             }
         }
     }
 
     public void deleteAndDestroyAllSpellTrapCards() {
         for (int i = 0; i < 5; i++) {
-            if (this.spellTraps.get(i) != null) {
-                this.graveyard.addCardToGraveyard(this.spellTraps[i]);
-                this.spellTraps.get(i) = null;
+            if (spellTraps[i] != null) {
+                graveyard.addCardToGraveyard(this.spellTraps[i]);
+                spellTraps[i] = null;
             }
         }
     }
 
     public boolean isFull() {
-        int fullPlace = 0;
+        int count = 0;
         for (int i = 0; i < 5; i++) {
-            if (this.spellTraps.get(i) != null)
-                fullPlace++;
+            if (spellTraps[i] != null)
+                count++;
         }
-        return fullPlace == 5;
+        return count >= 5;
     }
 
-    public boolean isThisCellOfSpellTrapFieldEmptyInPlayerMode(int cardPosition) {
-        return this.spellTraps[cardPosition - 1] == null;
+    public boolean isThisCellOfPlayerSpellTrapFieldEmpty(int cardPosition) {
+        return getPlayerSpellTrapCard(cardPosition) == null;
     }
 
-    public boolean isThisCellOfSpellTrapFieldEmptyInOpponentMode(int cardPosition) {
-        int newPosition = 0;
-        if (cardPosition == 1)
-            newPosition = cardPosition;
-        else if (cardPosition % 2 == 0)
-            newPosition = cardPosition + 1;
-        else newPosition = cardPosition - 1;
-        return this.spellTraps[newPosition - 1] == null;
+    public boolean isThisCellOfOpponentSpellTrapFieldEmpty(int cardPosition) {
+        return getOpponentSpellTrapCard(cardPosition) == null;
     }
 
-    public boolean isItFull(int index) {
-
-        return this.spellTraps[index] != null;
+    public boolean isFull(int index) {
+        return spellTraps[index] != null;
     }
 
     public boolean doesSpellTrapCardExistInField(SpellTrapCard spellTrapCard) {
-        boolean result = false;
-        for (int i = 0; i < 5; i++) {
-            if (this.spellTraps[i].equals(spellTrapCard)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
+        return getCardByName(spellTrapCard.getCardName()) != null;
     }
-
-    public SpellTrapCard getSpellTrapCardInPlayerMode(int cardPosition) {
-        return this.spellTraps[cardPosition - 1];
-    }
-
-    public SpellTrapCard getSpellTrapCardInOpponentMode(int cardPosition) {
-        int newPosition = 0;
-        if (cardPosition == 1)
-            newPosition = cardPosition;
-        else if (cardPosition % 2 == 0)
-            newPosition = cardPosition + 1;
-        else newPosition = cardPosition - 1;
-        return this.spellTraps[newPosition - 1];
-    }
-
 }
