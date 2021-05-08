@@ -1,6 +1,7 @@
 package model.card;
 
 import model.Game.Game;
+import model.card.SpellTrapCards.effects.AddEffects;
 import model.card.SpellTrapCards.effects.Effect;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -10,7 +11,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,8 +33,8 @@ public class SpellTrapCard extends Card {
         this.cardDescription = data[3];
         this.status = data[4];
         this.price = (int) Double.parseDouble(data[5]);
-        this.isSpell = isASpell(this);
-        effects = new ArrayList<>();
+        this.isSpell = isSpell(this);
+        effects = AddEffects.getCardEffects(cardName);
     }
 
     public static String[][] allDataAboutSpellTrap() {
@@ -88,7 +88,7 @@ public class SpellTrapCard extends Card {
         } else return data[answer];
     }
 
-    private boolean isASpell(SpellTrapCard card) {
+    private boolean isSpell(SpellTrapCard card) {
         return !this.type.equals("Trap");
     }
 
