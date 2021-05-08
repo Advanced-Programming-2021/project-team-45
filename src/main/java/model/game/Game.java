@@ -178,7 +178,7 @@ public class Game {
         if (isOpponent) {
             GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(cardPosition);
+                this.selectedCard = gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(cardPosition);
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 this.selectedCard = gameBoard.getSpellTrapField().getSpellTrapCardInOpponentMode(cardPosition);
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
@@ -189,7 +189,7 @@ public class Game {
         } else {
             GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInPlayerMode(cardPosition);
+                this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromPlayerMonsterField(cardPosition);
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 this.selectedCard = gameBoard.getSpellTrapField().getSpellTrapCardInPlayerMode(cardPosition);
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
@@ -327,7 +327,7 @@ public class Game {
 
     private boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone).getPosition()
+        if (gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.ATTACK)
             return true;
         else return false;
@@ -335,7 +335,7 @@ public class Game {
 
     private boolean isTargetCellInDefensePosition(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone).getPosition()
+        if (gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.DEFENSE)
             return true;
         else return false;
@@ -360,7 +360,7 @@ public class Game {
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
         playerCard.setWasAttackedInThisTurn(true);
-        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardFromMonsterFieldInOpponentMode(numberOfEnemyMonsterZone);
+        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
             SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
             return 0;
