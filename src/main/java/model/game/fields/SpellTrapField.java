@@ -13,6 +13,7 @@ public class SpellTrapField extends CardField {
     private final SpellTrapCard[] spellTraps;
 
     public SpellTrapField(User owner, Graveyard graveyard) {
+        super("Spell And Trap Field");
         this.owner = owner;
         this.graveyard = graveyard;
         spellTraps = new SpellTrapCard[5];

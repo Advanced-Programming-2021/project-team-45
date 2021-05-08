@@ -5,6 +5,7 @@ import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
+import model.game.fields.CardField;
 import model.user.User;
 import view.menu.DuelMenu;
 import view.menu.MainMenu;
@@ -502,20 +503,20 @@ public class GameController extends Controller {
         return playerDuelMenu.getCardsForTribute(n);
     }
 
-    public String NumberOfField(String view){
+    public String NumberOfField(String view) {
         return playerDuelMenu.getInputNumberOfFieldForSpecialMonster(view);
     }
 
-    public MonsterCard getACardFromGraveyardForScanner(String view){
-        String input= playerDuelMenu.getCardFromGraveYard(view);
-        if(input!=null){
-            ArrayList<Card> cards=game.getGameBoardOfPlayerOfThisTurn().getGraveyard().getGraveyardCards();
-            for(int i=0;i<cards.size();i++){
-                if(cards.get(i).getCardName().equals(input) && cards.get(i) instanceof MonsterCard){
+    public MonsterCard getACardFromGraveyardForScanner(String view) {
+        String input = playerDuelMenu.getCardFromGraveYard(view);
+        if (input != null) {
+            ArrayList<Card> cards = game.getGameBoardOfPlayerOfThisTurn().getGraveyard().getGraveyardCards();
+            for (int i = 0; i < cards.size(); i++) {
+                if (cards.get(i).getCardName().equals(input) && cards.get(i) instanceof MonsterCard) {
                     return (MonsterCard) cards.get(i);
                 }
             }
-            if(cards.size()==0){
+            if (cards.size() == 0) {
                 try {
                     return new MonsterCard("Scanner");
                 } catch (IOException e) {
@@ -529,5 +530,35 @@ public class GameController extends Controller {
             }
         }
         return null;
+    }
+
+    public ArrayList<Card> getCardFromPlayer(String question, int n, CardField... fields) {
+        ArrayList<Card> selectedCards = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            while (true) {
+                String cardName = playerDuelMenu.getCardName();
+                // for surrender and cancel:
+                if (cardName == null) return null;
+
+                Card card = null;
+                for (CardField field : fields) {
+                    if (field.doesCardExist(cardName)) {
+                        card = field.getCardByName(cardName);
+                    }
+                }
+                if (card != null) {
+                    selectedCards.add(card);
+                    break;
+                } else {
+                    StringBuilder errorMessage = new StringBuilder("the selected card wasn't in: ");
+                    for (CardField field : fields) {
+                        errorMessage.append(field.getName()).append("\t");
+                    }
+                    errorMessage.append("(try again!)");
+                    playerDuelMenu.showOutput(errorMessage.toString());
+                }
+            }
+        }
+        return selectedCards;
     }
 }

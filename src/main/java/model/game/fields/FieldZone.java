@@ -8,6 +8,7 @@ public class FieldZone extends CardField {
     private Card fieldCard;
 
     public FieldZone(Graveyard graveyard) {
+        super("Field Zone");
         this.graveyard = graveyard;
     }
 

@@ -9,6 +9,7 @@ public class Graveyard extends CardField {
     private ArrayList<Card> graveyard;
 
     public Graveyard() {
+        super("Graveyard");
         graveyard = new ArrayList<>();
     }
 
