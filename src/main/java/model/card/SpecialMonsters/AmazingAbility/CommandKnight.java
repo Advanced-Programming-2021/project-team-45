@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CommandKnight {
     private static ArrayList<MonsterCard> allCardsThatIncreasedAttacks = new ArrayList<>();
 
-    public static void abilityOfCommandKnightAtSummon(Game game) {
+    public static void summonAbility(Game game) {
         ArrayList<MonsterCard> monsterCards = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().getMonstersOnField();
         for (int i = 0; i < 5; i++) {
             if (!monsterCards.get(i).getCardName().equals("Command Knight")) {
@@ -21,7 +21,7 @@ public class CommandKnight {
         }
     }
 
-    public static void abilityOfCommandKnightAtDefense(Game game, MonsterCard card) {
+    public static void defenseAbility(Game game, MonsterCard card) {
         if (isCommandKnightAlone(game.getGameBoardOfOpponentPlayerOfThisTurn())) {
             if (card.getPosition().equals(PositionMonsters.ATTACK)) {
                 game.attackToOpponentCardInAttackPosition((MonsterCard) game.getSelectedCard(), card,

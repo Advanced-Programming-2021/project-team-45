@@ -8,6 +8,7 @@ import model.card.MonsterCard;
 import model.card.PositionMonsters;
 
 public class ExploderDragon {
+
     public static int ability(Card selectedOrTargetCard, Game game) {
         int result = 0;
         MonsterCard invaderCard = (MonsterCard) game.getSelectedCard();

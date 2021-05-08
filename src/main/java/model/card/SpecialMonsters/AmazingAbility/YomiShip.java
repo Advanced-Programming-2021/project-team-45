@@ -7,7 +7,8 @@ import model.card.MonsterCard;
 import model.card.PositionMonsters;
 
 public class YomiShip {
-    public static void abilityOfYomiShip(Card selectedOrTargetCard, Game game) {
+
+    public static void ability(Card selectedOrTargetCard, Game game) {
         //int result = 0;
         MonsterCard invaderCard = (MonsterCard) game.getSelectedCard();
         MonsterCard yomiShip = (MonsterCard) selectedOrTargetCard;

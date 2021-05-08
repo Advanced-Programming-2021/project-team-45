@@ -9,10 +9,9 @@ import java.util.ArrayList;
 
 public class Texchanger {
 
-
     private static ArrayList<MonsterCard> allTexchanger = new ArrayList<>();
 
-    public static void abilityOfTexchanger(MonsterCard card, Game game) {
+    public static void ability(MonsterCard card, Game game) {
         String input1 = "نام کارت مد نظر";
         if (!allTexchanger.contains(card)) {
             allTexchanger.add(card);
@@ -66,7 +65,6 @@ public class Texchanger {
             }
         }
     }
-
 
     public static void setAllTexchanger() {
         allTexchanger.clear();
