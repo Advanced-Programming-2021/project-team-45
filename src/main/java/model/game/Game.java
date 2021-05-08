@@ -180,7 +180,7 @@ public class Game {
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 this.selectedCard = gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(cardPosition);
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
-                this.selectedCard = gameBoard.getSpellTrapField().getSpellTrapCardInOpponentMode(cardPosition);
+                this.selectedCard = gameBoard.getSpellTrapField().getOpponentSpellTrapCard(cardPosition);
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
                 this.selectedCard = gameBoard.getFieldZone().getFieldCard();
             } else {
@@ -191,7 +191,7 @@ public class Game {
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromPlayerMonsterField(cardPosition);
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
-                this.selectedCard = gameBoard.getSpellTrapField().getSpellTrapCardInPlayerMode(cardPosition);
+                this.selectedCard = gameBoard.getSpellTrapField().getPlayerSpellTrapCard(cardPosition);
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
                 this.selectedCard = gameBoard.getFieldZone().getFieldCard();
             } else {

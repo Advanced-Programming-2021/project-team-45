@@ -70,11 +70,11 @@ public class GameBoard {
         gameBoard[2][0] = String.valueOf(u);
         gameBoard[3][0] = "    ";
         for (int i = 1; i < 10; i += 2) {
-            if (!spellTrapField.isItFull((i + 1) / 2 - 1)) {
+            if (!spellTrapField.isFull((i + 1) / 2 - 1)) {
                 gameBoard[3][i] = "E ";
                 gameBoard[3][i + 1] = "   ";
             } else {
-                if (spellTrapField.getSpellTrapCardsOnField()[(i + 1) / 2 - 1].getPosition().
+                if (spellTrapField.getSpellTrapCardsPositionsArray()[(i + 1) / 2 - 1].getPosition().
                         equals(SpellsAndTrapPosition.SUMMON)) {
                     gameBoard[3][i] = "O ";
                     gameBoard[3][i + 1] = "   ";

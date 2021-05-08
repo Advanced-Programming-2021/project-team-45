@@ -46,7 +46,7 @@ public class GameErrorHandler {
                     result = true;
                 else result = true;
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
-                result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInOpponentMode(cardPosition);
+                result = gameBoard.getSpellTrapField().isThisCellOfOpponentSpellTrapFieldEmpty(cardPosition);
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
                 result = gameBoard.getFieldZone().isFull();
             } else {
@@ -58,7 +58,7 @@ public class GameErrorHandler {
                 if (gameBoard.getMonsterField().isThisCellOfPlayerMonsterFieldEmpty(cardPosition)) result = true;
                 else result = true;
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
-                result = gameBoard.getSpellTrapField().isThisCellOfSpellTrapFieldEmptyInPlayerMode(cardPosition);
+                result = gameBoard.getSpellTrapField().isThisCellOfPlayerSpellTrapFieldEmpty(cardPosition);
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
                 result = gameBoard.getFieldZone().isFull();
             } else {
