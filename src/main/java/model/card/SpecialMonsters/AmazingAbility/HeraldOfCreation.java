@@ -6,12 +6,14 @@ import model.game.fields.MonsterField;
 import model.card.Card;
 import model.card.MonsterCard;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HeraldOfCreation {
-    private static boolean canUse = true;
-    public static void abilityOfHeraldOfCreation(Game game) {
-        if(canUse) {
+    public static ArrayList<Card> heraldCards=new ArrayList<>();
+    public static void abilityOfHeraldOfCreation(Game game,Card thisHerald) {
+        if(!heraldCards.contains(thisHerald)) {
+            heraldCards.add(thisHerald);
             // one input card from hand
             Card card;
             GameBoard playerGameBoard = game.getGameBoardOfPlayerOfThisTurn();
@@ -21,13 +23,19 @@ public class HeraldOfCreation {
             playerGameBoard.getHand().addCard(monsterCard);
         }
     }
-    public static boolean isThereHeraldOfCreation(MonsterField monsterField){
+    public static Card isThereHeraldOfCreation(MonsterField monsterField){
         ArrayList<MonsterCard> cards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){
             if(cards.get(i).getCardName().equals("Herald of Creation")){
-                return true;
+                return cards.get(i);
             }
         }
-        return false;
+        try {
+            return new MonsterCard("-1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cards.get(0);
     }
+
 }
