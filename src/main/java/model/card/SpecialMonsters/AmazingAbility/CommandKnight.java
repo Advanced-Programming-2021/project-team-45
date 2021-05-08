@@ -12,11 +12,11 @@ public class CommandKnight {
     private static ArrayList<MonsterCard> allCardsThatIncreasedAttacks = new ArrayList<>();
 
     public static void abilityOfCommandKnightAtSummon(Game game) {
-        MonsterCard[] monsterCards = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().getMonstersOnField();
         for (int i = 0; i < 5; i++) {
-            if (!monsterCards[i].getCardName().equals("Command Knight")) {
-                monsterCards[i].setAttack(monsterCards[i].getAttack() + 400);
-                allCardsThatIncreasedAttacks.add(monsterCards[i]);
+            if (!monsterCards.get(i).getCardName().equals("Command Knight")) {
+                monsterCards.get(i).setAttack(monsterCards.get(i).getAttack() + 400);
+                allCardsThatIncreasedAttacks.add(monsterCards.get(i));
             }
         }
     }
@@ -34,9 +34,9 @@ public class CommandKnight {
     }
 
     private static boolean isCommandKnightAlone(GameBoard gameBoard) {
-        MonsterCard[] monsterCards = gameBoard.getMonsterField().getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards = gameBoard.getMonsterField().getMonstersOnField();
         for (int i = 0; i < 5; i++) {
-            if (!monsterCards[i].getCardName().equals("Command Knight")) {
+            if (!monsterCards.get(i).getCardName().equals("Command Knight")) {
                 return false;
             }
         }
@@ -44,9 +44,9 @@ public class CommandKnight {
     }
 
     public static void CommandKnightOnFieldWithSummonMode(MonsterCard selectedCardToSummonOrSet, MonsterField monsterField) {
-        MonsterCard[] monsterCards = monsterField.getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
         for (int i = 0; i < 5; i++) {
-            if (monsterCards[i].getCardName().equals("Command Knight")) {
+            if (monsterCards.get(i).getCardName().equals("Command Knight")) {
                 selectedCardToSummonOrSet.setAttack(selectedCardToSummonOrSet.getAttack() + 400);
 
             }

@@ -20,7 +20,7 @@ public class YomiShip {
 
     }
 
-    private static int abilityOfYomiShipInAttackPosition(MonsterCard invaderCard, MonsterCard yomiShip, Game game){
+    private static void abilityOfYomiShipInAttackPosition(MonsterCard invaderCard, MonsterCard yomiShip, Game game){
 
         if(invaderCard.getAttack() > yomiShip.getAttack()){
 
@@ -44,7 +44,7 @@ public class YomiShip {
 
                 game.getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(yomiShip);
                 game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(invaderCard);
-            } else if(yomiShip.getDefense() == invaderCard.getAttack()) result = 10;
+            }
 
         } else {
             game.setLastOpponentMonsterCard(yomiShip);

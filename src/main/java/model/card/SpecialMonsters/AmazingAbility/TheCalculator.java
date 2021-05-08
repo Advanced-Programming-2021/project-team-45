@@ -6,15 +6,17 @@ import model.card.Card;
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
 
+import java.util.ArrayList;
+
 public class TheCalculator {
 
     public static void abilityOfTheCalculator(Card selectedOrTargetCard, Game game){
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
-        MonsterCard[] monsterCards = gameBoard.getMonsterField().getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards = gameBoard.getMonsterField().getMonstersOnField();
         int sumLevels = 0;
         for(int i = 0; i < 4; i++){
-            if(monsterCards[i] != null && monsterCards[i].getPosition() == PositionMonsters.ATTACK){
-                sumLevels += monsterCards[i].getLevel();
+            if(monsterCards.get(i) != null && monsterCards.get(i).getPosition() == PositionMonsters.ATTACK){
+                sumLevels += monsterCards.get(i).getLevel();
             }
         }
         ((MonsterCard) selectedOrTargetCard).setAttack(sumLevels * 300);
