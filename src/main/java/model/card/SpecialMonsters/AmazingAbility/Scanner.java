@@ -15,7 +15,6 @@ public class Scanner {
         MonsterCard selectedMonster=game.getGameController()
                 .getACardFromGraveyardForScanner("enter a card name from graveyard:");;
         while (true){
-            // bayad voroodi gerefte she az graveyard  ((((( motmaen shodan darbare new shodan ya hamoon card))))
             if(selectedMonster==null){
                 break;
             }else{
