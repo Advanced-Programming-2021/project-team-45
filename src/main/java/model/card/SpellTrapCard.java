@@ -1,6 +1,6 @@
 package model.card;
 
-import model.Game.Game;
+import model.game.Game;
 import model.card.SpellTrapCards.effects.AddEffects;
 import model.card.SpellTrapCards.effects.Effect;
 import org.apache.poi.ss.usermodel.Cell;

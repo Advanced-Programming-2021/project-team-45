@@ -1,9 +1,10 @@
-package model.Game;
+package model.game;
 
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
 import model.card.SpecialMonsterEnum;
 import model.card.SpellTrapCard;
+import model.game.fields.MonsterField;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

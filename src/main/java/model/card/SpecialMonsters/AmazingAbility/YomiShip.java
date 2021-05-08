@@ -1,6 +1,6 @@
 package model.card.SpecialMonsters.AmazingAbility;
 
-import model.Game.Game;
+import model.game.Game;
 import model.card.Card;
 import model.card.DefensePosition;
 import model.card.MonsterCard;

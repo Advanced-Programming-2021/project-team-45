@@ -1,7 +1,7 @@
 package model.card.SpellTrapCards.effects;
 
-import model.Game.Game;
-import model.Game.MonsterField;
+import model.game.Game;
+import model.game.fields.MonsterField;
 import model.card.MonsterCard;
 import model.card.MonsterType;
 

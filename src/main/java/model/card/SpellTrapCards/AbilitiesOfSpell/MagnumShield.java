@@ -1,6 +1,6 @@
 package model.card.SpellTrapCards.AbilitiesOfSpell;
 
-import model.Game.Game;
+import model.game.Game;
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
 

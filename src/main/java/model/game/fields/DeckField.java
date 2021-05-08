@@ -1,4 +1,4 @@
-package model.Game;
+package model.game.fields;
 
 import model.card.Card;
 import model.card.Deck;

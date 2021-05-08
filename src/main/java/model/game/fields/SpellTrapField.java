@@ -1,12 +1,7 @@
-package model.Game;
+package model.game.fields;
 
-import model.card.Card;
-import model.card.MonsterCard;
 import model.card.SpellTrapCard;
 import model.user.User;
-
-
-import java.util.ArrayList;
 
 public class SpellTrapField {
     private User owner;
