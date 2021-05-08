@@ -6,13 +6,15 @@ import model.Game.MonsterField;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
 
+import java.util.ArrayList;
+
 public class MirageDragon {
 
 
     public static boolean canActiveTrapForMirageDragonOfEnemy(MonsterField monsterField){
-        MonsterCard[] monsters=monsterField.getMonstersOnField();
+        ArrayList<MonsterCard> monsters=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){
-            if(monsters[i].getSpecialMonsterEnum().equals(SpecialMonsterEnum.MIRAGE_DRAGON)){
+            if(monsters.get(i).getSpecialMonsterEnum().equals(SpecialMonsterEnum.MIRAGE_DRAGON)){
                 return false;
             }
         }

@@ -22,9 +22,9 @@ public class HeraldOfCreation {
         }
     }
     public static boolean isThereHeraldOfCreation(MonsterField monsterField){
-        MonsterCard[] cards=monsterField.getMonstersOnField();
+        ArrayList<MonsterCard> cards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){
-            if(cards[i].getCardName().equals("Herald of Creation")){
+            if(cards.get(i).getCardName().equals("Herald of Creation")){
                 return true;
             }
         }

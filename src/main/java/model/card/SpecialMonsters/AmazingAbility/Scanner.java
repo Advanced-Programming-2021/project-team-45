@@ -30,9 +30,9 @@ public class Scanner {
 
             for (int i = 0; i < 5; i++) {
                 if (game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
-                        getMonstersOnField()[i].getCardName().equals("Scanner")) {
+                        getMonstersOnField().get(i).getCardName().equals("Scanner")) {
                     scanner = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
-                            getMonstersOnField()[i];
+                            getMonstersOnField().get(i);
                 }
                 swapMonsterAndScanner(game.getGameBoardOfPlayerOfThisTurn(), scanner, selectedMonster);
             }
@@ -40,22 +40,22 @@ public class Scanner {
     }
     private static void swapMonsterAndScanner(GameBoard gameBoard,MonsterCard scanner,MonsterCard monster){
         MonsterField monsterField= gameBoard.getMonsterField();
-        MonsterCard[] monsterCards=monsterField.getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){
-            if(monsterCards[i].equals(scanner)){
-                monsterCards[i]=monster;
+            if(monsterCards.get(i).equals(scanner)){
+                monsterCards.set(i,monster);
                 convertToScanner.add(monster);
                 break;
             }
         }
     }
     public static void deleteSwapMonsterIfHadScanner(MonsterField monsterField){
-        MonsterCard[] monsterCards=monsterField.getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){
-            if(convertToScanner.contains(monsterCards[i])){
+            if(convertToScanner.contains(monsterCards.get(i))){
                 try {
-                    convertToScanner.remove(monsterCards[i]);
-                    monsterCards[i]=new MonsterCard("Scanner");
+                    convertToScanner.remove(monsterCards.get(i));
+                    monsterCards.set(i,new MonsterCard("Scanner"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -66,10 +66,10 @@ public class Scanner {
     دقت شود که موقع استفاده از این شرط این متود را درون حلقه وایل قرار بدیم چون امکان داره چنتا اسکنر رو فیلد باشه
      */
     public static MonsterCard haveScanner(MonsterField monsterField){
-        MonsterCard[] monsterCards=monsterField.getMonstersOnField();
-        for(int i=0;i<5;i++){
-            if(monsterCards[i].getCardName().equals("Scanner")){
-                return monsterCards[i];
+        ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
+        for(int i=0;i<monsterCards.size();i++){
+            if(monsterCards.get(i).getCardName().equals("Scanner")){
+                return monsterCards.get(i);
             }
         }
         try {
@@ -79,6 +79,4 @@ public class Scanner {
         }
         return null;
     }
-
-
 }

@@ -132,6 +132,4 @@ public class MonsterField {
         return monstersOnField[index] != null;
     }
 
-
-
 }
