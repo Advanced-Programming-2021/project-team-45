@@ -7,13 +7,15 @@ import model.card.MonsterType;
 
 import java.util.ArrayList;
 
-public class IncreaseAttackEffect extends Effect {
+public class IncreaseAtkDefEffect extends Effect {
 
-    private final int amount;
+    private final int attack;
+    private final int defence;
     private final MonsterType monsterType;
 
-    public IncreaseAttackEffect(int amount, MonsterType monsterType) {
-        this.amount = amount;
+    public IncreaseAtkDefEffect(int attack , int defence, MonsterType monsterType) {
+        this.attack = attack;
+        this.defence = defence;
         this.monsterType = monsterType;
     }
 
@@ -28,7 +30,8 @@ public class IncreaseAttackEffect extends Effect {
 
         for (MonsterCard monster : allMonsters) {
             if (monster.getType() == monsterType) {
-                monster.increaseAttack(amount);
+                monster.increaseAttack(attack);
+                monster.increaseDefense(defence);
             }
         }
     }
