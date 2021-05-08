@@ -1,7 +1,6 @@
 package model.card.SpellTrapCards.AbilitiesOfSpell;
 
-import model.Game.Game;
-import model.user.User;
+import model.game.Game;
 
 public class SupplySquad {
     public static boolean canUseSupply = true;

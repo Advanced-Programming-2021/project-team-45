@@ -1,8 +1,8 @@
 package model.card.SpellTrapCards.AbilitiesOfTraps;
 
-import model.Game.Game;
-import model.Game.GameBoard;
-import model.Game.Hand;
+import model.game.Game;
+import model.game.GameBoard;
+import model.game.fields.Hand;
 import model.card.Card;
 import model.card.SpellTrapCard;
 

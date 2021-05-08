@@ -1,7 +1,7 @@
 package model.card.SpellTrapCards.AbilitiesOfSpell;
 
-import model.Game.Game;
-import model.Game.GameBoard;
+import model.game.Game;
+import model.game.GameBoard;
 
 public class Raigeki {
     public static void ability(Game game) {

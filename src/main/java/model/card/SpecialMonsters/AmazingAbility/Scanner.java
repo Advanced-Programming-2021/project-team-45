@@ -1,8 +1,8 @@
 package model.card.SpecialMonsters.AmazingAbility;
 
-import model.Game.Game;
-import model.Game.GameBoard;
-import model.Game.MonsterField;
+import model.game.Game;
+import model.game.GameBoard;
+import model.game.fields.MonsterField;
 import model.card.MonsterCard;
 
 import java.io.IOException;

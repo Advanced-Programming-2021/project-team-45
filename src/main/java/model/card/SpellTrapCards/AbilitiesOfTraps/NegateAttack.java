@@ -1,6 +1,6 @@
 package model.card.SpellTrapCards.AbilitiesOfTraps;
 
-import model.Game.Game;
+import model.game.Game;
 
 public class NegateAttack {
     public static void ability(Game game){

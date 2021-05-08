@@ -1,9 +1,7 @@
 package model.card.SpellTrapCards.AbilitiesOfTraps;
 
-import model.Game.Game;
-import model.Game.GameBoard;
-import model.card.Card;
-import model.card.MonsterCard;
+import model.game.Game;
+import model.game.GameBoard;
 
 public class SolemnWarning {
     public static boolean isAMonsterSummoned = true;

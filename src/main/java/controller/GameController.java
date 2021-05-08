@@ -1,6 +1,6 @@
 package controller;
 
-import model.Game.*;
+import model.game.*;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;

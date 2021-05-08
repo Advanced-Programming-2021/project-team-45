@@ -1,4 +1,4 @@
-package model.Game;
+package model.game;
 
 import controller.GameController;
 import model.card.*;
@@ -6,6 +6,7 @@ import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
+import model.game.fields.MonsterField;
 import model.user.User;
 
 import java.util.ArrayList;

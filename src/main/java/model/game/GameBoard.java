@@ -1,8 +1,9 @@
-package model.Game;
+package model.game;
 
 import model.card.DefensePosition;
 import model.card.PositionMonsters;
 import model.card.SpellsAndTrapPosition;
+import model.game.fields.*;
 import model.user.User;
 
 

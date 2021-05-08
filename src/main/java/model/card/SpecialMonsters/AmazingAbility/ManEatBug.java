@@ -1,7 +1,7 @@
 package model.card.SpecialMonsters.AmazingAbility;
 
-import model.Game.Game;
-import model.Game.GameBoard;
+import model.game.Game;
+import model.game.GameBoard;
 import model.card.MonsterCard;
 
 public class ManEatBug {

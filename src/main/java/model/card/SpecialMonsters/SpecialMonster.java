@@ -1,6 +1,6 @@
 package model.card.SpecialMonsters;
 
-import model.Game.Game;
+import model.game.Game;
 import model.card.Card;
 import model.card.MonsterCard;
 

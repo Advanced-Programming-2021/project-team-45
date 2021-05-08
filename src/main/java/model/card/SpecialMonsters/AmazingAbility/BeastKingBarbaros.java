@@ -1,9 +1,9 @@
 package model.card.SpecialMonsters.AmazingAbility;
 
 import controller.GameController;
-import model.Game.Game;
-import model.Game.GameErrorHandler;
-import model.Game.MonsterField;
+import model.game.Game;
+import model.game.GameErrorHandler;
+import model.game.fields.MonsterField;
 import model.card.MonsterCard;
 
 import java.util.ArrayList;

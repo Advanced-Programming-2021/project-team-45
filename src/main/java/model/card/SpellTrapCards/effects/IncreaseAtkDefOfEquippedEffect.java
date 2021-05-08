@@ -1,6 +1,6 @@
 package model.card.SpellTrapCards.effects;
 
-import model.Game.Game;
+import model.game.Game;
 
 public class IncreaseAtkDefOfEquippedEffect extends Effect {
 
