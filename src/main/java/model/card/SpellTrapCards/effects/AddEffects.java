@@ -18,8 +18,19 @@ public class AddEffects {
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Beast));
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Beast_Warrior));
 
-        } else if (cardName.equals("UMIIRUKA")) {
+        } else if (cardName.equals("Umiiruka")) {
             effects.add(new IncreaseAtkDefOfTypeEffect(500, -400, MonsterType.Aqua));
+
+        } else if (cardName.equals("Sword of dark destruction")) {
+            effects.add(new IncreaseAtkDefOfEquippedEffect(400, -200,
+                    MonsterType.Fiend, MonsterType.SpellCaster));
+
+        } else if (cardName.equals("Black Pendant")) {
+            // all types
+            effects.add(new IncreaseAtkDefOfEquippedEffect(500, 0, MonsterType.Beast_Warrior,
+                    MonsterType.Warrior, MonsterType.Aqua, MonsterType.Fiend, MonsterType.Beast, MonsterType.Pyro,
+                    MonsterType.SpellCaster, MonsterType.Thunder, MonsterType.Dragon, MonsterType.Machine,
+                    MonsterType.Rock, MonsterType.Insect, MonsterType.Cyberse, MonsterType.Fairy, MonsterType.Sea_Serpent));
 
         }
 

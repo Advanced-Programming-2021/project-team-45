@@ -532,7 +532,7 @@ public class GameController extends Controller {
         return null;
     }
 
-    public ArrayList<Card> getCardFromPlayer(int n, CardField[] fields) {
+    public ArrayList<Card> getCardFromPlayer(int n, CardField... fields) {
         ArrayList<Card> selectedCards = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             while (true) {
