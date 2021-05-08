@@ -128,7 +128,7 @@ public class MonsterField extends CardField {
     public boolean isFull() {
         int fullPlace = 0;
         for (int i = 0; i < 5; i++) {
-            if (monsters != null) {
+            if (monsters.get(i) != null) {
                 fullPlace++;
             }
         }
