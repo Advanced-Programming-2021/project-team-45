@@ -561,4 +561,8 @@ public class GameController extends Controller {
         }
         return selectedCards;
     }
+
+    public void showOutput(String text){
+        playerDuelMenu.showOutput(text);
+    }
 }

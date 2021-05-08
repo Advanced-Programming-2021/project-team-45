@@ -1,9 +1,13 @@
 package model.card.SpecialMonsters.AmazingAbility;
 
+import controller.GameController;
+import model.card.MonsterType;
+import model.card.PositionMonsters;
 import model.game.Game;
 import model.game.GameBoard;
 import model.card.Card;
 import model.card.MonsterCard;
+import model.game.fields.CardField;
 
 import java.util.ArrayList;
 
@@ -12,57 +16,41 @@ public class Texchanger {
     private static ArrayList<MonsterCard> allTexchanger = new ArrayList<>();
 
     public static void ability(MonsterCard card, Game game) {
-        String input1 = "نام کارت مد نظر";
         if (!allTexchanger.contains(card)) {
             allTexchanger.add(card);
-            getCard(game.getGameBoardOfPlayerOfThisTurn(),input1);
+            Card input1 = getinput(game);
+            if (input1 != null) {
+                getCard(game.getGameBoardOfPlayerOfThisTurn(), input1, game.getGameController());
+            }
         }
     }
 
-    private static void getCard(GameBoard gameBoard, String cardName) {
-        ArrayList<Card> cards = gameBoard.getHand().getCardsInHand();
-        ArrayList<Card> cards1 = gameBoard.getDeckField().getDeck().getMainDeck();
-        ArrayList<Card> cards2 = gameBoard.getGraveyard().getGraveyardCards();
-        boolean bol = true;
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getCardName().equals(cardName)) {
-                if (cards.get(i) instanceof MonsterCard) {
-                    if (((MonsterCard) cards.get(i)).getSpecialMonsterEnum() == null) {
-                        gameBoard.getMonsterField().addMonsterToField((MonsterCard) cards.get(i));
-                        gameBoard.getHand().deleteCard(cards.get(i));
-                        bol=false;
-                        break;
-                    }
-                }
-            }
+    private static void getCard(GameBoard gameBoard, Card card, GameController gameController) {
+        if(!gameBoard.getMonsterField().isFull()){
+            gameBoard.getMonsterField().addMonsterToField((MonsterCard) card);
+            ((MonsterCard) card).setPosition(PositionMonsters.ATTACK);
+        }else{
+            gameController.showOutput("your monster field is full you can't add a new card");
         }
-        if (bol) {
-            for (int i = 0; i < cards1.size(); i++) {
-                if (cards1.get(i).getCardName().equals(cardName)) {
-                    if (cards1.get(i) instanceof MonsterCard) {
-                        if (((MonsterCard) cards1.get(i)).getSpecialMonsterEnum() == null) {
-                            gameBoard.getMonsterField().addMonsterToField((MonsterCard) cards1.get(i));
-                            gameBoard.getDeckField().getDeck().deleteCard(cardName, false);
-                            bol = false;
-                            break;
-                        }
+    }
+
+    private static Card getinput(Game game) {
+        CardField[] cardFields = {game.getGameBoardOfPlayerOfThisTurn().getDeckField(), game.getGameBoardOfPlayerOfThisTurn().getHand(),
+                game.getGameBoardOfPlayerOfThisTurn().getGraveyard()};
+        ArrayList<Card> input = game.getGameController().getCardFromPlayer(1, cardFields);
+        while (true) {
+            if (input != null) {
+                if (input.get(0) instanceof MonsterCard) {
+                    if (((MonsterCard) input.get(0)).getType().equals(MonsterType.Cyberse)) {
+                        return input.get(0);
                     }
                 }
+            } else {
+                return null;
             }
-        }
-        if (bol) {
-            for (int i = 0; i < cards2.size(); i++) {
-                if (cards2.get(i).getCardName().equals(cardName)) {
-                    if (cards2.get(i) instanceof MonsterCard) {
-                        if (((MonsterCard) cards2.get(i)).getSpecialMonsterEnum() == null) {
-                            gameBoard.getMonsterField().addMonsterToField(((MonsterCard) cards2.get(i)));
-                            gameBoard.getGraveyard().deleteCardFromGraveyard((MonsterCard) cards2.get(i));
-                            bol = false;
-                            break;
-                        }
-                    }
-                }
-            }
+            game.getGameController().showOutput("your input is not correct please try again");
+            input.clear();
+            input = game.getGameController().getCardFromPlayer(1, cardFields);
         }
     }
 
