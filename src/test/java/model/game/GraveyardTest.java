@@ -51,21 +51,32 @@ class GraveyardTest {
 
     @Test
     void deleteCardFromGraveyard() {
-
+        assertTrue(this.graveyard.doesCardExist("Axe Raider"));
+        this.graveyard.deleteCardFromGraveyard(Card.getCardByName("Axe Raider"));
+        assertFalse(this.graveyard.doesCardExist("Axe Raider"));
     }
 
     @Test
     void getGraveyardStr() {
+        ArrayList<String> expectedGraveyardStr = new ArrayList<>();
+        expectedGraveyardStr.add("1." + "Suijin" + ":" + Card.getCardByName("Suijin").getCardDescription());
+        expectedGraveyardStr.add("2." + "Crab Turtle" + ":" + Card.getCardByName("Crab Turtle").getCardDescription());
+        expectedGraveyardStr.add("3." + "Trap Hole" + ":" + Card.getCardByName("Trap Hole").getCardDescription());
 
+        assertEquals(expectedGraveyardStr, this.graveyard.getGraveyardStr());
+        this.graveyard.deleteCardFromGraveyard(Card.getCardByName("Suijin"));
+        this.graveyard.deleteCardFromGraveyard(Card.getCardByName("Crab Turtle"));
+        this.graveyard.deleteCardFromGraveyard(Card.getCardByName("Trap Hole"));
+
+        ArrayList<String> secondExpectedGraveyardStr = new ArrayList<>();
+        secondExpectedGraveyardStr.add("graveyard empty");
+
+        assertEquals(secondExpectedGraveyardStr, this.graveyard.getGraveyardStr());
     }
 
-    @Test
-    void toStringTest() {
-
-    }
 
     @AfterEach
     void setAfterTest() {
-
+        this.graveyard = null;
     }
 }
