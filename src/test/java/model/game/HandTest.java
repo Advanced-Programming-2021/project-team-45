@@ -2,6 +2,7 @@ package model.game;
 
 import model.card.Card;
 import model.game.fields.Hand;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HandTest {
 
-    Hand hand = new Hand();
+    private Hand hand = new Hand();
 
     @BeforeAll
     public void beforeAll() {
@@ -55,21 +56,32 @@ class HandTest {
 
     @Test
     void deleteCard() {
-
+        assertTrue(this.hand.doesCardExist("Fireyarou"));
+        this.hand.deleteCard(Card.getCardByName("Horn Imp"));
+        assertFalse(this.hand.doesCardExist("Fireyarou"));
     }
 
     @Test
     void doesCardExistInThisPlace() {
-
+        assertTrue(this.hand.doesCardExistInThesePlace(1));
+        assertFalse(this.hand.doesCardExistInThesePlace(5));
     }
 
     @Test
     void getCardFromHand() {
-
+        assertSame(Card.getCardByName("Battle OX"), this.hand.getCardFromHand(2));
+        assertNotSame(Card.getCardByName("Horn Imp"), this.hand.getCardFromHand(3));
     }
 
     @Test
     void deleteCardWithNumberOfIt() {
+        assertTrue(this.hand.doesCardExist("Yomi Ship"));
+        this.hand.deleteCardWithNumberOfIt(3);
+        assertFalse(this.hand.doesCardExist("Yomi Ship"));
+    }
 
+    @AfterAll
+    void setAfterTest() {
+        this.hand = null;
     }
 }
