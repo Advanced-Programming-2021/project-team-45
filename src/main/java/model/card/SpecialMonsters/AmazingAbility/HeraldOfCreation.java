@@ -30,7 +30,7 @@ public class HeraldOfCreation {
             }
         }
     }
-    
+
     private static MonsterCard getMonster(Game game ,Card DeletedCard){
         CardField[] cardFields={game.getGameBoardOfPlayerOfThisTurn().getGraveyard()};
         ArrayList<Card>  card=game.getGameController().getCardFromPlayer(1,cardFields);
