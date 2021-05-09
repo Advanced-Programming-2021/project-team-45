@@ -1,14 +1,24 @@
 package model.card.SpellTrapCards.effects;
 
 import model.card.MonsterType;
+import model.game.fields.CardFieldType;
 
 import java.util.ArrayList;
 
 public class AddEffects {
     public static ArrayList<Effect> getCardEffects(String cardName) {
         ArrayList<Effect> effects = new ArrayList<>();
-        
-        if (cardName.equals("Yami")) {
+
+        if (cardName.equals("Raigeki")) {
+            effects.add(new DestroyAllCardsOfFieldEffect(CardFieldType.OPPONENT_MONSTER));
+
+        } else if (cardName.equals("Harpie's Feather Duster")) {
+            effects.add(new DestroyAllCardsOfFieldEffect(CardFieldType.OPPONENT_SPELL_TRAP));
+
+        } else if (cardName.equals("Dark Hole")) {
+            effects.add(new DestroyAllCardsOfFieldEffect(CardFieldType.PLAYER_MONSTER, CardFieldType.OPPONENT_MONSTER));
+
+        } else if (cardName.equals("Yami")) {
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Fiend));
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.SpellCaster));
             effects.add(new IncreaseAtkDefOfTypeEffect(-200, -200, MonsterType.Fairy));
