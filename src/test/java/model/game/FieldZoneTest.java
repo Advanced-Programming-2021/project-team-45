@@ -1,27 +1,37 @@
 package model.game;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 class FieldZoneTest {
-    @BeforeEach
+    @BeforeAll
     public void set() {
 
     }
 
     @Test
-    public void getFieldCard() {
+    void doesCardExist() {
 
     }
 
     @Test
-    public void isFull() {
+    void getFieldCard() {
 
     }
 
-    @AfterEach
-    void setAfterTest() {
+    @Test
+    void setFieldCard() {
 
     }
+
+    @Test
+    void isFull() {
+
+    }
+
+    @AfterAll
+    public void setAfterTest() {
+
+    }
+
 }
