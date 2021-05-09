@@ -15,7 +15,7 @@ class HandTest {
     private Hand hand = new Hand();
 
     @BeforeAll
-    public void beforeAll() {
+    void beforeAll() {
         this.hand.addCard(Card.getCardByName("Axe Raider"));
         this.hand.addCard(Card.getCardByName("Battle OX"));
         this.hand.addCard(Card.getCardByName("Yomi Ship"));
@@ -27,7 +27,7 @@ class HandTest {
     void doesCardExist() {
         assertTrue(this.hand.doesCardExist("Yomi Ship"));
         assertTrue(this.hand.doesCardExist("Horn Imp"));
-        assertFalse(this.hand.doesCardExist("Baby Dragon"));
+        assertFalse(this.hand.doesCardExist("Baby dragon"));
     }
 
     @Test
@@ -49,9 +49,9 @@ class HandTest {
 
     @Test
     void addCard() {
-        assertFalse(this.hand.doesCardExist("Baby Dargon"));
+        assertFalse(this.hand.doesCardExist("Baby dragon"));
         this.hand.addCard(Card.getCardByName("Baby Dragon"));
-        assertTrue(this.hand.doesCardExist("Baby Dragon"));
+        assertTrue(this.hand.doesCardExist("Baby dragon"));
     }
 
     @Test
