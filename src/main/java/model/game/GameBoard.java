@@ -91,9 +91,10 @@ public class GameBoard {
                 gameBoard[4][i] = "E ";
                 gameBoard[4][i + 1] = "   ";
             } else {
-                if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getPosition()
+                if (monsterField.getMonstersOnField().get(((i + 1) / 2 - 1)).getPosition()
                         .equals(PositionMonsters.DEFENSE)) {
-                    if (monsterField.getMonstersOnField()[((i + 1) / 2 - 1)].getDefenceMode().equals(DefensePosition.DH)) {
+                    if (monsterField.getMonstersOnField().get(((i + 1) / 2 - 1)).getDefenceMode().
+                            equals(DefensePosition.DH)) {
                         gameBoard[4][i] = "DH";
                         gameBoard[4][i + 1] = "   ";
                     } else {
