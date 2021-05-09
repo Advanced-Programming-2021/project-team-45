@@ -17,7 +17,9 @@ class ShopTest {
 
     @Test
     void doesCardExist() {
-
+        Shop shop = new Shop("hajji");
+        assertTrue(shop.doesCardExist("Yomi Ship"));
+        assertTrue(shop.doesCardExist("Horn Imp"));
     }
 
     @Test
