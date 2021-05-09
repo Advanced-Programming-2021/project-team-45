@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class GraveyardTest {
     @BeforeEach
     public void set() {
@@ -11,7 +13,22 @@ class GraveyardTest {
     }
 
     @Test
-    void addCardToGraveYard() {
+    void getGraveyardCards() {
+
+    }
+
+    @Test
+    void doesCardExist() {
+
+    }
+
+    @Test
+    void getCardByName() {
+
+    }
+
+    @Test
+    void addCardToGraveyard() {
 
     }
 
@@ -21,17 +38,12 @@ class GraveyardTest {
     }
 
     @Test
-    void doesCardExistInGraveyard() {
-
-    }
-
-    @Test
-    void getCardFromGraveyard() {
-
-    }
-
-    @Test
     void getGraveyardStr() {
+
+    }
+
+    @Test
+    void toStringTest() {
 
     }
 
