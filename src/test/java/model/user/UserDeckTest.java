@@ -5,6 +5,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserDeckTest {
@@ -49,7 +51,8 @@ class UserDeckTest {
 
     @Test
     void isActiveDeckValid() {
-
+        User user = User.getUserByUsername("hajji");
+        assertFalse(user.getUserDeck().isActiveDeckValid());
     }
 
     @Test
@@ -69,12 +72,19 @@ class UserDeckTest {
 
     @Test
     void getActiveDeckStr() {
-
+        User user = User.getUserByUsername("hajji");
+        String expected = "deck3: main deck 0, side deck 0, invalid";
+        assertEquals(expected, user.getUserDeck().getActiveDeckStr());
     }
 
     @Test
     void getSortedOtherDeckStr() {
-
+        User user = User.getUserByUsername("hajji");
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("deck1");
+        expected.add("deck2");
+        expected.add("deck4");
+        assertEquals(expected, user.getUserDeck().getSortedOtherDeckStr());
     }
 
     @AfterAll
