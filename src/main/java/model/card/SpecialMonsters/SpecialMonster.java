@@ -70,6 +70,10 @@ public class SpecialMonster {
             HeraldOfCreation.abilityOfHeraldOfCreation(game,HeraldOfCreation
                     .isThereHeraldOfCreation(game.getGameBoardOfPlayerOfThisTurn().getMonsterField()));
         }
+
+        if(Tricky.isThereTricky(game.getGameBoardOfPlayerOfThisTurn().getHand()).getCardName().equals("The Tricky")){
+            Tricky.ability(game,(MonsterCard) Tricky.isThereTricky(game.getGameBoardOfPlayerOfThisTurn().getHand()));
+        }
     }
 
     private static void changePosition(Card selectedOrTargetCard, Game game){
