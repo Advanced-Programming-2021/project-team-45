@@ -18,10 +18,13 @@ public class AddEffects {
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Beast));
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Beast_Warrior));
 
-        } else if (cardName.equals("Umiiruka")) {
+        } else if (cardName.equals("Closed Forest")) {
+            effects.add(new ClosedForestEffect());
+
+        } else if (cardName.equals("UMIIRUKA")) {
             effects.add(new IncreaseAtkDefOfTypeEffect(500, -400, MonsterType.Aqua));
 
-        } else if (cardName.equals("Sword of dark destruction")) {
+        } else if (cardName.equals("Sword of Dark Destruction")) {
             effects.add(new IncreaseAtkDefOfEquippedEffect(400, -200,
                     MonsterType.Fiend, MonsterType.SpellCaster));
 
@@ -32,6 +35,12 @@ public class AddEffects {
                     MonsterType.SpellCaster, MonsterType.Thunder, MonsterType.Dragon, MonsterType.Machine,
                     MonsterType.Rock, MonsterType.Insect, MonsterType.Cyberse, MonsterType.Fairy, MonsterType.Sea_Serpent));
 
+        } else if (cardName.equals("United We Stand")) {
+            effects.add(new UnitedWeStandEffect());
+
+        } else if (cardName.equals("Magnum Shield")) {
+            effects.add(new MagnumShieldEffect());
+            
         }
 
         return effects;
