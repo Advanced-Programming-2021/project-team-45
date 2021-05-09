@@ -1,14 +1,15 @@
 package model.user;
 
 import model.card.Card;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    @BeforeEach
+    @BeforeAll
     public void setUp() {
         new User("test1", "test1", "t1");
         new User("test2", "test2", "t2");
@@ -28,6 +29,9 @@ class UserTest {
 
     @Test
     void getUserByUsername() {
+        assertEquals("test1", User.getUserByUsername("test1"));
+        assertNotEquals("test2", User.getUserByUsername("test3"));
+        assertEquals("test2", User.getUserByUsername("test2"));
     }
 
     @Test
@@ -55,5 +59,13 @@ class UserTest {
         assertNotEquals(user2, user1);
         assertNotEquals(user1, new Card("test"));
         assertEquals(user3, user1);
+    }
+
+    @AfterAll
+    public void setAfterTest() {
+        User.deleteUserByUsername("test1");
+        User.deleteUserByUsername("test2");
+        User.deleteUserByUsername("test3");
+        User.deleteUserByUsername("test4");
     }
 }
