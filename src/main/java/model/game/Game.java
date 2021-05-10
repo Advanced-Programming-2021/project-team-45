@@ -278,7 +278,7 @@ public class Game {
         }
     }
 
-    public void summonMonster() {
+    public void  summonMonster() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
                 getGameBoardOfPlayerOfThisTurn().getMonsterField());

@@ -494,15 +494,15 @@ public class DuelMenu extends Menu {
         System.out.println(answer);
     }
 
-    public String getInputNumberOfFieldForSpecialMonster(String view){
+    public String getInputNumberOfFieldForSpecialMonster(String view) {
         System.out.println(view);
-        Pattern nums=Pattern.compile("^\\d$");
+        Pattern nums = Pattern.compile("^\\d$");
         while (true) {
             String input = getInput();
             if (input != null) {
                 Matcher matcher = nums.matcher(input);
                 if (matcher.find()) {
-                    if(Integer.parseInt(input)<6 && Integer.parseInt(input)>0) {
+                    if (Integer.parseInt(input) < 6 && Integer.parseInt(input) > 0) {
                         return input;
                     }
                 }
@@ -513,10 +513,10 @@ public class DuelMenu extends Menu {
         }
     }
 
-    public String getCardFromGraveYard(String view){
+    public String getCardFromGraveYard(String view) {
         System.out.println(view);
-        String input=getInput();
-        
+        String input = getInput();
+
         return input;
 
     }
