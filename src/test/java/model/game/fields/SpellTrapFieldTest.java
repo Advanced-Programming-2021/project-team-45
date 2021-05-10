@@ -58,26 +58,35 @@ class SpellTrapFieldTest {
         assertTrue(spellTrapField.doesCardExist("Solemn Warning"));
         spellTrapField.deleteAndDestroySpellTrap((SpellTrapCard) Card.getCardByName("Solemn Warning"));
         assertFalse(spellTrapField.doesCardExist("Solemn Warning"));
+        assertTrue(graveyard.doesCardExist("Solemn Warning"));
     }
 
     @Test
     void isFull() {
-
+        assertFalse(spellTrapField.isFull());
+        spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Solemn Warning"));
+        spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Forest"));
+        spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Closed Forest"));
+        assertTrue(spellTrapField.isFull());
     }
 
     @Test
     void isThisCellOfPlayerSpellTrapFieldEmpty() {
-
+        assertFalse(spellTrapField.isThisCellOfPlayerSpellTrapFieldEmpty(5));
+        spellTrapField.deleteAndDestroySpellTrap((SpellTrapCard) Card.getCardByName("Closed Forest"));
+        assertTrue(spellTrapField.isThisCellOfPlayerSpellTrapFieldEmpty(5));
     }
 
     @Test
     void isThisCellOfOpponentSpellTrapFieldEmpty() {
-
+        assertFalse(spellTrapField.isThisCellOfOpponentSpellTrapFieldEmpty(1));
+        assertTrue(spellTrapField.isThisCellOfOpponentSpellTrapFieldEmpty(4));
     }
 
     @Test
     void isFullPlace() {
-
+        assertFalse(spellTrapField.isFull(3));
+        assertFalse(spellTrapField.isFull(4));
     }
 
     @Test
@@ -92,7 +101,9 @@ class SpellTrapFieldTest {
 
     @AfterAll
     public void setAfterTest() {
-
+        User.deleteUserByUsername("hajji");
+        spellTrapField = null;
+        graveyard = null;
     }
 
 }
