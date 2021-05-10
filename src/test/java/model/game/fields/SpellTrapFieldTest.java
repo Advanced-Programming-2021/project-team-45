@@ -34,8 +34,8 @@ class SpellTrapFieldTest {
     void getSpellTrapCardsPositionsArray() {
         SpellTrapCard[] expectedSpellTrapCards = new SpellTrapCard[5];
         expectedSpellTrapCards[0] = (SpellTrapCard) Card.getCardByName("Time Seal");
-        expectedSpellTrapCards[0] = (SpellTrapCard) Card.getCardByName("Negate Attack");
-        expectedSpellTrapCards[0] = (SpellTrapCard) Card.getCardByName("Solemn Warning");
+        expectedSpellTrapCards[1] = (SpellTrapCard) Card.getCardByName("Negate Attack");
+        expectedSpellTrapCards[2] = (SpellTrapCard) Card.getCardByName("Solemn Warning");
 
         assertArrayEquals(expectedSpellTrapCards, spellTrapField.getSpellTrapCardsPositionsArray());
     }
