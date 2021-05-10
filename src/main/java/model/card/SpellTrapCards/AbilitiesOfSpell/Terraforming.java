@@ -8,7 +8,7 @@ public class Terraforming {
     public static void ability(Game game){
         GameBoard playerGameBoard = game.getGameBoardOfPlayerOfThisTurn();
         if(playerGameBoard.getHand().getCardsInHand().size() < 6){
-            Card card = playerGameBoard.getDeckField().getFieldCard();
+            Card card = playerGameBoard.getDeckField().getFieldSpell();
             playerGameBoard.getHand().addCard(card);
         }
     }

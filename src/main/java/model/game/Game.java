@@ -302,6 +302,17 @@ public class Game {
         selectedCard = null;
     }
 
+    public void specialSummon(MonsterCard monster) {
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        CommandKnight.CommandKnightOnFieldWithSummonMode(monster,
+                getGameBoardOfPlayerOfThisTurn().getMonsterField());
+        if (SpecialMonster.isSelectedCardASpecialMonster(monster)) {
+            SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, this);
+        }
+        monster.summon();
+        gameBoard.getMonsterField().addMonsterToField(monster);
+    }
+
     public void setMonster() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;

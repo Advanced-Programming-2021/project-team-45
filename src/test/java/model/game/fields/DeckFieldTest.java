@@ -43,7 +43,7 @@ class DeckFieldTest {
     @Test
     void getFieldCard() {
         User user = User.getUserByUsername("hajji");
-        Card card = deckField.getFieldCard();
+        Card card = deckField.getFieldSpell();
         assertTrue(card instanceof SpellTrapCard);
         assertTrue(((SpellTrapCard) card).getIcon().equals("Field"));
     }

@@ -22,7 +22,7 @@ public class MonsterRebornEffect extends Effect {
         }
 
         MonsterCard monster = (MonsterCard) cards.get(0);
-
+        game.specialSummon(monster);
     }
 
     private void initializeFields(Game game) {

@@ -2,6 +2,7 @@ package model.game.fields;
 
 import model.card.Card;
 import model.card.Deck;
+import model.card.SpellAndTrapIcon;
 import model.card.SpellTrapCard;
 import model.user.User;
 
@@ -46,17 +47,21 @@ public class DeckField extends CardField {
         return card;
     }
 
-    public Card getFieldCard() {
+    public Card getFieldSpell() {
         for (int i = 0; i < mainDeck.size(); i++) {
             Card card = mainDeck.get(i);
             if (card instanceof SpellTrapCard) {
-                if (((SpellTrapCard) card).getIcon().equals("Field")) {
+                if (((SpellTrapCard) card).getIcon() == SpellAndTrapIcon.FIELD) {
                     mainDeck.remove(i);
                     return card;
                 }
             }
         }
         return null;
+    }
+
+    public boolean doesFieldSpellExist() {
+        return getFieldSpell() != null;
     }
 
     public Deck getDeck() {

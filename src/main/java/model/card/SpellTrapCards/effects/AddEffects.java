@@ -9,7 +9,13 @@ public class AddEffects {
     public static ArrayList<Effect> getCardEffects(String cardName) {
         ArrayList<Effect> effects = new ArrayList<>();
 
-        if (cardName.equals("Raigeki")) {
+        if (cardName.equals("Monster Reborn")) {
+            effects.add(new MonsterRebornEffect());
+
+        } else if (cardName.equals("Pot of Greed")) {
+            effects.add(new DrawCardEffect(2));
+
+        } else if (cardName.equals("Raigeki")) {
             effects.add(new DestroyAllCardsOfFieldEffect(CardFieldType.OPPONENT_MONSTER));
 
         } else if (cardName.equals("Harpie's Feather Duster")) {
