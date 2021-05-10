@@ -78,7 +78,7 @@ public class GameErrorHandler {
 
     public boolean isCardInHand() {
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
-        return gameBoard.getHand().doesCardExistInHand(game.getSelectedCard());
+        return gameBoard.getHand().doesCardExist(game.getSelectedCard().getCardName());
     }
 
     public boolean isMonsterFieldFull() {
@@ -97,7 +97,7 @@ public class GameErrorHandler {
 
     public boolean isThereSelectedCardInMonsterField() {
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
-        return gameBoard.getMonsterField().doesExistCardInMonsterField(game.getSelectedCard());
+        return gameBoard.getMonsterField().doesCardExist(game.getSelectedCard().getCardName());
     }
 
     //CHANGE POSITION:
@@ -147,7 +147,7 @@ public class GameErrorHandler {
 
     public boolean isSelectedCardInHand() {
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
-        return gameBoard.getHand().doesCardExistInHand(game.getSelectedCard());
+        return gameBoard.getHand().doesCardExist(game.getSelectedCard().getCardName());
     }
 
     public boolean isThereEnoughCardsToTribute(MonsterCard monster) {

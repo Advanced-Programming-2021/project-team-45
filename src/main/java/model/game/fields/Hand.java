@@ -35,6 +35,10 @@ public class Hand extends CardField {
         return hand;
     }
 
+    public Card getCardFromHand(int handIndex) {
+        return hand.get(handIndex - 1);
+    }
+
     public void addCard(Card card) {
         hand.add(card);
     }
@@ -45,10 +49,6 @@ public class Hand extends CardField {
 
     public boolean doesCardExistInThesePlace(int handIndex) {
         return hand.get(handIndex - 1) != null;
-    }
-
-    public Card getCardFromHand(int handIndex) {
-        return hand.get(handIndex - 1);
     }
 
     public void deleteCardWithNumberOfIt(int num) {
