@@ -91,7 +91,8 @@ class SpellTrapFieldTest {
 
     @Test
     void doesSpellTrapCardExistInField() {
-
+        assertTrue(spellTrapField.doesSpellTrapCardExistInField((SpellTrapCard) Card.getCardByName("Closed Forest")));
+        assertFalse(spellTrapField.doesSpellTrapCardExistInField((SpellTrapCard) Card.getCardByName("Magic Jammer")));
     }
 
     @Test
