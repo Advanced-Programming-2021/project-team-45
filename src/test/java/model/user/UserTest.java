@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     @BeforeAll
-    public void setUp() {
+    public static void setUp() {
         new User("test1", "test1", "t1");
         new User("test2", "test2", "t2");
         new User("test3", "test3", "t3");
@@ -62,7 +62,7 @@ class UserTest {
     }
 
     @AfterAll
-    public void setAfterTest() {
+    public static void setAfterTest() {
         User.deleteUserByUsername("test1");
         User.deleteUserByUsername("test2");
         User.deleteUserByUsername("test3");
