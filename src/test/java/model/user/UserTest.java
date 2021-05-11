@@ -29,9 +29,9 @@ class UserTest {
 
     @Test
     void getUserByUsername() {
-        assertEquals("test1", User.getUserByUsername("test1"));
-        assertNotEquals("test2", User.getUserByUsername("test3"));
-        assertEquals("test2", User.getUserByUsername("test2"));
+        assertEquals("test1", User.getUserByUsername("test1").getUsername());
+        assertNotEquals("test2", User.getUserByUsername("test3").getUsername());
+        assertEquals("test2", User.getUserByUsername("test2").getUsername());
     }
 
     @Test

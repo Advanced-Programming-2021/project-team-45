@@ -19,10 +19,8 @@ public class AdvancedRitualArtEffect extends Effect {
                 int numberOfCards = getNumberOfCardsHaveToRitual(game);
                 ArrayList<Card> cardsForRitual = game.getGameController().
                         getCardFromPlayer(numberOfCards, cardFieldsMonsterField);
-
                 if (canInputThisMonsterOnField(cardsForRitual, (MonsterCard) ritualCard.get(0))) {
                     specialSummon(cardsForRitual, ritualCard.get(0), game);
-
                 } else {
                     game.getGameController().showOutput("these selected card haven't required level for ritual");
                 }

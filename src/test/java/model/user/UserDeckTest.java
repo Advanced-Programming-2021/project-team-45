@@ -12,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDeckTest {
 
     @BeforeAll
-    public void set() {
+    public static void set() {
         User user = new User("hajji", "hajji", "hajji");
         user.getUserDeck().createDeck("deck1", user);
         user.getUserDeck().createDeck("deck2", user);
         user.getUserDeck().createDeck("deck3", user);
+        user.getUserDeck().activateDeck("deck3");
     }
 
     @Test
@@ -37,7 +38,9 @@ class UserDeckTest {
     @Test
     void activateDeck() {
         User user = User.getUserByUsername("hajji");
+        user.getUserDeck().deleteDeckFromUserDecks("deck3");
         assertNull(user.getUserDeck().getActiveDeck());
+        user.getUserDeck().createDeck("deck3", user);
         user.getUserDeck().activateDeck("deck3");
         assertNotNull(user.getUserDeck().getActiveDeck());
     }
@@ -45,7 +48,6 @@ class UserDeckTest {
     @Test
     void doesActiveDeckExist() {
         User user = User.getUserByUsername("hajji");
-        user.getUserDeck().activateDeck("deck3");
         assertTrue(user.getUserDeck().doesActiveDeckExist());
     }
 
@@ -81,14 +83,14 @@ class UserDeckTest {
     void getSortedOtherDeckStr() {
         User user = User.getUserByUsername("hajji");
         ArrayList<String> expected = new ArrayList<>();
-        expected.add("deck1");
-        expected.add("deck2");
-        expected.add("deck4");
+        expected.add("deck1: main deck 0, side deck 0, valid");
+        expected.add("deck2: main deck 0, side deck 0, valid");
+
         assertEquals(expected, user.getUserDeck().getSortedOtherDeckStr());
     }
 
     @AfterAll
-    public void setAfterTest() {
+    public static void setAfterTest() {
         User.deleteUserByUsername("hajji");
     }
 }

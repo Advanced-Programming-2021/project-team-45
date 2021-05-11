@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LifepointTest {
     @BeforeAll
-    public void set() {
+    public static void set() {
         User user =new User("hajji", "hajji", "hajji");
     }
 
     @Test
     void getLifepoint(){
-        assertEquals(8000, User.getUserByUsername("hajji").getLifepoint().getLifepoint());
+        assertEquals(2345, User.getUserByUsername("hajji").getLifepoint().getLifepoint());
     }
 
     @Test
@@ -26,7 +26,7 @@ class LifepointTest {
     @Test
     void increaseLifepoint() {
         User.getUserByUsername("hajji").getLifepoint().increaseLifepoint(441);
-        assertEquals(8441, User.getUserByUsername("hajji").getLifepoint().getLifepoint());
+        assertEquals(2786, User.getUserByUsername("hajji").getLifepoint().getLifepoint());
     }
 
     @Test
@@ -36,7 +36,7 @@ class LifepointTest {
     }
 
     @AfterAll
-    public void setAfterTest() {
+    public static void setAfterTest() {
         User.deleteUserByUsername("hajji");
     }
 }

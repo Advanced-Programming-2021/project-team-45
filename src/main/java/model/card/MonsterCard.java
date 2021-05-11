@@ -41,6 +41,7 @@ public class MonsterCard extends Card {
         this.cardDescription = data[7];
         this.price = (int) Double.parseDouble(data[8]);
         checkSpecialMonster(this);
+        this.speed=setMonsterSpeed(this);
     }
 
     public static String[][] allDataAboutMonster() {
@@ -306,6 +307,14 @@ public class MonsterCard extends Card {
             this.type = MonsterType.Fairy;
         } else if (type.equals("Sea Serpent")) {
             this.type = MonsterType.Sea_Serpent;
+        }
+    }
+
+    private int setMonsterSpeed(MonsterCard card){
+        if(card.getSpecial()==null){
+            return 0;
+        }else {
+            return 1;
         }
     }
 
