@@ -20,7 +20,7 @@ public class AdvancedRitualArtEffect extends Effect {
                 ArrayList<Card> cardsForRitual = game.getGameController().
                         getCardFromPlayer(numberOfCards, cardFieldsMonsterField);
                 if (canInputThisMonsterOnField(cardsForRitual, (MonsterCard) ritualCard.get(0))) {
-                    specialSummon(cardsForRitual,ritualCard.get(0),game);
+                    specialSummon(cardsForRitual, ritualCard.get(0), game);
                 } else {
                     game.getGameController().showOutput("this selected card haven't required level for ritual");
                 }
@@ -62,7 +62,7 @@ public class AdvancedRitualArtEffect extends Effect {
         ArrayList<MonsterCard> cardsOnField = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().getMonstersOnField();
         for (int j = 0; j < cards.size(); j++) {
             for (int i = 0; i < cardsOnField.size(); i++) {
-                if (cardsOnField.get(i).equals(cards.get(j))){
+                if (cardsOnField.get(i).equals(cards.get(j))) {
                     game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster(cardsOnField.get(i));
                 }
             }

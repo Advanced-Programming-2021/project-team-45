@@ -12,6 +12,9 @@ public class AddEffects {
         if (cardName.equals("Monster Reborn")) {
             effects.add(new MonsterRebornEffect());
 
+        } else if (cardName.equals("Terraforming")) {
+            effects.add(new TerraformingEffect());
+
         } else if (cardName.equals("Pot of Greed")) {
             effects.add(new DrawCardEffect(2));
 
