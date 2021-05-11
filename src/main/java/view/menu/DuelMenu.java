@@ -521,6 +521,11 @@ public class DuelMenu extends Menu {
 
     }
 
+    public int getNumber(String view){
+        System.out.println(view);
+        return scanner.nextInt();
+    }
+
     @Override
     public void show() {
     }

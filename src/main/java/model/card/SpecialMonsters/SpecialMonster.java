@@ -10,7 +10,6 @@ import model.card.SpecialMonsters.AmazingAbility.*;
 import java.util.Objects;
 
 public class SpecialMonster {
-    private EffectPlace effectPlace;;
 
     public static void specialMonsterController(Card selectedOrTargetCard, EffectPlace effectPlace, Game game) {
         if (effectPlace.equals(EffectPlace.DESTROY)) {
@@ -20,7 +19,7 @@ public class SpecialMonster {
             summonEffectPlace(selectedOrTargetCard,game);
 
         } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
-            changeTurnEffectPlace(selectedOrTargetCard,game);
+            changeTurnEffectPlace(game);
 
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             changePosition(selectedOrTargetCard,game);
@@ -58,7 +57,7 @@ public class SpecialMonster {
         }
     }
 
-    private static void changeTurnEffectPlace(Card selectedOrTargetCard, Game game){
+    private static void changeTurnEffectPlace(Game game){
         while (Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn().getMonsterField()).getCardName().
                 equals("Scanner")){
             Scanner.ability(game,Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn()
