@@ -8,25 +8,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CardInventoryTest {
     @BeforeAll
-    static void set() {
+    public static void setBeforeTest() {
         User user = new User("amir", "1380", "hajji");
+        user.getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
         user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
+        user.getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
         user.getUserDeck().createDeck("me", user);
+        user.getUserDeck().getDeckByName("me").addCard("Battle OX", false, user);
         user.getUserDeck().getDeckByName("me").addCard("Yomi Ship", false, user);
     }
 
-    @Test
+   @Test
     void addCardToCardInventory(){
-        User.getUserByUsername("amir").getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
         assertEquals(1, User.getUserByUsername("amir").getCardInventory().cardsCount.get("Battle OX"));
+        User.getUserByUsername("amir").getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
+        assertEquals(2, User.getUserByUsername("amir").getCardInventory().cardsCount.get("Battle OX"));
     }
 
     @Test
     void getCardCount() {
-        User.getUserByUsername("amir").getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
-        User.getUserByUsername("amir").getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
-        assertEquals(2, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
+        User user = User.getUserByUsername("amir");
+        assertEquals(0, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
+        user.getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
+        assertEquals(1, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
+
     }
+
     @Test
     void doesCardExistToAddToDeck() {
         User user = User.getUserByUsername("amir");
@@ -40,7 +47,7 @@ class CardInventoryTest {
     }
 
     @AfterAll
-    public void setAfterTest() {
+    public static void setAfterTest() {
         User.deleteUserByUsername("amir");
     }
 }

@@ -1,5 +1,7 @@
 package model.card;
 
+import model.Shop;
+import model.user.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -9,8 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class CardTest {
 
     @BeforeAll
-    public void set() {
-
+    public static void setBeforeTest() {
+        User user = new User("hajji", "hajji", "hajji");
+        user.increaseMoney(3000);
+        Shop shop = new Shop("hajji");
+        shop.buy("Yomi Ship");
     }
 
     @Test
@@ -22,15 +27,15 @@ class CardTest {
 
     @Test
     void getCardName() {
-        assertEquals("Axe Raider", Card.getCardByName("Axe Raider"));
+        assertEquals("Axe Raider", Card.getCardByName("Axe Raider").getCardName());
         assertNotEquals("Yomi Ship", Card.getCardByName("Horn Imp").getCardName());
     }
 
     @Test
     void getCardDescription() {
-        assertEquals("A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\n",
+        assertEquals("A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
                 Card.getCardByName("Horn Imp").getCardDescription());
-        assertNotEquals("A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\n",
+        assertNotEquals("A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
                 Card.getCardByName("Axe Raider").getCardDescription());
     }
 
@@ -42,18 +47,20 @@ class CardTest {
 
     @Test
     void getOwner() {
-
+        User user = User.getUserByUsername("hajji");
+        Card card = user.getCardInventory().getCardByCardName("Yomi Ship");
+        assertSame(user, card.getOwner());
     }
 
     @Test
     void showCard() {
-        assertEquals("Name: Horn Imp\n" + "Level: 4\n" + "Type: Normal\n" + "ATK: 1300\n" + "DEF: 1000\n" +
+        assertEquals("Name: Horn Imp\n" + "Level: 4\n" + "Type: Fiend\n" + "ATK: 1300\n" + "DEF: 1000\n" +
                 "Description: A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\n",
-                Card.getCardByName("Horn Imp").getCardDescription());
+                Card.showCard(Card.getCardByName("Horn Imp")));
     }
 
     @AfterAll
-    public void setAfterTest() {
-
+    public static void setAfterTest() {
+        User.deleteUserByUsername("hajji");
     }
 }
