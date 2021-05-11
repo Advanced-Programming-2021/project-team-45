@@ -565,4 +565,8 @@ public class GameController extends Controller {
     public void showOutput(String text){
         playerDuelMenu.showOutput(text);
     }
+
+    public int getNumberFromPlayer(String view){
+        return playerDuelMenu.getNumber(view);
+    }
 }

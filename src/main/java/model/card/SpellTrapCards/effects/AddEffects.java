@@ -56,7 +56,10 @@ public class AddEffects {
 
         } else if (cardName.equals("Magnum Shield")) {
             effects.add(new MagnumShieldEffect());
-            
+
+        } else if (cardName.equals("Advanced Ritual Art")) {
+            effects.add(new AdvancedRitualArtEffect());
+
         }
 
         return effects;

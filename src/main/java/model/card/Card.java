@@ -84,6 +84,10 @@ public class Card {
         return answer;
     }
 
+    public String getCardType() {
+        return cardType;
+    }
+
     @Override
     public Card clone() {
         return new Card(this.getCardName());
