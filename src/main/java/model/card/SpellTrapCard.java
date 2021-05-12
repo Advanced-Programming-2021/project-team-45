@@ -35,6 +35,7 @@ public class SpellTrapCard extends Card {
         this.price = (int) Double.parseDouble(data[5]);
         this.isSpell = isSpell(this);
         effects = AddEffects.getCardEffects(cardName);
+        this.speed = setSpeedTapAndSpell(this);
     }
 
     public static String[][] allDataAboutSpellTrap() {
@@ -149,6 +150,23 @@ public class SpellTrapCard extends Card {
         effects.add(effect);
     }
 
+    private int setSpeedTapAndSpell(SpellTrapCard card) {
+        SpellAndTrapIcon check = card.getIcon();
+        if (card.isSpell) {
+            boolean bol = check.equals(SpellAndTrapIcon.QUICK_PLAY);
+            if (bol) {
+                return 2;
+            } else {
+                return 1;
+            }
+        }else{
+            if(card.getCardName().equals("Solemn Warning")){
+                return 3;
+            }else {
+                return 2;
+            }
+        }
+    }
     @Override
     public SpellTrapCard clone() {
         return new SpellTrapCard(this.getCardName());
