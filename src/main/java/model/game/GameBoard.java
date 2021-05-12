@@ -19,7 +19,7 @@ public class GameBoard {
 
     public GameBoard(User owner, Game game) {
         this.owner = owner;
-        this.graveyard = new Graveyard();
+        this.graveyard = new Graveyard(game);
         this.hand = new Hand();
         this.monsterField = new MonsterField(graveyard);
         this.spellTrapField = new SpellTrapField(owner, graveyard);

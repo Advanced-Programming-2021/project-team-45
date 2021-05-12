@@ -34,7 +34,7 @@ public class SpellTrapCard extends Card {
         this.status = data[4];
         this.price = (int) Double.parseDouble(data[5]);
         this.isSpell = isSpell(this);
-        effects = AddEffects.getCardEffects(cardName);
+        effects = AddEffects.getCardEffects(cardName,this);
         this.speed = setSpeedTapAndSpell(this);
     }
 
