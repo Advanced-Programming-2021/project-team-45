@@ -89,6 +89,10 @@ public class Card {
         return cardType;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
     @Override
     public Card clone() {
         return new Card(this.getCardName());
