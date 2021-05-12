@@ -7,45 +7,43 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 class FieldZoneTest {
-    private Graveyard graveyard;
-    private FieldZone fieldZone;
+    private static Graveyard graveyard;
+    private static FieldZone fieldZone;
     @BeforeAll
-    public void set() {
-        this.graveyard = new Graveyard();
-        this.fieldZone = new FieldZone(this.graveyard);
-    }
-
-    @Test
-    void isFull() {
-        assertFalse(this.fieldZone.isFull());
-        this.fieldZone.setFieldCard(Card.getCardByName("Forest"));
-        assertTrue(this.fieldZone.isFull());
-    }
-
-    @Test
-    void doesCardExist() {
-        assertTrue(this.fieldZone.doesCardExist("Forest"));
-        assertFalse(this.fieldZone.doesCardExist("Closed Forest"));
-    }
-
-    @Test
-    void getFieldCard() {
-        assertSame(Card.getCardByName("Forest"), this.fieldZone.getFieldCard());
+    public static void set() {
+        graveyard = new Graveyard();
+        fieldZone = new FieldZone(graveyard);
     }
 
     @Test
     void setFieldCard() {
-        this.fieldZone.setFieldCard(Card.getCardByName("Closed Forest"));
-        assertTrue(this.fieldZone.doesCardExist("Closed Forest"));
-        assertTrue(this.graveyard.doesCardExist("Forest"));
+        fieldZone.setFieldCard(Card.getCardByName("Closed Forest"));
+        assertTrue(fieldZone.doesCardExist("Closed Forest"));
+        assertFalse(graveyard.doesCardExist("Forest"));
 
     }
 
+    @Test
+    void isFull() {
+        assertTrue(fieldZone.isFull());
+        fieldZone.setFieldCard(Card.getCardByName("Forest"));
+    }
+
+    @Test
+    void getFieldCard() {
+        assertSame(Card.getCardByName("Forest"), fieldZone.getFieldCard());
+    }
+
+    @Test
+    void doesCardExist() {
+        assertTrue(fieldZone.doesCardExist("Forest"));
+        assertFalse(fieldZone.doesCardExist("Closed Forest"));
+    }
 
     @AfterAll
-    public void setAfterTest() {
-        this.fieldZone = null;
-        this.graveyard = null;
+    public static void setAfterTest() {
+        fieldZone = null;
+        graveyard = null;
     }
 
 }
