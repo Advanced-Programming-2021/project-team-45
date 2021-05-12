@@ -1,7 +1,10 @@
 package model.game;
 
 import model.card.Card;
+import model.card.MonsterCard;
+import model.card.SpecialMonsterEnum;
 import model.card.SpellTrapCard;
+import model.game.fields.MonsterField;
 import model.game.fields.SpellTrapField;
 import model.user.User;
 
@@ -40,10 +43,29 @@ public class Chain {
         
         for (SpellTrapCard spell : spellTraps) {
             if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
-                return true;
+                if (spell.isSpell()) {
+                    return true;
+                } else {
+                    if (canPlayTrap()) {
+                        return false;
+                    }
+                }
             }
         }
         return false;
+    }
+
+    private boolean canPlayTrap() {
+        MonsterField opponentMonsterField = getOpponentGameBoard().getMonsterField();
+        ArrayList<MonsterCard> opponentMonsters = opponentMonsterField.getMonstersOnField();
+
+        for (MonsterCard monster : opponentMonsters) {
+            if (monster.getSpecial() == SpecialMonsterEnum.MIRAGE_DRAGON) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void nextPlayer() {
@@ -67,6 +89,14 @@ public class Chain {
             return game.getGameBoardOfPlayerOfThisTurn();
         } else {
             return game.getGameBoardOfOpponentPlayerOfThisTurn();
+        }
+    }
+
+    private GameBoard getOpponentGameBoard() {
+        if (game.getPlayerOfThisTurn() == turnPlayer) {
+            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+        } else {
+            return game.getGameBoardOfPlayerOfThisTurn();
         }
     }
 }
