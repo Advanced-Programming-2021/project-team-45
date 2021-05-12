@@ -1,12 +1,14 @@
 package model.card.SpellTrapCards.effects;
 
 import model.card.MonsterType;
+import model.card.SpellTrapCard;
+import model.card.SpellTrapCards.effects.Continiuous.SupplySquad;
 import model.game.fields.CardFieldType;
 
 import java.util.ArrayList;
 
 public class AddEffects {
-    public static ArrayList<Effect> getCardEffects(String cardName) {
+    public static ArrayList<Effect> getCardEffects(String cardName, SpellTrapCard card) {
         ArrayList<Effect> effects = new ArrayList<>();
 
         if (cardName.equals("Monster Reborn")) {
@@ -63,6 +65,8 @@ public class AddEffects {
         } else if (cardName.equals("Advanced Ritual Art")) {
             effects.add(new AdvancedRitualArtEffect());
 
+        }else if(cardName.equals("Supply Squad")){
+            effects.add(new SupplySquad(card));
         }
 
         return effects;

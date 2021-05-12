@@ -1,17 +1,23 @@
 package model.game.fields;
 
 import model.card.Card;
+import model.card.SpellTrapCards.effects.Continiuous.ContiniouesSpellController;
+import model.card.SpellTrapCards.effects.Continiuous.ContinouesSpellActivatePlace;
+import model.game.Game;
 
 import java.util.ArrayList;
 
 public class Graveyard extends CardField {
 
     private ArrayList<Card> graveyard;
+    private Game game;
 
-    public Graveyard() {
+    public Graveyard(Game game) {
         super("Graveyard");
         graveyard = new ArrayList<>();
+        this.game=game;
     }
+
 
 
     public ArrayList<Card> getGraveyardCards() {
@@ -35,6 +41,7 @@ public class Graveyard extends CardField {
 
     public void addCardToGraveyard(Card card){
         graveyard.add(card);
+        ContiniouesSpellController.Controller("Supply Squad",game, ContinouesSpellActivatePlace.GraveYard);
     }
 
     public void deleteCardFromGraveyard(Card card){
