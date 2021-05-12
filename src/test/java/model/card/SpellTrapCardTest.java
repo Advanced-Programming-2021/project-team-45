@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SpellTrapCardTest {
 
-    @BeforeAll
-    public static void beforeTest() {
-
-    }
 
     @Test
     void isSpell() {
@@ -49,27 +45,23 @@ class SpellTrapCardTest {
 
     @Test
     void getPosition() {
-
+        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Mirror Force")).clone();
+        spellTrapCard.summon();
+        assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.getPosition());
     }
 
     @Test
     void setPosition() {
-
+        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Trap Hole")).clone();
+        spellTrapCard.setPosition(SpellsAndTrapPosition.SET);
+        assertEquals(SpellsAndTrapPosition.SET, spellTrapCard.getPosition());
     }
 
-    @Test
-    void setSpellOrTrapIcon() {
-
-    }
-
-    @Test
-    void setSpeedTrapAndSpell() {
-
-    }
 
     @Test
     void checkClone() {
-
+        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Solemn Warning").clone());
+        assertSame(Card.getCardByName("Solemn Warning"), spellTrapCard);
     }
 
 }
