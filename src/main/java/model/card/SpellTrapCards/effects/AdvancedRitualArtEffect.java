@@ -22,7 +22,7 @@ public class AdvancedRitualArtEffect extends Effect {
                 if (canInputThisMonsterOnField(cardsForRitual, (MonsterCard) ritualCard.get(0))) {
                     specialSummon(cardsForRitual, ritualCard.get(0), game);
                 } else {
-                    game.getGameController().showOutput("this selected card haven't required level for ritual");
+                    game.getGameController().showOutput("these selected card haven't required level for ritual");
                 }
             } else {
                 game.getGameController().showOutput("your selected Card isn't a ritual monster");
