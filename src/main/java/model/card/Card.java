@@ -14,6 +14,7 @@ public class Card {
     protected String cardType;
     protected int price;
     protected User owner;
+    protected int speed;
 
     static {
         allCards = new ArrayList<>();
