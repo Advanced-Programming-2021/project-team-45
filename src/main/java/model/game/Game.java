@@ -7,6 +7,7 @@ import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
 import model.game.fields.MonsterField;
+import model.game.fields.SpellTrapField;
 import model.user.User;
 
 import java.util.ArrayList;
@@ -452,30 +453,33 @@ public class Game {
     }
 
     public boolean canActivateSpell() {
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
-        /*
-        statements
-         */
+        SpellTrapField playerSpellTrapField = getGameBoardOfPlayerOfThisTurn().getSpellTrapField();
+        ArrayList<SpellTrapCard> playerSpellTraps = playerSpellTrapField.getSpellTrapsArrayList();
+
+        boolean opponentMirageDragonExist = false;
+        for (MonsterCard monster : getOpponentGameBoard().getMonsterField().getMonstersOnField()) {
+            if (monster.getSpecial() == SpecialMonsterEnum.MIRAGE_DRAGON) {
+                opponentMirageDragonExist = true;
+                break;
+            }
+        }
+
+        for (SpellTrapCard spellTrap : playerSpellTraps) {
+            if (spellTrap.isSpell()) {
+                return true;
+            } else if (!opponentMirageDragonExist) {
+                return true;
+            }
+        }
+
         return false;
     }
 
-    public void activateSpell() {
-        // seda zadan method spell
-    }
-
-    public void activeSelectedTrapOrSpell() {
-
-    }
-
-    private boolean canActiveASpellOrTrapInOtherTurn() {
-        boolean bol1 = MirageDragon.
-                canActiveTrapForMirageDragonOfEnemy(getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField());
-        /*
-        احتمالا دلایل دیگری هم باشد
-         */
-        return bol1;
+    public void activeSpell() {
+        if (canActivateSpell()) {
+            SpellTrapCard spellTrap = (SpellTrapCard) selectedCard;
+            spellTrap.activateEffects(this);
+        }
     }
 
     public String showGraveyard() {

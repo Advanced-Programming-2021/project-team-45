@@ -5,6 +5,7 @@ import model.card.SpellTrapCard;
 import model.user.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SpellTrapField extends CardField {
 
@@ -21,6 +22,10 @@ public class SpellTrapField extends CardField {
 
     public SpellTrapCard[] getSpellTrapCardsPositionsArray() {
         return spellTraps;
+    }
+
+    public ArrayList<SpellTrapCard> getSpellTrapsArrayList() {
+        return new ArrayList<>(Arrays.asList(spellTraps));
     }
 
     public SpellTrapCard getPlayerSpellTrapCard(int cardPosition) {

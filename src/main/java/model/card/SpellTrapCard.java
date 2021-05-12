@@ -92,6 +92,10 @@ public class SpellTrapCard extends Card {
         return !this.type.equals("Trap");
     }
 
+    public boolean isSpell() {
+        return this.isSpell;
+    }
+
     public boolean isActivated() {
         return activated;
     }
@@ -112,6 +116,7 @@ public class SpellTrapCard extends Card {
         for (Effect effect : effects) {
             effect.activate(game);
         }
+        this.activated = true;
     }
 
     public SpellsAndTrapPosition getPosition() {

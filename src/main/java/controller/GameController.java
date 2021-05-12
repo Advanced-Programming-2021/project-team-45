@@ -401,7 +401,7 @@ public class GameController extends Controller {
                             return 5;
                         }
                         if (game.canActivateSpell()) {
-                            game.activateSpell();
+                            game.activeSpell();
                             return 7;
                         }
                         return 6;
