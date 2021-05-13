@@ -6,6 +6,8 @@ import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
+import model.card.SpellTrapCards.effects.Continiuous.ContiniouesSpellController;
+import model.card.SpellTrapCards.effects.Continiuous.ContinouesSpellActivatePlace;
 import model.game.fields.MonsterField;
 import model.game.fields.SpellTrapField;
 import model.user.User;
@@ -372,15 +374,18 @@ public class Game {
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
         playerCard.setWasAttackedInThisTurn(true);
-        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone);
+        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField
+                (numberOfEnemyMonsterZone);
         if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
             SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
             return 0;
         }
         if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
-            result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
+            result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard
+                    , opponentGameBoard);
         } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
-            result = attackToOpponentCardInDefensePosition(playerCard, opponentCard, playerGameBoard, opponentGameBoard);
+            result = attackToOpponentCardInDefensePosition(playerCard, opponentCard, playerGameBoard
+                    , opponentGameBoard);
         }
         this.selectedCard = null;
         return result;
@@ -480,6 +485,8 @@ public class Game {
             SpellTrapCard spellTrap = (SpellTrapCard) selectedCard;
             spellTrap.activateEffects(this);
         }
+        ContiniouesSpellController.Controller("Spell Absorption",this,
+                ContinouesSpellActivatePlace.Activation);
     }
 
     public String showGraveyard() {

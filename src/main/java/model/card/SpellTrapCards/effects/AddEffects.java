@@ -2,6 +2,7 @@ package model.card.SpellTrapCards.effects;
 
 import model.card.MonsterType;
 import model.card.SpellTrapCard;
+import model.card.SpellTrapCards.effects.Continiuous.SpellAbsorption;
 import model.card.SpellTrapCards.effects.Continiuous.SupplySquad;
 import model.game.fields.CardFieldType;
 
@@ -67,6 +68,9 @@ public class AddEffects {
 
         }else if(cardName.equals("Supply Squad")){
             effects.add(new SupplySquad(card));
+
+        }else if(cardName.equals("Spell Absorption")){
+            effects.add(new SpellAbsorption(card));
         }
 
         return effects;
