@@ -2,5 +2,7 @@ package model.card.SpellTrapCards.effects.Continiuous;
 
 public enum ContinouesSpellActivatePlace {
     GraveYard,
-    Activation;
+    Activation,
+    Attack,
+    StandBy;
 }
