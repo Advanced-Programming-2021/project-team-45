@@ -2,6 +2,7 @@ package model.card.SpellTrapCards.effects.Continiuous;
 
 import model.card.SpellTrapCard;
 import model.card.SpellTrapCards.effects.Effect;
+import model.game.Chain;
 import model.game.Game;
 import model.game.fields.SpellTrapField;
 
@@ -17,7 +18,7 @@ public class SupplySquad extends Effect {
     }
 
     @Override
-    public void activate(Game game) {
+    public void activate(Chain chain) {
         isActive=true;
     }
 

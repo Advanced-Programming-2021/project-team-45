@@ -3,6 +3,7 @@ package model.card.SpellTrapCards.effects.Continiuous;
 import model.card.MonsterCard;
 import model.card.SpellTrapCard;
 import model.card.SpellTrapCards.effects.Effect;
+import model.game.Chain;
 import model.game.Game;
 import model.game.fields.SpellTrapField;
 
@@ -14,7 +15,7 @@ public class MessengerOfPeace extends Effect {
     public static HashMap<SpellTrapCard, MessengerOfPeace> messengerOfPeaceHashMap = new HashMap<>();
 
     @Override
-    public void activate(Game game) {
+    public void activate(Chain chain) {
         iaActive = true;
     }
 
