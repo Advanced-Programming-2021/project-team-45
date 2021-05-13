@@ -1,6 +1,6 @@
 package model.card.SpellTrapCards.effects;
 
-import model.game.Game;
+import model.game.Chain;
 import model.game.fields.CardField;
 import model.game.fields.CardFieldType;
 import model.game.fields.MonsterField;
@@ -18,8 +18,8 @@ public class DestroyAllCardsOfFieldEffect extends Effect {
     }
 
     @Override
-    public void activate(Game game) {
-        initializeFields(game);
+    public void activate(Chain chain) {
+        initializeFields(chain);
 
         for (CardField field : fields) {
             if (field instanceof MonsterField) {
@@ -34,20 +34,20 @@ public class DestroyAllCardsOfFieldEffect extends Effect {
         }
     }
 
-    private void initializeFields(Game game) {
+    private void initializeFields(Chain chain) {
         fields = new ArrayList<>();
         for (CardFieldType type : fieldTypes) {
             if (type == CardFieldType.PLAYER_MONSTER) {
-                fields.add(game.getPlayerGameBoard().getMonsterField());
+                fields.add(chain.getPlayerGameBoard().getMonsterField());
 
             } else if (type == CardFieldType.PLAYER_SPELL_TRAP) {
-                fields.add(game.getPlayerGameBoard().getSpellTrapField());
+                fields.add(chain.getPlayerGameBoard().getSpellTrapField());
 
             } else if (type == CardFieldType.OPPONENT_MONSTER) {
-                fields.add(game.getOpponentGameBoard().getMonsterField());
+                fields.add(chain.getPlayerGameBoard().getMonsterField());
 
             } else if (type == CardFieldType.OPPONENT_SPELL_TRAP) {
-                fields.add(game.getOpponentGameBoard().getSpellTrapField());
+                fields.add(chain.getPlayerGameBoard().getSpellTrapField());
 
             }
         }

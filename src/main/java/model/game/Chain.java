@@ -28,19 +28,50 @@ public class Chain {
     }
 
 
+    public GameBoard getPlayerGameBoard() {
+        if (game.getPlayerOfThisTurn() == turnPlayer) {
+            return game.getGameBoardOfPlayerOfThisTurn();
+        } else {
+            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+        }
+    }
+
+    public GameBoard getOpponentGameBoard() {
+        if (game.getPlayerOfThisTurn() == turnPlayer) {
+            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+        } else {
+            return game.getGameBoardOfPlayerOfThisTurn();
+        }
+    }
+
+    public User getPlayer() {
+        return turnPlayer;
+    }
+
+    public User getOpponent() {
+        if (player1 == turnPlayer) {
+            return player2;
+        } else {
+            return player1;
+        }
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
     public void startChain() {
         while (canAddToChain()) {
-
-
+            
             nextPlayer();
         }
         activateChain();
     }
 
     private boolean canAddToChain() {
-        SpellTrapField playerSpellTrapField = getTurnPlayerGameBoard().getSpellTrapField();
+        SpellTrapField playerSpellTrapField = getPlayerGameBoard().getSpellTrapField();
         ArrayList<SpellTrapCard> spellTraps = playerSpellTrapField.getSpellTrapsArrayList();
-        
+
         for (SpellTrapCard spell : spellTraps) {
             if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
                 if (spell.isSpell()) {
@@ -78,25 +109,15 @@ public class Chain {
 
     private void activateChain() {
         for (int i = chain.size() - 1; i >= 0; i--) {
+            nextPlayer();
             Card card = chain.get(i);
 
+            if (card instanceof SpellTrapCard) {
+                ((SpellTrapCard) card).activateEffects(this);
 
-        }
-    }
-
-    private GameBoard getTurnPlayerGameBoard() {
-        if (game.getPlayerOfThisTurn() == turnPlayer) {
-            return game.getGameBoardOfPlayerOfThisTurn();
-        } else {
-            return game.getGameBoardOfOpponentPlayerOfThisTurn();
-        }
-    }
-
-    private GameBoard getOpponentGameBoard() {
-        if (game.getPlayerOfThisTurn() == turnPlayer) {
-            return game.getGameBoardOfOpponentPlayerOfThisTurn();
-        } else {
-            return game.getGameBoardOfPlayerOfThisTurn();
+            } else {
+                // WHAT TO DO FOR MONSTERS!!!
+            }
         }
     }
 }

@@ -305,8 +305,7 @@ public class Game {
         selectedCard = null;
     }
 
-    public void specialSummon(MonsterCard monster) {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+    public void specialSummon(MonsterCard monster, GameBoard gameBoard) {
         CommandKnight.CommandKnightOnFieldWithSummonMode(monster,
                 getGameBoardOfPlayerOfThisTurn().getMonsterField());
         if (SpecialMonster.isSelectedCardASpecialMonster(monster)) {

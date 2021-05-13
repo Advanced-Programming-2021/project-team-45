@@ -1,6 +1,6 @@
 package model.card.SpellTrapCards.effects;
 
-import model.game.Game;
+import model.game.Chain;
 import model.game.fields.MonsterField;
 import model.card.MonsterCard;
 import model.card.MonsterType;
@@ -19,11 +19,10 @@ public class IncreaseAtkDefOfTypeEffect extends Effect {
         this.monsterType = monsterType;
     }
 
-
     @Override
-    public void activate(Game game) {
-        MonsterField monsterField1 = game.getPlayerGameBoard().getMonsterField();
-        MonsterField monsterField2 = game.getOpponentGameBoard().getMonsterField();
+    public void activate(Chain chain) {
+        MonsterField monsterField1 = chain.getPlayerGameBoard().getMonsterField();
+        MonsterField monsterField2 = chain.getOpponentGameBoard().getMonsterField();
 
         ArrayList<MonsterCard> allMonsters = monsterField1.getMonstersOnField();
         allMonsters.addAll(monsterField2.getMonstersOnField());
