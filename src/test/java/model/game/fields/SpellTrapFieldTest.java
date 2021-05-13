@@ -1,7 +1,9 @@
 package model.game.fields;
 
+import controller.GameController;
 import model.card.Card;
 import model.card.SpellTrapCard;
+import model.game.Game;
 import model.user.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,11 +17,22 @@ class SpellTrapFieldTest {
 
     private static SpellTrapField spellTrapField;
     private static Graveyard graveyard;
+    private static GameController gameController;
+    private static Game game;
 
     @BeforeAll
     public static void setBeforeTest() {
         User user = new User("hajji", "hajji", "hajji");
-        graveyard = new Graveyard();
+        User user1 = new User("hossein", "hossein", "hossein");
+        user.getUserDeck().createDeck("deck1", user);
+        user1.getUserDeck().createDeck("deck1", user1);
+        user.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user1);
+        user.getUserDeck().activateDeck("deck1");
+        user1.getUserDeck().activateDeck("deck1");
+        gameController = new GameController("hajji", "hossein", 3);
+        game = new Game(User.getUserByUsername("hajji"), User.getUserByUsername("hossein"), 3, gameController);
+        graveyard = new Graveyard(game);
         spellTrapField = new SpellTrapField(user, graveyard);
         spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Time Seal"));
         spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Negate Attack"));
@@ -114,9 +127,12 @@ class SpellTrapFieldTest {
 
     @AfterAll
     public static void setAfterTest() {
-        User.deleteUserByUsername("hajji");
         spellTrapField = null;
+        game = null;
         graveyard = null;
+        gameController = null;
+        User.deleteUserByUsername("hajji");
+        User.deleteUserByUsername("hoseein");
     }
 
 }
