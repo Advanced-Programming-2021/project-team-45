@@ -28,7 +28,7 @@ public class SpellAbsorption extends Effect {
         }
     }
 
-    public SpellAbsorption isThereSpellAbsorptionInField(SpellTrapField field) {
+    public static SpellAbsorption isThereSpellAbsorptionInField(SpellTrapField field) {
         ArrayList<SpellTrapCard> cards = field.getSpellTrapsArrayList();
         for (int i = 0; i < cards.size(); i++) {
             if (cards.get(i).getCardName().equals("Spell Absorption")){
