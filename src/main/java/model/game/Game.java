@@ -376,6 +376,10 @@ public class Game {
         playerCard.setWasAttackedInThisTurn(true);
         MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField
                 (numberOfEnemyMonsterZone);
+        if(ContiniouesSpellController.Controller("Messenger Of Peace",this,
+                ContinouesSpellActivatePlace.Attack)==1){
+            return 0;
+        }
         if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
             SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
             return 0;
