@@ -483,7 +483,8 @@ public class Game {
     public void activeSpell() {
         if (canActivateSpell()) {
             SpellTrapCard spellTrap = (SpellTrapCard) selectedCard;
-            spellTrap.activateEffects(this);
+            Chain chain = new Chain(this, spellTrap, getPlayerOfThisTurn(), getOpponentOfThisTurn());
+            chain.startChain();
         }
         ContiniouesSpellController.Controller("Spell Absorption",this,
                 ContinouesSpellActivatePlace.Activation);
