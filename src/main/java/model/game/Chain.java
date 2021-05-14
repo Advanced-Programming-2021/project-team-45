@@ -1,7 +1,10 @@
 package model.game;
 
 import model.card.Card;
+import model.card.MonsterCard;
+import model.card.SpecialMonsterEnum;
 import model.card.SpellTrapCard;
+import model.game.fields.MonsterField;
 import model.game.fields.SpellTrapField;
 import model.user.User;
 import java.util.ArrayList;
@@ -24,25 +27,75 @@ public class Chain {
     }
 
 
+    public GameBoard getPlayerGameBoard() {
+        if (game.getPlayerOfThisTurn() == turnPlayer) {
+            return game.getGameBoardOfPlayerOfThisTurn();
+        } else {
+            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+        }
+    }
+
+    public GameBoard getOpponentGameBoard() {
+        if (game.getPlayerOfThisTurn() == turnPlayer) {
+            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+        } else {
+            return game.getGameBoardOfPlayerOfThisTurn();
+        }
+    }
+
+    public User getPlayer() {
+        return turnPlayer;
+    }
+
+    public User getOpponent() {
+        if (player1 == turnPlayer) {
+            return player2;
+        } else {
+            return player1;
+        }
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
     public void startChain() {
         while (canAddToChain()) {
-
-
+            
             nextPlayer();
         }
         activateChain();
     }
 
     private boolean canAddToChain() {
-        SpellTrapField playerSpellTrapField = getTurnPlayerGameBoard().getSpellTrapField();
+        SpellTrapField playerSpellTrapField = getPlayerGameBoard().getSpellTrapField();
         ArrayList<SpellTrapCard> spellTraps = playerSpellTrapField.getSpellTrapsArrayList();
-        
+
         for (SpellTrapCard spell : spellTraps) {
             if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
-                return true;
+                if (spell.isSpell()) {
+                    return true;
+                } else {
+                    if (canPlayTrap()) {
+                        return false;
+                    }
+                }
             }
         }
         return false;
+    }
+
+    private boolean canPlayTrap() {
+        MonsterField opponentMonsterField = getOpponentGameBoard().getMonsterField();
+        ArrayList<MonsterCard> opponentMonsters = opponentMonsterField.getMonstersOnField();
+
+        for (MonsterCard monster : opponentMonsters) {
+            if (monster.getSpecial() == SpecialMonsterEnum.MIRAGE_DRAGON) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void nextPlayer() {
@@ -55,17 +108,15 @@ public class Chain {
 
     private void activateChain() {
         for (int i = chain.size() - 1; i >= 0; i--) {
+            nextPlayer();
             Card card = chain.get(i);
 
+            if (card instanceof SpellTrapCard) {
+                ((SpellTrapCard) card).activateEffects(this);
 
-        }
-    }
-
-    private GameBoard getTurnPlayerGameBoard() {
-        if (game.getPlayerOfThisTurn() == turnPlayer) {
-            return game.getGameBoardOfPlayerOfThisTurn();
-        } else {
-            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+            } else {
+                // WHAT TO DO FOR MONSTERS!!!
+            }
         }
     }
 }

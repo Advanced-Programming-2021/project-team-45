@@ -18,7 +18,7 @@ class ShopTest {
         user.increaseMoney(1800);
     }
 
-    /*@Test
+    @Test
     void doesCardExist() {
         assertTrue(shop.doesCardExist("Yomi Ship"));
         assertTrue(shop.doesCardExist("Horn Imp"));
@@ -28,13 +28,13 @@ class ShopTest {
     void hasEnoughMoney() {
         assertTrue(shop.hasEnoughMoney("Yomi Ship"));
         assertFalse(shop.hasEnoughMoney("Horn Imp"));
-    }*/
+    }
 
     @Test
     void buy() {
         shop.buy("Yomi Ship");
         assertNotNull(User.getUserByUsername("hajji").getCardInventory().getCardByCardName("Yomi Ship"));
-        //assertNull(User.getUserByUsername("hajji").getCardInventory().getCardByCardName("Battle OX"));
+        assertNull(User.getUserByUsername("hajji").getCardInventory().getCardByCardName("Battle OX"));
     }
 
     @AfterAll

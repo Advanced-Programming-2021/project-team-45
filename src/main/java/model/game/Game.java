@@ -305,8 +305,7 @@ public class Game {
         selectedCard = null;
     }
 
-    public void specialSummon(MonsterCard monster) {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+    public void specialSummon(MonsterCard monster, GameBoard gameBoard) {
         CommandKnight.CommandKnightOnFieldWithSummonMode(monster,
                 getGameBoardOfPlayerOfThisTurn().getMonsterField());
         if (SpecialMonster.isSelectedCardASpecialMonster(monster)) {
@@ -487,7 +486,8 @@ public class Game {
     public void activeSpell() {
         if (canActivateSpell()) {
             SpellTrapCard spellTrap = (SpellTrapCard) selectedCard;
-            spellTrap.activateEffects(this);
+            Chain chain = new Chain(this, spellTrap, getPlayerOfThisTurn(), getOpponentOfThisTurn());
+            chain.startChain();
         }
         ContiniouesSpellController.Controller("Spell Absorption",this,
                 ContinouesSpellActivatePlace.Activation);

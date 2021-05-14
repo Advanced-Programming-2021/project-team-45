@@ -1,7 +1,10 @@
 package model.game.fields;
 
+import controller.GameController;
 import model.card.Card;
 import model.card.MonsterCard;
+import model.game.Game;
+import model.user.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,9 +17,22 @@ class MonsterFieldTest {
 
     private MonsterField monsterField;
     private Graveyard graveyard;
+    private static GameController gameController;
+    private static Game game;
+
     @BeforeAll
     public void set() {
-        this.graveyard = new Graveyard();
+        User user = new User("hajji", "hajji", "hajji");
+        User user1 = new User("hossein", "hossein", "hossein");
+        user.getUserDeck().createDeck("deck1", user);
+        user1.getUserDeck().createDeck("deck1", user1);
+        user.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user1);
+        user.getUserDeck().activateDeck("deck1");
+        user1.getUserDeck().activateDeck("deck1");
+        gameController = new GameController("hajji", "hossein", 3);
+        game = new Game(User.getUserByUsername("hajji"), User.getUserByUsername("hossein"), 3, gameController);
+        this.graveyard = new Graveyard(game);
         this.monsterField = new MonsterField(this.graveyard);
         monsterField.addMonsterToField((MonsterCard) Card.getCardByName("Horn Imp"));
         monsterField.addMonsterToField((MonsterCard) Card.getCardByName("Fireyarou"));
@@ -133,6 +149,10 @@ class MonsterFieldTest {
 
     @AfterAll
     public void setAfterTest() {
+        game = null;
+        gameController = null;
+        User.deleteUserByUsername("hajji");
+        User.deleteUserByUsername("hoseein");
         graveyard = null;
         monsterField = null;
     }
