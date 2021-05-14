@@ -4,7 +4,7 @@ import controller.GameController;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.card.MonsterType;
-import model.game.Game;
+import model.game.Chain;
 import model.game.fields.MonsterField;
 
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class IncreaseAtkDefOfEquippedEffect extends Effect {
 
 
     @Override
-    public void activate(Game game) {
-        GameController gameController = game.getGameController();
-        MonsterField playerField = game.getGameBoardOfPlayerOfThisTurn().getMonsterField();
+    public void activate(Chain chain) {
+        GameController gameController = chain.getGame().getGameController();
+        MonsterField playerField = chain.getPlayerGameBoard().getMonsterField();
 
         ArrayList<Card> input = gameController.getCardFromPlayer(1, playerField);
         if (input != null) {

@@ -1,5 +1,6 @@
 package model.card;
 
+import model.game.Chain;
 import model.game.Game;
 import model.card.SpellTrapCards.effects.AddEffects;
 import model.card.SpellTrapCards.effects.Effect;
@@ -113,9 +114,9 @@ public class SpellTrapCard extends Card {
         this.position = SpellsAndTrapPosition.SET;
     }
 
-    public void activateEffects(Game game) {
+    public void activateEffects(Chain chain) {
         for (Effect effect : effects) {
-            effect.activate(game);
+            effect.activate(chain);
         }
         this.activated = true;
     }

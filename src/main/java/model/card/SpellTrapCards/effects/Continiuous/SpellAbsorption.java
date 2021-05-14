@@ -3,6 +3,7 @@ package model.card.SpellTrapCards.effects.Continiuous;
 import model.card.Card;
 import model.card.SpellTrapCard;
 import model.card.SpellTrapCards.effects.Effect;
+import model.game.Chain;
 import model.game.Game;
 import model.game.fields.SpellTrapField;
 
@@ -15,7 +16,7 @@ public class SpellAbsorption extends Effect {
     private boolean isActive = false;
 
     @Override
-    public void activate(Game game) {
+    public void activate(Chain chain) {
         isActive = true;
     }
 
