@@ -27,9 +27,10 @@ public class ContiniouesSpellController {
                         .getSpellTrapField()).doActivityInAttack(game);
             }
         } else if(CardName.equals("Messenger Of Peace") && place.equals(ContinouesSpellActivatePlace.StandBy)){
-            if (MessengerOfPeace.isThereMessengerOfPeaceOnField(game.getGameBoardOfOpponentPlayerOfThisTurn()
+            if (MessengerOfPeace.isThereMessengerOfPeaceOnField(game.getGameBoardOfPlayerOfThisTurn()
                     .getSpellTrapField()) != null){
-                //complete after graphic class
+                return MessengerOfPeace.isThereMessengerOfPeaceOnField(game.getGameBoardOfPlayerOfThisTurn()
+                        .getSpellTrapField()).doActivityInStandByPhase(game);
             }
         }
         return 0;

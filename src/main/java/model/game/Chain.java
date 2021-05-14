@@ -7,7 +7,6 @@ import model.card.SpellTrapCard;
 import model.game.fields.MonsterField;
 import model.game.fields.SpellTrapField;
 import model.user.User;
-
 import java.util.ArrayList;
 
 public class Chain {
