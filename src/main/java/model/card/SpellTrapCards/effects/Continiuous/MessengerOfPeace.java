@@ -18,15 +18,8 @@ public class MessengerOfPeace extends Effect {
     public static HashMap<SpellTrapCard, MessengerOfPeace> messengerOfPeaceHashMap = new HashMap<>();
 
     @Override
-<<<<<<< HEAD
     public void activate(Chain chain) {
         isActive = true;
-=======
-
-    public void activate(Chain chain) {
-        iaActive = true;
-
->>>>>>> 31a527fcc6dd815bdedae2376d038a1d51f2acb6
     }
 
     MessengerOfPeace(SpellTrapCard card) {
