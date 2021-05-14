@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MessengerOfPeace extends Effect {
-    private boolean iaActive = false;
+
+    private boolean isActive = false;
     public static HashMap<SpellTrapCard, MessengerOfPeace> messengerOfPeaceHashMap = new HashMap<>();
 
     @Override
     public void activate(Game game) {
-        iaActive = true;
+        isActive = true;
     }
 
     MessengerOfPeace(SpellTrapCard card) {

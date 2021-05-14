@@ -4,7 +4,6 @@ import model.card.Card;
 import model.card.SpellTrapCard;
 import model.game.fields.SpellTrapField;
 import model.user.User;
-
 import java.util.ArrayList;
 
 public class Chain {

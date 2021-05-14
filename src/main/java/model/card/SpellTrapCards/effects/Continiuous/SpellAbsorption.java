@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpellAbsorption extends Effect {
+
     private static HashMap<Card,SpellAbsorption> absorptionHashMap=new HashMap<>();
     private boolean isActive = false;
 
