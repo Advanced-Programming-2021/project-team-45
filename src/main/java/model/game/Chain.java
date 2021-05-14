@@ -62,7 +62,7 @@ public class Chain {
 
     public void startChain() {
         while (canAddToChain()) {
-            
+
             nextPlayer();
         }
         activateChain();
