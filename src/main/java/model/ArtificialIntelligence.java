@@ -28,7 +28,7 @@ public class ArtificialIntelligence {
         game.drawPhase();
         mainPhase1(game);
         battlePhase(game);
-
+        game.endPhase();
     }
 
     private static void mainPhase1(Game game){
@@ -70,6 +70,8 @@ public class ArtificialIntelligence {
         }
         return 0;
     }
+
+
 
 
     
