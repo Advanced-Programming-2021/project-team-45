@@ -515,9 +515,8 @@ public class DuelMenu extends Menu {
 
     public String getCardFromGraveYard(String view) {
         System.out.println(view);
-        String input = getInput();
 
-        return input;
+        return getInput();
 
     }
 
