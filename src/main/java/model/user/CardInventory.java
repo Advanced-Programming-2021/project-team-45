@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class CardInventory {
 
     HashMap<String, Integer> cardsCount;
-    private final ArrayList<Card> cards;
+    private ArrayList<Card> cards;
 
     public CardInventory() {
         cardsCount = new HashMap<>();
@@ -60,5 +60,12 @@ public class CardInventory {
         }
         Collections.sort(cardsStr);
         return cardsStr;
+    }
+
+    public void setAICardInventory(){
+        ArrayList<Card> cards=Card.getAllCards();
+        for(int i=0;i<cards.size();i++){
+            this.cards.add(cards.get(i).clone());
+        }
     }
 }

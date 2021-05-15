@@ -1,5 +1,6 @@
 package view.menu;
 
+import controller.AIController;
 import controller.GameController;
 import controller.MainMenuController;
 import controller.Regex;
@@ -60,6 +61,7 @@ public class MainMenu extends Menu {
 
         if (opponentUsername.equals("")) {
             if (input.matches(" (--ai|-I)")) {
+                new AIController();
                 inputError++;
             }
         }
