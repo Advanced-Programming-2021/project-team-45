@@ -1,6 +1,6 @@
 package view.menu;
 
-import controller.AIController;
+import model.ArtificialIntelligence;
 import controller.GameController;
 import controller.MainMenuController;
 import controller.Regex;
@@ -61,7 +61,7 @@ public class MainMenu extends Menu {
 
         if (opponentUsername.equals("")) {
             if (input.matches(" (--ai|-I)")) {
-                new AIController();
+                new ArtificialIntelligence();
                 inputError++;
             }
         }
@@ -73,6 +73,9 @@ public class MainMenu extends Menu {
             int error = mainMenuController.startGameErrorHandler(opponentUsername, rounds);
 
             if (error == 0) {
+                if(opponentUsername.equals("")){
+                    return new GameController(username,"AI",rounds);
+                }
                 return new GameController(username, opponentUsername, rounds);
 
             } else if (error == 1) {
