@@ -1,17 +1,11 @@
 package model.card;
 
+import au.com.bytecode.opencsv.CSVReader;
 import model.user.User;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Iterator;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class MonsterCard extends Card {
@@ -45,37 +39,21 @@ public class MonsterCard extends Card {
     }
 
     public static String[][] allDataAboutMonster() {
-        String[][] data = new String[42][9];
+        String[][] data=new String[42][9];
+        CSVReader reader = null;
         try {
-            File initialFile = new File("src/main/resources/Monster.xlsx");
-            FileInputStream inputStream = new FileInputStream(initialFile);
-            Workbook workbook = new XSSFWorkbook(inputStream);
-            Sheet firstSheet = workbook.getSheetAt(0);
-            Iterator<Row> iterator = firstSheet.iterator();
-            int a = 0;
-            int b = 0;
-            while (iterator.hasNext()) {
-                Row nextRow = iterator.next();
-                Iterator<Cell> cellIterator = nextRow.cellIterator();
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_STRING:
-                            data[a][b] = (cell.getStringCellValue());
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC:
-                            data[a][b] = (String.valueOf(cell.getNumericCellValue()));
-                            break;
-                    }
+            reader = new CSVReader(new FileReader("src/main/resources/Monster.csv"));
+            String[] nextLine;
+            int a=0,b=0;
+            while ((nextLine = reader.readNext()) != null) {
+                b=0;
+                for (String token : nextLine) {
+                    data[a][b]=token;
                     b++;
                 }
                 a++;
-                b = 0;
             }
-            workbook.close();
-            inputStream.close();
-            return data;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;

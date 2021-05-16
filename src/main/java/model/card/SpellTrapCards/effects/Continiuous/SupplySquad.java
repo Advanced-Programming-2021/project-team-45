@@ -11,10 +11,12 @@ import java.util.HashMap;
 public class SupplySquad extends Effect {
 
     private boolean isActive=false;
-    public static HashMap<SpellTrapCard, SupplySquad> supplySpells;
+    public static HashMap<SpellTrapCard, SupplySquad> supplySpells=new HashMap<>();
 
     public SupplySquad(SpellTrapCard card){
-        supplySpells.putIfAbsent(card, this);
+        if(supplySpells.get(card)==null){
+            supplySpells.put(card,this);
+        }
     }
 
     @Override

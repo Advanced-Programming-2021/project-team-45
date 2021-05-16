@@ -48,6 +48,8 @@ public class Shop {
 
     public void buy(String cardName) {
         Card card = Card.getCardByName(cardName);
+
+        assert card != null;
         card.setOwner(user);
         user.getCardInventory().addCardToInventory(card);
         user.decreaseMoney(card.getPrice());

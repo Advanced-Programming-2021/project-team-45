@@ -17,7 +17,7 @@ public class CardInventory {
     }
 
     public void addCardToInventory(Card card) {
-        if (getCardByCardName(card.getCardName()) != null) {
+        if (getCardByCardName(card.getCardName()) == null) {
             cards.add(card);
             cardsCount.put(card.getCardName(), 1);
         } else {
