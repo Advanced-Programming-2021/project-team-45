@@ -64,10 +64,25 @@ public class Chain {
         while (canAddToChain()) {
             if (doesPlayerWantToAddToChain()) {
                 addToChain();
+            } else {
+                break;
             }
             nextPlayer();
         }
         activateChain();
+    }
+
+    public boolean canAddToChain(SpellTrapCard spell) {
+        if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
+            if (spell.isSpell()) {
+                return true;
+            } else {
+                if (canPlayTrap()) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean canAddToChain() {
@@ -80,7 +95,7 @@ public class Chain {
                     return true;
                 } else {
                     if (canPlayTrap()) {
-                        return false;
+                        return true;
                     }
                 }
             }
@@ -120,14 +135,18 @@ public class Chain {
             } else {
                 // WHAT TO DO FOR MONSTERS!!!
             }
+
+            // REMOVE CARD FROM FIELD AND ADD TO GRAVEYARD IF NEEDED
+
         }
     }
 
     private boolean doesPlayerWantToAddToChain() {
-        return game.getGameController().doesPlayerWantToAddToTheChain(getPlayer());
+        return game.getGameController().doesPlayerWantToAddToTheChain(turnPlayer);
     }
 
     private void addToChain() {
-        
+        SpellTrapCard spell = game.getGameController().getSpellToAddToChain(turnPlayer, this);
+        chain.add(spell);
     }
 }
