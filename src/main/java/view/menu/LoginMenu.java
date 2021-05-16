@@ -108,7 +108,6 @@ public class LoginMenu extends Menu {
                 "user login --username <username> --password <password>\n" +
                 "menu exit\n" +
                 "menu show-current\n" +
-                "menu enter <menu name>\n" +
                 "help");
     }
 
