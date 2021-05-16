@@ -1,20 +1,15 @@
 package model.card;
 
+import au.com.bytecode.opencsv.CSVReader;
 import model.game.Chain;
-import model.game.Game;
+
 import model.card.SpellTrapCards.effects.AddEffects;
 import model.card.SpellTrapCards.effects.Effect;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FileReader;
+
 import java.util.ArrayList;
-import java.util.Iterator;
+
 
 public class SpellTrapCard extends Card {
 
@@ -35,42 +30,27 @@ public class SpellTrapCard extends Card {
         this.status = data[4];
         this.price = (int) Double.parseDouble(data[5]);
         this.isSpell = isSpell(this);
-        effects = AddEffects.getCardEffects(cardName,this);
+        effects = AddEffects.getCardEffects(cardName, this);
         this.speed = setSpeedTapAndSpell(this);
     }
 
     public static String[][] allDataAboutSpellTrap() {
-        String[][] data = new String[36][6];
+        String[][] data = new String[42][9];
+        CSVReader reader = null;
         try {
-            File initialFile = new File("src/main/resources/SpellTrap.xlsx");
-            FileInputStream inputStream = new FileInputStream(initialFile);
-            Workbook workbook = new XSSFWorkbook(inputStream);
-            Sheet firstSheet = workbook.getSheetAt(0);
-            Iterator<Row> iterator = firstSheet.iterator();
-            int a = 0;
-            int b = 0;
-            while (iterator.hasNext()) {
-                Row nextRow = iterator.next();
-                Iterator<Cell> cellIterator = nextRow.cellIterator();
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_STRING:
-                            data[a][b] = (cell.getStringCellValue());
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC:
-                            data[a][b] = (String.valueOf(cell.getNumericCellValue()));
-                            break;
-                    }
+            reader = new CSVReader(new FileReader("src/main/resources/SpellTrap.csv"));
+            String[] nextLine;
+            int a = 0, b = 0;
+            // read one line at a time
+            while ((nextLine = reader.readNext()) != null) {
+                b = 0;
+                for (String token : nextLine) {
+                    data[a][b] = token;
                     b++;
                 }
                 a++;
-                b = 0;
             }
-            workbook.close();
-            inputStream.close();
-            return data;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;
@@ -160,14 +140,15 @@ public class SpellTrapCard extends Card {
             } else {
                 return 1;
             }
-        }else{
-            if(card.getCardName().equals("Solemn Warning")){
+        } else {
+            if (card.getCardName().equals("Solemn Warning")) {
                 return 3;
-            }else {
+            } else {
                 return 2;
             }
         }
     }
+
     @Override
     public SpellTrapCard clone() {
         return new SpellTrapCard(this.getCardName());

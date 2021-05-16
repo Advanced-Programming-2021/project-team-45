@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private boolean changeCardPosition = false; //change card position have to been false in change turn method.
+    private boolean changeCardPosition = false;
     private String phase;
     private Card addedCardInDrawPhase;
     private final User player;
@@ -202,9 +202,6 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         }
-//        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
-//            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SELECT, this);
-//        }
     }
 
     public void deselectCard() {
@@ -366,16 +363,12 @@ public class Game {
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
         playerCard.setPosition(PositionMonsters.ATTACK);
         this.selectedCard = playerCard;
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
+
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
-//        if(canActiveASpellOrTrapInOtherTurn()){
-//            gameController.activeSpellAndTrapInOtherTurn();
-//        }
+
         GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
         GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
         MonsterCard playerCard = (MonsterCard) this.selectedCard;
