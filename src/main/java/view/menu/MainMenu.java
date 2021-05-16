@@ -19,7 +19,8 @@ public class MainMenu extends Menu {
                     "^(menu enter Scoreboard)$|" +
                     "^(menu enter Profile)$|" +
                     "^(menu enter Shop)$|" +
-                    "^(menu enter Import/Export)$"
+                    "^(menu enter Import/Export)$|" +
+                    "^(help)$"
     };
 
 
@@ -51,7 +52,7 @@ public class MainMenu extends Menu {
             rounds = Integer.parseInt(roundsMatcher.group(1));
             inputError++;
         }
-        
+
         String opponentUsername = "";
         Matcher opponentUsernameMatcher = Regex.getMatcher(input, " (?:--second-player|-o) (\\w+)");
         if (opponentUsernameMatcher.find()) {
@@ -73,8 +74,8 @@ public class MainMenu extends Menu {
             int error = mainMenuController.startGameErrorHandler(opponentUsername, rounds);
 
             if (error == 0) {
-                if(opponentUsername.equals("")){
-                    return new GameController(username,"AI",rounds);
+                if (opponentUsername.equals("")) {
+                    return new GameController(username, "AI", rounds);
                 }
                 return new GameController(username, opponentUsername, rounds);
 
@@ -102,12 +103,28 @@ public class MainMenu extends Menu {
         return null;
     }
 
+    private void help() {
+        System.out.println("user logout\n" +
+                "menu show-current\n" +
+                "menu enter Deck\n" +
+                "menu enter Scoreboard\n" +
+                "menu enter Profile\n" +
+                "menu enter Shop\n" +
+                "menu enter Import/Export\n" +
+                "duel --new --second-player <player2 username> --rounds <1/3>\n" +
+                "duel --new --ai --rounds <1/3>\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
+    }
+
     @Override
     public void show() {
     }
 
     @Override
-    public void execute()  {
+    public void execute() {
         Menu nextMenu = null;
         GameController gameController = null;
         while (true) {
@@ -147,6 +164,9 @@ public class MainMenu extends Menu {
                 } else if (matcher.group(7) != null) {
                     nextMenu = subMenus.get(MenuName.IMPORT_EXPORT);
                     break;
+
+                } else if (matcher.group(8) != null) {
+                    help();
 
                 }
 

@@ -563,15 +563,16 @@ public class GameController extends Controller {
         return selectedCards;
     }
 
-    public void showOutput(String text){
+    public void showOutput(String text) {
         playerDuelMenu.showOutput(text);
     }
 
-    public int getNumberFromPlayer(String view){
+    public int getNumberFromPlayer(String view) {
         return playerDuelMenu.getNumber(view);
     }
 
     public boolean doesPlayerWantToAddToTheChain(User player) {
+        showOutput("now it will be " + player.getUsername() + "’s turn");
         if (player == this.player) {
             playerDuelMenu.updatePlayerGameBoard();
         } else {
@@ -581,7 +582,7 @@ public class GameController extends Controller {
     }
 
     public SpellTrapCard getSpellToAddToChain(User player, Chain chain) {
-        showOutput("please choose a valid spell to add to chain " + player.getNickname());
+        showOutput("please choose a valid spell to add to chain " + player.getUsername());
         SpellTrapCard spell;
         while (true) {
             spell = (SpellTrapCard) (getCardFromPlayer(1, chain.getPlayerGameBoard().getSpellTrapField())).get(0);

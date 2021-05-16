@@ -13,7 +13,8 @@ public class ScoreboardMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(scoreboard show)$"
+                    "^(scoreboard show)$|" +
+                    "^(help)$"
     };
 
 
@@ -33,6 +34,14 @@ public class ScoreboardMenu extends Menu {
             lastScore = score;
             System.out.println(rank + "- " + nickname + ": " + score);
         }
+    }
+
+    private void help() {
+        System.out.println("scoreboard show\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
     }
 
     @Override
@@ -58,6 +67,9 @@ public class ScoreboardMenu extends Menu {
 
                 } else if (matcher.group(4) != null) {
                     showScoreboard();
+
+                } else if (matcher.group(5) != null) {
+                    help();
 
                 }
 
