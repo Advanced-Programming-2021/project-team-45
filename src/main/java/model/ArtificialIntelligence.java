@@ -72,10 +72,4 @@ public class ArtificialIntelligence {
     }
 
 
-<<<<<<< HEAD
-=======
-
-
-    
->>>>>>> 00d4cc1211ce43343bdf0a067d377230d397892e
 }

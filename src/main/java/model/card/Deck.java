@@ -9,14 +9,12 @@ public class Deck {
 
     private final String name;
     private final User user;
-    private final ArrayList<Card> mainDeck;
-    private final ArrayList<Card> sideDeck;
+    private ArrayList<Card> mainDeck=new ArrayList<>();
+    private ArrayList<Card> sideDeck=new ArrayList<>();
 
     public Deck(String name, User user) {
         this.name = name;
         this.user = user;
-        this.mainDeck = new ArrayList<>();
-        this.sideDeck = new ArrayList<>();
     }
 
 
@@ -39,15 +37,21 @@ public class Deck {
 
     public boolean doesCardExist(String cardName, boolean isSideDeck) {
         if (isSideDeck) {
-            for (Card card : sideDeck) {
-                if (card.getCardName().equals(cardName)) {
-                    return true;
+            if (sideDeck.size() != 0) {
+                for (int i = 0; i < sideDeck.size(); i++) {
+                    if (sideDeck.get(i) != null) {
+                        if (sideDeck.get(i).getCardName().equals(cardName)) {
+                            return true;
+                        }
+                    }
                 }
             }
         } else {
-            for (Card card : mainDeck) {
-                if (card.getCardName().equals(cardName)) {
-                    return true;
+            for (int i = 0; i < mainDeck.size(); i++) {
+                if (mainDeck.get(i) != null) {
+                    if (mainDeck.get(i).getCardName().equals(cardName)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -57,7 +61,9 @@ public class Deck {
     public int getCardCountInDeck(String cardName) {
         int count = 0;
         for (Card card : sideDeck) {
-            if (card.getCardName().equals(cardName)) count++;
+            if(card!=null) {
+                if (card.getCardName().equals(cardName)) count++;
+            }
         }
         for (Card card : mainDeck) {
             if (card.getCardName().equals(cardName)) count++;
@@ -165,12 +171,12 @@ public class Deck {
         return deck;
     }
 
-    public void setDeckForAI(){
-        for(int i=0;i<50;i++){
-            this.addCard(Card.getAllCards().get(i).cardName,false,user);
+    public void setDeckForAI() {
+        for (int i = 0; i < 50; i++) {
+            this.addCard(Card.getAllCards().get(i).cardName, false, user);
         }
-        for(int i=0;i<15;i++){
-            this.addCard(Card.getAllCards().get(i+50).cardName,true,user);
+        for (int i = 0; i < 15; i++) {
+            this.addCard(Card.getAllCards().get(i + 50).cardName, true, user);
         }
     }
 }
