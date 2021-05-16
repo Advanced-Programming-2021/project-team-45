@@ -321,7 +321,9 @@ public class MonsterCard extends Card {
     @Override
     public MonsterCard clone() {
         try {
-            return new MonsterCard(this.getCardName());
+            MonsterCard clone = new MonsterCard(this.getCardName());
+            clone.setOwner(this.owner);
+            return clone;
         } catch (IOException e) {
             e.printStackTrace();
         }

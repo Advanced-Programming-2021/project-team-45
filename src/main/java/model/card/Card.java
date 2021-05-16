@@ -44,7 +44,7 @@ public class Card {
         ArrayList<Card> allCards;
         allCards = getAllCards();
         for (Card card : allCards) {
-            if (card.cardName.equals(cardName)) return card;
+            if (card.cardName.equals(cardName)) return card.clone();
         }
         return null;
     }
@@ -59,6 +59,10 @@ public class Card {
 
     public int getPrice() {
         return price;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public User getOwner() {
