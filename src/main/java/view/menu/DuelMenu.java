@@ -26,7 +26,8 @@ public class DuelMenu extends Menu {
                     "^(attack direct)$|" +
                     "^(activate effect)$|" +
                     "^(show graveyard)$|" +
-                    "^(card show (?:--selected|-X))$",
+                    "^(card show (?:--selected|-X))$|" +
+                    "^(help)$",
             // i = 1
             "select (--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (--opponent|-O))? (\\d+)",
             // i = 2
@@ -91,6 +92,9 @@ public class DuelMenu extends Menu {
 
                     } else if (matcher.group(14) != null) {
                         showCard();
+
+                    } else if (matcher.group(15) != null) {
+                        help();
 
                     }
 
@@ -498,6 +502,25 @@ public class DuelMenu extends Menu {
     private void showCard() {
         String answer = gameController.controlCardShow();
         System.out.println(answer);
+    }
+
+    private void help() {
+        System.out.println("select <card address>\n" +
+                "next phase\n" +
+                "summon\n" +
+                "set\n" +
+                "set --position attack/defense\n" +
+                "flip-summon\n" +
+                "attack <number>\n" +
+                "attack direct\n" +
+                "activate effect\n" +
+                "show graveyard\n" +
+                "card show --selected\n" +
+                "surrender\n" +
+                "cancel\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
     }
 
     public String getInputNumberOfFieldForSpecialMonster(String view) {

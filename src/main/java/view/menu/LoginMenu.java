@@ -12,7 +12,8 @@ public class LoginMenu extends Menu {
             // i = 0
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
-                    "^(menu enter \\w+)$"
+                    "^(menu enter \\w+)$|" +
+                    "^(help)$"
     };
 
 
@@ -101,6 +102,16 @@ public class LoginMenu extends Menu {
         return false;
     }
 
+    private void help() {
+        System.out.println("user create --username <username> --nickname <nickname> --" +
+                "password <password>\n" +
+                "user login --username <username> --password <password>\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
+    }
+
     @Override
     public void show() {
     }
@@ -135,6 +146,8 @@ public class LoginMenu extends Menu {
                 } else if (matcher.group(3) != null) {
                     System.out.println("please login first");
 
+                } else if (matcher.group(4) != null) {
+                    help();
                 }
 
             } else {

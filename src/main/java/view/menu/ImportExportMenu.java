@@ -14,7 +14,8 @@ public class ImportExportMenu extends Menu {
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
                     "^(import card \\w+)$|" +
-                    "^(export card \\w+)$",
+                    "^(export card \\w+)$|" +
+                    "^(help)$",
             // i = 1
             "import card (\\w+)",
             // i = 2
@@ -46,6 +47,15 @@ public class ImportExportMenu extends Menu {
         }
     }
 
+    private void help() {
+        System.out.println("import card <card name>" +
+                "export card <card name>\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
+    }
+
     @Override
     public void show() {
     }
@@ -72,6 +82,9 @@ public class ImportExportMenu extends Menu {
 
                 } else if (matcher.group(5) != null) {
                     exportCard(Regex.getMatcher(input, IMPORT_EXPORT_MENU_REGEX[2]));
+
+                } else if (matcher.group(6) != null) {
+                    help();
 
                 }
 

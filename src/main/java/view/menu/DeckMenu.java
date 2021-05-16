@@ -18,7 +18,8 @@ public class DeckMenu extends Menu {
                     "^(deck delete \\w+)$|" +
                     "^(deck set-activate \\w+)$|" +
                     "^(deck show (?:--all|-A))$|" +
-                    "^(deck show (?:--cards|-c))$",
+                    "^(deck show (?:--cards|-c))$|" +
+                    "^(help)$",
             // i = 1
             "deck create (\\w+)",
             // i = 2
@@ -222,6 +223,22 @@ public class DeckMenu extends Menu {
         }
     }
 
+    private void help() {
+        System.out.println("deck create <deck name>\n" +
+                "deck delete <deck name>\n" +
+                "deck set-activate <deck name>\n" +
+                "deck add-card --card <card name> --deck <deck name> --\n" +
+                "side(optional)\n" +
+                "deck rm-card --card <card name> --deck <deck name> --side(optional)\n" +
+                "deck show --all\n" +
+                "deck show --deck-name <deck name> --side(optional)\n" +
+                "deck show --cards\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
+    }
+
     @Override
     public void show() {
     }
@@ -270,6 +287,9 @@ public class DeckMenu extends Menu {
 
                 } else if (matcher.group(8) != null) {
                     showCards();
+
+                } else if (matcher.group(9) != null) {
+                    help();
 
                 }
 
