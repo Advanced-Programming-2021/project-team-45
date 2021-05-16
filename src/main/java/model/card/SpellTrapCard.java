@@ -151,6 +151,8 @@ public class SpellTrapCard extends Card {
 
     @Override
     public SpellTrapCard clone() {
-        return new SpellTrapCard(this.getCardName());
+        SpellTrapCard clone = new SpellTrapCard(this.getCardName());
+        clone.setOwner(this.owner);
+        return clone;
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import model.card.SpellTrapCard;
 import model.game.*;
 import model.card.Card;
 import model.card.MonsterCard;
@@ -577,5 +578,16 @@ public class GameController extends Controller {
             playerDuelMenu.updateOpponentGameBoard();
         }
         return getYesNoAnswer("do you want to add to this chain?");
+    }
+
+    public SpellTrapCard getSpellToAddToChain(User player, Chain chain) {
+        showOutput("please choose a valid spell to add to chain " + player.getNickname());
+        SpellTrapCard spell;
+        while (true) {
+            spell = (SpellTrapCard) (getCardFromPlayer(1, chain.getPlayerGameBoard().getSpellTrapField())).get(0);
+            if (chain.canAddToChain(spell)) {
+                return spell;
+            }
+        }
     }
 }
