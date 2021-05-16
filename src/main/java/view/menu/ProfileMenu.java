@@ -13,7 +13,8 @@ public class ProfileMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(profile change (?:--nickname|-N) \\w+)$",
+                    "^(profile change (?:--nickname|-N) \\w+)$|" +
+                    "^(help)$",
             // i = 1
             "profile change (?:--nickname|-N) (\\w+)"
     };
@@ -79,6 +80,15 @@ public class ProfileMenu extends Menu {
         }
     }
 
+    private void help() {
+        System.out.println("profile change --nickname <nickname>\n" +
+                "profile change --password --current <current password> --new <new password>\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
+    }
+
     @Override
     public void show() {
     }
@@ -105,6 +115,9 @@ public class ProfileMenu extends Menu {
 
                 } else if (matcher.group(4) != null) {
                     changeNickname(Regex.getMatcher(input, PROFILE_MENU_REGEX[1]));
+
+                } else if (matcher.group(5) != null) {
+                    help();
 
                 }
 

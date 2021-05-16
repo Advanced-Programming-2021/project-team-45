@@ -16,7 +16,8 @@ public class ShopMenu extends Menu {
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
                     "^(shop buy \\w+)$|" +
-                    "^(shop show (?:--all|-A))$",
+                    "^(shop show (?:--all|-A))$|" +
+                    "^(help)$",
             // i = 1
             "shop buy (\\w+)"
     };
@@ -57,6 +58,15 @@ public class ShopMenu extends Menu {
         }
     }
 
+    private void help() {
+        System.out.println("shop buy <card name>\n" +
+                "shop show --all\n" +
+                "menu exit\n" +
+                "menu show-current\n" +
+                "menu enter <menu name>\n" +
+                "help");
+    }
+
     @Override
     public void show() {
     }
@@ -82,6 +92,9 @@ public class ShopMenu extends Menu {
 
                 } else if (matcher.group(5) != null) {
                     showAllCards();
+
+                } else if (matcher.group(6) != null) {
+                    help();
 
                 }
 
