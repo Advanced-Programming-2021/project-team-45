@@ -1,6 +1,7 @@
 package model.game;
 
 import controller.GameController;
+import model.ArtificialIntelligence;
 import model.card.*;
 import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
@@ -216,11 +217,11 @@ public class Game {
         } else if ((this.phase).equals("standby phase")) {
             this.phase = "Main Phase1";
         } else if ((this.phase).equals("Main Phase1")) {
-            this.phase = "End Phase";
-        } else if ((this.phase).equals("End Phase")) {
             this.phase = "battle phase";
         } else if ((this.phase).equals("battle phase")) {
             this.phase = "Main Phase2";
+        } else if ((this.phase).equals("Main Phase2")) {
+            this.phase = "End Phase";
         }
     }
 
@@ -234,11 +235,11 @@ public class Game {
         SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
     }
 
-    private boolean canGetCard() {
+    public boolean canGetCard() {
         return TimeSeal.canGetCard;
     }
 
-    private void worksHaveToDoneAfterGetCard() {
+    public void worksHaveToDoneAfterGetCard() {
         TimeSeal.canGetCard = true;
     }
 
@@ -255,6 +256,12 @@ public class Game {
         Scanner.deleteSwapMonsterIfHadScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField());
         Suijin.setAllSuijinInEachTurn();
         Texchanger.setAllTexchanger();
+        if(getOpponentOfThisTurn().getUsername().equals("AI")){
+            setPlayerOfNextTurn();
+            ArtificialIntelligence.playTurn(this);
+        }else{
+            setPlayerOfNextTurn();
+        }
     }
 
     public void battlePhase() {
@@ -517,4 +524,10 @@ public class Game {
     public GameController getGameController() {
         return gameController;
     }
+
+    public void setSelectedCard1(Card card){
+        this.selectedCard=card;
+    }
+
+
 }

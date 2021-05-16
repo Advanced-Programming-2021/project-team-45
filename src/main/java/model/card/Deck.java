@@ -164,4 +164,13 @@ public class Deck {
         }
         return deck;
     }
+
+    public void setDeckForAI(){
+        for(int i=0;i<50;i++){
+            this.addCard(Card.getAllCards().get(i).cardName,false,user);
+        }
+        for(int i=0;i<15;i++){
+            this.addCard(Card.getAllCards().get(i+50).cardName,true,user);
+        }
+    }
 }
