@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeckTest {
     @BeforeAll
-    public void set() {
+    public static void set() {
         User user = new User("hajji", "hajji", "hajji");
         user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
         user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
@@ -18,6 +18,7 @@ class DeckTest {
         user.getCardInventory().addCardToInventory(Card.getCardByName("Axe Raider"));
         user.getCardInventory().addCardToInventory(Card.getCardByName("Magic Cylinder"));
         user.getCardInventory().addCardToInventory(Card.getCardByName("Trap Hole"));
+        user.getCardInventory().addCardToInventory(Card.getCardByName("Silver Fang"));
         user.getUserDeck().createDeck("deck1", user);
         user.getUserDeck().getDeckByName("deck1").addCard("Battle OX", false, user);
         user.getUserDeck().getDeckByName("deck1").addCard("Battle OX", false, user);
@@ -109,7 +110,7 @@ class DeckTest {
     }
 
     @AfterAll
-    public void setAfterTest() {
+    public static void setAfterTest() {
         User.deleteUserByUsername("hajji");
     }
 }

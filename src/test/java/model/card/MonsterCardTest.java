@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MonsterCardTest {
 
     @BeforeAll
-    public void setBeforeTest() {
+    public static void setBeforeTest() {
         User user = new User("hajji", "hajji", "hajji");
     }
 
@@ -151,7 +151,7 @@ class MonsterCardTest {
     }
 
     @AfterAll
-    public void setAfterTest() {
+    public static void setAfterTest() {
         User.deleteUserByUsername("hajji");
     }
 }
