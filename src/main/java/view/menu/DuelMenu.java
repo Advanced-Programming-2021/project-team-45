@@ -140,9 +140,19 @@ public class DuelMenu extends Menu {
         System.out.println(message);
     }
 
-    public void showGameBoard() {
+    public void updatePlayerGameBoard() {
         String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
         String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+        printGameBoard(playerGameBoard, opponentGameBoard);
+    }
+
+    public void updateOpponentGameBoard() {
+        String[][] playerGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+        String[][] opponentGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+        printGameBoard(playerGameBoard, opponentGameBoard);
+    }
+
+    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
                 if (opponentGameBoard[i][j] != null) {
@@ -162,10 +172,6 @@ public class DuelMenu extends Menu {
             }
         }
         System.out.println(playerGameBoard[0][0] + playerGameBoard[0][1]);
-    }
-
-    public void showOpponentGameBoard() {
-
     }
 
     public void showGameWinner(String username, int playerWins, int opponentWins) {

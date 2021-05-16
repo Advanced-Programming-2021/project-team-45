@@ -569,4 +569,13 @@ public class GameController extends Controller {
     public int getNumberFromPlayer(String view){
         return playerDuelMenu.getNumber(view);
     }
+
+    public boolean doesPlayerWantToAddToTheChain(User player) {
+        if (player == this.player) {
+            playerDuelMenu.updatePlayerGameBoard();
+        } else {
+            playerDuelMenu.updateOpponentGameBoard();
+        }
+        return getYesNoAnswer("do you want to add to this chain?");
+    }
 }
