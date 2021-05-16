@@ -7,6 +7,7 @@ import model.card.SpellTrapCard;
 import model.game.fields.MonsterField;
 import model.game.fields.SpellTrapField;
 import model.user.User;
+
 import java.util.ArrayList;
 
 public class Chain {
@@ -61,7 +62,9 @@ public class Chain {
 
     public void startChain() {
         while (canAddToChain()) {
-            
+            if (doesPlayerWantToAddToChain()) {
+                addToChain();
+            }
             nextPlayer();
         }
         activateChain();
@@ -118,5 +121,13 @@ public class Chain {
                 // WHAT TO DO FOR MONSTERS!!!
             }
         }
+    }
+
+    private boolean doesPlayerWantToAddToChain() {
+        return game.getGameController().doesPlayerWantToAddToTheChain(getPlayer());
+    }
+
+    private void addToChain() {
+        
     }
 }
