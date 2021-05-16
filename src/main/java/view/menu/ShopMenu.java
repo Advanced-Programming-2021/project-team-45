@@ -15,11 +15,11 @@ public class ShopMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(shop buy \\w+)$|" +
+                    "^(shop buy [\\w| ]+)$|" +
                     "^(shop show (?:--all|-A))$|" +
                     "^(help)$",
             // i = 1
-            "shop buy (\\w+)"
+            "shop buy ([\\w| ]+)"
     };
 
 
@@ -63,7 +63,6 @@ public class ShopMenu extends Menu {
                 "shop show --all\n" +
                 "menu exit\n" +
                 "menu show-current\n" +
-                "menu enter <menu name>\n" +
                 "help");
     }
 

@@ -70,6 +70,4 @@ public class ArtificialIntelligence {
         }
         return 0;
     }
-
-
 }

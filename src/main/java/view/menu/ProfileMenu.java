@@ -85,7 +85,6 @@ public class ProfileMenu extends Menu {
                 "profile change --password --current <current password> --new <new password>\n" +
                 "menu exit\n" +
                 "menu show-current\n" +
-                "menu enter <menu name>\n" +
                 "help");
     }
 

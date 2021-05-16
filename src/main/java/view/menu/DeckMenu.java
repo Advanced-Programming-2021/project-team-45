@@ -86,7 +86,7 @@ public class DeckMenu extends Menu {
         int inputError = 0;
 
         String cardName = "";
-        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) (\\w+)");
+        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| ]+)");
         if (cardNameMatcher.find()) {
             cardName = cardNameMatcher.group(1);
             inputError++;
@@ -130,7 +130,7 @@ public class DeckMenu extends Menu {
         int inputError = 0;
 
         String cardName = "";
-        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) (\\w+)");
+        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| ]+)");
         if (cardNameMatcher.find()) {
             cardName = cardNameMatcher.group(1);
             inputError++;
@@ -227,15 +227,13 @@ public class DeckMenu extends Menu {
         System.out.println("deck create <deck name>\n" +
                 "deck delete <deck name>\n" +
                 "deck set-activate <deck name>\n" +
-                "deck add-card --card <card name> --deck <deck name> --\n" +
-                "side(optional)\n" +
+                "deck add-card --card <card name> --deck <deck name> --side(optional)\n" +
                 "deck rm-card --card <card name> --deck <deck name> --side(optional)\n" +
                 "deck show --all\n" +
                 "deck show --deck-name <deck name> --side(optional)\n" +
                 "deck show --cards\n" +
                 "menu exit\n" +
                 "menu show-current\n" +
-                "menu enter <menu name>\n" +
                 "help");
     }
 

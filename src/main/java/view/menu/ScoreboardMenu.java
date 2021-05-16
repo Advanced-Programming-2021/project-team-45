@@ -40,7 +40,6 @@ public class ScoreboardMenu extends Menu {
         System.out.println("scoreboard show\n" +
                 "menu exit\n" +
                 "menu show-current\n" +
-                "menu enter <menu name>\n" +
                 "help");
     }
 
@@ -56,7 +55,6 @@ public class ScoreboardMenu extends Menu {
 
             if (matcher.find()) {
                 if (matcher.group(1) != null) {
-                    System.out.println("user logged out successfully!");
                     break;
 
                 } else if (matcher.group(2) != null) {

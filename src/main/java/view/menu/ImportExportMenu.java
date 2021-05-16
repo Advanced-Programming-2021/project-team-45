@@ -13,13 +13,13 @@ public class ImportExportMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(import card \\w+)$|" +
-                    "^(export card \\w+)$|" +
+                    "^(import card [\\w| ]+)$|" +
+                    "^(export card [\\w| ]+)$|" +
                     "^(help)$",
             // i = 1
-            "import card (\\w+)",
+            "import card ([\\w| ]+)",
             // i = 2
-            "export card (\\w+)"
+            "export card ([\\w| ])"
     };
 
 
@@ -52,7 +52,6 @@ public class ImportExportMenu extends Menu {
                 "export card <card name>\n" +
                 "menu exit\n" +
                 "menu show-current\n" +
-                "menu enter <menu name>\n" +
                 "help");
     }
 
@@ -68,7 +67,6 @@ public class ImportExportMenu extends Menu {
 
             if (matcher.find()) {
                 if (matcher.group(1) != null) {
-                    System.out.println("user logged out successfully!");
                     break;
 
                 } else if (matcher.group(2) != null) {
