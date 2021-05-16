@@ -28,9 +28,9 @@ class CardInventoryTest {
     @Test
     void getCardCount() {
         User user = User.getUserByUsername("amir");
-        assertEquals(0, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
+        assertEquals(2, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
         user.getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
-        assertEquals(1, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
+        assertEquals(3, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
 
     }
 
