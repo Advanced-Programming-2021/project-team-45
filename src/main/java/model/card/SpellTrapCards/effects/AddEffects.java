@@ -30,6 +30,12 @@ public class AddEffects {
         } else if (cardName.equals("Dark Hole")) {
             effects.add(new DestroyAllCardsOfFieldEffect(CardFieldType.PLAYER_MONSTER, CardFieldType.OPPONENT_MONSTER));
 
+        } else if (cardName.equals("Supply Squad")) {
+            effects.add(new SupplySquad(card));
+
+        } else if (cardName.equals("Spell Absorption")) {
+            effects.add(new SpellAbsorption(card));
+
         } else if (cardName.equals("Yami")) {
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Fiend));
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.SpellCaster));
@@ -65,12 +71,6 @@ public class AddEffects {
 
         } else if (cardName.equals("Advanced Ritual Art")) {
             effects.add(new AdvancedRitualArtEffect());
-
-        } else if (cardName.equals("Supply Squad")) {
-            effects.add(new SupplySquad(card));
-
-        } else if (cardName.equals("Spell Absorption")) {
-            effects.add(new SpellAbsorption(card));
 
         } else if (cardName.equals("Call of the Haunted")) {
             effects.add(new SummonFromGraveyard(CardFieldType.PLAYER_GRAVEYARD));
