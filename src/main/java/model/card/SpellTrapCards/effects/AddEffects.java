@@ -88,7 +88,7 @@ public class AddEffects {
             effects.add(new TorrentialTributeEffect());
 
         } else if (cardName.equals("Negate Attack")) {
-            effects.add(new TorrentialTributeEffect());
+            effects.add(new NegateAttackEffect());
 
         } else if (cardName.equals("Call of the Haunted")) {
             effects.add(new SummonFromGraveyardEffect(CardFieldType.PLAYER_GRAVEYARD));
