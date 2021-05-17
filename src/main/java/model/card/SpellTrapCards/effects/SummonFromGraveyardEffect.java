@@ -8,12 +8,12 @@ import model.game.fields.CardFieldType;
 
 import java.util.ArrayList;
 
-public class SummonFromGraveyard extends Effect {
+public class SummonFromGraveyardEffect extends Effect {
 
+    private final CardFieldType[] fieldTypes;
     private ArrayList<CardField> fields;
-    private CardFieldType[] fieldTypes;
 
-    public SummonFromGraveyard(CardFieldType... fieldTypes) {
+    public SummonFromGraveyardEffect(CardFieldType... fieldTypes) {
         this.fieldTypes = fieldTypes;
     }
 

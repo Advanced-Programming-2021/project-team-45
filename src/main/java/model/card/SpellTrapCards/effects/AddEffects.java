@@ -13,7 +13,7 @@ public class AddEffects {
         ArrayList<Effect> effects = new ArrayList<>();
 
         if (cardName.equals("Monster Reborn")) {
-            effects.add(new SummonFromGraveyard(CardFieldType.PLAYER_GRAVEYARD, CardFieldType.OPPONENT_GRAVEYARD));
+            effects.add(new SummonFromGraveyardEffect(CardFieldType.PLAYER_GRAVEYARD, CardFieldType.OPPONENT_GRAVEYARD));
 
         } else if (cardName.equals("Terraforming")) {
             effects.add(new TerraformingEffect());
@@ -35,6 +35,9 @@ public class AddEffects {
 
         } else if (cardName.equals("Spell Absorption")) {
             effects.add(new SpellAbsorption(card));
+
+        } else if (cardName.equals("Mystical space typhoon")) {
+            effects.add(new MysticalSpaceTyphoonEffect());
 
         } else if (cardName.equals("Yami")) {
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Fiend));
@@ -73,7 +76,7 @@ public class AddEffects {
             effects.add(new AdvancedRitualArtEffect());
 
         } else if (cardName.equals("Call of the Haunted")) {
-            effects.add(new SummonFromGraveyard(CardFieldType.PLAYER_GRAVEYARD));
+            effects.add(new SummonFromGraveyardEffect(CardFieldType.PLAYER_GRAVEYARD));
 
         }
 
