@@ -28,6 +28,10 @@ public class SpellTrapField extends CardField {
         return new ArrayList<>(Arrays.asList(spellTraps));
     }
 
+    public int getCount() {
+        return getSpellTrapsArrayList().size();
+    }
+
     public SpellTrapCard getPlayerSpellTrapCard(int cardPosition) {
         return spellTraps[cardPosition - 1];
     }
