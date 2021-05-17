@@ -1,8 +1,7 @@
-package model.card.SpellTrapCards.AbilitiesOfSpell;
+package model.card.SpellTrapCards.effects;
 
 import model.card.Card;
 import model.card.SpellTrapCard;
-import model.card.SpellsAndTrapPosition;
 import model.game.Game;
 import model.game.GameBoard;
 

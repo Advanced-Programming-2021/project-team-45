@@ -1,12 +1,12 @@
-package model.card.SpellTrapCards.AbilitiesOfTraps;
+package model.card.SpellTrapCards.effects;
 
 
-import model.card.SpellTrapCards.AbilitiesOfSpell.RingOfDefense;
+import model.card.SpellTrapCards.effects.RingOfDefense;
 import model.game.Game;
 import model.game.GameBoard;
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
-import model.game.fields.SpellTrapField;
+
 
 public class MirrorForce {
     public static void ability(Game game){
