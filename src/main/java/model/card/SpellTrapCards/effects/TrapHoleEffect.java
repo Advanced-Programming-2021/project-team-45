@@ -14,6 +14,8 @@ public class TrapHoleEffect extends Effect {
         Graveyard graveyard = chain.getGame().getPlayerGameBoard().getGraveyard();
         graveyard.addCardToGraveyard(monster);
         chain.getGame().deselectCard();
+
+        chain.deActiveMonster();
     }
 
     @Override
