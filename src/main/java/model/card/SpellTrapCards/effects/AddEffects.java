@@ -78,6 +78,9 @@ public class AddEffects {
         } else if (cardName.equals("Advanced Ritual Art")) {
             effects.add(new AdvancedRitualArtEffect());
 
+        } else if (cardName.equals("Magic Cylinder")) {
+            effects.add(new MagicCylinderEffect());
+
         } else if (cardName.equals("Trap Hole")) {
             effects.add(new TrapHoleEffect());
 
