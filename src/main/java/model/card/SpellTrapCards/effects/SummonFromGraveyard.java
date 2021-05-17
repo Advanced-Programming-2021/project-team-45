@@ -3,14 +3,19 @@ package model.card.SpellTrapCards.effects;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.game.Chain;
-import model.game.Game;
 import model.game.fields.CardField;
+import model.game.fields.CardFieldType;
 
 import java.util.ArrayList;
 
-public class MonsterRebornEffect extends Effect {
+public class SummonFromGraveyard extends Effect {
 
     private ArrayList<CardField> fields;
+    private CardFieldType[] fieldTypes;
+
+    public SummonFromGraveyard(CardFieldType... fieldTypes) {
+        this.fieldTypes = fieldTypes;
+    }
 
     @Override
     public void activate(Chain chain) {
@@ -28,7 +33,12 @@ public class MonsterRebornEffect extends Effect {
 
     private void initializeFields(Chain chain) {
         fields = new ArrayList<>();
-        fields.add(chain.getPlayerGameBoard().getGraveyard());
-        fields.add(chain.getOpponentGameBoard().getGraveyard());
+        for (CardFieldType fieldType : fieldTypes) {
+            if (fieldType == CardFieldType.OPPONENT_GRAVEYARD) {
+                fields.add(chain.getOpponentGameBoard().getGraveyard());
+            } else if (fieldType == CardFieldType.PLAYER_GRAVEYARD) {
+                fields.add(chain.getPlayerGameBoard().getGraveyard());
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ public class AddEffects {
         ArrayList<Effect> effects = new ArrayList<>();
 
         if (cardName.equals("Monster Reborn")) {
-            effects.add(new MonsterRebornEffect());
+            effects.add(new SummonFromGraveyard(CardFieldType.PLAYER_GRAVEYARD, CardFieldType.OPPONENT_GRAVEYARD));
 
         } else if (cardName.equals("Terraforming")) {
             effects.add(new TerraformingEffect());
@@ -66,11 +66,15 @@ public class AddEffects {
         } else if (cardName.equals("Advanced Ritual Art")) {
             effects.add(new AdvancedRitualArtEffect());
 
-        }else if(cardName.equals("Supply Squad")){
+        } else if (cardName.equals("Supply Squad")) {
             effects.add(new SupplySquad(card));
 
-        }else if(cardName.equals("Spell Absorption")){
+        } else if (cardName.equals("Spell Absorption")) {
             effects.add(new SpellAbsorption(card));
+
+        } else if (cardName.equals("Call of the Haunted")) {
+            effects.add(new SummonFromGraveyard(CardFieldType.PLAYER_GRAVEYARD));
+
         }
 
         return effects;
