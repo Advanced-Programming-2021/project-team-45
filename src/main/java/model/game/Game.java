@@ -7,7 +7,6 @@ import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
-import model.card.SpellTrapCards.effects.ChainStartState;
 import model.card.SpellTrapCards.effects.Continiuous.ContiniouesSpellController;
 import model.card.SpellTrapCards.effects.Continiuous.ContinouesSpellActivatePlace;
 import model.game.fields.MonsterField;
@@ -286,16 +285,26 @@ public class Game {
         }
     }
 
-    public void  summonMonster() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
-                getGameBoardOfPlayerOfThisTurn().getMonsterField());
-        if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
-            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
+    public int  summonMonster() {
+        Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_SUMMON);
+        boolean canSummon = chain.startChain();
+
+        if (canSummon) {
+            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+            CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
+                    getGameBoardOfPlayerOfThisTurn().getMonsterField());
+            if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
+                SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
+            }
+            ((MonsterCard) this.selectedCard).summon();
+            gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
+            this.selectedCard = null;
+            return 6;
+
+        } else {
+            return -1;
+
         }
-        ((MonsterCard) this.selectedCard).summon();
-        gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
-        this.selectedCard = null;
     }
 
     public void tributeSummon(ArrayList<Integer> cardsToTribute) {
@@ -353,45 +362,59 @@ public class Game {
 
     private boolean isTargetCellInDefensePosition(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        if (gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
-                == PositionMonsters.DEFENSE)
-            return true;
-        else return false;
+        return gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+                == PositionMonsters.DEFENSE;
     }
 
-    public void flipSummon() {
+    public int flipSummon() {
+        Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_FLIP_SUMMON);
+        boolean canFlipSummon = chain.startChain();
 
-        MonsterCard playerCard = (MonsterCard) this.selectedCard;
-        playerCard.setPosition(PositionMonsters.ATTACK);
-        this.selectedCard = playerCard;
+        if (canFlipSummon) {
+            MonsterCard playerCard = (MonsterCard) this.selectedCard;
+            playerCard.setPosition(PositionMonsters.ATTACK);
+            this.selectedCard = playerCard;
+            return 5;
 
+        } else {
+            return -1;
+
+        }
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
 
-        GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-        GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
-        MonsterCard playerCard = (MonsterCard) this.selectedCard;
-        playerCard.setWasAttackedInThisTurn(true);
-        MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField
-                (numberOfEnemyMonsterZone);
-        if(ContiniouesSpellController.Controller("Messenger Of Peace",this,
-                ContinouesSpellActivatePlace.Attack)==1){
-            return 0;
+        Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_ATTACK);
+        boolean canAttack = chain.startChain();
+
+        if (!canAttack) {
+            result = -1;
+
+        } else {
+            GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+            GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
+            MonsterCard playerCard = (MonsterCard) this.selectedCard;
+            playerCard.setWasAttackedInThisTurn(true);
+            MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField
+                    (numberOfEnemyMonsterZone);
+            if (ContiniouesSpellController.Controller("Messenger Of Peace", this,
+                    ContinouesSpellActivatePlace.Attack) == 1) {
+                return 0;
+            }
+            if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
+                SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
+                return 0;
+            }
+            if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
+                result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard
+                        , opponentGameBoard);
+            } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
+                result = attackToOpponentCardInDefensePosition(playerCard, opponentCard, playerGameBoard
+                        , opponentGameBoard);
+            }
+            this.selectedCard = null;
         }
-        if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
-            SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
-            return 0;
-        }
-        if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
-            result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard
-                    , opponentGameBoard);
-        } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
-            result = attackToOpponentCardInDefensePosition(playerCard, opponentCard, playerGameBoard
-                    , opponentGameBoard);
-        }
-        this.selectedCard = null;
         return result;
     }
 
