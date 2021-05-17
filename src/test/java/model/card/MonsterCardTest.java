@@ -65,20 +65,30 @@ class MonsterCardTest {
 
     @Test
     void changePosition() {
-
+        MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Battle OX");
+        monsterCard.setPosition(PositionMonsters.ATTACK);
+        monsterCard.changePosition();
+        assertEquals(PositionMonsters.DEFENSE, monsterCard.getPosition());
+        monsterCard.position = null;
     }
 
     @Test
     void summon() {
-
+        MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Silver Fang");
+        monsterCard.summon();
+        assertEquals(PositionMonsters.ATTACK, monsterCard.position);
+        monsterCard.position = null;
     }
 
     @Test
     void set() {
-
+        MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Crab Turtle");
+        monsterCard.set();
+        assertEquals(PositionMonsters.DEFENSE, monsterCard.position);
+        monsterCard.position = null;
     }
 
-    @Test
+    /*@Test
     void attackMonster() {
 
     }
@@ -86,7 +96,7 @@ class MonsterCardTest {
     @Test
     void attackOpponent() {
 
-    }
+    }*/
 
     @Test
     void getAttack() {
@@ -114,17 +124,26 @@ class MonsterCardTest {
 
     @Test
     void getPosition() {
-
+        MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Wattkid");
+        monsterCard.setPosition(PositionMonsters.ATTACK);
+        assertEquals(PositionMonsters.ATTACK, monsterCard.position);
+        monsterCard.position = null;
     }
 
     @Test
     void getDefenceMode() {
-
+        MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Wattkid");
+        monsterCard.defenceMode = DefensePosition.DO;
+        assertEquals(DefensePosition.DO, monsterCard.defenceMode);
+        monsterCard.defenceMode = null;
     }
 
     @Test
     void setDefenceMode() {
-
+        MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Fireyarou");
+        monsterCard.setDefenceMode(DefensePosition.DH);
+        assertEquals(DefensePosition.DH, monsterCard.defenceMode);
+        monsterCard.defenceMode = null;
     }
 
     @Test
