@@ -148,14 +148,13 @@ public class Chain {
             Card card = chain.get(i);
 
             if (card instanceof SpellTrapCard) {
-                ((SpellTrapCard) card).activateEffects(this);
+                SpellTrapCard spell = (SpellTrapCard) card;
+                spell.activateEffects(this);
+                // move spell to graveyard:
+                SpellTrapField spellField = getPlayerGameBoard().getSpellTrapField();
+                spellField.deleteAndDestroySpellTrap(spell);
 
-            } else {
-                // WHAT TO DO FOR MONSTERS!!!
             }
-
-            // REMOVE CARD FROM FIELD AND ADD TO GRAVEYARD IF NEEDED
-
         }
     }
 
