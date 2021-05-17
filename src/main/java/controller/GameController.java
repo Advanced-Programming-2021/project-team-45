@@ -177,8 +177,8 @@ public class GameController extends Controller {
                             MonsterCard monster = (MonsterCard) game.getSelectedCard();
                             if (monster.getLevel() < 5 || monster.getSpecial() == SpecialMonsterEnum.CRAB_TURTLE
                                     || monster.getSpecial() == SpecialMonsterEnum.SKULL_GUARDIAN) {
-                                game.summonMonster();
-                                return 6;
+
+                                return game.summonMonster();
 
                             } else {
                                 return tributeSummonErrorHandler(monster);
@@ -312,8 +312,7 @@ public class GameController extends Controller {
             if (gameErrorHandler.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
                     if (gameErrorHandler.canFlipSummonSelectedCard()) {
-                        game.flipSummon();
-                        return 5;
+                        return game.flipSummon();
                     } else {
                         return 4;
                     }

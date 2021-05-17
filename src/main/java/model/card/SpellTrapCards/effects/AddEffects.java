@@ -78,6 +78,9 @@ public class AddEffects {
         } else if (cardName.equals("Advanced Ritual Art")) {
             effects.add(new AdvancedRitualArtEffect());
 
+        } else if (cardName.equals("Torrential Tribute")) {
+            effects.add(new TorrentialTributeEffect());
+
         } else if (cardName.equals("Call of the Haunted")) {
             effects.add(new SummonFromGraveyardEffect(CardFieldType.PLAYER_GRAVEYARD));
 

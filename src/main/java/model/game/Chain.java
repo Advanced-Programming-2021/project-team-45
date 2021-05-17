@@ -4,7 +4,6 @@ import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpecialMonsterEnum;
 import model.card.SpellTrapCard;
-import model.card.SpellTrapCards.effects.ChainStartState;
 import model.game.fields.MonsterField;
 import model.game.fields.SpellTrapField;
 import model.user.User;
@@ -19,6 +18,7 @@ public class Chain {
     private final User player2;
     private final ChainStartState chainState;
     private User turnPlayer;
+    private boolean canActiveMonster;
 
     public Chain(Game game, Card firstCard, User firstPlayer, User secondPlayer, ChainStartState chainState) {
         chain = new ArrayList<>();
@@ -28,6 +28,7 @@ public class Chain {
         this.player2 = secondPlayer;
         this.turnPlayer = player2;
         this.chainState = chainState;
+        this.canActiveMonster = true;
     }
 
 
@@ -67,7 +68,11 @@ public class Chain {
         return chainState;
     }
 
-    public void startChain() {
+    public void deActiveMonster() {
+        canActiveMonster = false;
+    }
+
+    public boolean startChain() {
         while (canAddToChain()) {
             if (doesPlayerWantToAddToChain()) {
                 addToChain();
@@ -77,6 +82,8 @@ public class Chain {
             nextPlayer();
         }
         activateChain();
+
+        return canActiveMonster;
     }
 
     public boolean canAddToChain(SpellTrapCard spell) {
