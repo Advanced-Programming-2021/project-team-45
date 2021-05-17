@@ -7,6 +7,7 @@ import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
 import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
+import model.card.SpellTrapCards.effects.ChainStartState;
 import model.card.SpellTrapCards.effects.Continiuous.ContiniouesSpellController;
 import model.card.SpellTrapCards.effects.Continiuous.ContinouesSpellActivatePlace;
 import model.game.fields.MonsterField;
@@ -486,7 +487,7 @@ public class Game {
     public void activeSpell() {
         if (canActivateSpell()) {
             SpellTrapCard spellTrap = (SpellTrapCard) selectedCard;
-            Chain chain = new Chain(this, spellTrap, getPlayerOfThisTurn(), getOpponentOfThisTurn());
+            Chain chain = new Chain(this, spellTrap, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.SPELL_TRAP);
             chain.startChain();
         }
         ContiniouesSpellController.Controller("Spell Absorption",this,

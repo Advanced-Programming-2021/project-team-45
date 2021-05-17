@@ -36,6 +36,9 @@ public class AddEffects {
         } else if (cardName.equals("Spell Absorption")) {
             effects.add(new SpellAbsorption(card));
 
+        } else if (cardName.equals("Twin Twisters")) {
+            effects.add(new TwinTwistersEffect());
+
         } else if (cardName.equals("Mystical space typhoon")) {
             effects.add(new MysticalSpaceTyphoonEffect());
 
