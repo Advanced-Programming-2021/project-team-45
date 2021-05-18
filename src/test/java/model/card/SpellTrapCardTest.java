@@ -34,6 +34,7 @@ class SpellTrapCardTest {
         SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Magic Jammer")).clone();
         spellTrapCard.summon();
         assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.position);
+        spellTrapCard.position = null;
     }
 
     @Test
@@ -41,6 +42,7 @@ class SpellTrapCardTest {
         SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Terraforming").clone());
         spellTrapCard.set();
         assertEquals(SpellsAndTrapPosition.SET ,spellTrapCard.position);
+        spellTrapCard.position = null;
     }
 
     @Test
@@ -48,6 +50,7 @@ class SpellTrapCardTest {
         SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Mirror Force")).clone();
         spellTrapCard.summon();
         assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.getPosition());
+        spellTrapCard.position = null;
     }
 
     @Test
@@ -55,6 +58,7 @@ class SpellTrapCardTest {
         SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Trap Hole")).clone();
         spellTrapCard.setPosition(SpellsAndTrapPosition.SET);
         assertEquals(SpellsAndTrapPosition.SET, spellTrapCard.getPosition());
+        spellTrapCard.position = null;
     }
 
 

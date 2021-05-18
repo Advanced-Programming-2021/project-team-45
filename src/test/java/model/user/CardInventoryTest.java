@@ -4,6 +4,8 @@ package model.user;
 import model.card.Card;
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardInventoryTest {
@@ -31,19 +33,31 @@ class CardInventoryTest {
         assertEquals(2, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
         user.getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
         assertEquals(3, User.getUserByUsername("amir").getCardInventory().getCardCount("Yomi Ship"));
+        assertEquals(0, User.getUserByUsername("amir").getCardInventory().getCardCount("Fireyarou"));
 
     }
 
     @Test
     void doesCardExistToAddToDeck() {
         User user = User.getUserByUsername("amir");
+        assertFalse(user.getCardInventory().doesCardExistToAddToDeck(user.getUserDeck(), "me", "Fireyarou"));
+        assertTrue(user.getCardInventory().doesCardExistToAddToDeck(user.getUserDeck(), "you", "Yomi Ship"));
         assertTrue(user.getCardInventory().doesCardExistToAddToDeck(user.getUserDeck(), "me", "Yomi Ship"));
     }
 
     @Test
     void getCardByCardName() {
-        Card card = (Card.getCardByName("Battle OX")).clone();
-        assertEquals(card, User.getUserByUsername("amir").getCardInventory().getCardByCardName("Battle OX"));
+        Card card = (Card.getCardByName("Battle OX"));
+        assertTrue(card.equals(User.getUserByUsername("amir").getCardInventory().getCardByCardName("Battle OX").getCardName()));
+    }
+
+    @Test
+    void getAllCardsStr() {
+        String strExpected = "Battle OX:A monster with tremendous power, it destroys enemies with a swing of its axe.," +
+                " Yomi Ship:If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.";
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add(strExpected);
+        assertEquals(expected, User.getUserByUsername("amir").getCardInventory().getAllCardsStr());
     }
 
     @AfterAll

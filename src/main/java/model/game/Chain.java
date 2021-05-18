@@ -16,15 +16,19 @@ public class Chain {
     private final Game game;
     private final User player1;
     private final User player2;
+    private final ChainStartState chainState;
     private User turnPlayer;
+    private boolean canActiveMonster;
 
-    public Chain(Game game, Card firstCard, User firstPlayer, User secondPlayer) {
+    public Chain(Game game, Card firstCard, User firstPlayer, User secondPlayer, ChainStartState chainState) {
         chain = new ArrayList<>();
         chain.add(firstCard);
         this.game = game;
         this.player1 = firstPlayer;
         this.player2 = secondPlayer;
         this.turnPlayer = player2;
+        this.chainState = chainState;
+        this.canActiveMonster = true;
     }
 
 
@@ -60,7 +64,15 @@ public class Chain {
         return game;
     }
 
-    public void startChain() {
+    public ChainStartState getChainStartState() {
+        return chainState;
+    }
+
+    public void deActiveMonster() {
+        canActiveMonster = false;
+    }
+
+    public boolean startChain() {
         while (canAddToChain()) {
             if (doesPlayerWantToAddToChain()) {
                 addToChain();
@@ -70,6 +82,8 @@ public class Chain {
             nextPlayer();
         }
         activateChain();
+
+        return canActiveMonster;
     }
 
     public boolean canAddToChain(SpellTrapCard spell) {
@@ -92,10 +106,14 @@ public class Chain {
         for (SpellTrapCard spell : spellTraps) {
             if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
                 if (spell.isSpell()) {
-                    return true;
+                    if (spell.canActivateEffects(this)) {
+                        return true;
+                    }
                 } else {
                     if (canPlayTrap()) {
-                        return true;
+                        if (spell.canActivateEffects(this)) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -130,14 +148,13 @@ public class Chain {
             Card card = chain.get(i);
 
             if (card instanceof SpellTrapCard) {
-                ((SpellTrapCard) card).activateEffects(this);
+                SpellTrapCard spell = (SpellTrapCard) card;
+                spell.activateEffects(this);
+                // move spell to graveyard:
+                SpellTrapField spellField = getPlayerGameBoard().getSpellTrapField();
+                spellField.deleteAndDestroySpellTrap(spell);
 
-            } else {
-                // WHAT TO DO FOR MONSTERS!!!
             }
-
-            // REMOVE CARD FROM FIELD AND ADD TO GRAVEYARD IF NEEDED
-
         }
     }
 
@@ -146,7 +163,11 @@ public class Chain {
     }
 
     private void addToChain() {
-        SpellTrapCard spell = game.getGameController().getSpellToAddToChain(turnPlayer, this);
+        SpellTrapCard spell;
+        do {
+            spell = game.getGameController().getSpellToAddToChain(turnPlayer, this);
+        } while (!spell.canActivateEffects(this));
+
         chain.add(spell);
     }
 }

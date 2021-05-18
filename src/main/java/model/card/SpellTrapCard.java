@@ -19,7 +19,7 @@ public class SpellTrapCard extends Card {
     protected boolean isSpell;
     protected String status;
     protected SpellsAndTrapPosition position;
-    private ArrayList<Effect> effects;
+    private final ArrayList<Effect> effects;
 
     public SpellTrapCard(String cardName) {
         super(cardName);
@@ -99,6 +99,13 @@ public class SpellTrapCard extends Card {
             effect.activate(chain);
         }
         this.activated = true;
+    }
+
+    public boolean canActivateEffects(Chain chain) {
+        for (Effect effect : effects) {
+            if (!effect.canActivate(chain)) return false;
+        }
+        return true;
     }
 
     public SpellsAndTrapPosition getPosition() {

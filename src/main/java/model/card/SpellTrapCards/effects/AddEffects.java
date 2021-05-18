@@ -36,6 +36,9 @@ public class AddEffects {
         } else if (cardName.equals("Spell Absorption")) {
             effects.add(new SpellAbsorption(card));
 
+        } else if (cardName.equals("Twin Twisters")) {
+            effects.add(new TwinTwistersEffect());
+
         } else if (cardName.equals("Mystical space typhoon")) {
             effects.add(new MysticalSpaceTyphoonEffect());
 
@@ -74,6 +77,18 @@ public class AddEffects {
 
         } else if (cardName.equals("Advanced Ritual Art")) {
             effects.add(new AdvancedRitualArtEffect());
+
+        } else if (cardName.equals("Magic Cylinder")) {
+            effects.add(new MagicCylinderEffect());
+
+        } else if (cardName.equals("Trap Hole")) {
+            effects.add(new TrapHoleEffect());
+
+        } else if (cardName.equals("Torrential Tribute")) {
+            effects.add(new TorrentialTributeEffect());
+
+        } else if (cardName.equals("Negate Attack")) {
+            effects.add(new NegateAttackEffect());
 
         } else if (cardName.equals("Call of the Haunted")) {
             effects.add(new SummonFromGraveyardEffect(CardFieldType.PLAYER_GRAVEYARD));
