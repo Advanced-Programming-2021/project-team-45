@@ -6,7 +6,7 @@ import controller.Regex;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-public class DeckMenu extends Menu {
+public class  DeckMenu extends Menu {
 
     private final DeckController deckController;
     private final String[] DECK_MENU_REGEX = {
