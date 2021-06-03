@@ -1,4 +1,4 @@
-package view.menu;
+package view.cli;
 
 import controller.DeckController;
 import controller.Regex;

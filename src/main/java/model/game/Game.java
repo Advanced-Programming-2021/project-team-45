@@ -6,7 +6,6 @@ import model.card.*;
 import model.card.SpecialMonsters.AmazingAbility.*;
 import model.card.SpecialMonsters.EffectPlace;
 import model.card.SpecialMonsters.SpecialMonster;
-import model.card.SpellTrapCards.AbilitiesOfTraps.TimeSeal;
 import model.card.SpellTrapCards.effects.Continiuous.ContiniouesSpellController;
 import model.card.SpellTrapCards.effects.Continiuous.ContinouesSpellActivatePlace;
 import model.game.fields.MonsterField;
@@ -224,21 +223,21 @@ public class Game {
 
     public void drawPhase() {
         // new -haji
-        if (canGetCard()) {
-            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-            this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
-        }
-        worksHaveToDoneAfterGetCard();
+//        if (canGetCard()) {
+//            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+//            this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
+//        }
+//        worksHaveToDoneAfterGetCard();
         SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
     }
 
-    public boolean canGetCard() {
-        return TimeSeal.canGetCard;
-    }
-
-    public void worksHaveToDoneAfterGetCard() {
-        TimeSeal.canGetCard = true;
-    }
+//    public boolean canGetCard() {
+//        return TimeSeal.canGetCard;
+//    }
+//
+//    public void worksHaveToDoneAfterGetCard() {
+//        TimeSeal.canGetCard = true;
+//    }
 
     public void standbyPhase() {
 
