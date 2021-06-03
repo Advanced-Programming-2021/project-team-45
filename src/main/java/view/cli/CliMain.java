@@ -1,6 +1,6 @@
-import view.menu.LoginMenu;
+package view.cli;
 
-public class Main {
+public class CliMain {
     public static void main(String[] args) {
         LoginMenu loginMenu = new LoginMenu();
         loginMenu.show();

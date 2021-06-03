@@ -1,4 +1,4 @@
-package view.menu;
+package view.cli;
 
 public enum MenuName {
     DUEL,

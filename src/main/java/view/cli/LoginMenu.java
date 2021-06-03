@@ -1,4 +1,4 @@
-package view.menu;
+package view.cli;
 
 import controller.LoginController;
 import controller.Regex;

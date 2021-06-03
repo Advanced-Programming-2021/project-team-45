@@ -1,10 +1,9 @@
-package view.menu;
+package view.cli;
 
 import controller.GameController;
 import controller.Regex;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

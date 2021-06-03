@@ -1,4 +1,4 @@
-package view.menu;
+package view.cli;
 
 import model.ArtificialIntelligence;
 import controller.GameController;

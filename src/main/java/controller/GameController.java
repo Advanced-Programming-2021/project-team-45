@@ -8,8 +8,8 @@ import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import model.game.fields.CardField;
 import model.user.User;
-import view.menu.DuelMenu;
-import view.menu.MainMenu;
+import view.cli.DuelMenu;
+import view.cli.MainMenu;
 
 import java.io.IOException;
 import java.util.ArrayList;
