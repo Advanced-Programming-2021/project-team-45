@@ -1,5 +1,7 @@
 package model.user;
 
+import controller.DatabaseController;
+
 import java.util.ArrayList;
 
 public class User {
@@ -17,7 +19,7 @@ public class User {
     private int lastDamageAmount;
 
     static {
-        users = new ArrayList<>();
+        users = DatabaseController.importUsers();
     }
 
 

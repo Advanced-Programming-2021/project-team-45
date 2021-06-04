@@ -1,5 +1,6 @@
 package view.cli;
 
+import controller.DatabaseController;
 import controller.LoginController;
 import controller.Regex;
 
@@ -164,6 +165,7 @@ public class LoginMenu extends Menu {
 
     @Override
     public void exitMenu() {
+        DatabaseController.exportUsers();
         System.exit(1);
     }
 
