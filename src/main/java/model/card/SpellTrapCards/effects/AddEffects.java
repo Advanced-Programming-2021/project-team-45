@@ -96,6 +96,9 @@ public class AddEffects {
         } else if (cardName.equals("Negate Attack")) {
             effects.add(new NegateAttackEffect());
 
+        } else if (cardName.equals("Solemn Warning")) {
+            effects.add(new SolemnWarningEffect());
+
         } else if (cardName.equals("Call of the Haunted")) {
             effects.add(new SummonFromGraveyardEffect(CardFieldType.PLAYER_GRAVEYARD));
 
