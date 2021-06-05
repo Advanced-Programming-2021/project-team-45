@@ -42,9 +42,6 @@ public class AddEffects {
         } else if (cardName.equals("Mystical space typhoon")) {
             effects.add(new MysticalSpaceTyphoonEffect());
 
-        }else if(cardName.equals("Ring of Defense")){
-            effects.add(new RingOfDefense());
-
         } else if (cardName.equals("Yami")) {
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.Fiend));
             effects.add(new IncreaseAtkDefOfTypeEffect(200, 200, MonsterType.SpellCaster));
