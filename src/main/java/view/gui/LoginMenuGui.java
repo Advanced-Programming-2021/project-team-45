@@ -73,12 +73,12 @@ public class LoginMenuGui extends MenuGui {
         }
     }
 
-    private void login(String username, String password) {
+    private void login(String username, String password) throws Exception {
         int error = getLoginController().loginUserErrorHandler(username, password);
         if (error == 0) {
             ShowOutput.showOutput("Success", "user logged in successfully!");
-
-            // go to Main Menu
+            MainMenuGui mainMenuGui = new MainMenuGui();
+            mainMenuGui.start(stage);
 
         } else if (error == 1) {
             ShowOutput.showOutput("Error", "Username and password didn't match!");
@@ -101,7 +101,7 @@ public class LoginMenuGui extends MenuGui {
         clearTextBoxes();
     }
 
-    public void login(MouseEvent mouseEvent) {
+    public void login(MouseEvent mouseEvent) throws Exception {
         String username = usernameLoginTextBox.getText();
         String password = passwordLoginTextBox.getText();
         login(username, password);
