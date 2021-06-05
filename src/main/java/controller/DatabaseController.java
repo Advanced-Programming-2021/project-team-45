@@ -2,14 +2,17 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpellTrapCard;
+import model.user.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DatabaseController extends Controller {
@@ -18,6 +21,36 @@ public class DatabaseController extends Controller {
         super(username);
     }
 
+
+    public static ArrayList<User> importUsers() {
+        File file = new File("src/main/resources/controller/database/users.json");
+        Scanner fileScanner = null;
+        try {
+            fileScanner = new Scanner(file);
+        } catch (FileNotFoundException ignored) {
+        }
+        String json = fileScanner.nextLine();
+
+        Gson gson = new Gson();
+        return gson.fromJson(json,
+                new TypeToken<ArrayList<User>>() {
+                }.getType());
+    }
+
+    public static void exportUsers() {
+        ArrayList<User> users = User.getUsers();
+        Gson gson = new Gson();
+        String json = gson.toJson(users);
+        try {
+            FileWriter writer = new FileWriter("src/main/resources/controller/database/users.json");
+            writer.write(json);
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+
+        }
+    }
 
     private void writeToExportedCards(String json) {
         try {
