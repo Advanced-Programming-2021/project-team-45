@@ -85,7 +85,7 @@ public class AddEffects {
             effects.add(new MagicCylinderEffect());
 
         } else if (cardName.equals("Mirror Force")) {
-            effects.add(new MirrorForce());
+            effects.add(new MirrorForceEffect());
 
         } else if (cardName.equals("Trap Hole")) {
             effects.add(new TrapHoleEffect());
