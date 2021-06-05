@@ -13,7 +13,7 @@ public class Card {
     protected String cardDescription;
     protected String cardType;
     protected int price;
-    protected User owner;
+    protected String ownerUsername;
     protected int speed;
 
     static {
@@ -61,12 +61,12 @@ public class Card {
         return price;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setOwnerUsername(String username) {
+        this.ownerUsername = username;
     }
 
     public User getOwner() {
-        return owner;
+        return User.getUserByUsername(ownerUsername);
     }
 
     public static String showCard(Card card) {

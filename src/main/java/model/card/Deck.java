@@ -8,15 +8,19 @@ import java.util.Collections;
 public class Deck {
 
     private final String name;
-    private final User user;
-    private ArrayList<Card> mainDeck=new ArrayList<>();
-    private ArrayList<Card> sideDeck=new ArrayList<>();
+    private final String username;
+    private final ArrayList<Card> mainDeck = new ArrayList<>();
+    private final ArrayList<Card> sideDeck = new ArrayList<>();
 
-    public Deck(String name, User user) {
+    public Deck(String name, String username) {
         this.name = name;
-        this.user = user;
+        this.username = username;
     }
 
+
+    public User getUser() {
+        return User.getUserByUsername(username);
+    }
 
     public void addCard(String cardName, boolean isSideDeck, User user) {
         Card card = user.getCardInventory().getCardByCardName(cardName);
@@ -61,7 +65,7 @@ public class Deck {
     public int getCardCountInDeck(String cardName) {
         int count = 0;
         for (Card card : sideDeck) {
-            if(card!=null) {
+            if (card != null) {
                 if (card.getCardName().equals(cardName)) count++;
             }
         }
@@ -161,22 +165,22 @@ public class Deck {
 
     @Override
     public Deck clone() {
-        Deck deck = new Deck(this.getName(), this.user);
+        Deck deck = new Deck(this.getName(), this.username);
         for (Card card : mainDeck) {
-            deck.addCard(card.getCardName(), false, this.user);
+            deck.addCard(card.getCardName(), false, this.getUser());
         }
         for (Card card : sideDeck) {
-            deck.addCard(card.getCardName(), true, this.user);
+            deck.addCard(card.getCardName(), true, this.getUser());
         }
         return deck;
     }
 
     public void setDeckForAI() {
         for (int i = 0; i < 50; i++) {
-            this.addCard(Card.getAllCards().get(i).cardName, false, user);
+            this.addCard(Card.getAllCards().get(i).cardName, false, getUser());
         }
         for (int i = 0; i < 15; i++) {
-            this.addCard(Card.getAllCards().get(i + 50).cardName, true, user);
+            this.addCard(Card.getAllCards().get(i + 50).cardName, true, getUser());
         }
     }
 }

@@ -121,22 +121,22 @@ public class MonsterCard extends Card {
         if (card.position == PositionMonsters.ATTACK) {
             if (this.attack > card.attack) {
                 int decreaseFromOpponentLifepoint = this.attack - card.attack;
-                int newLifepoint = card.owner.getLifepoint().getLifepoint() - decreaseFromOpponentLifepoint;
-                card.owner.getLifepoint().setLifepoint(newLifepoint);
-                card.owner.setLastDamageAmount(decreaseFromOpponentLifepoint);
+                int newLifepoint = card.getOwner().getLifepoint().getLifepoint() - decreaseFromOpponentLifepoint;
+                card.getOwner().getLifepoint().setLifepoint(newLifepoint);
+                card.getOwner().setLastDamageAmount(decreaseFromOpponentLifepoint);
 
             } else if (this.attack < card.attack) {
                 int decreaseFromAttacker = card.attack - this.attack;
-                int newLifepoint = this.owner.getLifepoint().getLifepoint() - decreaseFromAttacker;
-                this.owner.getLifepoint().setLifepoint(newLifepoint);
-                this.owner.setLastDamageAmount(decreaseFromAttacker);
+                int newLifepoint = this.getOwner().getLifepoint().getLifepoint() - decreaseFromAttacker;
+                this.getOwner().getLifepoint().setLifepoint(newLifepoint);
+                this.getOwner().setLastDamageAmount(decreaseFromAttacker);
             }
         } else {
             if (this.attack < card.defense) {
                 int decreaseFromAttacker = card.defense - this.attack;
-                int newLifepoint = this.owner.getLifepoint().getLifepoint() - decreaseFromAttacker;
-                this.owner.getLifepoint().setLifepoint(newLifepoint);
-                this.owner.setLastDamageAmount(decreaseFromAttacker);
+                int newLifepoint = this.getOwner().getLifepoint().getLifepoint() - decreaseFromAttacker;
+                this.getOwner().getLifepoint().setLifepoint(newLifepoint);
+                this.getOwner().setLastDamageAmount(decreaseFromAttacker);
             }
         }
     }
@@ -300,7 +300,7 @@ public class MonsterCard extends Card {
     public MonsterCard clone() {
         try {
             MonsterCard clone = new MonsterCard(this.getCardName());
-            clone.setOwner(this.owner);
+            clone.setOwnerUsername(this.ownerUsername);
             return clone;
         } catch (IOException e) {
             e.printStackTrace();
