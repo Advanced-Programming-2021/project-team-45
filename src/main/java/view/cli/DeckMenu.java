@@ -88,7 +88,7 @@ public class DeckMenu extends Menu {
         String cardName = "";
         Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| ]+)");
         if (cardNameMatcher.find()) {
-            cardName = cardNameMatcher.group(1);
+            cardName = cardNameMatcher.group(1).trim();
             inputError++;
         }
 

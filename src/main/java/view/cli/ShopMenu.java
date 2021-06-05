@@ -33,7 +33,7 @@ public class ShopMenu extends Menu {
 
     private void buyCard(Matcher matcher){
         if (matcher.find()) {
-            String cardName = matcher.group(1);
+            String cardName = matcher.group(1).trim();
             int error = 0;
             try {
                 error = shopController.buyCardErrorHandler(cardName);
