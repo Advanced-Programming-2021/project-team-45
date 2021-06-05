@@ -159,7 +159,7 @@ public class SpellTrapCard extends Card {
     @Override
     public SpellTrapCard clone() {
         SpellTrapCard clone = new SpellTrapCard(this.getCardName());
-        clone.setOwner(this.owner);
+        clone.setOwnerUsername(this.ownerUsername);
         return clone;
     }
 }

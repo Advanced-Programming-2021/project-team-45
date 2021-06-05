@@ -50,7 +50,7 @@ public class Shop {
         Card card = Card.getCardByName(cardName);
 
         assert card != null;
-        card.setOwner(user);
+        card.setOwnerUsername(user.getUsername());
         user.getCardInventory().addCardToInventory(card);
         user.decreaseMoney(card.getPrice());
     }

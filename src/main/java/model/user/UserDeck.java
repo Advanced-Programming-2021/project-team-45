@@ -16,7 +16,7 @@ public class UserDeck {
 
 
     public void createDeck(String deckName, User user) {
-        Deck deck = new Deck(deckName, user);
+        Deck deck = new Deck(deckName, user.getUsername());
         userDecks.add(deck);
     }
 
