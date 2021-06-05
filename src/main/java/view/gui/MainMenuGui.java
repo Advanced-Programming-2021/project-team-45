@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainMenuGui extends Application {
     private static Stage stage;
     private static MainMenuController mainMenuController;
@@ -28,7 +30,9 @@ public class MainMenuGui extends Application {
     public void startDeckMenu(MouseEvent mouseEvent) {
     }
 
-    public void startScoreBoardMenu(MouseEvent mouseEvent) {
+    public void startScoreBoardMenu(MouseEvent mouseEvent) throws Exception {
+        ScoreBoardMenuGui scoreBoardMenuGui = new ScoreBoardMenuGui();
+        scoreBoardMenuGui.start(stage);
     }
 
     public void startProfileMenu(MouseEvent mouseEvent) {
@@ -40,6 +44,8 @@ public class MainMenuGui extends Application {
     public void startImportExportMenu(MouseEvent mouseEvent) {
     }
 
-    public void logout(MouseEvent mouseEvent) {
+    public void logout(MouseEvent mouseEvent) throws IOException {
+        LoginMenuGui loginMenuGui = new LoginMenuGui();
+        loginMenuGui.start(stage);
     }
 }
