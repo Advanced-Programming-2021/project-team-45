@@ -16,7 +16,7 @@
                 text="Choose picture from system"/>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4aaa2" height="162.0" layoutX="90.0" layoutY="72.0"
                    stroke="BLACK" strokeType="INSIDE" width="165.0"/>
-        <ImageView id="r" fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="97.0" layoutY="78.0"
+        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="97.0" layoutY="78.0"
                    pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@pictureFiles/unknownUserProfileImage.jpg"/>
