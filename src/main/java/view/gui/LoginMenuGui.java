@@ -78,7 +78,8 @@ public class LoginMenuGui extends MenuGui {
         int error = getLoginController().loginUserErrorHandler(username, password);
         if (error == 0) {
             ShowOutput.showOutput("Success", "user logged in successfully!");
-            MainMenuGui mainMenuGui = new MainMenuGui(User.getUserByUsername(username));
+            MainMenuGui mainMenuGui = new MainMenuGui();
+            MainMenuGui.setUser(User.getUserByUsername(username));
             mainMenuGui.start(stage);
 
         } else if (error == 1) {
