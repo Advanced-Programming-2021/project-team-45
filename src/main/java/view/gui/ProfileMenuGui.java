@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.user.User;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,13 +28,18 @@ public class ProfileMenuGui extends Application {
     public AnchorPane anchorPane;
     public Text usernameText;
     public Text nicknameText;
+    public TextField newNickname;
+    public TextField oldPassword;
+    public TextField newPassword;
+    private User user;
 
-
+    //in code comment shode baad az ok shodan MenuGui ok mishe
 
 //    private final ProfileController profileController;
 
 //    public ProfileMenuGui(ProfileController profileController) {
 //        this.profileController = profileController;
+//
 //    }
 
     @Override
@@ -43,12 +50,6 @@ public class ProfileMenuGui extends Application {
         getReady();
         stage.show();
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-
 
     public void ChooseFile(MouseEvent mouseEvent) throws FileNotFoundException {
         File file=GetInput.choosePictureFile();
@@ -85,6 +86,8 @@ public class ProfileMenuGui extends Application {
         text.setFont(new Font(36));
 
     }
+
+    //baad az dorost shodan class menu gui ok mikonam bakhsh haye payeeni ro
 
     public void back(MouseEvent mouseEvent) {
 
