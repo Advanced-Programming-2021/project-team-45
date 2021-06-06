@@ -35,12 +35,11 @@ public class ProfileMenuGui extends MenuGui {
 
     //in code comment shode baad az ok shodan MenuGui ok mishe
 
-//    private final ProfileController profileController;
+    private final ProfileController profileController;
 
-//    public ProfileMenuGui(ProfileController profileController) {
-//        this.profileController = profileController;
-//
-//    }
+    public ProfileMenuGui(ProfileController profileController) {
+        this.profileController = profileController;
+    }
 
     @Override
     public void start(Stage stage) throws Exception {

@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.user.User;
 
 import java.io.IOException;
 
@@ -77,7 +78,7 @@ public class LoginMenuGui extends MenuGui {
         int error = getLoginController().loginUserErrorHandler(username, password);
         if (error == 0) {
             ShowOutput.showOutput("Success", "user logged in successfully!");
-            MainMenuGui mainMenuGui = new MainMenuGui();
+            MainMenuGui mainMenuGui = new MainMenuGui(User.getUserByUsername(username));
             mainMenuGui.start(stage);
 
         } else if (error == 1) {
