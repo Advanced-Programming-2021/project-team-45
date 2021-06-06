@@ -86,7 +86,7 @@ public class DeckMenu extends Menu {
         int inputError = 0;
 
         String cardName = "";
-        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| ]+)");
+        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| |-]+)");
         if (cardNameMatcher.find()) {
             cardName = cardNameMatcher.group(1).trim();
             inputError++;
@@ -103,7 +103,7 @@ public class DeckMenu extends Menu {
             System.out.println("invalid command");
 
         } else {
-            boolean isSideDeck = input.matches("--side|-s");
+            boolean isSideDeck = Regex.getMatcher(input, "--side|-s").find();
             int error = deckController.addCardErrorHandler(deckName, cardName, isSideDeck);
 
             if (error == 0) {
@@ -130,7 +130,7 @@ public class DeckMenu extends Menu {
         int inputError = 0;
 
         String cardName = "";
-        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| ]+)");
+        Matcher cardNameMatcher = Regex.getMatcher(input, " (?:--card|-C) ([\\w| |-]+)");
         if (cardNameMatcher.find()) {
             cardName = cardNameMatcher.group(1);
             inputError++;
@@ -147,7 +147,7 @@ public class DeckMenu extends Menu {
             System.out.println("invalid command");
 
         } else {
-            boolean isSideDeck = input.matches("--side|-s");
+            boolean isSideDeck = Regex.getMatcher(input, "--side|-s").find();
             int error = deckController.removeCardErrorHandler(deckName, cardName, isSideDeck);
 
             if (error == 0) {
@@ -191,7 +191,7 @@ public class DeckMenu extends Menu {
             System.out.println("invalid command");
 
         } else {
-            boolean isSideDeck = input.matches("--side|-s");
+            boolean isSideDeck = Regex.getMatcher(input, "--side|-s").find();
             int error = deckController.showDeckErrorHandler(deckName, isSideDeck);
 
             if (error == 0) {
