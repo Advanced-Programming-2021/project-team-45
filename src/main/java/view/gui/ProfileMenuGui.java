@@ -35,11 +35,8 @@ public class ProfileMenuGui extends MenuGui {
 
     //in code comment shode baad az ok shodan MenuGui ok mishe
 
-    private final ProfileController profileController;
+    private static ProfileController profileController;
 
-    public ProfileMenuGui(ProfileController profileController) {
-        this.profileController = profileController;
-    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -47,7 +44,10 @@ public class ProfileMenuGui extends MenuGui {
         Scene scene=new Scene(anchorPane);
         stage.setScene(scene);
         getReady();
-        stage.show();
+    }
+
+    public static void setProfileController(ProfileController profileController) {
+        ProfileMenuGui.profileController = profileController;
     }
 
     public void ChooseFile(MouseEvent mouseEvent) throws FileNotFoundException {
