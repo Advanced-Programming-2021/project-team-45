@@ -22,7 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class ProfileMenuGui extends Application {
+public class ProfileMenuGui extends MenuGui {
 
     public ImageView imageView;
     public AnchorPane anchorPane;
