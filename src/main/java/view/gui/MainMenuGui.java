@@ -16,11 +16,12 @@ import java.io.IOException;
 public class MainMenuGui extends MenuGui {
     private static Stage stage;
     private static MainMenuController mainMenuController;
-    private User user;
+    private static User user;
 
-    public MainMenuGui(User user) {
-        this.user=user;
+    public MainMenuGui() {
+        user = null;
     }
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -29,6 +30,10 @@ public class MainMenuGui extends MenuGui {
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
+    }
+
+    public static void setUser(User user) {
+        MainMenuGui.user = user;
     }
 
     public void startDuel(MouseEvent mouseEvent) {

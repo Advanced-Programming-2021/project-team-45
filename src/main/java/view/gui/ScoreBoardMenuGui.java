@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ScoreBoardMenuGui extends Application {
+public class ScoreBoardMenuGui extends MenuGui {
     private static Stage stage;
 
     @FXML
