@@ -18,9 +18,6 @@ public class MainMenuGui extends MenuGui {
     private static MainMenuController mainMenuController;
     private static User user;
 
-    public MainMenuGui() {
-        user = null;
-    }
 
 
     @Override
