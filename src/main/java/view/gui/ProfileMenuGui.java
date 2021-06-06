@@ -26,15 +26,10 @@ public class ProfileMenuGui extends MenuGui {
 
     public ImageView imageView;
     public AnchorPane anchorPane;
-    public Text usernameText;
-    public Text nicknameText;
     public TextField newNickname;
     public TextField oldPassword;
     public TextField newPassword;
-    private User user;
-
-    //in code comment shode baad az ok shodan MenuGui ok mishe
-
+    private static Stage stage;
     private static ProfileController profileController;
 
 
@@ -42,9 +37,11 @@ public class ProfileMenuGui extends MenuGui {
     public void start(Stage stage) throws Exception {
         anchorPane= FXMLLoader.load(getClass().getResource("ProfileMenuGui.fxml"));
         Scene scene=new Scene(anchorPane);
-        stage.setScene(scene);
-        getReady();
+        ProfileMenuGui.stage=stage;
+        ProfileMenuGui.stage.setScene(scene);
+        setUsernameAndNickname();
     }
+
 
     public static void setProfileController(ProfileController profileController) {
         ProfileMenuGui.profileController = profileController;
@@ -77,19 +74,25 @@ public class ProfileMenuGui extends MenuGui {
         anchorPane.getChildren().add(button);
     }
 
-    private void getReady(){
-        Text text=new Text();
-        text.setX(10);
-        text.setY(10);
-        text.setText("username: "+"kos");
-        text.setFont(new Font(36));
-
+    private void setUsernameAndNickname(){
+        Text usernameText=new Text();
+        Text nicknameText=new Text();
+        usernameText.setX(309);
+        usernameText.setY(109);
+        nicknameText.setY(149);
+        nicknameText.setX(309);
+        usernameText.setText("username: "+profileController.getUser().getUsername());
+        nicknameText.setText("nickname: "+profileController.getUser().getNickname());
+        anchorPane.getChildren().add(usernameText);
+        anchorPane.getChildren().add(nicknameText);
     }
 
-    //baad az dorost shodan class menu gui ok mikonam bakhsh haye payeeni ro
-
     public void back(MouseEvent mouseEvent) {
-
+        try {
+            new MainMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void changeNickname(MouseEvent mouseEvent) {

@@ -35,4 +35,8 @@ public class ProfileController extends Controller {
         }
     }
 
+    public User getUser(){
+        return user;
+    }
+
 }
