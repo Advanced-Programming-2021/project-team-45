@@ -24,12 +24,12 @@
         </ImageView>
         <Text fx:id="usernameText" layoutX="309.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
         <Text fx:id="nicknameText" layoutX="309.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
-        <TextField layoutX="390.0" layoutY="296.0"/>
+        <TextField fx:id="newNickname" layoutX="390.0" layoutY="296.0"/>
         <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#back" text="Button"/>
         <Button layoutX="411.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#changeNickname"
                 text="change nickname"/>
-        <TextField layoutX="390.0" layoutY="468.0"/>
-        <TextField layoutX="390.0" layoutY="408.0"/>
+        <TextField fx:id="oldPassword" layoutX="390.0" layoutY="468.0"/>
+        <TextField fx:id="newPassword" layoutX="390.0" layoutY="408.0"/>
         <Text layoutX="417.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="set new nickname"/>
         <Text layoutX="382.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0"
