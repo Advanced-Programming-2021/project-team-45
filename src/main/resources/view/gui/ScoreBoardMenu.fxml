@@ -18,6 +18,9 @@
          </children>
       </VBox>
    </bottom>
+   <center>
+      <GridPane fx:id="scoreboard"/>
+   </center>
    <top>
       <VBox alignment="CENTER" prefHeight="77.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
