@@ -6,80 +6,89 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
-   <top>
-      <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="45.0" prefWidth="198.0" text="welcome to YU-GI-OH!">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font></Label>
-         </children>
-      </VBox>
-   </top>
-   <center>
-      <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Duel" onMouseClicked="#startDuel">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color red="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Deck" onMouseClicked="#startDeckMenu">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color green="1.0" blue="0.16606497764587402" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="ScoreBoard" onMouseClicked="#startScoreBoardMenu">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color red="1.0" blue="0.4332129955291748" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Profile" onMouseClicked="#startProfileMenu">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color green="1.0" blue="0.8999999761581421" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Shop" onMouseClicked="#startShopMenu">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color red="0.8736461997032166" green="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Import/Export" onMouseClicked="#startImportExportMenu">
-               <effect>
-                  <DropShadow spread="0.5" />
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Log out" onMouseClicked="#logout">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color red="0.3547758162021637" green="0.08966861665248871" blue="0.42105263471603394" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-         </children>
-      </VBox>
-   </center>
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
+    <top>
+        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="45.0" prefWidth="198.0" text="welcome to YU-GI-OH!">
+                    <font>
+                        <Font name="Arial Bold" size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Duel"
+                        onMouseClicked="#startDuel">
+                    <effect>
+                        <DropShadow spread="0.5">
+                            <color>
+                                <Color red="1.0"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Deck"
+                        onMouseClicked="#startDeckMenu">
+                    <effect>
+                        <DropShadow spread="0.5">
+                            <color>
+                                <Color green="1.0" blue="0.16606497764587402"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="ScoreBoard"
+                        onMouseClicked="#startScoreBoardMenu">
+                    <effect>
+                        <DropShadow spread="0.5">
+                            <color>
+                                <Color red="1.0" blue="0.4332129955291748"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Profile"
+                        onMouseClicked="#startProfileMenu">
+                    <effect>
+                        <DropShadow spread="0.5">
+                            <color>
+                                <Color green="1.0" blue="0.8999999761581421"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Shop"
+                        onMouseClicked="#startShopMenu">
+                    <effect>
+                        <DropShadow spread="0.5">
+                            <color>
+                                <Color red="0.8736461997032166" green="1.0"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Import/Export"
+                        onMouseClicked="#startImportExportMenu">
+                    <effect>
+                        <DropShadow spread="0.5"/>
+                    </effect>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Log out"
+                        onMouseClicked="#logout">
+                    <effect>
+                        <DropShadow spread="0.5">
+                            <color>
+                                <Color red="0.3547758162021637" green="0.08966861665248871" blue="0.42105263471603394"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+            </children>
+        </VBox>
+    </center>
 </BorderPane>
