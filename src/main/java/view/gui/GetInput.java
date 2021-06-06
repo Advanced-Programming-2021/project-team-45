@@ -3,7 +3,10 @@ package view.gui;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javax.activation.MimetypesFileTypeMap;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GetInput {
@@ -21,5 +24,17 @@ public class GetInput {
         });
 
         return result.get();
+    }
+
+    public static File choosePictureFile(){
+        FileChooser fileChooser=new FileChooser();
+        File file=fileChooser.showOpenDialog(null);
+        String mimetype= new MimetypesFileTypeMap().getContentType(file);
+        String type = mimetype.split("/")[0];
+        if(type.equals("image")){
+            return file;
+        }else{
+            return null;
+        }
     }
 }

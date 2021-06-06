@@ -1,7 +1,10 @@
 package model.user;
 
 import controller.DatabaseController;
+import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class User {
@@ -17,6 +20,15 @@ public class User {
     private CardInventory cardInventory;
     private UserDeck userDeck;
     private int lastDamageAmount;
+    private Image profilePicture;
+    {
+        try {
+            profilePicture = new Image(new FileInputStream("src/main/resources/view/gui/" +
+                    "pictureFiles/unknownUserProfileImage.jpg"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     static {
         users = DatabaseController.importUsers();
@@ -27,7 +39,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
-        this.money = 100000000;
+        this.money = 1000000000;
         this.score = 0;
         this.lifepoint = new Lifepoint();
         this.cardInventory = new CardInventory();
@@ -159,5 +171,11 @@ public class User {
         }
     }
 
+    public Image getProfilePicture() {
+        return profilePicture;
+    }
 
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 }

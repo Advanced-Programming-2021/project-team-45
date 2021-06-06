@@ -131,7 +131,7 @@ public class MainMenu extends Menu {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, MAIN_MENU_REGEX[0]);
 
-            if (input.startsWith("duel ")) {
+            if (input.startsWith("duel")) {
                 gameController = startGame(input);
                 if (gameController != null) {
                     break;
