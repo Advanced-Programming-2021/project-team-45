@@ -33,6 +33,7 @@ public class ScoreBoardMenuGui extends MenuGui {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("ScoreBoardMenu.fxml"));
+        ScoreBoardMenuGui.stage=stage;
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("Score Board");
@@ -75,7 +76,8 @@ public class ScoreBoardMenuGui extends MenuGui {
         label.setPrefHeight(26);
         label.setAlignment(Pos.CENTER);
         if (isLoginUser)
-            label.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 80, 0.7), new CornerRadii(0), new Insets(0))));
+            label.setBackground(new Background(new
+                    BackgroundFill(Color.rgb(0, 0, 80, 0.7), new CornerRadii(0), new Insets(0))));
         return label;
     }
 

@@ -10,7 +10,7 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="66.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Button" onMouseClicked="#backToMainMenu">
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="back" onMouseClicked="#backToMainMenu">
                <effect>
                   <DropShadow />
                </effect>
