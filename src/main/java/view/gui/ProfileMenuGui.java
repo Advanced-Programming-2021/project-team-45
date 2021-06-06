@@ -42,7 +42,6 @@ public class ProfileMenuGui extends MenuGui {
         setUsernameAndNickname();
     }
 
-
     public static void setProfileController(ProfileController profileController) {
         ProfileMenuGui.profileController = profileController;
     }
