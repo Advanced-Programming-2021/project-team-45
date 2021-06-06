@@ -45,7 +45,14 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startProfileMenu(MouseEvent mouseEvent) {
-        new ProfileMenuGui(new ProfileController(""));
+        ProfileMenuGui profileMenuGui=new ProfileMenuGui();
+        ProfileMenuGui.setProfileController(new ProfileController(user.getUsername()));
+        try {
+            profileMenuGui.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void startShopMenu(MouseEvent mouseEvent) {

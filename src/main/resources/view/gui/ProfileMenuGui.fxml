@@ -22,10 +22,8 @@
                 <Image url="@pictureFiles/unknownUserProfileImage.jpg"/>
             </image>
         </ImageView>
-        <Text fx:id="usernameText" layoutX="309.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
-        <Text fx:id="nicknameText" layoutX="309.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
         <TextField fx:id="newNickname" layoutX="390.0" layoutY="296.0"/>
-        <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#back" text="Button"/>
+        <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#back" text="back"/>
         <Button layoutX="411.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#changeNickname"
                 text="change nickname"/>
         <TextField fx:id="oldPassword" layoutX="390.0" layoutY="468.0"/>
