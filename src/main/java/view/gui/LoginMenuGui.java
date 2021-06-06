@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.user.User;
+import view.gui.elements.GetImage;
 
 import java.io.IOException;
 
@@ -33,6 +35,7 @@ public class LoginMenuGui extends MenuGui {
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
+        stage.getIcons().add(GetImage.getGameIcon());
         stage.show();
     }
 
@@ -78,6 +81,7 @@ public class LoginMenuGui extends MenuGui {
         if (error == 0) {
             ShowOutput.showOutput("Success", "user logged in successfully!");
             MainMenuGui mainMenuGui = new MainMenuGui();
+            MainMenuGui.setUser(User.getUserByUsername(username));
             mainMenuGui.start(stage);
 
         } else if (error == 1) {

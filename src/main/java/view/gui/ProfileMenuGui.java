@@ -1,0 +1,156 @@
+package view.gui;
+
+import controller.ProfileController;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Shadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import model.user.User;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class ProfileMenuGui extends MenuGui {
+
+    public ImageView imageView;
+    public AnchorPane anchorPane;
+    public TextField newNickname;
+    public TextField oldPassword;
+    public TextField newPassword;
+    private static Stage stage;
+    private static ProfileController profileController;
+
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        anchorPane = FXMLLoader.load(getClass().getResource("ProfileMenuGui.fxml"));
+        Scene scene = new Scene(anchorPane);
+        ProfileMenuGui.stage = stage;
+        ProfileMenuGui.stage.setScene(scene);
+        setUsernameAndNickname();
+        setPicture();
+    }
+
+    public static void setProfileController(ProfileController profileController) {
+        ProfileMenuGui.profileController = profileController;
+    }
+
+    public void ChooseFile(MouseEvent mouseEvent) throws FileNotFoundException {
+        File file = GetInput.choosePictureFile();
+        if (file != null) {
+            Image image = new Image(new FileInputStream(file.getPath()));
+            imageView.setFitWidth(150);
+            imageView.setImage(image);
+            profileController.getUser().setProfilePicture(image);
+        } else {
+            buttonError();
+        }
+    }
+
+    private void setPicture(){
+        if(profileController.getUser().getProfilePicture()!=null){
+            imageView.setImage(profileController.getUser().getProfilePicture());
+        }
+    }
+
+    private void buttonError() {
+        Button button = new Button();
+        button.setText("wrong file type please try again");
+        button.setStyle("-fx-cursor:  Hand");
+        button.setEffect(new DropShadow());
+        button.setLayoutX(81);
+        button.setLayoutY(295);
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                anchorPane.getChildren().remove(button);
+            }
+        });
+        anchorPane.getChildren().add(button);
+    }
+
+    private void setUsernameAndNickname() {
+        Text usernameText = new Text();
+        Text nicknameText = new Text();
+        usernameText.setX(309);
+        usernameText.setY(109);
+        nicknameText.setY(149);
+        nicknameText.setX(309);
+        usernameText.setText("username: " + profileController.getUser().getUsername());
+        nicknameText.setText("nickname: " + profileController.getUser().getNickname());
+        anchorPane.getChildren().add(usernameText);
+        anchorPane.getChildren().add(nicknameText);
+    }
+
+    public void back(MouseEvent mouseEvent) {
+        try {
+            new MainMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeNickname(MouseEvent mouseEvent) {
+        int error = profileController.changeNicknameErrorHandler(newNickname.getText());
+        System.out.println(error);
+        if (error == 1) {
+            existNicknameError();
+        } else {
+            try {
+                this.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void existNicknameError() {
+        Stage stage1 = new Stage();
+        stage1.setWidth(300);
+        stage1.setHeight(300);
+        stage1.setTitle("Error Box");
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setPrefHeight(300);
+        anchorPane.setPrefWidth(300);
+        anchorPane.setStyle("-fx-background-color: rgba(255,255,152,0.92)");
+        Text text = new Text();
+        text.setX(25);
+        text.setY(130);
+        text.setText("this nickname is already exist please try again");
+        Button button = new Button();
+        button.setText("close");
+        button.setStyle("-fx-cursor: hand");
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stage1.close();
+            }
+        });
+        button.setLayoutY(170);
+        button.setLayoutX(120);
+        button.setStyle("-fx-cursor: Hand");
+        button.setStyle("-fx-background-color: #ff6a6a");
+        anchorPane.getChildren().add(text);
+        anchorPane.getChildren().add(button);
+        Scene scene = new Scene(anchorPane);
+        stage1.setScene(scene);
+        stage1.show();
+        newNickname.setText("");
+    }
+
+    public void changePassword(MouseEvent mouseEvent) {
+
+    }
+}
