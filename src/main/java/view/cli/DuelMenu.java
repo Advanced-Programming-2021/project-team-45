@@ -380,7 +380,10 @@ public class DuelMenu extends Menu {
     }
 
     private void attackCard(Matcher matcher) {
-        int error = gameController.attackErrorHandler(Integer.parseInt(matcher.group(1)));
+        int error = 1;
+        if (matcher.find())
+            error = gameController.attackErrorHandler(Integer.parseInt(matcher.group(1)));
+
         if (error == 1) {
             System.out.println("no card is selected yet");
 
