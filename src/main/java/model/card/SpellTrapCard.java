@@ -34,6 +34,20 @@ public class SpellTrapCard extends Card {
         this.speed = setSpeedTapAndSpell(this);
     }
 
+    public SpellTrapCard(String cardName, String cardDescription, String cardType, int price, String ownerUsername, int speed,
+                         SpellAndTrapIcon icon, boolean activated, String type, boolean isSpell,
+                         String status, SpellsAndTrapPosition position, ArrayList<Effect> effects) {
+
+        super(cardName, cardDescription, cardType, price, ownerUsername, speed);
+        this.icon = icon;
+        this.activated = activated;
+        this.type = type;
+        this.isSpell = isSpell;
+        this.status = status;
+        this.position = position;
+        this.effects = new ArrayList<>(effects);
+    }
+
     public static String[][] allDataAboutSpellTrap() {
         String[][] data = new String[42][9];
         CSVReader reader = null;
@@ -158,8 +172,7 @@ public class SpellTrapCard extends Card {
 
     @Override
     public SpellTrapCard clone() {
-        SpellTrapCard clone = new SpellTrapCard(this.getCardName());
-        clone.setOwnerUsername(this.ownerUsername);
-        return clone;
+        return new SpellTrapCard(this.cardName, this.cardDescription, this.cardType, this.price, this.ownerUsername, this.speed,
+                this.icon, this.activated, this.type, this.isSpell, this.status, this.position, this.effects);
     }
 }

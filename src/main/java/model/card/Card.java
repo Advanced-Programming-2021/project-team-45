@@ -36,6 +36,15 @@ public class Card {
         this.cardName = cardName;
     }
 
+    public Card(String cardName, String cardDescription, String cardType, int price, String ownerUsername, int speed) {
+        this.cardName = cardName;
+        this.cardDescription = cardDescription;
+        this.cardType = cardType;
+        this.price = price;
+        this.ownerUsername = ownerUsername;
+        this.speed = speed;
+    }
+
     public static ArrayList<Card> getAllCards() {
         return allCards;
     }
@@ -103,22 +112,7 @@ public class Card {
 
     @Override
     public Card clone() {
-
-        return new Card(this.getCardName());
-
-//        if (this instanceof MonsterCard) {
-//            try {
-//                MonsterCard clone = new MonsterCard(this.getCardName());
-//                clone.setOwnerUsername(this.ownerUsername);
-//                return clone;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        } else {
-//            SpellTrapCard clone = new SpellTrapCard(this.getCardName());
-//            clone.setOwnerUsername(this.ownerUsername);
-//            return clone;
-//        }
+        return new Card(this.cardName, this.cardDescription, this.cardType,
+                this.price, this.ownerUsername, this.speed);
     }
 }
