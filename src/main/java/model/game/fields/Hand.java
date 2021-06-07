@@ -1,9 +1,11 @@
 package model.game.fields;
 
 import model.card.Card;
+import model.card.Deck;
 import model.user.User;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Hand extends CardField {
 
@@ -29,6 +31,13 @@ public class Hand extends CardField {
             }
         }
         return null;
+    }
+
+    public void setHandAtFirst(DeckField deckField) {
+        for (int i = 0; i < 4; i++) {
+            this.addCard(deckField.drawCard());
+            System.out.println(1);
+        }
     }
 
     public ArrayList<Card> getCardsInHand() {
