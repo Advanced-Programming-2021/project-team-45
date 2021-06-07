@@ -16,7 +16,7 @@ public class DuelMenu extends Menu {
                     "^(menu enter \\w+)$|" +
                     "^(select (?:--monster|-M|--spell|-S|--field|-F|--hand|-H)(?: (?:--opponent|-O))? \\d+)$|" +
                     "^(select -d)$|" +
-                    "^(next phase)$" +
+                    "^(next phase)$|" +
                     "^(summon)$|" +
                     "^(set)$|" +
                     "^(set (?:--position|-p) (?:attack|defense))$|" +
@@ -203,7 +203,10 @@ public class DuelMenu extends Menu {
     private void selectCard(Matcher matcher) {
         if (matcher.find()) {
             String cardType = matcher.group(1);
-            boolean isOpponentCard = matcher.group(2).matches("--opponent|-O");
+            boolean isOpponentCard = false;
+            if (matcher.group(2) != null) {
+                isOpponentCard = matcher.group(2).matches("--opponent|-O");
+            }
             int cardPosition = Integer.parseInt(matcher.group(3));
 
             int error = gameController.selectCardErrorHandler(cardType, cardPosition, isOpponentCard);
