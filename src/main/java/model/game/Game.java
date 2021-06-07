@@ -266,8 +266,8 @@ public class Game {
         this.player.setLastDamageAmount(0);
         this.opponent.setLastDamageAmount(0);
     }
-    // SUMMON CARD METHODS:
 
+    // SUMMON CARD METHODS:
     public boolean canSummonThisMonster() {
         MonsterCard monster = (MonsterCard) selectedCard;
         boolean notNormalSummon = (monster.getSpecial() == SpecialMonsterEnum.CRAB_TURTLE) ||
@@ -326,14 +326,18 @@ public class Game {
 
     public void setMonster() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        MonsterCard monsterCard = (MonsterCard) this.selectedCard;
+        MonsterCard monsterCard = null;
+        if (selectedCard instanceof MonsterCard)
+            monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.set();
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
     }
 
     public void setSpellOrTrap() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        SpellTrapCard spellTrapCard = (SpellTrapCard) this.selectedCard;
+        SpellTrapCard spellTrapCard = null;
+        if (selectedCard instanceof SpellTrapCard)
+            spellTrapCard = (SpellTrapCard) this.selectedCard;
         spellTrapCard.set();
         gameBoard.getSpellTrapField().addSpellTrapCard(spellTrapCard);
     }
