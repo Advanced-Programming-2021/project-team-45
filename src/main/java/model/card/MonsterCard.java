@@ -21,7 +21,7 @@ public class MonsterCard extends Card {
 
     //////////////////////// set enum in constructor
 
-    private final SpecialMonsterEnum special = null;
+    private SpecialMonsterEnum special = null;
 
     public MonsterCard(String cardName) throws IOException {
         super(cardName);
@@ -35,20 +35,38 @@ public class MonsterCard extends Card {
         this.cardDescription = data[7];
         this.price = (int) Double.parseDouble(data[8]);
         checkSpecialMonster(this);
-        this.speed=setMonsterSpeed(this);
+        this.speed = setMonsterSpeed(this);
+    }
+
+    public MonsterCard(String cardName, String cardDescription, String cardType, int price, String ownerUsername, int speed,
+                       int level, MonsterAttribute attribute, MonsterType type, int attack, int defense,
+                       PositionMonsters position, DefensePosition defenceMode, boolean wasAttackedInThisTurn,
+                       SpecialMonsterEnum specialMonsterEnum, SpecialMonsterEnum special) {
+
+        super(cardName, cardDescription, cardType, price, ownerUsername, speed);
+        this.level = level;
+        this.attribute = attribute;
+        this.type = type;
+        this.attack = attack;
+        this.defense = defense;
+        this.position = position;
+        this.defenceMode = defenceMode;
+        this.wasAttackedInThisTurn = wasAttackedInThisTurn;
+        this.specialMonsterEnum = specialMonsterEnum;
+        this.special = special;
     }
 
     public static String[][] allDataAboutMonster() {
-        String[][] data=new String[42][9];
+        String[][] data = new String[42][9];
         CSVReader reader = null;
         try {
             reader = new CSVReader(new FileReader("src/main/resources/Monster.csv"));
             String[] nextLine;
-            int a=0,b=0;
+            int a = 0, b = 0;
             while ((nextLine = reader.readNext()) != null) {
-                b=0;
+                b = 0;
                 for (String token : nextLine) {
-                    data[a][b]=token;
+                    data[a][b] = token;
                     b++;
                 }
                 a++;
@@ -288,23 +306,18 @@ public class MonsterCard extends Card {
         }
     }
 
-    private int setMonsterSpeed(MonsterCard card){
-        if(card.getSpecial()==null){
+    private int setMonsterSpeed(MonsterCard card) {
+        if (card.getSpecial() == null) {
             return 0;
-        }else {
+        } else {
             return 1;
         }
     }
 
     @Override
     public MonsterCard clone() {
-        try {
-            MonsterCard clone = new MonsterCard(this.getCardName());
-            clone.setOwnerUsername(this.ownerUsername);
-            return clone;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new MonsterCard(this.cardName, this.cardDescription, this.cardType, this.price, this.ownerUsername, this.speed,
+                this.level, this.attribute, this.type, this.attack, this.defense, this.position, this.defenceMode,
+                this.wasAttackedInThisTurn, this.specialMonsterEnum, this.special);
     }
 }
