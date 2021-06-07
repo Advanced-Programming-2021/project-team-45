@@ -27,8 +27,8 @@ public class Deck {
         mainDeck.addAll(mainDeckMonsterCards);
         mainDeck.addAll(mainDeckSpellTrapCards);
         sideDeck = new ArrayList<>();
-        sideDeck.addAll(mainDeckMonsterCards);
-        sideDeck.addAll(mainDeckSpellTrapCards);
+        sideDeck.addAll(sideDeckMonsterCards);
+        sideDeck.addAll(sideDeckSpellTrapCards);
     }
 
     public User getUser() {
