@@ -226,7 +226,10 @@ public class Game {
     public void drawPhase() {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
-        SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
+        getGameBoardOfPlayerOfThisTurn().getHand().addCard(addedCardInDrawPhase);
+        if(selectedCard!=null) {
+            SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
+        }
     }
 
 

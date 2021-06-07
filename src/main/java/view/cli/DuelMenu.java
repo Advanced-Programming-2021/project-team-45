@@ -565,6 +565,7 @@ public class DuelMenu extends Menu {
 
     @Override
     public void show() {
+        gameController.getGame().drawPhase();
     }
 
     @Override
