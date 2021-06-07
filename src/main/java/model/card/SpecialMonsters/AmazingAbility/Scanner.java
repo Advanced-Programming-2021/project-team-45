@@ -9,24 +9,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Scanner {
-    private static ArrayList<MonsterCard> convertToScanner=new ArrayList<>();
+    private static ArrayList<MonsterCard> convertToScanner = new ArrayList<>();
 
-    public static void ability(Game game, MonsterCard scanner){
-        MonsterCard selectedMonster=game.getGameController()
-                .getACardFromGraveyardForScanner("enter a card name from graveyard:");;
-        while (true){
-            if(selectedMonster==null){
+    public static void ability(Game game, MonsterCard scanner) {
+        MonsterCard selectedMonster = game.getGameController()
+                .getACardFromGraveyardForScanner("enter a card name from graveyard:");
+        ;
+        while (true) {
+            if (selectedMonster == null) {
                 break;
-            }else{
-                if(!selectedMonster.getCardName().equals("-1")){
+            } else {
+                if (!selectedMonster.getCardName().equals("-1")) {
                     break;
                 }
             }
-            selectedMonster=game.getGameController()
+            selectedMonster = game.getGameController()
                     .getACardFromGraveyardForScanner("invalid card name please enter correct card name");
 
         }
-        if(selectedMonster!=null) {
+        if (selectedMonster != null) {
 
             for (int i = 0; i < 5; i++) {
                 if (game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
@@ -39,38 +40,41 @@ public class Scanner {
         }
     }
 
-    private static void swapMonsterAndScanner(GameBoard gameBoard,MonsterCard scanner,MonsterCard monster){
-        MonsterField monsterField= gameBoard.getMonsterField();
-        ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
-        for(int i=0;i<5;i++){
-            if(monsterCards.get(i).equals(scanner)){
-                monsterCards.set(i,monster);
+    private static void swapMonsterAndScanner(GameBoard gameBoard, MonsterCard scanner, MonsterCard monster) {
+        MonsterField monsterField = gameBoard.getMonsterField();
+        ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
+        for (int i = 0; i < 5; i++) {
+            if (monsterCards.get(i).equals(scanner)) {
+                monsterCards.set(i, monster);
                 convertToScanner.add(monster);
                 break;
             }
         }
     }
 
-    public static void deleteSwapMonsterIfHadScanner(MonsterField monsterField){
-        ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
-        for(int i=0;i<5;i++){
-            if(convertToScanner.contains(monsterCards.get(i))){
-                try {
-                    convertToScanner.remove(monsterCards.get(i));
-                    monsterCards.set(i,new MonsterCard("Scanner"));
-                } catch (IOException e) {
-                    e.printStackTrace();
+    public static void deleteSwapMonsterIfHadScanner(MonsterField monsterField) {
+        ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
+        for (int i = 0; i < 5; i++) {
+            if (monsterCards.size() != 0 && convertToScanner.size() != 0) {
+                if (convertToScanner.contains(monsterCards.get(i))) {
+                    try {
+                        convertToScanner.remove(monsterCards.get(i));
+                        monsterCards.set(i, new MonsterCard("Scanner"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
     }
+
     /*
     دقت شود که موقع استفاده از این شرط این متود را درون حلقه وایل قرار بدیم چون امکان داره چنتا اسکنر رو فیلد باشه
      */
-    public static MonsterCard haveScanner(MonsterField monsterField){
-        ArrayList<MonsterCard> monsterCards=monsterField.getMonstersOnField();
-        for(int i=0;i<monsterCards.size();i++){
-            if(monsterCards.get(i).getCardName().equals("Scanner")){
+    public static MonsterCard haveScanner(MonsterField monsterField) {
+        ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
+        for (int i = 0; i < monsterCards.size(); i++) {
+            if (monsterCards.get(i).getCardName().equals("Scanner")) {
                 return monsterCards.get(i);
             }
         }

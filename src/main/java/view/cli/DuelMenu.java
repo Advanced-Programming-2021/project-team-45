@@ -159,7 +159,7 @@ public class DuelMenu extends Menu {
         printGameBoard(playerGameBoard, opponentGameBoard);
     }
 
-    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard) {
+    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard)    {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
                 if (opponentGameBoard[i][j] != null) {
