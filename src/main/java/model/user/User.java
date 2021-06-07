@@ -20,15 +20,8 @@ public class User {
     private CardInventory cardInventory;
     private UserDeck userDeck;
     private int lastDamageAmount;
-    private Image profilePicture;
-    {
-        try {
-            profilePicture = new Image(new FileInputStream("src/main/resources/view/gui/" +
-                    "pictureFiles/unknownUserProfileImage.jpg"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    private String profilePicturePath="src/main/resources/view/gui/pictureFiles/unknownUserProfileImage.jpg";
+
 
     static {
         users = DatabaseController.importUsers();
@@ -171,11 +164,22 @@ public class User {
         }
     }
 
-    public Image getProfilePicture() {
-        return profilePicture;
+    public String getProfilePicturePath() {
+        return profilePicturePath;
     }
 
-    public void setProfilePicture(Image profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setProfilePicturePath(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
+    }
+
+    public static Image getPicture(String path){
+        try {
+            System.out.println(path);
+            System.out.println(new FileInputStream(path));
+            return new Image(new FileInputStream(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
