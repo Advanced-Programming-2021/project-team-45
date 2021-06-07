@@ -4,6 +4,7 @@ import model.card.Card;
 import model.card.MonsterCard;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MonsterField extends CardField {
     private final MonsterCard[] monsters;
