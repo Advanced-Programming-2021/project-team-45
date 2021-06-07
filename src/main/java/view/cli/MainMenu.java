@@ -42,7 +42,8 @@ public class MainMenu extends Menu {
     private GameController startGame(String input) {
         int inputError = 0;
 
-        if (input.matches("( --new| -n)")) {
+        Matcher newGameMatcher = Regex.getMatcher(input, " (--new|-n)");
+        if (newGameMatcher.find()) {
             inputError++;
         }
 
@@ -131,7 +132,7 @@ public class MainMenu extends Menu {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, MAIN_MENU_REGEX[0]);
 
-            if (input.startsWith("duel")) {
+            if (input.startsWith("duel ")) {
                 gameController = startGame(input);
                 if (gameController != null) {
                     break;

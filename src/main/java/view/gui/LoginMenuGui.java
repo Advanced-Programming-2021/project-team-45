@@ -2,12 +2,16 @@ package view.gui;
 
 import controller.DatabaseController;
 import controller.LoginController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.user.User;
 import view.gui.elements.GetImage;
@@ -27,6 +31,7 @@ public class LoginMenuGui extends MenuGui {
     public Button signUpButton;
     public Button loginButton;
     public Button exitButton;
+    public Rectangle yugiohRect;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -37,6 +42,14 @@ public class LoginMenuGui extends MenuGui {
         stage.setTitle("YU-GI-OH!");
         stage.getIcons().add(GetImage.getGameIcon());
         stage.show();
+    }
+
+    @FXML
+    private void initialize() {
+        Image image = GetImage.getImage("YuGiOh.png");
+        yugiohRect.setWidth(256);
+        yugiohRect.setHeight(128);
+        yugiohRect.setFill(new ImagePattern(image));
     }
 
     public static void main(String[] args) {
