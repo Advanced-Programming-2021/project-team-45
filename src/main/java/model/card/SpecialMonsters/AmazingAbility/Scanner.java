@@ -14,7 +14,7 @@ public class Scanner {
     public static void ability(Game game, MonsterCard scanner) {
         MonsterCard selectedMonster = game.getGameController()
                 .getACardFromGraveyardForScanner("enter a card name from graveyard:");
-        ;
+
         while (true) {
             if (selectedMonster == null) {
                 break;
@@ -68,9 +68,6 @@ public class Scanner {
         }
     }
 
-    /*
-    دقت شود که موقع استفاده از این شرط این متود را درون حلقه وایل قرار بدیم چون امکان داره چنتا اسکنر رو فیلد باشه
-     */
     public static MonsterCard haveScanner(MonsterField monsterField) {
         ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
         for (int i = 0; i < monsterCards.size(); i++) {
