@@ -2,7 +2,6 @@ package model.card;
 
 import model.user.User;
 
-import javax.xml.stream.StreamFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +9,8 @@ import java.util.HashMap;
 public class Card {
 
     private static final ArrayList<Card> allCards;
+    public static HashMap<String, MonsterCard> allMonsterCards = new HashMap<>();
+    public static HashMap<String, SpellTrapCard> allSpellTrapCards = new HashMap<>();
 
     protected String cardName;
     protected String cardDescription;
@@ -17,8 +18,6 @@ public class Card {
     protected int price;
     protected String ownerUsername;
     protected int speed;
-    public static HashMap<String,MonsterCard> allMonsterCards=new HashMap<>();
-    public static HashMap<String,SpellTrapCard> allSpellTrappCards=new HashMap<>();
 
     static {
         allCards = new ArrayList<>();
@@ -31,7 +30,7 @@ public class Card {
             }
             for (int i = 1; i < 36; i++) {
                 allCards.add(new SpellTrapCard(SpellAndTraps[i][0]));
-                allSpellTrappCards.put(SpellAndTraps[i][0],new SpellTrapCard(SpellAndTraps[i][0]));
+                allSpellTrapCards.put(SpellAndTraps[i][0], new SpellTrapCard(SpellAndTraps[i][0]));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,15 +116,14 @@ public class Card {
     }
 
     public static Card copy(Card card) {
-        if (card instanceof MonsterCard)
-            return ((MonsterCard) card).copy();
-
-        if (card instanceof SpellTrapCard)
-            return ((SpellTrapCard) card).copy();
-
-        System.out.println("kire khar");
-
-        return new Card(card.cardName, card.cardDescription, card.cardType,
-                card.price, card.ownerUsername, card.speed);
+        String cardName = card.getCardName();
+        if (allMonsterCards.containsKey(cardName)) {
+            return allMonsterCards.get(cardName).copy();
+        } else if (allSpellTrapCards.containsKey(cardName)) {
+            return allSpellTrapCards.get(cardName).copy();
+        } else {
+            System.out.println("kire khar");
+            return null;
+        }
     }
 }
