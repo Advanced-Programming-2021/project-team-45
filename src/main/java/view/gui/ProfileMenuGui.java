@@ -21,6 +21,7 @@ import model.user.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class ProfileMenuGui extends MenuGui {
 
@@ -40,7 +41,11 @@ public class ProfileMenuGui extends MenuGui {
         ProfileMenuGui.stage = stage;
         ProfileMenuGui.stage.setScene(scene);
         setUsernameAndNickname();
-        setPicture();
+    }
+
+    public void initialize() {
+        User user = profileController.getUser();
+        imageView.setImage(User.getPicture(user.getProfilePicturePath()));
     }
 
     public static void setProfileController(ProfileController profileController) {
@@ -49,19 +54,16 @@ public class ProfileMenuGui extends MenuGui {
 
     public void ChooseFile(MouseEvent mouseEvent) throws FileNotFoundException {
         File file = GetInput.choosePictureFile();
+        //noinspection ConstantConditions
+        File file1 = new File("src/main/resource/pictureFiles/" + file.getName());
+
         if (file != null) {
             Image image = new Image(new FileInputStream(file.getPath()));
             imageView.setFitWidth(150);
             imageView.setImage(image);
-            profileController.getUser().setProfilePicture(image);
+//            profileController.getUser().setProfilePicture(image);
         } else {
             buttonError();
-        }
-    }
-
-    private void setPicture(){
-        if(profileController.getUser().getProfilePicture()!=null){
-            imageView.setImage(profileController.getUser().getProfilePicture());
         }
     }
 
@@ -151,6 +153,8 @@ public class ProfileMenuGui extends MenuGui {
     }
 
     public void changePassword(MouseEvent mouseEvent) {
+        profileController.changePasswordErrorHandler(oldPassword.getText(), newPassword.getText());
+
 
     }
 }
