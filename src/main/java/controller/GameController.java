@@ -541,7 +541,6 @@ public class GameController extends Controller {
             while (true) {
                 String cardName = playerDuelMenu.getCardName();
                 // for surrender and cancel:
-                if (cardName == null) return null;
 
                 Card card = null;
                 for (CardField field : fields) {

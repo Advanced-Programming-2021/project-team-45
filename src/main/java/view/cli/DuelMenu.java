@@ -46,13 +46,13 @@ public class DuelMenu extends Menu {
     public void getNextCommand() {
         isCommandEnded = false;
         while (!isCommandEnded) {
-            String[][] playerGameBoard=gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
-            String[][] opponentGameBoard=gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
-            printGameBoard(playerGameBoard,opponentGameBoard);
-            String input = getInput();
-            Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
+            String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+            String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+            printGameBoard(playerGameBoard, opponentGameBoard);
 
+            String input = getInput();
             if (input != null) {
+                Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
                 if (matcher.find()) {
                     if (matcher.group(1) != null) {
                         showCurrentMenu();
@@ -113,17 +113,14 @@ public class DuelMenu extends Menu {
         System.out.println(question + " (yes/no)");
         while (true) {
             String answer = getInput();
-            if (answer == null) {
-                return null;
-            } else {
+            if (answer != null) {
                 if (answer.equalsIgnoreCase("yes")) {
                     return true;
                 } else if (answer.equalsIgnoreCase("no")) {
                     return false;
-                } else {
-                    System.out.println("invalid command! try again!!");
                 }
             }
+            System.out.println("invalid command! try again!!");
         }
     }
 
@@ -140,7 +137,12 @@ public class DuelMenu extends Menu {
 
     public String getCardName() {
         System.out.println("please enter a card Name:");
-        return getInput();
+        String cardName = getInput();
+        while (cardName == null) {
+            System.out.println("invalid command!");
+            cardName = getInput();
+        }
+        return cardName;
     }
 
     public void showOutput(String message) {
@@ -159,7 +161,7 @@ public class DuelMenu extends Menu {
         printGameBoard(playerGameBoard, opponentGameBoard);
     }
 
-    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard)    {
+    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
                 if (opponentGameBoard[i][j] != null) {
@@ -171,12 +173,12 @@ public class DuelMenu extends Menu {
         System.out.println("--------------------------");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
-                if(i!=5) {
+                if (i != 5) {
                     if (playerGameBoard[5 - i][11 - j] != null) {
                         System.out.print(playerGameBoard[5 - i][11 - j]);
                     }
-                }else{
-                    System.out.print(playerGameBoard[0][0]+playerGameBoard[0][1]);
+                } else {
+                    System.out.print(playerGameBoard[0][0] + playerGameBoard[0][1]);
                     break;
                 }
             }
@@ -544,21 +546,22 @@ public class DuelMenu extends Menu {
                         return input;
                     }
                 }
-                System.out.println("your input is incorrect, please try again");
-            } else {
-                return null;
             }
+            System.out.println("your input is incorrect, please try again");
         }
     }
 
     public String getCardFromGraveYard(String view) {
         System.out.println(view);
-
-        return getInput();
-
+        String cardName = getInput();
+        while (cardName == null) {
+            System.out.println("invalid command! try again.");
+            cardName = getInput();
+        }
+        return cardName;
     }
 
-    public int getNumber(String view){
+    public int getNumber(String view) {
         System.out.println(view);
         return scanner.nextInt();
     }
