@@ -12,6 +12,24 @@ public class Card {
     public static HashMap<String, MonsterCard> allMonsterCards = new HashMap<>();
     public static HashMap<String, SpellTrapCard> allSpellTrapCards = new HashMap<>();
 
+
+    public static void main(String[] args) {
+        MonsterCard monster = allMonsterCards.get("Scanner");
+        System.out.println(Card.showCard(monster));
+
+
+        Card card = Card.getCardByName("Scanner");
+        System.out.println(Card.showCard(card));
+
+        Card card2 = allCards.get(0);
+        System.out.println(Card.showCard(card2));
+    }
+
+
+
+
+
+
     protected String cardName;
     protected String cardDescription;
     protected String cardType;
@@ -48,6 +66,17 @@ public class Card {
         this.price = price;
         this.ownerUsername = ownerUsername;
         this.speed = speed;
+    }
+
+    public static Card copy(Card card) {
+        String cardName = card.getCardName();
+        if (allMonsterCards.containsKey(cardName)) {
+            return allMonsterCards.get(cardName).copy();
+        } else if (allSpellTrapCards.containsKey(cardName)) {
+            return allSpellTrapCards.get(cardName).copy();
+        } else {
+            return null;
+        }
     }
 
     public static ArrayList<Card> getAllCards() {
@@ -113,17 +142,5 @@ public class Card {
 
     public int getSpeed() {
         return speed;
-    }
-
-    public static Card copy(Card card) {
-        String cardName = card.getCardName();
-        if (allMonsterCards.containsKey(cardName)) {
-            return allMonsterCards.get(cardName).copy();
-        } else if (allSpellTrapCards.containsKey(cardName)) {
-            return allSpellTrapCards.get(cardName).copy();
-        } else {
-            System.out.println("kire khar");
-            return null;
-        }
     }
 }
