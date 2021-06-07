@@ -18,7 +18,7 @@ public class DeckField extends CardField {
     public DeckField(User user) {
         super("Deck");
         owner = user;
-        deck = user.getUserDeck().getActiveDeck().clone();
+        deck = user.getUserDeck().getActiveDeck();
         mainDeck = deck.getMainDeck();
     }
 
