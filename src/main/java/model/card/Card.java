@@ -79,12 +79,14 @@ public class Card {
             answer += "ATK: " + monsterCard.attack + "\n";
             answer += "DEF: " + monsterCard.defense + "\n";
             answer += "Description: " + monsterCard.cardDescription + "\n";
-        } else {
+        } else if (card instanceof SpellTrapCard){
             SpellTrapCard spellOrTrapCard = (SpellTrapCard) card;
             answer += "Name: " + spellOrTrapCard.cardName + "\n";
             answer += (spellOrTrapCard.isSpell ? "Spell" : "Trap") + "\n";
             answer += "Type: " + spellOrTrapCard.type + "\n";
             answer += "Description: " + spellOrTrapCard.cardDescription + "\n";
+        }else if(card==null){
+            answer+="you dont have a selected card";
         }
         return answer;
     }
