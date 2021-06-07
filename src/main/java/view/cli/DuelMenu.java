@@ -2,6 +2,7 @@ package view.cli;
 
 import controller.GameController;
 import controller.Regex;
+import model.game.GameBoard;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -45,6 +46,9 @@ public class DuelMenu extends Menu {
     public void getNextCommand() {
         isCommandEnded = false;
         while (!isCommandEnded) {
+            String[][] playerGameBoard=gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+            String[][] opponentGameBoard=gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+            printGameBoard(playerGameBoard,opponentGameBoard);
             String input = getInput();
             Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
 
@@ -165,16 +169,19 @@ public class DuelMenu extends Menu {
             System.out.println();
         }
         System.out.println("--------------------------");
-        System.out.println();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
-                if (playerGameBoard[4 - i][11 - j] != null) {
-                    System.out.print(playerGameBoard[4 - i][11 - j]);
+                if(i!=5) {
+                    if (playerGameBoard[5 - i][11 - j] != null) {
+                        System.out.print(playerGameBoard[5 - i][11 - j]);
+                    }
+                }else{
+                    System.out.print(playerGameBoard[0][0]+playerGameBoard[0][1]);
+                    break;
                 }
-                System.out.println();
             }
+            System.out.println();
         }
-        System.out.println(playerGameBoard[0][0] + playerGameBoard[0][1]);
     }
 
     public void showGameWinner(String username, int playerWins, int opponentWins) {
