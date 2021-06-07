@@ -44,7 +44,9 @@ public class Card {
         ArrayList<Card> allCards;
         allCards = getAllCards();
         for (Card card : allCards) {
-            if (card.cardName.equals(cardName)) return card.clone();
+            if (card.cardName.equals(cardName)) {
+                return card.clone();
+            }
         }
         return null;
     }
@@ -79,14 +81,14 @@ public class Card {
             answer += "ATK: " + monsterCard.attack + "\n";
             answer += "DEF: " + monsterCard.defense + "\n";
             answer += "Description: " + monsterCard.cardDescription + "\n";
-        } else if (card instanceof SpellTrapCard){
+        } else if (card instanceof SpellTrapCard) {
             SpellTrapCard spellOrTrapCard = (SpellTrapCard) card;
             answer += "Name: " + spellOrTrapCard.cardName + "\n";
             answer += (spellOrTrapCard.isSpell ? "Spell" : "Trap") + "\n";
             answer += "Type: " + spellOrTrapCard.type + "\n";
             answer += "Description: " + spellOrTrapCard.cardDescription + "\n";
-        }else if(card==null){
-            answer+="you dont have a selected card";
+        } else if (card == null) {
+            answer += "you dont have a selected card";
         }
         return answer;
     }
@@ -101,6 +103,22 @@ public class Card {
 
     @Override
     public Card clone() {
+
         return new Card(this.getCardName());
+
+//        if (this instanceof MonsterCard) {
+//            try {
+//                MonsterCard clone = new MonsterCard(this.getCardName());
+//                clone.setOwnerUsername(this.ownerUsername);
+//                return clone;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        } else {
+//            SpellTrapCard clone = new SpellTrapCard(this.getCardName());
+//            clone.setOwnerUsername(this.ownerUsername);
+//            return clone;
+//        }
     }
 }

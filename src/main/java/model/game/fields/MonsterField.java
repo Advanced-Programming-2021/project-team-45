@@ -69,7 +69,9 @@ public class MonsterField extends CardField {
 
     public void deleteAttackedHistory() {
         for (MonsterCard monster : monsters) {
-            monster.setWasAttackedInThisTurn(false);
+            if (monster != null) {
+                monster.setWasAttackedInThisTurn(false);
+            }
         }
     }
 

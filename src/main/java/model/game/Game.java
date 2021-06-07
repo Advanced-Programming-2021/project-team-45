@@ -220,6 +220,8 @@ public class Game {
             this.phase = "Main Phase2";
         } else if ((this.phase).equals("Main Phase2")) {
             this.phase = "End Phase";
+        } else if ((this.phase).equals("End Phase")) {
+            this.phase = "draw phase";
         }
     }
 
@@ -538,6 +540,4 @@ public class Game {
     public void setSelectedCard1(Card card) {
         this.selectedCard = card;
     }
-
-
 }
