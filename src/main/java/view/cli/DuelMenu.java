@@ -49,7 +49,7 @@ public class DuelMenu extends Menu {
             String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
             String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
             printGameBoard(playerGameBoard, opponentGameBoard);
-
+          
             String input = getInput();
             if (input != null) {
                 Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
@@ -568,6 +568,7 @@ public class DuelMenu extends Menu {
 
     @Override
     public void show() {
+        gameController.getGame().drawPhase();
     }
 
     @Override
