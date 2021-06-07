@@ -35,6 +35,7 @@ public class Game {
 
     public Game(User player, User opponent, int round, GameController gameController) {
         this.player = player;
+        this.playerOfThisTurn = player;
         this.opponent = opponent;
         this.totalRounds = round;
         this.gameController = gameController;
@@ -42,6 +43,7 @@ public class Game {
         this.opponentGameBoard = new GameBoard(opponent, this);
         player.getLifepoint().startNewGame();
         opponent.getLifepoint().startNewGame();
+        this.phase = "draw phase";
     }
 
     private void setPlayerOfNextTurn() {
