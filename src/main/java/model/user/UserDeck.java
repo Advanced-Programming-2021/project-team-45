@@ -15,6 +15,12 @@ public class UserDeck {
     }
 
 
+    public void initializeDecks() {
+        for (Deck deck : userDecks) {
+            deck.initializeDeck();
+        }
+    }
+
     public void createDeck(String deckName, User user) {
         Deck deck = new Deck(deckName, user.getUsername());
         userDecks.add(deck);

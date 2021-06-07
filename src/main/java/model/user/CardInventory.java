@@ -1,6 +1,8 @@
 package model.user;
 
 import model.card.Card;
+import model.card.MonsterCard;
+import model.card.SpellTrapCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,19 +11,34 @@ import java.util.HashMap;
 public class CardInventory {
 
     HashMap<String, Integer> cardsCount;
+    private ArrayList<MonsterCard> monsterCards;
+    private ArrayList<SpellTrapCard> spellTrapCards;
     private ArrayList<Card> cards;
 
     public CardInventory() {
         cardsCount = new HashMap<>();
         cards = new ArrayList<>();
+        monsterCards = new ArrayList<>();
+        spellTrapCards = new ArrayList<>();
+    }
+
+    public void initializeCards() {
+        cards = new ArrayList<>();
+        cards.addAll(monsterCards);
+        cards.addAll(spellTrapCards);
     }
 
     public void addCardToInventory(Card card) {
-        if (getCardByCardName(card.getCardName()) == null) {
+        int count = getCardCount(card.getCardName());
+        if (count == 0) {
             cards.add(card);
             cardsCount.put(card.getCardName(), 1);
+            if (card instanceof MonsterCard) {
+                monsterCards.add((MonsterCard) card);
+            } else if (card instanceof SpellTrapCard) {
+                spellTrapCards.add((SpellTrapCard) card);
+            }
         } else {
-            int count = cardsCount.get(card.getCardName());
             cardsCount.put(card.getCardName(), count + 1);
         }
     }
