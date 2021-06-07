@@ -43,13 +43,14 @@ public class GameController extends Controller {
     public void startGame() {
         int playerMaxLp = 0;
         int opponentMaxLp = 0;
+        User winner = null;
         for (int i = 0; i < rounds; i++) {
             if (playerWins == 2 || opponentWins == 2) break;
             // create new round and start it:
             createNewGame();
             playRound();
             // show winner of round:
-            User winner = game.getWinner();
+            winner = game.getWinner();
             if (winner.equals(player)) {
                 playerWins++;
             } else {
@@ -62,6 +63,8 @@ public class GameController extends Controller {
             int opponentLp = opponentPlayer.getLifepoint().getLifepoint();
             if (opponentLp > opponentMaxLp) opponentMaxLp = opponentLp;
         }
+        // show match winner if there is 3 rounds:
+        if (rounds == 3) playerDuelMenu.showMatchWinner(winner.getUsername(), playerWins, opponentWins);
         // calculate and increase score and money after match:
         increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
         // go back to first player's MainMenu:
