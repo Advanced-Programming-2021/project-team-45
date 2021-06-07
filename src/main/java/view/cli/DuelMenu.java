@@ -46,9 +46,9 @@ public class DuelMenu extends Menu {
     public void getNextCommand() {
         isCommandEnded = false;
         while (!isCommandEnded) {
-            String[][] playerGameBoard=gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
-            String[][] opponentGameBoard=gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
-            printGameBoard(playerGameBoard,opponentGameBoard);
+            String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+            String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+            printGameBoard(playerGameBoard, opponentGameBoard);
             String input = getInput();
             Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
 
@@ -159,7 +159,7 @@ public class DuelMenu extends Menu {
         printGameBoard(playerGameBoard, opponentGameBoard);
     }
 
-    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard)    {
+    private void printGameBoard(String[][] playerGameBoard, String[][] opponentGameBoard) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
                 if (opponentGameBoard[i][j] != null) {
@@ -171,12 +171,12 @@ public class DuelMenu extends Menu {
         System.out.println("--------------------------");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
-                if(i!=5) {
+                if (i != 5) {
                     if (playerGameBoard[5 - i][11 - j] != null) {
                         System.out.print(playerGameBoard[5 - i][11 - j]);
                     }
-                }else{
-                    System.out.print(playerGameBoard[0][0]+playerGameBoard[0][1]);
+                } else {
+                    System.out.print(playerGameBoard[0][0] + playerGameBoard[0][1]);
                     break;
                 }
             }
@@ -558,7 +558,7 @@ public class DuelMenu extends Menu {
 
     }
 
-    public int getNumber(String view){
+    public int getNumber(String view) {
         System.out.println(view);
         return scanner.nextInt();
     }

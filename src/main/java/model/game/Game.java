@@ -227,7 +227,7 @@ public class Game {
         GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
         this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
         getGameBoardOfPlayerOfThisTurn().getHand().addCard(addedCardInDrawPhase);
-        if(selectedCard!=null) {
+        if (selectedCard != null) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
         }
     }
