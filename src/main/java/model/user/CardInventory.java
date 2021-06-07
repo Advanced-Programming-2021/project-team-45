@@ -47,7 +47,7 @@ public class CardInventory {
     public Card getCardByCardName(String cardName) {
         for (Card card : cards) {
             if (card.getCardName().equals(cardName)) {
-                return card.clone();
+                return Card.copy(card);
             }
         }
         return null;
@@ -62,10 +62,10 @@ public class CardInventory {
         return cardsStr;
     }
 
-    public void setAICardInventory(){
-        ArrayList<Card> cards=Card.getAllCards();
-        for(int i=0;i<cards.size();i++){
-            this.cards.add(cards.get(i).clone());
+    public void setAICardInventory() {
+        ArrayList<Card> cards = Card.getAllCards();
+        for (int i = 0; i < cards.size(); i++) {
+            this.cards.add(Card.copy(cards.get(i)));
         }
     }
 }

@@ -54,7 +54,7 @@ public class Card {
         allCards = getAllCards();
         for (Card card : allCards) {
             if (card.cardName.equals(cardName)) {
-                return card.clone();
+                return Card.copy(card);
             }
         }
         return null;
@@ -110,9 +110,16 @@ public class Card {
         return speed;
     }
 
-    @Override
-    public Card clone() {
-        return new Card(this.cardName, this.cardDescription, this.cardType,
-                this.price, this.ownerUsername, this.speed);
+    public static Card copy(Card card) {
+        if (card instanceof MonsterCard)
+            return ((MonsterCard) card).copy();
+
+        if (card instanceof SpellTrapCard)
+            return ((SpellTrapCard) card).copy();
+
+        System.out.println("kire khar");
+
+        return new Card(card.cardName, card.cardDescription, card.cardType,
+                card.price, card.ownerUsername, card.speed);
     }
 }
