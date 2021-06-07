@@ -170,8 +170,7 @@ public class SpellTrapCard extends Card {
         }
     }
 
-    @Override
-    public SpellTrapCard clone() {
+    public SpellTrapCard copy() {
         return new SpellTrapCard(this.cardName, this.cardDescription, this.cardType, this.price, this.ownerUsername, this.speed,
                 this.icon, this.activated, this.type, this.isSpell, this.status, this.position, this.effects);
     }
