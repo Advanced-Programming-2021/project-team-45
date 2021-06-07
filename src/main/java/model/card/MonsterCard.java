@@ -314,8 +314,7 @@ public class MonsterCard extends Card {
         }
     }
 
-    @Override
-    public MonsterCard clone() {
+    public MonsterCard copy() {
         return new MonsterCard(this.cardName, this.cardDescription, this.cardType, this.price, this.ownerUsername, this.speed,
                 this.level, this.attribute, this.type, this.attack, this.defense, this.position, this.defenceMode,
                 this.wasAttackedInThisTurn, this.specialMonsterEnum, this.special);

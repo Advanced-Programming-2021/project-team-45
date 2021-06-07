@@ -115,8 +115,8 @@ class SpellTrapFieldTest {
 
     @Test
     void doesSpellTrapCardExistInField() {
-        assertTrue(spellTrapField.doesSpellTrapCardExistInField((SpellTrapCard) (Card.getCardByName("Negate Attack")).clone()));
-        assertFalse(spellTrapField.doesSpellTrapCardExistInField((SpellTrapCard) (Card.getCardByName("Trap Hole")).clone()));
+        assertTrue(spellTrapField.doesSpellTrapCardExistInField(((SpellTrapCard) (Card.getCardByName("Negate Attack"))).copy()));
+        assertFalse(spellTrapField.doesSpellTrapCardExistInField(((SpellTrapCard) (Card.getCardByName("Trap Hole"))).copy()));
     }
 
     @Test

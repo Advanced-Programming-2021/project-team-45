@@ -31,7 +31,7 @@ class SpellTrapCardTest {
 
     @Test
     void summon() {
-        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Magic Jammer")).clone();
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Magic Jammer"))).copy();
         spellTrapCard.summon();
         assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.position);
         spellTrapCard.position = null;
@@ -39,7 +39,7 @@ class SpellTrapCardTest {
 
     @Test
     void set() {
-        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Terraforming").clone());
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Terraforming"))).copy();
         spellTrapCard.set();
         assertEquals(SpellsAndTrapPosition.SET ,spellTrapCard.position);
         spellTrapCard.position = null;
@@ -47,7 +47,7 @@ class SpellTrapCardTest {
 
     @Test
     void getPosition() {
-        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Mirror Force")).clone();
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Mirror Force"))).copy();
         spellTrapCard.summon();
         assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.getPosition());
         spellTrapCard.position = null;
@@ -55,7 +55,7 @@ class SpellTrapCardTest {
 
     @Test
     void setPosition() {
-        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Trap Hole")).clone();
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Trap Hole"))).copy();
         spellTrapCard.setPosition(SpellsAndTrapPosition.SET);
         assertEquals(SpellsAndTrapPosition.SET, spellTrapCard.getPosition());
         spellTrapCard.position = null;
@@ -64,7 +64,7 @@ class SpellTrapCardTest {
 
     @Test
     void checkClone() {
-        SpellTrapCard spellTrapCard = (SpellTrapCard) (Card.getCardByName("Solemn Warning").clone());
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Solemn Warning"))).copy();
         assertSame(Card.getCardByName("Solemn Warning"), spellTrapCard);
     }
 
