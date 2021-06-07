@@ -49,10 +49,10 @@ public class DuelMenu extends Menu {
             String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
             String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
             printGameBoard(playerGameBoard, opponentGameBoard);
+          
             String input = getInput();
-            Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
-
             if (input != null) {
+                Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
                 if (matcher.find()) {
                     if (matcher.group(1) != null) {
                         showCurrentMenu();
@@ -113,17 +113,14 @@ public class DuelMenu extends Menu {
         System.out.println(question + " (yes/no)");
         while (true) {
             String answer = getInput();
-            if (answer == null) {
-                return null;
-            } else {
+            if (answer != null) {
                 if (answer.equalsIgnoreCase("yes")) {
                     return true;
                 } else if (answer.equalsIgnoreCase("no")) {
                     return false;
-                } else {
-                    System.out.println("invalid command! try again!!");
                 }
             }
+            System.out.println("invalid command! try again!!");
         }
     }
 
@@ -140,7 +137,12 @@ public class DuelMenu extends Menu {
 
     public String getCardName() {
         System.out.println("please enter a card Name:");
-        return getInput();
+        String cardName = getInput();
+        while (cardName == null) {
+            System.out.println("invalid command!");
+            cardName = getInput();
+        }
+        return cardName;
     }
 
     public void showOutput(String message) {
@@ -544,18 +546,19 @@ public class DuelMenu extends Menu {
                         return input;
                     }
                 }
-                System.out.println("your input is incorrect, please try again");
-            } else {
-                return null;
             }
+            System.out.println("your input is incorrect, please try again");
         }
     }
 
     public String getCardFromGraveYard(String view) {
         System.out.println(view);
-
-        return getInput();
-
+        String cardName = getInput();
+        while (cardName == null) {
+            System.out.println("invalid command! try again.");
+            cardName = getInput();
+        }
+        return cardName;
     }
 
     public int getNumber(String view) {
