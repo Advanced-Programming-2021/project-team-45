@@ -1,26 +1,23 @@
 package view.gui;
 
 import controller.ProfileController;
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.user.User;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class ProfileMenuGui extends MenuGui {
 
@@ -40,7 +37,11 @@ public class ProfileMenuGui extends MenuGui {
         ProfileMenuGui.stage = stage;
         ProfileMenuGui.stage.setScene(scene);
         setUsernameAndNickname();
-        setPicture();
+    }
+
+    public void initialize() {
+        User user = profileController.getUser();
+        imageView.setImage(User.getPicture(user.getProfilePicturePath()));
     }
 
     public static void setProfileController(ProfileController profileController) {
@@ -53,15 +54,9 @@ public class ProfileMenuGui extends MenuGui {
             Image image = new Image(new FileInputStream(file.getPath()));
             imageView.setFitWidth(150);
             imageView.setImage(image);
-            profileController.getUser().setProfilePicture(image);
+            profileController.getUser().setProfilePicturePath(file.getPath());
         } else {
             buttonError();
-        }
-    }
-
-    private void setPicture(){
-        if(profileController.getUser().getProfilePicture()!=null){
-            imageView.setImage(profileController.getUser().getProfilePicture());
         }
     }
 
@@ -106,7 +101,7 @@ public class ProfileMenuGui extends MenuGui {
         int error = profileController.changeNicknameErrorHandler(newNickname.getText());
         System.out.println(error);
         if (error == 1) {
-            existNicknameError();
+            errorBox("this nickname is already exist please try again");
         } else {
             try {
                 this.start(stage);
@@ -116,7 +111,7 @@ public class ProfileMenuGui extends MenuGui {
         }
     }
 
-    private void existNicknameError() {
+    private void errorBox(String text2) {
         Stage stage1 = new Stage();
         stage1.setWidth(300);
         stage1.setHeight(300);
@@ -126,9 +121,9 @@ public class ProfileMenuGui extends MenuGui {
         anchorPane.setPrefWidth(300);
         anchorPane.setStyle("-fx-background-color: rgba(255,255,152,0.92)");
         Text text = new Text();
-        text.setX(25);
-        text.setY(130);
-        text.setText("this nickname is already exist please try again");
+        text.setText(text2);
+        text.setTextAlignment(TextAlignment.CENTER);
+        HBox hbox = new HBox(text);
         Button button = new Button();
         button.setText("close");
         button.setStyle("-fx-cursor: hand");
@@ -142,7 +137,7 @@ public class ProfileMenuGui extends MenuGui {
         button.setLayoutX(120);
         button.setStyle("-fx-cursor: Hand");
         button.setStyle("-fx-background-color: #ff6a6a");
-        anchorPane.getChildren().add(text);
+        anchorPane.getChildren().add(hbox);
         anchorPane.getChildren().add(button);
         Scene scene = new Scene(anchorPane);
         stage1.setScene(scene);
@@ -151,6 +146,19 @@ public class ProfileMenuGui extends MenuGui {
     }
 
     public void changePassword(MouseEvent mouseEvent) {
-
+        int error = profileController.changePasswordErrorHandler(oldPassword.getText(), newPassword.getText());
+        if (error == 1) {
+            errorBox("incorrect old password");
+        } else if (error == 2) {
+            errorBox("your old and new password are equal");
+        } else {
+            try {
+                new ProfileMenuGui().start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+
 }
