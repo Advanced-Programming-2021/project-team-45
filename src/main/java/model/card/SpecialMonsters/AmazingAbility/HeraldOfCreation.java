@@ -56,8 +56,12 @@ public class HeraldOfCreation {
     public static Card isThereHeraldOfCreation(MonsterField monsterField){
         ArrayList<MonsterCard> cards=monsterField.getMonstersOnField();
         for(int i=0;i<5;i++){
-            if(cards.get(i).getCardName().equals("Herald of Creation")){
-                return cards.get(i);
+            if(i<cards.size()) {
+                if (cards.get(i).getCardName().equals("Herald of Creation")) {
+                    return cards.get(i);
+                }
+            }else{
+                break;
             }
         }
         try {
