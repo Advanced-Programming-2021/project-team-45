@@ -2,8 +2,10 @@ package model.card;
 
 import model.user.User;
 
+import javax.xml.stream.StreamFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Card {
 
@@ -15,6 +17,8 @@ public class Card {
     protected int price;
     protected String ownerUsername;
     protected int speed;
+    public static HashMap<String,MonsterCard> allMonsterCards=new HashMap<>();
+    public static HashMap<String,SpellTrapCard> allSpellTrappCards=new HashMap<>();
 
     static {
         allCards = new ArrayList<>();
@@ -23,9 +27,11 @@ public class Card {
             String[][] SpellAndTraps = SpellTrapCard.allDataAboutSpellTrap();
             for (int i = 1; i < 42; i++) {
                 allCards.add(new MonsterCard(Monsters[i][0]));
+                allMonsterCards.put(Monsters[i][0], new MonsterCard(Monsters[i][0]));
             }
             for (int i = 1; i < 36; i++) {
                 allCards.add(new SpellTrapCard(SpellAndTraps[i][0]));
+                allSpellTrappCards.put(SpellAndTraps[i][0],new SpellTrapCard(SpellAndTraps[i][0]));
             }
         } catch (IOException e) {
             e.printStackTrace();

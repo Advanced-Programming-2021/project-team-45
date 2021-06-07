@@ -257,7 +257,7 @@ public class DuelMenu extends Menu {
         } else if (error == 2) {
             System.out.println("phase: Main phase 1");
 
-        } else if (error == 6) {
+        } else if (error == 5) {
             System.out.println("phase: End Phase");
 
             System.out.println("its" + gameController.getGame().getOpponentOfThisTurn().getNickname() + "'s turn");
@@ -571,7 +571,10 @@ public class DuelMenu extends Menu {
 
     @Override
     public void show() {
+        System.out.println("phase: draw phase");
         gameController.getGame().drawPhase();
+        System.out.println("new card added to the hand : " +
+                gameController.getGame().getAddedCardInDrawPhase().getCardName());
     }
 
     @Override
