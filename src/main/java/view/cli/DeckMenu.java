@@ -255,10 +255,10 @@ public class DeckMenu extends Menu {
                 input = input.replace("deck rm-card", "");
                 removeCard(input);
 
-            } else if (input.matches("^deck show (?:--deck-name|-d) ")) {
+            } else if (Regex.getMatcher(input, "^deck show (?:--deck-name|-d) ").find()) {
                 showDeck(input);
 
-            } else if (input.matches("^deck show (?:--side|-s) (?:--deck-name|-d) ")) {
+            } else if (Regex.getMatcher(input, "^deck show (?:--side|-s) (?:--deck-name|-d) ").find()) {
                 showDeck(input);
 
             } else if (matcher.find()) {
