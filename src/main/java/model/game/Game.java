@@ -224,22 +224,11 @@ public class Game {
     }
 
     public void drawPhase() {
-        // new -haji
-//        if (canGetCard()) {
-//            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-//            this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
-//        }
-//        worksHaveToDoneAfterGetCard();
+        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
         SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
     }
 
-//    public boolean canGetCard() {
-//        return TimeSeal.canGetCard;
-//    }
-//
-//    public void worksHaveToDoneAfterGetCard() {
-//        TimeSeal.canGetCard = true;
-//    }
 
     public void standbyPhase() {
 
@@ -254,10 +243,10 @@ public class Game {
         Scanner.deleteSwapMonsterIfHadScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField());
         Suijin.setAllSuijinInEachTurn();
         Texchanger.setAllTexchanger();
-        if(getOpponentOfThisTurn().getUsername().equals("AI")){
+        if (getOpponentOfThisTurn().getUsername().equals("AI")) {
             setPlayerOfNextTurn();
             ArtificialIntelligence.playTurn(this);
-        }else{
+        } else {
             setPlayerOfNextTurn();
         }
     }
@@ -286,7 +275,7 @@ public class Game {
         }
     }
 
-    public int  summonMonster() {
+    public int summonMonster() {
         Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_SUMMON);
         boolean canSummon = chain.startChain();
 
@@ -514,7 +503,7 @@ public class Game {
             Chain chain = new Chain(this, spellTrap, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.SPELL_TRAP);
             chain.startChain();
         }
-        ContiniouesSpellController.Controller("Spell Absorption",this,
+        ContiniouesSpellController.Controller("Spell Absorption", this,
                 ContinouesSpellActivatePlace.Activation);
     }
 
@@ -543,8 +532,8 @@ public class Game {
         return gameController;
     }
 
-    public void setSelectedCard1(Card card){
-        this.selectedCard=card;
+    public void setSelectedCard1(Card card) {
+        this.selectedCard = card;
     }
 
 
