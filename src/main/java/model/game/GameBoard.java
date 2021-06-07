@@ -25,6 +25,7 @@ public class GameBoard {
         this.spellTrapField = new SpellTrapField(owner, graveyard);
         this.fieldZone = new FieldZone(graveyard);
         this.deckField = new DeckField(owner);
+        this.hand.setHandAtFirst(this.deckField);
         this.game = game;
     }
 
