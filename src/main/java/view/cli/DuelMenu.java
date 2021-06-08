@@ -410,19 +410,18 @@ public class DuelMenu extends Menu {
             System.out.println("there is no card to attack here");
 
         } else if (error == 6) {
-            System.out.println("your opponent’s monster is destroyed and your opponent receives\n" +
-                    gameController.damageOnOpponent() + "battle damage");
+            System.out.println("your opponent’s monster is destroyed and your opponent receives " +
+                    gameController.damageOnOpponent() + " battle damage");
             isCommandEnded = true;
 
         } else if (error == 7) {
-            System.out.println("both you and your opponent monster cards are destroyed and no\n" +
+            System.out.println("both you and your opponent monster cards are destroyed and no " +
                     "one receives damage");
             isCommandEnded = true;
 
         } else if (error == 8) {
-            System.out.println("Your monster card is destroyed and you received" +
-                    gameController.damageOnPlayer() + " battle\n" +
-                    "damage");
+            System.out.println("Your monster card is destroyed and you received " +
+                    gameController.damageOnPlayer() + " battle damage");
             isCommandEnded = true;
 
         } else if (error == 9) {
@@ -434,7 +433,7 @@ public class DuelMenu extends Menu {
             isCommandEnded = true;
 
         } else if (error == 11) {
-            System.out.println("no card is destroyed and you received" + gameController.damageOnPlayer()
+            System.out.println("no card is destroyed and you received " + gameController.damageOnPlayer()
                     + " battle damage");
             isCommandEnded = true;
 
@@ -450,7 +449,7 @@ public class DuelMenu extends Menu {
 
         } else if (error == 14) {
             System.out.println("opponent’s monster card was " + gameController.getDefenseTargetCardName()
-                    + "and no card is destroyed and you received" +
+                    + " and no card is destroyed and you received " +
                     gameController.damageOnPlayer() + " battle damage");
             isCommandEnded = true;
 
@@ -475,7 +474,7 @@ public class DuelMenu extends Menu {
             System.out.println("you can’t attack the opponent directly");
 
         } else if (error == 6) {
-            System.out.println("you opponent receives" + gameController.damageOnOpponent()
+            System.out.println("you opponent receives " + gameController.damageOnOpponent()
                     + " battle damage");
             isCommandEnded = true;
 
