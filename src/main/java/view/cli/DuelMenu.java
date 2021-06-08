@@ -46,8 +46,9 @@ public class DuelMenu extends Menu {
     public void getNextCommand() {
         isCommandEnded = false;
         while (!isCommandEnded) {
-            String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
-            String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard().GameBoardOfPlayer();
+            String[][] playerGameBoard = gameController.getGame().getGameBoardOfPlayerOfThisTurn().GameBoardOfPlayer();
+            String[][] opponentGameBoard = gameController.getGame().getGameBoardOfOpponentPlayerOfThisTurn()
+                    .GameBoardOfPlayer();
             printGameBoard(playerGameBoard, opponentGameBoard);
           
             String input = getInput();
