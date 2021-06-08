@@ -131,6 +131,7 @@ public class MonsterCard extends Card {
 
     public void summon() {
         this.position = PositionMonsters.ATTACK;
+        wasAttackedInThisTurn = true;
     }
 
     public void setForFirstTime() {
