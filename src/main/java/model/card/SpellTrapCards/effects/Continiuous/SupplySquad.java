@@ -27,13 +27,10 @@ public class SupplySquad extends Effect {
     public static SupplySquad isThereSupplySquadInSpellField(SpellTrapField field) {
         SpellTrapCard[] card = field.getSpellTrapCardsPositionsArray();
         for (int i = 0; i < card.length; i++) {
-            if (card[i].getCardName().equals("Supply Squad")) {
-                if (SupplySquad.supplySpells.get(card[i]) == null) {
+            if(card[i]!=null) {
+                if (card[i].getCardName().equals("Supply Squad")) {
                     new SupplySquad(card[i]);
-                    return SupplySquad.supplySpells.get(card[i]);
-
-                } else {
-                    return SupplySquad.supplySpells.get(card[i]);
+                    return supplySpells.get(card[i]);
                 }
             }
         }
