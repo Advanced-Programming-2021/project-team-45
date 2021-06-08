@@ -133,7 +133,7 @@ public class MonsterCard extends Card {
 
     public void setForFirstTime() {
         this.position = PositionMonsters.DEFENSE;
-        this.defenceMode=DefensePosition.DH;
+        this.defenceMode = DefensePosition.DH;
     }
 
     public void attackMonster(MonsterCard card) {

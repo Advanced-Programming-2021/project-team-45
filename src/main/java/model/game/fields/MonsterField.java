@@ -14,8 +14,8 @@ public class MonsterField extends CardField {
     public MonsterField(Graveyard graveyard) {
         super("Monster Field");
         this.graveyard = graveyard;
-        monsters = new MonsterCard[10];
-        for (int i = 0; i < 10; i++) {
+        monsters = new MonsterCard[5];
+        for (int i = 0; i < 5; i++) {
             monsters[i] = null;
         }
     }
@@ -80,7 +80,7 @@ public class MonsterField extends CardField {
 
     public void addMonsterToField(MonsterCard monster) {
         int index = 0;
-        while (index < 10) {
+        while (index < 5) {
             if (monsters[index] == null) {
                 monsters[index] = monster;
                 break;
@@ -90,7 +90,7 @@ public class MonsterField extends CardField {
     }
 
     public void deleteAndDestroyMonster(MonsterCard monsterCard) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (monsters[i] != null) {
                 if (monsters[i].equals(monsterCard)) {
                     graveyard.addCardToGraveyard(monsters[i]);
@@ -101,7 +101,7 @@ public class MonsterField extends CardField {
     }
 
     public void deleteAndDestroyAllMonsters() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (monsters[i] != null) {
                 graveyard.addCardToGraveyard(monsters[i]);
                 monsters[i] = null;
@@ -110,7 +110,7 @@ public class MonsterField extends CardField {
     }
 
     public void deleteMonster(MonsterCard monsterCard) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (monsters[i].equals(monsterCard)) {
                 monsters[i] = null;
                 break;
@@ -120,7 +120,7 @@ public class MonsterField extends CardField {
 
     public int getNumberOfMonstersInField() {
         int numberOfMonsters = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (monsters[i] != null) {
                 numberOfMonsters++;
             }
