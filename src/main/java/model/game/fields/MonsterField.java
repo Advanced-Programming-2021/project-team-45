@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MonsterField extends CardField {
-    private final MonsterCard[] monsters;
+    private MonsterCard[] monsters;
 
     private final Graveyard graveyard;
 
@@ -15,6 +15,9 @@ public class MonsterField extends CardField {
         super("Monster Field");
         this.graveyard = graveyard;
         monsters = new MonsterCard[10];
+        for (int i = 0; i < 10; i++) {
+            monsters[i] = null;
+        }
     }
 
 
