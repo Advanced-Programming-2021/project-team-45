@@ -1,5 +1,6 @@
 package model.user;
 
+import model.card.Card;
 import model.card.Deck;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class UserDeck {
         for (Deck deck : userDecks) {
             deck.initializeDeck();
         }
+        activeDeck.initializeDeck();
     }
 
     public void createDeck(String deckName, User user) {
