@@ -125,7 +125,7 @@ public class GameErrorHandler {
 
     public boolean wasThisCardAttackedInThisTurn() {
         MonsterCard answer = (MonsterCard) game.getSelectedCard();
-        return answer.isWasAttackedInThisTurn();
+        return answer.wasAttackedInThisTurn();
     }
 
     public boolean isThereAnyMonsterInThisCell(int numberOfEnemyMonsterZone) {
