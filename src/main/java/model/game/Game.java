@@ -490,6 +490,7 @@ public class Game {
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
         User opponent = getOpponentOfThisTurn();
         monsterCard.attackOpponent(opponent);
+        monsterCard.setWasAttackedInThisTurn(true);
         this.selectedCard = null;
     }
 

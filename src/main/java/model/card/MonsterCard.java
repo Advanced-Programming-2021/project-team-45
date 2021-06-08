@@ -207,7 +207,7 @@ public class MonsterCard extends Card {
         return type;
     }
 
-    public boolean isWasAttackedInThisTurn() {
+    public boolean wasAttackedInThisTurn() {
         return wasAttackedInThisTurn;
     }
 
