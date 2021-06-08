@@ -291,10 +291,10 @@ public class Game {
             if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
                 SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
             }
-            ((MonsterCard) this.selectedCard).summon();
 
             // add monster to monsterField and remove from hand:
             gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
+            ((MonsterCard) this.selectedCard).summon();
             gameBoard.getHand().deleteCard(selectedCard);
 
             this.selectedCard = null;
@@ -315,6 +315,7 @@ public class Game {
 
         // add monster to field and remove from hand
         monsterField.addMonsterToField((MonsterCard) selectedCard);
+        ((MonsterCard) selectedCard).summon();
         getGameBoardOfPlayerOfThisTurn().getHand().deleteCard(selectedCard);
 
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
@@ -332,6 +333,7 @@ public class Game {
 
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monster);
+        monster.summon();
         gameBoard.getHand().deleteCard(monster);
     }
 
@@ -340,10 +342,10 @@ public class Game {
         MonsterCard monsterCard = null;
         if (selectedCard instanceof MonsterCard)
             monsterCard = (MonsterCard) this.selectedCard;
-        monsterCard.setForFirstTime();
 
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
+        monsterCard.setForFirstTime();
         gameBoard.getHand().deleteCard(monsterCard);
     }
 
@@ -352,10 +354,10 @@ public class Game {
         SpellTrapCard spellTrapCard = null;
         if (selectedCard instanceof SpellTrapCard)
             spellTrapCard = (SpellTrapCard) this.selectedCard;
-        spellTrapCard.set();
 
         // add card to spellField and remove from hand:
         gameBoard.getSpellTrapField().addSpellTrapCard(spellTrapCard);
+        spellTrapCard.set();
         gameBoard.getHand().deleteCard(spellTrapCard);
     }
 
