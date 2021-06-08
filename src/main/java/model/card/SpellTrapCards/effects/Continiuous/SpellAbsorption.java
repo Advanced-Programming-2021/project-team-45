@@ -21,7 +21,9 @@ public class SpellAbsorption extends Effect {
     }
 
     public SpellAbsorption(SpellTrapCard card){
-        absorptionHashMap.putIfAbsent(card, this);
+        if(absorptionHashMap.get(card)==null){
+            absorptionHashMap.put(card,this);
+        }
     }
 
     public void doActivity(Game game) {
@@ -33,11 +35,9 @@ public class SpellAbsorption extends Effect {
     public static SpellAbsorption isThereSpellAbsorptionInField(SpellTrapField field) {
         ArrayList<SpellTrapCard> cards = field.getSpellTrapsArrayList();
         for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getCardName().equals("Spell Absorption")){
-                if(absorptionHashMap.get(cards.get(i))!=null){
+            if(cards.get(i)!=null) {
+                if (cards.get(i).getCardName().equals("Spell Absorption")) {
                     new SpellAbsorption(cards.get(i));
-                    return absorptionHashMap.get(cards.get(i));
-                }else{
                     return absorptionHashMap.get(cards.get(i));
                 }
             }
