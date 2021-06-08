@@ -141,7 +141,7 @@ public class MonsterField extends CardField {
         } else {
             position = cardPosition - 1;
         }
-        return monsters[position] == null;
+        return monsters[position - 1] == null;
     }
 
     public boolean isFull() {
