@@ -14,7 +14,7 @@ public class TheCalculator {
         GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
         ArrayList<MonsterCard> monsterCards = gameBoard.getMonsterField().getMonstersOnField();
         int sumLevels = 0;
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < monsterCards.size(); i++){
             if(monsterCards.get(i) != null && monsterCards.get(i).getPosition() == PositionMonsters.ATTACK){
                 sumLevels += monsterCards.get(i).getLevel();
             }

@@ -45,7 +45,7 @@ public class CommandKnight {
 
     public static void CommandKnightOnFieldWithSummonMode(MonsterCard selectedCardToSummonOrSet, MonsterField monsterField) {
         ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < monsterCards.size(); i++) {
             if (monsterCards.get(i).getCardName().equals("Command Knight")) {
                 selectedCardToSummonOrSet.setAttack(selectedCardToSummonOrSet.getAttack() + 400);
 
