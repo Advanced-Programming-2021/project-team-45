@@ -36,7 +36,6 @@ public class Hand extends CardField {
     public void setHandAtFirst(DeckField deckField) {
         for (int i = 0; i < 4; i++) {
             this.addCard(deckField.drawCard());
-            System.out.println(1);
         }
     }
 
