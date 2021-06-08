@@ -327,7 +327,8 @@ public class Game {
         MonsterCard monsterCard = null;
         if (selectedCard instanceof MonsterCard)
             monsterCard = (MonsterCard) this.selectedCard;
-        monsterCard.set();
+        monsterCard.setForFirstTime();
+
 
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monsterCard);

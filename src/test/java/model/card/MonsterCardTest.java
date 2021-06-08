@@ -83,7 +83,7 @@ class MonsterCardTest {
     @Test
     void set() {
         MonsterCard monsterCard = (MonsterCard) Card.getCardByName("Crab Turtle");
-        monsterCard.set();
+        monsterCard.setForFirstTime();
         assertEquals(PositionMonsters.DEFENSE, monsterCard.position);
         monsterCard.position = null;
     }
