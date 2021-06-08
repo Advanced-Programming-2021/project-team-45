@@ -49,7 +49,7 @@ public class SpellTrapCard extends Card {
     }
 
     public static String[][] allDataAboutSpellTrap() {
-        String[][] data = new String[42][9];
+        String[][] data = new String[10000][9];
         CSVReader reader = null;
         try {
             reader = new CSVReader(new FileReader("src/main/resources/SpellTrap.csv"));
@@ -73,10 +73,12 @@ public class SpellTrapCard extends Card {
     private String[] dataAboutASpellOrTrap(String cardName) {
         String[][] data = allDataAboutSpellTrap();
         int answer = 0;
-        for (int i = 0; i < 36; i++) {
-            if (data[i][0].equals(cardName)) {
-                answer = i;
-                break;
+        for (int i = 0; i < 10000; i++) {
+            if(data[i][0]!=null) {
+                if (data[i][0].equals(cardName)) {
+                    answer = i;
+                    break;
+                }
             }
         }
         if (answer == 0) {
