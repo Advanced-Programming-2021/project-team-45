@@ -26,10 +26,6 @@ public class Card {
     }
 
 
-
-
-
-
     protected String cardName;
     protected String cardDescription;
     protected String cardType;
@@ -42,13 +38,17 @@ public class Card {
         try {
             String[][] Monsters = MonsterCard.allDataAboutMonster();
             String[][] SpellAndTraps = SpellTrapCard.allDataAboutSpellTrap();
-            for (int i = 1; i < 42; i++) {
-                allCards.add(new MonsterCard(Monsters[i][0]));
-                allMonsterCards.put(Monsters[i][0], new MonsterCard(Monsters[i][0]));
+            for (int i = 1; i < 10000; i++) {
+                if (Monsters[i][0] != null) {
+                    allCards.add(new MonsterCard(Monsters[i][0]));
+                    allMonsterCards.put(Monsters[i][0], new MonsterCard(Monsters[i][0]));
+                }
             }
-            for (int i = 1; i < 36; i++) {
-                allCards.add(new SpellTrapCard(SpellAndTraps[i][0]));
-                allSpellTrapCards.put(SpellAndTraps[i][0], new SpellTrapCard(SpellAndTraps[i][0]));
+            for (int i = 1; i < 10000; i++) {
+                if (SpellAndTraps[i][0] != null) {
+                    allCards.add(new SpellTrapCard(SpellAndTraps[i][0]));
+                    allSpellTrapCards.put(SpellAndTraps[i][0], new SpellTrapCard(SpellAndTraps[i][0]));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -57,7 +57,7 @@ public class MonsterCard extends Card {
     }
 
     public static String[][] allDataAboutMonster() {
-        String[][] data = new String[42][9];
+        String[][] data = new String[10000][9];
         CSVReader reader = null;
         try {
             reader = new CSVReader(new FileReader("src/main/resources/Monster.csv"));
@@ -80,10 +80,12 @@ public class MonsterCard extends Card {
     private String[] dataAboutAMonster(String cardNAme) {
         String[][] data = allDataAboutMonster();
         int answer = 0;
-        for (int i = 0; i < 42; i++) {
-            if (data[i][0].equals(cardNAme)) {
-                answer = i;
-                break;
+        for (int i = 0; i < 10000; i++) {
+            if(data[i][0]!=null) {
+                if (data[i][0].equals(cardNAme)) {
+                    answer = i;
+                    break;
+                }
             }
         }
         if (answer == 0) {
