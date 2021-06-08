@@ -102,17 +102,18 @@ public class Chain {
     private boolean canAddToChain() {
         SpellTrapField playerSpellTrapField = getPlayerGameBoard().getSpellTrapField();
         ArrayList<SpellTrapCard> spellTraps = playerSpellTrapField.getSpellTrapsArrayList();
-
-        for (SpellTrapCard spell : spellTraps) {
-            if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
-                if (spell.isSpell()) {
-                    if (spell.canActivateEffects(this)) {
-                        return true;
-                    }
-                } else {
-                    if (canPlayTrap()) {
+        if(spellTraps.size()!=0) {
+            for (SpellTrapCard spell : spellTraps) {
+                if (spell.getSpeed() > 1 && spell.getSpeed() >= chain.get(chain.size() - 1).getSpeed()) {
+                    if (spell.isSpell()) {
                         if (spell.canActivateEffects(this)) {
                             return true;
+                        }
+                    } else {
+                        if (canPlayTrap()) {
+                            if (spell.canActivateEffects(this)) {
+                                return true;
+                            }
                         }
                     }
                 }
