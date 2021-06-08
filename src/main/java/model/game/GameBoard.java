@@ -91,7 +91,7 @@ public class GameBoard {
                 gameBoard[3][6] = "   ";
             } else {
                 gameBoard[3][5] = "H ";
-                gameBoard[3][5] = "   ";
+                gameBoard[3][6] = "   ";
             }
         }
         if (!spellTrapField.isFull(1)) {
