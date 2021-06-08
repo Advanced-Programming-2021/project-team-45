@@ -173,9 +173,9 @@ public class GameBoard {
             gameBoard[4][7] = "E ";
             gameBoard[4][8] = "   ";
         } else {
-            if (monsterField.getMonstersOnField().get(8).getPosition()
+            if (monsterField.getMonstersOnField().get(1).getPosition()
                     .equals(PositionMonsters.DEFENSE)) {
-                if (monsterField.getMonstersOnField().get(8).getDefenceMode().
+                if (monsterField.getMonstersOnField().get(1).getDefenceMode().
                         equals(DefensePosition.DH)) {
                     gameBoard[4][7] = "DH";
                     gameBoard[4][8] = "   ";
