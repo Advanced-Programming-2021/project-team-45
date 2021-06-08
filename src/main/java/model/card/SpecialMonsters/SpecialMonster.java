@@ -84,9 +84,12 @@ public class SpecialMonster {
     public static boolean isSelectedCardASpecialMonsterOnDestroyMode(Card selectedCard) {
         if (selectedCard instanceof MonsterCard) {
             SpecialMonsterEnum test = ((MonsterCard) selectedCard).getSpecialMonsterEnum();
-            return test.equals(SpecialMonsterEnum.COMMAND_KNIGHT) || test.equals(SpecialMonsterEnum.YOMI_SHIP) ||
-                    test.equals(SpecialMonsterEnum.SUIJIN) || test.equals(SpecialMonsterEnum.MARSHMALLON) ||
-                    test.equals(SpecialMonsterEnum.TEXCHANGER);
+            if (test != null) {
+                return test.equals(SpecialMonsterEnum.COMMAND_KNIGHT) || test.equals(SpecialMonsterEnum.YOMI_SHIP) ||
+                        test.equals(SpecialMonsterEnum.SUIJIN) || test.equals(SpecialMonsterEnum.MARSHMALLON) ||
+                        test.equals(SpecialMonsterEnum.TEXCHANGER);
+            }
+            else return false;
 
         } else {
             return false;
