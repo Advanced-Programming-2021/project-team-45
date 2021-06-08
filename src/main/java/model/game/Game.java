@@ -292,7 +292,11 @@ public class Game {
                 SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
             }
             ((MonsterCard) this.selectedCard).summon();
+
+            // add monster to monsterField and remove from hand:
             gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
+            gameBoard.getHand().deleteCard(selectedCard);
+
             this.selectedCard = null;
             return 6;
 
@@ -308,7 +312,11 @@ public class Game {
             MonsterCard monsterCard = monsterField.getMonster(position);
             monsterField.deleteAndDestroyMonster(monsterCard);
         }
+
+        // add monster to field and remove from hand
         monsterField.addMonsterToField((MonsterCard) selectedCard);
+        getGameBoardOfPlayerOfThisTurn().getHand().deleteCard(selectedCard);
+
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
                 getGameBoardOfPlayerOfThisTurn().getMonsterField());
         selectedCard = null;
@@ -321,7 +329,10 @@ public class Game {
             SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, this);
         }
         monster.summon();
+
+        // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monster);
+        gameBoard.getHand().deleteCard(monster);
     }
 
     public void setMonster() {
@@ -330,7 +341,6 @@ public class Game {
         if (selectedCard instanceof MonsterCard)
             monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.setForFirstTime();
-
 
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
