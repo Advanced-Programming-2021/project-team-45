@@ -119,7 +119,7 @@ public class GameController extends Controller {
     public int selectCardErrorHandler(String cardType, int cardPosition, boolean isOpponentCard) {
         if (gameErrorHandler.isInputForSelectCardValid(cardType, cardPosition, isOpponentCard)) {
 
-            if (!(gameErrorHandler.isThereAnyCardHere(cardType, cardPosition, isOpponentCard))) {
+            if (gameErrorHandler.isThereAnyCardHere(cardType, cardPosition, isOpponentCard)) {
                 game.selectCard(cardType, cardPosition, isOpponentCard);
                 return 0;
             } else {
