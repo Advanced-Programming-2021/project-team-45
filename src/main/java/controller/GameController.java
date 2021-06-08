@@ -592,4 +592,8 @@ public class GameController extends Controller {
             }
         }
     }
+
+    public boolean isCardExistsInMonsterField(String username, int index) {
+        return game.isMonsterExistInMonsterField(User.getUserByUsername(username), index);
+    }
 }

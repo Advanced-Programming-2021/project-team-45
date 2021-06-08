@@ -561,4 +561,12 @@ public class Game {
     public void setSelectedCard1(Card card) {
         this.selectedCard = card;
     }
+
+    public boolean isMonsterExistInMonsterField(User user, int index) {
+        if (user == playerOfThisTurn) {
+            return getGameBoardOfPlayerOfThisTurn().getMonsterField().isFull(index - 1);
+        } else {
+            return getOpponentGameBoard().getMonsterField().isFull(index - 1);
+        }
+    }
 }

@@ -50,7 +50,7 @@ public class DuelMenu extends Menu {
             String[][] opponentGameBoard = gameController.getGame().getGameBoardOfOpponentPlayerOfThisTurn()
                     .GameBoardOfPlayer();
             printGameBoard(playerGameBoard, opponentGameBoard);
-          
+
             String input = getInput();
             if (input != null) {
                 Matcher matcher = Regex.getMatcher(input, DUEL_MENU_REGEX[0]);
@@ -127,10 +127,20 @@ public class DuelMenu extends Menu {
 
     public ArrayList<Integer> getCardsForTribute(int n) {
         ArrayList<Integer> cards = new ArrayList<>();
-        System.out.println("enter " + n + " cards to tribute: (each in 1 line)");
+        System.out.println("enter " + n + " cards number to tribute: (each in 1 line)");
         for (int i = 0; i < n; i++) {
             String input = getInput();
             if (input == null) return null;
+            while (!Regex.getMatcher(input, "^[1-5]$").find() ||
+                    !gameController.isCardExistsInMonsterField(username, Integer.parseInt(input))) {
+
+                if (!Regex.getMatcher(input, "^[1-5]$").find()) {
+                    System.out.println("invalid number format (1 to 5 only) ! try again.");
+                } else {
+                    System.out.println("no card exist in this place! try again.");
+                }
+                input = getInput();
+            }
             cards.add(Integer.parseInt(input));
         }
         return cards;
