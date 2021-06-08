@@ -54,8 +54,6 @@ public class Game {
         this.numberOfSummonsInThisTurn = 0;
         this.numberOfSetsInThisTurn = 0;
         this.changeCardPosition = false;
-
-
     }
 
     public boolean isFinished() {
@@ -330,7 +328,10 @@ public class Game {
         if (selectedCard instanceof MonsterCard)
             monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.set();
+
+        // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
+        gameBoard.getHand().deleteCard(monsterCard);
     }
 
     public void setSpellOrTrap() {
@@ -339,7 +340,10 @@ public class Game {
         if (selectedCard instanceof SpellTrapCard)
             spellTrapCard = (SpellTrapCard) this.selectedCard;
         spellTrapCard.set();
+
+        // add card to spellField and remove from hand:
         gameBoard.getSpellTrapField().addSpellTrapCard(spellTrapCard);
+        gameBoard.getHand().deleteCard(spellTrapCard);
     }
 
     public void changePosition() {

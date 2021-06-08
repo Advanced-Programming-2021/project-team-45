@@ -53,7 +53,6 @@ public class GameBoard {
         return deckField;
     }
 
-
     public Graveyard getGraveyard() {
         return graveyard;
     }
