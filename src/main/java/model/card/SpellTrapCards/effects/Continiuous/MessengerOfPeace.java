@@ -23,17 +23,17 @@ public class MessengerOfPeace extends Effect {
     }
 
     MessengerOfPeace(SpellTrapCard card) {
-        messengerOfPeaceHashMap.putIfAbsent(card, this);
+        if(messengerOfPeaceHashMap.get(card)==null){
+            messengerOfPeaceHashMap.put(card,this);
+        }
     }
 
     public static MessengerOfPeace isThereMessengerOfPeaceOnField(SpellTrapField field) {
         ArrayList<SpellTrapCard> cards = field.getSpellTrapsArrayList();
         for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getCardName().equals("Messenger of peace")) {
-                if (messengerOfPeaceHashMap.get(cards.get(i)) == null) {
+            if(cards.get(i)!=null) {
+                if (cards.get(i).getCardName().equals("Messenger of peace")) {
                     new MessengerOfPeace(cards.get(i));
-                    return messengerOfPeaceHashMap.get(cards.get(i));
-                } else {
                     return messengerOfPeaceHashMap.get(cards.get(i));
                 }
             }
