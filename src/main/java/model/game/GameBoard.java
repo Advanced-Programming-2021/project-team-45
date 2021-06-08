@@ -58,7 +58,7 @@ public class GameBoard {
     }
 
     public String[][] GameBoardOfPlayer() {
-        String[][] gameBoard = new String[7][12];
+        String[][] gameBoard = new String[7][13];
         gameBoard[0][0] = ("        " + getOwner().getNickname() + ": ");
         gameBoard[0][1] = String.valueOf(getOwner().getLifepoint().getLifepoint());
         gameBoard[1][0] = "    ";
