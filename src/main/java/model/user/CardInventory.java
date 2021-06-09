@@ -64,7 +64,9 @@ public class CardInventory {
     public Card getCardByCardName(String cardName) {
         for (Card card : cards) {
             if (card.getCardName().equals(cardName)) {
-                return Card.copy(card);
+                Card newCard = Card.copy(card);
+                newCard.setOwnerUsername(card.getOwner().getUsername());
+                return newCard;
             }
         }
         return null;
