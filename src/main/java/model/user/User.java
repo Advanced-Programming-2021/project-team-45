@@ -25,10 +25,6 @@ public class User {
 
     static {
         users = DatabaseController.importUsers();
-        for (User user : users) {
-            user.getCardInventory().initializeCards();
-            user.getUserDeck().initializeDecks();
-        }
     }
 
 

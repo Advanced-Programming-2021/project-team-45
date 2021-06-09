@@ -1,19 +1,16 @@
 package controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.gilecode.yagson.YaGson;
 import model.card.Card;
-import model.card.MonsterCard;
-import model.card.SpellTrapCard;
 import model.user.User;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DatabaseController extends Controller {
 
@@ -21,80 +18,58 @@ public class DatabaseController extends Controller {
         super(username);
     }
 
-
     public static ArrayList<User> importUsers() {
-        File file = new File("src/main/resources/controller/database/users.json");
-        Scanner fileScanner = null;
+        String jsonStr = "";
         try {
-            fileScanner = new Scanner(file);
-        } catch (FileNotFoundException ignored) {
+            jsonStr = new String(Files.readAllBytes(
+                    Paths.get("src/main/resources/controller/database/users.json")));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
-        String json = fileScanner.nextLine();
-
-        Gson gson = new Gson();
-        return gson.fromJson(json,
-                new TypeToken<ArrayList<User>>() {
-                }.getType());
+        YaGson yaGson = new YaGson();
+        Type jsonType = new TypeToken<ArrayList<User>>() {
+        }.getType();
+        return yaGson.fromJson(jsonStr, jsonType);
     }
 
     public static void exportUsers() {
         ArrayList<User> users = User.getUsers();
-        Gson gson = new Gson();
-        String json = gson.toJson(users);
+        YaGson yaGson = new YaGson();
+        String jsonStr = yaGson.toJson(users);
         try {
             FileWriter writer = new FileWriter("src/main/resources/controller/database/users.json");
-            writer.write(json);
+            writer.write(jsonStr);
             writer.close();
-
         } catch (IOException ioException) {
             ioException.printStackTrace();
-
-        }
-    }
-
-    private void writeToExportedCards(String json) {
-        try {
-            FileWriter writer = new FileWriter("database\\exported.txt");
-            writer.write(json);
-            writer.close();
-
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-
         }
     }
 
     public void importCard(String cardName) {
-        File file = new File("database\\exported.txt");
-        Scanner fileScanner = null;
+        String jsonStr = "";
         try {
-            fileScanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("can not read file!");
+            jsonStr = new String(Files.readAllBytes(
+                    Paths.get("src/main/resources/controller/database/exported.txt")));
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
-        String cardType = fileScanner.nextLine();
-        String json = fileScanner.nextLine();
-        Card card;
-        if (cardType.equals("monster")) {
-            card = (new Gson()).fromJson(json, MonsterCard.class);
-        } else {
-            card = (new Gson()).fromJson(json, SpellTrapCard.class);
-        }
+        YaGson yaGson = new YaGson();
+        Card card = yaGson.fromJson(jsonStr, Card.class);
+        card.setOwnerUsername(user.getUsername());
         user.getCardInventory().addCardToInventory(card);
     }
 
     public void exportCard(String cardName) {
         Card card = user.getCardInventory().getCardByCardName(cardName);
-        String jsonString;
-
-        if (card instanceof MonsterCard) {
-            MonsterCard monsterCard = (MonsterCard) card;
-            jsonString = "monster\n" + (new Gson()).toJson(monsterCard);
-        } else {
-            SpellTrapCard spellTrapCard = (SpellTrapCard) card;
-            jsonString = "spell\n" + (new Gson()).toJson(spellTrapCard);
+        YaGson yaGson = new YaGson();
+        String jsonStr = yaGson.toJson(card);
+        try {
+            FileWriter writer = new FileWriter("database\\exported.txt");
+            writer.write(jsonStr);
+            writer.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
-
-        writeToExportedCards(jsonString);
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Card {
+public abstract class Card {
 
     private static final ArrayList<Card> allCards;
     public static HashMap<String, MonsterCard> allMonsterCards = new HashMap<>();
