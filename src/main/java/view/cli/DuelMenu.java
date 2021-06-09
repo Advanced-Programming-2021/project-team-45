@@ -184,13 +184,21 @@ public class DuelMenu extends Menu {
         System.out.println("--------------------------");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 12; j++) {
-                if (i != 5) {
-                    if (playerGameBoard[5 - i][11 - j] != null) {
-                        System.out.print(playerGameBoard[5 - i][11 - j]);
+                if (i != 5 && i!=3) {
+                    if (playerGameBoard[5 - i][j] != null) {
+                        System.out.print(playerGameBoard[5 - i][j]);
                     }
                 } else {
-                    System.out.print(playerGameBoard[0][0] + playerGameBoard[0][1]);
-                    break;
+                    if(i==5) {
+                        System.out.print(playerGameBoard[0][0] + playerGameBoard[0][1]);
+                        break;
+                    }else{
+                        for(int k=0;k<28;k++){
+                            System.out.print(" ");
+                        }
+                        System.out.print(playerGameBoard[2][0]);
+                        break;
+                    }
                 }
             }
             System.out.println();
