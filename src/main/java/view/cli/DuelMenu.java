@@ -2,7 +2,6 @@ package view.cli;
 
 import controller.GameController;
 import controller.Regex;
-import model.game.GameBoard;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
