@@ -20,7 +20,9 @@ public class UserDeck {
         for (Deck deck : userDecks) {
             deck.initializeDeck();
         }
-        activeDeck.initializeDeck();
+        if (doesActiveDeckExist()) {
+            activeDeck.initializeDeck();
+        }
     }
 
     public void createDeck(String deckName, User user) {
