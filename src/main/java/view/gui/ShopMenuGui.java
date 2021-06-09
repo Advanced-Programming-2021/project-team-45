@@ -12,17 +12,22 @@ import javafx.stage.Stage;
 import model.card.Card;
 import model.user.User;
 
+import java.util.Arrays;
+
 public class ShopMenuGui extends Application {
     private static Stage stage;
-    private ShopController shopController;
-    private User logInUser;
+    private static ShopController shopController;
+    private static User logInUser;
     @FXML
     public GridPane gridPane;
     private ShopCellMenu[][] shopCellMenus;
 
-    public void setUser(User user) {
-        this.logInUser = user;
-        shopController = new ShopController(user.getUsername());
+    public static void setUser(User user) {
+        ShopMenuGui.logInUser = user;
+    }
+
+    public static void setShopController(ShopController shopController) {
+        ShopMenuGui.shopController = shopController;
     }
 
     @Override
@@ -36,16 +41,20 @@ public class ShopMenuGui extends Application {
 
     @FXML
     void initialize() {
-        shopCellMenus = new ShopCellMenu[10][8];
+        shopCellMenus = new ShopCellMenu[10][7];
         for (int index = 0; index < Card.getAllCards().size(); index++) {
-            int j = index % 8;
-            int i = index % 10;
-            ShopCellMenu shopCellMenu = new ShopCellMenu(Card.getAllCards().get(index), logInUser, shopController);
+            int j = index % 7;
+            int i = index / 7;
+            ShopCellMenu shopCellMenu = new ShopCellMenu(Card.getAllCards().get(index));
+            ShopCellMenu.setLogInUser(logInUser);
+            ShopCellMenu.setShopController(shopController);
             shopCellMenus[i][j] = shopCellMenu;
         }
+        System.out.println(Arrays.deepToString(shopCellMenus));
+        System.out.println(gridPane.toString());
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 8; j++) {
-                gridPane.getChildren().add(shopCellMenus[i][j]);
+            for (int j = 0; j < 7; j++) {
+                gridPane.add(shopCellMenus[i][j], j, i);
             }
         }
     }

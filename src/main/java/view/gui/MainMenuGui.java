@@ -2,6 +2,7 @@ package view.gui;
 
 import controller.MainMenuController;
 import controller.ProfileController;
+import controller.ShopController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -58,7 +59,8 @@ public class MainMenuGui extends MenuGui {
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
         ShopMenuGui shopMenuGui = new ShopMenuGui();
-        shopMenuGui.setUser(user);
+        ShopMenuGui.setUser(user);
+        ShopMenuGui.setShopController(new ShopController(user.getUsername()));
         shopMenuGui.start(stage);
     }
 

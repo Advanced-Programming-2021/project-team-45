@@ -1,6 +1,7 @@
 package controller;
 
 import model.Shop;
+import model.user.User;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,6 +28,10 @@ public class ShopController extends Controller {
             return 0;
 
         }
+    }
+
+    public int numberOfBoughtCards(String cardName) {
+        return user.getCardInventory().getCardCount(cardName);
     }
 
     public HashMap<String, Integer> getCardsPrices() {
