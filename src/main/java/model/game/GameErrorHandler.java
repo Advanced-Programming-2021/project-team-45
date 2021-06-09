@@ -42,7 +42,7 @@ public class GameErrorHandler {
         if (isOpponentCard) {
             gameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                result = !(gameBoard.getMonsterField().isThisCellOfOpponentMonsterFieldEmpty(cardPosition));
+                result = !(gameBoard.getMonsterField().isFieldEmpty(cardPosition));
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = !(gameBoard.getSpellTrapField().isThisCellOfOpponentSpellTrapFieldEmpty(cardPosition));
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
@@ -53,7 +53,7 @@ public class GameErrorHandler {
         } else {
             gameBoard = game.getGameBoardOfPlayerOfThisTurn();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                result = !(gameBoard.getMonsterField().isThisCellOfPlayerMonsterFieldEmpty(cardPosition));
+                result = !(gameBoard.getMonsterField().isFieldEmpty(cardPosition));
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = !(gameBoard.getSpellTrapField().isThisCellOfPlayerSpellTrapFieldEmpty(cardPosition));
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
@@ -130,7 +130,7 @@ public class GameErrorHandler {
 
     public boolean isThereAnyMonsterInThisCell(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
-        return !gameBoard.getMonsterField().isThisCellOfOpponentMonsterFieldEmpty(numberOfEnemyMonsterZone);
+        return !gameBoard.getMonsterField().isFieldEmpty(numberOfEnemyMonsterZone);
     }
 
     public boolean isSelectedCardSpell() {
@@ -167,7 +167,7 @@ public class GameErrorHandler {
     public boolean isTributeCardsValid(ArrayList<Integer> cardsToTribute) {
         MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
         for (int i : cardsToTribute) {
-            if (monsterField.isThisCellOfPlayerMonsterFieldEmpty(i)) {
+            if (monsterField.isFieldEmpty(i)) {
                 return false;
             }
         }

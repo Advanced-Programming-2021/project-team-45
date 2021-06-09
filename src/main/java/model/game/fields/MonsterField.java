@@ -128,19 +128,7 @@ public class MonsterField extends CardField {
         return numberOfMonsters;
     }
 
-    public boolean isThisCellOfPlayerMonsterFieldEmpty(int cardPosition) {
-        return monsters[cardPosition - 1] == null;
-    }
-
-    public boolean isThisCellOfOpponentMonsterFieldEmpty(int cardPosition) {
-        int position;
-        if (cardPosition == 1) {
-            position = cardPosition;
-        } else if (cardPosition % 2 == 0) {
-            position = cardPosition + 1;
-        } else {
-            position = cardPosition - 1;
-        }
+    public boolean isFieldEmpty(int position) {
         return monsters[position - 1] == null;
     }
 
