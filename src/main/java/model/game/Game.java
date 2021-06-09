@@ -48,6 +48,7 @@ public class Game {
 
     private void setPlayerOfNextTurn() {
         getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAttackedHistory();
+        getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAttackedHistory();
         if ((this.playerOfThisTurn).equals(this.player))
             this.playerOfThisTurn = opponent;
         else this.playerOfThisTurn = player;
