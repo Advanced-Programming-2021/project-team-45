@@ -58,20 +58,20 @@ public class SpecialMonster {
     }
 
     private static void changeTurnEffectPlace(Game game){
-        while (Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn().getMonsterField()).getCardName().
+        while (Scanner.haveScanner(game.getPlayerGameBoard().getMonsterField()).getCardName().
                 equals("Scanner")){
-            Scanner.ability(game,Scanner.haveScanner(game.getGameBoardOfPlayerOfThisTurn()
+            Scanner.ability(game,Scanner.haveScanner(game.getPlayerGameBoard()
                     .getMonsterField()));
         }
 
-        if(Objects.requireNonNull(HeraldOfCreation.isThereHeraldOfCreation(game.getGameBoardOfPlayerOfThisTurn()
+        if(Objects.requireNonNull(HeraldOfCreation.isThereHeraldOfCreation(game.getPlayerGameBoard()
                 .getMonsterField())).getCardName().equals("Herald of Creation")){
             HeraldOfCreation.abilityOfHeraldOfCreation(game,HeraldOfCreation
-                    .isThereHeraldOfCreation(game.getGameBoardOfPlayerOfThisTurn().getMonsterField()));
+                    .isThereHeraldOfCreation(game.getPlayerGameBoard().getMonsterField()));
         }
 
-        if(Tricky.isThereTricky(game.getGameBoardOfPlayerOfThisTurn().getHand()).getCardName().equals("The Tricky")){
-            Tricky.ability(game,(MonsterCard) Tricky.isThereTricky(game.getGameBoardOfPlayerOfThisTurn().getHand()));
+        if(Tricky.isThereTricky(game.getPlayerGameBoard().getHand()).getCardName().equals("The Tricky")){
+            Tricky.ability(game,(MonsterCard) Tricky.isThereTricky(game.getPlayerGameBoard().getHand()));
         }
     }
 

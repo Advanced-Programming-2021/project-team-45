@@ -13,8 +13,8 @@ public class ExploderDragon {
         int result = 0;
         MonsterCard invaderCard = (MonsterCard) game.getSelectedCard();
         MonsterCard exploderDragon = (MonsterCard) selectedOrTargetCard;
-        GameBoard playerGameBoard = game.getGameBoardOfPlayerOfThisTurn();
-        GameBoard opponentGameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
+        GameBoard playerGameBoard = game.getPlayerGameBoard();
+        GameBoard opponentGameBoard = game.getOpponentGameBoard();
         if(invaderCard.getPosition() == PositionMonsters.ATTACK)
             result = abilityInAttackPosition(invaderCard, exploderDragon, playerGameBoard, opponentGameBoard);
         else result = abilityInDefensePosition(invaderCard, exploderDragon, playerGameBoard, opponentGameBoard, game);

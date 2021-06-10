@@ -2,9 +2,9 @@ package view.cli;
 
 import controller.GameController;
 import controller.Regex;
-import javafx.css.Match;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,8 +45,8 @@ public class DuelMenu extends Menu {
     public void getNextCommand() {
         isCommandEnded = false;
         while (!isCommandEnded) {
-            String[][] playerGameBoard = gameController.getGame().getGameBoardOfPlayerOfThisTurn().GameBoardOfPlayer();
-            String[][] opponentGameBoard = gameController.getGame().getGameBoardOfOpponentPlayerOfThisTurn()
+            String[][] playerGameBoard = gameController.getGame().getPlayerGameBoard().GameBoardOfPlayer();
+            String[][] opponentGameBoard = gameController.getGame().getOpponentGameBoard()
                     .GameBoardOfPlayer();
             printGameBoard(playerGameBoard, opponentGameBoard);
 
@@ -536,7 +536,7 @@ public class DuelMenu extends Menu {
 
     private void showCard() {
         String answer = gameController.controlCardShow();
-        System.out.println(answer);
+        System.out.println(Objects.requireNonNullElse(answer, "card is not visible"));
     }
 
     private void help() {

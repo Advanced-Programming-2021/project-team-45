@@ -30,12 +30,12 @@ public class Scanner {
         if (selectedMonster != null) {
 
             for (int i = 0; i < 5; i++) {
-                if (game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
+                if (game.getPlayerGameBoard().getMonsterField().
                         getMonstersOnField().get(i).getCardName().equals("Scanner")) {
-                    scanner = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
+                    scanner = game.getPlayerGameBoard().getMonsterField().
                             getMonstersOnField().get(i);
                 }
-                swapMonsterAndScanner(game.getGameBoardOfPlayerOfThisTurn(), scanner, selectedMonster);
+                swapMonsterAndScanner(game.getPlayerGameBoard(), scanner, selectedMonster);
             }
         }
     }
