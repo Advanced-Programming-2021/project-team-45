@@ -408,8 +408,8 @@ public class Game {
                 return 0;
             }
             if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
-                result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, playerGameBoard
-                        , opponentGameBoard);
+                result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, opponentGameBoard
+                        , playerGameBoard);
             } else if (isTargetCellInDefensePosition(numberOfEnemyMonsterZone)) {
                 result = attackToOpponentCardInDefensePosition(playerCard, opponentCard, playerGameBoard
                         , opponentGameBoard);
