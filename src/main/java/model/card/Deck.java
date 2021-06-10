@@ -9,26 +9,14 @@ public class Deck {
 
     private final String name;
     private final String username;
-    private ArrayList<Card> mainDeck = new ArrayList<>();
-    private final ArrayList<MonsterCard> mainDeckMonsterCards = new ArrayList<>();
-    private final ArrayList<SpellTrapCard> mainDeckSpellTrapCards = new ArrayList<>();
-    private ArrayList<Card> sideDeck = new ArrayList<>();
-    private final ArrayList<MonsterCard> sideDeckMonsterCards = new ArrayList<>();
-    private final ArrayList<SpellTrapCard> sideDeckSpellTrapCards = new ArrayList<>();
+    private final ArrayList<Card> mainDeck;
+    private final ArrayList<Card> sideDeck;
 
     public Deck(String name, String username) {
         this.name = name;
         this.username = username;
-    }
-
-
-    public void initializeDeck() {
         mainDeck = new ArrayList<>();
-        mainDeck.addAll(mainDeckMonsterCards);
-        mainDeck.addAll(mainDeckSpellTrapCards);
         sideDeck = new ArrayList<>();
-        sideDeck.addAll(sideDeckMonsterCards);
-        sideDeck.addAll(sideDeckSpellTrapCards);
     }
 
     public User getUser() {
@@ -39,30 +27,16 @@ public class Deck {
         Card card = user.getCardInventory().getCardByCardName(cardName);
         if (isSideDeck) {
             sideDeck.add(card);
-            if (card instanceof MonsterCard) {
-                sideDeckMonsterCards.add((MonsterCard) card);
-            } else if (card instanceof SpellTrapCard) {
-                sideDeckSpellTrapCards.add((SpellTrapCard) card);
-            }
         } else {
             mainDeck.add(card);
-            if (card instanceof MonsterCard) {
-                mainDeckMonsterCards.add((MonsterCard) card);
-            } else if (card instanceof SpellTrapCard) {
-                mainDeckSpellTrapCards.add((SpellTrapCard) card);
-            }
         }
     }
 
     public void deleteCard(String cardName, boolean isSideDeck) {
         if (isSideDeck) {
             sideDeck.removeIf(card -> card.getCardName().equals(cardName));
-            sideDeckMonsterCards.removeIf(card -> card.getCardName().equals(cardName));
-            sideDeckSpellTrapCards.removeIf(card -> card.getCardName().equals(cardName));
         } else {
             mainDeck.removeIf(card -> card.getCardName().equals(cardName));
-            mainDeckMonsterCards.removeIf(card -> card.getCardName().equals(cardName));
-            mainDeckSpellTrapCards.removeIf(card -> card.getCardName().equals(cardName));
         }
     }
 

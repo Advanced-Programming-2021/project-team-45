@@ -17,10 +17,10 @@ public class HeraldOfCreation {
         if(!heraldCards.contains(thisHerald)) {
             heraldCards.add(thisHerald);
             // one input card from hand
-            CardField[] cardFields={game.getGameBoardOfPlayerOfThisTurn().getHand()};
+            CardField[] cardFields={game.getPlayerGameBoard().getHand()};
             ArrayList<Card> card=game.getGameController().getCardFromPlayer(1,cardFields);
             if(card.get(0)!=null) {
-                GameBoard playerGameBoard = game.getGameBoardOfPlayerOfThisTurn();
+                GameBoard playerGameBoard = game.getPlayerGameBoard();
                 playerGameBoard.getHand().deleteCard(card.get(0));
                 // input one monster Card with minimum level of 7 from player graveyard
                 MonsterCard monsterCard=getMonster(game,card.get(0));
@@ -32,7 +32,7 @@ public class HeraldOfCreation {
     }
 
     private static MonsterCard getMonster(Game game ,Card DeletedCard){
-        CardField[] cardFields={game.getGameBoardOfPlayerOfThisTurn().getGraveyard()};
+        CardField[] cardFields={game.getPlayerGameBoard().getGraveyard()};
         ArrayList<Card>  card=game.getGameController().getCardFromPlayer(1,cardFields);
         if(card.get(0)!=null){
             if(card.get(0) instanceof MonsterCard){
@@ -40,12 +40,12 @@ public class HeraldOfCreation {
                     return (MonsterCard) card.get(0);
                 }else{
                     game.getGameController().showOutput("your choice is wrong");
-                    game.getGameBoardOfPlayerOfThisTurn().getHand().addCard(DeletedCard);
+                    game.getPlayerGameBoard().getHand().addCard(DeletedCard);
                     return null;
                 }
             }else{
                 game.getGameController().showOutput("your choice is wrong");
-                game.getGameBoardOfPlayerOfThisTurn().getHand().addCard(DeletedCard);
+                game.getPlayerGameBoard().getHand().addCard(DeletedCard);
                 return null;
             }
         }else{

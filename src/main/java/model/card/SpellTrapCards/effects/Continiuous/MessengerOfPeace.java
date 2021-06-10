@@ -5,11 +5,9 @@ import model.card.SpellTrapCard;
 import model.card.SpellTrapCards.effects.Effect;
 import model.game.Chain;
 import model.game.Game;
-import model.game.fields.Graveyard;
 import model.game.fields.SpellTrapField;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class MessengerOfPeace extends Effect {
@@ -57,12 +55,12 @@ public class MessengerOfPeace extends Effect {
                 "your messenger of peace and save 100 point of" +
                 "your life point please enter 'yes' without quote and if you don't want enter no :");
         if (answer) {
-            ArrayList<SpellTrapCard> spellTrapCards = game.getGameBoardOfPlayerOfThisTurn().getSpellTrapField()
+            ArrayList<SpellTrapCard> spellTrapCards = game.getPlayerGameBoard().getSpellTrapField()
                     .getSpellTrapsArrayList();
             for (int i = 0; i < spellTrapCards.size(); i++) {
                 if (messengerOfPeaceHashMap.get(spellTrapCards.get(i)) != null) {
                     if (messengerOfPeaceHashMap.get(spellTrapCards.get(i)).equals(this)) {
-                        game.getGameBoardOfPlayerOfThisTurn().getSpellTrapField().
+                        game.getPlayerGameBoard().getSpellTrapField().
                                 deleteAndDestroySpellTrap(spellTrapCards.get(i));
                     }
                 }

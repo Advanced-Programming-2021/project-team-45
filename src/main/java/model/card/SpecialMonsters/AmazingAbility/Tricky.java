@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class Tricky {
 
     public static void ability(Game game,MonsterCard tricky){
-        CardField[] cardFields={game.getGameBoardOfPlayerOfThisTurn().getHand()};
+        CardField[] cardFields={game.getPlayerGameBoard().getHand()};
         ArrayList<Card> deletedCard=game.getGameController().getCardFromPlayer(1,cardFields);
         if(deletedCard.get(0)!=null) {
-            game.getGameBoardOfPlayerOfThisTurn().getHand().deleteCard(deletedCard.get(0));
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().addMonsterToField(tricky);
+            game.getPlayerGameBoard().getHand().deleteCard(deletedCard.get(0));
+            game.getPlayerGameBoard().getMonsterField().addMonsterToField(tricky);
         }
     }
 

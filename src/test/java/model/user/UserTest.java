@@ -57,7 +57,6 @@ class UserTest {
 
         assertNotEquals(user1, null);
         assertNotEquals(user2, user1);
-        assertNotEquals(user1, new Card("test"));
         assertEquals(user3, user1);
     }
 

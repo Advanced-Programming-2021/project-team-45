@@ -35,6 +35,7 @@ public class Texchanger {
     }
 
     private static Card getinput(Game game) {
+
         CardField[] cardFields = {game.getGameBoardOfOpponentPlayerOfThisTurn().getDeckField(),
                 game.getGameBoardOfOpponentPlayerOfThisTurn().getHand(),
                 game.getGameBoardOfOpponentPlayerOfThisTurn().getGraveyard()};

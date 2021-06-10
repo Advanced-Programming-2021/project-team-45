@@ -20,7 +20,7 @@ public class TrapHoleEffect extends Effect {
 
     @Override
     public boolean canActivate(Chain chain) {
-        if (chain.getPlayer() == chain.getGame().getOpponent()) {
+        if (chain.getPlayer() == chain.getGame().getOpponentOfThisTurn()) {
             Card card = chain.getGame().getSelectedCard();
             if (card instanceof MonsterCard) {
                 if (((MonsterCard) card).getAttack() >= 1000) {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Terratiger {
     public static MonsterCard getInput(Game game) {
-        CardField[] cardFields = {game.getGameBoardOfPlayerOfThisTurn().getHand()};
+        CardField[] cardFields = {game.getPlayerGameBoard().getHand()};
         ArrayList<Card> cards = game.getGameController().getCardFromPlayer(1, cardFields);
         if (cards.get(0)!=null) {
             if (cards.get(0) instanceof MonsterCard) {
@@ -32,8 +32,8 @@ public class Terratiger {
     public static void ability(Game game) {
         MonsterCard input = getInput(game);
         if(input!=null) {
-            if (!game.getGameBoardOfPlayerOfThisTurn().getMonsterField().isFull()) {
-                game.getGameBoardOfPlayerOfThisTurn().getMonsterField().addMonsterToField(input);
+            if (!game.getPlayerGameBoard().getMonsterField().isFull()) {
+                game.getPlayerGameBoard().getMonsterField().addMonsterToField(input);
                 input.setDefenceMode(DefensePosition.DH);
             } else {
                 game.getGameController().showOutput("your field is full");

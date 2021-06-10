@@ -6,7 +6,6 @@ import model.game.ChainStartState;
 import model.game.GameBoard;
 import model.card.MonsterCard;
 import model.card.PositionMonsters;
-import model.game.fields.Graveyard;
 
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class MirrorForceEffect extends Effect {
     @Override
     public boolean canActivate(Chain chain) {
         // check if opponent has attacked:
-        return chain.getOpponent() == chain.getGame().getPlayer() &&
+        return chain.getOpponent() == chain.getGame().getPlayerOfThisTurn() &&
                 chain.getChainStartState() == ChainStartState.MONSTER_ATTACK;
     }
 }

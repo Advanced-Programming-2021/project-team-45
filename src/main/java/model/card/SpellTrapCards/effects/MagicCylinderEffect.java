@@ -10,7 +10,7 @@ public class MagicCylinderEffect extends Effect {
     public void activate(Chain chain) {
         chain.deActiveMonster();
         int attack = ((MonsterCard) chain.getGame().getSelectedCard()).getAttack();
-        chain.getGame().getPlayer().getLifepoint().decreaseLifepoint(attack);
+        chain.getGame().getPlayerOfThisTurn().getLifepoint().decreaseLifepoint(attack);
     }
 
     @Override
