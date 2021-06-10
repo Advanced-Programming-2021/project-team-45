@@ -26,8 +26,8 @@ public class Game {
     private final GameBoard playerGameBoard;
     private final GameBoard opponentGameBoard;
     private Card selectedCard;
-    private int numberOfSummonsInThisTurn;
-    private int numberOfSetsInThisTurn;
+    private int numberOfSummonsInThisTurn = 0;
+    private int numberOfSetsInThisTurn = 0;
     private Card lastOpponentMonsterCard;
     private final GameController gameController;
     private User surrendered;
@@ -219,8 +219,7 @@ public class Game {
     }
 
     public void mainPhase1() {
-        this.numberOfSetsInThisTurn = 0;
-        this.numberOfSummonsInThisTurn = 0;
+
     }
 
     public void endPhase() {
@@ -233,6 +232,8 @@ public class Game {
         } else {
             setPlayerOfNextTurn();
         }
+        this.numberOfSetsInThisTurn = 0;
+        this.numberOfSummonsInThisTurn = 0;
     }
 
     public void battlePhase() {
@@ -240,8 +241,6 @@ public class Game {
     }
 
     public void mainPhase2() {
-        this.numberOfSetsInThisTurn = 0;
-        this.numberOfSummonsInThisTurn = 0;
         this.player.setLastDamageAmount(0);
         this.opponent.setLastDamageAmount(0);
     }
@@ -274,6 +273,7 @@ public class Game {
             // add monster to monsterField and remove from hand:
             gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
             ((MonsterCard) this.selectedCard).summon();
+            numberOfSummonsInThisTurn++;
             gameBoard.getHand().deleteCard(selectedCard);
 
             this.selectedCard = null;
@@ -295,6 +295,7 @@ public class Game {
         // add monster to field and remove from hand
         monsterField.addMonsterToField((MonsterCard) selectedCard);
         ((MonsterCard) selectedCard).summon();
+        numberOfSummonsInThisTurn++;
         getPlayerGameBoard().getHand().deleteCard(selectedCard);
 
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
@@ -309,7 +310,7 @@ public class Game {
             SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, this);
         }
         monster.summon();
-
+        numberOfSummonsInThisTurn++;
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monster);
         monster.summon();
@@ -325,6 +326,7 @@ public class Game {
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
         monsterCard.setForFirstTime();
+        numberOfSetsInThisTurn++;
         gameBoard.getHand().deleteCard(monsterCard);
     }
 
