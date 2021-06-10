@@ -92,7 +92,7 @@ public class MonsterField extends CardField {
     public void deleteAndDestroyMonster(MonsterCard monsterCard) {
         for (int i = 0; i < 5; i++) {
             if (monsters[i] != null) {
-                if (monsters[i] == monsterCard) {
+                if (monsters[i].equals(monsterCard)) {
                     graveyard.addCardToGraveyard(monsters[i]);
                     monsters[i] = null;
                 }
