@@ -79,7 +79,7 @@ public class SpellTrapField extends CardField {
     public void deleteAndDestroySpellTrap(SpellTrapCard spellTrapCard) {
         for (int i = 0; i < 5; i++) {
             if (spellTraps[i] != null) {
-                if (spellTraps[i].equals(spellTrapCard)) {
+                if (spellTraps[i] == spellTrapCard) {
                     graveyard.addCardToGraveyard(spellTrapCard);
                     spellTraps[i] = null;
                 }
