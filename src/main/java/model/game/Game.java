@@ -191,11 +191,11 @@ public class Game {
             this.phase = "standby phase";
         } else if ((this.phase).equals("standby phase")) {
             this.phase = "Main Phase1";
-        } else if ((this.phase).equals("Main Phase1")) {
+        } else if ((this.phase).equals("Main Phase 1")) {
             this.phase = "battle phase";
         } else if ((this.phase).equals("battle phase")) {
             this.phase = "Main Phase2";
-        } else if ((this.phase).equals("Main Phase2")) {
+        } else if ((this.phase).equals("Main Phase 2")) {
             this.phase = "End Phase";
         } else if ((this.phase).equals("End Phase")) {
             this.phase = "draw phase";
