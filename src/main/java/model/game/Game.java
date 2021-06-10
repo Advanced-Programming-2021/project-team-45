@@ -521,7 +521,11 @@ public class Game {
 
     public String showGraveyard() {
         GameBoard gameBoard = getPlayerGameBoard();
-        return gameBoard.getGraveyard().toString();
+        if (gameBoard.getGraveyard().isEmpty()) {
+            return null;
+        } else {
+            return gameBoard.getGraveyard().toString();
+        }
     }
 
     public String calculateDamageOnMe() {

@@ -8,14 +8,13 @@ import model.user.User;
 
 
 public class GameBoard {
-    private User owner;
-    private DeckField deckField;
-    private Graveyard graveyard;
-    private Hand hand;
-    private MonsterField monsterField;
-    private SpellTrapField spellTrapField;
-    private FieldZone fieldZone;
-    private Game game;
+    private final User owner;
+    private final DeckField deckField;
+    private final Graveyard graveyard;
+    private final Hand hand;
+    private final MonsterField monsterField;
+    private final SpellTrapField spellTrapField;
+    private final FieldZone fieldZone;
 
     public GameBoard(User owner, Game game) {
         this.owner = owner;
@@ -26,7 +25,6 @@ public class GameBoard {
         this.fieldZone = new FieldZone(graveyard);
         this.deckField = new DeckField(owner);
         this.hand.setHandAtFirst(this.deckField);
-        this.game = game;
     }
 
     public MonsterField getMonsterField() {

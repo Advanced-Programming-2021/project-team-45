@@ -530,8 +530,8 @@ public class DuelMenu extends Menu {
     }
 
     private void showGraveyard() {
-        String answer = gameController.controlGraveyard();
-        System.out.println(answer);
+        String answer = gameController.showGraveyard();
+        System.out.println(Objects.requireNonNullElse(answer, "graveyard empty"));
     }
 
     private void showCard() {
