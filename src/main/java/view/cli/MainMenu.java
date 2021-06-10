@@ -62,8 +62,10 @@ public class MainMenu extends Menu {
         }
 
         if (opponentUsername.equals("")) {
-            if (input.matches(" (--ai|-I)")) {
+            Matcher aiMatcher=Regex.getMatcher(input, " (?:--ai|-I)");
+            if (aiMatcher.find()) {
                 new ArtificialIntelligence();
+                opponentUsername="AI";
                 inputError++;
             }
         }
