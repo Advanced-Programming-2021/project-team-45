@@ -361,7 +361,9 @@ public class Game {
 
     private boolean isTargetCellInDefensePosition(int numberOfEnemyMonsterZone) {
         GameBoard gameBoard = getOpponentGameBoard();
-        return gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+//        return gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
+//                == PositionMonsters.DEFENSE;
+        return gameBoard.getMonsterField().getMonsterCardFromPlayerMonsterField(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.DEFENSE;
     }
 
