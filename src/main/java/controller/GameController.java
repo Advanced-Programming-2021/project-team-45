@@ -423,11 +423,13 @@ public class GameController extends Controller {
     }
 
     public String controlCardShow() {
-        if (!game.isSelectedCardVisibleToPlayer()) {
-            return null;
-        } else {
-            return game.showCard();
-        }
+        if (game.getSelectedCard() != null) {
+            if (!game.isSelectedCardVisibleToPlayer()) {
+                return null;
+            } else {
+                return game.showCard();
+            }
+        } else return "no card is selected yet";
     }
 
     public String damageOnOpponent() {
