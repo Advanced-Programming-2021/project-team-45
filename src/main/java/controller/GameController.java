@@ -423,7 +423,11 @@ public class GameController extends Controller {
     }
 
     public String controlCardShow() {
-        return game.showCard();
+        if (!game.isSelectedCardVisibleToPlayer()) {
+            return null;
+        } else {
+            return game.showCard();
+        }
     }
 
     public String damageOnOpponent() {
@@ -457,7 +461,7 @@ public class GameController extends Controller {
     public MonsterCard getACardFromGraveyardForScanner(String view) {
         String input = playerDuelMenu.getCardFromGraveYard(view);
         if (input != null) {
-            ArrayList<Card> cards = game.getGameBoardOfPlayerOfThisTurn().getGraveyard().getGraveyardCards();
+            ArrayList<Card> cards = game.getPlayerGameBoard().getGraveyard().getGraveyardCards();
             for (int i = 0; i < cards.size(); i++) {
                 if (cards.get(i).getCardName().equals(input) && cards.get(i) instanceof MonsterCard) {
                     return (MonsterCard) cards.get(i);

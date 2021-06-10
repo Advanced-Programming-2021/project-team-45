@@ -13,7 +13,7 @@ public class SolemnWarningEffect extends Effect {
         chain.deActiveMonster();
         // delete and destroy monster:
         MonsterCard monster = (MonsterCard) chain.getGame().getSelectedCard();
-        MonsterField monsterField = chain.getGame().getGameBoardOfPlayerOfThisTurn().getMonsterField();
+        MonsterField monsterField = chain.getGame().getPlayerGameBoard().getMonsterField();
         monsterField.deleteAndDestroyMonster(monster);
     }
 

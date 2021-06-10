@@ -43,8 +43,8 @@ public class SupplySquad extends Effect {
     
     public void doActivity(Game game){
         if(isActive){
-            game.getGameBoardOfOpponentPlayerOfThisTurn().getHand().
-                    addCard(game.getGameBoardOfPlayerOfThisTurn().getDeckField().drawCard());
+            game.getOpponentGameBoard().getHand().
+                    addCard(game.getPlayerGameBoard().getDeckField().drawCard());
 
         }
     }

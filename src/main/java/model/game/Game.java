@@ -29,7 +29,7 @@ public class Game {
     private int numberOfSummonsInThisTurn;
     private int numberOfSetsInThisTurn;
     private Card lastOpponentMonsterCard;
-    private GameController gameController;
+    private final GameController gameController;
     private User surrendered;
 
 
@@ -47,8 +47,8 @@ public class Game {
     }
 
     private void setPlayerOfNextTurn() {
-        getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAttackedHistory();
-        getGameBoardOfOpponentPlayerOfThisTurn().getMonsterField().deleteAttackedHistory();
+        getPlayerGameBoard().getMonsterField().deleteAttackedHistory();
+        getOpponentGameBoard().getMonsterField().deleteAttackedHistory();
         if ((this.playerOfThisTurn).equals(this.player))
             this.playerOfThisTurn = opponent;
         else this.playerOfThisTurn = player;
@@ -69,14 +69,6 @@ public class Game {
         else this.playerOfThisTurn = player;
     }
 
-    public User getPlayer() {
-        return player;
-    }
-
-    public User getOpponent() {
-        return opponent;
-    }
-
     public boolean getChangeCardPosition() {
         return changeCardPosition;
     }
@@ -87,14 +79,6 @@ public class Game {
 
     public int getNumberOfSetsInThisTurn() {
         return numberOfSetsInThisTurn;
-    }
-
-    public GameBoard getPlayerGameBoard() {
-        return playerGameBoard;
-    }
-
-    public GameBoard getOpponentGameBoard() {
-        return opponentGameBoard;
     }
 
     public Card getLastOpponentMonsterCard() {
@@ -115,13 +99,13 @@ public class Game {
         else return player;
     }
 
-    public GameBoard getGameBoardOfPlayerOfThisTurn() {
+    public GameBoard getPlayerGameBoard() {
         if ((this.playerOfThisTurn).equals(this.player))
             return this.playerGameBoard;
         else return this.opponentGameBoard;
     }
 
-    public GameBoard getGameBoardOfOpponentPlayerOfThisTurn() {
+    public GameBoard getOpponentGameBoard() {
         if ((this.playerOfThisTurn).equals(this.player))
             return this.opponentGameBoard;
         else return this.playerGameBoard;
@@ -141,12 +125,6 @@ public class Game {
 
     public Card getAddedCardInDrawPhase() {
         return addedCardInDrawPhase;
-    }
-
-    public GameBoard getGameBoard() {
-        if (playerOfThisTurn.equals(player)) return playerGameBoard;
-        else return opponentGameBoard;
-
     }
 
     public String getEnemyCardName() {
@@ -180,7 +158,7 @@ public class Game {
 
     public void selectCard(String cardType, int cardPosition, boolean isOpponent) {
         if (isOpponent) {
-            GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+            GameBoard gameBoard = getOpponentGameBoard();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 this.selectedCard = gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(cardPosition);
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
@@ -191,7 +169,7 @@ public class Game {
                 this.selectedCard = gameBoard.getHand().getCardFromHand(cardPosition);
             }
         } else {
-            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+            GameBoard gameBoard = getPlayerGameBoard();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
                 this.selectedCard = gameBoard.getMonsterField().getMonsterCardFromPlayerMonsterField(cardPosition);
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
@@ -225,10 +203,10 @@ public class Game {
     }
 
     public void drawPhase() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
-        if (getGameBoardOfPlayerOfThisTurn().getHand().getCardsInHand().size() < 6) {
+        GameBoard gameBoard = getPlayerGameBoard();
+        if (getPlayerGameBoard().getHand().getCardsInHand().size() < 6) {
             this.addedCardInDrawPhase = gameBoard.getDeckField().drawCard();
-            getGameBoardOfPlayerOfThisTurn().getHand().addCard(addedCardInDrawPhase);
+            getPlayerGameBoard().getHand().addCard(addedCardInDrawPhase);
         }
         if (selectedCard != null) {
             SpecialMonster.specialMonsterController(selectedCard, EffectPlace.CHANGETURN, this);
@@ -246,7 +224,7 @@ public class Game {
     }
 
     public void endPhase() {
-        Scanner.deleteSwapMonsterIfHadScanner(getGameBoardOfPlayerOfThisTurn().getMonsterField());
+        Scanner.deleteSwapMonsterIfHadScanner(getPlayerGameBoard().getMonsterField());
         Suijin.setAllSuijinInEachTurn();
         Texchanger.setAllTexchanger();
         if (getOpponentOfThisTurn().getUsername().equals("AI")) {
@@ -282,13 +260,13 @@ public class Game {
     }
 
     public int summonMonster() {
-        Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_SUMMON);
+        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_SUMMON);
         boolean canSummon = chain.startChain();
 
         if (canSummon) {
-            GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+            GameBoard gameBoard = getPlayerGameBoard();
             CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
-                    getGameBoardOfPlayerOfThisTurn().getMonsterField());
+                    getPlayerGameBoard().getMonsterField());
             if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
                 SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
             }
@@ -308,7 +286,7 @@ public class Game {
     }
 
     public void tributeSummon(ArrayList<Integer> cardsToTribute) {
-        MonsterField monsterField = getGameBoardOfPlayerOfThisTurn().getMonsterField();
+        MonsterField monsterField = getPlayerGameBoard().getMonsterField();
         for (int position : cardsToTribute) {
             MonsterCard monsterCard = monsterField.getMonster(position);
             monsterField.deleteAndDestroyMonster(monsterCard);
@@ -317,16 +295,16 @@ public class Game {
         // add monster to field and remove from hand
         monsterField.addMonsterToField((MonsterCard) selectedCard);
         ((MonsterCard) selectedCard).summon();
-        getGameBoardOfPlayerOfThisTurn().getHand().deleteCard(selectedCard);
+        getPlayerGameBoard().getHand().deleteCard(selectedCard);
 
         CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
-                getGameBoardOfPlayerOfThisTurn().getMonsterField());
+                getPlayerGameBoard().getMonsterField());
         selectedCard = null;
     }
 
     public void specialSummon(MonsterCard monster, GameBoard gameBoard) {
         CommandKnight.CommandKnightOnFieldWithSummonMode(monster,
-                getGameBoardOfPlayerOfThisTurn().getMonsterField());
+                getPlayerGameBoard().getMonsterField());
         if (SpecialMonster.isSelectedCardASpecialMonster(monster)) {
             SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, this);
         }
@@ -339,7 +317,7 @@ public class Game {
     }
 
     public void setMonster() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = getPlayerGameBoard();
         MonsterCard monsterCard = null;
         if (selectedCard instanceof MonsterCard)
             monsterCard = (MonsterCard) this.selectedCard;
@@ -351,7 +329,7 @@ public class Game {
     }
 
     public void setSpellOrTrap() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = getPlayerGameBoard();
         SpellTrapCard spellTrapCard = null;
         if (selectedCard instanceof SpellTrapCard)
             spellTrapCard = (SpellTrapCard) this.selectedCard;
@@ -372,7 +350,7 @@ public class Game {
     }
 
     private boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone) {
-        GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        GameBoard gameBoard = getOpponentGameBoard();
         if (gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.ATTACK)
             return true;
@@ -380,13 +358,13 @@ public class Game {
     }
 
     private boolean isTargetCellInDefensePosition(int numberOfEnemyMonsterZone) {
-        GameBoard gameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        GameBoard gameBoard = getOpponentGameBoard();
         return gameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField(numberOfEnemyMonsterZone).getPosition()
                 == PositionMonsters.DEFENSE;
     }
 
     public int flipSummon() {
-        Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_FLIP_SUMMON);
+        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_FLIP_SUMMON);
         boolean canFlipSummon = chain.startChain();
 
         if (canFlipSummon) {
@@ -404,15 +382,15 @@ public class Game {
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
 
-        Chain chain = new Chain(this, selectedCard, playerOfThisTurn, opponent, ChainStartState.MONSTER_ATTACK);
+        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_ATTACK);
         boolean canAttack = chain.startChain();
 
         if (!canAttack) {
             result = -1;
 
         } else {
-            GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
-            GameBoard playerGameBoard = getGameBoardOfPlayerOfThisTurn();
+            GameBoard opponentGameBoard = getOpponentGameBoard();
+            GameBoard playerGameBoard = getPlayerGameBoard();
             MonsterCard playerCard = (MonsterCard) this.selectedCard;
             playerCard.setWasAttackedInThisTurn(true);
             MonsterCard opponentCard = opponentGameBoard.getMonsterField().getMonsterCardOpponentFromMonsterField
@@ -479,7 +457,7 @@ public class Game {
     }
 
     public boolean canDirectAttack() {
-        GameBoard opponentGameBoard = getGameBoardOfOpponentPlayerOfThisTurn();
+        GameBoard opponentGameBoard = getOpponentGameBoard();
         if (opponentGameBoard.getMonsterField().getNumberOfMonstersInField() == 0) return true;
         else {
             /*
@@ -505,7 +483,7 @@ public class Game {
     }
 
     public boolean canActivateSpell() {
-        SpellTrapField playerSpellTrapField = getGameBoardOfPlayerOfThisTurn().getSpellTrapField();
+        SpellTrapField playerSpellTrapField = getPlayerGameBoard().getSpellTrapField();
         ArrayList<SpellTrapCard> playerSpellTraps = playerSpellTrapField.getSpellTrapsArrayList();
 
         boolean opponentMirageDragonExist = false;
@@ -538,7 +516,7 @@ public class Game {
     }
 
     public String showGraveyard() {
-        GameBoard gameBoard = getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = getPlayerGameBoard();
         return gameBoard.getGraveyard().toString();
     }
 
@@ -552,6 +530,25 @@ public class Game {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getOpponentOfThisTurn().getLastDamageAmount());
         return stringBuilder.toString();
+    }
+
+    public boolean isSelectedCardVisibleToPlayer() {
+        GameBoard opponentGameBoard = getOpponentGameBoard();
+        for (Card card : opponentGameBoard.getHand().getCardsInHand()) {
+            if (selectedCard == card) return false;
+        }
+        for (MonsterCard monster : opponentGameBoard.getMonsterField().getMonstersOnField()) {
+            if (selectedCard == monster) {
+                return monster.getPosition() != PositionMonsters.DEFENSE ||
+                        monster.getDefenceMode() != DefensePosition.DH;
+            }
+        }
+        for (SpellTrapCard spell : opponentGameBoard.getSpellTrapField().getSpellTrapsArrayList()) {
+            if (selectedCard == spell) {
+                return spell.isActivated();
+            }
+        }
+        return true;
     }
 
     public String showCard() {
@@ -568,7 +565,7 @@ public class Game {
 
     public boolean isMonsterExistInMonsterField(User user, int index) {
         if (user == playerOfThisTurn) {
-            return getGameBoardOfPlayerOfThisTurn().getMonsterField().isFull(index - 1);
+            return getPlayerGameBoard().getMonsterField().isFull(index - 1);
         } else {
             return getOpponentGameBoard().getMonsterField().isFull(index - 1);
         }
