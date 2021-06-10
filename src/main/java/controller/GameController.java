@@ -418,7 +418,7 @@ public class GameController extends Controller {
         return 1;
     }
 
-    public String controlGraveyard() {
+    public String showGraveyard() {
         return game.showGraveyard();
     }
 

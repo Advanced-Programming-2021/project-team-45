@@ -9,19 +9,22 @@ import java.util.ArrayList;
 
 public class Graveyard extends CardField {
 
-    private ArrayList<Card> graveyard;
-    private Game game;
+    private final ArrayList<Card> graveyard;
+    private final Game game;
 
     public Graveyard(Game game) {
         super("Graveyard");
         graveyard = new ArrayList<>();
-        this.game=game;
+        this.game = game;
     }
-
 
 
     public ArrayList<Card> getGraveyardCards() {
         return graveyard;
+    }
+
+    public boolean isEmpty() {
+        return graveyard.isEmpty();
     }
 
     @Override
@@ -39,34 +42,34 @@ public class Graveyard extends CardField {
         return null;
     }
 
-    public void addCardToGraveyard(Card card){
+    public void addCardToGraveyard(Card card) {
         graveyard.add(card);
-        ContiniouesSpellController.Controller("Supply Squad",game, ContinouesSpellActivatePlace.GraveYard);
+        ContiniouesSpellController.Controller("Supply Squad", game, ContinouesSpellActivatePlace.GraveYard);
     }
 
-    public void deleteCardFromGraveyard(Card card){
+    public void deleteCardFromGraveyard(Card card) {
         graveyard.remove(card);
     }
 
-    public ArrayList<String> getGraveyardStr(){
+    public ArrayList<String> getGraveyardStr() {
         ArrayList<String> graveyardStr = new ArrayList<>();
-        if(this.graveyard.size() == 0)
+        if (this.graveyard.size() == 0)
             graveyardStr.add("graveyard empty");
-        else{
-            for(int i = 0; i < (this.graveyard).size(); i++){
+        else {
+            for (int i = 0; i < (this.graveyard).size(); i++) {
                 Card card = (this.graveyard).get(i);
                 graveyardStr.add((i + 1) + ". " + card.getCardName() + ":" + card.getCardDescription());
             }
         }
-         return graveyardStr;
+        return graveyardStr;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < this.graveyard.size(); i++){
+        for (int i = 0; i < this.graveyard.size(); i++) {
             Card card = this.graveyard.get(i);
-            stringBuilder.append(i + 1 + ". " + card.getCardName() +":" + card.getCardDescription() + "\n");
+            stringBuilder.append(i + 1 + ". " + card.getCardName() + ":" + card.getCardDescription() + "\n");
         }
         return stringBuilder.toString();
     }
