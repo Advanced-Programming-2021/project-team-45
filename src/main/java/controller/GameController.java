@@ -429,7 +429,9 @@ public class GameController extends Controller {
             } else {
                 return game.showCard();
             }
-        } else return "no card is selected yet";
+        } else {
+            return "no card is selected yet";
+        }
     }
 
     public String damageOnOpponent() {
