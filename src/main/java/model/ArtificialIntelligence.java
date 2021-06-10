@@ -51,7 +51,7 @@ public class ArtificialIntelligence {
 
     private static void battlePhase(Game game){
         for(int i = 0; i<game.getPlayerGameBoard().getMonsterField().getMonstersOnField().size(); i++){
-            game.setSelectedCard1(game.getPlayerGameBoard().getMonsterField().getMonster(i));
+            game.setSelectedCard1(game.getPlayerGameBoard().getMonsterField().getMonster(i+1));
             if(whereIsEnemy(game)==0){
                 game.directAttack();
             }else{

@@ -70,6 +70,7 @@ public class CardInventory {
         ArrayList<Card> cards = Card.getAllCards();
         for (int i = 0; i < cards.size(); i++) {
             this.cards.add(Card.copy(cards.get(i)));
+            this.cards.get(i).setOwnerUsername("AI");
         }
     }
 }
