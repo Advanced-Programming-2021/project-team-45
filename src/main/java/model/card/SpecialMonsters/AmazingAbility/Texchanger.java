@@ -20,7 +20,7 @@ public class Texchanger {
             allTexchanger.add(card);
             Card input1 = getinput(game);
             if (input1 != null) {
-                getCard(game.getGameBoardOfOpponentPlayerOfThisTurn(), input1, game.getGameController());
+                getCard(game.getOpponentGameBoard(), input1, game.getGameController());
             }
         }
     }
@@ -36,9 +36,9 @@ public class Texchanger {
 
     private static Card getinput(Game game) {
 
-        CardField[] cardFields = {game.getGameBoardOfOpponentPlayerOfThisTurn().getDeckField(),
-                game.getGameBoardOfOpponentPlayerOfThisTurn().getHand(),
-                game.getGameBoardOfOpponentPlayerOfThisTurn().getGraveyard()};
+        CardField[] cardFields = {game.getOpponentGameBoard().getDeckField(),
+                game.getOpponentGameBoard().getHand(),
+                game.getOpponentGameBoard().getGraveyard()};
         ArrayList<Card> input = game.getGameController().getCardFromPlayer(1, cardFields);
         while (true) {
             if (input != null) {
