@@ -536,7 +536,9 @@ public class DuelMenu extends Menu {
 
     private void showCard() {
         String answer = gameController.controlCardShow();
-        System.out.println(Objects.requireNonNullElse(answer, "card is not visible"));
+        if (!answer.equals("no card is selected yet")) {
+            System.out.println(Objects.requireNonNullElse(answer, "card is not visible"));
+        } else System.out.println(answer);
     }
 
     private void help() {
