@@ -174,7 +174,7 @@ public class GameController extends Controller {
     public int summonErrorHandler() {
         if (gameErrorHandler.doesSelectedCardExist()) {
             if (gameErrorHandler.isSelectedCardMonster() && gameErrorHandler.isCardInHand() && game.canSummonThisMonster()) {
-                if (!(game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
+                if ((game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2"))) {
                     if (!gameErrorHandler.isMonsterFieldFull()) {
                         if (!gameErrorHandler.wasSummonOrSetCardBeforeInThisTurn()) {
                             MonsterCard monster = (MonsterCard) game.getSelectedCard();
