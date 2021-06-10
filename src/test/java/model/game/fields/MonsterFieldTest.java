@@ -108,14 +108,14 @@ class MonsterFieldTest {
 
     @Test
     void isThisCellOfPlayerMonsterFieldEmpty() {
-        assertFalse(monsterField.isThisCellOfPlayerMonsterFieldEmpty(2));
-        assertTrue(monsterField.isThisCellOfPlayerMonsterFieldEmpty(7));
+        assertFalse(monsterField.isFieldEmpty(2));
+        assertTrue(monsterField.isFieldEmpty(7));
     }
 
     @Test
     void isThisCellOfOpponentMonsterFieldEmpty() {
-        assertFalse(monsterField.isThisCellOfOpponentMonsterFieldEmpty(2));
-        assertTrue(monsterField.isThisCellOfOpponentMonsterFieldEmpty(6));
+        assertFalse(monsterField.isFieldEmpty(2));
+        assertTrue(monsterField.isFieldEmpty(6));
     }
 
     @Test

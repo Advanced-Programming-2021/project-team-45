@@ -29,13 +29,14 @@ public class Scanner {
         }
         if (selectedMonster != null) {
 
-            for (int i = 0; i < 5; i++) {
-                if (game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
+            for (int i = 0; i < game.getPlayerGameBoard().getMonsterField().
+                    getMonstersOnField().size(); i++) {
+                if (game.getPlayerGameBoard().getMonsterField().
                         getMonstersOnField().get(i).getCardName().equals("Scanner")) {
-                    scanner = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().
+                    scanner = game.getPlayerGameBoard().getMonsterField().
                             getMonstersOnField().get(i);
                 }
-                swapMonsterAndScanner(game.getGameBoardOfPlayerOfThisTurn(), scanner, selectedMonster);
+                swapMonsterAndScanner(game.getPlayerGameBoard(), scanner, selectedMonster);
             }
         }
     }
@@ -43,7 +44,7 @@ public class Scanner {
     private static void swapMonsterAndScanner(GameBoard gameBoard, MonsterCard scanner, MonsterCard monster) {
         MonsterField monsterField = gameBoard.getMonsterField();
         ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < monsterCards.size(); i++) {
             if (monsterCards.get(i).equals(scanner)) {
                 monsterCards.set(i, monster);
                 convertToScanner.add(monster);
@@ -54,7 +55,7 @@ public class Scanner {
 
     public static void deleteSwapMonsterIfHadScanner(MonsterField monsterField) {
         ArrayList<MonsterCard> monsterCards = monsterField.getMonstersOnField();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <5; i++) {
             if (monsterCards.size() != 0 && convertToScanner.size() != 0) {
                 if (convertToScanner.contains(monsterCards.get(i))) {
                     try {

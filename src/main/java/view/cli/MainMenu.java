@@ -48,7 +48,7 @@ public class MainMenu extends Menu {
         }
 
         int rounds = 0;
-        Matcher roundsMatcher = Regex.getMatcher(input, " (?:--rounds|-R) (1|3)");
+        Matcher roundsMatcher = Regex.getMatcher(input, " (?:--rounds|-R) (\\d+)");
         if (roundsMatcher.find()) {
             rounds = Integer.parseInt(roundsMatcher.group(1));
             inputError++;

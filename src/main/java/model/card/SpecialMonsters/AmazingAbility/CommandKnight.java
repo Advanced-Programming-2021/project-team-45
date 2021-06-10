@@ -12,7 +12,7 @@ public class CommandKnight {
     private static ArrayList<MonsterCard> allCardsThatIncreasedAttacks = new ArrayList<>();
 
     public static void summonAbility(Game game) {
-        ArrayList<MonsterCard> monsterCards = game.getGameBoardOfPlayerOfThisTurn().getMonsterField().getMonstersOnField();
+        ArrayList<MonsterCard> monsterCards = game.getPlayerGameBoard().getMonsterField().getMonstersOnField();
         for (int i = 0; i < 5; i++) {
             if (!monsterCards.get(i).getCardName().equals("Command Knight")) {
                 monsterCards.get(i).setAttack(monsterCards.get(i).getAttack() + 400);
@@ -22,13 +22,13 @@ public class CommandKnight {
     }
 
     public static void defenseAbility(Game game, MonsterCard card) {
-        if (isCommandKnightAlone(game.getGameBoardOfOpponentPlayerOfThisTurn())) {
+        if (isCommandKnightAlone(game.getOpponentGameBoard())) {
             if (card.getPosition().equals(PositionMonsters.ATTACK)) {
                 game.attackToOpponentCardInAttackPosition((MonsterCard) game.getSelectedCard(), card,
-                        game.getGameBoardOfPlayerOfThisTurn(), game.getGameBoardOfOpponentPlayerOfThisTurn());
+                        game.getPlayerGameBoard(), game.getOpponentGameBoard());
             } else {
                 game.attackToOpponentCardInDefensePosition((MonsterCard) game.getSelectedCard(), card,
-                        game.getGameBoardOfPlayerOfThisTurn(), game.getGameBoardOfOpponentPlayerOfThisTurn());
+                        game.getPlayerGameBoard(), game.getOpponentGameBoard());
             }
         }
     }

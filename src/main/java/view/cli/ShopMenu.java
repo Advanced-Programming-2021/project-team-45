@@ -15,11 +15,11 @@ public class ShopMenu extends Menu {
             "^(menu exit)$|" +
                     "^(menu show-current)$|" +
                     "^(menu enter \\w+)$|" +
-                    "^(shop buy [\\w| |-]+)$|" +
+                    "^(shop buy [\\w ,']+[-]?[\\w ,']+)$|" +
                     "^(shop show (?:--all|-A))$|" +
                     "^(help)$",
             // i = 1
-            "shop buy ([\\w| |-]+)"
+            "shop buy ([\\w ,']+[-]?[\\w ,']+)"
     };
 
 

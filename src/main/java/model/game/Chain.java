@@ -34,17 +34,17 @@ public class Chain {
 
     public GameBoard getPlayerGameBoard() {
         if (game.getPlayerOfThisTurn() == turnPlayer) {
-            return game.getGameBoardOfPlayerOfThisTurn();
+            return game.getPlayerGameBoard();
         } else {
-            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+            return game.getOpponentGameBoard();
         }
     }
 
     public GameBoard getOpponentGameBoard() {
         if (game.getPlayerOfThisTurn() == turnPlayer) {
-            return game.getGameBoardOfOpponentPlayerOfThisTurn();
+            return game.getOpponentGameBoard();
         } else {
-            return game.getGameBoardOfPlayerOfThisTurn();
+            return game.getPlayerGameBoard();
         }
     }
 

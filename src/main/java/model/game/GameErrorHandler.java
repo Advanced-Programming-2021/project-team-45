@@ -27,9 +27,9 @@ public class GameErrorHandler {
                 if ((cardType.equals("--field") || cardType.equals("-F")) && cardPosition == -1) return true;
                 else {
                     if (isOpponentCard) {
-                        return cardPosition <= game.getGameBoardOfOpponentPlayerOfThisTurn().getHand().getCardsInHand().size();
+                        return cardPosition <= game.getOpponentGameBoard().getHand().getCardsInHand().size();
                     } else {
-                        return cardPosition <= game.getGameBoardOfPlayerOfThisTurn().getHand().getCardsInHand().size();
+                        return cardPosition <= game.getPlayerGameBoard().getHand().getCardsInHand().size();
                     }
                 }
             }
@@ -40,9 +40,9 @@ public class GameErrorHandler {
         GameBoard gameBoard;
         boolean result;
         if (isOpponentCard) {
-            gameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
+            gameBoard = game.getOpponentGameBoard();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                result = !(gameBoard.getMonsterField().isThisCellOfOpponentMonsterFieldEmpty(cardPosition));
+                result = !(gameBoard.getMonsterField().isFieldEmpty(cardPosition));
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = !(gameBoard.getSpellTrapField().isThisCellOfOpponentSpellTrapFieldEmpty(cardPosition));
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
@@ -51,9 +51,9 @@ public class GameErrorHandler {
                 result = gameBoard.getHand().doesCardExistInThesePlace(cardPosition);
             }
         } else {
-            gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+            gameBoard = game.getPlayerGameBoard();
             if (cardType.equals("--monster") || cardType.equals("-M")) {
-                result = !(gameBoard.getMonsterField().isThisCellOfPlayerMonsterFieldEmpty(cardPosition));
+                result = !(gameBoard.getMonsterField().isFieldEmpty(cardPosition));
             } else if (cardType.equals("--spell") || cardType.equals("-S")) {
                 result = !(gameBoard.getSpellTrapField().isThisCellOfPlayerSpellTrapFieldEmpty(cardPosition));
             } else if (cardType.equals("--field") || cardType.equals("-F")) {
@@ -74,17 +74,17 @@ public class GameErrorHandler {
     }
 
     public boolean isCardInHand() {
-        GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = game.getPlayerGameBoard();
         return gameBoard.getHand().doesCardExist(game.getSelectedCard().getCardName());
     }
 
     public boolean isMonsterFieldFull() {
-        GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = game.getPlayerGameBoard();
         return gameBoard.getMonsterField().isFull();
     }
 
     public boolean isSpellTrapFieldFull() {
-        GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = game.getPlayerGameBoard();
         return gameBoard.getSpellTrapField().isFull();
     }
 
@@ -93,7 +93,7 @@ public class GameErrorHandler {
     }
 
     public boolean isThereSelectedCardInMonsterField() {
-        GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = game.getPlayerGameBoard();
         return gameBoard.getMonsterField().doesCardExist(game.getSelectedCard().getCardName());
     }
 
@@ -129,8 +129,8 @@ public class GameErrorHandler {
     }
 
     public boolean isThereAnyMonsterInThisCell(int numberOfEnemyMonsterZone) {
-        GameBoard gameBoard = game.getGameBoardOfOpponentPlayerOfThisTurn();
-        return !gameBoard.getMonsterField().isThisCellOfOpponentMonsterFieldEmpty(numberOfEnemyMonsterZone);
+        GameBoard gameBoard = game.getOpponentGameBoard();
+        return !gameBoard.getMonsterField().isFieldEmpty(numberOfEnemyMonsterZone);
     }
 
     public boolean isSelectedCardSpell() {
@@ -143,7 +143,7 @@ public class GameErrorHandler {
     }
 
     public boolean isSelectedCardInHand() {
-        GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = game.getPlayerGameBoard();
         return gameBoard.getHand().doesCardExist(game.getSelectedCard().getCardName());
     }
 
@@ -167,7 +167,7 @@ public class GameErrorHandler {
     public boolean isTributeCardsValid(ArrayList<Integer> cardsToTribute) {
         MonsterField monsterField = game.getPlayerGameBoard().getMonsterField();
         for (int i : cardsToTribute) {
-            if (monsterField.isThisCellOfPlayerMonsterFieldEmpty(i)) {
+            if (monsterField.isFieldEmpty(i)) {
                 return false;
             }
         }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class TheCalculator {
 
     public static void ability(Card selectedOrTargetCard, Game game){
-        GameBoard gameBoard = game.getGameBoardOfPlayerOfThisTurn();
+        GameBoard gameBoard = game.getPlayerGameBoard();
         ArrayList<MonsterCard> monsterCards = gameBoard.getMonsterField().getMonstersOnField();
         int sumLevels = 0;
         for(int i = 0; i < monsterCards.size(); i++){

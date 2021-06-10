@@ -12,7 +12,7 @@ public class Suijin {
     public static void ability(Card selectedCard, Game game) {
         if(!allSuijinInEachTurn.contains(selectedCard)) {
             allSuijinInEachTurn.add(selectedCard);
-            game.getGameBoardOfPlayerOfThisTurn().getMonsterField().deleteAndDestroyMonster((MonsterCard) selectedCard);
+            game.getPlayerGameBoard().getMonsterField().deleteAndDestroyMonster((MonsterCard) selectedCard);
         }
     }
 
