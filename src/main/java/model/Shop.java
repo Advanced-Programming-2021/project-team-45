@@ -55,4 +55,7 @@ public class Shop {
         user.decreaseMoney(card.getPrice());
     }
 
+    public void increaseMoney(int money) {
+        user.increaseMoney(money);
+    }
 }

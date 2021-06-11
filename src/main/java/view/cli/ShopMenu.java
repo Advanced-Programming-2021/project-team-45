@@ -3,7 +3,6 @@ package view.cli;
 import controller.Regex;
 import controller.ShopController;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
@@ -17,9 +16,12 @@ public class ShopMenu extends Menu {
                     "^(menu enter \\w+)$|" +
                     "^(shop buy [\\w ,']+[-]?[\\w ,']+)$|" +
                     "^(shop show (?:--all|-A))$|" +
-                    "^(help)$",
+                    "^(help)$|" +
+                    "^(increase --money (\\d+))$",
             // i = 1
-            "shop buy ([\\w ,']+[-]?[\\w ,']+)"
+            "shop buy ([\\w ,']+[-]?[\\w ,']+)",
+            // i = 2
+            "increase --money (\\d+)"
     };
 
 
@@ -31,15 +33,11 @@ public class ShopMenu extends Menu {
     }
 
 
-    private void buyCard(Matcher matcher){
+    private void buyCard(Matcher matcher) {
         if (matcher.find()) {
             String cardName = matcher.group(1).trim();
             int error = 0;
-            try {
-                error = shopController.buyCardErrorHandler(cardName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            error = shopController.buyCardErrorHandler(cardName);
 
             if (error == 1) {
                 System.out.println("there is no card with this name");
@@ -66,12 +64,19 @@ public class ShopMenu extends Menu {
                 "help");
     }
 
+    public void increaseMoneyCheat(Matcher matcher) {
+        if (matcher.find()) {
+            int money = Integer.parseInt(matcher.group(1));
+            shopController.increaseMoneyCheat(money);
+        }
+    }
+
     @Override
     public void show() {
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         while (true) {
             String input = scanner.nextLine();
             Matcher matcher = Regex.getMatcher(input, SHOP_MENU_REGEX[0]);
@@ -94,6 +99,9 @@ public class ShopMenu extends Menu {
 
                 } else if (matcher.group(6) != null) {
                     help();
+
+                } else if (matcher.group(7) != null) {
+                    increaseMoneyCheat(Regex.getMatcher(input, SHOP_MENU_REGEX[2]));
 
                 }
 

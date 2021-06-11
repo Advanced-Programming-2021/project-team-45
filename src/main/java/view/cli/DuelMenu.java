@@ -28,9 +28,15 @@ public class DuelMenu extends Menu {
                     "^(activate effect)$|" +
                     "^(show graveyard)$|" +
                     "^(card show (?:--selected|-X))$|" +
-                    "^(help)$",
+                    "^(help)$|" +
+                    "^(increase --LP (\\d+))$|" +
+                    "^(duel set-winner (\\w+))$",
             // i = 1
-            "attack (\\d)"
+            "attack (\\d)",
+            // i = 2
+            "increase --LP (\\d+)",
+            // i = 3
+            "duel set-winner (\\w+)"
     };
     private boolean isCommandEnded = false;
 
@@ -101,6 +107,12 @@ public class DuelMenu extends Menu {
 
                     } else if (matcher.group(16) != null) {
                         help();
+
+                    } else if (matcher.group(17) != null) {
+                        increaseLpCheat(Regex.getMatcher(input, DUEL_MENU_REGEX[2]));
+
+                    } else if (matcher.group(18) != null) {
+                        setWinnerCheat(Regex.getMatcher(input, DUEL_MENU_REGEX[3]));
 
                     }
 
@@ -556,6 +568,20 @@ public class DuelMenu extends Menu {
                 "menu show-current\n" +
                 "menu enter <menu name>\n" +
                 "help");
+    }
+
+    public void increaseLpCheat(Matcher matcher) {
+        if (matcher.find()) {
+            int lp = Integer.parseInt(matcher.group(1));
+            gameController.increaseLpCheat(lp);
+        }
+    }
+
+    public void setWinnerCheat(Matcher matcher) {
+        if (matcher.find()) {
+            String nickname = matcher.group(1);
+            gameController.setWinnerCheat(nickname);
+        }
     }
 
     public String getInputNumberOfFieldForSpecialMonster(String view) {

@@ -578,4 +578,16 @@ public class Game {
             return getOpponentGameBoard().getMonsterField().isFull(index - 1);
         }
     }
+
+    public void increaseLp(int lp) {
+        getPlayerOfThisTurn().getLifepoint().increaseLifepoint(lp);
+    }
+
+    public void setWinner(String nickname) {
+        if (player.getNickname().equals(nickname)) {
+            surrendered = opponent;
+        } else if (opponent.getNickname().equals(nickname)) {
+            surrendered = player;
+        }
+    }
 }

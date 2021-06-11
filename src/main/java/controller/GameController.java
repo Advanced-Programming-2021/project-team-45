@@ -548,4 +548,12 @@ public class GameController extends Controller {
     public boolean isCardExistsInMonsterField(String username, int index) {
         return game.isMonsterExistInMonsterField(User.getUserByUsername(username), index);
     }
+
+    public void increaseLpCheat(int lp) {
+        game.increaseLp(lp);
+    }
+
+    public void setWinnerCheat(String nickname) {
+        game.setWinner(nickname);
+    }
 }
