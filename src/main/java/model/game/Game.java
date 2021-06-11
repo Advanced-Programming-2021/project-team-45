@@ -325,6 +325,7 @@ public class Game {
 
         // add card to monsterField and remove from hand:
         gameBoard.getMonsterField().addMonsterToField(monsterCard);
+        assert monsterCard != null;
         monsterCard.setForFirstTime();
         numberOfSetsInThisTurn++;
         gameBoard.getHand().deleteCard(monsterCard);
