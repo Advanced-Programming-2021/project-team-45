@@ -397,7 +397,7 @@ public class GameController extends Controller {
     public int activeEffectErrorHandler() {
         if (gameErrorHandler.doesSelectedCardExist()) {
             if (gameErrorHandler.isSelectedCardSpell()) {
-                if (game.getPhase().equals("Main Phase 1") || game.getPhase().equals("Main Phase 2")) {
+                if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
                     if (!gameErrorHandler.isSelectedSpellActive()) {
                         if (gameErrorHandler.isSelectedCardInHand() && gameErrorHandler.isSpellTrapFieldFull()
                                 && game.isSelectedCardHaveToPutInField()) {
