@@ -1,9 +1,8 @@
 package controller;
 
 import model.Shop;
-import model.user.User;
 
-import java.io.IOException;
+import java.math.BigInteger;
 import java.util.HashMap;
 
 public class ShopController extends Controller {
@@ -16,7 +15,7 @@ public class ShopController extends Controller {
     }
 
 
-    public int buyCardErrorHandler(String cardName) throws IOException {
+    public int buyCardErrorHandler(String cardName) {
         if (!Shop.doesCardExist(cardName)) {
             return 1;
 
@@ -38,4 +37,7 @@ public class ShopController extends Controller {
         return Shop.getCardsPrices();
     }
 
+    public void increaseMoneyCheat(int money) {
+        shop.increaseMoney(money);
+    }
 }
