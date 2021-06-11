@@ -1,9 +1,6 @@
 package model.game.fields;
 
-import model.card.Card;
-import model.card.Deck;
-import model.card.SpellAndTrapIcon;
-import model.card.SpellTrapCard;
+import model.card.*;
 import model.user.User;
 
 import java.util.ArrayList;
@@ -43,6 +40,15 @@ public class DeckField extends CardField {
         Random random = new Random();
         int i = random.nextInt(mainDeck.size());
         Card card = mainDeck.get(i);
+        if (card instanceof MonsterCard) {
+            MonsterCard monsterCard = (MonsterCard) card;
+            monsterCard.setPosition(PositionMonsters.ATTACK);
+            card = monsterCard;
+        } else {
+            SpellTrapCard spellTrapCard = (SpellTrapCard) card;
+            spellTrapCard.setPosition(SpellsAndTrapPosition.SET);
+            card = spellTrapCard;
+        }
         mainDeck.remove(i);
         return card;
     }
