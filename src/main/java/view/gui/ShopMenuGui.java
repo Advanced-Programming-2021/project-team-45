@@ -6,52 +6,53 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import model.Shop;
 import model.card.Card;
 import model.user.User;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class ShopMenuGui extends Application {
     private static Stage stage;
-    private static ShopController shopController;
-    private static User logInUser;
+    private static String logInUsername;
     @FXML
     public GridPane gridPane;
     private ShopCellMenu[][] shopCellMenus;
 
-    public static void setUser(User user) {
-        ShopMenuGui.logInUser = user;
+    public static void setUsername(String username) {
+        ShopMenuGui.logInUsername = username;
     }
 
-    public static void setShopController(ShopController shopController) {
-        ShopMenuGui.shopController = shopController;
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         ShopMenuGui.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("ShopMenuGui.fxml"));
-        Scene scene = new Scene(root, 1080, 720);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(root);
+        Scene scene = new Scene(scrollPane, 1080, 746);
         stage.setScene(scene);
+        stage.setHeight(900);
         stage.setTitle("shop");
     }
 
     @FXML
     void initialize() {
         shopCellMenus = new ShopCellMenu[10][7];
-        for (int index = 0; index < Card.getAllCards().size(); index++) {
+        HashMap<String, Integer> cards = new ShopController(logInUsername).getCardsPrices();
+        for (int index = 0; index < cards.keySet().size(); index++) {
             int j = index % 7;
             int i = index / 7;
-            ShopCellMenu shopCellMenu = new ShopCellMenu(Card.getAllCards().get(index));
-            ShopCellMenu.setLogInUser(logInUser);
-            ShopCellMenu.setShopController(shopController);
+            ShopCellMenu.setShopController(new ShopController(logInUsername));
+            ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
             shopCellMenus[i][j] = shopCellMenu;
         }
-        System.out.println(Arrays.deepToString(shopCellMenus));
-        System.out.println(gridPane.toString());
+
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 7; j++) {
                 gridPane.add(shopCellMenus[i][j], j, i);
