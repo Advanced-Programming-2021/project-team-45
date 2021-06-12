@@ -6,6 +6,7 @@ import model.card.MonsterCard;
 
 import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.*;
+import view.cli.DuelMenu;
 
 import java.util.Objects;
 
@@ -60,18 +61,29 @@ public class SpecialMonster {
     private static void changeTurnEffectPlace(Game game){
         while (Scanner.haveScanner(game.getPlayerGameBoard().getMonsterField()).getCardName().
                 equals("Scanner")){
-            Scanner.ability(game,Scanner.haveScanner(game.getPlayerGameBoard()
-                    .getMonsterField()));
+            boolean bol=game.getGameController().getYesNoAnswer("do you want active special force of scanner?");
+            if(bol) {
+                Scanner.ability(game, Scanner.haveScanner(game.getPlayerGameBoard()
+                        .getMonsterField()));
+            }
         }
 
         if(Objects.requireNonNull(HeraldOfCreation.isThereHeraldOfCreation(game.getPlayerGameBoard()
                 .getMonsterField())).getCardName().equals("Herald of Creation")){
-            HeraldOfCreation.abilityOfHeraldOfCreation(game,HeraldOfCreation
-                    .isThereHeraldOfCreation(game.getPlayerGameBoard().getMonsterField()));
+            boolean bol=game.getGameController().getYesNoAnswer("do you want active special force of " +
+                    "Herald of Creation?");
+            if(bol) {
+                HeraldOfCreation.abilityOfHeraldOfCreation(game, HeraldOfCreation
+                        .isThereHeraldOfCreation(game.getPlayerGameBoard().getMonsterField()));
+            }
         }
 
         if(Tricky.isThereTricky(game.getPlayerGameBoard().getHand()).getCardName().equals("The Tricky")){
-            Tricky.ability(game,(MonsterCard) Tricky.isThereTricky(game.getPlayerGameBoard().getHand()));
+            boolean bol=game.getGameController().getYesNoAnswer("do you want active special force of " +
+                    "the tricky?");
+            if(bol) {
+                Tricky.ability(game, (MonsterCard) Tricky.isThereTricky(game.getPlayerGameBoard().getHand()));
+            }
         }
     }
 
