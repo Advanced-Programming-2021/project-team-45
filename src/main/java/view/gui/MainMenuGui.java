@@ -59,8 +59,7 @@ public class MainMenuGui extends MenuGui {
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
         ShopMenuGui shopMenuGui = new ShopMenuGui();
-        ShopMenuGui.setUser(user);
-        ShopMenuGui.setShopController(new ShopController(user.getUsername()));
+        ShopMenuGui.setUsername(user.getUsername());
         shopMenuGui.start(stage);
     }
 
