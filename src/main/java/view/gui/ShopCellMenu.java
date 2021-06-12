@@ -14,24 +14,20 @@ import model.user.User;
 
 import java.io.IOException;
 
-public class ShopCellMenu extends Pane {
-    private static User logInUser;
+public class ShopCellMenu extends AnchorPane {
     private static ShopController shopController;
-    private Card card;
+    private String cardName;
     private ImageView imageView;
     private Button buyButton;
     private Text numberOfBoughtCardsText;
 
-    public ShopCellMenu(Card card) {
+    public ShopCellMenu(String cardName) {
         super();
-        this.setWidth(154);
-        this.setHeight(72);
-        this.card = card;
+        this.setWidth(150);
+        this.setHeight(63);
+        this.setStyle("-fx-background-color: red; -fx-border-color: orange");
+        this.cardName = cardName;
         setAnchorPane();
-    }
-
-    public static void setLogInUser(User user) {
-        ShopCellMenu.logInUser = user;
     }
 
     public static void setShopController(ShopController shopController) {
@@ -44,8 +40,8 @@ public class ShopCellMenu extends Pane {
 //        imageView.setFitWidth(80);
 //         set image for card and set x&Y for imageView
         Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(72);
-        rectangle.setWidth(80);
+        rectangle.setHeight(122.8);
+        rectangle.setWidth(84.1);
         rectangle.setFill(Paint.valueOf("blue"));
         this.getChildren().add(rectangle);
         setButton();
@@ -66,6 +62,7 @@ public class ShopCellMenu extends Pane {
                 ioException.printStackTrace();
             }
         });
+        buyButton.setLayoutX(89);
         this.getChildren().add(buyButton);
     }
 
@@ -74,18 +71,19 @@ public class ShopCellMenu extends Pane {
         numberOfBoughtCardsText.setText("bought numbers:");
 
 
-        int number = shopController.numberOfBoughtCards(card.getCardName());
+        int number = shopController.numberOfBoughtCards(cardName);
         if (number != 0)
         numberOfBoughtCardsText.setText("bought numbers: " + number);
+        numberOfBoughtCardsText.setY(136);
         this.getChildren().add(numberOfBoughtCardsText);
     }
 
     public void buyCard() throws IOException {
-        int result = shopController.buyCardErrorHandler(card.getCardName());
+        int result = shopController.buyCardErrorHandler(cardName);
         numberOfBoughtCardsText.setText("1");
         if (result == 2)
             ShowOutput.showOutput("Error", "not enough money");
         else
-            ShowOutput.showOutput("Success", "card bought successfully");
+            ShowOutput.showOutput("Success", cardName +" bought successfully");
     }
 }
