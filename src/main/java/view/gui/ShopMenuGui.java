@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Shop;
 import model.card.Card;
@@ -34,30 +35,35 @@ public class ShopMenuGui extends Application {
         ShopMenuGui.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("ShopMenuGui.fxml"));
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setStyle("-fx-background-color: black");
+        scrollPane.setFitToWidth(true);
         scrollPane.setContent(root);
-        Scene scene = new Scene(scrollPane, 1080, 746);
+        Scene scene = new Scene(scrollPane, 1080, 720);
         stage.setScene(scene);
-        stage.setHeight(900);
         stage.setTitle("shop");
     }
 
     @FXML
     void initialize() {
-        shopCellMenus = new ShopCellMenu[10][7];
+        shopCellMenus = new ShopCellMenu[17][4];
         HashMap<String, Integer> cards = new ShopController(logInUsername).getCardsPrices();
-        for (int index = 0; index < cards.keySet().size(); index++) {
-            int j = index % 7;
-            int i = index / 7;
+        for (int index = 0; index < cards.keySet().size() - 2; index++) {
+            int j = index % 4;
+            int i = index / 4;
             ShopCellMenu.setShopController(new ShopController(logInUsername));
             ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
             shopCellMenus[i][j] = shopCellMenu;
         }
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 7; j++) {
+        for (int i = 0; i < 17; i++) {
+            for (int j = 0; j < 4; j++) {
                 gridPane.add(shopCellMenus[i][j], j, i);
             }
         }
+        ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[68]);
+        ShopCellMenu shopCellMenu1 = new ShopCellMenu((String) cards.keySet().toArray()[69]);
+        gridPane.add(shopCellMenu, 0, 17);
+        gridPane.add(shopCellMenu1, 1, 17);
     }
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
