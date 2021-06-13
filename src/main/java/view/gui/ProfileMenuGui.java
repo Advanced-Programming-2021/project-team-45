@@ -106,7 +106,6 @@ public class ProfileMenuGui extends MenuGui {
 
     public void changeNickname(MouseEvent mouseEvent) {
         int error = profileController.changeNicknameErrorHandler(newNickname.getText());
-        System.out.println(error);
         if (error == 1) {
             errorBox("this nickname is already exist please try again");
         } else {
