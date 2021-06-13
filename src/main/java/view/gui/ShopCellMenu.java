@@ -5,14 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Shop;
-import model.card.Card;
-import model.user.User;
 import view.gui.elements.GetImage;
 
 import java.io.IOException;
@@ -38,7 +34,8 @@ public class ShopCellMenu extends AnchorPane {
     }
 
     public void setAnchorPane() {
-        Rectangle rectangle = GetImage.getCardsImages(cardName);
+        Rectangle rectangle = new Rectangle();
+        rectangle.setFill(new ImagePattern(GetImage.getCardImage(cardName)));
         rectangle.setHeight(368.4);
         rectangle.setWidth(252.5);
         this.getChildren().add(rectangle);

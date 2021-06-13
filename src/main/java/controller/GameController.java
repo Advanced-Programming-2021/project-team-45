@@ -556,4 +556,31 @@ public class GameController extends Controller {
     public void setWinnerCheat(String nickname) {
         game.setWinner(nickname);
     }
+
+    public ArrayList<String> getFieldCards(String fieldName) {
+        ArrayList<String> cardNames = new ArrayList<>();
+        switch (fieldName) {
+            case "player_monster":
+                for (Card card : game.getPlayerGameBoard().getMonsterField().getMonstersOnField()) {
+                    cardNames.add(card.getCardName());
+                }
+                break;
+            case "player_spell":
+                for (Card card : game.getPlayerGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
+                    cardNames.add(card.getCardName());
+                }
+                break;
+            case "opponent_monster":
+                for (Card card : game.getOpponentGameBoard().getMonsterField().getMonstersOnField()) {
+                    cardNames.add(card.getCardName());
+                }
+                break;
+            case "opponent_spell":
+                for (Card card : game.getOpponentGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
+                    cardNames.add(card.getCardName());
+                }
+                break;
+        }
+        return cardNames;
+    }
 }
