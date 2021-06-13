@@ -174,8 +174,6 @@ public class User {
 
     public static Image getPicture(String path){
         try {
-            System.out.println(path);
-            System.out.println(new FileInputStream(path));
             return new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
