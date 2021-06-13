@@ -10,10 +10,14 @@ import javafx.scene.shape.Rectangle;
 public class GameCard extends Rectangle {
     private Pane parent;
 
-    public GameCard(Pane parent, double x, double y) {
+    public GameCard(Pane parent, double x, double y, String name) {
         super(x, y, GameElementSize.CARD_WIDTH.getSize(), GameElementSize.CARD_HEIGHT.getSize());
         this.parent = parent;
-        setFill(new ImagePattern(GetGameElements.getCardBack()));
+        if (name.equals("back")) {
+            setFill(new ImagePattern(GetGameElements.getCardBack()));
+        } else {
+            setFill(new ImagePattern(GetImage.getCardImage(name)));
+        }
         this.setOnMouseEntered(GameCard.getMouseEnteredEvent(this));
         this.setOnMouseExited(GameCard.getMouseExitedEvent(this));
     }
