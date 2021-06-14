@@ -73,4 +73,8 @@ public class CardInventory {
             this.cards.get(i).setOwnerUsername("AI");
         }
     }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }
