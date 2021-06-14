@@ -2,15 +2,14 @@ package view.gui;
 
 import controller.ShopController;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Shop;
-import model.card.Card;
-import model.user.User;
+import view.gui.elements.GetImage;
 
 import java.io.IOException;
 
@@ -23,8 +22,8 @@ public class ShopCellMenu extends AnchorPane {
 
     public ShopCellMenu(String cardName) {
         super();
-        this.setWidth(150);
-        this.setHeight(63);
+        this.setWidth(296.25);
+        this.setHeight(400);
         this.setStyle("-fx-background-color: red; -fx-border-color: orange");
         this.cardName = cardName;
         setAnchorPane();
@@ -35,14 +34,10 @@ public class ShopCellMenu extends AnchorPane {
     }
 
     public void setAnchorPane() {
-//        imageView = new ImageView();
-//        imageView.setFitHeight(72);
-//        imageView.setFitWidth(80);
-//         set image for card and set x&Y for imageView
         Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(122.8);
-        rectangle.setWidth(84.1);
-        rectangle.setFill(Paint.valueOf("blue"));
+        rectangle.setFill(new ImagePattern(GetImage.getCardImage(cardName)));
+        rectangle.setHeight(368.4);
+        rectangle.setWidth(252.5);
         this.getChildren().add(rectangle);
         setButton();
         setCardText();
@@ -50,11 +45,10 @@ public class ShopCellMenu extends AnchorPane {
 
     public void setButton() {
         buyButton = new Button();
-//        if (logInUser.getMoney() < card.getPrice())
-//            buyButton.setText("unable to buy");
-//        else
-//            buyButton.setText("buy");
         buyButton.setText("buy");
+        int price = shopController.getCardsPrices().get(cardName);
+        Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + shopController.getUserMoney());
+        buyButton.setTooltip(tooltip);
         buyButton.setOnMouseClicked(e -> {
             try {
                 buyCard();
@@ -62,28 +56,30 @@ public class ShopCellMenu extends AnchorPane {
                 ioException.printStackTrace();
             }
         });
-        buyButton.setLayoutX(89);
+        buyButton.setLayoutX(255);
         this.getChildren().add(buyButton);
     }
 
     public void setCardText() {
-        numberOfBoughtCardsText = new Text();
-        numberOfBoughtCardsText.setText("bought numbers:");
-
-
+        numberOfBoughtCardsText = new Text("");
+        numberOfBoughtCardsText.setFont(new Font("Arial Bold", 12));
         int number = shopController.numberOfBoughtCards(cardName);
         if (number != 0)
-        numberOfBoughtCardsText.setText("bought numbers: " + number);
-        numberOfBoughtCardsText.setY(136);
+            numberOfBoughtCardsText.setText("bought cards: " + number);
+        numberOfBoughtCardsText.setY(384.2);
         this.getChildren().add(numberOfBoughtCardsText);
     }
 
     public void buyCard() throws IOException {
-        int result = shopController.buyCardErrorHandler(cardName);
-        numberOfBoughtCardsText.setText("1");
-        if (result == 2)
-            ShowOutput.showOutput("Error", "not enough money");
-        else
-            ShowOutput.showOutput("Success", cardName +" bought successfully");
+        if (shopController.getCardsPrices().get(cardName) <= shopController.getUserMoney()) {
+            int result = shopController.buyCardErrorHandler(cardName);
+            numberOfBoughtCardsText.setText("1");
+            if (result == 2)
+                ShowOutput.showOutput("Error", "not enough money");
+            else {
+                ShowOutput.showOutput("Success", "Card added successfully");
+                numberOfBoughtCardsText.setText("bought cards: " + shopController.numberOfBoughtCards(cardName));
+            }
+        }
     }
 }

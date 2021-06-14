@@ -14,6 +14,10 @@ public class ShopController extends Controller {
         shop = new Shop(username);
     }
 
+    public int getUserMoney() {
+        return user.getMoney();
+    }
+
 
     public int buyCardErrorHandler(String cardName) {
         if (!Shop.doesCardExist(cardName)) {

@@ -1,10 +1,7 @@
 package controller;
 
-import model.card.SpellTrapCard;
+import model.card.*;
 import model.game.*;
-import model.card.Card;
-import model.card.MonsterCard;
-import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import model.game.fields.CardField;
 import model.user.User;
@@ -555,5 +552,37 @@ public class GameController extends Controller {
 
     public void setWinnerCheat(String nickname) {
         game.setWinner(nickname);
+    }
+
+    public ArrayList<String> getFieldCards(String fieldName) {
+        ArrayList<String> cardNames = new ArrayList<>();
+        switch (fieldName) {
+            case "player_monster":
+                for (Card card : game.getPlayerGameBoard().getMonsterField().getMonstersOnField()) {
+                    cardNames.add(card.getCardName());
+                }
+                break;
+            case "player_spell":
+                for (Card card : game.getPlayerGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
+                    cardNames.add(card.getCardName());
+                }
+                break;
+            case "opponent_monster":
+                for (MonsterCard monster : game.getOpponentGameBoard().getMonsterField().getMonstersOnField()) {
+                    if (monster.getPosition() != PositionMonsters.DEFENSE ||
+                            monster.getDefenceMode() != DefensePosition.DH) {
+                        cardNames.add(monster.getCardName());
+                    } else {
+                        cardNames.add("back");
+                    }
+                }
+                break;
+            case "opponent_spell":
+                for (Card ignored : game.getOpponentGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
+                    cardNames.add("back");
+                }
+                break;
+        }
+        return cardNames;
     }
 }

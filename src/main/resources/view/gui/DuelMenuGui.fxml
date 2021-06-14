@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.gui.DuelMenuGui"
+            prefHeight="600.0" prefWidth="880.0">
+
+    <stylesheets>
+        <URL value="@styles/DuelMenuGui.css"/>
+    </stylesheets>
+
+    <center>
+        <Pane fx:id="fieldPane" prefWidth="570" prefHeight="600">
+        </Pane>
+    </center>
+
+    <left>
+        <BorderPane prefWidth="210" prefHeight="600">
+            <top>
+                <!--            opponent lp-->
+            </top>
+            <center>
+                <!--            card stats-->
+            </center>
+            <bottom>
+                <!--            player lp-->
+            </bottom>
+        </BorderPane>
+    </left>
+
+    <right>
+<!--        chatBox-->
+    </right>
+
+
+</BorderPane>
