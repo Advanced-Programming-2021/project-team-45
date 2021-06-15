@@ -1,6 +1,9 @@
 package view.gui;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import view.gui.elements.GameCard;
 import view.gui.elements.GameElementSize;
 import view.gui.elements.GetGameElements;
@@ -11,14 +14,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import view.gui.elements.GetImage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class DuelMenuGui extends MenuGui {
-    public static void main(String[] args) {
-        launch(args);
-    }
 
     private static final String[] cardFields = {
             "player_monster",
@@ -26,11 +27,14 @@ public class DuelMenuGui extends MenuGui {
             "opponent_monster",
             "opponent_spell"
     };
-
     private static GameController gameController;
     private static Stage stage;
+    private static String selectedCardName = null;
+    private static DuelMenuGui duelMenuGui;
     @FXML
     public Pane fieldPane;
+    public Label selectedCardDescription;
+    public Rectangle selectedCard;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -50,6 +54,7 @@ public class DuelMenuGui extends MenuGui {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         fieldPane.setBackground(new Background(backgroundImage));
+        DuelMenuGui.duelMenuGui = this;
 //        updateGameBoard();
 
 
@@ -76,8 +81,24 @@ public class DuelMenuGui extends MenuGui {
         updateFields(playerMonsterNames, "player_monster");
         updateFields(opponentSpellNames, "player_spell");
 
+        updateSelectedCard();
 
+    }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public static String getSelectedCardName() {
+        return DuelMenuGui.selectedCardName;
+    }
+
+    public static void setSelectedCardName(String cardName) {
+        DuelMenuGui.selectedCardName = cardName;
+    }
+
+    public static DuelMenuGui getDuelMenuGui() {
+        return DuelMenuGui.duelMenuGui;
     }
 
     public void updateGameBoard() {
@@ -96,4 +117,13 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+    public void updateSelectedCard() {
+        Image image;
+        if (selectedCardName == null) {
+            image = GetGameElements.getCardBack();
+        } else {
+            image = GetImage.getCardImage(selectedCardName);
+        }
+        selectedCard.setFill(new ImagePattern(image));
+    }
 }
