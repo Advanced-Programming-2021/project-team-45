@@ -2,8 +2,10 @@ package view.gui.elements;
 
 import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import view.gui.DuelMenuGui;
@@ -54,7 +56,12 @@ public class GameCard extends Rectangle {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                rectangle.setEffect(null);
+                Effect effect = rectangle.getEffect();
+                if (effect instanceof DropShadow) {
+                    if (((DropShadow) effect).getColor() != Color.WHITE) {
+                        rectangle.setEffect(null);
+                    }
+                }
             }
         };
     }
@@ -65,11 +72,19 @@ public class GameCard extends Rectangle {
             public void handle(MouseEvent mouseEvent) {
                 DuelMenuGui.setSelectedCardName(card.getCardName());
                 DuelMenuGui.getDuelMenuGui().updateSelectedCard();
+                DuelMenuGui.getDuelMenuGui().deSelectCards();
+                DropShadow selectedShadow = new DropShadow();
+                selectedShadow.setColor(Color.WHITE);
+                card.setEffect(selectedShadow);
             }
         };
     }
 
     public String getCardName() {
         return cardName;
+    }
+
+    public void deselectCard() {
+        this.setEffect(null);
     }
 }

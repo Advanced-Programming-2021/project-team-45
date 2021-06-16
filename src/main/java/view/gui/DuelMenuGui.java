@@ -32,6 +32,7 @@ public class DuelMenuGui extends MenuGui {
     private static Stage stage;
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
+    private static ArrayList<GameCard> gameCards;
     @FXML
     public Pane fieldPane;
     public Label selectedCardDescription;
@@ -39,6 +40,7 @@ public class DuelMenuGui extends MenuGui {
 
     @Override
     public void start(Stage stage) throws IOException {
+        gameCards = new ArrayList<>();
         DuelMenuGui.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("DuelMenuGui.fxml"));
         Scene scene = new Scene(root, 900, 600);
@@ -96,16 +98,22 @@ public class DuelMenuGui extends MenuGui {
         launch(args);
     }
 
-    public static String getSelectedCardName() {
-        return DuelMenuGui.selectedCardName;
-    }
-
     public static void setSelectedCardName(String cardName) {
         DuelMenuGui.selectedCardName = cardName;
     }
 
+    public static String getSelectedCardName() {
+        return DuelMenuGui.selectedCardName;
+    }
+
     public static DuelMenuGui getDuelMenuGui() {
         return DuelMenuGui.duelMenuGui;
+    }
+
+    public void deSelectCards() {
+        for (GameCard card : gameCards) {
+            card.deselectCard();
+        }
     }
 
     public void updateGameBoard() {
@@ -127,8 +135,10 @@ public class DuelMenuGui extends MenuGui {
             } else {
                 name = cardData.get(i).split("_")[0];
             }
-            fieldPane.getChildren().add(new GameCard(fieldPane, startX + (GameElementSize.CARD_DISTANCE.getSize() +
-                    GameElementSize.CARD_WIDTH.getSize()) * i, startY, name, isVisible, rotationDegree));
+            GameCard card = new GameCard(fieldPane, startX + (GameElementSize.CARD_DISTANCE.getSize() +
+                    GameElementSize.CARD_WIDTH.getSize()) * i, startY, name, isVisible, rotationDegree);
+            fieldPane.getChildren().add(card);
+            gameCards.add(card);
         }
     }
 
