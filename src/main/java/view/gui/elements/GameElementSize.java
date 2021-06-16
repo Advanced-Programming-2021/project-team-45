@@ -5,7 +5,7 @@ public enum GameElementSize {
     CARD_WIDTH(51),
     CARD_HEIGHT(75),
     CARD_DISTANCE(26),
-    CARD_START_X(115),
+    CARD_START_X(116),
     PLAYER_MONSTER_Y(325),
     PLAYER_SPELL_Y(425),
     OPPONENT_MONSTER_Y(200),

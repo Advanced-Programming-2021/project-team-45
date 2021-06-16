@@ -12,11 +12,11 @@ public class GameCard extends Rectangle {
     private Pane parent;
     private String cardName;
 
-    public GameCard(Pane parent, double x, double y, String cardName) {
+    public GameCard(Pane parent, double x, double y, String cardName, boolean isVisible, int rotationDegree) {
         super(x, y, GameElementSize.CARD_WIDTH.getSize(), GameElementSize.CARD_HEIGHT.getSize());
         this.parent = parent;
         this.cardName = cardName;
-        if (cardName.equals("back")) {
+        if (!isVisible) {
             setFill(new ImagePattern(GetGameElements.getCardBack()));
         } else {
             setFill(new ImagePattern(GetImage.getCardImage(cardName)));
@@ -24,16 +24,17 @@ public class GameCard extends Rectangle {
         this.setOnMouseEntered(GameCard.getMouseEnteredEvent(this));
         this.setOnMouseExited(GameCard.getMouseExitedEvent(this));
         this.setOnMouseClicked(GameCard.getMouseClickedEvent(this));
+        this.setRotate(rotationDegree);
     }
 
-    public GameCard(String cardName) {
-        super(0, 0, GameElementSize.CARD_SELECTED_WIDTH.getSize(), GameElementSize.CARD_SELECTED_HEIGHT.getSize());
+    public GameCard(Pane parent, double x, double y, String cardName) {
+        super(x, y, GameElementSize.CARD_WIDTH.getSize(), GameElementSize.CARD_HEIGHT.getSize());
+        this.parent = parent;
         this.cardName = cardName;
-        if (cardName == null) {
-            setFill(new ImagePattern(GetGameElements.getCardBack()));
-        } else {
-            setFill(new ImagePattern(GetImage.getCardImage(cardName)));
-        }
+        setFill(new ImagePattern(GetImage.getCardImage(cardName)));
+        this.setOnMouseEntered(GameCard.getMouseEnteredEvent(this));
+        this.setOnMouseExited(GameCard.getMouseExitedEvent(this));
+        this.setOnMouseClicked(GameCard.getMouseClickedEvent(this));
     }
 
     private static DropShadow getCardMouseEnteredDropShadow() {
@@ -41,7 +42,7 @@ public class GameCard extends Rectangle {
     }
 
     private static EventHandler<MouseEvent> getMouseEnteredEvent(Rectangle rectangle) {
-        return new EventHandler<MouseEvent> () {
+        return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 rectangle.setEffect(getCardMouseEnteredDropShadow());
@@ -50,7 +51,7 @@ public class GameCard extends Rectangle {
     }
 
     private static EventHandler<MouseEvent> getMouseExitedEvent(Rectangle rectangle) {
-        return new EventHandler<MouseEvent> () {
+        return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 rectangle.setEffect(null);
@@ -59,7 +60,7 @@ public class GameCard extends Rectangle {
     }
 
     private static EventHandler<MouseEvent> getMouseClickedEvent(GameCard card) {
-        return new EventHandler<MouseEvent> () {
+        return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 DuelMenuGui.setSelectedCardName(card.getCardName());

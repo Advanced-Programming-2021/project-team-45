@@ -422,7 +422,7 @@ public class GameController extends Controller {
     public String controlCardShow() {
         if (game.getSelectedCard() != null) {
             if (!game.isSelectedCardVisibleToPlayer()) {
-                return null;
+                return "this card is not visible!";
             } else {
                 return game.showCard();
             }
@@ -555,34 +555,41 @@ public class GameController extends Controller {
     }
 
     public ArrayList<String> getFieldCards(String fieldName) {
-        ArrayList<String> cardNames = new ArrayList<>();
+        ArrayList<String> cardData = new ArrayList<>();
         switch (fieldName) {
             case "player_monster":
-                for (Card card : game.getPlayerGameBoard().getMonsterField().getMonstersOnField()) {
-                    cardNames.add(card.getCardName());
+                for (MonsterCard monster : game.getPlayerGameBoard().getMonsterField().getMonstersOnField()) {
+                    String name = monster.getCardName();
+                    if (monster.getPosition() == PositionMonsters.DEFENSE) {
+                        name = name + "_" + monster.getDefenceMode().toString();
+                    }
+                    cardData.add(name);
                 }
                 break;
             case "player_spell":
                 for (Card card : game.getPlayerGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
-                    cardNames.add(card.getCardName());
+                    cardData.add(card.getCardName());
                 }
                 break;
             case "opponent_monster":
                 for (MonsterCard monster : game.getOpponentGameBoard().getMonsterField().getMonstersOnField()) {
-                    if (monster.getPosition() != PositionMonsters.DEFENSE ||
-                            monster.getDefenceMode() != DefensePosition.DH) {
-                        cardNames.add(monster.getCardName());
+                    if (monster.getPosition() != PositionMonsters.DEFENSE) {
+                        if (monster.getDefenceMode() != DefensePosition.DH) {
+                            cardData.add(monster.getDefenceMode().toString());
+                        } else {
+                            cardData.add(monster.getCardName() + "_" + monster.getDefenceMode().toString());
+                        }
                     } else {
-                        cardNames.add("back");
+                        cardData.add(monster.getCardName());
                     }
                 }
                 break;
             case "opponent_spell":
                 for (Card ignored : game.getOpponentGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
-                    cardNames.add("back");
+                    cardData.add("opponent_spell");
                 }
                 break;
         }
-        return cardNames;
+        return cardData;
     }
 }
