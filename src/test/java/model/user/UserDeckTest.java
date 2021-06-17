@@ -21,18 +21,16 @@ class UserDeckTest {
     }
 
     @Test
-    void createDeck() {
+    void getDeckByDeckName() {
         User user = User.getUserByUsername("hajji");
-        assertTrue(user.getUserDeck().doesDeckExist("deck3"));
-        assertFalse(user.getUserDeck().doesDeckExist("deck4"));
+        Deck deck = user.getUserDeck().getDeckByName("deck1");
+        assertEquals("deck1", deck.getName());
     }
 
     @Test
-    void deleteDeckFromUserDecks() {
+    void doesActiveDeckExist() {
         User user = User.getUserByUsername("hajji");
-        user.getUserDeck().deleteDeckFromUserDecks("deck3");
-        assertFalse(user.getUserDeck().doesDeckExist("deck3"));
-        user.getUserDeck().createDeck("deck3", user);
+        assertTrue(user.getUserDeck().doesActiveDeckExist());
     }
 
     @Test
@@ -46,15 +44,44 @@ class UserDeckTest {
     }
 
     @Test
-    void doesActiveDeckExist() {
+    void getActiveDeckStr() {
         User user = User.getUserByUsername("hajji");
-        assertTrue(user.getUserDeck().doesActiveDeckExist());
+        String expected = "deck3: main deck 0, side deck 0, valid";
+        assertEquals(expected, user.getUserDeck().getActiveDeckStr());
+    }
+
+    @Test
+    void deleteDeckFromUserDecks() {
+        User user = User.getUserByUsername("hajji");
+        user.getUserDeck().deleteDeckFromUserDecks("deck3");
+        assertFalse(user.getUserDeck().doesDeckExist("deck3"));
+        user.getUserDeck().createDeck("deck3", user);
+        user.getUserDeck().activateDeck("deck3");
+    }
+
+    @Test
+    void createDeck() {
+        User user = User.getUserByUsername("hajji");
+        assertFalse(user.getUserDeck().doesDeckExist("deck4"));
+        user.getUserDeck().createDeck("deck4", user);
+        assertTrue(user.getUserDeck().doesDeckExist("deck4"));
     }
 
     @Test
     void isActiveDeckValid() {
         User user = User.getUserByUsername("hajji");
         assertFalse(user.getUserDeck().isActiveDeckValid());
+    }
+
+    @Test
+    void getSortedOtherDeckStr() {
+        User user = User.getUserByUsername("hajji");
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("deck1: main deck 0, side deck 0, valid");
+        expected.add("deck2: main deck 0, side deck 0, valid");
+        expected.add("deck4: main deck 0, side deck 0, valid");
+
+        assertEquals(expected, user.getUserDeck().getSortedOtherDeckStr());
     }
 
     @Test
@@ -65,29 +92,6 @@ class UserDeckTest {
         assertSame(user.getUserDeck().getDeckByName("deck3"), deck);
     }
 
-    @Test
-    void getDeckByDeckname() {
-        User user = User.getUserByUsername("hajji");
-        Deck deck = user.getUserDeck().getDeckByName("deck1");
-        assertEquals("deck1", deck.getName());
-    }
-
-    @Test
-    void getActiveDeckStr() {
-        User user = User.getUserByUsername("hajji");
-        String expected = "deck3: main deck 0, side deck 0, invalid";
-        assertEquals(expected, user.getUserDeck().getActiveDeckStr());
-    }
-
-    @Test
-    void getSortedOtherDeckStr() {
-        User user = User.getUserByUsername("hajji");
-        ArrayList<String> expected = new ArrayList<>();
-        expected.add("deck1: main deck 0, side deck 0, valid");
-        expected.add("deck2: main deck 0, side deck 0, valid");
-
-        assertEquals(expected, user.getUserDeck().getSortedOtherDeckStr());
-    }
 
     @AfterAll
     public static void setAfterTest() {
