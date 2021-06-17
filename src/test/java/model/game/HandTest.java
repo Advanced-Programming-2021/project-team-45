@@ -24,29 +24,25 @@ class HandTest {
 
     @Test
     void addCard() {
-        assertFalse(hand.doesCardExist("Baby dragon"));
-        hand.addCard(Card.getCardByName("Baby dragon"));
-        assertTrue(hand.doesCardExist("Baby dragon"));
+        assertFalse(hand.doesCardExist("Baby Dragon"));
+        hand.addCard(Card.getCardByName("Baby Dragon"));
+        assertTrue(hand.doesCardExist("Baby Dragon"));
     }
 
     @Test
     void getCardsInHand() {
-        ArrayList<Card> cards = new ArrayList<>();
-        cards.add(Card.getCardByName("Axe Raider"));
-        cards.add(Card.getCardByName("Battle OX"));
-        cards.add(Card.getCardByName("Yomi Ship"));
-        cards.add(Card.getCardByName("Horn Imp"));
-        cards.add(Card.getCardByName("Baby dragon"));
-        assertEquals(cards, hand.getCardsInHand());
+        assertEquals("Axe Raider", hand.getCardsInHand().get(0).getCardName());
+        assertEquals("Battle OX", hand.getCardsInHand().get(1).getCardName());
+        assertEquals("Yomi Ship", hand.getCardsInHand().get(2).getCardName());//
+        assertEquals("Horn Imp", hand.getCardsInHand().get(3).getCardName());
+        assertEquals("Baby Dragon", hand.getCardsInHand().get(4).getCardName());//
     }
 
     @Test
     void doesCardExistInThisPlace() {
-        // exist bug in business code
-        // when we remove a card the place must be full by null
         hand.deleteCardWithNumberOfIt(4);
-        assertTrue(hand.doesCardExistInThesePlace(1));
-        assertFalse(hand.doesCardExistInThesePlace(4));
+        assertTrue(hand.doesCardExistInThesePlace(2));
+        assertFalse(hand.doesCardExistInThesePlace(5));
     }
 
     @Test
@@ -58,27 +54,26 @@ class HandTest {
 
     @Test
     void getCardFromHand() {
-        assertSame(Card.getCardByName("Battle OX"), hand.getCardFromHand(2));
-        assertNotSame(Card.getCardByName("Horn Imp"), hand.getCardFromHand(1));
+        assertEquals("Battle OX", hand.getCardFromHand(2).getCardName());
+        assertNotEquals("Horn Imp", hand.getCardFromHand(1).getCardName());
     }
 
     @Test
     void getCardByCardName() {
-        assertSame(Card.getCardByName("Axe Raider"), hand.getCardByName("Axe Raider"));
-        assertNotSame(Card.getCardByName("Horn Imp"), hand.getCardByName("Axe Raider"));
+        assertEquals("Axe Raider", hand.getCardByName("Axe Raider").getCardName());
     }
 
     @Test
     void doesCardExist() {
         assertTrue(hand.doesCardExist("Axe Raider"));
         assertTrue(hand.doesCardExist("Horn Imp"));
-        assertFalse(hand.doesCardExist("Baby dragon"));
+        assertFalse(hand.doesCardExist("Baby Dragon"));
     }
 
     @Test
     void deleteCard() {
         assertTrue(hand.doesCardExist("Axe Raider"));
-        hand.deleteCard(Card.getCardByName("Axe Raider"));
+        hand.deleteCard(hand.getCardsInHand().get(0));
         assertFalse(hand.doesCardExist("Axe Raider"));
     }
 

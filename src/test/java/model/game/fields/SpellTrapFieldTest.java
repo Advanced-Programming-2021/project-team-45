@@ -1,6 +1,7 @@
 package model.game.fields;
 
 import controller.GameController;
+import model.Shop;
 import model.card.Card;
 import model.card.SpellTrapCard;
 import model.game.Game;
@@ -19,22 +20,61 @@ class SpellTrapFieldTest {
     private static Graveyard graveyard;
     private static GameController gameController;
     private static Game game;
+    private static Shop shop1;
+    private static Shop shop2;
 
     @BeforeAll
     public static void setBeforeTest() {
         User user = new User("hajji", "hajji", "hajji");
         User user1 = new User("hossein", "hossein", "hossein");
+
+        shop1 = new Shop("hajji");
+        shop2 = new Shop("hossein");
+
+        shop1.buy("Battle OX");
+        shop1.buy("Axe Raider");
+        shop1.buy("Yomi Ship");
+        shop1.buy("Horn Imp");
+        shop1.buy("Silver Fang");
+        shop1.buy("Suijin");
+        shop1.buy("Fireyarou");
+
+        shop2.buy("Battle OX");
+        shop2.buy("Axe Raider");
+        shop2.buy("Yomi Ship");
+        shop2.buy("Horn Imp");
+        shop2.buy("Silver Fang");
+        shop2.buy("Suijin");
+        shop2.buy("Fireyarou");
+
         user.getUserDeck().createDeck("deck1", user);
         user1.getUserDeck().createDeck("deck1", user1);
+
+        user.getUserDeck().getDeckByName("deck1").addCard("Battle OX", false, user);
+        user.getUserDeck().getDeckByName("deck1").addCard("Axe Raider", false, user);
+        user.getUserDeck().getDeckByName("deck1").addCard("Yomi Ship", false, user);
         user.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user);
-        user1.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user1);
+        user.getUserDeck().getDeckByName("deck1").addCard("Silver Fang", false, user);
+        user.getUserDeck().getDeckByName("deck1").addCard("Suijin", false, user);
+        user.getUserDeck().getDeckByName("deck1").addCard("Fireyarou", false, user);
+
+        user1.getUserDeck().getDeckByName("deck1").addCard("Battle OX", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Axe Raider", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Yomi Ship", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Horn Imp", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Silver Fang", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Suijin", false, user);
+        user1.getUserDeck().getDeckByName("deck1").addCard("Fireyarou", false, user);
+
         user.getUserDeck().activateDeck("deck1");
         user1.getUserDeck().activateDeck("deck1");
+
         gameController = new GameController("hajji", "hossein", 3);
         game = new Game(User.getUserByUsername("hajji"), User.getUserByUsername("hossein"), 3, gameController);
+
         graveyard = new Graveyard(game);
         spellTrapField = new SpellTrapField(user, graveyard);
-        spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Time Seal"));
+        spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Yami"));
         spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Negate Attack"));
     }
 
@@ -49,40 +89,43 @@ class SpellTrapFieldTest {
 
     @Test
     void getPlayerSpellTrapCard() {
-        assertSame((SpellTrapCard) Card.getCardByName("Negate Attack"), spellTrapField.getPlayerSpellTrapCard(2));
-        spellTrapField.deleteAndDestroySpellTrap((SpellTrapCard) Card.getCardByName("Closed Forest"));
-        assertNull(spellTrapField.getPlayerSpellTrapCard(5));
+        assertEquals("Negate Attack", spellTrapField.getPlayerSpellTrapCard(2).getCardName());
     }
 
     @Test
     void isThisCellOfPlayerSpellTrapFieldEmpty() {
-        assertTrue(spellTrapField.isThisCellOfPlayerSpellTrapFieldEmpty(5));
-        spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Closed Forest"));
         assertFalse(spellTrapField.isThisCellOfPlayerSpellTrapFieldEmpty(5));
     }
 
     @Test
     void isFullPlace() {
         assertTrue(spellTrapField.isFull(2));
-        spellTrapField.deleteAndDestroySpellTrap((SpellTrapCard) Card.getCardByName("Solemn Warning"));
+        spellTrapField.deleteAndDestroySpellTrap(spellTrapField.getPlayerSpellTrapCard(3));
         assertFalse(spellTrapField.isFull(2));
     }
 
     @Test
     void getSpellTrapCardsPositionsArray() {
         SpellTrapCard[] expectedSpellTrapCards = new SpellTrapCard[5];
-        expectedSpellTrapCards[0] = (SpellTrapCard) Card.getCardByName("Time Seal");
+        expectedSpellTrapCards[0] = (SpellTrapCard) Card.getCardByName("Yami");
         expectedSpellTrapCards[1] = (SpellTrapCard) Card.getCardByName("Negate Attack");
         expectedSpellTrapCards[2] = null;
         expectedSpellTrapCards[3] = (SpellTrapCard) Card.getCardByName("Forest");
         expectedSpellTrapCards[4] = (SpellTrapCard) Card.getCardByName("Closed Forest");
-        assertArrayEquals(expectedSpellTrapCards, spellTrapField.getSpellTrapCardsPositionsArray());
+
+
+        assertEquals("Yami", spellTrapField.getSpellTrapCardsPositionsArray()[0].getCardName());
+        assertEquals("Negate Attack", spellTrapField.getSpellTrapCardsPositionsArray()[1].getCardName());
+        assertNull(spellTrapField.getSpellTrapCardsPositionsArray()[2]);
+        assertEquals("Forest", spellTrapField.getSpellTrapCardsPositionsArray()[3].getCardName());
+        assertEquals("Closed Forest", spellTrapField.getSpellTrapCardsPositionsArray()[4].getCardName());
+
     }
 
     @Test
     void deleteAndDestroyAllSpellTrapCards() {
         spellTrapField.deleteAndDestroyAllSpellTrapCards();
-        assertTrue(graveyard.doesCardExist("Time Seal"));
+        assertTrue(graveyard.doesCardExist("Yami"));
         assertTrue(graveyard.doesCardExist("Negate Attack"));
         assertTrue(graveyard.doesCardExist("Forest"));
         assertTrue(graveyard.doesCardExist("Closed Forest"));
@@ -92,9 +135,8 @@ class SpellTrapFieldTest {
     void getOpponentSpellTrapCard() {
         spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Negate Attack"));
         spellTrapField.addSpellTrapCard((SpellTrapCard) Card.getCardByName("Solemn Warning"));
-        assertNotSame((SpellTrapCard) Card.getCardByName("Solemn Warning"), spellTrapField.getOpponentSpellTrapCard(2));
-        assertSame((SpellTrapCard) Card.getCardByName("Solemn Warning"), spellTrapField.getOpponentSpellTrapCard(3));
-        assertNull(spellTrapField.getOpponentSpellTrapCard(5));
+        assertNull(spellTrapField.getOpponentSpellTrapCard(2));
+        assertEquals("Solemn Warning", spellTrapField.getOpponentSpellTrapCard(3).getCardName());
     }
 
     @Test
@@ -108,7 +150,7 @@ class SpellTrapFieldTest {
     @Test
     void deleteAndDestroySpellTrap() {
         assertTrue(spellTrapField.doesCardExist("Forest"));
-        spellTrapField.deleteAndDestroySpellTrap((SpellTrapCard) Card.getCardByName("Forest"));
+        spellTrapField.deleteAndDestroySpellTrap(spellTrapField.getPlayerSpellTrapCard(3));
         assertFalse(spellTrapField.doesCardExist("Forest"));
         assertTrue(graveyard.doesCardExist("Forest"));
     }
@@ -132,7 +174,7 @@ class SpellTrapFieldTest {
         graveyard = null;
         gameController = null;
         User.deleteUserByUsername("hajji");
-        User.deleteUserByUsername("hoseein");
+        User.deleteUserByUsername("hossein");
     }
 
 }

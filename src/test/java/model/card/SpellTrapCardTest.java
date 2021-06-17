@@ -11,30 +11,40 @@ class SpellTrapCardTest {
 
 
     @Test
-    void isSpell() {
-        assertFalse(((SpellTrapCard) Objects.requireNonNull(Card.getCardByName("Time Seal"))).isSpell);
-        assertTrue(((SpellTrapCard) Card.getCardByName("Raigeki")).isSpell);
-
+    void setPosition() {
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Trap Hole")));
+        spellTrapCard.setPosition(SpellsAndTrapPosition.SET);
+        assertEquals(SpellsAndTrapPosition.SET, spellTrapCard.getPosition());
+        spellTrapCard.position = null;
     }
 
     @Test
-    void isActivated() {
-
-    }
-
-    @Test
-    void getIcon() {
-        assertEquals(SpellAndTrapIcon.NORMAL, Card.getCardByName("Trap Hole"));
-        assertEquals(SpellAndTrapIcon.CONTINUOUS, Card.getCardByName("Supply Squad"));
-        assertEquals(SpellAndTrapIcon.COUNTER, Card.getCardByName("Negate Attack"));
+    void getPosition() {
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Mirror Force")));
+        spellTrapCard.summon();
+        assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.getPosition());
+        spellTrapCard.position = null;
     }
 
     @Test
     void summon() {
-        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Magic Jammer"))).copy();
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Negate Attack")));
         spellTrapCard.summon();
         assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.position);
         spellTrapCard.position = null;
+    }
+
+    @Test
+    void checkClone() {
+        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Solemn Warning"))).copy();
+        assertEquals("Solemn Warning", spellTrapCard.getCardName());
+    }
+
+    @Test
+    void getIcon() {
+        assertEquals(SpellAndTrapIcon.NORMAL, ((SpellTrapCard)Card.getCardByName("Trap Hole")).getIcon());
+        assertEquals(SpellAndTrapIcon.CONTINUOUS, ((SpellTrapCard)Card.getCardByName("Supply Squad")).getIcon());
+        assertEquals(SpellAndTrapIcon.COUNTER, ((SpellTrapCard)Card.getCardByName("Negate Attack")).getIcon());
     }
 
     @Test
@@ -46,26 +56,24 @@ class SpellTrapCardTest {
     }
 
     @Test
-    void getPosition() {
-        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Mirror Force"))).copy();
-        spellTrapCard.summon();
-        assertEquals(SpellsAndTrapPosition.SUMMON ,spellTrapCard.getPosition());
-        spellTrapCard.position = null;
-    }
+    void isActivated() {
 
-    @Test
-    void setPosition() {
-        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Trap Hole"))).copy();
-        spellTrapCard.setPosition(SpellsAndTrapPosition.SET);
-        assertEquals(SpellsAndTrapPosition.SET, spellTrapCard.getPosition());
-        spellTrapCard.position = null;
     }
 
 
     @Test
-    void checkClone() {
-        SpellTrapCard spellTrapCard = ((SpellTrapCard) (Card.getCardByName("Solemn Warning"))).copy();
-        assertSame(Card.getCardByName("Solemn Warning"), spellTrapCard);
+    void isSpell() {
+        assertTrue(((SpellTrapCard) (Card.getCardByName("Raigeki"))).isSpell);
+        assertFalse(((SpellTrapCard) Card.getCardByName("Trap Hole")).isSpell);
+
     }
+
+
+
+
+
+
+
+
 
 }
