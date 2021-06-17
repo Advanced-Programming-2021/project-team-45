@@ -23,6 +23,10 @@ public class UserDeck {
 
     public void deleteDeckFromUserDecks(String deckName) {
         userDecks.removeIf(deck -> (deck.getName()).equals(deckName));
+        if (activeDeck != null) {
+            if (activeDeck.getName().equals(deckName))
+                activeDeck = null;
+        }
     }
 
     public void activateDeck(String deckName) {
