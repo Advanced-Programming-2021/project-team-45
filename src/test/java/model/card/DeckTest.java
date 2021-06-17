@@ -1,5 +1,6 @@
 package model.card;
 
+import model.Shop;
 import model.user.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,14 +12,15 @@ class DeckTest {
     @BeforeAll
     public static void set() {
         User user = new User("hajji", "hajji", "hajji");
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Yomi Ship"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Axe Raider"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Magic Cylinder"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Trap Hole"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Silver Fang"));
+        Shop shop = new Shop("hajji");
+        shop.buy("Battle OX");
+        shop.buy("Battle OX");
+        shop.buy("Battle OX");
+        shop.buy("Yomi Ship");
+        shop.buy("Axe Raider");
+        shop.buy("Magic Cylinder");
+        shop.buy("Trap Hole");
+        shop.buy("Silver Fang");
         user.getUserDeck().createDeck("deck1", user);
         user.getUserDeck().getDeckByName("deck1").addCard("Battle OX", false, user);
         user.getUserDeck().getDeckByName("deck1").addCard("Battle OX", false, user);
