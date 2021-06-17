@@ -2,3 +2,10 @@
     -fx-font-family: Arial;
     -fx-background-color: #93a1a7;
 }
+
+.label {
+    -fx-background-color: #eee0b1;
+    -fx-font-family: Arial;
+    -fx-border-insets: 10px;
+    -fx-border-color: #cb9a45;
+}
