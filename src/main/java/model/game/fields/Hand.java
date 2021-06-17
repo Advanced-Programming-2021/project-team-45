@@ -56,7 +56,11 @@ public class Hand extends CardField {
     }
 
     public boolean doesCardExistInThesePlace(int handIndex) {
-        return hand.get(handIndex - 1) != null;
+        if (handIndex < hand.size()) {
+            return hand.get(handIndex - 1) != null;
+        }
+        else
+            return false;
     }
 
     public void deleteCardWithNumberOfIt(int num) {
