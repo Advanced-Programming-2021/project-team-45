@@ -52,7 +52,7 @@ public class SpellTrapCard extends Card {
         String[][] data = new String[10000][9];
         CSVReader reader = null;
         try {
-            reader = new CSVReader(new FileReader("src/main/resources/SpellTrap.csv"));
+            reader = new CSVReader(new FileReader("src/main/resources/controller/database/SpellTrap.csv"));
             String[] nextLine;
             int a = 0, b = 0;
             // read one line at a time

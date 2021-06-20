@@ -60,7 +60,7 @@ public class MonsterCard extends Card {
         String[][] data = new String[10000][9];
         CSVReader reader = null;
         try {
-            reader = new CSVReader(new FileReader("src/main/resources/Monster.csv"));
+            reader = new CSVReader(new FileReader("src/main/resources/controller/database/Monster.csv"));
             String[] nextLine;
             int a = 0, b = 0;
             while ((nextLine = reader.readNext()) != null) {
