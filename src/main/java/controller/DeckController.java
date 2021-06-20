@@ -1,13 +1,7 @@
 package controller;
 
 
-import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import model.user.UserDeck;
-import view.gui.elements.GetImage;
 
 
 import java.util.ArrayList;
@@ -108,38 +102,4 @@ public class DeckController extends Controller {
     public ArrayList<String> getAllCardsStr() {
         return user.getCardInventory().getAllCardsStr();
     }
-
-
-    //for gui
-    public static void addCardToMainDeck(Rectangle[][] rectangles, Image image){
-        boolean bol=false;
-        for(int i=0;i<6;i++){
-            for(int j=0; j<10;j++){
-                if(rectangles[i][j].getFill().equals(Color.color(1, 1, 1, 0))){
-                    rectangles[i][j].setFill(new ImagePattern(image));
-                    bol=true;
-                    break;
-                }
-            }
-            if(bol){
-                break;
-            }
-        }
-    }
-
-    public void setScrollBar(ListView listView){
-        if(user.getCardInventory()!=null) {
-            for (int i = 0; i < user.getCardInventory().getCards().size(); i++) {
-                Rectangle rectangle=new Rectangle();
-                rectangle.setWidth(214);
-                rectangle.setHeight(240);
-                System.out.println(user.getCardInventory().getAllCardsStr().get(i));
-                rectangle.setFill(new ImagePattern(GetImage.getCardImage(user.getCardInventory()
-                        .getCards().get(i).getCardName())));
-                listView.getItems().add(rectangle);
-            }
-        }
-    }
-
-
 }

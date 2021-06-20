@@ -1,5 +1,5 @@
-package view.gui;
-
-public class MainGui {
-
-}
+//package view.gui;
+//
+//public class MainGui {
+//
+//}
