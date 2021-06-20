@@ -100,6 +100,16 @@ public class DuelMenuGui extends MenuGui {
 
     public static void setSelectedCardName(String cardName) {
         DuelMenuGui.selectedCardName = cardName;
+
+
+
+
+//        gameController.selectCardErrorHandler();
+
+
+
+
+
     }
 
     public static String getSelectedCardName() {
