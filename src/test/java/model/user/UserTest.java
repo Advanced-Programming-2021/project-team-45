@@ -19,7 +19,8 @@ class UserTest {
 
     @Test
     void doesNicknameExist() {
-        assertFalse(User.doesNicknameExist("ali"));
+        assertFalse(User.doesNicknameExist("test5"));
+        assertTrue(User.doesNicknameExist("t4"));
     }
 
     @Test

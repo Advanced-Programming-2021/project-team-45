@@ -32,7 +32,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
-        this.money = 1000000000;
+        this.money = 100000;
         this.score = 0;
         this.lifepoint = new Lifepoint();
         this.cardInventory = new CardInventory();
