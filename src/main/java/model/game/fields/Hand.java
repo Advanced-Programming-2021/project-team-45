@@ -58,8 +58,7 @@ public class Hand extends CardField {
     public boolean doesCardExistInThesePlace(int handIndex) {
         if (handIndex < hand.size()) {
             return hand.get(handIndex - 1) != null;
-        }
-        else
+        } else
             return false;
     }
 

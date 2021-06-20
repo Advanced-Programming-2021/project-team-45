@@ -47,7 +47,8 @@ public abstract class Menu {
     public static int inputInt() {
         return scanner.nextInt();
     }
-    public static String inputString(){
+
+    public static String inputString() {
         return scanner.nextLine();
     }
 
