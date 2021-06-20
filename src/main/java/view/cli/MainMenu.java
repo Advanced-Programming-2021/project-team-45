@@ -62,10 +62,10 @@ public class MainMenu extends Menu {
         }
 
         if (opponentUsername.equals("")) {
-            Matcher aiMatcher=Regex.getMatcher(input, " (?:--ai|-I)");
+            Matcher aiMatcher = Regex.getMatcher(input, " (?:--ai|-I)");
             if (aiMatcher.find()) {
                 new ArtificialIntelligence();
-                opponentUsername="AI";
+                opponentUsername = "AI";
                 inputError++;
             }
         }

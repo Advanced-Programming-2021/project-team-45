@@ -1,7 +1,10 @@
 package controller;
 
-import model.card.*;
+import model.card.SpellTrapCard;
 import model.game.*;
+import model.card.Card;
+import model.card.MonsterCard;
+import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import model.game.fields.CardField;
 import model.user.User;
@@ -422,7 +425,7 @@ public class GameController extends Controller {
     public String controlCardShow() {
         if (game.getSelectedCard() != null) {
             if (!game.isSelectedCardVisibleToPlayer()) {
-                return "this card is not visible!";
+                return null;
             } else {
                 return game.showCard();
             }
@@ -552,44 +555,5 @@ public class GameController extends Controller {
 
     public void setWinnerCheat(String nickname) {
         game.setWinner(nickname);
-    }
-
-    public ArrayList<String> getFieldCards(String fieldName) {
-        ArrayList<String> cardData = new ArrayList<>();
-        switch (fieldName) {
-            case "player_monster":
-                for (MonsterCard monster : game.getPlayerGameBoard().getMonsterField().getMonstersOnField()) {
-                    String name = monster.getCardName();
-                    if (monster.getPosition() == PositionMonsters.DEFENSE) {
-                        name = name + "_" + monster.getDefenceMode().toString();
-                    }
-                    cardData.add(name);
-                }
-                break;
-            case "player_spell":
-                for (Card card : game.getPlayerGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
-                    cardData.add(card.getCardName());
-                }
-                break;
-            case "opponent_monster":
-                for (MonsterCard monster : game.getOpponentGameBoard().getMonsterField().getMonstersOnField()) {
-                    if (monster.getPosition() != PositionMonsters.DEFENSE) {
-                        if (monster.getDefenceMode() != DefensePosition.DH) {
-                            cardData.add(monster.getDefenceMode().toString());
-                        } else {
-                            cardData.add(monster.getCardName() + "_" + monster.getDefenceMode().toString());
-                        }
-                    } else {
-                        cardData.add(monster.getCardName());
-                    }
-                }
-                break;
-            case "opponent_spell":
-                for (Card ignored : game.getOpponentGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
-                    cardData.add("opponent_spell");
-                }
-                break;
-        }
-        return cardData;
     }
 }
