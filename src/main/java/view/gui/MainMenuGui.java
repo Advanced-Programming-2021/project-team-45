@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.DeckController;
 import controller.MainMenuController;
 import controller.ProfileController;
 import controller.ShopController;
@@ -38,6 +39,14 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {
+        DeckMenuGui deckMenuGui=new DeckMenuGui();
+        DeckController deckController=new DeckController(user.getUsername());
+        DeckMenuGui.setDeckController(deckController);
+        try {
+            deckMenuGui.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void startScoreBoardMenu(MouseEvent mouseEvent) throws Exception {

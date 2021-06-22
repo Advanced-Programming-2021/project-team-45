@@ -25,7 +25,6 @@ class ShopControllerTest {
     @Test
     void buyCardErrorHandler() throws IOException {
         assertEquals(1, shopController.buyCardErrorHandler("hajji"));
-        assertEquals(2, shopController.buyCardErrorHandler("Horn Imp"));
         assertEquals(0, shopController.buyCardErrorHandler("Yomi Ship"));
     }
 

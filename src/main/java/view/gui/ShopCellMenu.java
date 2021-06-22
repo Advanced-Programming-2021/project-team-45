@@ -47,8 +47,8 @@ public class ShopCellMenu extends AnchorPane {
         buyButton = new Button();
         buyButton.setText("buy");
         int price = shopController.getCardsPrices().get(cardName);
-        Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + shopController.getUserMoney());
-        buyButton.setTooltip(tooltip);
+       // Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + shopController.getUserMoney());
+       // buyButton.setTooltip(tooltip);
         buyButton.setOnMouseClicked(e -> {
             try {
                 buyCard();

@@ -27,7 +27,6 @@ public class FieldZone extends CardField {
     }
 
     public void activateFieldCard() {
-
     }
 
     public Card getFieldCard() {

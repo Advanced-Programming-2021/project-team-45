@@ -1,4 +1,4 @@
-module project.team {
+ module project.team {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;

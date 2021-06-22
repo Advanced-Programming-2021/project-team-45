@@ -1,5 +1,6 @@
 package controller;
 
+import model.Shop;
 import model.card.Card;
 import model.user.User;
 import org.junit.jupiter.api.AfterAll;
@@ -13,11 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeckControllerTest {
 
     private static DeckController deckController;
+    private static Shop shop;
     @BeforeAll
     public static void setBeforeTest() {
         User user = new User("hajji", "hajji", "hajji");
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Battle OX"));
+        shop = new Shop("hajji");
         deckController = new DeckController("hajji");
+
         user.getUserDeck().createDeck("deck1", user);
         user.getUserDeck().createDeck("deckTwo", user);
     }
@@ -42,12 +45,11 @@ class DeckControllerTest {
         assertEquals(strExpected, deckController.getActiveDeckStr());
         User.getUserByUsername("hajji").getUserDeck().deleteDeckFromUserDecks("deck1");
         assertFalse(User.getUserByUsername("hajji").getUserDeck().doesDeckExist("deck1"));
-        // here we hava bug -haji
-        //assertEquals("", deckController.getActiveDeckStr());
     }
 
     @Test
     void getAllCardsStr() {
+        shop.buy("Battle OX");
         String strExpected = "Battle OX:A monster with tremendous power, it destroys enemies with a swing of its axe.";
         ArrayList<String> expected = new ArrayList<>();
         expected.add(strExpected);
@@ -56,8 +58,6 @@ class DeckControllerTest {
 
     @Test
     void getOtherDeckStr() {
-        //String strExpected = "deck3: main deck 0, side deck 0, valid, "
-               // + "deckTwo: main deck 0, side deck 0, valid";
         ArrayList<String> expected = new ArrayList<>();
         expected.add("deck3: main deck 0, side deck 0, valid");
         expected.add("deckTwo: main deck 0, side deck 0, valid");
@@ -74,11 +74,12 @@ class DeckControllerTest {
     @Test
     void removeCardErrorHandler() {
         User user = User.getUserByUsername("hajji");
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Horn Imp"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Horn Imp"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Trap Hole"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Axe Raider"));
-        user.getCardInventory().addCardToInventory(Card.getCardByName("Suijin"));
+        shop.buy("Horn Imp");
+        shop.buy("Horn Imp");
+        shop.buy("Trap Hole");
+        shop.buy("Axe Raider");
+        shop.buy("Suijin");
+
         user.getUserDeck().getDeckByName("deck3").addCard("Horn Imp", false, user);
         user.getUserDeck().getDeckByName("deck3").addCard("Horn Imp", true, user);
         user.getUserDeck().getDeckByName("deck3").addCard("Trap Hole", false, user);
