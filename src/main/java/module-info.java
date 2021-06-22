@@ -8,6 +8,6 @@
     requires org.apache.commons.io;
     requires yagson;
 
-//    opens view.gui to javafx.fxml;
-//    exports view.gui;
+    opens view.gui to javafx.fxml;
+    exports view.gui;
 }
