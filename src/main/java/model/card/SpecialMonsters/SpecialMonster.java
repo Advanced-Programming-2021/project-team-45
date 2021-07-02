@@ -6,7 +6,7 @@ import model.card.MonsterCard;
 
 import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.*;
-import view.cli.DuelMenu;
+import view.gui.DuelMenuGui;
 
 import java.util.Objects;
 
@@ -20,7 +20,7 @@ public class SpecialMonster {
             summonEffectPlace(selectedOrTargetCard,game);
 
         } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
-            changeTurnEffectPlace(game);
+//            changeTurnEffectPlace(game);   dorost beshe hatman
 
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             changePosition(selectedOrTargetCard,game);
