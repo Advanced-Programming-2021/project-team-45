@@ -20,7 +20,7 @@ public class SpecialMonster {
             summonEffectPlace(selectedOrTargetCard,game);
 
         } else if (effectPlace.equals(EffectPlace.CHANGETURN)) {
-//            changeTurnEffectPlace(game);   dorost beshe hatman
+            changeTurnEffectPlace(game);
 
         } else if (effectPlace.equals(EffectPlace.CHANGEPOSITION)) {
             changePosition(selectedOrTargetCard,game);
