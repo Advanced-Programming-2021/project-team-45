@@ -4212,5 +4212,144 @@
       "lastDamageAmount": 0,
       "profilePicturePath": "src/main/resources/view/gui/pictureFiles/unknownUserProfileImage.jpg"
     }
+  },
+  {
+    "@type": "model.user.User",
+    "@val": {
+      "username": "k",
+      "password": "k",
+      "nickname": "",
+      "money": 999979900,
+      "score": 0,
+      "lifepoint": {
+        "lifepoint": 8000
+      },
+      "cardInventory": {
+        "cardsCount": {
+          "The Tricky": 2,
+          "Marshmallon": 2,
+          "Alexandrite Dragon": 2,
+          "Haniwa": 1,
+          "Black Pendant": 1
+        },
+        "cards": [
+          {
+            "@type": "model.card.SpellTrapCard",
+            "@val": {
+              "icon": "EQUIP",
+              "activated": false,
+              "type": "Spell",
+              "isSpell": true,
+              "status": "Unlimited",
+              "effects": [
+                {
+                  "@type": "model.card.SpellTrapCards.effects.IncreaseAtkDefOfEquippedEffect",
+                  "@val": {
+                    "attack": 500,
+                    "defence": 0,
+                    "monsterTypes": [
+                      "Beast_Warrior",
+                      "Warrior",
+                      "Aqua",
+                      "Fiend",
+                      "Beast",
+                      "Pyro",
+                      "SpellCaster",
+                      "Thunder",
+                      "Dragon",
+                      "Machine",
+                      "Rock",
+                      "Insect",
+                      "Cyberse",
+                      "Fairy",
+                      "Sea_Serpent"
+                    ]
+                  }
+                }
+              ],
+              "cardName": "Black Pendant",
+              "cardDescription": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
+              "price": 4300,
+              "ownerUsername": "k",
+              "speed": 1
+            }
+          },
+          {
+            "@type": "model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "EARTH",
+              "type": "Rock",
+              "attack": 500,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "cardName": "Haniwa",
+              "cardDescription": "An earthen figure that protects the tomb of an ancient ruler.",
+              "cardType": "Normal",
+              "price": 600,
+              "ownerUsername": "k",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "model.card.MonsterCard",
+            "@val": {
+              "level": 5,
+              "attribute": "WIND",
+              "attack": 2000,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "THE_TRICKY",
+              "cardName": "The Tricky",
+              "cardDescription": "You can Special Summon this card (from your hand) by discarding 1 card.",
+              "cardType": "Effect",
+              "price": 4300,
+              "ownerUsername": "k",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 2000,
+              "defense": 100,
+              "wasAttackedInThisTurn": false,
+              "cardName": "Alexandrite Dragon",
+              "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+              "cardType": "Normal",
+              "price": 2600,
+              "ownerUsername": "k",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "LIGHT",
+              "type": "Fairy",
+              "attack": 300,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "MARSHMALLON",
+              "cardName": "Marshmallon",
+              "cardDescription": "Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.",
+              "cardType": "Effect",
+              "price": 700,
+              "ownerUsername": "k",
+              "speed": 0
+            }
+          }
+        ]
+      },
+      "userDeck": {
+        "userDecks": []
+      },
+      "lastDamageAmount": 0,
+      "profilePicturePath": "src/main/resources/view/gui/pictureFiles/unknownUserProfileImage.jpg"
+    }
   }
 ]
