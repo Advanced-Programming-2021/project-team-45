@@ -6,7 +6,7 @@ import model.card.MonsterCard;
 
 import model.card.SpecialMonsterEnum;
 import model.card.SpecialMonsters.AmazingAbility.*;
-import view.cli.DuelMenu;
+import view.gui.DuelMenuGui;
 
 import java.util.Objects;
 

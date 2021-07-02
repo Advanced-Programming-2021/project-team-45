@@ -201,4 +201,40 @@ public class DuelMenuGui extends MenuGui {
             selectedCardDescription.setText(Card.getCardByName(selectedCardName).getCardDescription());
         }
     }
+// این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
+    public ArrayList<Integer> getCardsForTribute(int i) {
+        return null;
+    }
+
+    public Boolean getYesNoAnswer(String question) {
+        return null;
+    }
+
+    public String getInputNumberOfFieldForSpecialMonster(String view) {
+        return null;
+    }
+
+    public String getCardFromGraveYard(String view) {
+        return null;
+    }
+
+    public String getCardName() {
+        return null;
+    }
+
+    public void showOutput(String toString) {
+
+    }
+
+    public int getNumber(String view) {
+        return 0;
+    }
+
+    public void updatePlayerGameBoard() {
+
+    }
+
+    public void updateOpponentGameBoard() {
+
+    }
 }
