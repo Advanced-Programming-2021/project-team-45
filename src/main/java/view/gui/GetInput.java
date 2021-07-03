@@ -4,6 +4,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javax.activation.MimetypesFileTypeMap;
+
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -36,5 +38,16 @@ public class GetInput {
         }else{
             return null;
         }
+    }
+
+    public static File chooseJsonFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON source File", "*.json"));
+        return fileChooser.showOpenDialog(null);
+    }
+
+    public static File getDirectory() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        return directoryChooser.showDialog(null);
     }
 }
