@@ -23,7 +23,7 @@ public class GameController extends Controller {
     private int opponentWins = 0;
     private DuelMenuGui playerDuelMenu;
 
-//
+    //
     public GameController(String username, String opponentUsername, int rounds) {
         super(username);
         this.player = User.getUserByUsername(username);
@@ -558,35 +558,53 @@ public class GameController extends Controller {
         ArrayList<String> cardData = new ArrayList<>();
         switch (fieldName) {
             case "player_monster":
-                for (MonsterCard monster : game.getPlayerGameBoard().getMonsterField().getMonstersOnField()) {
-                    String name = monster.getCardName();
-                    if (monster.getPosition() == PositionMonsters.DEFENSE) {
-                        name = name + "_" + monster.getDefenceMode().toString();
+                MonsterCard[] monsters = game.getPlayerGameBoard().getMonsterField().getMonsterPositionsArray();
+                for (int i = 0; i < monsters.length; i++) {
+                    String name = "";
+                    if (monsters[i] != null) {
+                        name = i + monsters[i].getCardName();
+                        if (monsters[i].getPosition() == PositionMonsters.DEFENSE) {
+                            name = name + "_" + monsters[i].getDefenceMode().toString();
+                        }
                     }
                     cardData.add(name);
                 }
                 break;
             case "player_spell":
-                for (Card card : game.getPlayerGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
-                    cardData.add(card.getCardName());
+                SpellTrapCard[] spells = game.getPlayerGameBoard().getSpellTrapField().getSpellTrapCardsPositionsArray();
+                for (int i = 0; i < spells.length; i++) {
+                    if (spells[i] != null)
+                        cardData.add(i + spells[i].getCardName());
+                    else
+                        cardData.add("");
                 }
                 break;
             case "opponent_monster":
-                for (MonsterCard monster : game.getOpponentGameBoard().getMonsterField().getMonstersOnField()) {
-                    if (monster.getPosition() != PositionMonsters.DEFENSE) {
-                        if (monster.getDefenceMode() != DefensePosition.DH) {
-                            cardData.add(monster.getDefenceMode().toString());
+                MonsterCard[] opponentMonsters = game.getOpponentGameBoard().getMonsterField().getMonsterPositionsArray();
+                for (int i = 0; i < opponentMonsters.length; i++) {
+                    if (opponentMonsters[i] != null) {
+                        if (opponentMonsters[i].getPosition() != PositionMonsters.DEFENSE) {
+                            if (opponentMonsters[i].getDefenceMode() != DefensePosition.DH) {
+                                cardData.add(i + opponentMonsters[i].getDefenceMode().toString());
+                            } else {
+                                cardData.add(i + opponentMonsters[i].getCardName() + "_" +
+                                        opponentMonsters[i].getDefenceMode().toString());
+                            }
                         } else {
-                            cardData.add(monster.getCardName() + "_" + monster.getDefenceMode().toString());
+                            cardData.add(i + opponentMonsters[i].getCardName());
                         }
                     } else {
-                        cardData.add(monster.getCardName());
+                        cardData.add("");
                     }
                 }
                 break;
             case "opponent_spell":
-                for (Card ignored : game.getOpponentGameBoard().getSpellTrapField().getSpellTrapsArrayList()) {
-                    cardData.add("opponent_spell");
+                SpellTrapCard[] opponentSpells = game.getOpponentGameBoard().getSpellTrapField().getSpellTrapCardsPositionsArray();
+                for (int i = 0; i < opponentSpells.length; i++) {
+                    if (opponentSpells[i] != null)
+                        cardData.add("opponent_spell");
+                    else
+                        cardData.add("");
                 }
                 break;
         }

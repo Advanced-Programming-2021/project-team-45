@@ -62,54 +62,44 @@ public class DuelMenuGui extends MenuGui {
 
 
         ArrayList<String> opponentMonsterNames = new ArrayList<>();
-        opponentMonsterNames.add("DH");
-        opponentMonsterNames.add("Yomi Ship");
-        opponentMonsterNames.add("Man-Eater Bug_DO");
-        opponentMonsterNames.add("Blue-Eyes white dragon");
-        opponentMonsterNames.add("Scanner");
+        opponentMonsterNames.add("2DH");
+        opponentMonsterNames.add("");
+        opponentMonsterNames.add("3Man-Eater Bug_DO");
+        opponentMonsterNames.add("");
+        opponentMonsterNames.add("4Scanner");
         ArrayList<String> opponentSpellNames = new ArrayList<>();
-        opponentSpellNames.add("opponent_spell");
-        opponentSpellNames.add("opponent_spell");
-        opponentSpellNames.add("opponent_spell");
-        opponentSpellNames.add("opponent_spell");
-        opponentSpellNames.add("opponent_spell");
+        opponentSpellNames.add("0opponent_spell");
+        opponentSpellNames.add("");
+        opponentSpellNames.add("2opponent_spell");
+        opponentSpellNames.add("1opponent_spell");
+        opponentSpellNames.add("4opponent_spell");
         ArrayList<String> playerMonsterNames = new ArrayList<>();
-        playerMonsterNames.add("Suijin_DH");
-        playerMonsterNames.add("Curtain of the dark ones");
-        playerMonsterNames.add("Feral Imp_DO");
-        playerMonsterNames.add("Hero of the east");
-        playerMonsterNames.add("Battle warrior");
+        playerMonsterNames.add("0Suijin_DH");
+        playerMonsterNames.add("");
+        playerMonsterNames.add("4Feral Imp_DO");
+        playerMonsterNames.add("2Hero of the east");
+        playerMonsterNames.add("1Battle warrior");
         ArrayList<String> playerSpellNames = new ArrayList<>();
-        playerSpellNames.add("Mind Crush");
-        playerSpellNames.add("Negate Attack");
-        playerSpellNames.add("Harpie's Feather Duster");
-        playerSpellNames.add("Messenger of peace");
-        playerSpellNames.add("Mystical space typhoon");
+        playerSpellNames.add("0Mind Crush");
+        playerSpellNames.add("2Negate Attack");
+        playerSpellNames.add("1Harpie's Feather Duster");
+        playerSpellNames.add("3Messenger of peace");
+        playerSpellNames.add("");
         updateFields(opponentMonsterNames, "opponent_monster");
         updateFields(opponentSpellNames, "opponent_spell");
         updateFields(playerMonsterNames, "player_monster");
         updateFields(playerSpellNames, "player_spell");
 
         updateSelectedCard();
-
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public static void setSelectedCardName(String cardName) {
-        DuelMenuGui.selectedCardName = cardName;
-
-
-
-
-//        gameController.selectCardErrorHandler();
-
-
-
-
-
+    public static void setSelectedCard(GameCard card) {
+        DuelMenuGui.selectedCardName = card.getCardName();
+//        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
     public static String getSelectedCardName() {
@@ -134,19 +124,36 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateFields(ArrayList<String> cardData, String fieldName) {
-        int startX = GameElementSize.CARD_START_X.getSize();
+        int startX = GameElementSize.getXSizeByName(fieldName);
         int startY = GameElementSize.getYSizeByName(fieldName);
-        for (int i = 0; i < cardData.size(); i++) {
-            boolean isVisible = getVisibility(fieldName, cardData.get(i));
-            int rotationDegree = getRotationDegree(fieldName, cardData.get(i));
+        for (String cardDatum : cardData) {
+            // skip empty position in field:
+            if (cardDatum.equals(""))
+                continue;
+            // set card position:
+            int position = Integer.parseInt("" + cardDatum.charAt(0));
+            // parse other data from string:
+            String data = cardDatum.substring(1);
+            // find visibility and rotation:
+            boolean isVisible = getVisibility(fieldName, data);
+            int rotationDegree = getRotationDegree(fieldName, data);
+            // parse name:
             String name;
             if (fieldName.equals(CARD_FIELDS[3])) {
-                name = cardData.get(i);
+                name = data;
             } else {
-                name = cardData.get(i).split("_")[0];
+                name = data.split("_")[0];
             }
-            GameCard card = new GameCard(fieldPane, startX + (GameElementSize.CARD_DISTANCE.getSize() +
-                    GameElementSize.CARD_WIDTH.getSize()) * i, startY, name, isVisible, rotationDegree);
+            // create card and set it's position:
+            int cardX = startX;
+            if (fieldName.startsWith("player"))
+                cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize()) * position;
+            else
+                cardX -= (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize()) * position;
+            GameCard card = new GameCard(fieldPane, cardX, startY, name, isVisible, rotationDegree);
+            card.setPosition(position);
+            card.setCardType(fieldName);
+            // add card to field:
             fieldPane.getChildren().add(card);
             gameCards.add(card);
         }
@@ -211,7 +218,8 @@ public class DuelMenuGui extends MenuGui {
             selectedCardDescription.setText(Card.getCardByName(selectedCardName).getCardDescription());
         }
     }
-// این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
+
+    // این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
     public ArrayList<Integer> getCardsForTribute(int i) {
         return null;
     }
