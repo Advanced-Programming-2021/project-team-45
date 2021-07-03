@@ -13,6 +13,9 @@ import view.gui.DuelMenuGui;
 public class GameCard extends Rectangle {
     private Pane parent;
     private String cardName;
+    private String cardType;
+    private boolean isOpponent;
+    private int position;
 
     public GameCard(Pane parent, double x, double y, String cardName, boolean isVisible, int rotationDegree) {
         super(x, y, GameElementSize.CARD_WIDTH.getSize(), GameElementSize.CARD_HEIGHT.getSize());
@@ -70,7 +73,7 @@ public class GameCard extends Rectangle {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                DuelMenuGui.setSelectedCardName(card.getCardName());
+                DuelMenuGui.setSelectedCard(card);
                 DuelMenuGui.getDuelMenuGui().updateSelectedCard();
                 DuelMenuGui.getDuelMenuGui().deSelectCards();
                 DropShadow selectedShadow = new DropShadow();
@@ -86,5 +89,27 @@ public class GameCard extends Rectangle {
 
     public void deselectCard() {
         this.setEffect(null);
+    }
+
+    public void setCardType(String fieldName) {
+        String[] parts = fieldName.split("_");
+        this.isOpponent = parts[0].equals("opponent");
+        this.cardType = "--" + parts[1];
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public boolean isOpponent() {
+        return isOpponent;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
