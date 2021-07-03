@@ -1,7 +1,8 @@
 package view.gui;
 
+import com.gilecode.yagson.YaGson;
+import com.google.gson.reflect.TypeToken;
 import controller.ShopController;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -9,19 +10,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.card.Card;
 import model.user.User;
-import view.gui.elements.GetImage;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.concurrent.RecursiveAction;
 
 public class ImportExportMenuGui extends MainMenuGui {
     private static String loggedInUsername;
@@ -80,9 +83,35 @@ public class ImportExportMenuGui extends MainMenuGui {
 
 
     public void exportCard(MouseEvent mouseEvent) {
+        File file = GetInput.getDirectory();
+        if (file != null) {
+            if (selectedCardName == null)
+                ShowOutput.showOutput("Error", "you must choose a card before export");
+            else {
+                Card card = Card.getCardByName(selectedCardName);
+                YaGson yaGson = new YaGson();
+                File file1 = new File(file.getAbsolutePath() + "\\" + selectedCardName + ".json");
+                try {
+                    FileWriter fileWriter = new FileWriter(file1.getAbsolutePath());
+                    yaGson.toJson(card, fileWriter);
+                    fileWriter.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                ShowOutput.showOutput("Success", selectedCardName + ".json exported successfully");
+            }
+        }
     }
 
-    public void importCard(MouseEvent mouseEvent) {
+    public void importCard(MouseEvent mouseEvent) throws IOException, IllegalAccessException {
+        File file = GetInput.chooseJsonFile();
+        if (file != null) {
+            File newFile = new File("src/main/resources/view/gui/importJsonFiles/" + file.getName());
+            FileUtils.copyFile(file, newFile);
+            String jsnStr = new String(Files.readAllBytes(Paths.get("src/main/resources/view/gui/importJsonFiles/"+ file.getName())));
+            YaGson yaGson = new YaGson();
+            Card card = yaGson.fromJson(jsnStr, new TypeToken<Card>(){}.getType());
+        }
     }
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
