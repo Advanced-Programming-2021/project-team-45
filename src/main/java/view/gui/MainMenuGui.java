@@ -72,7 +72,10 @@ public class MainMenuGui extends MenuGui {
         shopMenuGui.start(stage);
     }
 
-    public void startImportExportMenu(MouseEvent mouseEvent) {
+    public void startImportExportMenu(MouseEvent mouseEvent) throws Exception {
+        ImportExportMenuGui importExportMenuGui = new ImportExportMenuGui();
+        importExportMenuGui.setUsername(user.getUsername());
+        importExportMenuGui.start(stage);
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
