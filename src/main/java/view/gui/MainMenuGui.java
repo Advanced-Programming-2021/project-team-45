@@ -79,4 +79,8 @@ public class MainMenuGui extends MenuGui {
         LoginMenuGui loginMenuGui = new LoginMenuGui();
         loginMenuGui.start(stage);
     }
+
+    public void startCartCreatorMenu(){
+
+    }
 }
