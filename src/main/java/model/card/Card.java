@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public abstract class Card {
 
-    private static final ArrayList<Card> allCards;
+    private static ArrayList<Card> allCards;
     public static HashMap<String, MonsterCard> allMonsterCards = new HashMap<>();
     public static HashMap<String, SpellTrapCard> allSpellTrapCards = new HashMap<>();
 

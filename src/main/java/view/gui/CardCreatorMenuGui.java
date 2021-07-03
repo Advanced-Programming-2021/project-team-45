@@ -10,12 +10,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CardCreatorMenuGui extends MenuGui {
 
@@ -44,6 +47,9 @@ public class CardCreatorMenuGui extends MenuGui {
     public TextField NameField;
     public TextField DescriptionField;
     public ChoiceBox<String> chooseType;
+    public TextField Defense;
+    public TextField Attack;
+    private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 
 
     @Override
@@ -64,7 +70,6 @@ public class CardCreatorMenuGui extends MenuGui {
     }
 
     private void calculatePrice() {
-        ArrayList<CheckBox> checkBoxes = new ArrayList<>();
         checkBoxes.add(AdvancedRitualArt);
         checkBoxes.add(ClosedForest);
         checkBoxes.add(DestroyAllCards);
@@ -87,30 +92,77 @@ public class CardCreatorMenuGui extends MenuGui {
     }
 
 
-
-    public void createCard(ActionEvent actionEvent) {
+    public void createCard(MouseEvent mouseEvent) {
         boolean bol = !NameField.getText().equals("");
         if (bol && chooseType.getValue() != null) {
-
-        }else{
+            ArrayList<CheckBox> allOnEffects = new ArrayList<>();
+            for (CheckBox checkBox : checkBoxes) {
+                if (checkBox.isSelected()) allOnEffects.add(checkBox);
+            }
+            boolean bol1 = true;
+            if (chooseType.getValue().equals("Monster Card")) {
+                bol1 = false;
+                Pattern pattern = Pattern.compile("^\\d+$");
+                Pattern pattern1 = Pattern.compile("^[A-Za-z ]+$");
+                Matcher matcher3 = pattern1.matcher(NameField.getText());
+                bol = matcher3.find();
+                Matcher matcher = pattern.matcher(Attack.getText());
+                Matcher matcher1 = pattern.matcher(Defense.getText());
+                if (matcher.find() && matcher1.find()) bol1 = true;
+            }
+            if (bol1 && bol) {
+                CardCreatorController.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
+                        , Integer.parseInt(Price.getText()), NameField.getText(), chooseType.getValue(),
+                        Attack.getText(), Defense.getText());
+                acceptBox();
+                back(mouseEvent);
+            } else {
+                throwAnErrorBox();
+            }
+        } else {
             throwAnErrorBox();
         }
     }
 
-    private void throwAnErrorBox(){
-        Stage stage=new Stage();
-        AnchorPane anchorPane=new AnchorPane();
-        Text text=new Text();
-        text.setText("please complete all parts of the form to create a new card");
+    private void throwAnErrorBox() {
+        Stage stage = new Stage();
+        AnchorPane anchorPane = new AnchorPane();
+        Text text = new Text();
+        text.setText("please solve errors and try again");
         anchorPane.getChildren().add(text);
         text.setX(5);
         text.setY(100);
         anchorPane.setPrefHeight(200);
         anchorPane.setPrefWidth(200);
         anchorPane.setStyle("-fx-background-color: #6e2020");
-        Scene scene=new Scene(anchorPane);
+        Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.setTitle("ErrorBox");
         stage.show();
+    }
+
+    private void acceptBox() {
+        Stage stage = new Stage();
+        AnchorPane anchorPane = new AnchorPane();
+        Text text = new Text();
+        text.setText("Card Created");
+        anchorPane.getChildren().add(text);
+        text.setX(5);
+        text.setY(100);
+        anchorPane.setPrefHeight(200);
+        anchorPane.setPrefWidth(200);
+        anchorPane.setStyle("-fx-background-color: #369ad0");
+        Scene scene = new Scene(anchorPane);
+        stage.setScene(scene);
+        stage.setTitle("Accept Box");
+        stage.show();
+    }
+
+    public void back(MouseEvent mouseEvent) {
+        try {
+            new MainMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
