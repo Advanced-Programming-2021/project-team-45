@@ -1,9 +1,6 @@
 package view.gui;
 
-import controller.DeckController;
-import controller.MainMenuController;
-import controller.ProfileController;
-import controller.ShopController;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -84,6 +81,11 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startCartCreatorMenu(){
-
+        CardCreatorMenuGui menu=new CardCreatorMenuGui();
+        try {
+            menu.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
