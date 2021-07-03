@@ -1,11 +1,13 @@
 package model.card;
 
 import au.com.bytecode.opencsv.CSVReader;
+import model.card.SpellTrapCards.effects.Effect;
 import model.user.User;
 
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MonsterCard extends Card {
@@ -18,6 +20,7 @@ public class MonsterCard extends Card {
     protected DefensePosition defenceMode;
     private boolean wasAttackedInThisTurn = false;
     private SpecialMonsterEnum specialMonsterEnum;
+    private ArrayList<Effect> effects=new ArrayList<>();
 
     //////////////////////// set enum in constructor
 
@@ -204,6 +207,14 @@ public class MonsterCard extends Card {
 
     public MonsterAttribute getAttribute() {
         return attribute;
+    }
+
+    public ArrayList<Effect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(ArrayList<Effect> effects) {
+        this.effects = effects;
     }
 
     public MonsterType getType() {
