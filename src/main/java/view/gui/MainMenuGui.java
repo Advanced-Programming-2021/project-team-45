@@ -18,7 +18,6 @@ public class MainMenuGui extends MenuGui {
     private static User user;
 
 
-
     @Override
     public void start(Stage stage) throws Exception {
         MainMenuGui.stage = stage;
@@ -33,12 +32,16 @@ public class MainMenuGui extends MenuGui {
         MainMenuGui.user = user;
     }
 
+    public static User getUser() {
+        return MainMenuGui.user;
+    }
+
     public void startDuel(MouseEvent mouseEvent) {
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {
-        DeckMenuGui deckMenuGui=new DeckMenuGui();
-        DeckController deckController=new DeckController(user.getUsername());
+        DeckMenuGui deckMenuGui = new DeckMenuGui();
+        DeckController deckController = new DeckController(user.getUsername());
         DeckMenuGui.setDeckController(deckController);
         try {
             deckMenuGui.start(stage);
@@ -54,7 +57,7 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startProfileMenu(MouseEvent mouseEvent) {
-        ProfileMenuGui profileMenuGui=new ProfileMenuGui();
+        ProfileMenuGui profileMenuGui = new ProfileMenuGui();
         ProfileMenuGui.setProfileController(new ProfileController(user.getUsername()));
         try {
             profileMenuGui.start(stage);
@@ -81,8 +84,8 @@ public class MainMenuGui extends MenuGui {
         loginMenuGui.start(stage);
     }
 
-    public void startCartCreatorMenu(){
-        CardCreatorMenuGui menu=new CardCreatorMenuGui();
+    public void startCartCreatorMenu() {
+        CardCreatorMenuGui menu = new CardCreatorMenuGui();
         try {
             menu.start(stage);
         } catch (Exception e) {
