@@ -100,14 +100,18 @@ public class DuelMenuGui extends MenuGui {
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
 
+        showMessage("kir");
+
+//        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
+    }
+
+    private static void showMessage(String message) {
         ShowGameMessage showGameMessage = new ShowGameMessage();
-        showGameMessage.setMessage("Hello World va KIREKHARRR!");
+        showGameMessage.setMessage(message);
         try {
             showGameMessage.start(stage);
         } catch (IOException ignored) {
         }
-
-//        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
     public static String getSelectedCardName() {

@@ -1,6 +1,7 @@
 package view.gui;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,10 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import view.gui.elements.GetImage;
 
 import java.io.IOException;
 import java.util.Random;
@@ -25,14 +27,14 @@ public class ShowGameMessage extends Application {
     @Override
     public void start(Stage prevStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ShowGameMessage.fxml"));
-        Scene scene = new Scene(root, 512, 540);
+        Scene scene = new Scene(root, 512, 512);
 
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Attention!");
         stage.setResizable(false);
-
-        prevStage.toBack();
+        stage.getIcons().add(GetImage.getGameIcon());
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.toFront();
         stage.requestFocus();
         stage.setAlwaysOnTop(true);
@@ -50,7 +52,7 @@ public class ShowGameMessage extends Application {
     }
 
     @FXML
-    public void closeWindow(MouseEvent mouseEvent) {
+    public void closeWindow(ActionEvent event) {
         Stage stage = (Stage) okButton.getScene().getWindow();
         stage.close();
     }

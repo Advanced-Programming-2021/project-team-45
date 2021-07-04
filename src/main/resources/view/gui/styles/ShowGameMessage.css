@@ -1,6 +1,6 @@
 .root {
     -fx-font-family: Arial;
-    -fx-background-color: #eee0b1;
+    -fx-background-color: #000000;
 }
 
 .label {
@@ -11,6 +11,5 @@
 }
 
 .button {
-    -fx-background-color: #dd0202;
-    -fx-text-fill: white;
+    -fx-background-color: #cb9a45;
 }

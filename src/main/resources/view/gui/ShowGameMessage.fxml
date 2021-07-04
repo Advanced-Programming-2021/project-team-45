@@ -14,7 +14,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.gui.ShowGameMessage"
-            prefHeight="540" prefWidth="512">
+            prefHeight="512" prefWidth="512">
 
     <stylesheets>
         <URL value="@styles/ShowGameMessage.css"/>
@@ -22,7 +22,7 @@
 
     <top>
         <HBox alignment="CENTER">
-            <Rectangle fx:id="outputImage" height="256" width="512"/>
+            <Rectangle fx:id="outputImage" height="228" width="512"/>
         </HBox>
     </top>
 
@@ -40,7 +40,7 @@
     <bottom>
         <HBox alignment="CENTER">
             <Button alignment="CENTER" prefHeight="26.0"
-                    prefWidth="80.0" text="OK" onMouseClicked="#closeWindow" fx:id="okButton">
+                    prefWidth="80.0" text="OK" onAction="#closeWindow" fx:id="okButton">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
