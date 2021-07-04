@@ -47,7 +47,7 @@ public class ImportExportMenuGui extends MainMenuGui {
     public GridPane gridPane = new GridPane();
     public BorderPane borderPane;
     public Text text;
-    Button[][] buttons;
+    ArrayList<Button> buttons;
 
     public static void setUsername(String username) {
         loggedInUsername = username;
@@ -70,19 +70,18 @@ public class ImportExportMenuGui extends MainMenuGui {
     @FXML
     void initialize() {
         text.setText("selected card: ");
-        buttons = new Button[10][7];
+        buttons = new ArrayList<>();
         HashMap<String, Integer> cards = new ShopController(loggedInUsername).getCardsPrices();
         for (int index = 0; index < cards.keySet().size(); index++) {
-            int j = index % 7;
-            int i = index / 7;
             String cardName = (String) cards.keySet().toArray()[index];
-            buttons[i][j] = new CardButton(cardName, this);
+            buttons.add(new CardButton(cardName, this));
         }
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 7; j++) {
-                gridPane.add(buttons[i][j], j, i);
-            }
+        for (int i = 0; i < buttons.size(); i++) {
+            int x = i % 7;
+            int y = i / 7;
+            gridPane.add(buttons.get(i), x, y);
         }
+
         ScrollPane scrollPane = new ScrollPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);

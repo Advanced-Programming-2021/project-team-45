@@ -15,6 +15,7 @@ import model.Shop;
 import model.card.Card;
 import model.user.User;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -23,7 +24,7 @@ public class ShopMenuGui extends Application {
     private static String logInUsername;
     @FXML
     public GridPane gridPane;
-    private ShopCellMenu[][] shopCellMenus;
+    private ArrayList<ShopCellMenu> shopCellMenus;
 
     public static void setUsername(String username) {
         ShopMenuGui.logInUsername = username;
@@ -45,25 +46,19 @@ public class ShopMenuGui extends Application {
 
     @FXML
     void initialize() {
-        shopCellMenus = new ShopCellMenu[17][4];
+        shopCellMenus = new ArrayList<>();
         HashMap<String, Integer> cards = new ShopController(logInUsername).getCardsPrices();
-        for (int index = 0; index < cards.keySet().size() - 2; index++) {
-            int j = index % 4;
-            int i = index / 4;
+        for (int index = 0; index < cards.keySet().size(); index++) {
             ShopCellMenu.setShopController(new ShopController(logInUsername));
             ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
-            shopCellMenus[i][j] = shopCellMenu;
+            shopCellMenus.add(shopCellMenu);
         }
 
-        for (int i = 0; i < 17; i++) {
-            for (int j = 0; j < 4; j++) {
-                gridPane.add(shopCellMenus[i][j], j, i);
-            }
+        for (int i = 0; i < shopCellMenus.size(); i++) {
+            int x = i % 4;
+            int y = i / 4;
+            gridPane.add(shopCellMenus.get(i), x, y);
         }
-        ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[68]);
-        ShopCellMenu shopCellMenu1 = new ShopCellMenu((String) cards.keySet().toArray()[69]);
-        gridPane.add(shopCellMenu, 0, 17);
-        gridPane.add(shopCellMenu1, 1, 17);
     }
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
