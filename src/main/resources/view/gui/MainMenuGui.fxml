@@ -11,7 +11,7 @@
     <top>
         <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
             <children>
-                <Label prefHeight="45.0" prefWidth="198.0" text="welcome to YU-GI-OH!">
+                <Label prefHeight="45.0" prefWidth="198.0" text="welcome to YU-GI-OH!" textFill="whitesmoke">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
