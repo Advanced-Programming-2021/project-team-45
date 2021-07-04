@@ -1,7 +1,6 @@
 package view.gui;
 
 import controller.ScoreboardController;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -9,22 +8,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.user.User;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class ScoreBoardMenuGui extends MenuGui {
     private static Stage stage;
-    private static User user;
-
     @FXML
     public BorderPane borderpane;
     @FXML
@@ -33,7 +26,7 @@ public class ScoreBoardMenuGui extends MenuGui {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("ScoreBoardMenu.fxml"));
-        ScoreBoardMenuGui.stage=stage;
+        ScoreBoardMenuGui.stage = stage;
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("Score Board");
@@ -54,20 +47,14 @@ public class ScoreBoardMenuGui extends MenuGui {
         }
     }
 
-    public static void setUser(User user) {
-        ScoreBoardMenuGui.user = user;
-    }
-
     private void setList(int i, String nickName, Integer score) {
         boolean isLoginUser = false;
-        if (nickName.equals(user.getNickname()))
+        if (nickName.equals(ScoreboardController.getNickname(username)))
             isLoginUser = true;
 
-            scoreboard.add(getLabel(String.valueOf(i + 1), isLoginUser), 0 + 10, i + 1);
-            scoreboard.add(getLabel(nickName, isLoginUser), 1 + 10, i + 1);
-            scoreboard.add(getLabel(String.valueOf(score), isLoginUser), 2 + 10, i + 1);
-
-
+        scoreboard.add(getLabel(String.valueOf(i + 1), isLoginUser), 0, i + 1);
+        scoreboard.add(getLabel(nickName, isLoginUser), 1, i + 1);
+        scoreboard.add(getLabel(String.valueOf(score), isLoginUser), 2, i + 1);
     }
 
     private Label getLabel(String text, boolean isLoginUser) {

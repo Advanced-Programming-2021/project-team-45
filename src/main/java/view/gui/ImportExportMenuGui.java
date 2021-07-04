@@ -49,10 +49,6 @@ public class ImportExportMenuGui extends MainMenuGui {
     public Text text;
     ArrayList<Button> buttons;
 
-    public static void setUsername(String username) {
-        loggedInUsername = username;
-    }
-
     public void setSelectedCardName(String cardName) {
         selectedCardName = cardName;
         text.setText("selected card: " + cardName);
@@ -70,8 +66,8 @@ public class ImportExportMenuGui extends MainMenuGui {
     @FXML
     void initialize() {
         text.setText("selected card: ");
-        buttons = new ArrayList<>();
-        HashMap<String, Integer> cards = new ShopController(loggedInUsername).getCardsPrices();
+        buttons = new Button[10][7];
+        HashMap<String, Integer> cards = new ShopController(username).getCardsPrices();
         for (int index = 0; index < cards.keySet().size(); index++) {
             String cardName = (String) cards.keySet().toArray()[index];
             buttons.add(new CardButton(cardName, this));
@@ -254,8 +250,7 @@ public class ImportExportMenuGui extends MainMenuGui {
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
         MainMenuGui mainMenuGui = new MainMenuGui();
-        mainMenuGui.setUser(User.getUserByUsername(loggedInUsername));
+        mainMenuGui.setUsername(username);
         mainMenuGui.start(stage);
     }
-
 }

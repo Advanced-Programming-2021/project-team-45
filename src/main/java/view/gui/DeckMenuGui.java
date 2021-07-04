@@ -1,7 +1,6 @@
 package view.gui;
 
 import controller.DeckController;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,8 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-public class DeckMenuGui extends Application {
-
+public class DeckMenuGui extends MenuGui {
     private static DeckController deckController;
     private static AnchorPane anchorPane;
     private static Stage stage;
@@ -114,6 +112,4 @@ public class DeckMenuGui extends Application {
         button.setStyle("-fx-background-color: #ffffff");
         button1.setStyle("-fx-background-color: #ffffff");
     }
-
-
 }
