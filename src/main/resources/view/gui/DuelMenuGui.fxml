@@ -54,7 +54,7 @@
                     <VBox alignment="CENTER">
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="TEST1">
+                                    prefWidth="80.0" text="Next Phase">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -72,7 +72,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="TEST2">
+                                    prefWidth="80.0" text="Surrender">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -90,7 +90,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="TEST3">
+                                    prefWidth="80.0" text="TEST">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>

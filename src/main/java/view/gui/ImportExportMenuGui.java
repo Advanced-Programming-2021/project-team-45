@@ -27,7 +27,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class ImportExportMenuGui extends MainMenuGui {
-    private static String loggedInUsername;
     private static Stage stage;
     private String selectedCardName;
     @FXML
@@ -35,10 +34,6 @@ public class ImportExportMenuGui extends MainMenuGui {
     public BorderPane borderPane;
     public Text text;
     Button[][] buttons;
-
-    public static void setUsername(String username) {
-        loggedInUsername = username;
-    }
 
     public void setSelectedCardName(String cardName) {
         selectedCardName = cardName;
@@ -58,7 +53,7 @@ public class ImportExportMenuGui extends MainMenuGui {
     void initialize() {
         text.setText("selected card: ");
         buttons = new Button[10][7];
-        HashMap<String, Integer> cards = new ShopController(loggedInUsername).getCardsPrices();
+        HashMap<String, Integer> cards = new ShopController(username).getCardsPrices();
         for (int index = 0; index < cards.keySet().size(); index++) {
             int j = index % 7;
             int i = index / 7;
@@ -116,7 +111,7 @@ public class ImportExportMenuGui extends MainMenuGui {
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
         MainMenuGui mainMenuGui = new MainMenuGui();
-        mainMenuGui.setUser(User.getUserByUsername(loggedInUsername));
+        mainMenuGui.setUsername(username);
         mainMenuGui.start(stage);
     }
 }

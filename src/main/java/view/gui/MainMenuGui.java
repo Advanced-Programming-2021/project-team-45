@@ -1,22 +1,17 @@
 package view.gui;
 
 import controller.*;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.user.User;
 
 import java.io.IOException;
 
 public class MainMenuGui extends MenuGui {
     private static Stage stage;
     private static MainMenuController mainMenuController;
-    private static User user;
-
 
 
     @Override
@@ -28,16 +23,14 @@ public class MainMenuGui extends MenuGui {
         stage.setTitle("YU-GI-OH!");
     }
 
-    public static void setUser(User user) {
-        MainMenuGui.user = user;
-    }
-
     public void startDuel(MouseEvent mouseEvent) {
+
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {
-        DeckMenuGui deckMenuGui=new DeckMenuGui();
-        DeckController deckController=new DeckController(user.getUsername());
+        DeckMenuGui deckMenuGui = new DeckMenuGui();
+        DeckMenuGui.setUsername(username);
+        DeckController deckController = new DeckController(username);
         DeckMenuGui.setDeckController(deckController);
         try {
             deckMenuGui.start(stage);
@@ -48,13 +41,14 @@ public class MainMenuGui extends MenuGui {
 
     public void startScoreBoardMenu(MouseEvent mouseEvent) throws Exception {
         ScoreBoardMenuGui scoreBoardMenuGui = new ScoreBoardMenuGui();
-        ScoreBoardMenuGui.setUser(user);
+        ScoreBoardMenuGui.setUsername(username);
         scoreBoardMenuGui.start(stage);
     }
 
     public void startProfileMenu(MouseEvent mouseEvent) {
-        ProfileMenuGui profileMenuGui=new ProfileMenuGui();
-        ProfileMenuGui.setProfileController(new ProfileController(user.getUsername()));
+        ProfileMenuGui profileMenuGui = new ProfileMenuGui();
+        ProfileMenuGui.setUsername(username);
+        ProfileMenuGui.setProfileController(new ProfileController(username));
         try {
             profileMenuGui.start(stage);
         } catch (Exception e) {
@@ -65,13 +59,13 @@ public class MainMenuGui extends MenuGui {
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
         ShopMenuGui shopMenuGui = new ShopMenuGui();
-        ShopMenuGui.setUsername(user.getUsername());
+        ShopMenuGui.setUsername(username);
         shopMenuGui.start(stage);
     }
 
     public void startImportExportMenu(MouseEvent mouseEvent) throws Exception {
         ImportExportMenuGui importExportMenuGui = new ImportExportMenuGui();
-        importExportMenuGui.setUsername(user.getUsername());
+        ImportExportMenuGui.setUsername(username);
         importExportMenuGui.start(stage);
     }
 
@@ -80,8 +74,9 @@ public class MainMenuGui extends MenuGui {
         loginMenuGui.start(stage);
     }
 
-    public void startCartCreatorMenu(){
-        CardCreatorMenuGui menu=new CardCreatorMenuGui();
+    public void startCartCreatorMenu() {
+        CardCreatorMenuGui menu = new CardCreatorMenuGui();
+        CardCreatorMenuGui.setUsername(username);
         try {
             menu.start(stage);
         } catch (Exception e) {

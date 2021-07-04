@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.Regex;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
@@ -19,6 +20,7 @@ import view.gui.elements.GetImage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 public class DuelMenuGui extends MenuGui {
 
@@ -252,8 +254,8 @@ public class DuelMenuGui extends MenuGui {
         return null;
     }
 
-    public void showOutput(String toString) {
-
+    public void showOutput(String message) {
+        showMessage(message);
     }
 
     public int getNumber(String view) {
@@ -261,10 +263,217 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void updatePlayerGameBoard() {
-
+        updateGameBoard();
     }
 
     public void updateOpponentGameBoard() {
+        updateGameBoard();
+    }
 
+    // methods similar to CLI:
+    public void nextPhase() {
+        int error = gameController.nextPhaseInController();
+        String message = "";
+        if (error == 1) {
+            message = "phase: draw phase";
+//            message = "new card added to the hand : " +
+//                    gameController.getGame().getAddedCardInDrawPhase().getCardName();
+        } else if (error == 2) {
+            message = "phase: Main phase 1";
+        } else if (error == 5) {
+            message = "phase: End Phase\n" +
+                    "its " + gameController.getGame().getPlayerOfThisTurn().getNickname() + "'s turn";
+        } else if (error == 0) {
+            message = "phase: standby phase";
+        } else if (error == 3) {
+            message = "phase: battle Phase";
+        } else if (error == 4) {
+            message = "phase: Main Phase 2";
+        }
+        showMessage(message);
+    }
+
+    public void summonCard() {
+        int error = gameController.summonErrorHandler();
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "you can’t summon this card";
+        } else if (error == 3) {
+            message = "action not allowed in this phase";
+        } else if (error == 4) {
+            message = "monster card zone is full";
+        } else if (error == 5) {
+            message = "you already summoned/set on this turn";
+        } else if (error == 6) {
+            message = "summoned successfully";
+        } else if (error == 7) {
+            message = "there are not enough cards for tribute";
+        } else if (error == 8) {
+            message = "there no monsters on this address";
+        } else if (error == 9) {
+            message = "there is no monster on one of these addresses";
+        }
+        showMessage(message);
+    }
+
+    public void setCard() {
+        int error = gameController.setCardErrorHandler();
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "you can’t set this card";
+        } else if (error == 3) {
+            message = "you can’t do this action in this phase";
+        } else if (error == 4) {
+            message = "monster card zone is full";
+        } else if (error == 5) {
+            message = "you already summoned/set on this turn";
+        } else if (error == 6) {
+            message = "set successfully";
+        } else if (error == 7) {
+            message = "spell card zone is full";
+        }
+        showMessage(message);
+    }
+
+    public void changePosition(String input) {
+
+
+        int error = gameController.changePositionErrorHandler(Regex.getMatcher(input, "(attack|defense)"));
+
+
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "you can’t change this card position";
+        } else if (error == 3) {
+            message = "you can’t do this action in this phase";
+        } else if (error == 4) {
+            message = "this card is already in the wanted position";
+        } else if (error == 5) {
+            message = "you already changed this card position in this turn";
+        } else if (error == 6) {
+            message = "monster card position changed successfully";
+        }
+        showMessage(message);
+    }
+
+    public void flipSummon() {
+        int error = gameController.flipSummonErrorHandler();
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "you can’t change this card position";
+        } else if (error == 3) {
+            message = "you can’t do this action in this phase";
+        } else if (error == 4) {
+            message = "you can’t flip summon this card";
+        } else if (error == 5) {
+            message = "flip summoned successfully";
+        }
+        showMessage(message);
+    }
+
+    public void attackCard(Matcher matcher) {
+        int error = 1;
+
+
+        if (matcher.find())
+            error = gameController.attackErrorHandler(Integer.parseInt(matcher.group(1)));
+
+
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "you can’t attack with this card";
+        } else if (error == 3) {
+            message = "you can’t do this action in this phase";
+        } else if (error == 4) {
+            message = "this card already attacked";
+        } else if (error == 5) {
+            message = "there is no card to attack here";
+        } else if (error == 6) {
+            message = "your opponent’s monster is destroyed and your opponent receives " +
+                    gameController.damageOnOpponent() + " battle damage";
+        } else if (error == 7) {
+            message = "both you and your opponent monster cards are destroyed and no " +
+                    "one receives damage";
+        } else if (error == 8) {
+            message = "Your monster card is destroyed and you received " +
+                    gameController.damageOnPlayer() + " battle damage";
+        } else if (error == 9) {
+            message = "the defense position monster is destroyed";
+        } else if (error == 10) {
+            message = "no card is destroyed";
+        } else if (error == 11) {
+            message = "no card is destroyed and you received " + gameController.damageOnPlayer()
+                    + " battle damage";
+        } else if (error == 12) {
+            message = "the defense position monster " +
+                    gameController.getDefenseTargetCardName() + " is destroyed";
+        } else if (error == 13) {
+            message = "opponent’s monster card was " + gameController.getDefenseTargetCardName()
+                    + " and no card is destroyed";
+        } else if (error == 14) {
+            message = "opponent’s monster card was " + gameController.getDefenseTargetCardName()
+                    + " and no card is destroyed and you received " +
+                    gameController.damageOnPlayer() + " battle damage";
+        }
+        showMessage(message);
+    }
+
+    public void directAttack() {
+        int error = gameController.directAttackErrorHandler();
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "you can’t attack with this card";
+        } else if (error == 3) {
+            message = "you can’t do this action in this phase";
+        } else if (error == 4) {
+            message = "this card already attacked";
+        } else if (error == 5) {
+            message = "you can’t attack the opponent directly";
+        } else if (error == 6) {
+            message = "you opponent receives " + gameController.damageOnOpponent()
+                    + " battle damage";
+        }
+        showMessage(message);
+    }
+
+    public void activateEffect() {
+        int error = gameController.activeEffectErrorHandler();
+        String message = "";
+        if (error == 1) {
+            message = "no card is selected yet";
+        } else if (error == 2) {
+            message = "activate effect is only for spell cards.";
+        } else if (error == 3) {
+            message = "you can’t activate an effect on this turn";
+        } else if (error == 4) {
+            message = "you have already activated this card";
+        } else if (error == 5) {
+            message = "spell card zone is full";
+        } else if (error == 6) {
+            message = "preparations of this spell are not done yet";
+        } else if (error == 7) {
+            message = "spell activated";
+        }
+        showMessage(message);
+    }
+
+    public void surrender() {
+        gameController.surrender();
+    }
+
+    public void cancel() {
+        gameController.cancel();
     }
 }
