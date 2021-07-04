@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720" prefWidth="1080" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.CardCreatorMenuGui">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e0101" height="283.0" layoutX="66.0" layoutY="65.0"
+                   stroke="BLACK" strokeType="INSIDE" width="264.0"/>
+        <TextField fx:id="NameField" layoutX="459.0" layoutY="129.0" prefHeight="26.0" prefWidth="141.0"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b5908b" height="32.0" layoutX="489.0" layoutY="93.0"
+                   stroke="BLACK" strokeType="INSIDE" width="74.0"/>
+        <Text layoutX="512.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#993939" height="32.0" layoutX="458.0" layoutY="155.0"
+                   stroke="BLACK" strokeType="INSIDE" width="143.0"/>
+        <Text layoutX="515.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+        <Text layoutX="497.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price ="/>
+        <ImageView fitHeight="283.0" fitWidth="264.0" layoutX="66.0" layoutY="67.0">
+            <image>
+                <Image url="@Assets/Project-Assets-1.0.0/Assets/Arts/MBB_004100.dds.png"/>
+            </image>
+        </ImageView>
+        <Text layoutX="514.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effect"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#913131" height="32.0" layoutX="458.0" layoutY="187.0"
+                   stroke="BLACK" strokeType="INSIDE" width="143.0"/>
+        <Text layoutX="517.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9c2c2c" height="32.0" layoutX="458.0" layoutY="306.0"
+                   stroke="BLACK" strokeType="INSIDE" width="143.0"/>
+        <Text layoutX="517.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type"/>
+        <Spinner fx:id="Level" initialValue="1" layoutX="459.0" layoutY="219.0" max="7" min="1" prefHeight="26.0"
+                 prefWidth="141.0"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9c3333" height="32.0" layoutX="458.0" layoutY="246.0"
+                   stroke="BLACK" strokeType="INSIDE" width="143.0"/>
+        <TextField fx:id="DescriptionField" layoutX="459.0" layoutY="279.0" prefHeight="26.0" prefWidth="141.0"/>
+        <Text layoutX="499.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9b9b" height="200.0" layoutX="28.0" layoutY="438.0"
+                   stroke="BLACK" strokeType="INSIDE" width="1022.0"/>
+        <Text layoutX="514.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effects"/>
+        <Text layoutX="659.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="324"
+              wrappingWidth="58.904296875"/>
+        <CheckBox fx:id="AdvancedRitualArt" layoutX="66.0" layoutY="477.0" mnemonicParsing="false"
+                  text="Advanced Ritual Art Effect"/>
+        <CheckBox fx:id="ClosedForest" layoutX="66.0" layoutY="504.0" mnemonicParsing="false"
+                  text="Closed Forest Effect"/>
+        <CheckBox fx:id="DestroyAllCards" layoutX="66.0" layoutY="529.0" mnemonicParsing="false"
+                  text="Destroy All Card"/>
+        <CheckBox fx:id="DrawCard" layoutX="66.0" layoutY="555.0" mnemonicParsing="false" text="Draw Card Effect"/>
+        <CheckBox fx:id="IncreaseAttack" layoutX="66.0" layoutY="582.0" mnemonicParsing="false"
+                  text="Increase Attack Of Cards"/>
+        <CheckBox fx:id="MagicCylinder" layoutX="263.0" layoutY="477.0" mnemonicParsing="false"
+                  text="Magic Clynder Effect"/>
+        <CheckBox fx:id="MagnumShield" layoutX="264.0" layoutY="504.0" mnemonicParsing="false"
+                  text="Magnum Shield Effect"/>
+        <CheckBox fx:id="MirrorForce" layoutX="264.0" layoutY="529.0" mnemonicParsing="false"
+                  text="Mirror Force Effect"/>
+        <CheckBox fx:id="MysticalSpaceTyphoon" layoutX="264.0" layoutY="555.0" mnemonicParsing="false"
+                  text="Mystical Space Typhoon Effect"/>
+        <CheckBox fx:id="NegateAttack" layoutX="264.0" layoutY="582.0" mnemonicParsing="false"
+                  text="Negate Attack Effect"/>
+        <CheckBox fx:id="SummonFromGraveyard" layoutX="486.0" layoutY="504.0" mnemonicParsing="false"
+                  text="Summon From GraveYard"/>
+        <CheckBox fx:id="SolemnWarning" layoutX="486.0" layoutY="477.0" mnemonicParsing="false"
+                  text="Solemn Warning Effect"/>
+        <CheckBox fx:id="Terraform" layoutX="486.0" layoutY="529.0" mnemonicParsing="false" text="Terraforming"/>
+        <CheckBox fx:id="TorrentialTribiute" layoutX="486.0" layoutY="555.0" mnemonicParsing="false"
+                  text="Torential Tribiute"/>
+        <CheckBox fx:id="TrapHole" layoutX="487.0" layoutY="582.0" mnemonicParsing="false" text="TrapHole Effect"/>
+        <CheckBox fx:id="TwinTwisters" layoutX="702.0" layoutY="477.0" mnemonicParsing="false"
+                  text="Twin Twisters Effect"/>
+        <CheckBox fx:id="UnitedWeStands" layoutX="702.0" layoutY="504.0" mnemonicParsing="false"
+                  text="United We Stands"/>
+        <Button layoutX="676.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#createCard" prefHeight="145.0"
+                prefWidth="270.0" style="-fx-background-color: darkred;" text="Click Here To Create This Card"
+                textFill="WHITE"/>
+        <Text fx:id="Price" layoutX="537.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+        <ChoiceBox fx:id="chooseType" layoutX="458.0" layoutY="338.0" prefHeight="26.0" prefWidth="143.0"/>
+        <TextField fx:id="Attack" layoutX="686.0" layoutY="565.0"/>
+        <TextField fx:id="Defense" layoutX="871.0" layoutY="565.0"/>
+        <Text layoutX="743.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack"/>
+        <Text layoutX="935.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense"/>
+        <Text layoutX="612.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Pay attention: you have to input number and this option just for monsters card"/>
+        <Button layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#back"
+                style="-fx-background-color: darkred;" text="Back"/>
+    </children>
+</AnchorPane>
