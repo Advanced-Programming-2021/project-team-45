@@ -33,6 +33,10 @@ public class LoginMenuGui extends MenuGui {
     public Button exitButton;
     public Rectangle yugiohRect;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         LoginMenuGui.stage = stage;
@@ -50,10 +54,6 @@ public class LoginMenuGui extends MenuGui {
         yugiohRect.setWidth(256);
         yugiohRect.setHeight(128);
         yugiohRect.setFill(new ImagePattern(image));
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
 

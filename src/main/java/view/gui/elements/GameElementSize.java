@@ -1,6 +1,8 @@
 package view.gui.elements;
 
 
+import view.gui.DuelMenuGui;
+
 public enum GameElementSize {
     CARD_WIDTH(51),
     CARD_HEIGHT(75),
@@ -33,7 +35,7 @@ public enum GameElementSize {
             case "opponent_monster":
                 return OPPONENT_MONSTER_Y.size;
             case "opponent_spell":
-                return OPPONENT_SPELL_Y.getSize();
+                return OPPONENT_SPELL_Y.size;
         }
         return 0;
     }

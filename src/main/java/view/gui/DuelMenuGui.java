@@ -121,7 +121,19 @@ public class DuelMenuGui extends MenuGui {
 
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
+
+        showMessage("kir");
+
 //        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
+    }
+
+    private static void showMessage(String message) {
+        ShowGameMessage showGameMessage = new ShowGameMessage();
+        showGameMessage.setMessage(message);
+        try {
+            showGameMessage.start(stage);
+        } catch (IOException ignored) {
+        }
     }
 
     public static String getSelectedCardName() {
@@ -129,7 +141,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public static DuelMenuGui getDuelMenuGui() {
-        return DuelMenuGui.duelMenuGui;
+        return duelMenuGui;
     }
 
     public void deSelectCards() {
