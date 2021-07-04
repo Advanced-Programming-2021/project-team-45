@@ -1,18 +1,47 @@
 package controller;
 
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.card.*;
 import model.card.SpellTrapCards.effects.*;
+import view.gui.MainMenuGui;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class CardCreatorController {
 
-    public static void calculate(ArrayList<CheckBox> allEffects, int price, Spinner<Integer> level, Text value) {
-        new calculator().realRun(allEffects, price, level, value);
+    private calculator calculator;
+
+    public void calculate(ArrayList<CheckBox> allEffects, int price, Spinner<Integer> level, Text value
+            , TextField attack, TextField defense) {
+        calculator = new calculator().realRun(allEffects, price, level, value, attack, defense);
+    }
+
+    public boolean hasEnoughMoney() {
+        long price = (long) (calculator.getEffectPrice() * 0.1);
+        if (price > MainMenuGui.getUser().getMoney()) {
+            return false;
+        } else {
+            MainMenuGui.getUser().decreaseMoney((int) price);
+            return true;
+        }
+    }
+
+    public static int convertToNumber(TextField num) {
+        if (num.getText().equals("")) {
+            return 0;
+        } else {
+            Pattern pattern = Pattern.compile("^\\d+$");
+            Matcher matcher = pattern.matcher(num.getText());
+            if (matcher.find()) return Integer.parseInt(num.getText());
+            else return 0;
+        }
     }
 
     public static void createACard(ArrayList<CheckBox> allEffect, int level, String description, int price, String name
@@ -24,15 +53,15 @@ public class CardCreatorController {
                     , Integer.parseInt(defense), null, null, false,
                     null, null);
             card.setEffects(allEffects);
-            Card.allMonsterCards.put(name,card);
+            Card.allMonsterCards.put(name, card);
             Card.getAllCards().add(card);
         } else {
             String kind = type.equals("Spell Card") ? "Spell" : "Trap";
             boolean bol = kind.equals("Spell");
-            SpellTrapCard card=new SpellTrapCard(name, description, "Effect", price, null,
+            SpellTrapCard card = new SpellTrapCard(name, description, "Effect", price, null,
                     0, SpellAndTrapIcon.NORMAL, false, kind, bol, "unlimited", null,
                     allEffects);
-            Card.allSpellTrapCards.put(name,card);
+            Card.allSpellTrapCards.put(name, card);
             Card.getAllCards().add(card);
         }
 
@@ -69,17 +98,23 @@ class calculator extends Thread {
     ArrayList<CheckBox> allEffects;
     private Spinner<Integer> level;
     private Text value;
-    private int effectprice = 0;
+    private TextField attack;
+    private TextField defense;
+    private long effectprice = 0;
 
-    public void realRun(ArrayList<CheckBox> allEffects, int price, Spinner<Integer> level, Text value) {
+    public calculator realRun(ArrayList<CheckBox> allEffects, int price, Spinner<Integer> level, Text value, TextField attack
+            , TextField defense) {
         this.allEffects = allEffects;
         this.level = level;
         this.value = value;
+        this.attack = attack;
+        this.defense = defense;
         effectprice = price;
         this.start();
+        return this;
     }
 
-    public int getEffectprice() {
+    public long getEffectPrice() {
         return effectprice;
     }
 
@@ -89,8 +124,10 @@ class calculator extends Thread {
         for (CheckBox allEffect : allEffects) {
             if (allEffect.isSelected()) allActives++;
         }
-        effectprice = effectprice + allActives * 1000 + 1000 - level.getValue() * 100;
+        effectprice = 1000 - level.getValue() * 100;
         int newLevel = level.getValue();
+        int ATTACK = CardCreatorController.convertToNumber(attack);
+        int DEFENSE = CardCreatorController.convertToNumber(defense);
         while (true) {
             int newActivate = 0;
             for (CheckBox allEffect : allEffects) {
@@ -99,11 +136,22 @@ class calculator extends Thread {
             if (allActives != newActivate) {
                 int diference = newActivate - allActives;
                 allActives = newActivate;
-                effectprice = effectprice + diference * 1000;
+                effectprice = (long) (1000 - level.getValue() * 100 + 500 * (long) Math.pow(2.718281828, allActives) -
+                        500 + Math.pow(ATTACK, 1) + Math.pow(DEFENSE, 1));
             }
             if (level.getValue() != newLevel) {
-                effectprice = effectprice + (newLevel - level.getValue()) * 100;
+                effectprice = effectprice + (newLevel - level.getValue()) * 100L;
                 newLevel = level.getValue();
+            }
+            if (CardCreatorController.convertToNumber(attack) != ATTACK) {
+                effectprice -= Math.pow(ATTACK, 1);
+                ATTACK = CardCreatorController.convertToNumber(attack);
+                effectprice += Math.pow(ATTACK, 1);
+            }
+            if (CardCreatorController.convertToNumber(defense) != DEFENSE) {
+                effectprice -= Math.pow(DEFENSE, 1);
+                DEFENSE = CardCreatorController.convertToNumber(defense);
+                effectprice += Math.pow(DEFENSE, 1);
             }
             value.setText(String.valueOf(effectprice));
             try {
