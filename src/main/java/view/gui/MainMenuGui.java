@@ -23,6 +23,7 @@ public class MainMenuGui extends MenuGui {
     public void start(Stage stage) throws Exception {
         MainMenuGui.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("MainMenuGui.fxml"));
+        root.setStyle("-fx-background-color: #450000");
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
