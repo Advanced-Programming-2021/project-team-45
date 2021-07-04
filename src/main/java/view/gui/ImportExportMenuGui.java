@@ -1,5 +1,7 @@
 package view.gui;
 
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
 import com.gilecode.yagson.YaGson;
 import com.google.gson.reflect.TypeToken;
 import controller.ShopController;
@@ -20,14 +22,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.card.Card;
+import model.card.MonsterCard;
+import model.card.SpellTrapCard;
 import model.user.User;
 import org.apache.commons.io.FileUtils;
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ImportExportMenuGui extends MainMenuGui {
@@ -87,7 +95,7 @@ public class ImportExportMenuGui extends MainMenuGui {
     }
 
 
-    public void exportCard(MouseEvent mouseEvent) {
+    public void exportCardTOJSON(MouseEvent mouseEvent) {
         File file = GetInput.getDirectory();
         if (selectedCardName == null)
             ShowOutput.showOutput("Error", "you must choose a card");
@@ -108,22 +116,80 @@ public class ImportExportMenuGui extends MainMenuGui {
         }
     }
 
-    public void importCard(MouseEvent mouseEvent) throws IOException, IllegalAccessException {
-        File file = GetInput.chooseJsonFile();
-        if (file != null) {
-            File newFile = new File("src/main/resources/view/gui/importJsonFiles/" + file.getName());
-            FileUtils.copyFile(file, newFile);
-            String jsnStr = new String(Files.readAllBytes(Paths.get("src/main/resources/view/gui/importJsonFiles/"+ file.getName())));
-            YaGson yaGson = new YaGson();
-            Card card = yaGson.fromJson(jsnStr, new TypeToken<Card>(){}.getType());
-            if (card != null)
-                showCardData(card, file.getName());
-            else
-                ShowOutput.showOutput("Error", "you must import a Card Type Object");
+    public void exportCardToCSV(MouseEvent mouseEvent) throws IOException {
+        File file = GetInput.getDirectory();
+        if (selectedCardName == null)
+            ShowOutput.showOutput("Error", "you must choose a card");
+        else {
+            if (file != null) {
+                Card card = Card.getCardByName(selectedCardName);
+                ArrayList<String[]> data = null;
+                if (card instanceof MonsterCard)
+                    data = getCardDataString(card, true);
+                else
+                    data = getCardDataString(card, false);
+                CSVWriter writer = new CSVWriter(new FileWriter(file.getAbsolutePath() + "\\" + selectedCardName + ".csv"));
+                writer.writeAll(data);
+                writer.flush();
+                ShowOutput.showOutput("Success", selectedCardName + ".csv exported successfully");
+            }
         }
     }
 
-    public void showCardData(Card card, String fileName) {
+    private ArrayList<String[]> getCardDataString(Card card, boolean isMonsterCard) {
+        ArrayList<String[]> data = new ArrayList<>();
+        if (isMonsterCard) {
+            String[] dataNames = {"Name", "Level", "Attribute", "Monster Type", "Card Type", "Atk", "Def", "Description", "Price"};
+            data.add(dataNames);
+            MonsterCard monsterCard = (MonsterCard) card;
+            String[] mainData = {monsterCard.getCardName(), String.valueOf(monsterCard.getLevel()), monsterCard.getAttribute().toString(),
+                    monsterCard.getType().toString(), monsterCard.getCardType(), String.valueOf(monsterCard.getAttack()),
+                    String.valueOf(monsterCard.getDefense()), monsterCard.getCardDescription(), String.valueOf(monsterCard.getPrice())};
+            data.add(mainData);
+        } else {
+            SpellTrapCard spellTrapCard = (SpellTrapCard) card;
+            String[] dataNames = {"Name", "Type", "Icon (Property)", "Description", "Status", "Price"};
+            data.add(dataNames);
+            String[] mainData = {spellTrapCard.getCardName(), spellTrapCard.getCardType(), spellTrapCard.getIcon().toString(),
+            spellTrapCard.getCardDescription(), spellTrapCard.getStatus(), String.valueOf(spellTrapCard.getPrice())};
+            data.add(mainData);
+        }
+        return data;
+    }
+
+
+    public void importCard(MouseEvent mouseEvent) throws IOException, IllegalAccessException {
+        File file = GetInput.chooseFile();
+        if (file != null) {
+            String[] parts = file.getName().split("\\.");
+            System.out.println(parts[1]);
+            if (parts[1].equals("json")) {
+                File newFile = new File("src/main/resources/view/gui/importFiles/" + file.getName());
+                FileUtils.copyFile(file, newFile);
+                String jsnStr = new String(Files.readAllBytes(Paths.get("src/main/resources/view/gui/importFiles/"+ file.getName())));
+                YaGson yaGson = new YaGson();
+                Card card = yaGson.fromJson(jsnStr, new TypeToken<Card>(){}.getType());
+                if (card != null)
+                    showCardData(card, null, file.getName());
+                else
+                    ShowOutput.showOutput("Error", "you must import a Card Type Object");
+            } else if (parts[1].equals("csv")) {
+                try {
+                    CSVReader reader = new CSVReader(new FileReader(file));
+                    String[] nextLine = null;
+                    ArrayList<String[]> results = new ArrayList<>();
+                    while ((nextLine = reader.readNext()) != null) {
+                        results.add(nextLine);
+                    }
+                    showCardData(null, results, file.getName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void showCardData(Card card, ArrayList<String[]> results, String fileName) {
         popUpWindow = new Stage();
         popUpWindow.initModality(Modality.APPLICATION_MODAL);
         BorderPane borderPane = new BorderPane();
@@ -135,12 +201,11 @@ public class ImportExportMenuGui extends MainMenuGui {
         hBox.setStyle("-fx-background-color: black");
         borderPane.setTop(hBox);
 
-        Text centerText = new Text(Card.showCard(card) + "price: " + card.getPrice() + "\nspeed: " + card.getSpeed());
-        centerText.setFont(new Font("Arial", 14));
-        centerText.setStyle("-fx-fill: white");
-        VBox vBox = new VBox(centerText);
-        vBox.setStyle("-fx-background-color: black");
-        borderPane.setCenter(vBox);
+        if (card != null) {
+            setCenterOfBorderPaneForJson(card, borderPane);
+        } else {
+            setCenterOfBorderPaneForCSV(results, borderPane);
+        }
 
         Button button = new Button("ok");
         button.setStyle("-fx-background-color: red; -fx-text-fill: dark #050572");
@@ -156,9 +221,42 @@ public class ImportExportMenuGui extends MainMenuGui {
         popUpWindow.showAndWait();
     }
 
+    private void setCenterOfBorderPaneForJson(Card card, BorderPane borderPane) {
+        Text centerText = new Text(Card.showCard(card) + "price: " + card.getPrice() + "\nspeed: " + card.getSpeed());
+        centerText.setFont(new Font("Arial", 14));
+        centerText.setStyle("-fx-fill: white");
+        VBox vBox = new VBox(centerText);
+        vBox.setStyle("-fx-background-color: black");
+        borderPane.setCenter(vBox);
+    }
+
+    private void setCenterOfBorderPaneForCSV(ArrayList<String[]> results, BorderPane borderPane) {
+        VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color: black");
+        for (int i = 0; i < results.get(0).length; i++) {
+            Text centerText = new Text();
+            String line = "";
+            int counter = 0;
+            for (String[] data : results) {
+                if (counter == 0)
+                    line = line + " " + data[i];
+                else
+                    line = line + ": " + data[i];
+                counter++;
+
+            }
+            centerText.setText(line);
+            centerText.setFont(new Font("Arial", 14));
+            centerText.setStyle("-fx-fill: white");
+            vBox.getChildren().add(centerText);
+        }
+        borderPane.setCenter(vBox);
+    }
+
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
         MainMenuGui mainMenuGui = new MainMenuGui();
         mainMenuGui.setUser(User.getUserByUsername(loggedInUsername));
         mainMenuGui.start(stage);
     }
+
 }
