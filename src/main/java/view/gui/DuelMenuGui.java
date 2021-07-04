@@ -99,6 +99,14 @@ public class DuelMenuGui extends MenuGui {
 
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
+
+        ShowGameMessage showGameMessage = new ShowGameMessage();
+        showGameMessage.setMessage("Hello World va KIREKHARRR!");
+        try {
+            showGameMessage.start(stage);
+        } catch (IOException ignored) {
+        }
+
 //        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
@@ -107,7 +115,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public static DuelMenuGui getDuelMenuGui() {
-        return DuelMenuGui.duelMenuGui;
+        return duelMenuGui;
     }
 
     public void deSelectCards() {
