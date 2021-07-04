@@ -26,9 +26,9 @@ public class Deck {
     public void addCard(String cardName, boolean isSideDeck, User user) {
         Card card = user.getCardInventory().getCardByCardName(cardName);
         if (isSideDeck) {
-            sideDeck.add(card);
+            sideDeck.add(Card.copy(card));
         } else {
-            mainDeck.add(card);
+            mainDeck.add(Card.copy(card));
         }
     }
 

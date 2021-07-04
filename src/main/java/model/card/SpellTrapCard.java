@@ -102,6 +102,11 @@ public class SpellTrapCard extends Card {
         return icon;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+
     public void summon() {
         this.position = SpellsAndTrapPosition.SUMMON;
     }

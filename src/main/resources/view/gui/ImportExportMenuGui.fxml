@@ -21,7 +21,8 @@
     </top>
     <left>
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: grey">
-            <Button onMouseClicked="#exportCard" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: red" text="export" textFill="#2800f2" BorderPane.alignment="CENTER" />
+            <Button onMouseClicked="#exportCardTOJSON" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: red" text="export to JSON" textFill="#2800f2" BorderPane.alignment="CENTER" />
+         <Button onMouseClicked="#exportCardToCSV" prefHeight="26.0" prefWidth="100.0" text="export to CSV" textFill="#1a00ff" style="-fx-background-color: red"/>
         </VBox>
     </left>
 
@@ -32,7 +33,7 @@
     <right>
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: grey">
             <Button onMouseClicked="#importCard" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: red" text="import" textFill="#2800f2" BorderPane.alignment="CENTER" />
-         <Button prefHeight="26.0" prefWidth="100.0" text="back" textFill="#1f01ff" onMouseClicked="#backToMainMenu"/>
+         <Button onMouseClicked="#backToMainMenu" prefHeight="26.0" prefWidth="100.0" text="back" textFill="#1f01ff" />
         </VBox>
     </right>
 </BorderPane>

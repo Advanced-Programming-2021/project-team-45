@@ -2,9 +2,14 @@ package view.gui;
 
 import controller.Regex;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import model.card.Card;
 import view.gui.elements.GameCard;
 import view.gui.elements.GameElementSize;
@@ -19,6 +24,7 @@ import javafx.stage.Stage;
 import view.gui.elements.GetImage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -32,6 +38,7 @@ public class DuelMenuGui extends MenuGui {
     };
     private static GameController gameController;
     private static Stage stage;
+    private static Stage showGraveyardPopupWindow;
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
@@ -87,6 +94,19 @@ public class DuelMenuGui extends MenuGui {
         playerSpellNames.add("1Harpie's Feather Duster");
         playerSpellNames.add("3Messenger of peace");
         playerSpellNames.add("");
+        ArrayList<String> opponentHandNames = new ArrayList<>();
+        opponentHandNames.add("Negate Attack");
+        opponentHandNames.add("Mind Crush");
+        opponentHandNames.add("Battle Warrior");
+        updateHands(opponentHandNames, true);
+        ArrayList<String> playerHandNames = new ArrayList<>();
+        playerHandNames.add("Hero of the east");
+        playerHandNames.add("Fireyarou");
+        playerHandNames.add("Messenger of peace");
+        playerHandNames.add("Feral Imp");
+        playerHandNames.add("Suijin");
+        playerHandNames.add("Scanner");
+        updateHands(playerHandNames, false);
         updateFields(opponentMonsterNames, "opponent_monster");
         updateFields(opponentSpellNames, "opponent_spell");
         updateFields(playerMonsterNames, "player_monster");
@@ -173,6 +193,22 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+    private void updateHands(ArrayList<String> fieldCards, boolean isOpponent) {
+        int cardX = 30;
+        for (int i = 0; i < fieldCards.size(); i++) {
+            cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
+            GameCard card = null;
+            if (isOpponent)
+                card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),fieldCards.get(i), false, 180);
+            else
+                card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),fieldCards.get(i), true, 0);
+            card.setPosition(i);
+            fieldPane.getChildren().add(card);
+            gameCards.add(card);
+        }
+    }
+
+
     private boolean getVisibility(String fieldName, String cardName) {
         boolean isVisible = true;
         if (fieldName.equals(CARD_FIELDS[3])) {
@@ -233,6 +269,53 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+    public void showGraveyard() {
+        showGraveyardPopupWindow = new Stage();
+        showGraveyardPopupWindow.initModality(Modality.APPLICATION_MODAL);
+        BorderPane borderPane = new BorderPane();
+        Text text = new Text("your graveyard");
+        text.setFont(new Font("Arial",14));
+        text.setStyle("-fx-fill: white");
+        HBox hBox = new HBox(text);
+        hBox.setStyle("-fx-background-color: black");
+        hBox.setAlignment(Pos.CENTER);
+        borderPane.setTop(hBox);
+
+        ScrollPane scrollPane = getGraveyardCardsList();
+        borderPane.setCenter(getGraveyardCardsList());
+
+        Button button = new Button("ok");
+        button.setOnAction(e -> showGraveyardPopupWindow.close());
+        button.setStyle("-fx-background-color: red");
+        HBox hBox1 = new HBox(button);
+        hBox1.setAlignment(Pos.CENTER);
+        borderPane.setBottom(hBox1);
+
+        Scene scene = new Scene(borderPane);
+        showGraveyardPopupWindow.setScene(scene);
+        showGraveyardPopupWindow.setTitle("graveyard");
+        showGraveyardPopupWindow.showAndWait();
+    }
+
+    private ScrollPane getGraveyardCardsList() {
+        GridPane gridPane = new GridPane();
+        ArrayList<String> graveyardCards = gameController.getPlayerGraveyardCards();
+        for (int i = graveyardCards.size() -1; i >= 0; i--) {
+            int y = graveyardCards.size() -1 - i;
+            ImageView imageView = new ImageView(GetImage.getCardImage(graveyardCards.get(i)));
+            imageView.setFitWidth(100);
+            imageView.setPreserveRatio(true);
+            Text text = new Text(y + ".");
+            text.setStyle("-fx-fill: white");
+            text.setFont(new Font("Bold", 14));
+            gridPane.add(text, 0, y);
+            gridPane.add(imageView, 1, y);
+        }
+        gridPane.setStyle("-fx-background-color: black");
+        ScrollPane scrollPane = new ScrollPane(gridPane);
+        scrollPane.setStyle("-fx-background-color: black");
+        return scrollPane;
+    }
     // این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
     public ArrayList<Integer> getCardsForTribute(int i) {
         return null;

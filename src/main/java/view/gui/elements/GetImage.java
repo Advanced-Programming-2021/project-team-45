@@ -37,7 +37,11 @@ public class GetImage {
         try {
             file = new Image(new FileInputStream("src/main/resources/view/gui/elements/cards/" + finalName + ".jpg"));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            try {
+                file=new Image(new FileInputStream("src/main/resources/view/gui/elements/cards/Unknown.jpg"));
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         }
         return file;
     }

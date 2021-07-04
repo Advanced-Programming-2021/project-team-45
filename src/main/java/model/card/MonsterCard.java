@@ -189,6 +189,7 @@ public class MonsterCard extends Card {
         return level;
     }
 
+
     public PositionMonsters getPosition() {
         return position;
     }
@@ -208,6 +209,7 @@ public class MonsterCard extends Card {
     public MonsterAttribute getAttribute() {
         return attribute;
     }
+
 
     public ArrayList<Effect> getEffects() {
         return effects;

@@ -1,7 +1,6 @@
 package view.gui;
 
 import controller.CardCreatorController;
-import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +49,7 @@ public class CardCreatorMenuGui extends MenuGui {
     public TextField Defense;
     public TextField Attack;
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
+    CardCreatorController cardCreatorController;
 
 
     @Override
@@ -87,7 +87,8 @@ public class CardCreatorMenuGui extends MenuGui {
         checkBoxes.add(TrapHole);
         checkBoxes.add(TwinTwisters);
         checkBoxes.add(UnitedWeStands);
-        CardCreatorController.calculate(checkBoxes, price, Level, Price);
+        cardCreatorController = new CardCreatorController();
+        cardCreatorController.calculate(checkBoxes, price, Level, Price, Attack, Defense);
 
     }
 
@@ -110,11 +111,11 @@ public class CardCreatorMenuGui extends MenuGui {
                 Matcher matcher1 = pattern.matcher(Defense.getText());
                 if (matcher.find() && matcher1.find()) bol1 = true;
             }
-            if (bol1 && bol) {
+            if (bol1 && bol && cardCreatorController.hasEnoughMoney()) {
                 CardCreatorController.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
                         , Integer.parseInt(Price.getText()), NameField.getText(), chooseType.getValue(),
                         Attack.getText(), Defense.getText());
-                acceptBox();
+                ShowOutput.showOutput("successful", "card created successfully");
                 back(mouseEvent);
             } else {
                 throwAnErrorBox();
@@ -138,23 +139,6 @@ public class CardCreatorMenuGui extends MenuGui {
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.setTitle("ErrorBox");
-        stage.show();
-    }
-
-    private void acceptBox() {
-        Stage stage = new Stage();
-        AnchorPane anchorPane = new AnchorPane();
-        Text text = new Text();
-        text.setText("Card Created");
-        anchorPane.getChildren().add(text);
-        text.setX(5);
-        text.setY(100);
-        anchorPane.setPrefHeight(200);
-        anchorPane.setPrefWidth(200);
-        anchorPane.setStyle("-fx-background-color: #369ad0");
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.setTitle("Accept Box");
         stage.show();
     }
 

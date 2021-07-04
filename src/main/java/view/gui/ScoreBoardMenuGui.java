@@ -38,6 +38,9 @@ public class ScoreBoardMenuGui extends MenuGui {
         ArrayList<String> keyList = new ArrayList<>();
         keyList.addAll(list.keySet());
 
+        scoreboard.add(getLabel("rank", false), 10, 0);
+        scoreboard.add(getLabel("nickname", false), 11, 0);
+        scoreboard.add(getLabel("score", false), 12, 0);
         for (int i = 0; i < list.size(); i++) {
             String key = keyList.get(i);
             setList(i, key, list.get(key));
@@ -58,13 +61,16 @@ public class ScoreBoardMenuGui extends MenuGui {
         Label label = new Label(text);
         label.setStyle("-fx-font-family: Arial;" +
                 "-fx-font-size: 13;" +
-                "-fx-font-weight: bold;");
-        label.setPrefWidth(100);
+                "-fx-font-weight: bold; -fx-text-fill: white");
+        label.setPrefWidth(500);
         label.setPrefHeight(26);
         label.setAlignment(Pos.CENTER);
         if (isLoginUser)
             label.setBackground(new Background(new
-                    BackgroundFill(Color.rgb(0, 0, 80, 0.7), new CornerRadii(0), new Insets(0))));
+                    BackgroundFill(Color.rgb(255, 0, 0, 0.7), new CornerRadii(0), new Insets(0))));
+        else
+            label.setBackground(new Background(new
+                    BackgroundFill(Color.rgb(0, 104, 196, 0.7), new CornerRadii(0), new Insets(0))));
         return label;
     }
 
