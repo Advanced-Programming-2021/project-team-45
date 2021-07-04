@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.DuelMenuGui">
+
+    <stylesheets>
+        <URL value="@styles/DuelMenuGui.css"/>
+    </stylesheets>
+
+    <center>
+        <Pane fx:id="fieldPane" prefHeight="600" prefWidth="570">
+        </Pane>
+    </center>
+
+    <left>
+        <BorderPane prefHeight="600" prefWidth="210">
+            <top>
+                <!--            opponent lp-->
+                <Rectangle height="50" width="210"/>
+            </top>
+            <center>
+                <VBox alignment="CENTER">
+                    <HBox alignment="CENTER">
+                        <Rectangle fx:id="selectedCard" height="307" width="210"/>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <Label fx:id="selectedCardDescription" alignment="TOP_LEFT" prefHeight="193" prefWidth="210"
+                               textAlignment="JUSTIFY" wrapText="true">
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                            </padding>
+                        </Label>
+                    </HBox>
+                </VBox>
+            </center>
+            <bottom>
+                <!--            player lp-->
+                <Rectangle height="50" width="210"/>
+            </bottom>
+        </BorderPane>
+    </left>
+
+    <right>
+        <!--        chatBox-->
+    </right>
+
+
+</BorderPane>
