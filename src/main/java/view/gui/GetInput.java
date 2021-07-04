@@ -40,9 +40,10 @@ public class GetInput {
         }
     }
 
-    public static File chooseJsonFile() {
+    public static File chooseFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON source File", "*.json"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JSON source File", "*.json"),
+                new FileChooser.ExtensionFilter("CSV file", "*.csv"));
         return fileChooser.showOpenDialog(null);
     }
 
