@@ -1,9 +1,16 @@
 package view.gui;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import model.card.Card;
 import view.gui.elements.GameCard;
 import view.gui.elements.GameElementSize;
@@ -30,6 +37,7 @@ public class DuelMenuGui extends MenuGui {
     };
     private static GameController gameController;
     private static Stage stage;
+    private static Stage showGraveyardPopupWindow;
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
@@ -219,6 +227,53 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+    public void showGraveyard() {
+        showGraveyardPopupWindow = new Stage();
+        showGraveyardPopupWindow.initModality(Modality.APPLICATION_MODAL);
+        BorderPane borderPane = new BorderPane();
+        Text text = new Text("your graveyard");
+        text.setFont(new Font("Arial",14));
+        text.setStyle("-fx-fill: white");
+        HBox hBox = new HBox(text);
+        hBox.setStyle("-fx-background-color: black");
+        hBox.setAlignment(Pos.CENTER);
+        borderPane.setTop(hBox);
+
+        ScrollPane scrollPane = getGraveyardCardsList();
+        borderPane.setCenter(getGraveyardCardsList());
+
+        Button button = new Button("ok");
+        button.setOnAction(e -> showGraveyardPopupWindow.close());
+        button.setStyle("-fx-background-color: red");
+        HBox hBox1 = new HBox(button);
+        hBox1.setAlignment(Pos.CENTER);
+        borderPane.setBottom(hBox1);
+
+        Scene scene = new Scene(borderPane);
+        showGraveyardPopupWindow.setScene(scene);
+        showGraveyardPopupWindow.setTitle("graveyard");
+        showGraveyardPopupWindow.showAndWait();
+    }
+
+    private ScrollPane getGraveyardCardsList() {
+        GridPane gridPane = new GridPane();
+        ArrayList<String> graveyardCards = gameController.getPlayerGraveyardCards();
+        for (int i = graveyardCards.size() -1; i >= 0; i--) {
+            int y = graveyardCards.size() -1 - i;
+            ImageView imageView = new ImageView(GetImage.getCardImage(graveyardCards.get(i)));
+            imageView.setFitWidth(100);
+            imageView.setPreserveRatio(true);
+            Text text = new Text(y + ".");
+            text.setStyle("-fx-fill: white");
+            text.setFont(new Font("Bold", 14));
+            gridPane.add(text, 0, y);
+            gridPane.add(imageView, 1, y);
+        }
+        gridPane.setStyle("-fx-background-color: black");
+        ScrollPane scrollPane = new ScrollPane(gridPane);
+        scrollPane.setStyle("-fx-background-color: black");
+        return scrollPane;
+    }
     // این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
     public ArrayList<Integer> getCardsForTribute(int i) {
         return null;

@@ -419,6 +419,13 @@ public class GameController extends Controller {
         return game.showGraveyard();
     }
 
+    public ArrayList<String> getPlayerGraveyardCards() {
+        ArrayList<String> graveyardCards = new ArrayList<>();
+        for (Card card : game.getPlayerGameBoard().getGraveyard().getGraveyardCards())
+            graveyardCards.add(card.getCardName());
+        return graveyardCards;
+    }
+
     public String controlCardShow() {
         if (game.getSelectedCard() != null) {
             if (!game.isSelectedCardVisibleToPlayer()) {
