@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import view.gui.elements.GetImage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DuelMenuGui extends MenuGui {
@@ -93,6 +94,19 @@ public class DuelMenuGui extends MenuGui {
         playerSpellNames.add("1Harpie's Feather Duster");
         playerSpellNames.add("3Messenger of peace");
         playerSpellNames.add("");
+        ArrayList<String> opponentHandNames = new ArrayList<>();
+        opponentHandNames.add("Negate Attack");
+        opponentHandNames.add("Mind Crush");
+        opponentHandNames.add("Battle Warrior");
+        updateHands(opponentHandNames, true);
+        ArrayList<String> playerHandNames = new ArrayList<>();
+        playerHandNames.add("Hero of the east");
+        playerHandNames.add("Fireyarou");
+        playerHandNames.add("Messenger of peace");
+        playerHandNames.add("Feral Imp");
+        playerHandNames.add("Suijin");
+        playerHandNames.add("Scanner");
+        updateHands(playerHandNames, false);
         updateFields(opponentMonsterNames, "opponent_monster");
         updateFields(opponentSpellNames, "opponent_spell");
         updateFields(playerMonsterNames, "player_monster");
@@ -166,6 +180,22 @@ public class DuelMenuGui extends MenuGui {
             gameCards.add(card);
         }
     }
+
+    private void updateHands(ArrayList<String> fieldCards, boolean isOpponent) {
+        int cardX = 30;
+        for (int i = 0; i < fieldCards.size(); i++) {
+            cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
+            GameCard card = null;
+            if (isOpponent)
+                card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),fieldCards.get(i), false, 180);
+            else
+                card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),fieldCards.get(i), true, 0);
+            card.setPosition(i);
+            fieldPane.getChildren().add(card);
+            gameCards.add(card);
+        }
+    }
+
 
     private boolean getVisibility(String fieldName, String cardName) {
         boolean isVisible = true;
