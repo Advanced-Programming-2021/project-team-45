@@ -13,7 +13,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.card.Card;
 import model.user.User;
@@ -27,8 +31,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class ImportExportMenuGui extends MainMenuGui {
-    private static String loggedInUsername;
     private static Stage stage;
+    private static Stage popUpWindow;
+    private static String loggedInUsername;
     private String selectedCardName;
     @FXML
     public GridPane gridPane = new GridPane();
@@ -84,10 +89,10 @@ public class ImportExportMenuGui extends MainMenuGui {
 
     public void exportCard(MouseEvent mouseEvent) {
         File file = GetInput.getDirectory();
-        if (file != null) {
-            if (selectedCardName == null)
-                ShowOutput.showOutput("Error", "you must choose a card before export");
-            else {
+        if (selectedCardName == null)
+            ShowOutput.showOutput("Error", "you must choose a card");
+        else {
+            if (file != null) {
                 Card card = Card.getCardByName(selectedCardName);
                 YaGson yaGson = new YaGson();
                 File file1 = new File(file.getAbsolutePath() + "\\" + selectedCardName + ".json");
@@ -111,7 +116,44 @@ public class ImportExportMenuGui extends MainMenuGui {
             String jsnStr = new String(Files.readAllBytes(Paths.get("src/main/resources/view/gui/importJsonFiles/"+ file.getName())));
             YaGson yaGson = new YaGson();
             Card card = yaGson.fromJson(jsnStr, new TypeToken<Card>(){}.getType());
+            if (card != null)
+                showCardData(card, file.getName());
+            else
+                ShowOutput.showOutput("Error", "you must import a Card Type Object");
         }
+    }
+
+    public void showCardData(Card card, String fileName) {
+        popUpWindow = new Stage();
+        popUpWindow.initModality(Modality.APPLICATION_MODAL);
+        BorderPane borderPane = new BorderPane();
+        Text text = new Text(fileName + " imported successfully");
+        text.setFont(new Font("Bold", 16));
+        text.setStyle("-fx-fill: white");
+        HBox hBox = new HBox(text);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setStyle("-fx-background-color: black");
+        borderPane.setTop(hBox);
+
+        Text centerText = new Text(Card.showCard(card) + "price: " + card.getPrice() + "\nspeed: " + card.getSpeed());
+        centerText.setFont(new Font("Arial", 14));
+        centerText.setStyle("-fx-fill: white");
+        VBox vBox = new VBox(centerText);
+        vBox.setStyle("-fx-background-color: black");
+        borderPane.setCenter(vBox);
+
+        Button button = new Button("ok");
+        button.setStyle("-fx-background-color: red; -fx-text-fill: dark #050572");
+        button.setOnAction(e -> popUpWindow.close());
+        HBox hBox1 = new HBox(button);
+        hBox1.setAlignment(Pos.CENTER);
+        hBox1.setStyle("-fx-background-color: black");
+        borderPane.setBottom(hBox1);
+
+        Scene scene = new Scene(borderPane);
+        popUpWindow.setScene(scene);
+        popUpWindow.setTitle("card informations");
+        popUpWindow.showAndWait();
     }
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
