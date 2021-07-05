@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,7 +28,7 @@ public class CoinTossMenu extends Application {
     private ImageView imageView;
     private Timer timer;
     private TimerTask timerTask;
-    private static String firstPlayerUserName;
+    private static String firstPlayerUserName="haji";
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
@@ -47,7 +50,11 @@ public class CoinTossMenu extends Application {
     void initialize() throws InterruptedException {
         firstPlayerText.setText(firstUserName);
         secondPlayerText.setText(secondUsername);
-        imageView = new ImageView(new Image(coinImageRoute + "1.png"));
+        try {
+            imageView = new ImageView(new Image(new FileInputStream(coinImageRoute + "1.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         imageView.setFitHeight(250);
         imageView.setPreserveRatio(true);
         vBox.getChildren().add(imageView);
@@ -74,7 +81,11 @@ public class CoinTossMenu extends Application {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    imageView.setImage(new Image(coinImageRoute + i + ".png"));
+                    try {
+                        imageView.setImage(new Image(new FileInputStream(coinImageRoute + i + ".png")));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     if (counter == 100) {
                         int random = new Random().nextInt(2);
                         showResult(random);
@@ -92,7 +103,11 @@ public class CoinTossMenu extends Application {
     public void showResult(int random) {
         if (random == 0) {
             firstPlayerText.setText(firstPlayerText.getText() + " plays first");
-            imageView.setImage(new Image(coinImageRoute + "1.png"));
+            try {
+                imageView.setImage(new Image(new FileInputStream(coinImageRoute + "1.png")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             firstPlayerHBox.setStyle("-fx-background-color: green");
             secondPlayerHBox.setStyle("-fx-background-color: red");
             firstPlayerUserName = firstUserName;
