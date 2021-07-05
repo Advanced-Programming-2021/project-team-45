@@ -1,5 +1,7 @@
 package view.gui;
 
+import controller.DeckController;
+import controller.DeckStarterController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,11 +13,12 @@ import javafx.stage.Stage;
 
 public class DeckStarterMenuGui extends MenuGui{
     @FXML
-    public ChoiceBox chooseActiveDeck;
-    public ChoiceBox chooseEditDeck;
+    public ChoiceBox<String> chooseActiveDeck;
+    public ChoiceBox<String> chooseEditDeck;
     public TextField nameOfDeck;
     private static AnchorPane anchorPane;
     private static Stage stage;
+    private static DeckStarterController deckStarterController;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,14 +30,23 @@ public class DeckStarterMenuGui extends MenuGui{
 
     @FXML
     void initialize(){
-
+        deckStarterController=new DeckStarterController(username);
+        deckStarterController.initialize(chooseActiveDeck,chooseEditDeck);
     }
 
     public void editADeck(MouseEvent mouseEvent) {
-
+        if(chooseEditDeck.getValue()==null){
+            ShowOutput.showOutput("error box","you have to choose a deck");
+        }else{
+            deckStarterController.startEditDeck(stage,chooseEditDeck.getValue());
+        }
     }
 
     public void createANewDeck(MouseEvent mouseEvent) {
-
+        if(nameOfDeck.getText()==null||nameOfDeck.getText().equals("")){
+            ShowOutput.showOutput("error box","you have to write a name for your deck");
+        }else{
+            deckStarterController.startCreateADeck(stage,nameOfDeck);
+        }
     }
 }
