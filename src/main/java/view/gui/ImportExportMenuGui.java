@@ -66,6 +66,7 @@ public class ImportExportMenuGui extends MainMenuGui {
 
     @FXML
     void initialize() {
+        buttons = new ArrayList<>();
         text.setText("selected card: ");
         HashMap<String, Integer> cards = new ShopController(username).getCardsPrices();
         for (int index = 0; index < cards.keySet().size(); index++) {
