@@ -38,9 +38,9 @@ public class ScoreBoardMenuGui extends MenuGui {
         ArrayList<String> keyList = new ArrayList<>();
         keyList.addAll(list.keySet());
 
-        scoreboard.add(getLabel("rank", false), 10, 0);
-        scoreboard.add(getLabel("nickname", false), 11, 0);
-        scoreboard.add(getLabel("score", false), 12, 0);
+        scoreboard.add(getLabel("rank", false), 0, 0);
+        scoreboard.add(getLabel("nickname", false), 1, 0);
+        scoreboard.add(getLabel("score", false), 2, 0);
         for (int i = 0; i < list.size(); i++) {
             String key = keyList.get(i);
             setList(i, key, list.get(key));
