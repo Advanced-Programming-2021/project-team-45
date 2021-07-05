@@ -9,7 +9,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.paint.Color?>
-<BorderPane prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/11.0.1"
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.DuelMenuGui">
 
     <stylesheets>
@@ -49,12 +49,12 @@
                 </bottom>
             </BorderPane>
 
-            <BorderPane prefHeight="600" prefWidth="90" fx:id="buttonPane">
+            <BorderPane prefHeight="600" prefWidth="120" fx:id="buttonPane">
                 <center>
                     <VBox alignment="CENTER">
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Next Phase" onMouseClicked="#nextPhase">
+                                    prefWidth="110.0" text="Next Phase" onMouseClicked="#nextPhase">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -72,7 +72,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Change Position" onMouseClicked="#changePosition">
+                                    prefWidth="110.0" text="Summon" onMouseClicked="#summonCard">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -90,7 +90,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Attack" onMouseClicked="#attack">
+                                    prefWidth="110.0" text="Set" onMouseClicked="#setCard">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -108,7 +108,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Activate Effect" onMouseClicked="#activateEffect">
+                                    prefWidth="110.0" text="Change Position" onMouseClicked="#changePosition">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -126,7 +126,43 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Surrender" onMouseClicked="#surrender">
+                                    prefWidth="110.0" text="Attack" onMouseClicked="#attack">
+                                <cursor>
+                                    <Cursor fx:constant="HAND"/>
+                                </cursor>
+                                <effect>
+                                    <DropShadow>
+                                        <color>
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                        </color>
+                                    </DropShadow>
+                                </effect>
+                                <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox>
+                            <Button alignment="CENTER" prefHeight="26.0"
+                                    prefWidth="110.0" text="Activate Effect" onMouseClicked="#activateEffect">
+                                <cursor>
+                                    <Cursor fx:constant="HAND"/>
+                                </cursor>
+                                <effect>
+                                    <DropShadow>
+                                        <color>
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                        </color>
+                                    </DropShadow>
+                                </effect>
+                                <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox>
+                            <Button alignment="CENTER" prefHeight="26.0"
+                                    prefWidth="110.0" text="Surrender" onMouseClicked="#surrender">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>

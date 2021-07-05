@@ -23,7 +23,7 @@ public class GameController extends Controller {
     private int opponentWins = 0;
     private DuelMenuGui playerDuelMenu;
 
-    //
+
     public GameController(String username, String opponentUsername, int rounds) {
         super(username);
         this.player = User.getUserByUsername(username);
@@ -31,44 +31,54 @@ public class GameController extends Controller {
         this.rounds = rounds;
     }
 
+    public void setPlayerDuelMenu(DuelMenuGui playerDuelMenu) {
+        this.playerDuelMenu = playerDuelMenu;
+    }
 
     private void createNewGame() {
         this.game = new Game(player, opponentPlayer, rounds, this);
         this.gameErrorHandler = new GameErrorHandler(game);
     }
 
-//    public void startGame() {
-//        int playerMaxLp = 0;
-//        int opponentMaxLp = 0;
-//        User winner = null;
-//        for (int i = 0; i < rounds; i++) {
-//            if (playerWins == 2 || opponentWins == 2) break;
-//            // create new round and start it:
-//            createNewGame();
-////            playRound();
-//            // show winner of round:
-//            winner = game.getWinner();
-//            if (winner.equals(player)) {
-//                playerWins++;
-//            } else {
-//                opponentWins++;
-//            }
-//        //    playerDuelMenu.showGameWinner(winner.getUsername(), playerWins, opponentWins);
-//            // save maxLp
-//            int playerLp = player.getLifepoint().getLifepoint();
-//            if (playerLp > playerMaxLp) playerMaxLp = playerLp;
-//            int opponentLp = opponentPlayer.getLifepoint().getLifepoint();
-//            if (opponentLp > opponentMaxLp) opponentMaxLp = opponentLp;
-//        }
-//        // show match winner if there is 3 rounds:
-//        //if (rounds == 3) playerDuelMenu.showMatchWinner(winner.getUsername(), playerWins, opponentWins);
-//        // calculate and increase score and money after match:
-//        increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
-//        // go back to first player's MainMenu:
-////        MainMenu playerMainMenu = new MainMenu(player.getUsername());
-////        playerMainMenu.show();
-////        playerMainMenu.execute();
-//    }
+    private int playerMaxLp = 0;
+    private int opponentMaxLp = 0;
+    public void startGame() {
+        int playerMaxLp = 0;
+        int opponentMaxLp = 0;
+        User winner = null;
+        for (int i = 0; i < rounds; i++) {
+            if (playerWins == 2 || opponentWins == 2) break;
+            // create new round and start it:
+            createNewGame();
+//            playRound();
+            checkGameEnd();
+        }
+        // show match winner if there is 3 rounds:
+        if (rounds == 3) playerDuelMenu.showMatchWinner(winner.getUsername(), playerWins, opponentWins);
+        // calculate and increase score and money after match:
+        increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
+        // go back to first player's MainMenu:
+//        MainMenu playerMainMenu = new MainMenu(player.getUsername());
+//        playerMainMenu.show();
+//        playerMainMenu.execute();
+    }
+    public void checkGameEnd() {
+        // show winner of round:
+        User winner = game.getWinner();
+        if (winner != null) {
+            if (winner.equals(player)) {
+                playerWins++;
+            } else {
+                opponentWins++;
+            }
+            playerDuelMenu.showGameWinner(winner.getUsername(), playerWins, opponentWins);
+            // save maxLp
+            int playerLp = player.getLifepoint().getLifepoint();
+            if (playerLp > playerMaxLp) playerMaxLp = playerLp;
+            int opponentLp = opponentPlayer.getLifepoint().getLifepoint();
+            if (opponentLp > opponentMaxLp) opponentMaxLp = opponentLp;
+        }
+    }
 
     private void increaseMoneyAndScore(int playerMaxLp, int opponentMaxLp) {
         if (rounds == 1) {
@@ -98,14 +108,14 @@ public class GameController extends Controller {
         game.surrenderGame();
     }
 
-//    private void playRound() {
+    private void playRound() {
 //        playerDuelMenu = new DuelMenu(player.getUsername(), this);
 //        playerDuelMenu.show();
-//
-//        while (!game.isFinished()) {
+
+        while (!game.isFinished()) {
 //            playerDuelMenu.getNextCommand();
-//        }
-//    }
+        }
+    }
 
     public void cancel() {
         game.cancelCommand();
@@ -612,6 +622,18 @@ public class GameController extends Controller {
                 break;
         }
         return cardData;
+    }
+
+    public ArrayList<String> getHand(boolean isOpponent) {
+        ArrayList<String> handCardNames = new ArrayList<>();
+        ArrayList<Card> cards;
+        if (isOpponent)
+            cards = game.getOpponentGameBoard().getHand().getCardsInHand();
+        else
+            cards = game.getPlayerGameBoard().getHand().getCardsInHand();
+        for(Card card : cards)
+            handCardNames.add(card.getCardName());
+        return handCardNames;
     }
 
     public boolean isThereAnyMonsterOnOpponentMonsterField() {
