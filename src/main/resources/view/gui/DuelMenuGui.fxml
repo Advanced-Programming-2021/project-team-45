@@ -54,7 +54,7 @@
                     <VBox alignment="CENTER">
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Next Phase">
+                                    prefWidth="80.0" text="Next Phase" onMouseClicked="#nextPhase">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -72,7 +72,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="Surrender">
+                                    prefWidth="80.0" text="Change Position" onMouseClicked="#changePosition">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -90,7 +90,43 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="80.0" text="TEST">
+                                    prefWidth="80.0" text="Attack" onMouseClicked="#attack">
+                                <cursor>
+                                    <Cursor fx:constant="HAND"/>
+                                </cursor>
+                                <effect>
+                                    <DropShadow>
+                                        <color>
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                        </color>
+                                    </DropShadow>
+                                </effect>
+                                <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox>
+                            <Button alignment="CENTER" prefHeight="26.0"
+                                    prefWidth="80.0" text="Activate Effect" onMouseClicked="#activateEffect">
+                                <cursor>
+                                    <Cursor fx:constant="HAND"/>
+                                </cursor>
+                                <effect>
+                                    <DropShadow>
+                                        <color>
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                        </color>
+                                    </DropShadow>
+                                </effect>
+                                <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox>
+                            <Button alignment="CENTER" prefHeight="26.0"
+                                    prefWidth="80.0" text="Surrender" onMouseClicked="#surrender">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>

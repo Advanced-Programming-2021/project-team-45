@@ -282,19 +282,15 @@ public class GameController extends Controller {
         }
     }
 
-    public int changePositionErrorHandler(Matcher matcher) {
+    public int changePositionErrorHandler() {
         if (gameErrorHandler.doesSelectedCardExist()) {
             if (gameErrorHandler.isThereSelectedCardInMonsterField()) {
                 if (game.getPhase().equals("Main Phase1") || game.getPhase().equals("Main Phase2")) {
-                    if (gameErrorHandler.isChangeCorrect(matcher)) {
-                        if (!gameErrorHandler.wasChangePositionInThisTurn()) {
-                            game.changePosition();
-                            return 6;
-                        } else {
-                            return 5;
-                        }
+                    if (!gameErrorHandler.wasChangePositionInThisTurn()) {
+                        game.changePosition();
+                        return 6;
                     } else {
-                        return 4;
+                        return 5;
                     }
                 } else {
                     return 3;
@@ -616,5 +612,13 @@ public class GameController extends Controller {
                 break;
         }
         return cardData;
+    }
+
+    public boolean isThereAnyMonsterOnOpponentMonsterField() {
+        for (int i = 0; i < 5; i++) {
+            if (!game.getOpponentGameBoard().getMonsterField().isFieldEmpty(i))
+                return true;
+        }
+        return false;
     }
 }
