@@ -148,4 +148,13 @@ public class DeckMenuGui extends MenuGui {
             e.printStackTrace();
         }
     }
+
+    public void deleteCurrentDeck(MouseEvent mouseEvent) {
+        deckController.deleteDeck();
+        try {
+            new DeckStarterMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

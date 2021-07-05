@@ -49,4 +49,12 @@ public class DeckStarterMenuGui extends MenuGui{
             deckStarterController.startCreateADeck(stage,nameOfDeck);
         }
     }
+
+    public void back(MouseEvent mouseEvent) {
+        try {
+            new MainMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
