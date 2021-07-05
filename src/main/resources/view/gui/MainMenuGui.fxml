@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
     <top>
         <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
             <children>
                 <Label prefHeight="45.0" prefWidth="198.0" text="welcome to YU-GI-OH!" textFill="whitesmoke">
                     <font>
-                        <Font name="Arial Bold" size="18.0"/>
+                        <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Label>
             </children>
@@ -28,86 +24,87 @@
             <children>
                 <ImageView fitHeight="66.0" fitWidth="200.0">
                     <image>
-                        <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/GUI_T_GateLogo_s001.dds.png"/>
+                        <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/GUI_T_GateLogo_s001.dds.png" />
                     </image>
                 </ImageView>
-                <Button mnemonicParsing="false" onMouseClicked="#startCartCreatorMenu" prefHeight="26" prefWidth="100"
-                        text="Card Creator">
+                <Button mnemonicParsing="false" onMouseClicked="#startCartCreatorMenu" prefHeight="26" prefWidth="100" text="Card Creator">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color red="0.46237864762394" green="0.023486264242349" blue="0.8723467892364"/>
+                                <Color red="0.46237864762394" green="0.023486264242349" blue="0.8723467892364" />
                             </color>
                         </DropShadow>
                     </effect>
 
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startDuel" prefHeight="26.0" prefWidth="100.0"
-                        text="Duel">
+                <Button mnemonicParsing="false" onMouseClicked="#startDuel" prefHeight="26.0" prefWidth="100.0" text="Duel">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color red="1.0"/>
+                                <Color red="1.0" />
                             </color>
                         </DropShadow>
                     </effect>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startDeckMenu" prefHeight="26.0" prefWidth="100.0"
-                        text="Deck">
+                <Button mnemonicParsing="false" onMouseClicked="#startDeckMenu" prefHeight="26.0" prefWidth="100.0" text="Deck">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color green="1.0" blue="0.16606497764587402"/>
+                                <Color green="1.0" blue="0.16606497764587402" />
                             </color>
                         </DropShadow>
                     </effect>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startScoreBoardMenu" prefHeight="26.0"
-                        prefWidth="100.0" text="ScoreBoard">
+                <Button mnemonicParsing="false" onMouseClicked="#startScoreBoardMenu" prefHeight="26.0" prefWidth="100.0" text="ScoreBoard">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color red="1.0" blue="0.4332129955291748"/>
+                                <Color red="1.0" blue="0.4332129955291748" />
                             </color>
                         </DropShadow>
                     </effect>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startProfileMenu" prefHeight="26.0" prefWidth="100.0"
-                        text="Profile">
+                <Button mnemonicParsing="false" onMouseClicked="#startProfileMenu" prefHeight="26.0" prefWidth="100.0" text="Profile">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color green="1.0" blue="0.8999999761581421"/>
+                                <Color green="1.0" blue="0.8999999761581421" />
                             </color>
                         </DropShadow>
                     </effect>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startShopMenu" prefHeight="26.0" prefWidth="100.0"
-                        text="Shop">
+                <Button mnemonicParsing="false" onMouseClicked="#startShopMenu" prefHeight="26.0" prefWidth="100.0" text="Shop">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color red="0.8736461997032166" green="1.0"/>
+                                <Color red="0.8736461997032166" green="1.0" />
                             </color>
                         </DropShadow>
                     </effect>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startImportExportMenu" prefHeight="26.0"
-                        prefWidth="100.0" text="Import/Export">
+                <Button mnemonicParsing="false" onMouseClicked="#startImportExportMenu" prefHeight="26.0" prefWidth="100.0" text="Import/Export">
                     <effect>
-                        <DropShadow spread="0.5"/>
+                        <DropShadow spread="0.5" />
                     </effect>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="26.0" prefWidth="100.0"
-                        text="Log out">
+                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="26.0" prefWidth="100.0" text="Log out">
                     <effect>
                         <DropShadow spread="0.5">
                             <color>
-                                <Color red="0.3547758162021637" green="0.08966861665248871" blue="0.42105263471603394"/>
+                                <Color red="0.3547758162021637" green="0.08966861665248871" blue="0.42105263471603394" />
                             </color>
                         </DropShadow>
                     </effect>
                 </Button>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="mute" onMouseClicked="#mute" fx:id="muteButton">
+               <effect>
+                  <DropShadow spread="0.5">
+                     <color>
+                        <Color red="1.0" green="0.44999998807907104" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
             </children>
         </VBox>
     </center>

@@ -4,6 +4,7 @@ import controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -12,6 +13,8 @@ import java.io.IOException;
 public class MainMenuGui extends MenuGui {
     private static Stage stage;
     private static MainMenuController mainMenuController;
+    public Button muteButton;
+    private boolean isMusicMute = false;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -21,6 +24,7 @@ public class MainMenuGui extends MenuGui {
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
+        MusicPlayer.PlayMainMenuMusic();
     }
 
     public void startDuel(MouseEvent mouseEvent) {
@@ -28,10 +32,8 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {
-        DeckMenuGui deckMenuGui = new DeckMenuGui();
-        DeckMenuGui.setUsername(username);
-        DeckController deckController = new DeckController(username);
-        DeckMenuGui.setDeckController(deckController);
+        DeckStarterMenuGui deckMenuGui = new DeckStarterMenuGui();
+        DeckStarterMenuGui.setUsername(username);
         try {
             deckMenuGui.start(stage);
         } catch (Exception e) {
@@ -54,7 +56,6 @@ public class MainMenuGui extends MenuGui {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
@@ -71,6 +72,7 @@ public class MainMenuGui extends MenuGui {
 
     public void logout(MouseEvent mouseEvent) throws IOException {
         LoginMenuGui loginMenuGui = new LoginMenuGui();
+        MusicPlayer.pause();
         loginMenuGui.start(stage);
     }
 
@@ -81,6 +83,19 @@ public class MainMenuGui extends MenuGui {
             menu.start(stage);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void mute(MouseEvent mouseEvent) {
+        if (isMusicMute) {
+            MusicPlayer.PlayMainMenuMusic();
+            muteButton.setText("mute");
+            isMusicMute = false;
+        }
+        else {
+            MusicPlayer.pause();
+            muteButton.setText("unmute");
+            isMusicMute = true;
         }
     }
 }

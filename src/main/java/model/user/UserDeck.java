@@ -15,6 +15,9 @@ public class UserDeck {
         this.userDecks = new ArrayList<>();
     }
 
+    public ArrayList<Deck> getUserDecks() {
+        return userDecks;
+    }
 
     public void createDeck(String deckName, User user) {
         Deck deck = new Deck(deckName, user.getUsername());

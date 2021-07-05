@@ -20,6 +20,7 @@ import model.card.Deck;
 import model.user.User;
 import model.user.UserDeck;
 import view.gui.DeckMenuGui;
+import view.gui.DeckStarterMenuGui;
 import view.gui.MainMenuGui;
 import view.gui.ShowOutput;
 import view.gui.elements.GetImage;
@@ -156,6 +157,10 @@ public class DeckController extends Controller {
             });
             onMouseMoved(rectangle);
         }
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 
     private void onMouseMoved(Rectangle rectangle) {
@@ -318,5 +323,9 @@ public class DeckController extends Controller {
             }
             if (k == sideCards.size() || k == 15) break;
         }
+    }
+
+    public void deleteDeck() {
+        user.getUserDeck().deleteDeckFromUserDecks(deck.getName());
     }
 }

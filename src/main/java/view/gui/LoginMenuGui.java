@@ -50,6 +50,7 @@ public class LoginMenuGui extends MenuGui {
 
     @FXML
     private void initialize() {
+        MusicPlayer.PlayLoginMenuMusic();
         Image image = GetImage.getImage("YuGiOh.png");
         yugiohRect.setWidth(256);
         yugiohRect.setHeight(128);
@@ -95,6 +96,7 @@ public class LoginMenuGui extends MenuGui {
             ShowOutput.showOutput("Success", "user logged in successfully!");
             MainMenuGui mainMenuGui = new MainMenuGui();
             MainMenuGui.setUsername(username);
+            MusicPlayer.pause();
             mainMenuGui.start(stage);
 
         } else if (error == 1) {
