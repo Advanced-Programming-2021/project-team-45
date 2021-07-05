@@ -21,14 +21,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CoinTossMenu extends Application {
-    private static final String coinImageRoute = "src\\main\\resources\\view\\gui\\Assets\\Project-Assets-1.0.0\\Assets\\Items\\Coins\\Gold\\Gold_";
-    private static String firstUserName = "haji";
-    private static String secondUsername = "hossein";
+    private static final String coinImageRoute = "src/main/resources/view/gui/Gold/Gold_";
+    private static String firstUserName;
+    private static String secondUsername;
+    private static String firstPlayerUserName;
     private static Stage stage;
     private ImageView imageView;
     private Timer timer;
     private TimerTask timerTask;
-    private static String firstPlayerUserName="haji";
+
+    private static String firstPlayerUserName;
+
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
@@ -36,6 +39,27 @@ public class CoinTossMenu extends Application {
     public Text secondPlayerText;
     public HBox firstPlayerHBox;
     public Text firstPlayerText;
+
+    public static void setUserNames(String firstUserName, String secondUsername) {
+        CoinTossMenu.firstUserName = firstUserName;
+        CoinTossMenu.secondUsername = secondUsername;
+    }
+
+    public String[] tossCoin() {
+        String[] result = new String[2];
+        int random = new Random().nextInt(2);
+        if (random == 0) {
+            firstPlayerUserName = firstUserName;
+            result[0] = firstUserName;
+            result[1] = secondUsername;
+        }
+        else {
+            firstPlayerUserName = secondUsername;
+            result[0] = secondUsername;
+            result[1] = firstUserName;
+        }
+        return result;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -58,14 +82,14 @@ public class CoinTossMenu extends Application {
         imageView.setFitHeight(250);
         imageView.setPreserveRatio(true);
         vBox.getChildren().add(imageView);
-        tossCoin();
+        showTossCoin();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void tossCoin() throws InterruptedException {
+    public void showTossCoin() throws InterruptedException {
         timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -87,8 +111,7 @@ public class CoinTossMenu extends Application {
                         e.printStackTrace();
                     }
                     if (counter == 100) {
-                        int random = new Random().nextInt(2);
-                        showResult(random);
+                        showResult(firstPlayerUserName);
                         timer.cancel();
                         break;
                     }
@@ -100,8 +123,8 @@ public class CoinTossMenu extends Application {
         timer.schedule(timerTask, 2000);
     }
 
-    public void showResult(int random) {
-        if (random == 0) {
+    public void showResult(String firstPlayerUserName) {
+        if (firstPlayerUserName.equals(firstUserName)) {
             firstPlayerText.setText(firstPlayerText.getText() + " plays first");
             try {
                 imageView.setImage(new Image(new FileInputStream(coinImageRoute + "1.png")));
@@ -110,20 +133,15 @@ public class CoinTossMenu extends Application {
             }
             firstPlayerHBox.setStyle("-fx-background-color: green");
             secondPlayerHBox.setStyle("-fx-background-color: red");
-            firstPlayerUserName = firstUserName;
         }
         else {
             secondPlayerText.setText(secondPlayerText.getText() + " plays first");
             imageView.setImage(new Image(coinImageRoute + "11.png"));
             firstPlayerHBox.setStyle("-fx-background-color: red");
             secondPlayerHBox.setStyle("-fx-background-color: green");
-            firstPlayerUserName = secondUsername;
         }
+        // go to next scene ...
     }
 
 
-    public static void setUserNames(String firstUserName, String secondUsername) {
-        CoinTossMenu.firstUserName = firstUserName;
-        CoinTossMenu.secondUsername = secondUsername;
-    }
 }

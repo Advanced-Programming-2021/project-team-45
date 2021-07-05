@@ -7,7 +7,8 @@
     requires java.activation;
     requires org.apache.commons.io;
     requires yagson;
+     requires javafx.media;
 
-    opens view.gui to javafx.fxml;
+     opens view.gui to javafx.fxml;
     exports view.gui;
 }
