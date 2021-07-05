@@ -30,7 +30,6 @@ public class CoinTossMenu extends Application {
     private Timer timer;
     private TimerTask timerTask;
 
-    private static String firstPlayerUserName;
 
     @FXML
     public BorderPane borderPane;
