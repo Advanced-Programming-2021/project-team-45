@@ -158,6 +158,10 @@ public class DeckController extends Controller {
         }
     }
 
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
     private void onMouseMoved(Rectangle rectangle) {
         rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override

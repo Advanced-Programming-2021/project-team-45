@@ -1,6 +1,7 @@
 package view.gui;
 
 import controller.DeckController;
+import controller.DeckStarterController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -141,6 +142,10 @@ public class DeckMenuGui extends MenuGui {
     }
 
     public void back(MouseEvent mouseEvent) {
-
+        try {
+            new DeckStarterMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

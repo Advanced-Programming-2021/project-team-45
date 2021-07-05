@@ -28,10 +28,8 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {
-        DeckMenuGui deckMenuGui = new DeckMenuGui();
-        DeckMenuGui.setUsername(username);
-        DeckController deckController = new DeckController(username);
-        DeckMenuGui.setDeckController(deckController);
+        DeckStarterMenuGui deckMenuGui = new DeckStarterMenuGui();
+        DeckStarterMenuGui.setUsername(username);
         try {
             deckMenuGui.start(stage);
         } catch (Exception e) {
@@ -54,7 +52,6 @@ public class MainMenuGui extends MenuGui {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
