@@ -9,3 +9,12 @@
     -fx-border-insets: 10px;
     -fx-border-color: #cb9a45;
 }
+
+.button {
+    -fx-background-color: #dd0202;
+    -fx-text-fill: white;
+}
+
+#buttonPane {
+    -fx-background-color: #141414;
+}
