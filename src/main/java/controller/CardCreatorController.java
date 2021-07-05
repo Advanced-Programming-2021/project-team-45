@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.card.*;
 import model.card.SpellTrapCards.effects.*;
+import model.user.User;
 import view.gui.MainMenuGui;
 
 import java.util.ArrayList;
@@ -25,10 +26,10 @@ public class CardCreatorController {
 
     public boolean hasEnoughMoney() {
         long price = (long) (calculator.getEffectPrice() * 0.1);
-        if (price > MainMenuGui.getUser().getMoney()) {
+        if (price > User.getUserByUsername(MainMenuGui.getUsername()).getMoney()) {
             return false;
         } else {
-            MainMenuGui.getUser().decreaseMoney((int) price);
+            User.getUserByUsername(MainMenuGui.getUsername()).decreaseMoney((int) price);
             return true;
         }
     }

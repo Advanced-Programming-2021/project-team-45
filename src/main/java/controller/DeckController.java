@@ -134,7 +134,7 @@ public class DeckController extends Controller {
     }
 
     public void setScrollBar(ListView listView, DeckMenuGui deckMenuGui) {
-        ArrayList<Card> allCards = MainMenuGui.getUser().getCardInventory().getCards();
+        ArrayList<Card> allCards = User.getUserByUsername(MainMenuGui.getUsername()).getCardInventory().getCards();
         for (Card allCard : allCards) {
             Rectangle rectangle = new Rectangle();
             rectangle.setFill(new ImagePattern(GetImage.getCardImage(allCard.getCardName())));
