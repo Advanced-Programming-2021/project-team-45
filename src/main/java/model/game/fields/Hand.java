@@ -1,11 +1,9 @@
 package model.game.fields;
 
 import model.card.Card;
-import model.card.Deck;
 import model.user.User;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Hand extends CardField {
 
@@ -44,7 +42,7 @@ public class Hand extends CardField {
     }
 
     public Card getCardFromHand(int handIndex) {
-        return hand.get(handIndex - 1);
+        return hand.get(handIndex);
     }
 
     public void addCard(Card card) {
@@ -57,7 +55,7 @@ public class Hand extends CardField {
 
     public boolean doesCardExistInThesePlace(int handIndex) {
         if (handIndex < hand.size()) {
-            return hand.get(handIndex - 1) != null;
+            return hand.get(handIndex) != null;
         } else
             return false;
     }

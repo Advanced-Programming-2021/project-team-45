@@ -4,7 +4,6 @@ import model.card.Card;
 import model.card.MonsterCard;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MonsterField extends CardField {
     private MonsterCard[] monsters;
@@ -34,7 +33,7 @@ public class MonsterField extends CardField {
     }
 
     public MonsterCard getMonsterCardFromPlayerMonsterField(int cardPosition) {
-        return monsters[cardPosition - 1];
+        return monsters[cardPosition];
     }
 
     public MonsterCard getMonsterCardOpponentFromMonsterField(int cardPosition) {
@@ -46,11 +45,11 @@ public class MonsterField extends CardField {
         } else {
             position = cardPosition - 1;
         }
-        return monsters[position - 1];
+        return monsters[position];
     }
 
     public MonsterCard getMonster(int index) {
-        return monsters[index - 1];
+        return monsters[index];
     }
 
     @Override
@@ -129,7 +128,7 @@ public class MonsterField extends CardField {
     }
 
     public boolean isFieldEmpty(int position) {
-        return monsters[position - 1] == null;
+        return monsters[position] == null;
     }
 
     public boolean isFull() {

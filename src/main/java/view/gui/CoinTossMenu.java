@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +28,6 @@ public class CoinTossMenu extends Application {
     private ImageView imageView;
     private Timer timer;
     private TimerTask timerTask;
-
-
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
@@ -51,8 +48,7 @@ public class CoinTossMenu extends Application {
             firstPlayerUserName = firstUserName;
             result[0] = firstUserName;
             result[1] = secondUsername;
-        }
-        else {
+        } else {
             firstPlayerUserName = secondUsername;
             result[0] = secondUsername;
             result[1] = firstUserName;
@@ -132,8 +128,7 @@ public class CoinTossMenu extends Application {
             }
             firstPlayerHBox.setStyle("-fx-background-color: green");
             secondPlayerHBox.setStyle("-fx-background-color: red");
-        }
-        else {
+        } else {
             secondPlayerText.setText(secondPlayerText.getText() + " plays first");
             imageView.setImage(new Image(coinImageRoute + "11.png"));
             firstPlayerHBox.setStyle("-fx-background-color: red");
@@ -141,6 +136,4 @@ public class CoinTossMenu extends Application {
         }
         // go to next scene ...
     }
-
-
 }

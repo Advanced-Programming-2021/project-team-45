@@ -1,11 +1,11 @@
 package view.gui;
 
-import controller.Regex;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -26,12 +26,12 @@ import javafx.stage.Stage;
 import view.gui.elements.GetImage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
+import java.util.Arrays;
 
 public class DuelMenuGui extends MenuGui {
-
     private static final String[] CARD_FIELDS = {
             "player_monster",
             "player_spell",
@@ -44,10 +44,23 @@ public class DuelMenuGui extends MenuGui {
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
+    // select card fields:
+    private static boolean isCardSelectMode;
+    private static ArrayList<GameCard> selectedCards;
+    private static int selectCardsCount;
+    private static String[] selectCardFieldNames;
+    private static String selectCardMethodName;
+    private static final Method[] duelMenuMethods;
     @FXML
     public Pane fieldPane;
+    @FXML
     public Label selectedCardDescription;
+    @FXML
     public Rectangle selectedCard;
+
+    static {
+        duelMenuMethods = DuelMenuGui.class.getDeclaredMethods();
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -69,51 +82,8 @@ public class DuelMenuGui extends MenuGui {
                 BackgroundSize.DEFAULT);
         fieldPane.setBackground(new Background(backgroundImage));
         DuelMenuGui.duelMenuGui = this;
-//        updateGameBoard();
 
-
-        ArrayList<String> opponentMonsterNames = new ArrayList<>();
-        opponentMonsterNames.add("2DH");
-        opponentMonsterNames.add("");
-        opponentMonsterNames.add("3Man-Eater Bug_DO");
-        opponentMonsterNames.add("");
-        opponentMonsterNames.add("4Scanner");
-        ArrayList<String> opponentSpellNames = new ArrayList<>();
-        opponentSpellNames.add("0opponent_spell");
-        opponentSpellNames.add("");
-        opponentSpellNames.add("2opponent_spell");
-        opponentSpellNames.add("1opponent_spell");
-        opponentSpellNames.add("4opponent_spell");
-        ArrayList<String> playerMonsterNames = new ArrayList<>();
-        playerMonsterNames.add("0Suijin_DH");
-        playerMonsterNames.add("");
-        playerMonsterNames.add("4Feral Imp_DO");
-        playerMonsterNames.add("2Hero of the east");
-        playerMonsterNames.add("1Battle warrior");
-        ArrayList<String> playerSpellNames = new ArrayList<>();
-        playerSpellNames.add("0Mind Crush");
-        playerSpellNames.add("2Negate Attack");
-        playerSpellNames.add("1Harpie's Feather Duster");
-        playerSpellNames.add("3Messenger of peace");
-        playerSpellNames.add("");
-        ArrayList<String> opponentHandNames = new ArrayList<>();
-        opponentHandNames.add("Negate Attack");
-        opponentHandNames.add("Mind Crush");
-        opponentHandNames.add("Battle Warrior");
-        updateHands(opponentHandNames, true);
-        ArrayList<String> playerHandNames = new ArrayList<>();
-        playerHandNames.add("Hero of the east");
-        playerHandNames.add("Fireyarou");
-        playerHandNames.add("Messenger of peace");
-        playerHandNames.add("Feral Imp");
-        playerHandNames.add("Suijin");
-        playerHandNames.add("Scanner");
-        updateHands(playerHandNames, false);
-        updateFields(opponentMonsterNames, "opponent_monster");
-        updateFields(opponentSpellNames, "opponent_spell");
-        updateFields(playerMonsterNames, "player_monster");
-        updateFields(playerSpellNames, "player_spell");
-
+        updateGameBoard();
         updateSelectedCard();
     }
 
@@ -121,12 +91,14 @@ public class DuelMenuGui extends MenuGui {
         launch(args);
     }
 
+    public static void setGameController(GameController gameController) {
+        DuelMenuGui.gameController = gameController;
+    }
+
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
 
-        showMessage("kir");
-
-//        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
+        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
     private static void showMessage(String message) {
@@ -146,6 +118,57 @@ public class DuelMenuGui extends MenuGui {
         return duelMenuGui;
     }
 
+    public static void selectCards(String methodName, String[] fieldNames, int count) {
+        isCardSelectMode = true;
+        selectedCards = new ArrayList<>();
+        selectCardMethodName = methodName;
+        selectCardFieldNames = fieldNames;
+        selectCardsCount = count;
+    }
+
+    public static boolean isCardSelectMode() {
+        return isCardSelectMode;
+    }
+
+    public static void addToSelectedCards(GameCard card) {
+        boolean isMatched = false;
+        for (String fieldName : selectCardFieldNames) {
+            if (card.getFieldName().equals(fieldName)) {
+                isMatched = true;
+                break;
+            }
+        }
+        if (isMatched) {
+            selectedCards.add(card);
+            endSelection();
+        } else {
+            String message = "Invalid card selection! please select from fields: ";
+            message += Arrays.toString(selectCardFieldNames);
+            showMessage(message);
+        }
+    }
+
+    public static void endSelection() {
+        if (selectedCards.size() == selectCardsCount) {
+            isCardSelectMode = false;
+            Method method = getMethodByName(selectCardMethodName);
+            DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
+            try {
+                method.invoke(duelMenuGui, selectedCards);
+            } catch (IllegalAccessException | InvocationTargetException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    private static Method getMethodByName(String methodName) {
+        for (Method method : duelMenuMethods) {
+            if (method.getName().equals(methodName))
+                return method;
+        }
+        return null;
+    }
+
     public void deSelectCards() {
         for (GameCard card : gameCards) {
             card.deselectCard();
@@ -157,6 +180,8 @@ public class DuelMenuGui extends MenuGui {
         for (String fieldName : CARD_FIELDS) {
             updateFields(gameController.getFieldCards(fieldName), fieldName);
         }
+        updateHands(gameController.getHand(false), false);
+        updateHands(gameController.getHand(true), true);
     }
 
     private void updateFields(ArrayList<String> cardData, String fieldName) {
@@ -199,17 +224,21 @@ public class DuelMenuGui extends MenuGui {
         int cardX = 30;
         for (int i = 0; i < fieldCards.size(); i++) {
             cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
-            GameCard card = null;
-            if (isOpponent)
-                card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),fieldCards.get(i), false, 180);
-            else
-                card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),fieldCards.get(i), true, 0);
+            GameCard card;
+            if (isOpponent) {
+                card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),
+                        fieldCards.get(i), false, 180);
+                card.setCardType("opponent_hand");
+            } else {
+                card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),
+                        fieldCards.get(i), true, 0);
+                card.setCardType("player_hand");
+            }
             card.setPosition(i);
             fieldPane.getChildren().add(card);
             gameCards.add(card);
         }
     }
-
 
     private boolean getVisibility(String fieldName, String cardName) {
         boolean isVisible = true;
@@ -259,16 +288,17 @@ public class DuelMenuGui extends MenuGui {
             image = GetImage.getCardImage(selectedCardName);
         }
         selectedCard.setFill(new ImagePattern(image));
-//        selectedCardDescription.setText(gameController.controlCardShow());
 
+        selectedCardDescription.setText(gameController.controlCardShow());
+//////////////////////////////////
 
-        if (selectedCardName == null) {
-            selectedCardDescription.setText("no card is selected!");
-        } else if (selectedCardName.equals("DH") || selectedCardName.equals("opponent_spell")) {
-            selectedCardDescription.setText("description not available");
-        } else {
-            selectedCardDescription.setText(Card.getCardByName(selectedCardName).getCardDescription());
-        }
+//        if (selectedCardName == null) {
+//            selectedCardDescription.setText("no card is selected!");
+//        } else if (selectedCardName.equals("DH") || selectedCardName.equals("opponent_spell")) {
+//            selectedCardDescription.setText("description not available");
+//        } else {
+//            selectedCardDescription.setText(Card.getCardByName(selectedCardName).getCardDescription());
+//        }
     }
 
     public void showGraveyard() {
@@ -276,7 +306,7 @@ public class DuelMenuGui extends MenuGui {
         showGraveyardPopupWindow.initModality(Modality.APPLICATION_MODAL);
         BorderPane borderPane = new BorderPane();
         Text text = new Text("your graveyard");
-        text.setFont(new Font("Arial",14));
+        text.setFont(new Font("Arial", 14));
         text.setStyle("-fx-fill: white");
         HBox hBox = new HBox(text);
         hBox.setStyle("-fx-background-color: black");
@@ -302,8 +332,8 @@ public class DuelMenuGui extends MenuGui {
     private ScrollPane getGraveyardCardsList() {
         GridPane gridPane = new GridPane();
         ArrayList<String> graveyardCards = gameController.getPlayerGraveyardCards();
-        for (int i = graveyardCards.size() -1; i >= 0; i--) {
-            int y = graveyardCards.size() -1 - i;
+        for (int i = graveyardCards.size() - 1; i >= 0; i--) {
+            int y = graveyardCards.size() - 1 - i;
             ImageView imageView = new ImageView(GetImage.getCardImage(graveyardCards.get(i)));
             imageView.setFitWidth(100);
             imageView.setPreserveRatio(true);
@@ -318,51 +348,21 @@ public class DuelMenuGui extends MenuGui {
         scrollPane.setStyle("-fx-background-color: black");
         return scrollPane;
     }
-    // این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
-    public ArrayList<Integer> getCardsForTribute(int i) {
-        return null;
-    }
-
-    public Boolean getYesNoAnswer(String question) {
-        return null;
-    }
-
-    public String getInputNumberOfFieldForSpecialMonster(String view) {
-        return null;
-    }
-
-    public String getCardFromGraveYard(String view) {
-        return null;
-    }
-
-    public String getCardName() {
-        return null;
-    }
-
-    public void showOutput(String message) {
-        showMessage(message);
-    }
-
-    public int getNumber(String view) {
-        return 0;
-    }
-
-    public void updatePlayerGameBoard() {
-        updateGameBoard();
-    }
-
-    public void updateOpponentGameBoard() {
-        updateGameBoard();
-    }
 
     // methods similar to CLI:
     public void nextPhase() {
         int error = gameController.nextPhaseInController();
         String message = "";
         if (error == 1) {
-            message = "phase: draw phase";
+            message = "phase: draw phase" +
+                    "new card added to the hand : " +
+                    gameController.getGame().getAddedCardInDrawPhase().getCardName();
+
+
 //            message = "new card added to the hand : " +
 //                    gameController.getGame().getAddedCardInDrawPhase().getCardName();
+
+
         } else if (error == 2) {
             message = "phase: Main phase 1";
         } else if (error == 5) {
@@ -376,6 +376,8 @@ public class DuelMenuGui extends MenuGui {
             message = "phase: Main Phase 2";
         }
         showMessage(message);
+
+        updateGameBoard();
     }
 
     public void summonCard() {
@@ -401,6 +403,7 @@ public class DuelMenuGui extends MenuGui {
             message = "there is no monster on one of these addresses";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
     public void setCard() {
@@ -422,14 +425,11 @@ public class DuelMenuGui extends MenuGui {
             message = "spell card zone is full";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
-    public void changePosition(String input) {
-
-
-        int error = gameController.changePositionErrorHandler(Regex.getMatcher(input, "(attack|defense)"));
-
-
+    public void changePosition() {
+        int error = gameController.changePositionErrorHandler();
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -445,6 +445,7 @@ public class DuelMenuGui extends MenuGui {
             message = "monster card position changed successfully";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
     public void flipSummon() {
@@ -462,16 +463,12 @@ public class DuelMenuGui extends MenuGui {
             message = "flip summoned successfully";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
-    public void attackCard(Matcher matcher) {
-        int error = 1;
-
-
-        if (matcher.find())
-            error = gameController.attackErrorHandler(Integer.parseInt(matcher.group(1)));
-
-
+    public void attackCard(ArrayList<GameCard> cards) {
+        int monsterPosition = cards.get(0).getPosition();
+        int error = gameController.attackErrorHandler(monsterPosition);
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -511,6 +508,7 @@ public class DuelMenuGui extends MenuGui {
                     gameController.damageOnPlayer() + " battle damage";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
     public void directAttack() {
@@ -531,6 +529,7 @@ public class DuelMenuGui extends MenuGui {
                     + " battle damage";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
     public void activateEffect() {
@@ -552,13 +551,69 @@ public class DuelMenuGui extends MenuGui {
             message = "spell activated";
         }
         showMessage(message);
+        updateGameBoard();
     }
 
     public void surrender() {
         gameController.surrender();
+        updateGameBoard();
     }
 
     public void cancel() {
         gameController.cancel();
+        updateGameBoard();
+    }
+
+    // این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
+    public ArrayList<Integer> getCardsForTribute(int i) {
+        return null;
+    }
+
+    public Boolean getYesNoAnswer(String question) {
+        return null;
+    }
+
+    public String getInputNumberOfFieldForSpecialMonster(String view) {
+        return null;
+    }
+
+    public String getCardFromGraveYard(String view) {
+        return null;
+    }
+
+    public String getCardName() {
+        return null;
+    }
+
+    public void showOutput(String message) {
+        showMessage(message);
+    }
+
+    public int getNumber(String view) {
+        return 0;
+    }
+
+    public void updatePlayerGameBoard() {
+        updateGameBoard();
+    }
+
+    public void updateOpponentGameBoard() {
+        updateGameBoard();
+    }
+
+    public void showGameWinner(String winnerUsername, int playerWins, int opponentWins) {
+    }
+
+    public void showMatchWinner(String winnerUsername, int playerWins, int opponentWins) {
+    }
+
+    // button methods that aren't in CLI methods:
+    public void attack(MouseEvent mouseEvent) {
+        if (!gameController.isThereAnyMonsterOnOpponentMonsterField()) {
+            directAttack();
+        } else {
+            selectCards("attackCard", new String[]{"opponent_monster"}, 1);
+        }
+        updateGameBoard();
     }
 }

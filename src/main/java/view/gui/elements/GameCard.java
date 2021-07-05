@@ -28,7 +28,7 @@ public class GameCard extends Rectangle {
         }
         this.setOnMouseEntered(GameCard.getMouseEnteredEvent(this));
         this.setOnMouseExited(GameCard.getMouseExitedEvent(this));
-        this.setOnMouseClicked(GameCard.getMouseClickedEvent(this));
+        this.setOnMouseClicked(new MouseClickedOnGameCardEvent(this));
         this.setRotate(rotationDegree);
     }
 
@@ -111,5 +111,14 @@ public class GameCard extends Rectangle {
 
     public int getPosition() {
         return position;
+    }
+
+    public String getFieldName() {
+        String fieldName;
+        if (isOpponent)
+            fieldName = "opponent_";
+        else
+            fieldName = "player_";
+        return fieldName + cardType.replaceFirst("--", "");
     }
 }

@@ -1,8 +1,6 @@
 package view.gui.elements;
 
 
-import view.gui.DuelMenuGui;
-
 public enum GameElementSize {
     CARD_WIDTH(51),
     CARD_HEIGHT(75),
