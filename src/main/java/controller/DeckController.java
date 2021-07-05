@@ -134,7 +134,7 @@ public class DeckController extends Controller {
     }
 
     public void setScrollBar(ListView listView, DeckMenuGui deckMenuGui) {
-        ArrayList<Card> allCards = MainMenuGui.getUser().getCardInventory().getCards();
+        ArrayList<Card> allCards = User.getUserByUsername(username).getCardInventory().getCards();
         for (Card allCard : allCards) {
             Rectangle rectangle = new Rectangle();
             rectangle.setFill(new ImagePattern(GetImage.getCardImage(allCard.getCardName())));
@@ -254,6 +254,13 @@ public class DeckController extends Controller {
                     }
                     rectangle.setFill(Color.color(0, 0, 1, 0));
                 }
+        });
+
+        rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
         });
     }
 }
