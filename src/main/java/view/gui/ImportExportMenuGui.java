@@ -47,7 +47,7 @@ public class ImportExportMenuGui extends MainMenuGui {
     public GridPane gridPane = new GridPane();
     public BorderPane borderPane;
     public Text text;
-    ArrayList<Button> buttons;
+    public ArrayList<Button> buttons;
 
     public void setSelectedCardName(String cardName) {
         selectedCardName = cardName;
@@ -63,10 +63,10 @@ public class ImportExportMenuGui extends MainMenuGui {
         stage.setTitle("Import and Export Menu");
     }
 
+
     @FXML
     void initialize() {
         text.setText("selected card: ");
-        buttons = new Button[10][7];
         HashMap<String, Integer> cards = new ShopController(username).getCardsPrices();
         for (int index = 0; index < cards.keySet().size(); index++) {
             String cardName = (String) cards.keySet().toArray()[index];
