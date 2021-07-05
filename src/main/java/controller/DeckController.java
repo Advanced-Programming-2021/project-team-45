@@ -4,6 +4,7 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -134,6 +135,7 @@ public class DeckController extends Controller {
     }
 
     public void setScrollBar(ListView listView, DeckMenuGui deckMenuGui) {
+        deck = new Deck("kos", username);
         ArrayList<Card> allCards = User.getUserByUsername(MainMenuGui.getUsername()).getCardInventory().getCards();
         for (Card allCard : allCards) {
             Rectangle rectangle = new Rectangle();
@@ -152,7 +154,20 @@ public class DeckController extends Controller {
                     addButtons(anchorPane, button, button1, rectangle, deckMenuGui);
                 }
             });
+            onMouseMoved(rectangle);
         }
+    }
+
+    private void onMouseMoved(Rectangle rectangle) {
+        rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Label label = DeckMenuGui.getDescription();
+                label.setText(rectangleCardHashMap.get(rectangle).getCardDescription());
+                DeckMenuGui.getPictureOfCard().setFill(new ImagePattern
+                        (GetImage.getCardImage(rectangleCardHashMap.get(rectangle).getCardName())));
+            }
+        });
     }
 
     private void addButtons(AnchorPane anchorPane, Button button, Button button1, Rectangle rectangle
@@ -180,13 +195,13 @@ public class DeckController extends Controller {
             for (int j = 0; j < 10; j++) {
                 if (rectangles[i][j].getAccessibleText().equals("null")) {
                     Card card = (rectangleCardHashMap.get(rectangle));
-                    boolean boll=numberOfThis(card.getCardName(),deck.getSideDeck());
-                    if(boll) {
+                    boolean boll = numberOfThis(card.getCardName(), deck.getSideDeck());
+                    if (boll) {
                         rectangles[i][j].setFill(rectangle.getFill());
                         rectangles[i][j].setAccessibleText("full");
                         deck.addCard(card.getCardName(), true, user);
                         sideDeckHashMap.put(rectangles[i][j], card);
-                    }else{
+                    } else {
                         ShowOutput.showOutput("ErrorBox", "your side deck is full from this card");
                     }
                     bol = true;
@@ -243,17 +258,65 @@ public class DeckController extends Controller {
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                    rectangle.setAccessibleText("null");
-                    if(mainDeckHashMap.get(rectangle)!=null){
-                        deck.getMainDeck().remove(mainDeckHashMap.get(rectangle));
-                        mainDeckHashMap.remove(rectangle);
-                    }
-                    if(sideDeckHashMap.get(rectangle)!=null){
-                        deck.getSideDeck().remove(sideDeckHashMap.get(rectangle));
-                        sideDeckHashMap.remove(rectangle);
-                    }
-                    rectangle.setFill(Color.color(0, 0, 1, 0));
+                rectangle.setAccessibleText("null");
+                if (mainDeckHashMap.get(rectangle) != null) {
+                    deck.getMainDeck().remove(mainDeckHashMap.get(rectangle));
+                    mainDeckHashMap.remove(rectangle);
                 }
+                if (sideDeckHashMap.get(rectangle) != null) {
+                    deck.getSideDeck().remove(sideDeckHashMap.get(rectangle));
+                    sideDeckHashMap.remove(rectangle);
+                }
+                rectangle.setFill(Color.color(0, 0, 1, 0));
+            }
         });
+        rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (rectangle.getAccessibleText().equals("full")) {
+                    Label label = DeckMenuGui.getDescription();
+                    if (mainDeckHashMap.get(rectangle) != null) {
+                        label.setText(mainDeckHashMap.get(rectangle).getCardDescription());
+                        DeckMenuGui.getPictureOfCard().setFill(new ImagePattern(GetImage.
+                                getCardImage(mainDeckHashMap.get(rectangle).getCardName())));
+                    } else {
+                        label.setText(sideDeckHashMap.get(rectangle).getCardDescription());
+                        DeckMenuGui.getPictureOfCard().setFill(new ImagePattern(GetImage.getCardImage(sideDeckHashMap
+                                .get(rectangle).getCardName())));
+                    }
+                }
+            }
+        });
+    }
+
+    public void initializeMainAndSide(Rectangle[][] mainRectangles, Rectangle[][] sideRectangles) {
+        ArrayList<Card> mainCards = deck.getMainDeck();
+        ArrayList<Card> sideCards = deck.getSideDeck();
+        int k = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (k == mainCards.size()) {
+                    break;
+                } else {
+                    mainRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(mainCards.get(k)
+                            .getCardName())));
+                    k++;
+                }
+            }
+            if (k == mainCards.size() || k == 60) break;
+        }
+        k = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (k == sideCards.size()) {
+                    break;
+                } else {
+                    mainRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(sideCards.get(k)
+                            .getCardName())));
+                    k++;
+                }
+            }
+            if (k == sideCards.size() || k == 15) break;
+        }
     }
 }
