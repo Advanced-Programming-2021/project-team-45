@@ -136,7 +136,6 @@ public class DeckController extends Controller {
     }
 
     public void setScrollBar(ListView listView, DeckMenuGui deckMenuGui) {
-        deck = new Deck("kos", username);
         ArrayList<Card> allCards = User.getUserByUsername(MainMenuGui.getUsername()).getCardInventory().getCards();
         for (Card allCard : allCards) {
             Rectangle rectangle = new Rectangle();
@@ -263,8 +262,8 @@ public class DeckController extends Controller {
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                rectangle.setAccessibleText("null");
                 if (mainDeckHashMap.get(rectangle) != null) {
+                    System.out.println(mainDeckHashMap.get(rectangle).getCardName());
                     deck.getMainDeck().remove(mainDeckHashMap.get(rectangle));
                     mainDeckHashMap.remove(rectangle);
                 }
@@ -316,7 +315,7 @@ public class DeckController extends Controller {
                 if (k == sideCards.size()) {
                     break;
                 } else {
-                    mainRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(sideCards.get(k)
+                    sideRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(sideCards.get(k)
                             .getCardName())));
                     k++;
                 }
