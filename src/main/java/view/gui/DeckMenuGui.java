@@ -4,15 +4,22 @@ import controller.DeckController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class DeckMenuGui extends MenuGui {
     private static DeckController deckController;
@@ -20,6 +27,9 @@ public class DeckMenuGui extends MenuGui {
     private static Stage stage;
     private Rectangle[][] mainRectangles = new Rectangle[6][10];
     private Rectangle[][] sideRectangles = new Rectangle[2][10];
+    private static Label description;
+    private static Rectangle pictureOfCard;
+    private static Rectangle rectanglePictureOfDescription;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -62,9 +72,18 @@ public class DeckMenuGui extends MenuGui {
     }
 
     private void initialize1() {
-        ScrollPane scrollPane = (ScrollPane) anchorPane.getChildren().get(9);
-        ListView listView = (ListView) scrollPane.getContent();
+        ListView listView = (ListView) anchorPane.getChildren().get(6);
         deckController.setScrollBar(listView,this);
+        description= (Label) anchorPane.getChildren().get(9);
+        pictureOfCard= (Rectangle) anchorPane.getChildren().get(7);
+        rectanglePictureOfDescription= (Rectangle) anchorPane.getChildren().get(8);
+        try {
+            rectanglePictureOfDescription.setFill(new ImagePattern(new Image(new FileInputStream(
+                    "src/main/resources/view/gui/elements/Deck/description.JPG"))));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        deckController.initializeMainAndSide(mainRectangles,sideRectangles);
     }
 
     public Rectangle[][] getMainRectangles() {
@@ -79,11 +98,19 @@ public class DeckMenuGui extends MenuGui {
         DeckMenuGui.deckController = deckController;
     }
 
-    public static void chooseForAddToDeck(AnchorPane anchorPane1, Button button,Button button1){
+    public static Label getDescription() {
+        return description;
+    }
+
+    public static Rectangle getPictureOfCard() {
+        return pictureOfCard;
+    }
+
+    public static void chooseForAddToDeck(AnchorPane anchorPane1, Button button, Button button1){
         button.setText("add to the main deck");
         button1.setText("add to the side deck");
         Scene scene=new Scene(anchorPane1);
-        anchorPane1.setPrefHeight(300);
+        anchorPane1.setPrefHeight(200);
         anchorPane1.setPrefWidth(300);
         button.setLayoutX(7.5);
         button.setLayoutY(150);
@@ -106,10 +133,14 @@ public class DeckMenuGui extends MenuGui {
         Text text=new Text();
         text.setText("Please choose a button");
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setX(95);
+        text.setX(88);
         text.setY(50);
         anchorPane.getChildren().add(text);
         button.setStyle("-fx-background-color: #ffffff");
         button1.setStyle("-fx-background-color: #ffffff");
+    }
+
+    public void back(MouseEvent mouseEvent) {
+
     }
 }
