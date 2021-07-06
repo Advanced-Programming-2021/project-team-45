@@ -139,7 +139,7 @@ public class CoinTossMenu extends Application {
         DuelMenuGui duelMenuGui = new DuelMenuGui();
         DuelMenuGui.setGameController(gameController);
         gameController.setPlayerDuelMenu(duelMenuGui);
-        gameController.startGame();
+        gameController.createNewGame();
         try {
             duelMenuGui.start(stage);
         } catch (Exception ignored) {
