@@ -57,4 +57,12 @@ public class DeckStarterMenuGui extends MenuGui{
             e.printStackTrace();
         }
     }
+
+    public void chooseActiveDeck(MouseEvent mouseEvent) {
+        if(chooseActiveDeck.getValue()==null||chooseActiveDeck.getValue().equals("")){
+            ShowOutput.showOutput("Error Box","please choose a active deck");
+        }else{
+            deckStarterController.setActiveDeck(chooseActiveDeck.getValue());
+        }
+    }
 }

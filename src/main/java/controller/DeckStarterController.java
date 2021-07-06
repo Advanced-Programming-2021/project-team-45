@@ -11,6 +11,8 @@ import view.gui.DeckMenuGui;
 import java.util.ArrayList;
 
 public class DeckStarterController extends Controller{
+
+
     public DeckStarterController(String username) {
         super(username);
     }
@@ -51,5 +53,9 @@ public class DeckStarterController extends Controller{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setActiveDeck(String name) {
+        user.getUserDeck().activateDeck(name);
     }
 }
