@@ -35,25 +35,25 @@ public class MainMenuGui extends MenuGui {
         CoinTossMenu coinTossMenu = new CoinTossMenu();
         CoinTossMenu.setUserNames(username, secondPlayerUsername);
         String[] players = coinTossMenu.tossCoin();
-//        try {
-//            coinTossMenu.start(stage);
-//        } catch (Exception ignored) {
-//        }
-
+        try {
+            coinTossMenu.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        try {
 //            Thread.sleep(5000);
 //        } catch (InterruptedException ignored) {
 //        }
 
-        GameController gameController = new GameController(players[0], players[1], rounds);
-        DuelMenuGui duelMenuGui = new DuelMenuGui();
-        DuelMenuGui.setGameController(gameController);
-        gameController.setPlayerDuelMenu(duelMenuGui);
-        gameController.startGame();
-        try {
-            duelMenuGui.start(stage);
-        } catch (Exception ignored) {
-        }
+//        GameController gameController = new GameController(players[0], players[1], rounds);
+//        DuelMenuGui duelMenuGui = new DuelMenuGui();
+//        DuelMenuGui.setGameController(gameController);
+//        gameController.setPlayerDuelMenu(duelMenuGui);
+//        gameController.startGame();
+//        try {
+//            duelMenuGui.start(stage);
+//        } catch (Exception ignored) {
+//        }
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {

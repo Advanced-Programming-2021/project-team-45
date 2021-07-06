@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,17 +27,17 @@ public class CoinTossMenu extends Application {
     private static String firstUserName;
     private static String secondUsername;
     private static String firstPlayerUserName;
+    private static String secondPlayerUserName;
     private static Stage stage;
+    public Button startButton;
     private ImageView imageView;
-    private Timer timer;
-    private TimerTask timerTask;
-    private static String[] players;
+    private boolean canStartGame = false;
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
     public HBox secondPlayerHBox;
     public Text secondPlayerText;
-    public HBox firstPlayerHBox;
+    public VBox firstPlayerHBox;
     public Text firstPlayerText;
 
     public static void setUserNames(String firstUserName, String secondUsername) {
@@ -48,14 +50,15 @@ public class CoinTossMenu extends Application {
         int random = new Random().nextInt(2);
         if (random == 0) {
             firstPlayerUserName = firstUserName;
+            secondPlayerUserName = secondUsername;
             result[0] = firstUserName;
             result[1] = secondUsername;
         } else {
             firstPlayerUserName = secondUsername;
+            secondPlayerUserName = firstUserName;
             result[0] = secondUsername;
             result[1] = firstUserName;
         }
-        players = result;
         return result;
     }
 
@@ -65,7 +68,6 @@ public class CoinTossMenu extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("CoinTossMenu.fxml"));
         stage.setScene(new Scene(root, 1080, 720));
         stage.setTitle("Coin Toss");
-        stage.show();
     }
 
     @FXML
@@ -80,15 +82,64 @@ public class CoinTossMenu extends Application {
         imageView.setFitHeight(250);
         imageView.setPreserveRatio(true);
         vBox.getChildren().add(imageView);
-        showTossCoin();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void showTossCoin() throws InterruptedException {
-        timerTask = new TimerTask() {
+//    public void showTossCoin() throws InterruptedException {
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                int i = 1;
+//                int counter = 0;
+//                while (true) {
+//                    i++;
+//                    counter++;
+//                    if (i == 21)
+//                        i = 1;
+//                    try {
+//                        Thread.sleep(5);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        imageView.setImage(new Image(new FileInputStream(coinImageRoute + i + ".png")));
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                    if (counter == 100) {
+//                        showResult(firstPlayerUserName);
+//                        break;
+//                    }
+//                }
+//            }
+//        };
+//        Timer timer = new Timer();
+//        timer.schedule(timerTask, 2000);
+//    }
+
+    public void showResult(String firstPlayerUserName) {
+        if (firstPlayerUserName.equals(firstUserName)) {
+            firstPlayerText.setText(firstPlayerText.getText() + " plays first");
+            try {
+                imageView.setImage(new Image(new FileInputStream(coinImageRoute + "1.png")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            firstPlayerHBox.setStyle("-fx-background-color: green");
+            secondPlayerHBox.setStyle("-fx-background-color: red");
+        } else {
+            secondPlayerText.setText(secondPlayerText.getText() + " plays first");
+            imageView.setImage(new Image(coinImageRoute + "11.png"));
+            firstPlayerHBox.setStyle("-fx-background-color: red");
+            secondPlayerHBox.setStyle("-fx-background-color: green");
+        }
+    }
+
+    public void startToss(MouseEvent mouseEvent) throws InterruptedException {
+        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 int i = 1;
@@ -109,51 +160,30 @@ public class CoinTossMenu extends Application {
                         e.printStackTrace();
                     }
                     if (counter == 100) {
-                        showResult(firstPlayerUserName);
-                        timer.cancel();
                         break;
                     }
                 }
+                showResult(firstPlayerUserName);
             }
         };
-
-        timer = new Timer();
-        timer.schedule(timerTask, 2000);
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 0);
+        canStartGame = true;
     }
 
-    public void startGame() {
-        int rounds = 1;
-        GameController gameController = new GameController(players[0], players[1], rounds);
-        DuelMenuGui duelMenuGui = new DuelMenuGui();
-        DuelMenuGui.setGameController(gameController);
-        gameController.setPlayerDuelMenu(duelMenuGui);
-        gameController.startGame();
-        try {
-            duelMenuGui.start(stage);
-        } catch (Exception ignored) {
-        }
-    }
-
-    public void showResult(String firstPlayerUserName) {
-        if (firstPlayerUserName.equals(firstUserName)) {
-            firstPlayerText.setText(firstPlayerText.getText() + " plays first");
+    public void startGame(MouseEvent mouseEvent) {
+        if (!canStartGame)
+            ShowOutput.showOutput("Error", "first toss the coin");
+        else {
+            GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, 1);
+            DuelMenuGui duelMenuGui = new DuelMenuGui();
+            DuelMenuGui.setGameController(gameController);
+            gameController.setPlayerDuelMenu(duelMenuGui);
+            gameController.startGame();
             try {
-                imageView.setImage(new Image(new FileInputStream(coinImageRoute + "1.png")));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                duelMenuGui.start(stage);
+            } catch (Exception ignored) {
             }
-            firstPlayerHBox.setStyle("-fx-background-color: green");
-            secondPlayerHBox.setStyle("-fx-background-color: red");
-        } else {
-            secondPlayerText.setText(secondPlayerText.getText() + " plays first");
-            try {
-                imageView.setImage(new Image(new FileInputStream(coinImageRoute + "11.png")));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            firstPlayerHBox.setStyle("-fx-background-color: red");
-            secondPlayerHBox.setStyle("-fx-background-color: green");
         }
-        // go to next scene ...
     }
 }
