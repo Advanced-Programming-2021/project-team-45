@@ -94,9 +94,10 @@ public class LoginMenuGui extends MenuGui {
         int error = getLoginController().loginUserErrorHandler(username, password);
         if (error == 0) {
             ShowOutput.showOutput("Success", "user logged in successfully!");
+            MusicPlayer.muteLoginMenu();
+            MusicPlayer.unMuteMainMenu();
             MainMenuGui mainMenuGui = new MainMenuGui();
             MainMenuGui.setUsername(username);
-            MusicPlayer.pause();
             mainMenuGui.start(stage);
 
         } else if (error == 1) {

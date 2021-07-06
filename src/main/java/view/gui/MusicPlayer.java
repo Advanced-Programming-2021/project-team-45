@@ -6,19 +6,29 @@ import java.io.File;
 public class MusicPlayer {
     private static Media loginMenuMusic = new Media(new File("src\\main\\resources\\view\\gui\\musics\\Login Menu.mp3").toURI().toString());
     private static Media mainMenuMusic = new Media(new File("src\\main\\resources\\view\\gui\\musics\\Main Menu.mp3").toURI().toString());
-    private static MediaPlayer mediaPlayer;
+    private static MediaPlayer loginMediaPlayer = new MediaPlayer(loginMenuMusic);
+    private static MediaPlayer mainMediaPlayer = new MediaPlayer(mainMenuMusic);
 
     public static void PlayLoginMenuMusic() {
-        mediaPlayer = new MediaPlayer(loginMenuMusic);
-        mediaPlayer.play();
+        loginMediaPlayer.play();
     }
     public static void PlayMainMenuMusic() {
-        mediaPlayer = new MediaPlayer(mainMenuMusic);
-        mediaPlayer.play();
+        mainMediaPlayer.play();
     }
 
-    public static void pause() {
-        mediaPlayer.pause();
-        mediaPlayer = null;
+    public static void muteMainMenu() {
+        mainMediaPlayer.setMute(true);
+    }
+
+    public static void unMuteMainMenu() {
+        mainMediaPlayer.setMute(false);
+    }
+
+    public static void muteLoginMenu() {
+        loginMediaPlayer.setMute(true);
+    }
+
+    public static void unMuteLoginMenu() {
+        loginMediaPlayer.setMute(false);
     }
 }

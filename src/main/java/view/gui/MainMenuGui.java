@@ -95,8 +95,9 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        MusicPlayer.muteMainMenu();
+        MusicPlayer.unMuteLoginMenu();
         LoginMenuGui loginMenuGui = new LoginMenuGui();
-        MusicPlayer.pause();
         loginMenuGui.start(stage);
     }
 
@@ -112,12 +113,12 @@ public class MainMenuGui extends MenuGui {
 
     public void mute(MouseEvent mouseEvent) {
         if (isMusicMute) {
-            MusicPlayer.PlayMainMenuMusic();
+            MusicPlayer.unMuteMainMenu();
             muteButton.setText("mute");
             isMusicMute = false;
         }
         else {
-            MusicPlayer.pause();
+            MusicPlayer.muteMainMenu();
             muteButton.setText("unmute");
             isMusicMute = true;
         }
