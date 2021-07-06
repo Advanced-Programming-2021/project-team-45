@@ -29,7 +29,7 @@ public class CoinTossMenu extends Application {
     private static String firstPlayerUserName;
     private static String secondPlayerUserName;
     private static Stage stage;
-    public Button startButton;
+    public Button button;
     private ImageView imageView;
     private boolean canStartGame = false;
     @FXML
@@ -45,21 +45,15 @@ public class CoinTossMenu extends Application {
         CoinTossMenu.secondUsername = secondUsername;
     }
 
-    public String[] tossCoin() {
-        String[] result = new String[2];
+    public void tossCoin() {
         int random = new Random().nextInt(2);
         if (random == 0) {
             firstPlayerUserName = firstUserName;
             secondPlayerUserName = secondUsername;
-            result[0] = firstUserName;
-            result[1] = secondUsername;
         } else {
             firstPlayerUserName = secondUsername;
             secondPlayerUserName = firstUserName;
-            result[0] = secondUsername;
-            result[1] = firstUserName;
         }
-        return result;
     }
 
     @Override
@@ -84,42 +78,6 @@ public class CoinTossMenu extends Application {
         vBox.getChildren().add(imageView);
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-//    public void showTossCoin() throws InterruptedException {
-//        TimerTask timerTask = new TimerTask() {
-//            @Override
-//            public void run() {
-//                int i = 1;
-//                int counter = 0;
-//                while (true) {
-//                    i++;
-//                    counter++;
-//                    if (i == 21)
-//                        i = 1;
-//                    try {
-//                        Thread.sleep(5);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        imageView.setImage(new Image(new FileInputStream(coinImageRoute + i + ".png")));
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    }
-//                    if (counter == 100) {
-//                        showResult(firstPlayerUserName);
-//                        break;
-//                    }
-//                }
-//            }
-//        };
-//        Timer timer = new Timer();
-//        timer.schedule(timerTask, 2000);
-//    }
-
     public void showResult(String firstPlayerUserName) {
         if (firstPlayerUserName.equals(firstUserName)) {
             firstPlayerText.setText(firstPlayerText.getText() + " plays first");
@@ -132,13 +90,17 @@ public class CoinTossMenu extends Application {
             secondPlayerHBox.setStyle("-fx-background-color: red");
         } else {
             secondPlayerText.setText(secondPlayerText.getText() + " plays first");
-            imageView.setImage(new Image(coinImageRoute + "11.png"));
+            try {
+                imageView.setImage(new Image(new FileInputStream(coinImageRoute + "11.png")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             firstPlayerHBox.setStyle("-fx-background-color: red");
             secondPlayerHBox.setStyle("-fx-background-color: green");
         }
     }
 
-    public void startToss(MouseEvent mouseEvent) throws InterruptedException {
+    public void startToss() throws InterruptedException {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -169,20 +131,29 @@ public class CoinTossMenu extends Application {
         Timer timer = new Timer();
         timer.schedule(timerTask, 0);
         canStartGame = true;
+        button.setText("Start Game");
     }
 
-    public void startGame(MouseEvent mouseEvent) {
-        if (!canStartGame)
-            ShowOutput.showOutput("Error", "first toss the coin");
-        else {
-            GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, 1);
-            DuelMenuGui duelMenuGui = new DuelMenuGui();
-            DuelMenuGui.setGameController(gameController);
-            gameController.setPlayerDuelMenu(duelMenuGui);
-            gameController.startGame();
+    public void startGame() {
+        GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, 1);
+        DuelMenuGui duelMenuGui = new DuelMenuGui();
+        DuelMenuGui.setGameController(gameController);
+        gameController.setPlayerDuelMenu(duelMenuGui);
+        gameController.startGame();
+        try {
+            duelMenuGui.start(stage);
+        } catch (Exception ignored) {
+        }
+    }
+
+    public void handleButton(MouseEvent mouseEvent) {
+        if (canStartGame) {
+            startGame();
+        } else {
             try {
-                duelMenuGui.start(stage);
-            } catch (Exception ignored) {
+                startToss();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
