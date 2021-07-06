@@ -263,7 +263,6 @@ public class DeckController extends Controller {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mainDeckHashMap.get(rectangle) != null) {
-                    System.out.println(mainDeckHashMap.get(rectangle).getCardName());
                     deck.getMainDeck().remove(mainDeckHashMap.get(rectangle));
                     mainDeckHashMap.remove(rectangle);
                 }
@@ -304,6 +303,8 @@ public class DeckController extends Controller {
                 } else {
                     mainRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(mainCards.get(k)
                             .getCardName())));
+                    mainRectangles[i][j].setAccessibleText("full");
+                    mainDeckHashMap.put(mainRectangles[i][j],mainCards.get(k));
                     k++;
                 }
             }
@@ -317,6 +318,8 @@ public class DeckController extends Controller {
                 } else {
                     sideRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(sideCards.get(k)
                             .getCardName())));
+                    sideRectangles[i][j].setAccessibleText("full");
+                    sideDeckHashMap.put(sideRectangles[i][j],sideCards.get(k));
                     k++;
                 }
             }
