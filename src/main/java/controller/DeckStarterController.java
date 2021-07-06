@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -47,7 +46,9 @@ public class DeckStarterController extends Controller{
         DeckMenuGui.setUsername(username);
         DeckController deckController = new DeckController(username);
         DeckMenuGui.setDeckController(deckController);
-        deckController.createANewDeck(textField,user);
+        user.getUserDeck().createDeck(textField.getText(),user);
+        Deck deck=user.getUserDeck().getDeckByName(textField.getText());
+        deckController.setDeck(deck);
         try {
             deckMenuGui.start(stage);
         } catch (Exception e) {

@@ -328,6 +328,6 @@ public class DeckController extends Controller {
     }
 
     public void deleteDeck() {
-        user.getUserDeck().deleteDeckFromUserDecks(deck.getName());
+        User.getUserByUsername(username).getUserDeck().deleteDeckFromUserDecks(deck.getName());
     }
 }
