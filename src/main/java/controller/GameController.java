@@ -596,8 +596,8 @@ public class GameController extends Controller {
                 MonsterCard[] opponentMonsters = game.getOpponentGameBoard().getMonsterField().getMonsterPositionsArray();
                 for (int i = 0; i < opponentMonsters.length; i++) {
                     if (opponentMonsters[i] != null) {
-                        if (opponentMonsters[i].getPosition() != PositionMonsters.DEFENSE) {
-                            if (opponentMonsters[i].getDefenceMode() != DefensePosition.DH) {
+                        if (opponentMonsters[i].getPosition() == PositionMonsters.DEFENSE) {
+                            if (opponentMonsters[i].getDefenceMode() == DefensePosition.DH) {
                                 cardData.add(i + opponentMonsters[i].getDefenceMode().toString());
                             } else {
                                 cardData.add(i + opponentMonsters[i].getCardName() + "_" +
