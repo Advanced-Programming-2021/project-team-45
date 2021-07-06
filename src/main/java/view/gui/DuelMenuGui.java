@@ -96,7 +96,6 @@ public class DuelMenuGui extends MenuGui {
 
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
-
         gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
@@ -175,6 +174,8 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void updateGameBoard() {
+        gameController.checkGameEnd();
+
         fieldPane.getChildren().clear();
         for (String fieldName : CARD_FIELDS) {
             updateFields(gameController.getFieldCards(fieldName), fieldName);
@@ -600,13 +601,24 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void showGameWinner(String winnerUsername, int playerWins, int opponentWins) {
-        String message = username + " won the game and the score is: " + playerWins + "-" + opponentWins;
+        String message = winnerUsername + " won the game and the score is: " + playerWins + "-" + opponentWins;
         showMessage(message);
     }
 
     public void showMatchWinner(String winnerUsername, int playerWins, int opponentWins) {
-        String message = username + " won the the whole match with score: " + playerWins + "-" + opponentWins;
+        String message = winnerUsername + " won the the whole match with score: " + playerWins + "-" + opponentWins;
         showMessage(message);
+    }
+
+    public void endGame() {
+        // exit to MainMenu
+        MainMenuGui mainMenu = new MainMenuGui();
+        mainMenu.setUsername(username);
+        try {
+            mainMenu.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // button methods that aren't in CLI methods:
