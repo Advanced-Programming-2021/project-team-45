@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.CoinTossMenu">
+<BorderPane fx:id="borderPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.CoinTossMenu">
 
     <center>
         <VBox fx:id="vBox" alignment="CENTER" style="-fx-background-color: grey">
@@ -14,10 +12,9 @@
         </VBox>
     </center>
    <top>
-      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1080.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER"
-      fx:id="secondPlayerHBox">
+      <HBox fx:id="secondPlayerHBox" alignment="CENTER" prefHeight="80.0" prefWidth="1080.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="second player: " fx:id="secondPlayerText">
+            <Text fx:id="secondPlayerText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="second player: ">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -26,16 +23,17 @@
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER"
-      fx:id="firstPlayerHBox">
+      <VBox fx:id="firstPlayerHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="first player: " fx:id="firstPlayerText">
+            <Text fx:id="firstPlayerText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="first player: ">
                <font>
-                  <Font name = "System Bold" size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Text>
+            <Button fx:id="startButton" onMouseClicked="#startToss" prefHeight="26.0" prefWidth="70.0" text="start" style="-fx-background-color: orange"/>
+            <Button onMouseClicked="#startGame" prefHeight="26.0" prefWidth="70.0" text="next" style="-fx-background-color: orange"/>
          </children>
-      </HBox>
+      </VBox>
    </bottom>
 
 
