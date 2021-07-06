@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import model.card.Card;
+import model.game.Game;
 import view.gui.elements.GameCard;
 import view.gui.elements.GameElementSize;
 import view.gui.elements.GetGameElements;
@@ -47,6 +48,8 @@ public class DuelMenuGui extends MenuGui {
     // select card fields:
     private static boolean isCardSelectMode;
     private static ArrayList<GameCard> selectedCards;
+    private static ArrayList<GameCard> playerHandCards = new ArrayList<>();
+    private static ArrayList<GameCard> opponentHandCards = new ArrayList<>();
     private static int selectCardsCount;
     private static String[] selectCardFieldNames;
     private static String selectCardMethodName;
@@ -221,6 +224,14 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateHands(ArrayList<String> fieldCards, boolean isOpponent) {
+        if (isOpponent) {
+            for (GameCard card : opponentHandCards)
+                fieldPane.getChildren().remove(card);
+        }
+        else {
+            for (GameCard card : playerHandCards)
+                fieldPane.getChildren().remove(card);
+        }
         int cardX = 30;
         for (int i = 0; i < fieldCards.size(); i++) {
             cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
@@ -229,10 +240,12 @@ public class DuelMenuGui extends MenuGui {
                 card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), false, 180);
                 card.setCardType("opponent_hand");
+                opponentHandCards.add(card);
             } else {
                 card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), true, 0);
                 card.setCardType("player_hand");
+                playerHandCards.add(card);
             }
             card.setPosition(i);
             fieldPane.getChildren().add(card);
@@ -323,25 +336,33 @@ public class DuelMenuGui extends MenuGui {
         hBox1.setAlignment(Pos.CENTER);
         borderPane.setBottom(hBox1);
 
-        Scene scene = new Scene(borderPane);
+        Scene scene = new Scene(borderPane, 130, 450);
+        showGraveyardPopupWindow.setResizable(false);
         showGraveyardPopupWindow.setScene(scene);
-        showGraveyardPopupWindow.setTitle("graveyard");
         showGraveyardPopupWindow.showAndWait();
     }
 
     private ScrollPane getGraveyardCardsList() {
         GridPane gridPane = new GridPane();
         ArrayList<String> graveyardCards = gameController.getPlayerGraveyardCards();
-        for (int i = graveyardCards.size() - 1; i >= 0; i--) {
-            int y = graveyardCards.size() - 1 - i;
-            ImageView imageView = new ImageView(GetImage.getCardImage(graveyardCards.get(i)));
-            imageView.setFitWidth(100);
-            imageView.setPreserveRatio(true);
-            Text text = new Text(y + ".");
+        if (graveyardCards.size() == 0) {
+            Text text = new Text("there is no card at graveyard");
+            gridPane.add(text, 0, 10);
             text.setStyle("-fx-fill: white");
             text.setFont(new Font("Bold", 14));
-            gridPane.add(text, 0, y);
-            gridPane.add(imageView, 1, y);
+        }
+        else {
+            for (int i = graveyardCards.size() - 1; i >= 0; i--) {
+                int y = graveyardCards.size() - 1 - i;
+                ImageView imageView = new ImageView(GetImage.getCardImage(graveyardCards.get(i)));
+                imageView.setFitWidth(100);
+                imageView.setPreserveRatio(true);
+                Text text = new Text(y + 1 + ".");
+                text.setStyle("-fx-fill: white");
+                text.setFont(new Font("Bold", 14));
+                gridPane.add(text, 0, y);
+                gridPane.add(imageView, 1, y);
+            }
         }
         gridPane.setStyle("-fx-background-color: black");
         ScrollPane scrollPane = new ScrollPane(gridPane);
