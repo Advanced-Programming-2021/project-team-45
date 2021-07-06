@@ -35,6 +35,7 @@ public class DeckController extends Controller {
     private HashMap<Rectangle, Card> rectangleCardHashMap = new HashMap<>();
     private HashMap<Rectangle, Card> mainDeckHashMap = new HashMap<>();
     private HashMap<Rectangle, Card> sideDeckHashMap = new HashMap<>();
+    private CalculatorOfNumberOfCards calculator;
     Deck deck;
 
     public void createANewDeck(TextField textField, User user) {
@@ -331,10 +332,16 @@ public class DeckController extends Controller {
 
     public void deleteDeck() {
         User.getUserByUsername(username).getUserDeck().deleteDeckFromUserDecks(deck.getName());
+        calculator.stop();
     }
 
     public void setNumberOfCards(Text numberOfCards) {
-        new CalculatorOfNumberOfCards(numberOfCards,User.getUserByUsername(username),deck.getName()).start();
+        calculator=new CalculatorOfNumberOfCards(numberOfCards,User.getUserByUsername(username),deck.getName());
+        calculator.start();
+    }
+
+    public void stopCounting(){
+        calculator.stop();
     }
 }
 

@@ -151,6 +151,7 @@ public class DeckMenuGui extends MenuGui {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        deckController.stopCounting();
     }
 
     public void deleteCurrentDeck(MouseEvent mouseEvent) {
