@@ -12,8 +12,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
-import model.card.Card;
-import model.game.Game;
 import view.gui.elements.GameCard;
 import view.gui.elements.GameElementSize;
 import view.gui.elements.GetGameElements;
@@ -45,11 +43,11 @@ public class DuelMenuGui extends MenuGui {
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
+    private static ArrayList<GameCard> playerHandCards = new ArrayList<>();
+    private static ArrayList<GameCard> opponentHandCards = new ArrayList<>();
     // select card fields:
     private static boolean isCardSelectMode;
     private static ArrayList<GameCard> selectedCards;
-    private static ArrayList<GameCard> playerHandCards = new ArrayList<>();
-    private static ArrayList<GameCard> opponentHandCards = new ArrayList<>();
     private static int selectCardsCount;
     private static String[] selectCardFieldNames;
     private static String selectCardMethodName;
@@ -179,7 +177,11 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void updateGameBoard() {
+
+        System.out.println(fieldPane.getChildren().toString());
         fieldPane.getChildren().removeAll();
+        System.out.println(fieldPane.getChildren().toString());
+
         for (String fieldName : CARD_FIELDS) {
             updateFields(gameController.getFieldCards(fieldName), fieldName);
         }
@@ -606,12 +608,12 @@ public class DuelMenuGui extends MenuGui {
         return null;
     }
 
-    public void showOutput(String message) {
-        showMessage(message);
-    }
-
     public int getNumber(String view) {
         return 0;
+    }
+
+    public void showOutput(String message) {
+        showMessage(message);
     }
 
     public void updatePlayerGameBoard() {
@@ -623,9 +625,13 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void showGameWinner(String winnerUsername, int playerWins, int opponentWins) {
+        String message = username + " won the game and the score is: " + playerWins + "-" + opponentWins;
+        showMessage(message);
     }
 
     public void showMatchWinner(String winnerUsername, int playerWins, int opponentWins) {
+        String message = username + " won the the whole match with score: " + playerWins + "-" + opponentWins;
+        showMessage(message);
     }
 
     // button methods that aren't in CLI methods:

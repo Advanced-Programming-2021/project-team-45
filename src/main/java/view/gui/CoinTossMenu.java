@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.GameController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ public class CoinTossMenu extends Application {
     private ImageView imageView;
     private Timer timer;
     private TimerTask timerTask;
+    private static String[] players;
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
@@ -53,6 +55,7 @@ public class CoinTossMenu extends Application {
             result[0] = secondUsername;
             result[1] = firstUserName;
         }
+        players = result;
         return result;
     }
 
@@ -118,6 +121,19 @@ public class CoinTossMenu extends Application {
         timer.schedule(timerTask, 2000);
     }
 
+    public void startGame() {
+        int rounds = 1;
+        GameController gameController = new GameController(players[0], players[1], rounds);
+        DuelMenuGui duelMenuGui = new DuelMenuGui();
+        DuelMenuGui.setGameController(gameController);
+        gameController.setPlayerDuelMenu(duelMenuGui);
+        gameController.startGame();
+        try {
+            duelMenuGui.start(stage);
+        } catch (Exception ignored) {
+        }
+    }
+
     public void showResult(String firstPlayerUserName) {
         if (firstPlayerUserName.equals(firstUserName)) {
             firstPlayerText.setText(firstPlayerText.getText() + " plays first");
@@ -130,7 +146,11 @@ public class CoinTossMenu extends Application {
             secondPlayerHBox.setStyle("-fx-background-color: red");
         } else {
             secondPlayerText.setText(secondPlayerText.getText() + " plays first");
-            imageView.setImage(new Image(coinImageRoute + "11.png"));
+            try {
+                imageView.setImage(new Image(new FileInputStream(coinImageRoute + "11.png")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             firstPlayerHBox.setStyle("-fx-background-color: red");
             secondPlayerHBox.setStyle("-fx-background-color: green");
         }

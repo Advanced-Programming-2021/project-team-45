@@ -162,7 +162,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" prefHeight="26.0"
-                                    prefWidth="110.0" text="show graveyard" onMouseClicked="#showGraveyard">
+                                    prefWidth="110.0" text="Show Graveyard" onMouseClicked="#showGraveyard">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
