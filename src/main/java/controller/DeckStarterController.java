@@ -9,7 +9,7 @@ import view.gui.DeckMenuGui;
 
 import java.util.ArrayList;
 
-public class DeckStarterController extends Controller{
+public class DeckStarterController extends Controller {
 
 
     public DeckStarterController(String username) {
@@ -18,17 +18,17 @@ public class DeckStarterController extends Controller{
 
 
     public void initialize(ChoiceBox<String> chooseActiveDeck, ChoiceBox<String> chooseEditDeck) {
-        User user=User.getUserByUsername(username);
-        ArrayList<Deck> allDecks=user.getUserDeck().getUserDecks();
+        User user = User.getUserByUsername(username);
+        ArrayList<Deck> allDecks = user.getUserDeck().getUserDecks();
         for (Deck allDeck : allDecks) {
             chooseActiveDeck.getItems().add(allDeck.getName());
             chooseEditDeck.getItems().add(allDeck.getName());
         }
     }
 
-    public void startEditDeck(Stage stage,String name) {
-        User user=User.getUserByUsername(username);
-        DeckMenuGui deckMenuGui=new DeckMenuGui();
+    public void startEditDeck(Stage stage, String name) {
+        User user = User.getUserByUsername(username);
+        DeckMenuGui deckMenuGui = new DeckMenuGui();
         DeckMenuGui.setUsername(username);
         DeckController deckController = new DeckController(username);
         DeckMenuGui.setDeckController(deckController);
@@ -41,13 +41,13 @@ public class DeckStarterController extends Controller{
     }
 
     public void startCreateADeck(Stage stage, TextField textField) {
-        User user=User.getUserByUsername(username);
-        DeckMenuGui deckMenuGui=new DeckMenuGui();
+        User user = User.getUserByUsername(username);
+        DeckMenuGui deckMenuGui = new DeckMenuGui();
         DeckMenuGui.setUsername(username);
         DeckController deckController = new DeckController(username);
         DeckMenuGui.setDeckController(deckController);
-        user.getUserDeck().createDeck(textField.getText(),user);
-        Deck deck=user.getUserDeck().getDeckByName(textField.getText());
+        user.getUserDeck().createDeck(textField.getText(), user);
+        Deck deck = user.getUserDeck().getDeckByName(textField.getText());
         deckController.setDeck(deck);
         try {
             deckMenuGui.start(stage);
