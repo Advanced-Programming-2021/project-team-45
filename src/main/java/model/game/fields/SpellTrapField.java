@@ -33,7 +33,7 @@ public class SpellTrapField extends CardField {
     }
 
     public SpellTrapCard getPlayerSpellTrapCard(int cardPosition) {
-        return spellTraps[cardPosition - 1];
+        return spellTraps[cardPosition];
     }
 
     public SpellTrapCard getOpponentSpellTrapCard(int cardPosition) {
@@ -45,7 +45,7 @@ public class SpellTrapField extends CardField {
         } else {
             position = cardPosition - 1;
         }
-        return spellTraps[position - 1];
+        return spellTraps[position];
     }
 
     @Override
