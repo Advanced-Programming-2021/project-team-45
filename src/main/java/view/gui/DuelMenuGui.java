@@ -43,8 +43,6 @@ public class DuelMenuGui extends MenuGui {
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
-    private static ArrayList<GameCard> playerHandCards = new ArrayList<>();
-    private static ArrayList<GameCard> opponentHandCards = new ArrayList<>();
     // select card fields:
     private static boolean isCardSelectMode;
     private static ArrayList<GameCard> selectedCards;
@@ -177,11 +175,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void updateGameBoard() {
-
-        System.out.println(fieldPane.getChildren().toString());
-        fieldPane.getChildren().removeAll();
-        System.out.println(fieldPane.getChildren().toString());
-
+        fieldPane.getChildren().clear();
         for (String fieldName : CARD_FIELDS) {
             updateFields(gameController.getFieldCards(fieldName), fieldName);
         }
@@ -226,14 +220,6 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateHands(ArrayList<String> fieldCards, boolean isOpponent) {
-        if (isOpponent) {
-            for (GameCard card : opponentHandCards)
-                fieldPane.getChildren().remove(card);
-        }
-        else {
-            for (GameCard card : playerHandCards)
-                fieldPane.getChildren().remove(card);
-        }
         int cardX = 30;
         for (int i = 0; i < fieldCards.size(); i++) {
             cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
@@ -242,12 +228,10 @@ public class DuelMenuGui extends MenuGui {
                 card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), false, 180);
                 card.setCardType("opponent_hand");
-                opponentHandCards.add(card);
             } else {
                 card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), true, 0);
                 card.setCardType("player_hand");
-                playerHandCards.add(card);
             }
             card.setPosition(i);
             fieldPane.getChildren().add(card);
@@ -305,15 +289,6 @@ public class DuelMenuGui extends MenuGui {
         selectedCard.setFill(new ImagePattern(image));
 
         selectedCardDescription.setText(gameController.controlCardShow());
-//////////////////////////////////
-
-//        if (selectedCardName == null) {
-//            selectedCardDescription.setText("no card is selected!");
-//        } else if (selectedCardName.equals("DH") || selectedCardName.equals("opponent_spell")) {
-//            selectedCardDescription.setText("description not available");
-//        } else {
-//            selectedCardDescription.setText(Card.getCardByName(selectedCardName).getCardDescription());
-//        }
     }
 
     public void showGraveyard() {
@@ -377,7 +352,7 @@ public class DuelMenuGui extends MenuGui {
         int error = gameController.nextPhaseInController();
         String message = "";
         if (error == 1) {
-            message = "phase: draw phase" +
+            message = "phase: draw phase " +
                     "new card added to the hand : " +
                     gameController.getGame().getAddedCardInDrawPhase().getCardName();
 
