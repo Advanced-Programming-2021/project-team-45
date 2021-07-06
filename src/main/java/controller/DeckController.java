@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.card.Card;
 import model.card.Deck;
@@ -271,6 +272,7 @@ public class DeckController extends Controller {
                     sideDeckHashMap.remove(rectangle);
                 }
                 rectangle.setFill(Color.color(0, 0, 1, 0));
+                rectangle.setAccessibleText("null");
             }
         });
         rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -304,7 +306,7 @@ public class DeckController extends Controller {
                     mainRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(mainCards.get(k)
                             .getCardName())));
                     mainRectangles[i][j].setAccessibleText("full");
-                    mainDeckHashMap.put(mainRectangles[i][j],mainCards.get(k));
+                    mainDeckHashMap.put(mainRectangles[i][j], mainCards.get(k));
                     k++;
                 }
             }
@@ -319,7 +321,7 @@ public class DeckController extends Controller {
                     sideRectangles[i][j].setFill(new ImagePattern(GetImage.getCardImage(sideCards.get(k)
                             .getCardName())));
                     sideRectangles[i][j].setAccessibleText("full");
-                    sideDeckHashMap.put(sideRectangles[i][j],sideCards.get(k));
+                    sideDeckHashMap.put(sideRectangles[i][j], sideCards.get(k));
                     k++;
                 }
             }
@@ -329,5 +331,41 @@ public class DeckController extends Controller {
 
     public void deleteDeck() {
         User.getUserByUsername(username).getUserDeck().deleteDeckFromUserDecks(deck.getName());
+    }
+
+    public void setNumberOfCards(Text numberOfCards) {
+        new CalculatorOfNumberOfCards(numberOfCards,User.getUserByUsername(username),deck.getName()).start();
+    }
+}
+
+class CalculatorOfNumberOfCards extends Thread {
+
+    private Text numberOfCards;
+    private User user;
+    private String deckName;
+
+    public CalculatorOfNumberOfCards(Text numberOfCards, User user, String deckName) {
+        this.numberOfCards = numberOfCards;
+        this.user = user;
+        this.deckName = deckName;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            int allCards = user.getUserDeck().getDeckByName(deckName).getMainDeck().size() +
+                    user.getUserDeck().getDeckByName(deckName).getSideDeck().size();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            numberOfCards.setText(String.valueOf(allCards));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

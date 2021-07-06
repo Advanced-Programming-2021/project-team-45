@@ -2,6 +2,7 @@ package view.gui;
 
 import controller.DeckController;
 import controller.DeckStarterController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +27,7 @@ public class DeckMenuGui extends MenuGui {
     private static DeckController deckController;
     private static AnchorPane anchorPane;
     private static Stage stage;
+    private Text numberOfCards;
     private Rectangle[][] mainRectangles = new Rectangle[6][10];
     private Rectangle[][] sideRectangles = new Rectangle[2][10];
     private static Label description;
@@ -70,6 +72,8 @@ public class DeckMenuGui extends MenuGui {
             }
         }
         initialize1();
+        numberOfCards= (Text) anchorPane.getChildren().get(13);
+        deckController.setNumberOfCards(numberOfCards);
     }
 
     private void initialize1() {
