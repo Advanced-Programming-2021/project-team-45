@@ -24,6 +24,8 @@ public class DeckStarterController extends Controller {
             chooseActiveDeck.getItems().add(allDeck.getName());
             chooseEditDeck.getItems().add(allDeck.getName());
         }
+        Deck deck=user.getUserDeck().getActiveDeck();
+        chooseActiveDeck.setValue(deck.getName());
     }
 
     public void startEditDeck(Stage stage, String name) {

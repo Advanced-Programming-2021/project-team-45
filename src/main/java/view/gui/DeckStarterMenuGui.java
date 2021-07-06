@@ -46,6 +46,7 @@ public class DeckStarterMenuGui extends MenuGui{
         if(nameOfDeck.getText()==null||nameOfDeck.getText().equals("")){
             ShowOutput.showOutput("error box","you have to write a name for your deck");
         }else{
+            ShowOutput.showOutput("AlertBox","new deck created successfully");
             deckStarterController.startCreateADeck(stage,nameOfDeck);
         }
     }
