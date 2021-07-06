@@ -615,7 +615,7 @@ public class GameController extends Controller {
                 SpellTrapCard[] opponentSpells = game.getOpponentGameBoard().getSpellTrapField().getSpellTrapCardsPositionsArray();
                 for (int i = 0; i < opponentSpells.length; i++) {
                     if (opponentSpells[i] != null)
-                        cardData.add("opponent_spell");
+                        cardData.add(i + "opponent_spell");
                     else
                         cardData.add("");
                 }
