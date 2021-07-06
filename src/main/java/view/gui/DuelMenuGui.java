@@ -221,18 +221,22 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateHands(ArrayList<String> fieldCards, boolean isOpponent) {
-        int cardX = 30;
+        int cardX = 0;
+        if (isOpponent) {
+            cardX = 512;
+        }
+        else cardX = 30;
         for (int i = 0; i < fieldCards.size(); i++) {
-            cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
             GameCard card;
             if (isOpponent) {
+                cardX -= (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
                 card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), false, 180);
-                card.setCardType("opponent_hand");
-            } else {
+            }
+            else {
+                cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
                 card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), true, 0);
-                card.setCardType("player_hand");
             }
             card.setPosition(i);
             fieldPane.getChildren().add(card);
