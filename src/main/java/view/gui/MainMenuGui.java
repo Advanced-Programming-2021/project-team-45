@@ -24,7 +24,7 @@ public class MainMenuGui extends MenuGui {
         Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
-        MusicPlayer.PlayMainMenuMusic();
+        MusicPlayer.playMainMenuMusic();
     }
 
     public void startDuel(MouseEvent mouseEvent) {

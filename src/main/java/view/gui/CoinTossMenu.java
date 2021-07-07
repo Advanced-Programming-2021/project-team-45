@@ -135,12 +135,14 @@ public class CoinTossMenu extends Application {
     }
 
     public void startGame() {
+        MusicPlayer.muteMainMenu();
         GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, 1);
         DuelMenuGui duelMenuGui = new DuelMenuGui();
         DuelMenuGui.setGameController(gameController);
         gameController.setPlayerDuelMenu(duelMenuGui);
         gameController.createNewGame();
         try {
+            MusicPlayer.playDuelMenuMusic();
             duelMenuGui.start(stage);
         } catch (Exception ignored) {
         }
