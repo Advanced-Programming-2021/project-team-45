@@ -34,6 +34,23 @@ public class GameController extends Controller {
         this.playerDuelMenu = playerDuelMenu;
     }
 
+    public String[] getPlayerAndOpponentNickNameAndUserName() {
+        String[] result = new String[4];
+        result[0] = player.getNickname();
+        result[1] = player.getUsername();
+        result[2] = opponentPlayer.getNickname();
+        result[3] = opponentPlayer.getUsername();
+        return result;
+    }
+
+    public int getPlayerLifePoint() {
+        return player.getLifepoint().getLifepoint();
+    }
+
+    public int getOpponentLifePoint() {
+        return opponentPlayer.getLifepoint().getLifepoint();
+    }
+
     public void createNewGame() {
         this.game = new Game(player, opponentPlayer, rounds, this);
         this.gameErrorHandler = new GameErrorHandler(game);
