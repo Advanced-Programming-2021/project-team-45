@@ -102,14 +102,14 @@ public class GetInput {
         return atomicReference.get();
     }
 
-    public static File choosePictureFile(){
-        FileChooser fileChooser=new FileChooser();
-        File file=fileChooser.showOpenDialog(null);
-        String mimetype= new MimetypesFileTypeMap().getContentType(file);
+    public static File choosePictureFile() {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        String mimetype = new MimetypesFileTypeMap().getContentType(file);
         String type = mimetype.split("/")[0];
-        if(type.equals("image")){
+        if (type.equals("image")) {
             return file;
-        }else{
+        } else {
             return null;
         }
     }
