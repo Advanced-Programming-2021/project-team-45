@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 
 public class DeckMenuGui extends MenuGui {
     private static DeckController deckController;
@@ -30,6 +31,7 @@ public class DeckMenuGui extends MenuGui {
     private Text numberOfCards;
     private Rectangle[][] mainRectangles = new Rectangle[6][10];
     private Rectangle[][] sideRectangles = new Rectangle[2][10];
+    public static HashMap<Rectangle,String> mainSideRectangles=new HashMap<>();
     private static Label description;
     private static Rectangle pictureOfCard;
     private static Rectangle rectanglePictureOfDescription;
@@ -54,6 +56,7 @@ public class DeckMenuGui extends MenuGui {
                 mainRectangles[i][j].setX(210 + j * 63.5);
                 mainRectangles[i][j].setY(13 + 89.5 * i);
                 mainRectangles[i][j].setFill(Color.color(1, 1, 1, 0));
+                mainSideRectangles.put(mainRectangles[i][j],"main");
                 anchorPane.getChildren().add(mainRectangles[i][j]);
                 deckController.handlerOfCards(mainRectangles[i][j]);
             }
@@ -67,6 +70,7 @@ public class DeckMenuGui extends MenuGui {
                 sideRectangles[i][j].setX(210 + j * 63.5);
                 sideRectangles[i][j].setY(572 + 69.5 * i);
                 sideRectangles[i][j].setFill(Color.color(0, 0, 1, 0));
+                mainSideRectangles.put(sideRectangles[i][j],"side");
                 anchorPane.getChildren().add(sideRectangles[i][j]);
                 deckController.handlerOfCards(sideRectangles[i][j]);
             }
