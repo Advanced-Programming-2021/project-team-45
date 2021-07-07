@@ -260,11 +260,10 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateOpponentLifePoint() {
-        opponentProgressBar.setProgress((gameController.getOpponentLifePoint() / (double)8000));
         String[] opponentData = gameController.getOpponentData();
         opponentNickNameText.setText("opponent nickname: " + opponentData[0]);
         opponentUserNameText.setText("opponent username: " + opponentData[1]);
-        opponentProgressBar.setProgress((double) (gameController.getOpponentLifePoint() / 8000));
+        opponentProgressBar.setProgress( (gameController.getOpponentLifePoint() / (double)8000));
         if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
             opponentProgressBar.setStyle("-fx-accent: yellow");
         else if (opponentProgressBar.getProgress() <= 0.3)
@@ -272,7 +271,6 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
-        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double)8000));
         String[] playerData = gameController.getPlayerData();
         playerNickNameText.setText("player nickname: " + playerData[0]);
         playerUserNameText.setText("player username: " + playerData[1]);
