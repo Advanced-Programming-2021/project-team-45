@@ -107,10 +107,6 @@ public class DuelMenuGui extends MenuGui {
         updateSelectedCard();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public static void setGameController(GameController gameController) {
         DuelMenuGui.gameController = gameController;
     }
@@ -134,6 +130,8 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public static DuelMenuGui getDuelMenuGui() {
+        if (duelMenuGui == null)
+            duelMenuGui = new DuelMenuGui();
         return duelMenuGui;
     }
 
@@ -247,8 +245,7 @@ public class DuelMenuGui extends MenuGui {
         int cardX = 0;
         if (isOpponent) {
             cardX = 512;
-        }
-        else cardX = 30;
+        } else cardX = 30;
         for (int i = 0; i < fieldCards.size(); i++) {
             GameCard card;
             if (isOpponent) {
@@ -256,8 +253,7 @@ public class DuelMenuGui extends MenuGui {
                 card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), false, 180);
                 card.setCardType("opponent_hand");
-            }
-            else {
+            } else {
                 cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
                 card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), true, 0);
@@ -374,8 +370,7 @@ public class DuelMenuGui extends MenuGui {
             gridPane.add(text, 0, 10);
             text.setStyle("-fx-fill: white");
             text.setFont(new Font("Bold", 14));
-        }
-        else {
+        } else {
             for (int i = graveyardCards.size() - 1; i >= 0; i--) {
                 int y = graveyardCards.size() - 1 - i;
                 ImageView imageView = new ImageView(GetImage.getCardImage(graveyardCards.get(i)));
@@ -402,12 +397,6 @@ public class DuelMenuGui extends MenuGui {
             message = "phase: draw phase\n" +
                     "new card added to the hand : " +
                     gameController.getGame().getAddedCardInDrawPhase().getCardName();
-
-
-//            message = "new card added to the hand : " +
-//                    gameController.getGame().getAddedCardInDrawPhase().getCardName();
-
-
         } else if (error == 2) {
             message = "phase: Main phase 1";
         } else if (error == 5) {
@@ -421,7 +410,6 @@ public class DuelMenuGui extends MenuGui {
             message = "phase: Main Phase 2";
         }
         showMessage(message);
-
         updateGameBoard();
     }
 
