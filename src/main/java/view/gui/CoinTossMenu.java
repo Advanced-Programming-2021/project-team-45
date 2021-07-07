@@ -142,6 +142,7 @@ public class CoinTossMenu extends Application {
         gameController.createNewGame();
         try {
             MusicPlayer.playDuelMenuMusic();
+            MusicPlayer.unMuteDuelMenuMusic();
             duelMenuGui.start(stage);
         } catch (Exception ignored) {
         }
