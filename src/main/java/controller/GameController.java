@@ -6,6 +6,7 @@ import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import model.game.fields.CardField;
 import model.user.User;
 import view.gui.DuelMenuGui;
+import view.gui.GetInput;
 import view.gui.MusicPlayer;
 
 import java.io.IOException;
@@ -461,7 +462,7 @@ public class GameController extends Controller {
     }
 
     public Boolean getYesNoAnswer(String question) {
-        return playerDuelMenu.getYesNoAnswer(question);
+        return GetInput.getYesNoAnswer(question);
     }
 
     public ArrayList<Integer> getCardsForTribute(int n) {

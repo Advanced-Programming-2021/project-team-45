@@ -1,31 +1,105 @@
 package view.gui;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+
 import javax.activation.MimetypesFileTypeMap;
 
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GetInput {
-    public static boolean getYesNoAnswer(String title, String question) {
-        AtomicBoolean result = new AtomicBoolean(false);
+    private static Stage getYesOrNoAnswerPopupWindow;
+    private static Stage getStringAnswerPopupWindow;
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(question);
-        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
-        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
-        alert.getButtonTypes().setAll(yesButton, noButton);
-        alert.showAndWait().ifPresent(type -> {
-            result.set(type == yesButton);
+    public static Boolean getYesNoAnswer(String question) {
+        AtomicBoolean result = new AtomicBoolean(false);
+        getYesOrNoAnswerPopupWindow = new Stage();
+        getYesOrNoAnswerPopupWindow.initModality(Modality.APPLICATION_MODAL);
+
+        BorderPane borderPane = new BorderPane();
+        Text text = new Text(question);
+        text.setFont(new Font("Bold", 14));
+        text.setStyle("-fx-fill: white");
+        HBox hBox = new HBox(text);
+        hBox.setStyle("-fx-background-color: #050588");
+        hBox.setAlignment(Pos.CENTER);
+        borderPane.setCenter(hBox);
+
+        Button yesButton = new Button("yes");
+        yesButton.setStyle("-fx-background-color: orange; -fx-fill: #020264");
+        Button noButton = new Button("no");
+        noButton.setStyle("-fx-background-color: orange; -fx-fill: #020264");
+        yesButton.setOnAction(e -> {
+            result.set(true);
+            getYesOrNoAnswerPopupWindow.close();
         });
 
+        noButton.setOnAction(e -> {
+            result.set(false);
+            getYesOrNoAnswerPopupWindow.close();
+        });
+
+        HBox hBox1 = new HBox();
+        hBox1.setSpacing(10);
+        hBox1.setAlignment(Pos.CENTER);
+        hBox1.setStyle("-fx-background-color: #050588");
+        hBox1.getChildren().addAll(yesButton, noButton);
+        borderPane.setBottom(hBox1);
+
+        Scene scene = new Scene(borderPane, 200, 70);
+        getYesOrNoAnswerPopupWindow.setScene(scene);
+        getYesOrNoAnswerPopupWindow.showAndWait();
         return result.get();
+    }
+
+    public static String getStringAnswerPopupWindow(String title, String question) {
+        AtomicReference<String> atomicReference = new AtomicReference<>();
+        atomicReference.set(null);
+        getStringAnswerPopupWindow = new Stage();
+        getStringAnswerPopupWindow.initModality(Modality.APPLICATION_MODAL);
+
+        BorderPane borderPane = new BorderPane();
+        Text text = new Text(question);
+        text.setFont(new Font("Bold", 14));
+        text.setStyle("-fx-background-color: #0404e9; -fx-fill: white");
+        TextField textField = new TextField(null);
+        VBox vBox = new VBox();
+        vBox.setSpacing(15);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setStyle("-fx-background-color: #0404e9");
+        vBox.getChildren().addAll(text, textField);
+        borderPane.setCenter(vBox);
+
+
+        Button button = new Button("ok");
+        button.setStyle("-fx-background-color: red");
+        button.setOnAction(e -> {
+            atomicReference.set(textField.getText());
+            getStringAnswerPopupWindow.close();
+        });
+        HBox hBox = new HBox(button);
+        hBox.setStyle("-fx-background-color: grey");
+        hBox.setAlignment(Pos.CENTER);
+        borderPane.setBottom(hBox);
+
+        getStringAnswerPopupWindow.setScene(new Scene(borderPane, 350, 250));
+        getStringAnswerPopupWindow.setResizable(false);
+        getStringAnswerPopupWindow.setTitle(title);
+        getStringAnswerPopupWindow.showAndWait();
+        return atomicReference.get();
     }
 
     public static File choosePictureFile(){
