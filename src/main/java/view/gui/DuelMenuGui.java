@@ -255,11 +255,13 @@ public class DuelMenuGui extends MenuGui {
                 cardX -= (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
                 card = new GameCard(fieldPane, cardX, GameElementSize.OPPONENT_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), false, 180);
+                card.setCardType("opponent_hand");
             }
             else {
                 cardX += (GameElementSize.CARD_DISTANCE.getSize() + GameElementSize.CARD_WIDTH.getSize());
                 card = new GameCard(fieldPane, cardX, GameElementSize.PLAYER_HAND_CARD_START_Y.getSize(),
                         fieldCards.get(i), true, 0);
+                card.setCardType("player_hand");
             }
             card.setPosition(i);
             fieldPane.getChildren().add(card);
@@ -397,7 +399,7 @@ public class DuelMenuGui extends MenuGui {
         int error = gameController.nextPhaseInController();
         String message = "";
         if (error == 1) {
-            message = "phase: draw phase " +
+            message = "phase: draw phase\n" +
                     "new card added to the hand : " +
                     gameController.getGame().getAddedCardInDrawPhase().getCardName();
 

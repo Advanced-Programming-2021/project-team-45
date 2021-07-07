@@ -6,6 +6,8 @@
 .label {
     -fx-background-color: #eee0b1;
     -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
     -fx-border-insets: 10px;
     -fx-border-color: #cb9a45;
 }

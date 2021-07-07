@@ -61,7 +61,6 @@ public class CoinTossMenu extends Application {
         CoinTossMenu.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("CoinTossMenu.fxml"));
         stage.setScene(new Scene(root, 1080, 720));
-        stage.setTitle("Coin Toss");
     }
 
     @FXML
@@ -137,9 +136,9 @@ public class CoinTossMenu extends Application {
     public void startGame() {
         MusicPlayer.muteMainMenu();
         GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, 1);
-        DuelMenuGui duelMenuGui = new DuelMenuGui();
-        DuelMenuGui.setGameController(gameController);
+        DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
         gameController.setPlayerDuelMenu(duelMenuGui);
+        DuelMenuGui.setGameController(gameController);
         gameController.createNewGame();
         try {
             MusicPlayer.playDuelMenuMusic();
