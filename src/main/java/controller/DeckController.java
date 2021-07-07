@@ -37,7 +37,6 @@ public class DeckController extends Controller {
     private HashMap<Rectangle, Card> sideDeckHashMap = new HashMap<>();
     private CalculatorOfNumberOfCards calculator;
     private static Rectangle sourceRectangle;
-    private static Rectangle targetRectangle;
     Deck deck;
 
     public void createANewDeck(TextField textField, User user) {
@@ -263,21 +262,24 @@ public class DeckController extends Controller {
     }
 
     public void handlerOfCards(Rectangle rectangle) {
+
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mainDeckHashMap.get(rectangle) != null) {
-                    deck.getMainDeck().remove(mainDeckHashMap.get(rectangle));
+                    deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), false);
                     mainDeckHashMap.remove(rectangle);
                 }
                 if (sideDeckHashMap.get(rectangle) != null) {
-                    deck.getSideDeck().remove(sideDeckHashMap.get(rectangle));
+                    deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), true);
                     sideDeckHashMap.remove(rectangle);
+                    System.out.println("kos");
                 }
                 rectangle.setFill(Color.color(0, 0, 1, 0));
                 rectangle.setAccessibleText("null");
             }
         });
+
         rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -298,11 +300,11 @@ public class DeckController extends Controller {
         continueForDragAndDrop(rectangle);
     }
 
-    private void continueForDragAndDrop(Rectangle rectangle){
+    private void continueForDragAndDrop(Rectangle rectangle) {
         rectangle.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
-                if(dragEvent.getDragboard().hasString()) {
+                if (dragEvent.getDragboard().hasString()) {
                     dragEvent.acceptTransferModes(TransferMode.ANY);
                 }
             }
@@ -311,32 +313,45 @@ public class DeckController extends Controller {
         rectangle.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
-                if(rectangle.getAccessibleText().equals("null")){
+                if (rectangle.getAccessibleText().equals("null")) {
                     rectangle.setFill(sourceRectangle.getFill());
-                    boolean bool=DeckMenuGui.mainSideRectangles.get(sourceRectangle).equals("main");
-                    if(DeckMenuGui.mainSideRectangles.get(rectangle).equals("main")){
-                        if(bool){
-                            mainDeckHashMap.put(rectangle,mainDeckHashMap.get(sourceRectangle));
+                    boolean bool = DeckMenuGui.mainSideRectangles.get(sourceRectangle).equals("main");
+                    if (DeckMenuGui.mainSideRectangles.get(rectangle).equals("main")) {
+                        if (bool) {
+                            mainDeckHashMap.put(rectangle, mainDeckHashMap.get(sourceRectangle));
                             mainDeckHashMap.remove(sourceRectangle);
-                        }else{
-                            mainDeckHashMap.put(rectangle,sideDeckHashMap.get(sourceRectangle));
+                            deck.addCard(mainDeckHashMap.get(rectangle).getCardName(), false,
+                                    User.getUserByUsername(username));
+                            deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), false);
+                        } else {
+                            mainDeckHashMap.put(rectangle, sideDeckHashMap.get(sourceRectangle));
                             sideDeckHashMap.remove(sourceRectangle);
+                            deck.addCard(mainDeckHashMap.get(rectangle).getCardName(), false,
+                                    User.getUserByUsername(username));
+                            deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), true);
                         }
-                    }else{
-                        if(bool){
-                            sideDeckHashMap.put(rectangle,mainDeckHashMap.get(sourceRectangle));
+                    } else {
+                        if (bool) {
+                            sideDeckHashMap.put(rectangle, mainDeckHashMap.get(sourceRectangle));
                             mainDeckHashMap.remove(sourceRectangle);
-                        }else{
-                            sideDeckHashMap.put(rectangle,sideDeckHashMap.get(sourceRectangle));
+                            deck.addCard(sideDeckHashMap.get(rectangle).getCardName(), true,
+                                    User.getUserByUsername(username));
+                            deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), false);
+                        } else {
+                            sideDeckHashMap.put(rectangle, sideDeckHashMap.get(sourceRectangle));
                             sideDeckHashMap.remove(sourceRectangle);
+                            deck.addCard(sideDeckHashMap.get(rectangle).getCardName(), true,
+                                    User.getUserByUsername(username));
+                            deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), true);
                         }
                     }
                     sourceRectangle.setAccessibleText("null");
+                    rectangle.setAccessibleText("full");
                     sourceRectangle.setFill((Color.color(0, 0, 1, 0)));
-                    sourceRectangle=null;
-                }else{
-                    sourceRectangle=null;
-                    ShowOutput.showOutput("error box","your destination must be null to drag and drop card");
+                    sourceRectangle = null;
+                } else {
+                    sourceRectangle = null;
+                    ShowOutput.showOutput("error box", "your destination must be null to drag and drop card");
                 }
             }
         });
@@ -344,11 +359,11 @@ public class DeckController extends Controller {
         rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Dragboard db=rectangle.startDragAndDrop(TransferMode.ANY);
-                ClipboardContent clipboardContent=new ClipboardContent();
+                Dragboard db = rectangle.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString("BitCoin");
                 db.setContent(clipboardContent);
-                sourceRectangle=rectangle;
+                sourceRectangle = rectangle;
                 mouseEvent.consume();
             }
         });
@@ -395,11 +410,11 @@ public class DeckController extends Controller {
     }
 
     public void setNumberOfCards(Text numberOfCards) {
-        calculator=new CalculatorOfNumberOfCards(numberOfCards,User.getUserByUsername(username),deck.getName());
+        calculator = new CalculatorOfNumberOfCards(numberOfCards, User.getUserByUsername(username), deck.getName());
         calculator.start();
     }
 
-    public void stopCounting(){
+    public void stopCounting() {
         calculator.stop();
     }
 }
@@ -421,11 +436,6 @@ class CalculatorOfNumberOfCards extends Thread {
         while (true) {
             int allCards = user.getUserDeck().getDeckByName(deckName).getMainDeck().size() +
                     user.getUserDeck().getDeckByName(deckName).getSideDeck().size();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             numberOfCards.setText(String.valueOf(allCards));
             try {
                 Thread.sleep(100);
