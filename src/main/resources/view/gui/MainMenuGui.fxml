@@ -7,104 +7,198 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
+<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
+
+    <stylesheets>
+        <URL value="@styles/MainMenuGui.css" />
+    </stylesheets>
+
     <top>
         <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
             <children>
                 <Label prefHeight="45.0" prefWidth="198.0" text="welcome to YU-GI-OH!" textFill="whitesmoke">
                     <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Arial Bold" size="18.0"/>
                     </font>
                 </Label>
             </children>
         </VBox>
     </top>
+
     <center>
         <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="66.0" fitWidth="200.0">
+                <image>
+                    <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/GUI_T_GateLogo_s001.dds.png"/>
+                </image>
+            </ImageView>
             <children>
-                <ImageView fitHeight="66.0" fitWidth="200.0">
-                    <image>
-                        <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/GUI_T_GateLogo_s001.dds.png" />
-                    </image>
-                </ImageView>
-                <Button mnemonicParsing="false" onMouseClicked="#startCartCreatorMenu" prefHeight="26" prefWidth="100" text="Card Creator">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color red="0.46237864762394" green="0.023486264242349" blue="0.8723467892364" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startDuel" prefHeight="26.0" prefWidth="100.0" text="Duel">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color red="1.0" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startDeckMenu" prefHeight="26.0" prefWidth="100.0" text="Deck">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color green="1.0" blue="0.16606497764587402" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startScoreBoardMenu" prefHeight="26.0" prefWidth="100.0" text="ScoreBoard">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color red="1.0" blue="0.4332129955291748" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startProfileMenu" prefHeight="26.0" prefWidth="100.0" text="Profile">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color green="1.0" blue="0.8999999761581421" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startShopMenu" prefHeight="26.0" prefWidth="100.0" text="Shop">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color red="0.8736461997032166" green="1.0" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#startImportExportMenu" prefHeight="26.0" prefWidth="100.0" text="Import/Export">
-                    <effect>
-                        <DropShadow spread="0.5" />
-                    </effect>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="26.0" prefWidth="100.0" text="Log out">
-                    <effect>
-                        <DropShadow spread="0.5">
-                            <color>
-                                <Color red="0.3547758162021637" green="0.08966861665248871" blue="0.42105263471603394" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="mute" onMouseClicked="#mute" fx:id="muteButton">
-               <effect>
-                  <DropShadow spread="0.5">
-                     <color>
-                        <Color red="1.0" green="0.44999998807907104" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startDuel" prefHeight="26.0"
+                            prefWidth="100.0" text="Duel">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startDeckMenu" prefHeight="26.0"
+                            prefWidth="100.0" text="Deck">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startScoreBoardMenu" prefHeight="26.0"
+                            prefWidth="100.0" text="ScoreBoard">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startProfileMenu" prefHeight="26.0"
+                            prefWidth="100.0" text="Profile">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startShopMenu" prefHeight="26.0"
+                            prefWidth="100.0" text="Shop">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startCardCreatorMenu" prefHeight="26.0"
+                            prefWidth="100.0" text="Card Creator">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startImportExportMenu" prefHeight="26.0"
+                            prefWidth="100.0" text="Import/Export">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#logout" prefHeight="26.0"
+                            prefWidth="100.0" text="Logout">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#mute" prefHeight="26.0"
+                            prefWidth="70.0" text="mute" fx:id="muteButton">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
             </children>
         </VBox>
     </center>
