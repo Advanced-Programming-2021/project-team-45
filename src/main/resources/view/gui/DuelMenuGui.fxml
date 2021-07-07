@@ -25,12 +25,11 @@
         <HBox alignment="CENTER">
             <BorderPane prefHeight="600" prefWidth="210">
                 <top>
-                    <VBox style="-fx-background-color: black">
+                    <VBox style="-fx-background-color: #eee0b1">
                         <ProgressBar minWidth="210" progress="1" fx:id="opponentProgressBar" style="-fx-accent: green"/>
-                        <Text style="-fx-fill: white" text="opponent nickname: " fx:id="opponentNickNameText"/>
-                        <Text style="-fx-fill: white" text="opponent username: " fx:id="opponentUserNameText"/>
+                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="opponent nickname: " fx:id="opponentNickNameText"/>
+                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="opponent username: " fx:id="opponentUserNameText"/>
                     </VBox>
-<!--                    <Rectangle height="50" width="210"/>-->
                 </top>
                 <center>
                     <VBox alignment="CENTER" style="-fx-background-color: black">
@@ -47,12 +46,11 @@
                     </VBox>
                 </center>
                 <bottom>
-                    <VBox style="-fx-background-color: black">
+                    <VBox style="-fx-background-color: #eee0b1">
                         <ProgressBar minWidth="210" progress="1" fx:id="playerProgressBar" style="-fx-accent: green"/>
-                        <Text style="-fx-fill: white" text="player nickname: " fx:id="playerNickNameText"/>
-                        <Text style="-fx-fill: white" text="player username: " fx:id="playerUserNameText"/>
+                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="player nickname: " fx:id="playerNickNameText"/>
+                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="player username: " fx:id="playerUserNameText"/>
                     </VBox>
-<!--                    <Rectangle height="50" width="210" />-->
                 </bottom>
             </BorderPane>
 

@@ -37,14 +37,14 @@ public class MonsterField extends CardField {
     }
 
     public MonsterCard getMonsterCardOpponentFromMonsterField(int cardPosition) {
-        int position;
-        if (cardPosition == 1) {
-            position = cardPosition;
-        } else if (cardPosition % 2 == 0) {
-            position = cardPosition + 1;
-        } else {
-            position = cardPosition - 1;
-        }
+        int position = cardPosition;
+//        if (cardPosition == 1) {
+//            position = cardPosition;
+//        } else if (cardPosition % 2 == 0) {
+//            position = cardPosition + 1;
+//        } else {
+//            position = cardPosition - 1;
+//        }
         return monsters[position];
     }
 
