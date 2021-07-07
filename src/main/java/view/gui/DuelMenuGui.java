@@ -59,7 +59,6 @@ public class DuelMenuGui extends MenuGui {
     public Label selectedCardDescription;
     @FXML
     public Rectangle selectedCard;
-
     @FXML
     public ProgressBar opponentProgressBar;
     @FXML
@@ -98,12 +97,6 @@ public class DuelMenuGui extends MenuGui {
                 BackgroundSize.DEFAULT);
         fieldPane.setBackground(new Background(backgroundImage));
         DuelMenuGui.duelMenuGui = this;
-
-        String[] playersData = gameController.getPlayerAndOpponentNickNameAndUserName();
-        opponentNickNameText.setText(opponentNickNameText.getText() + playersData[0]);
-        opponentUserNameText.setText(opponentUserNameText.getText() + playersData[1]);
-        playerNickNameText.setText(playerNickNameText.getText() + playersData[2]);
-        playerUserNameText.setText(playerUserNameText.getText() + playersData[3]);
 
         updateGameBoard();
         updateSelectedCard();
@@ -268,6 +261,9 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateOpponentLifePoint() {
+        String[] opponentData = gameController.getOpponentData();
+        opponentNickNameText.setText("opponent nickname: " + opponentData[0]);
+        opponentUserNameText.setText("opponent username: " + opponentData[1]);
         opponentProgressBar.setProgress((double) (gameController.getOpponentLifePoint() / 8000));
         if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
             opponentProgressBar.setStyle("-fx-accent: yellow");
@@ -276,6 +272,9 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
+        String[] playerData = gameController.getPlayerData();
+        playerNickNameText.setText("player nickname: " + playerData[0]);
+        playerUserNameText.setText("player username: " + playerData[1]);
         playerProgressBar.setProgress((double) (gameController.getPlayerLifePoint() / 8000));
         if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
             playerProgressBar.setStyle("-fx-accent: yellow");
@@ -326,7 +325,8 @@ public class DuelMenuGui extends MenuGui {
         Image image;
         if (selectedCardName == null ||
                 selectedCardName.equals("DH") ||
-                selectedCardName.equals("opponent_spell")) {
+                selectedCardName.equals("opponent_spell") ||
+                selectedCardName.equals("opponent_hand")) {
             image = GetGameElements.getCardBack();
         } else {
             image = GetImage.getCardImage(selectedCardName);
