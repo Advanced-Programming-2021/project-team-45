@@ -15,6 +15,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import view.gui.elements.GetImage;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -25,8 +26,13 @@ public class GetInput {
     private static Stage getStringAnswerPopupWindow;
 
     public static Boolean getYesNoAnswer(String question) {
+        return getTwoChoiceAnswer(question, "Yes", "No");
+    }
+
+    public static Boolean getTwoChoiceAnswer(String question, String trueOption, String falseOption) {
         AtomicBoolean result = new AtomicBoolean(false);
         getYesOrNoAnswerPopupWindow = new Stage();
+        getYesOrNoAnswerPopupWindow.getIcons().add(GetImage.getGameIcon());
         getYesOrNoAnswerPopupWindow.initModality(Modality.APPLICATION_MODAL);
 
         BorderPane borderPane = new BorderPane();
@@ -38,9 +44,9 @@ public class GetInput {
         hBox.setAlignment(Pos.CENTER);
         borderPane.setCenter(hBox);
 
-        Button yesButton = new Button("yes");
+        Button yesButton = new Button(trueOption);
         yesButton.setStyle("-fx-background-color: orange; -fx-fill: #020264");
-        Button noButton = new Button("no");
+        Button noButton = new Button(falseOption);
         noButton.setStyle("-fx-background-color: orange; -fx-fill: #020264");
         yesButton.setOnAction(e -> {
             result.set(true);
@@ -69,6 +75,7 @@ public class GetInput {
         AtomicReference<String> atomicReference = new AtomicReference<>();
         atomicReference.set(null);
         getStringAnswerPopupWindow = new Stage();
+        getStringAnswerPopupWindow.getIcons().add(GetImage.getGameIcon());
         getStringAnswerPopupWindow.initModality(Modality.APPLICATION_MODAL);
 
         BorderPane borderPane = new BorderPane();
@@ -85,13 +92,14 @@ public class GetInput {
 
 
         Button button = new Button("ok");
-        button.setStyle("-fx-background-color: red");
+        button.setStyle("-fx-background-color: orange; -fx-fill: #020264");
+        button.setMinWidth(80);
         button.setOnAction(e -> {
             atomicReference.set(textField.getText());
             getStringAnswerPopupWindow.close();
         });
         HBox hBox = new HBox(button);
-        hBox.setStyle("-fx-background-color: grey");
+        hBox.setStyle("-fx-background-color: #0404e9");
         hBox.setAlignment(Pos.CENTER);
         borderPane.setBottom(hBox);
 

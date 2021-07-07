@@ -24,26 +24,55 @@ public class MainMenuGui extends MenuGui {
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
         MusicPlayer.playMainMenuMusic();
+        mainMenuController = new MainMenuController(username);
     }
 
     public void startDuel(MouseEvent mouseEvent) {
-        // get input:
-        String secondPlayerUsername = "hossein";
+        // get opponent username:
+        String opponentUsername = GetInput.getStringAnswerPopupWindow("Duel",
+                "Please enter second player's username.");
+        // get rounds:
+        Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
+                "1", "3");
         int rounds = 1;
+        if (!isSingleRound)
+            rounds = 3;
 
+        String message = handleStartGame(opponentUsername, rounds);
 
-
-
-
-
-        CoinTossMenu coinTossMenu = new CoinTossMenu();
-        CoinTossMenu.setUserNames(username, secondPlayerUsername);
-        coinTossMenu.tossCoin();
-        try {
-            coinTossMenu.start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (message == null) {
+            CoinTossMenu coinTossMenu = new CoinTossMenu();
+            CoinTossMenu.setUserNames(username, opponentUsername);
+            coinTossMenu.tossCoin();
+            try {
+                coinTossMenu.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            ShowOutput.showOutput("Error", message);
         }
+    }
+
+    private String handleStartGame(String opponentUsername, int rounds) {
+        String message = "";
+        int error = mainMenuController.startGameErrorHandler(opponentUsername, rounds);
+        if (error == 0) {
+            message = null;
+        } else if (error == 1) {
+            message = "there is no player with this username";
+        } else if (error == 2) {
+            message = username + " has no active deck";
+        } else if (error == 3) {
+            message = opponentUsername + " has no active deck";
+        } else if (error == 4) {
+            message = username + "'s deck is invalid";
+        } else if (error == 5) {
+            message = opponentUsername + "'s deck is invalid";
+        } else if (error == 6) {
+            message = "number of rounds is not supported";
+        }
+        return message;
     }
 
     public void startDeckMenu(MouseEvent mouseEvent) {
@@ -107,8 +136,7 @@ public class MainMenuGui extends MenuGui {
             MusicPlayer.unMuteMainMenu();
             muteButton.setText("mute");
             isMusicMute = false;
-        }
-        else {
+        } else {
             MusicPlayer.muteMainMenu();
             muteButton.setText("unmute");
             isMusicMute = true;

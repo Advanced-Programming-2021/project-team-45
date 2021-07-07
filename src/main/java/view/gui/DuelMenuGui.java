@@ -30,7 +30,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DuelMenuGui extends MenuGui {
     private static final String[] CARD_FIELDS = {
@@ -42,7 +41,6 @@ public class DuelMenuGui extends MenuGui {
     private static GameController gameController;
     private static Stage stage;
     private static Stage showGraveyardPopupWindow;
-    private static Stage getYesOrNoAnswerPopupWindow;
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
@@ -260,7 +258,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateOpponentLifePoint() {
-        opponentProgressBar.setProgress((gameController.getOpponentLifePoint() / (double)8000));
+        opponentProgressBar.setProgress((gameController.getOpponentLifePoint() / (double) 8000));
         String[] opponentData = gameController.getOpponentData();
         opponentNickNameText.setText("opponent nickname: " + opponentData[0]);
         opponentUserNameText.setText("opponent username: " + opponentData[1]);
@@ -272,11 +270,11 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
-        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double)8000));
+        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double) 8000));
         String[] playerData = gameController.getPlayerData();
         playerNickNameText.setText("player nickname: " + playerData[0]);
         playerUserNameText.setText("player username: " + playerData[1]);
-        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double)8000));
+        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double) 8000));
         if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
             playerProgressBar.setStyle("-fx-accent: yellow");
         else if (playerProgressBar.getProgress() <= 0.3)
@@ -601,11 +599,22 @@ public class DuelMenuGui extends MenuGui {
         updateGameBoard();
     }
 
-    // این متود ها اضافه شدن تا برنامه صرفا ران شه بتونیم ببریمش جلو بعد اینکه بهشون برسیم اوکیشون میکنیم و در صورت نیاز پاکشون میکنیم
     public ArrayList<Integer> getCardsForTribute(int i) {
-        return null;
+        while (true) {
+            try {
+                String input = GetInput.getStringAnswerPopupWindow("Tribute Summon",
+                        "Please enter the position of " + i + " cards with \"1\" space between them to tribute. " +
+                                "Leave field empty to cancel summon.");
+                String[] numbers = input.split(" ");
+                ArrayList<Integer> positions = new ArrayList<>();
+                for (String num : numbers)
+                    positions.add(Integer.parseInt(num));
+                return positions;
+            } catch (NumberFormatException exception) {
+                showMessage("Invalid input format. Try again!");
+            }
+        }
     }
-
 
     public String getInputNumberOfFieldForSpecialMonster(String view) {
         return null;
@@ -616,11 +625,19 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public String getCardName() {
-        return null;
+        return GetInput.getStringAnswerPopupWindow("Attention!", "Please enter a card name:");
     }
 
     public int getNumber(String view) {
-        return 0;
+        while (true) {
+            String input = GetInput.getStringAnswerPopupWindow("Attention!", view);
+            try {
+                int answer = Integer.parseInt(input);
+                return answer;
+            } catch (NumberFormatException ignored) {
+                showOutput("Invalid number format. Try again!");
+            }
+        }
     }
 
     public void showOutput(String message) {
@@ -646,14 +663,27 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void endGame() {
-        // exit to MainMenu
-        MusicPlayer.playMainMenuMusic();
-        MainMenuGui mainMenu = new MainMenuGui();
-        mainMenu.setUsername(username);
-        try {
-            mainMenu.start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
+        Boolean isExitToMainMenu = GetInput.getTwoChoiceAnswer("What do you want to do now?",
+                "Back to Main Menu", "Play Again");
+        if (isExitToMainMenu) {
+            // exit to MainMenu
+            MusicPlayer.playMainMenuMusic();
+            MainMenuGui mainMenu = new MainMenuGui();
+            mainMenu.setUsername(username);
+            try {
+                mainMenu.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            CoinTossMenu coinTossMenu = new CoinTossMenu();
+            CoinTossMenu.setUserNames(username, );
+            coinTossMenu.tossCoin();
+            try {
+                coinTossMenu.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
