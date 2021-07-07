@@ -622,6 +622,7 @@ public class DuelMenuGui extends MenuGui {
         BorderPane borderPane = new BorderPane();
         Text text = new Text(question);
         text.setFont(new Font("Bold", 14));
+        text.setStyle("-fx-fill: white");
         HBox hBox = new HBox(text);
         hBox.setStyle("-fx-background-color: #050588");
         hBox.setAlignment(Pos.CENTER);
