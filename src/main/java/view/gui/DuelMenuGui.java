@@ -272,12 +272,11 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
-        MusicPlayer.playPointDropMusic();
         playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double)8000));
         String[] playerData = gameController.getPlayerData();
         playerNickNameText.setText("player nickname: " + playerData[0]);
         playerUserNameText.setText("player username: " + playerData[1]);
-        playerProgressBar.setProgress((double) (gameController.getPlayerLifePoint() / 8000));
+        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double)8000));
         if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
             playerProgressBar.setStyle("-fx-accent: yellow");
         else if (playerProgressBar.getProgress() <= 0.3)
