@@ -14,7 +14,7 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainMenuGui">
 
     <stylesheets>
-        <URL value="@styles/MainMenuGui.css" />
+        <URL value="@styles/MainMenuGui.css"/>
     </stylesheets>
 
     <top>
