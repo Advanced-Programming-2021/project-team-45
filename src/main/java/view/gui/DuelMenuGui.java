@@ -76,7 +76,6 @@ public class DuelMenuGui extends MenuGui {
         duelMenuMethods = DuelMenuGui.class.getDeclaredMethods();
     }
 
-
     @Override
     public void start(Stage stage) throws IOException {
         gameCards = new ArrayList<>();

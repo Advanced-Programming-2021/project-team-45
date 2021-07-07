@@ -36,15 +36,7 @@ public class SpellTrapField extends CardField {
         return spellTraps[cardPosition];
     }
 
-    public SpellTrapCard getOpponentSpellTrapCard(int cardPosition) {
-        int position;
-        if (cardPosition == 1) {
-            position = cardPosition;
-        } else if (cardPosition % 2 == 0) {
-            position = cardPosition + 1;
-        } else {
-            position = cardPosition - 1;
-        }
+    public SpellTrapCard getOpponentSpellTrapCard(int position) {
         return spellTraps[position];
     }
 
