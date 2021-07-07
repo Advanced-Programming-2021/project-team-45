@@ -43,6 +43,7 @@ public class MainMenuGui extends MenuGui {
         if (message == null) {
             CoinTossMenu coinTossMenu = new CoinTossMenu();
             CoinTossMenu.setUserNames(username, opponentUsername);
+            CoinTossMenu.setRounds(rounds);
             coinTossMenu.tossCoin();
             try {
                 coinTossMenu.start(stage);

@@ -656,7 +656,7 @@ public class GameController extends Controller {
     }
 
     public int getPlayerLifePoint() {
-        return player.getLifepoint().getLifepoint();
+        return game.getPlayerOfThisTurn().getLifepoint().getLifepoint();
     }
 
     public String[] getOpponentData() {
@@ -667,6 +667,10 @@ public class GameController extends Controller {
     }
 
     public int getOpponentLifePoint() {
-        return opponentPlayer.getLifepoint().getLifepoint();
+        return game.getOpponentOfThisTurn().getLifepoint().getLifepoint();
+    }
+
+    public String[] getPlayersUsernames() {
+        return new String[]{player.getUsername(), opponentPlayer.getUsername()};
     }
 }
