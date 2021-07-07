@@ -3,6 +3,7 @@ package view.gui;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -57,9 +58,23 @@ public class DuelMenuGui extends MenuGui {
     @FXML
     public Rectangle selectedCard;
 
+    @FXML
+    public ProgressBar opponentProgressBar;
+    @FXML
+    public Text opponentNickNameText;
+    @FXML
+    public Text opponentUserNameText;
+    @FXML
+    public ProgressBar playerProgressBar;
+    @FXML
+    public Text playerNickNameText;
+    @FXML
+    public Text playerUserNameText;
+
     static {
         duelMenuMethods = DuelMenuGui.class.getDeclaredMethods();
     }
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -81,6 +96,12 @@ public class DuelMenuGui extends MenuGui {
                 BackgroundSize.DEFAULT);
         fieldPane.setBackground(new Background(backgroundImage));
         DuelMenuGui.duelMenuGui = this;
+
+        String[] playersData = gameController.getPlayerAndOpponentNickNameAndUserName();
+        opponentNickNameText.setText(opponentNickNameText.getText() + playersData[0]);
+        opponentUserNameText.setText(opponentUserNameText.getText() + playersData[1]);
+        playerNickNameText.setText(playerNickNameText.getText() + playersData[2]);
+        playerUserNameText.setText(playerUserNameText.getText() + playersData[3]);
 
         updateGameBoard();
         updateSelectedCard();
@@ -182,6 +203,8 @@ public class DuelMenuGui extends MenuGui {
         }
         updateHands(gameController.getHand(false), false);
         updateHands(gameController.getHand(true), true);
+        updatePlayerLifePoint();
+        updateOpponentLifePoint();
     }
 
     private void updateFields(ArrayList<String> cardData, String fieldName) {
@@ -243,6 +266,23 @@ public class DuelMenuGui extends MenuGui {
             gameCards.add(card);
         }
     }
+
+    private void updateOpponentLifePoint() {
+        opponentProgressBar.setProgress((double) (gameController.getOpponentLifePoint() / 8000));
+        if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
+            opponentProgressBar.setStyle("-fx-accent: yellow");
+        else if (opponentProgressBar.getProgress() <= 0.3)
+            opponentProgressBar.setStyle("-fx-accent: red");
+    }
+
+    private void updatePlayerLifePoint() {
+        playerProgressBar.setProgress((double) (gameController.getPlayerLifePoint() / 8000));
+        if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
+            playerProgressBar.setStyle("-fx-accent: yellow");
+        else if (playerProgressBar.getProgress() <= 0.3)
+            playerProgressBar.setStyle("-fx-accent: red");
+    }
+
 
     private boolean getVisibility(String fieldName, String cardName) {
         boolean isVisible = true;
