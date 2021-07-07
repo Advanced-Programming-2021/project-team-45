@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -63,7 +65,7 @@ public class ProfileMenuGui extends MenuGui {
             imageView.setImage(image);
             profileController.getUser().setProfilePicturePath(file.getPath());
         } else {
-            buttonError();
+            ShowOutput.showOutput("error box","wrong file type please try again");
         }
     }
 
@@ -86,6 +88,10 @@ public class ProfileMenuGui extends MenuGui {
     private void setUsernameAndNickname() {
         Text usernameText = new Text();
         Text nicknameText = new Text();
+        usernameText.setFill(new Color(1,1,1,1));
+        nicknameText.setFill(new Color(1,1,1,1));
+        usernameText.setFont(new Font("Bookman Old Style",12));
+        nicknameText.setFont(new Font("Bookman Old Style",12));
         usernameText.setX(309);
         usernameText.setY(109);
         nicknameText.setY(149);
@@ -107,7 +113,7 @@ public class ProfileMenuGui extends MenuGui {
     public void changeNickname(MouseEvent mouseEvent) {
         int error = profileController.changeNicknameErrorHandler(newNickname.getText());
         if (error == 1) {
-            errorBox("this nickname is already exist please try again");
+            ShowOutput.showOutput("error box","this nickname is already exist please try again");
         } else {
             try {
                 this.start(stage);
@@ -154,9 +160,9 @@ public class ProfileMenuGui extends MenuGui {
     public void changePassword(MouseEvent mouseEvent) {
         int error = profileController.changePasswordErrorHandler(oldPassword.getText(), newPassword.getText());
         if (error == 1) {
-            errorBox("incorrect old password");
+            ShowOutput.showOutput("error box","incorrect old password");
         } else if (error == 2) {
-            errorBox("your old and new password are equal");
+            ShowOutput.showOutput("error box","your old and new password are equal");
         } else {
             try {
                 new ProfileMenuGui().start(stage);
