@@ -30,6 +30,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DuelMenuGui extends MenuGui {
     private static final String[] CARD_FIELDS = {
@@ -41,6 +42,7 @@ public class DuelMenuGui extends MenuGui {
     private static GameController gameController;
     private static Stage stage;
     private static Stage showGraveyardPopupWindow;
+    private static Stage getYesOrNoAnswerPopupWindow;
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
@@ -603,7 +605,45 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public Boolean getYesNoAnswer(String question) {
-        return null;
+        AtomicBoolean result = new AtomicBoolean(false);
+        getYesOrNoAnswerPopupWindow = new Stage();
+        getYesOrNoAnswerPopupWindow.initModality(Modality.APPLICATION_MODAL);
+
+        BorderPane borderPane = new BorderPane();
+        Text text = new Text(question);
+        text.setFont(new Font("Bold", 14));
+        text.setStyle("-fx-fill: white");
+        HBox hBox = new HBox(text);
+        hBox.setStyle("-fx-background-color: #050588");
+        hBox.setAlignment(Pos.CENTER);
+        borderPane.setCenter(hBox);
+
+        Button yesButton = new Button("yes");
+        yesButton.setStyle("-fx-background-color: orange; -fx-fill: #020264");
+        Button noButton = new Button("no");
+        noButton.setStyle("-fx-background-color: orange; -fx-fill: #020264");
+        yesButton.setOnAction(e -> {
+            result.set(true);
+            getYesOrNoAnswerPopupWindow.close();
+        });
+
+        noButton.setOnAction(e -> {
+            result.set(false);
+            getYesOrNoAnswerPopupWindow.close();
+        });
+
+        HBox hBox1 = new HBox();
+        hBox1.setSpacing(10);
+        hBox1.setAlignment(Pos.CENTER);
+        hBox1.setStyle("-fx-background-color: #050588");
+        hBox1.getChildren().addAll(yesButton, noButton);
+        borderPane.setBottom(hBox1);
+
+        Scene scene = new Scene(borderPane, 200, 70);
+        getYesOrNoAnswerPopupWindow.setScene(scene);
+        getYesOrNoAnswerPopupWindow.showAndWait();
+        System.out.println(result.get());
+        return result.get();
     }
 
     public String getInputNumberOfFieldForSpecialMonster(String view) {
