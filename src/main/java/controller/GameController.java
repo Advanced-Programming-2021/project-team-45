@@ -35,23 +35,6 @@ public class GameController extends Controller {
         this.playerDuelMenu = playerDuelMenu;
     }
 
-    public String[] getPlayerAndOpponentNickNameAndUserName() {
-        String[] result = new String[4];
-        result[0] = player.getNickname();
-        result[1] = player.getUsername();
-        result[2] = opponentPlayer.getNickname();
-        result[3] = opponentPlayer.getUsername();
-        return result;
-    }
-
-    public int getPlayerLifePoint() {
-        return player.getLifepoint().getLifepoint();
-    }
-
-    public int getOpponentLifePoint() {
-        return opponentPlayer.getLifepoint().getLifepoint();
-    }
-
     public void createNewGame() {
         this.game = new Game(player, opponentPlayer, rounds, this);
         this.gameErrorHandler = new GameErrorHandler(game);
@@ -644,12 +627,15 @@ public class GameController extends Controller {
     public ArrayList<String> getHand(boolean isOpponent) {
         ArrayList<String> handCardNames = new ArrayList<>();
         ArrayList<Card> cards;
-        if (isOpponent)
+        if (isOpponent) {
             cards = game.getOpponentGameBoard().getHand().getCardsInHand();
-        else
+            for (Card ignored : cards)
+                handCardNames.add("opponent_hand");
+        } else {
             cards = game.getPlayerGameBoard().getHand().getCardsInHand();
-        for (Card card : cards)
-            handCardNames.add(card.getCardName());
+            for (Card card : cards)
+                handCardNames.add(card.getCardName());
+        }
         return handCardNames;
     }
 
@@ -659,5 +645,27 @@ public class GameController extends Controller {
                 return true;
         }
         return false;
+    }
+
+    public String[] getPlayerData() {
+        String[] playerData = new String[2];
+        playerData[0] = game.getPlayerOfThisTurn().getNickname();
+        playerData[1] = game.getPlayerOfThisTurn().getUsername();
+        return playerData;
+    }
+
+    public int getPlayerLifePoint() {
+        return player.getLifepoint().getLifepoint();
+    }
+
+    public String[] getOpponentData() {
+        String[] opponentData = new String[2];
+        opponentData[0] = game.getOpponentOfThisTurn().getNickname();
+        opponentData[1] = game.getOpponentOfThisTurn().getUsername();
+        return opponentData;
+    }
+
+    public int getOpponentLifePoint() {
+        return opponentPlayer.getLifepoint().getLifepoint();
     }
 }
