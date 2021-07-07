@@ -2,13 +2,10 @@ package controller;
 
 
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -21,14 +18,17 @@ import model.card.Deck;
 import model.user.User;
 import model.user.UserDeck;
 import view.gui.DeckMenuGui;
-import view.gui.DeckStarterMenuGui;
 import view.gui.MainMenuGui;
 import view.gui.ShowOutput;
 import view.gui.elements.GetImage;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DeckController extends Controller {
 
@@ -36,6 +36,8 @@ public class DeckController extends Controller {
     private HashMap<Rectangle, Card> mainDeckHashMap = new HashMap<>();
     private HashMap<Rectangle, Card> sideDeckHashMap = new HashMap<>();
     private CalculatorOfNumberOfCards calculator;
+    private static Rectangle sourceRectangle;
+    private static Rectangle targetRectangle;
     Deck deck;
 
     public void createANewDeck(TextField textField, User user) {
@@ -291,6 +293,63 @@ public class DeckController extends Controller {
                                 .get(rectangle).getCardName())));
                     }
                 }
+            }
+        });
+        continueForDragAndDrop(rectangle);
+    }
+
+    private void continueForDragAndDrop(Rectangle rectangle){
+        rectangle.setOnDragOver(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                if(dragEvent.getDragboard().hasString()) {
+                    dragEvent.acceptTransferModes(TransferMode.ANY);
+                }
+            }
+        });
+
+        rectangle.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                if(rectangle.getAccessibleText().equals("null")){
+                    rectangle.setFill(sourceRectangle.getFill());
+                    boolean bool=DeckMenuGui.mainSideRectangles.get(sourceRectangle).equals("main");
+                    if(DeckMenuGui.mainSideRectangles.get(rectangle).equals("main")){
+                        if(bool){
+                            mainDeckHashMap.put(rectangle,mainDeckHashMap.get(sourceRectangle));
+                            mainDeckHashMap.remove(sourceRectangle);
+                        }else{
+                            mainDeckHashMap.put(rectangle,sideDeckHashMap.get(sourceRectangle));
+                            sideDeckHashMap.remove(sourceRectangle);
+                        }
+                    }else{
+                        if(bool){
+                            sideDeckHashMap.put(rectangle,mainDeckHashMap.get(sourceRectangle));
+                            mainDeckHashMap.remove(sourceRectangle);
+                        }else{
+                            sideDeckHashMap.put(rectangle,sideDeckHashMap.get(sourceRectangle));
+                            sideDeckHashMap.remove(sourceRectangle);
+                        }
+                    }
+                    sourceRectangle.setAccessibleText("null");
+                    sourceRectangle.setFill((Color.color(0, 0, 1, 0)));
+                    sourceRectangle=null;
+                }else{
+                    sourceRectangle=null;
+                    ShowOutput.showOutput("error box","your destination must be null to drag and drop card");
+                }
+            }
+        });
+
+        rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Dragboard db=rectangle.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent clipboardContent=new ClipboardContent();
+                clipboardContent.putString("BitCoin");
+                db.setContent(clipboardContent);
+                sourceRectangle=rectangle;
+                mouseEvent.consume();
             }
         });
     }
