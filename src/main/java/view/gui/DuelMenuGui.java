@@ -258,7 +258,6 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateOpponentLifePoint() {
-        opponentProgressBar.setProgress((gameController.getOpponentLifePoint() / (double) 8000));
         String[] opponentData = gameController.getOpponentData();
         opponentNickNameText.setText("opponent nickname: " + opponentData[0]);
         opponentUserNameText.setText("opponent username: " + opponentData[1]);
@@ -270,7 +269,6 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
-        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double) 8000));
         String[] playerData = gameController.getPlayerData();
         playerNickNameText.setText("player nickname: " + playerData[0]);
         playerUserNameText.setText("player username: " + playerData[1]);
@@ -677,7 +675,15 @@ public class DuelMenuGui extends MenuGui {
             }
         } else {
             CoinTossMenu coinTossMenu = new CoinTossMenu();
-            CoinTossMenu.setUserNames(username, );
+            String[] usernames = gameController.getPlayersUsernames();
+            CoinTossMenu.setUserNames(usernames[0], usernames[1]);
+            // get rounds:
+            Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
+                    "1", "3");
+            int rounds = 1;
+            if (!isSingleRound)
+                rounds = 3;
+            CoinTossMenu.setRounds(rounds);
             coinTossMenu.tossCoin();
             try {
                 coinTossMenu.start(stage);

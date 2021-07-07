@@ -32,6 +32,7 @@ public class CoinTossMenu extends Application {
     public Button button;
     private ImageView imageView;
     private boolean canStartGame = false;
+    private static int rounds;
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
@@ -43,6 +44,10 @@ public class CoinTossMenu extends Application {
     public static void setUserNames(String firstUserName, String secondUsername) {
         CoinTossMenu.firstUserName = firstUserName;
         CoinTossMenu.secondUsername = secondUsername;
+    }
+
+    public static void setRounds(int rounds) {
+        CoinTossMenu.rounds = rounds;
     }
 
     public void tossCoin() {
@@ -135,7 +140,7 @@ public class CoinTossMenu extends Application {
 
     public void startGame() {
         MusicPlayer.muteMainMenu();
-        GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, 1);
+        GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
         gameController.setPlayerDuelMenu(duelMenuGui);
         DuelMenuGui.setGameController(gameController);
