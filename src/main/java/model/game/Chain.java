@@ -161,8 +161,6 @@ public class Chain {
         }
     }
 
-    //comment shode bara run shodan gui
-
     private boolean doesPlayerWantToAddToChain() {
         return game.getGameController().doesPlayerWantToAddToTheChain(turnPlayer);
     }
