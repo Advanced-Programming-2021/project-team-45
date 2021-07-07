@@ -50,7 +50,7 @@ public class LoginMenuGui extends MenuGui {
 
     @FXML
     private void initialize() {
-        MusicPlayer.PlayLoginMenuMusic();
+        MusicPlayer.playLoginMenuMusic();
         Image image = GetImage.getImage("YuGiOh.png");
         yugiohRect.setWidth(256);
         yugiohRect.setHeight(128);
