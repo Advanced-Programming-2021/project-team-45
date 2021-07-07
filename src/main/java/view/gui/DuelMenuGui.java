@@ -268,7 +268,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateOpponentLifePoint() {
-        opponentProgressBar.setProgress((double) (gameController.getOpponentLifePoint() / 8000));
+        opponentProgressBar.setProgress((gameController.getOpponentLifePoint() / (double)8000));
         if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
             opponentProgressBar.setStyle("-fx-accent: yellow");
         else if (opponentProgressBar.getProgress() <= 0.3)
@@ -276,7 +276,8 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
-        playerProgressBar.setProgress((double) (gameController.getPlayerLifePoint() / 8000));
+        MusicPlayer.playPointDropMusic();
+        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double)8000));
         if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
             playerProgressBar.setStyle("-fx-accent: yellow");
         else if (playerProgressBar.getProgress() <= 0.3)
@@ -459,6 +460,7 @@ public class DuelMenuGui extends MenuGui {
         } else if (error == 7) {
             message = "spell card zone is full";
         }
+        MusicPlayer.playSetCardMusic();
         showMessage(message);
         updateGameBoard();
     }
@@ -642,7 +644,6 @@ public class DuelMenuGui extends MenuGui {
         Scene scene = new Scene(borderPane, 200, 70);
         getYesOrNoAnswerPopupWindow.setScene(scene);
         getYesOrNoAnswerPopupWindow.showAndWait();
-        System.out.println(result.get());
         return result.get();
     }
 
@@ -686,6 +687,7 @@ public class DuelMenuGui extends MenuGui {
 
     public void endGame() {
         // exit to MainMenu
+        MusicPlayer.playMainMenuMusic();
         MainMenuGui mainMenu = new MainMenuGui();
         mainMenu.setUsername(username);
         try {

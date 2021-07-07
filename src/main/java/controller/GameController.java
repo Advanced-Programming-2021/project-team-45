@@ -6,6 +6,7 @@ import model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import model.game.fields.CardField;
 import model.user.User;
 import view.gui.DuelMenuGui;
+import view.gui.MusicPlayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,8 +64,10 @@ public class GameController extends Controller {
             // show winner of round:
             User winner = game.getWinner();
             if (winner.equals(player)) {
+                MusicPlayer.playWinMusic();
                 playerWins++;
             } else {
+                MusicPlayer.loseMusic();
                 opponentWins++;
             }
             playerDuelMenu.showGameWinner(winner.getUsername(), playerWins, opponentWins);
@@ -77,6 +80,7 @@ public class GameController extends Controller {
             // show match winner if there is 3 rounds:
             if (rounds == 3) {
                 if (playerWins == 2 || opponentWins == 2) {
+                    MusicPlayer.playWinMusic();
                     playerDuelMenu.showMatchWinner(winner.getUsername(), playerWins, opponentWins);
                     isGameEnded = true;
                 } else {
