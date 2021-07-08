@@ -820,6 +820,5 @@ public class DuelMenuGui extends MenuGui {
     public void setWinnerCheat(String input) {
         String winnerNickname = input.replace("duel set-winner ", "");
         gameController.setWinnerCheat(winnerNickname);
-
     }
 }
