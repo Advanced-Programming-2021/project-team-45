@@ -70,7 +70,6 @@ public class ShopMenuGui extends MenuGui {
         mainMenuGui.start(stage);
     }
 
-
     private void createShortCut(){
         MainMenuController.ShortCutsRunnable(stage);
     }
@@ -78,6 +77,5 @@ public class ShopMenuGui extends MenuGui {
     public void increaseMoneyCheat(String input) {
         String moneyStr = input.replace("increase --money ", "");
         shopController.increaseMoneyCheat(Integer.parseInt(moneyStr));
-
     }
 }
