@@ -104,7 +104,7 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
-        ShopMenuGui shopMenuGui = new ShopMenuGui();
+        ShopMenuGui shopMenuGui = ShopMenuGui.getShopMenuGui();
         ShopMenuGui.setUsername(username);
         shopMenuGui.start(stage);
     }
@@ -141,6 +141,28 @@ public class MainMenuGui extends MenuGui {
             MusicPlayer.muteMainMenu();
             muteButton.setText("unmute");
             isMusicMute = true;
+        }
+    }
+
+    public void startAiGame(MouseEvent mouseEvent) {
+        mainMenuController.startAi();
+        // get opponent username:
+        String opponentUsername = "AI";
+        // get rounds:
+        Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
+                "1", "3");
+        int rounds = 1;
+        if (!isSingleRound)
+            rounds = 3;
+
+        CoinTossMenu coinTossMenu = new CoinTossMenu();
+        CoinTossMenu.setUserNames(username, opponentUsername);
+        CoinTossMenu.setRounds(rounds);
+        coinTossMenu.tossCoin();
+        try {
+            coinTossMenu.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

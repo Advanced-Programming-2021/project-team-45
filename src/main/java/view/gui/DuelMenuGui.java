@@ -807,7 +807,19 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+
     private void createShortCut(){
         MainMenuController.ShortCutsRunnable(stage);
+    }
+
+    public void increaseLpCheat(String input) {
+        String lpStr = input.replace("increase --LP ", "");
+        gameController.increaseLpCheat(Integer.parseInt(lpStr));
+    }
+
+    public void setWinnerCheat(String input) {
+        String winnerNickname = input.replace("duel set-winner ", "");
+        gameController.setWinnerCheat(winnerNickname);
+
     }
 }
