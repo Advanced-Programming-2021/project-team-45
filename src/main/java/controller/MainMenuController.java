@@ -1,5 +1,6 @@
 package controller;
 
+import model.ArtificialIntelligence;
 import model.user.User;
 
 public class MainMenuController extends Controller {
@@ -34,4 +35,7 @@ public class MainMenuController extends Controller {
         return 0;
     }
 
+    public void startAi() {
+        new ArtificialIntelligence();
+    }
 }
