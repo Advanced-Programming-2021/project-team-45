@@ -669,4 +669,12 @@ public class GameController extends Controller {
     public String[] getPlayersUsernames() {
         return new String[]{player.getUsername(), opponentPlayer.getUsername()};
     }
+
+    public int getPlayerDeckSize() {
+        return game.getPlayerGameBoard().getOwner().getUserDeck().getActiveDeck().getMainDeck().size();
+    }
+
+    public int getOpponentDeckSize() {
+        return game.getOpponentGameBoard().getOwner().getUserDeck().getActiveDeck().getMainDeck().size();
+    }
 }

@@ -69,6 +69,7 @@ public class GetInput {
 
         Scene scene = new Scene(borderPane, 350, 70);
         getYesOrNoAnswerPopupWindow.setScene(scene);
+        getYesOrNoAnswerPopupWindow.setTitle("Duel");
         getYesOrNoAnswerPopupWindow.showAndWait();
         return result.get();
     }
@@ -85,11 +86,15 @@ public class GetInput {
         text.setFont(new Font("Bold", 14));
         text.setStyle("-fx-background-color: #0404e9; -fx-fill: white");
         TextField textField = new TextField(null);
+        HBox textFieldHBox = new HBox(textField);
+        textFieldHBox.setPadding(new Insets(15));
+        textFieldHBox.setAlignment(Pos.CENTER);
+        textFieldHBox.setStyle("-fx-background-color: #0404e9");
         VBox vBox = new VBox();
         vBox.setSpacing(15);
         vBox.setAlignment(Pos.CENTER);
         vBox.setStyle("-fx-background-color: #0404e9");
-        vBox.getChildren().addAll(text, textField);
+        vBox.getChildren().addAll(text, textFieldHBox);
         borderPane.setCenter(vBox);
 
 
