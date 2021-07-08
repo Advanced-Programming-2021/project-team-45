@@ -41,6 +41,7 @@ public class LoginMenuGui extends MenuGui {
         LoginMenuGui.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginMenuGui.fxml"));
         Scene scene = new Scene(root, 1080, 720);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.setTitle("YU-GI-OH!");
         stage.getIcons().add(GetImage.getGameIcon());
