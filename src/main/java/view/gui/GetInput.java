@@ -65,7 +65,7 @@ public class GetInput {
         hBox1.getChildren().addAll(yesButton, noButton);
         borderPane.setBottom(hBox1);
 
-        Scene scene = new Scene(borderPane, 200, 70);
+        Scene scene = new Scene(borderPane, 350, 70);
         getYesOrNoAnswerPopupWindow.setScene(scene);
         getYesOrNoAnswerPopupWindow.showAndWait();
         return result.get();
@@ -103,7 +103,7 @@ public class GetInput {
         hBox.setAlignment(Pos.CENTER);
         borderPane.setBottom(hBox);
 
-        getStringAnswerPopupWindow.setScene(new Scene(borderPane, 350, 250));
+        getStringAnswerPopupWindow.setScene(new Scene(borderPane, 450, 250));
         getStringAnswerPopupWindow.setResizable(false);
         getStringAnswerPopupWindow.setTitle(title);
         getStringAnswerPopupWindow.showAndWait();

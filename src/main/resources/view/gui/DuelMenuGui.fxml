@@ -26,9 +26,9 @@
             <BorderPane prefHeight="600" prefWidth="210">
                 <top>
                     <VBox style="-fx-background-color: #eee0b1">
-                        <ProgressBar minWidth="210" progress="1" fx:id="opponentProgressBar" style="-fx-accent: green"/>
-                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="opponent nickname: " fx:id="opponentNickNameText"/>
-                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="opponent username: " fx:id="opponentUserNameText"/>
+                        <ProgressBar fx:id="opponentProgressBar" minWidth="210" progress="1" style="-fx-accent: green" />
+                        <Text fx:id="opponentNickNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="opponent nickname: " />
+                        <Text fx:id="opponentUserNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="opponent username: " />
                     </VBox>
                 </top>
                 <center>
@@ -47,14 +47,33 @@
                 </center>
                 <bottom>
                     <VBox style="-fx-background-color: #eee0b1">
-                        <ProgressBar minWidth="210" progress="1" fx:id="playerProgressBar" style="-fx-accent: green"/>
-                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="player nickname: " fx:id="playerNickNameText"/>
-                        <Text style="-fx-fill: black; -fx-font-weight: bold;" text="player username: " fx:id="playerUserNameText"/>
+                        <ProgressBar fx:id="playerProgressBar" minWidth="210" progress="1" style="-fx-accent: green" />
+                        <Text fx:id="playerNickNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="player nickname: " />
+                        <Text fx:id="playerUserNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="player username: " />
                     </VBox>
                 </bottom>
             </BorderPane>
 
             <BorderPane fx:id="buttonPane" prefHeight="600" prefWidth="120">
+                <top>
+                    <HBox>
+                        <Button alignment="CENTER" onMouseClicked="#pause" prefHeight="26.0" prefWidth="110.0" text="pause">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <DropShadow>
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Button>
+                    </HBox>
+                </top>
                 <center>
                     <VBox alignment="CENTER">
                         <HBox>
