@@ -25,6 +25,7 @@ public class CheatMenu extends MenuGui {
         anchorPane= FXMLLoader.load(getClass().getResource("CheatMenu.fxml"));
         Scene scene=new Scene(anchorPane);
         Stage stage1=new Stage();
+        CheatMenu.stage=stage1;
         stage1.setOpacity(0.85);
         stage1.setTitle("cheat console");
         stage1.setScene(scene);
