@@ -33,7 +33,7 @@
         <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
             <ImageView fitHeight="66.0" fitWidth="200.0">
                 <image>
-                    <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/GUI_T_GateLogo_s001.dds.png"/>
+                    <Image url="@menu/GUI_T_GateLogo_s001.dds.png"/>
                 </image>
             </ImageView>
             <children>

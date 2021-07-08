@@ -30,9 +30,9 @@
         <TextField fx:id="nameOfDeck" layoutX="727.0" layoutY="289.0" prefHeight="26.0" prefWidth="103.0"/>
         <Button layoutX="726.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#createANewDeck"
                 text="create new deck"/>
-        <ImageView layoutX="426.0" layoutY="61.0">
+        <ImageView fitHeight="153.0" fitWidth="387.0" layoutX="299.0" layoutY="64.0">
             <image>
-                <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/_images_text_K.png"/>
+                <Image url="@menu/realJapan.png"/>
             </image>
         </ImageView>
         <Button layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#back"
