@@ -1,6 +1,5 @@
 package view.gui;
 
-import controller.DeckController;
 import controller.DeckStarterController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

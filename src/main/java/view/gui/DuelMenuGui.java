@@ -622,7 +622,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public String getCardFromGraveYard(String view) {
-        return null;
+        return GetInput.getStringAnswerPopupWindow("Attention!", view);
     }
 
     public String getCardName() {
