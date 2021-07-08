@@ -712,6 +712,8 @@ public class DuelMenuGui extends MenuGui {
 
     public void pause(MouseEvent mouseEvent) {
         pausePopupWindow = new Stage();
+        pausePopupWindow.setTitle("Pause");
+        pausePopupWindow.getIcons().add(GetImage.getGameIcon());
         pausePopupWindow.initModality(Modality.APPLICATION_MODAL);
 
         BorderPane borderPane = new BorderPane();
