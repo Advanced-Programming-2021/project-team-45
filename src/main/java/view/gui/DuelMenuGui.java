@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.MainMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -87,6 +88,7 @@ public class DuelMenuGui extends MenuGui {
         stage.setTitle("YU-GI-OH!");
         stage.setResizable(false);
         stage.show();
+        createShortCut();
     }
 
     @FXML
@@ -805,6 +807,11 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+
+    private void createShortCut(){
+        MainMenuController.ShortCutsRunnable(stage);
+    }
+
     public void increaseLpCheat(String input) {
         String lpStr = input.replace("increase --LP ", "");
         gameController.increaseLpCheat(Integer.parseInt(lpStr));
@@ -813,5 +820,6 @@ public class DuelMenuGui extends MenuGui {
     public void setWinnerCheat(String input) {
         String winnerNickname = input.replace("duel set-winner ", "");
         gameController.setWinnerCheat(winnerNickname);
+
     }
 }

@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.MainMenuController;
 import controller.ShopController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +44,7 @@ public class ShopMenuGui extends MenuGui {
         Scene scene = new Scene(scrollPane, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("shop");
+        createShortCut();
     }
 
     @FXML
@@ -68,8 +70,14 @@ public class ShopMenuGui extends MenuGui {
         mainMenuGui.start(stage);
     }
 
+
+    private void createShortCut(){
+        MainMenuController.ShortCutsRunnable(stage);
+    }
+
     public void increaseMoneyCheat(String input) {
         String moneyStr = input.replace("increase --money ", "");
         shopController.increaseMoneyCheat(Integer.parseInt(moneyStr));
+
     }
 }
