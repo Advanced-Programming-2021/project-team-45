@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.gui.elements.GetImage;
 
 public class CheatMenu extends MenuGui {
     String[] CHEATS_REGEX = {
@@ -29,6 +30,8 @@ public class CheatMenu extends MenuGui {
         stage1.setOpacity(0.85);
         stage1.setTitle("cheat console");
         stage1.setScene(scene);
+        stage1.getIcons().add(GetImage.getGameIcon());
+        stage1.setTitle("CHEAT");
         stage1.show();
     }
 
