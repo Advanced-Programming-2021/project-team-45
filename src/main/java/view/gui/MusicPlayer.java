@@ -17,6 +17,12 @@ public class MusicPlayer {
     private static MediaPlayer duelMenuPlayer = new MediaPlayer(duelMenuMusic);
 
     static {
+        loginMediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                loginMediaPlayer.seek(Duration.ZERO);
+            }
+        });
         duelMenuPlayer.setOnEndOfMedia(new Runnable() {
             @Override
             public void run() {
