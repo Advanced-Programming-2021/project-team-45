@@ -1,7 +1,6 @@
 package view.gui;
 
 import controller.ShopController;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ShopMenuGui extends Application {
+public class ShopMenuGui extends MenuGui {
     private static Stage stage;
     private static String logInUsername;
     @FXML
