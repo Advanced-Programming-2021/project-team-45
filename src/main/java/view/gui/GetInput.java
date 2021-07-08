@@ -1,5 +1,6 @@
 package view.gui;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -61,6 +62,7 @@ public class GetInput {
         HBox hBox1 = new HBox();
         hBox1.setSpacing(10);
         hBox1.setAlignment(Pos.CENTER);
+        hBox1.setPadding(new Insets(15));
         hBox1.setStyle("-fx-background-color: #050588");
         hBox1.getChildren().addAll(yesButton, noButton);
         borderPane.setBottom(hBox1);
@@ -99,6 +101,7 @@ public class GetInput {
             getStringAnswerPopupWindow.close();
         });
         HBox hBox = new HBox(button);
+        hBox.setPadding(new Insets(15));
         hBox.setStyle("-fx-background-color: #0404e9");
         hBox.setAlignment(Pos.CENTER);
         borderPane.setBottom(hBox);
