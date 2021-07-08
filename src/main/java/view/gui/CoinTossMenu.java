@@ -1,7 +1,6 @@
 package view.gui;
 
 import controller.GameController;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +21,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CoinTossMenu extends Application {
+public class CoinTossMenu extends MenuGui {
     private static final String coinImageRoute = "src/main/resources/view/gui/Gold/Gold_";
     private static String firstUserName;
     private static String secondUsername;
