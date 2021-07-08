@@ -41,6 +41,7 @@ public class DuelMenuGui extends MenuGui {
     private static GameController gameController;
     private static Stage stage;
     private static Stage showGraveyardPopupWindow;
+    private static Stage pausePopupWindow;
     private static String selectedCardName = null;
     private static DuelMenuGui duelMenuGui;
     private static ArrayList<GameCard> gameCards;
@@ -51,6 +52,8 @@ public class DuelMenuGui extends MenuGui {
     private static String[] selectCardFieldNames;
     private static String selectCardMethodName;
     private static final Method[] duelMenuMethods;
+
+    private static boolean isDuelMenuMute = false;
     @FXML
     public Pane fieldPane;
     @FXML
@@ -262,7 +265,9 @@ public class DuelMenuGui extends MenuGui {
         opponentNickNameText.setText("opponent nickname: " + opponentData[0]);
         opponentUserNameText.setText("opponent username: " + opponentData[1]);
         opponentProgressBar.setProgress( (gameController.getOpponentLifePoint() / (double)8000));
-        if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
+        if (opponentProgressBar.getProgress() >= 0.6)
+            opponentProgressBar.setStyle("-fx-accent: green");
+        else if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
             opponentProgressBar.setStyle("-fx-accent: yellow");
         else if (opponentProgressBar.getProgress() <= 0.3)
             opponentProgressBar.setStyle("-fx-accent: red");
@@ -273,7 +278,9 @@ public class DuelMenuGui extends MenuGui {
         playerNickNameText.setText("player nickname: " + playerData[0]);
         playerUserNameText.setText("player username: " + playerData[1]);
         playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double) 8000));
-        if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
+        if (playerProgressBar.getProgress() >= 0.6)
+            playerProgressBar.setStyle("-fx-accent: green");
+        else if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
             playerProgressBar.setStyle("-fx-accent: yellow");
         else if (playerProgressBar.getProgress() <= 0.3)
             playerProgressBar.setStyle("-fx-accent: red");
@@ -701,5 +708,71 @@ public class DuelMenuGui extends MenuGui {
             selectCards("attackCard", new String[]{"opponent_monster"}, 1);
         }
         updateGameBoard();
+    }
+
+    public void pause(MouseEvent mouseEvent) {
+        pausePopupWindow = new Stage();
+        pausePopupWindow.initModality(Modality.APPLICATION_MODAL);
+
+        BorderPane borderPane = new BorderPane();
+        Button resumeButton = new Button("resume");
+        Button muteButton = new Button();
+        if (isDuelMenuMute) muteButton.setText("unmute");
+        else muteButton.setText("mute");
+        Button exitButton = new Button("exit");
+        resumeButton.setOnAction(e -> pausePopupWindow.close());
+        muteButton.setOnAction(e -> {
+            if (isDuelMenuMute) {
+                isDuelMenuMute = false;
+                MusicPlayer.unMuteDuelMenuMusic();
+                muteButton.setText("mute");
+            } else {
+                isDuelMenuMute = true;
+                MusicPlayer.muteDuelMenuMusic();
+                muteButton.setText("unmute");
+            }
+        });
+        exitButton.setOnAction(e -> exitToMainMenu());
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(resumeButton, muteButton, exitButton);
+        vBox.setAlignment(Pos.CENTER);
+        setStyles(resumeButton, exitButton, muteButton, vBox, borderPane);
+        borderPane.setCenter(vBox);
+
+        Scene scene = new Scene(borderPane, 250, 250);
+        pausePopupWindow.setScene(scene);
+        pausePopupWindow.setResizable(false);
+        pausePopupWindow.setTitle("pause");
+        pausePopupWindow.showAndWait();
+    }
+
+    private void setStyles(Button resumeButton, Button exitButton, Button muteButton, VBox vBox, BorderPane borderPane) {
+        vBox.setStyle("-fx-background-color: black");
+        vBox.setSpacing(10);
+        resumeButton.setMinWidth(70);
+        resumeButton.setMinHeight(20);
+        resumeButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-border-color: orange");
+
+        exitButton.setMinWidth(70);
+        exitButton.setMinHeight(20);
+        exitButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-border-color: orange");
+
+        muteButton.setMinWidth(70);
+        muteButton.setMinHeight(20);
+        muteButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-border-color: orange");
+
+    }
+
+    public void exitToMainMenu() {
+        pausePopupWindow.close();
+        MusicPlayer.muteDuelMenuMusic();
+        MainMenuGui mainMenuGui = new MainMenuGui();
+        mainMenuGui.setUsername(username);
+        MusicPlayer.unMuteMainMenu();
+        try {
+            mainMenuGui.start(stage);
+        } catch (Exception ignored) {
+        }
     }
 }
