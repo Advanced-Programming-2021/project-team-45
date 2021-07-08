@@ -16,6 +16,8 @@ import java.util.HashMap;
 public class ShopMenuGui extends MenuGui {
     private static Stage stage;
     private static String logInUsername;
+    private static ShopMenuGui shopMenuGui;
+    private static ShopController shopController;
     @FXML
     public GridPane gridPane;
     private ArrayList<ShopCellMenu> shopCellMenus;
@@ -24,6 +26,11 @@ public class ShopMenuGui extends MenuGui {
         ShopMenuGui.logInUsername = username;
     }
 
+    public static ShopMenuGui getShopMenuGui() {
+        if (shopMenuGui == null)
+            shopMenuGui = new ShopMenuGui();
+        return shopMenuGui;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -41,9 +48,10 @@ public class ShopMenuGui extends MenuGui {
     @FXML
     void initialize() {
         shopCellMenus = new ArrayList<>();
-        HashMap<String, Integer> cards = new ShopController(logInUsername).getCardsPrices();
+        shopController = new ShopController(logInUsername);
+        HashMap<String, Integer> cards = shopController.getCardsPrices();
+        ShopCellMenu.setShopController(shopController);
         for (int index = 0; index < cards.keySet().size(); index++) {
-            ShopCellMenu.setShopController(new ShopController(logInUsername));
             ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
             shopCellMenus.add(shopCellMenu);
         }
@@ -58,5 +66,10 @@ public class ShopMenuGui extends MenuGui {
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
         MainMenuGui mainMenuGui = new MainMenuGui();
         mainMenuGui.start(stage);
+    }
+
+    public void increaseMoneyCheat(String input) {
+        String moneyStr = input.replace("increase --money ", "");
+        shopController.increaseMoneyCheat(Integer.parseInt(moneyStr));
     }
 }
