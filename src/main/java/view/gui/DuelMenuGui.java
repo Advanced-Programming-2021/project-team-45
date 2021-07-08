@@ -621,10 +621,6 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
-    public String getInputNumberOfFieldForSpecialMonster(String view) {
-        return null;
-    }
-
     public String getCardFromGraveYard(String view) {
         return null;
     }

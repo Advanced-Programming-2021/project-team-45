@@ -469,10 +469,6 @@ public class GameController extends Controller {
         return playerDuelMenu.getCardsForTribute(n);
     }
 
-    public String NumberOfField(String view) {
-        return playerDuelMenu.getInputNumberOfFieldForSpecialMonster(view);
-    }
-
     public MonsterCard getACardFromGraveyardForScanner(String view) {
         String input = playerDuelMenu.getCardFromGraveYard(view);
         if (input != null) {
