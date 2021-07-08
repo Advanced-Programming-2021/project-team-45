@@ -1,0 +1,6 @@
+Shop:
+	increase --money <amount>
+
+Duel:
+	increase --LP <amount>
+	duel set-winner <nickname>

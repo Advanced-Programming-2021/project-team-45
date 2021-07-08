@@ -32,14 +32,11 @@ public class GameCard extends Rectangle {
         this.setRotate(rotationDegree);
     }
 
-    public GameCard(Pane parent, double x, double y, String cardName) {
-        super(x, y, GameElementSize.CARD_WIDTH.getSize(), GameElementSize.CARD_HEIGHT.getSize());
+    public GameCard(Pane parent, int rotationDegree) {
+        super(0, 0, GameElementSize.CARD_WIDTH.getSize(), GameElementSize.CARD_HEIGHT.getSize());
         this.parent = parent;
-        this.cardName = cardName;
-        setFill(new ImagePattern(GetImage.getCardImage(cardName)));
-        this.setOnMouseEntered(GameCard.getMouseEnteredEvent(this));
-        this.setOnMouseExited(GameCard.getMouseExitedEvent(this));
-        this.setOnMouseClicked(GameCard.getMouseClickedEvent(this));
+        setFill(new ImagePattern(GetGameElements.getCardBack()));
+        this.setRotate(rotationDegree);
     }
 
     private static DropShadow getCardMouseEnteredDropShadow() {

@@ -16,7 +16,11 @@ public enum GameElementSize {
     HAND_CARD_WIDTH(68),
     HAND_CARD_HEIGHT(100),
     OPPONENT_HAND_CARD_START_Y(-20),
-    PLAYER_HAND_CARD_START_Y(535);
+    PLAYER_HAND_CARD_START_Y(535),
+    PLAYER_DECK_X(505),
+    PLAYER_DECK_Y(425),
+    OPPONENT_DECK_X(38),
+    OPPONENT_DECK_Y(100);
 
     private final int size;
 
