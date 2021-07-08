@@ -24,15 +24,12 @@ import javafx.stage.Stage;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpellTrapCard;
-import model.user.User;
 import org.apache.commons.io.FileUtils;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
