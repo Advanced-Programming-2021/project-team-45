@@ -104,7 +104,7 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startShopMenu(MouseEvent mouseEvent) throws Exception {
-        ShopMenuGui shopMenuGui = new ShopMenuGui();
+        ShopMenuGui shopMenuGui = ShopMenuGui.getShopMenuGui();
         ShopMenuGui.setUsername(username);
         shopMenuGui.start(stage);
     }

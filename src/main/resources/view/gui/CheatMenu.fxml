@@ -14,7 +14,7 @@
     </cursor>
     <children>
         <TextField layoutX="173.0" layoutY="17.0" onKeyReleased="#enterTheCheat" prefHeight="35.0" prefWidth="416.0"
-                   style="-fx-text-fill: #13943c; -fx-background-color: black;">
+                   style="-fx-text-fill: #13943c; -fx-background-color: black;" fx:id="cheatField">
             <cursor>
                 <Cursor fx:constant="TEXT"/>
             </cursor>
