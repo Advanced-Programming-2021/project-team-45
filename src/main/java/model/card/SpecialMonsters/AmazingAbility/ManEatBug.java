@@ -8,8 +8,8 @@ public class ManEatBug {
 
     public static void ability(Game game) {
         // bugs -haji
-        String input = game.getGameController().NumberOfField("man eater bug get actived" +
-                ", which number of his monsterField do you want get destroyed");
+        String input = game.getGameController().NumberOfField("Man-Eater Bug special effect activated! " +
+                "Please enter the position of opponent's monster card that you want to destroy.");
         if (input != null) {
             int targetMonsterFieldPosition = Integer.parseInt(input);
             GameBoard opponentGameBoard = game.getOpponentGameBoard();
