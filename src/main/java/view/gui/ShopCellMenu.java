@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -16,14 +17,13 @@ import java.io.IOException;
 public class ShopCellMenu extends AnchorPane {
     private static ShopController shopController;
     private String cardName;
-    private ImageView imageView;
     private Button buyButton;
     private Text numberOfBoughtCardsText;
 
     public ShopCellMenu(String cardName) {
         super();
-        this.setWidth(296.25);
-        this.setHeight(400);
+        this.setWidth(216);
+        this.setHeight(322);
         this.setStyle("-fx-background-color: red; -fx-border-color: orange");
         this.cardName = cardName;
         setAnchorPane();
@@ -36,8 +36,8 @@ public class ShopCellMenu extends AnchorPane {
     public void setAnchorPane() {
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(new ImagePattern(GetImage.getCardImage(cardName)));
-        rectangle.setHeight(368.4);
-        rectangle.setWidth(252.5);
+        rectangle.setHeight(218);
+        rectangle.setWidth(146);
         this.getChildren().add(rectangle);
         setButton();
         setCardText();
@@ -45,10 +45,28 @@ public class ShopCellMenu extends AnchorPane {
 
     public void setButton() {
         buyButton = new Button();
-        buyButton.setText("buy");
+        buyButton.setTextFill(Color.color(1, 1, 1));
         int price = shopController.getCardsPrices().get(cardName);
-        Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + shopController.getUserMoney());
-        buyButton.setTooltip(tooltip);
+        if (shopController.getUserMoney() >= price) {
+            buyButton.setText("buy");
+            buyButton.setStyle("-fx-background-color: #0000ff");
+        }
+        else {
+            buyButton.setText("_");
+            buyButton.setStyle("-fx-background-color: orange");
+        }
+        buyButton.setOnMouseEntered(e -> {
+            if (shopController.getUserMoney() >= price) {
+                buyButton.setText("buy");
+                buyButton.setStyle("-fx-background-color: #0000ff");
+            }
+            else {
+                buyButton.setText("_");
+                buyButton.setStyle("-fx-background-color: orange");
+            }
+            Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + shopController.getUserMoney());
+            buyButton.setTooltip(tooltip);
+        });
         buyButton.setOnMouseClicked(e -> {
             try {
                 buyCard();
@@ -56,7 +74,8 @@ public class ShopCellMenu extends AnchorPane {
                 ioException.printStackTrace();
             }
         });
-        buyButton.setLayoutX(255);
+        buyButton.setLayoutX(150);
+        buyButton.setLayoutY(10);
         this.getChildren().add(buyButton);
     }
 
@@ -66,7 +85,7 @@ public class ShopCellMenu extends AnchorPane {
         int number = shopController.numberOfBoughtCards(cardName);
         if (number != 0)
             numberOfBoughtCardsText.setText("bought cards: " + number);
-        numberOfBoughtCardsText.setY(384.2);
+        numberOfBoughtCardsText.setY(230);
         this.getChildren().add(numberOfBoughtCardsText);
     }
 

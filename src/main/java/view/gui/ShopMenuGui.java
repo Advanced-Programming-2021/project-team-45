@@ -50,8 +50,8 @@ public class ShopMenuGui extends Application {
         }
 
         for (int i = 0; i < shopCellMenus.size(); i++) {
-            int x = i % 4;
-            int y = i / 4;
+            int x = i % 5;
+            int y = i / 5;
             gridPane.add(shopCellMenus.get(i), x, y);
         }
     }
