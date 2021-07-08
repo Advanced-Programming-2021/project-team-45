@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.MainMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -87,6 +88,7 @@ public class DuelMenuGui extends MenuGui {
         stage.setTitle("YU-GI-OH!");
         stage.setResizable(false);
         stage.show();
+        createShortCut();
     }
 
     @FXML
@@ -803,5 +805,9 @@ public class DuelMenuGui extends MenuGui {
             mainMenuGui.start(stage);
         } catch (Exception ignored) {
         }
+    }
+
+    private void createShortCut(){
+        MainMenuController.ShortCutsRunnable(stage);
     }
 }
