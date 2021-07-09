@@ -37,7 +37,6 @@ public class ShowGameMessage extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.toFront();
         stage.requestFocus();
-        stage.setAlwaysOnTop(true);
 
         stage.show();
     }

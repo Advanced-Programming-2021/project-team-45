@@ -10,10 +10,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.DuelMenuGui">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.DuelMenuGui">
 
     <stylesheets>
-        <URL value="@styles/DuelMenuGui.css" />
+        <URL value="@styles/DuelMenuGui.css"/>
     </stylesheets>
 
     <center>
@@ -26,20 +27,23 @@
             <BorderPane prefHeight="600" prefWidth="210">
                 <top>
                     <VBox style="-fx-background-color: #eee0b1">
-                        <ProgressBar fx:id="opponentProgressBar" minWidth="210" progress="1" style="-fx-accent: green" />
-                        <Text fx:id="opponentNickNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="opponent nickname: " />
-                        <Text fx:id="opponentUserNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="opponent username: " />
+                        <ProgressBar fx:id="opponentProgressBar" minWidth="210" progress="1" style="-fx-accent: green"/>
+                        <Text fx:id="opponentNickNameText" style="-fx-fill: black; -fx-font-weight: bold;"
+                              text="opponent nickname: "/>
+                        <Text fx:id="opponentUserNameText" style="-fx-fill: black; -fx-font-weight: bold;"
+                              text="opponent username: "/>
                     </VBox>
                 </top>
                 <center>
                     <VBox alignment="CENTER" style="-fx-background-color: black">
                         <HBox alignment="CENTER">
-                            <Rectangle fx:id="selectedCard" height="307" width="210" />
+                            <Rectangle fx:id="selectedCard" height="307" width="210"/>
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label fx:id="selectedCardDescription" alignment="TOP_LEFT" prefHeight="193" prefWidth="210" textAlignment="JUSTIFY" wrapText="true">
+                            <Label fx:id="selectedCardDescription" alignment="TOP_LEFT" prefHeight="193" prefWidth="210"
+                                   textAlignment="JUSTIFY" wrapText="true">
                                 <padding>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                                 </padding>
                             </Label>
                         </HBox>
@@ -47,9 +51,11 @@
                 </center>
                 <bottom>
                     <VBox style="-fx-background-color: #eee0b1">
-                        <ProgressBar fx:id="playerProgressBar" minWidth="210" progress="1" style="-fx-accent: green" />
-                        <Text fx:id="playerNickNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="player nickname: " />
-                        <Text fx:id="playerUserNameText" style="-fx-fill: black; -fx-font-weight: bold;" text="player username: " />
+                        <ProgressBar fx:id="playerProgressBar" minWidth="210" progress="1" style="-fx-accent: green"/>
+                        <Text fx:id="playerNickNameText" style="-fx-fill: black; -fx-font-weight: bold;"
+                              text="player nickname: "/>
+                        <Text fx:id="playerUserNameText" style="-fx-fill: black; -fx-font-weight: bold;"
+                              text="player username: "/>
                     </VBox>
                 </bottom>
             </BorderPane>
@@ -57,19 +63,20 @@
             <BorderPane fx:id="buttonPane" prefHeight="600" prefWidth="120">
                 <top>
                     <HBox>
-                        <Button alignment="CENTER" onMouseClicked="#pause" prefHeight="26.0" prefWidth="110.0" text="pause">
+                        <Button alignment="CENTER" onMouseClicked="#pause" prefHeight="26.0" prefWidth="110.0"
+                                text="pause">
                             <cursor>
-                                <Cursor fx:constant="HAND" />
+                                <Cursor fx:constant="HAND"/>
                             </cursor>
                             <effect>
                                 <DropShadow>
                                     <color>
-                                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                     </color>
                                 </DropShadow>
                             </effect>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </Button>
                     </HBox>
@@ -77,143 +84,161 @@
                 <center>
                     <VBox alignment="CENTER">
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#nextPhase" prefHeight="26.0" prefWidth="110.0" text="Next Phase">
+                            <Button alignment="CENTER" onMouseClicked="#nextPhase" prefHeight="26.0" prefWidth="110.0"
+                                    text="Next Phase">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#summonCard" prefHeight="26.0" prefWidth="110.0" text="Summon">
+                            <Button alignment="CENTER" onMouseClicked="#summonCard" prefHeight="26.0" prefWidth="110.0"
+                                    text="Summon">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#setCard" prefHeight="26.0" prefWidth="110.0" text="Set">
+                            <Button alignment="CENTER" onMouseClicked="#setCard" prefHeight="26.0" prefWidth="110.0"
+                                    text="Set">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#changePosition" prefHeight="26.0" prefWidth="110.0" text="Change Position">
+                            <Button alignment="CENTER" onMouseClicked="#changePosition" prefHeight="26.0"
+                                    prefWidth="110.0" text="Change Position">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#attack" prefHeight="26.0" prefWidth="110.0" text="Attack">
+                            <Button alignment="CENTER" onMouseClicked="#attack" prefHeight="26.0" prefWidth="110.0"
+                                    text="Attack">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#activateEffect" prefHeight="26.0" prefWidth="110.0" text="Activate Effect">
+                            <Button alignment="CENTER" onMouseClicked="#activateEffect" prefHeight="26.0"
+                                    prefWidth="110.0" text="Activate Effect">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#showGraveyard" prefHeight="26.0" prefWidth="110.0" text="Show Graveyard">
+                            <Button alignment="CENTER" onMouseClicked="#showGraveyard" prefHeight="26.0"
+                                    prefWidth="110.0" text="Show Graveyard">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                         <HBox>
-                            <Button alignment="CENTER" onMouseClicked="#surrender" prefHeight="26.0" prefWidth="110.0" text="Surrender">
+                            <Button alignment="CENTER" onMouseClicked="#surrender" prefHeight="26.0" prefWidth="110.0"
+                                    text="Surrender">
                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
+                                    <Cursor fx:constant="HAND"/>
                                 </cursor>
                                 <effect>
                                     <DropShadow>
                                         <color>
-                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15" />
+                                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
                                         </color>
                                     </DropShadow>
                                 </effect>
                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </HBox.margin>
                             </Button>
                         </HBox>
                     </VBox>
                 </center>
+
+                <bottom>
+                    <HBox alignment="CENTER">
+                        <Label fx:id="phaseLabel" alignment="CENTER" prefWidth="110" prefHeight="26">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </Label>
+                    </HBox>
+                </bottom>
             </BorderPane>
         </HBox>
     </left>
@@ -221,6 +246,5 @@
     <right>
         <!--        chatBox-->
     </right>
-
 
 </BorderPane>

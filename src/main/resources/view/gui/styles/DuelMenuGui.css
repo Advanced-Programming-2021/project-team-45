@@ -3,6 +3,11 @@
     -fx-background-color: #93a1a7;
 }
 
+.button {
+    -fx-background-color: #dd0202;
+    -fx-text-fill: white;
+}
+
 #selectedCardDescription {
     -fx-background-color: #eee0b1;
     -fx-font-family: Arial;
@@ -10,11 +15,14 @@
     -fx-border-color: #cb9a45;
 }
 
-.button {
-    -fx-background-color: #dd0202;
-    -fx-text-fill: white;
-}
-
 #buttonPane {
     -fx-background-color: #141414;
+}
+
+#phaseLabel {
+    -fx-background-color: #dd0202;
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-background-radius: 3px;
 }

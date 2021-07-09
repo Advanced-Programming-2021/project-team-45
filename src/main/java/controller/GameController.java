@@ -677,4 +677,8 @@ public class GameController extends Controller {
     public int getOpponentDeckSize() {
         return game.getOpponentGameBoard().getOwner().getUserDeck().getActiveDeck().getMainDeck().size();
     }
+
+    public String getGamePhase() {
+        return game.getPhase();
+    }
 }

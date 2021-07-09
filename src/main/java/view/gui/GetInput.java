@@ -38,6 +38,7 @@ public class GetInput {
 
         BorderPane borderPane = new BorderPane();
         Text text = new Text(question);
+        text.setWrappingWidth(350);
         text.setFont(new Font("Bold", 14));
         text.setStyle("-fx-fill: white");
         HBox hBox = new HBox(text);
@@ -67,7 +68,7 @@ public class GetInput {
         hBox1.getChildren().addAll(yesButton, noButton);
         borderPane.setBottom(hBox1);
 
-        Scene scene = new Scene(borderPane, 350, 70);
+        Scene scene = new Scene(borderPane, 400, 150);
         getYesOrNoAnswerPopupWindow.setScene(scene);
         getYesOrNoAnswerPopupWindow.setTitle("Duel");
         getYesOrNoAnswerPopupWindow.showAndWait();
@@ -83,6 +84,7 @@ public class GetInput {
 
         BorderPane borderPane = new BorderPane();
         Text text = new Text(question);
+        text.setWrappingWidth(450);
         text.setFont(new Font("Bold", 14));
         text.setStyle("-fx-background-color: #0404e9; -fx-fill: white");
         TextField textField = new TextField(null);
@@ -111,7 +113,7 @@ public class GetInput {
         hBox.setAlignment(Pos.CENTER);
         borderPane.setBottom(hBox);
 
-        getStringAnswerPopupWindow.setScene(new Scene(borderPane, 450, 250));
+        getStringAnswerPopupWindow.setScene(new Scene(borderPane, 500, 300));
         getStringAnswerPopupWindow.setResizable(false);
         getStringAnswerPopupWindow.setTitle(title);
         getStringAnswerPopupWindow.showAndWait();

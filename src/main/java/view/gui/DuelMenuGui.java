@@ -72,6 +72,8 @@ public class DuelMenuGui extends MenuGui {
     public Text playerNickNameText;
     @FXML
     public Text playerUserNameText;
+    @FXML
+    public Label phaseLabel;
 
     static {
         duelMenuMethods = DuelMenuGui.class.getDeclaredMethods();
@@ -200,6 +202,7 @@ public class DuelMenuGui extends MenuGui {
         updatePlayerLifePoint();
         updateOpponentLifePoint();
         updateDecks();
+        updatePhase();
     }
 
     private void updateFields(ArrayList<String> cardData, String fieldName) {
@@ -317,6 +320,11 @@ public class DuelMenuGui extends MenuGui {
         opponentDeckStackPane.setLayoutY(GameElementSize.OPPONENT_DECK_Y.getSize());
 
         fieldPane.getChildren().addAll(playerDeckStackPane, opponentDeckStackPane);
+    }
+
+    private void updatePhase() {
+        String phase = gameController.getGamePhase();
+        phaseLabel.setText(phase);
     }
 
     private boolean getVisibility(String fieldName, String cardName) {
@@ -645,8 +653,9 @@ public class DuelMenuGui extends MenuGui {
                                 "Leave field empty to cancel summon.");
                 String[] numbers = input.split(" ");
                 ArrayList<Integer> positions = new ArrayList<>();
+                // add (position - 1) to ArrayList because zero-indexed fields:
                 for (String num : numbers)
-                    positions.add(Integer.parseInt(num));
+                    positions.add(Integer.parseInt(num) - 1);
                 return positions;
             } catch (NumberFormatException exception) {
                 showMessage("Invalid input format. Try again!");
