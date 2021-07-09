@@ -320,29 +320,23 @@ public class DeckController extends Controller {
                         if (bool) {
                             mainDeckHashMap.put(rectangle, mainDeckHashMap.get(sourceRectangle));
                             mainDeckHashMap.remove(sourceRectangle);
-                            deck.addCard(mainDeckHashMap.get(rectangle).getCardName(), false,
-                                    User.getUserByUsername(username));
-                            deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), false);
                         } else {
                             mainDeckHashMap.put(rectangle, sideDeckHashMap.get(sourceRectangle));
                             sideDeckHashMap.remove(sourceRectangle);
+                            deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), true);
                             deck.addCard(mainDeckHashMap.get(rectangle).getCardName(), false,
                                     User.getUserByUsername(username));
-                            deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), true);
                         }
                     } else {
                         if (bool) {
                             sideDeckHashMap.put(rectangle, mainDeckHashMap.get(sourceRectangle));
                             mainDeckHashMap.remove(sourceRectangle);
+                            deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), false);
                             deck.addCard(sideDeckHashMap.get(rectangle).getCardName(), true,
                                     User.getUserByUsername(username));
-                            deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), false);
                         } else {
                             sideDeckHashMap.put(rectangle, sideDeckHashMap.get(sourceRectangle));
                             sideDeckHashMap.remove(sourceRectangle);
-                            deck.addCard(sideDeckHashMap.get(rectangle).getCardName(), true,
-                                    User.getUserByUsername(username));
-                            deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), true);
                         }
                     }
                     sourceRectangle.setAccessibleText("null");
