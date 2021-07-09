@@ -9,6 +9,6 @@
     requires yagson;
      requires javafx.media;
 
-     opens view.gui to javafx.fxml;
-    exports view.gui;
+     opens Client.view to javafx.fxml;
+    exports Client.view;
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.paint.Color?>
+<?import java.net.URL?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Client.view.ShowGameMessage"
+            prefHeight="512" prefWidth="512">
+
+    <stylesheets>
+        <URL value="@styles/ShowGameMessage.css"/>
+    </stylesheets>
+
+    <top>
+        <HBox alignment="CENTER">
+            <Rectangle fx:id="outputImage" height="228" width="512"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox alignment="CENTER">
+            <Label fx:id="messageLabel" alignment="TOP_LEFT" prefHeight="256" prefWidth="512"
+                   textAlignment="JUSTIFY" wrapText="true">
+                <padding>
+                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                </padding>
+            </Label>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER">
+            <Button alignment="CENTER" prefHeight="26.0"
+                    prefWidth="80.0" text="OK" onAction="#closeWindow" fx:id="okButton">
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+                <effect>
+                    <DropShadow>
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                        </color>
+                    </DropShadow>
+                </effect>
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </bottom>
+
+</BorderPane>
