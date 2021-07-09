@@ -383,6 +383,9 @@ public class DuelMenuGui extends MenuGui {
     public void showGraveyard() {
         showGraveyardPopupWindow = new Stage();
         showGraveyardPopupWindow.initModality(Modality.APPLICATION_MODAL);
+        showGraveyardPopupWindow.getIcons().add(GetImage.getGameIcon());
+        showGraveyardPopupWindow.setTitle("Graveyard");
+
         BorderPane borderPane = new BorderPane();
         Text text = new Text("your graveyard");
         text.setFont(new Font("Arial", 14));
