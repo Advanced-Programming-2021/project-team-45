@@ -91,7 +91,6 @@ public class ShopCellMenu extends AnchorPane {
     public void buyCard() throws IOException {
         if (shopController.getCardsPrices().get(cardName) <= shopController.getUserMoney()) {
             int result = shopController.buyCardErrorHandler(cardName);
-            numberOfBoughtCardsText.setText("1");
             if (result == 2)
                 ShowOutput.showOutput("Error", "not enough money");
             else {

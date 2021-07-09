@@ -15,6 +15,7 @@ public class MusicPlayer {
     private static MediaPlayer loginMediaPlayer = new MediaPlayer(loginMenuMusic);
     private static MediaPlayer mainMediaPlayer = new MediaPlayer(mainMenuMusic);
     private static MediaPlayer duelMenuPlayer = new MediaPlayer(duelMenuMusic);
+    private static boolean isDuelMenuMute = false;
 
     static {
         loginMediaPlayer.setOnEndOfMedia(new Runnable() {
@@ -39,6 +40,7 @@ public class MusicPlayer {
     public static void playLoginMenuMusic() {
         loginMediaPlayer.play();
     }
+
     public static void playMainMenuMusic() {
         mainMediaPlayer.play();
     }
@@ -69,20 +71,23 @@ public class MusicPlayer {
     }
 
     public static void muteDuelMenuMusic() {
+        isDuelMenuMute = true;
         duelMenuPlayer.setMute(true);
     }
 
     public static void unMuteDuelMenuMusic() {
+        isDuelMenuMute = false;
         duelMenuPlayer.setMute(false);
     }
 
     public static void playSetCardMusic() {
         MediaPlayer mediaPlayer = new MediaPlayer(setCardMusic);
-        mediaPlayer.play();
+        if (!isDuelMenuMute)
+            mediaPlayer.play();
     }
 
     public static void playWinMusic() {
-        muteDuelMenuMusic();
+        duelMenuPlayer.setMute(true);
         MediaPlayer mediaPlayer = new MediaPlayer(winMusic);
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             @Override
@@ -90,11 +95,14 @@ public class MusicPlayer {
                 unMuteMainMenu();
             }
         });
-        mediaPlayer.play();
+        if (!isDuelMenuMute)
+            mediaPlayer.play();
+        else
+            unMuteMainMenu();
     }
 
-    public static void loseMusic() {
-        muteDuelMenuMusic();
+    public static void playLoseMusic() {
+        duelMenuPlayer.setMute(true);
         MediaPlayer mediaPlayer = new MediaPlayer(loseMusic);
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             @Override
@@ -102,6 +110,17 @@ public class MusicPlayer {
                 unMuteMainMenu();
             }
         });
-        mediaPlayer.play();
+        if (!isDuelMenuMute)
+            mediaPlayer.play();
+        else
+            unMuteMainMenu();
+    }
+
+    public static void setIsDuelMenuMute(boolean isDuelMenuMute) {
+        MusicPlayer.isDuelMenuMute = isDuelMenuMute;
+    }
+
+    public static boolean isDuelMenuMute() {
+        return isDuelMenuMute;
     }
 }

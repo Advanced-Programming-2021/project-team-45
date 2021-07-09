@@ -51,7 +51,7 @@ public class GameController extends Controller {
                 MusicPlayer.playWinMusic();
                 playerWins++;
             } else {
-                MusicPlayer.loseMusic();
+                MusicPlayer.playLoseMusic();
                 opponentWins++;
             }
             playerDuelMenu.showGameWinner(winner.getUsername(), playerWins, opponentWins);
