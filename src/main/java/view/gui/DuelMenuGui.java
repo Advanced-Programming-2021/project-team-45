@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.MainMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -87,6 +88,7 @@ public class DuelMenuGui extends MenuGui {
         stage.setTitle("YU-GI-OH!");
         stage.setResizable(false);
         stage.show();
+        createShortCut();
     }
 
     @FXML
@@ -198,6 +200,7 @@ public class DuelMenuGui extends MenuGui {
         updateHands(gameController.getHand(true), true);
         updatePlayerLifePoint();
         updateOpponentLifePoint();
+        updateDecks();
     }
 
     private void updateFields(ArrayList<String> cardData, String fieldName) {
@@ -286,6 +289,36 @@ public class DuelMenuGui extends MenuGui {
             playerProgressBar.setStyle("-fx-accent: red");
     }
 
+    private void updateDecks() {
+        int playerDeckSize = gameController.getPlayerDeckSize();
+        int opponentDeckSize = gameController.getOpponentDeckSize();
+        GameCard playerDeck = new GameCard(fieldPane, 0);
+        GameCard opponentDeck = new GameCard(fieldPane, 180);
+
+        Label playerDeckLabel = new Label(String.valueOf(playerDeckSize));
+        playerDeckLabel.setStyle("-fx-background-color: rgba(255, 255, 255, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: #ffffff;" +
+                "-fx-font-family: Arial;");
+        playerDeckLabel.toFront();
+        Label opponentDeckLabel = new Label(String.valueOf(opponentDeckSize));
+        opponentDeckLabel.setStyle("-fx-background-color: rgba(255, 255, 255, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: #ffffff;" +
+                "-fx-font-family: Arial;");
+        opponentDeckLabel.toFront();
+
+        StackPane playerDeckStackPane = new StackPane();
+        playerDeckStackPane.getChildren().addAll(playerDeck, playerDeckLabel);
+        playerDeckStackPane.setLayoutX(GameElementSize.PLAYER_DECK_X.getSize());
+        playerDeckStackPane.setLayoutY(GameElementSize.PLAYER_DECK_Y.getSize());
+        StackPane opponentDeckStackPane = new StackPane();
+        opponentDeckStackPane.getChildren().addAll(opponentDeck, opponentDeckLabel);
+        opponentDeckStackPane.setLayoutX(GameElementSize.OPPONENT_DECK_X.getSize());
+        opponentDeckStackPane.setLayoutY(GameElementSize.OPPONENT_DECK_Y.getSize());
+
+        fieldPane.getChildren().addAll(playerDeckStackPane, opponentDeckStackPane);
+    }
 
     private boolean getVisibility(String fieldName, String cardName) {
         boolean isVisible = true;
@@ -621,12 +654,8 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
-    public String getInputNumberOfFieldForSpecialMonster(String view) {
-        return null;
-    }
-
     public String getCardFromGraveYard(String view) {
-        return null;
+        return GetInput.getStringAnswerPopupWindow("Attention!", view);
     }
 
     public String getCardName() {
@@ -776,5 +805,20 @@ public class DuelMenuGui extends MenuGui {
             mainMenuGui.start(stage);
         } catch (Exception ignored) {
         }
+    }
+
+
+    private void createShortCut(){
+        MainMenuController.ShortCutsRunnable(stage);
+    }
+
+    public void increaseLpCheat(String input) {
+        String lpStr = input.replace("increase --LP ", "");
+        gameController.increaseLpCheat(Integer.parseInt(lpStr));
+    }
+
+    public void setWinnerCheat(String input) {
+        String winnerNickname = input.replace("duel set-winner ", "");
+        gameController.setWinnerCheat(winnerNickname);
     }
 }

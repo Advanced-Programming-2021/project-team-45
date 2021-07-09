@@ -24,21 +24,18 @@ import javafx.stage.Stage;
 import model.card.Card;
 import model.card.MonsterCard;
 import model.card.SpellTrapCard;
-import model.user.User;
 import org.apache.commons.io.FileUtils;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ImportExportMenuGui extends MainMenuGui {
+public class ImportExportMenuGui extends MenuGui {
     private static Stage stage;
     private static Stage popUpWindow;
     private static String loggedInUsername;
@@ -213,7 +210,7 @@ public class ImportExportMenuGui extends MainMenuGui {
 
         Scene scene = new Scene(borderPane);
         popUpWindow.setScene(scene);
-        popUpWindow.setTitle("card informations");
+        popUpWindow.setTitle("card information");
         popUpWindow.showAndWait();
     }
 
@@ -251,7 +248,7 @@ public class ImportExportMenuGui extends MainMenuGui {
 
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
         MainMenuGui mainMenuGui = new MainMenuGui();
-        mainMenuGui.setUsername(username);
+        MainMenuGui.setUsername(username);
         mainMenuGui.start(stage);
     }
 }

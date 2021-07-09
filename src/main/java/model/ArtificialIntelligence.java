@@ -62,7 +62,7 @@ public class ArtificialIntelligence {
     }
 
     private static int whereIsEnemy(Game game) {
-        for (int i = 1; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             if (game.getOpponentGameBoard().getMonsterField()
                     .getMonsterCardOpponentFromMonsterField(i) != null) {
                 return i;

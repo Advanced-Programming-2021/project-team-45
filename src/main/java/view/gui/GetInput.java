@@ -1,5 +1,6 @@
 package view.gui;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -61,12 +62,14 @@ public class GetInput {
         HBox hBox1 = new HBox();
         hBox1.setSpacing(10);
         hBox1.setAlignment(Pos.CENTER);
+        hBox1.setPadding(new Insets(15));
         hBox1.setStyle("-fx-background-color: #050588");
         hBox1.getChildren().addAll(yesButton, noButton);
         borderPane.setBottom(hBox1);
 
         Scene scene = new Scene(borderPane, 350, 70);
         getYesOrNoAnswerPopupWindow.setScene(scene);
+        getYesOrNoAnswerPopupWindow.setTitle("Duel");
         getYesOrNoAnswerPopupWindow.showAndWait();
         return result.get();
     }
@@ -83,11 +86,15 @@ public class GetInput {
         text.setFont(new Font("Bold", 14));
         text.setStyle("-fx-background-color: #0404e9; -fx-fill: white");
         TextField textField = new TextField(null);
+        HBox textFieldHBox = new HBox(textField);
+        textFieldHBox.setPadding(new Insets(15));
+        textFieldHBox.setAlignment(Pos.CENTER);
+        textFieldHBox.setStyle("-fx-background-color: #0404e9");
         VBox vBox = new VBox();
         vBox.setSpacing(15);
         vBox.setAlignment(Pos.CENTER);
         vBox.setStyle("-fx-background-color: #0404e9");
-        vBox.getChildren().addAll(text, textField);
+        vBox.getChildren().addAll(text, textFieldHBox);
         borderPane.setCenter(vBox);
 
 
@@ -99,6 +106,7 @@ public class GetInput {
             getStringAnswerPopupWindow.close();
         });
         HBox hBox = new HBox(button);
+        hBox.setPadding(new Insets(15));
         hBox.setStyle("-fx-background-color: #0404e9");
         hBox.setAlignment(Pos.CENTER);
         borderPane.setBottom(hBox);

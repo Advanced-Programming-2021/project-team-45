@@ -1,7 +1,7 @@
 package view.gui;
 
+import controller.MainMenuController;
 import controller.ShopController;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +14,11 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ShopMenuGui extends Application {
+public class ShopMenuGui extends MenuGui {
     private static Stage stage;
     private static String logInUsername;
+    private static ShopMenuGui shopMenuGui;
+    private static ShopController shopController;
     @FXML
     public GridPane gridPane;
     private ArrayList<ShopCellMenu> shopCellMenus;
@@ -25,6 +27,11 @@ public class ShopMenuGui extends Application {
         ShopMenuGui.logInUsername = username;
     }
 
+    public static ShopMenuGui getShopMenuGui() {
+        if (shopMenuGui == null)
+            shopMenuGui = new ShopMenuGui();
+        return shopMenuGui;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -37,14 +44,16 @@ public class ShopMenuGui extends Application {
         Scene scene = new Scene(scrollPane, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("shop");
+        createShortCut();
     }
 
     @FXML
     void initialize() {
         shopCellMenus = new ArrayList<>();
-        HashMap<String, Integer> cards = new ShopController(logInUsername).getCardsPrices();
+        shopController = new ShopController(logInUsername);
+        HashMap<String, Integer> cards = shopController.getCardsPrices();
+        ShopCellMenu.setShopController(shopController);
         for (int index = 0; index < cards.keySet().size(); index++) {
-            ShopCellMenu.setShopController(new ShopController(logInUsername));
             ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
             shopCellMenus.add(shopCellMenu);
         }
@@ -59,5 +68,14 @@ public class ShopMenuGui extends Application {
     public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
         MainMenuGui mainMenuGui = new MainMenuGui();
         mainMenuGui.start(stage);
+    }
+
+    private void createShortCut(){
+        MainMenuController.ShortCutsRunnable(stage);
+    }
+
+    public void increaseMoneyCheat(String input) {
+        String moneyStr = input.replace("increase --money ", "");
+        shopController.increaseMoneyCheat(Integer.parseInt(moneyStr));
     }
 }

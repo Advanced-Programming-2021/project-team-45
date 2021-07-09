@@ -33,13 +33,31 @@
         <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
             <ImageView fitHeight="66.0" fitWidth="200.0">
                 <image>
-                    <Image url="@Assets/Project-Assets-1.0.0/Assets/Logos/GUI_T_GateLogo_s001.dds.png"/>
+                    <Image url="@menu/GUI_T_GateLogo_s001.dds.png"/>
                 </image>
             </ImageView>
             <children>
                 <HBox alignment="CENTER">
                     <Button alignment="CENTER" onMouseClicked="#startDuel" prefHeight="26.0"
                             prefWidth="100.0" text="Duel">
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                        <effect>
+                            <DropShadow>
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                                </color>
+                            </DropShadow>
+                        </effect>
+                        <HBox.margin>
+                            <Insets bottom="0" left="5.0" right="5.0" top="0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Button alignment="CENTER" onMouseClicked="#startAiGame" prefHeight="26.0"
+                            prefWidth="100.0" text="Single Player">
                         <cursor>
                             <Cursor fx:constant="HAND"/>
                         </cursor>

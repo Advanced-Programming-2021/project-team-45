@@ -1,6 +1,13 @@
 package controller;
 
+
+import javafx.scene.input.KeyCombination;
+import javafx.stage.Stage;
+
+import model.ArtificialIntelligence;
+
 import model.user.User;
+import view.gui.CheatMenu;
 
 public class MainMenuController extends Controller {
 
@@ -32,6 +39,27 @@ public class MainMenuController extends Controller {
         }
 
         return 0;
+    }
+
+
+    public static void ShortCutsRunnable(Stage stage) {
+        stage.getScene().getAccelerators().put(KeyCombination.keyCombination("CTRL+SHIFT+C"),
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new CheatMenu().start(null);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
+    }
+
+
+    public void startAi() {
+        new ArtificialIntelligence();
     }
 
 }

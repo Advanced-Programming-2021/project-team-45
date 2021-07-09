@@ -3,7 +3,7 @@
     -fx-background-color: #93a1a7;
 }
 
-.label {
+#selectedCardDescription {
     -fx-background-color: #eee0b1;
     -fx-font-family: Arial;
     -fx-border-insets: 10px;

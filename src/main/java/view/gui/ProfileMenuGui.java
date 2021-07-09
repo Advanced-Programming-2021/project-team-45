@@ -1,21 +1,16 @@
 package view.gui;
 
 import controller.ProfileController;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.user.User;
 import org.apache.commons.io.FileUtils;
@@ -23,7 +18,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.*;
 
 public class ProfileMenuGui extends MenuGui {
-
     public ImageView imageView;
     public AnchorPane anchorPane;
     public TextField newNickname;
@@ -31,7 +25,6 @@ public class ProfileMenuGui extends MenuGui {
     public TextField newPassword;
     private static Stage stage;
     private static ProfileController profileController;
-
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -67,22 +60,6 @@ public class ProfileMenuGui extends MenuGui {
         } else {
             ShowOutput.showOutput("error box","wrong file type please try again");
         }
-    }
-
-    private void buttonError() {
-        Button button = new Button();
-        button.setText("wrong file type please try again");
-        button.setStyle("-fx-cursor:  Hand");
-        button.setEffect(new DropShadow());
-        button.setLayoutX(81);
-        button.setLayoutY(295);
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                anchorPane.getChildren().remove(button);
-            }
-        });
-        anchorPane.getChildren().add(button);
     }
 
     private void setUsernameAndNickname() {
@@ -123,40 +100,6 @@ public class ProfileMenuGui extends MenuGui {
         }
     }
 
-    private void errorBox(String text2) {
-        Stage stage1 = new Stage();
-        stage1.setWidth(300);
-        stage1.setHeight(300);
-        stage1.setTitle("Error Box");
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setPrefHeight(300);
-        anchorPane.setPrefWidth(300);
-        anchorPane.setStyle("-fx-background-color: rgba(255,255,152,0.92)");
-        Text text = new Text();
-        text.setText(text2);
-        text.setTextAlignment(TextAlignment.CENTER);
-        HBox hbox = new HBox(text);
-        Button button = new Button();
-        button.setText("close");
-        button.setStyle("-fx-cursor: hand");
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                stage1.close();
-            }
-        });
-        button.setLayoutY(170);
-        button.setLayoutX(120);
-        button.setStyle("-fx-cursor: Hand");
-        button.setStyle("-fx-background-color: #ff6a6a");
-        anchorPane.getChildren().add(hbox);
-        anchorPane.getChildren().add(button);
-        Scene scene = new Scene(anchorPane);
-        stage1.setScene(scene);
-        stage1.show();
-        newNickname.setText("");
-    }
-
     public void changePassword(MouseEvent mouseEvent) {
         int error = profileController.changePasswordErrorHandler(oldPassword.getText(), newPassword.getText());
         if (error == 1) {
@@ -171,6 +114,4 @@ public class ProfileMenuGui extends MenuGui {
             }
         }
     }
-
-
 }
