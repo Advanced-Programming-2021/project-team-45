@@ -320,9 +320,6 @@ public class DeckController extends Controller {
                         if (bool) {
                             mainDeckHashMap.put(rectangle, mainDeckHashMap.get(sourceRectangle));
                             mainDeckHashMap.remove(sourceRectangle);
-                            deck.deleteCard(mainDeckHashMap.get(rectangle).getCardName(), false);
-                            deck.addCard(mainDeckHashMap.get(rectangle).getCardName(), false,
-                                    User.getUserByUsername(username));
                         } else {
                             mainDeckHashMap.put(rectangle, sideDeckHashMap.get(sourceRectangle));
                             sideDeckHashMap.remove(sourceRectangle);
@@ -340,9 +337,6 @@ public class DeckController extends Controller {
                         } else {
                             sideDeckHashMap.put(rectangle, sideDeckHashMap.get(sourceRectangle));
                             sideDeckHashMap.remove(sourceRectangle);
-                            deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), true);
-                            deck.addCard(sideDeckHashMap.get(rectangle).getCardName(), true,
-                                    User.getUserByUsername(username));
                         }
                     }
                     sourceRectangle.setAccessibleText("null");
