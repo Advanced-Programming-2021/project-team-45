@@ -73,14 +73,14 @@ public class Chain {
     }
 
     public boolean startChain() {
-        while (canAddToChain()) {
-            if (doesPlayerWantToAddToChain()) {
-                addToChain();
-            } else {
-                break;
-            }
-            nextPlayer();
-        }
+//        while (canAddToChain()) {
+//            if (doesPlayerWantToAddToChain()) {
+//                addToChain();
+//            } else {
+//                break;
+//            }
+//            nextPlayer();
+//        }
         activateChain();
 
         return canActiveMonster;
@@ -147,7 +147,7 @@ public class Chain {
 
     private void activateChain() {
         for (int i = chain.size() - 1; i >= 0; i--) {
-            nextPlayer();
+//            nextPlayer();
             Card card = chain.get(i);
 
             if (card instanceof SpellTrapCard) {
