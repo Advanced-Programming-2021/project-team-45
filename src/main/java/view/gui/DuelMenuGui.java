@@ -54,7 +54,6 @@ public class DuelMenuGui extends MenuGui {
     private static String selectCardMethodName;
     private static final Method[] duelMenuMethods;
 
-    private static boolean isDuelMenuMute = false;
     @FXML
     public Pane fieldPane;
     @FXML
@@ -628,6 +627,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void surrender() {
+        MusicPlayer.playLoseMusic();
         gameController.surrender();
         updateGameBoard();
     }
@@ -748,17 +748,15 @@ public class DuelMenuGui extends MenuGui {
         BorderPane borderPane = new BorderPane();
         Button resumeButton = new Button("resume");
         Button muteButton = new Button();
-        if (isDuelMenuMute) muteButton.setText("unmute");
+        if (MusicPlayer.isDuelMenuMute()) muteButton.setText("unmute");
         else muteButton.setText("mute");
         Button exitButton = new Button("exit");
         resumeButton.setOnAction(e -> pausePopupWindow.close());
         muteButton.setOnAction(e -> {
-            if (isDuelMenuMute) {
-                isDuelMenuMute = false;
+            if (MusicPlayer.isDuelMenuMute()) {
                 MusicPlayer.unMuteDuelMenuMusic();
                 muteButton.setText("mute");
             } else {
-                isDuelMenuMute = true;
                 MusicPlayer.muteDuelMenuMusic();
                 muteButton.setText("unmute");
             }
