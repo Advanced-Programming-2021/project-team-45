@@ -22,6 +22,7 @@ public class ShowOutput {
 
         BorderPane borderPane = new BorderPane();
         Text text = new Text(header);
+        text.setWrappingWidth(400);
         text.setFont(new Font("Arial", 14));
         text.setStyle("-fx-fill: white");
         HBox hBox = new HBox(text);
@@ -39,7 +40,7 @@ public class ShowOutput {
         bottomHBox.setAlignment(Pos.CENTER);
         borderPane.setBottom(bottomHBox);
 
-        showOutPutPopUpWindow.setScene(new Scene(borderPane, 400, 120));
+        showOutPutPopUpWindow.setScene(new Scene(borderPane, 450, 150));
         showOutPutPopUpWindow.setTitle(title);
         showOutPutPopUpWindow.showAndWait();
     }
