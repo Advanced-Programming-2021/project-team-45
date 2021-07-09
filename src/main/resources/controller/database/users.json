@@ -2018,9 +2018,1041 @@
               }
             ],
             "sideDeck": []
+          },
+          {
+            "name": "kasraDeck",
+            "username": "kasra",
+            "mainDeck": [
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1100,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Hero of the east",
+                  "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1100,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Hero of the east",
+                  "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1100,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Hero of the east",
+                  "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 11,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 3750,
+                  "defense": 3400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Gate Guardian",
+                  "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+                  "cardType": "Effect",
+                  "price": 20000,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 11,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 3750,
+                  "defense": 3400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Gate Guardian",
+                  "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+                  "cardType": "Effect",
+                  "price": 20000,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 11,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 3750,
+                  "defense": 3400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Gate Guardian",
+                  "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+                  "cardType": "Effect",
+                  "price": 20000,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Sea_Serpent",
+                  "attack": 2900,
+                  "defense": 2900,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Spiral Serpent",
+                  "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+                  "cardType": "Normal",
+                  "price": 11700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Sea_Serpent",
+                  "attack": 2900,
+                  "defense": 2900,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Spiral Serpent",
+                  "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+                  "cardType": "Normal",
+                  "price": 11700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Sea_Serpent",
+                  "attack": 2900,
+                  "defense": 2900,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Spiral Serpent",
+                  "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+                  "cardType": "Normal",
+                  "price": 11700,
+                  "speed": 0
+                }
+              }
+            ],
+            "sideDeck": [
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "RITUAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.AdvancedRitualArtEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "Advanced Ritual Art",
+                  "cardDescription": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+                  "price": 3000,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "RITUAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.0.userDeck.userDecks.1.sideDeck.0.effects.0"
+                  ],
+                  "cardName": "Advanced Ritual Art",
+                  "cardDescription": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+                  "price": 3000,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "RITUAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.0.userDeck.userDecks.1.sideDeck.0.effects.0"
+                  ],
+                  "cardName": "Advanced Ritual Art",
+                  "cardDescription": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+                  "price": 3000,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.ClosedForestEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "Closed Forest",
+                  "cardDescription": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.0.userDeck.userDecks.1.sideDeck.3.effects.0"
+                  ],
+                  "cardName": "Closed Forest",
+                  "cardDescription": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "QUICK_PLAY",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.MysticalSpaceTyphoonEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "Mystical space typhoon",
+                  "cardDescription": "Target 1 Spell/Trap on the field; destroy that target.",
+                  "price": 3500,
+                  "speed": 2
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "QUICK_PLAY",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.0.userDeck.userDecks.1.sideDeck.5.effects.0"
+                  ],
+                  "cardName": "Mystical space typhoon",
+                  "cardDescription": "Target 1 Spell/Trap on the field; destroy that target.",
+                  "price": 3500,
+                  "speed": 2
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "NORMAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Limited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.DestroyAllCardsOfFieldEffect",
+                      "@val": {
+                        "fieldTypes": [
+                          "OPPONENT_MONSTER"
+                        ]
+                      }
+                    }
+                  ],
+                  "cardName": "Raigeki",
+                  "cardDescription": "Destroy all monsters your opponent controls.",
+                  "price": 2500,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "NORMAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Limited",
+                  "effects": [
+                    "@root.0.userDeck.userDecks.1.sideDeck.7.effects.0"
+                  ],
+                  "cardName": "Raigeki",
+                  "cardDescription": "Destroy all monsters your opponent controls.",
+                  "price": 2500,
+                  "speed": 1
+                }
+              }
+            ]
           }
         ],
-        "activeDeck": "@root.0.userDeck.userDecks.0"
+        "activeDeck": "@root.0.userDeck.userDecks.1"
       },
       "lastDamageAmount": 0,
       "profilePicturePath": "src/main/resources/view/gui/pictureFiles/unknownUserProfileImage.jpg"
@@ -3926,9 +4958,1081 @@
               }
             ],
             "sideDeck": []
+          },
+          {
+            "name": "bestDeck",
+            "username": "hossein",
+            "mainDeck": [
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "type": "Machine",
+                  "attack": 2000,
+                  "defense": 2300,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Slot Machine",
+                  "cardDescription": "The machine's ability is said to vary according to its slot results.",
+                  "cardType": "Normal",
+                  "price": 7500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "type": "Machine",
+                  "attack": 2000,
+                  "defense": 2300,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Slot Machine",
+                  "cardDescription": "The machine's ability is said to vary according to its slot results.",
+                  "cardType": "Normal",
+                  "price": 7500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "type": "Machine",
+                  "attack": 2000,
+                  "defense": 2300,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Slot Machine",
+                  "cardDescription": "The machine's ability is said to vary according to its slot results.",
+                  "cardType": "Normal",
+                  "price": 7500,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 6,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2500,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattaildragon",
+                  "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+                  "cardType": "Normal",
+                  "price": 5800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 6,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2500,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattaildragon",
+                  "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+                  "cardType": "Normal",
+                  "price": 5800,
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "model.card.MonsterCard",
+                "@val": {
+                  "level": 6,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2500,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattaildragon",
+                  "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+                  "cardType": "Normal",
+                  "price": 5800,
+                  "speed": 0
+                }
+              }
+            ],
+            "sideDeck": [
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "RITUAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.AdvancedRitualArtEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "Advanced Ritual Art",
+                  "cardDescription": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+                  "price": 3000,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "RITUAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.0.effects.0"
+                  ],
+                  "cardName": "Advanced Ritual Art",
+                  "cardDescription": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+                  "price": 3000,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "RITUAL",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.0.effects.0"
+                  ],
+                  "cardName": "Advanced Ritual Art",
+                  "cardDescription": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+                  "price": 3000,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.MagnumShieldEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "Magnum Shield",
+                  "cardDescription": "Equip only to a Warrior-Type monster. Apply this effect, depending on its battle position.\n● Attack Position: It gains ATK equal to its original DEF.\n● Defense Position: It gains DEF equal to its original ATK.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.3.effects.0"
+                  ],
+                  "cardName": "Magnum Shield",
+                  "cardDescription": "Equip only to a Warrior-Type monster. Apply this effect, depending on its battle position.\n● Attack Position: It gains ATK equal to its original DEF.\n● Defense Position: It gains DEF equal to its original ATK.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.3.effects.0"
+                  ],
+                  "cardName": "Magnum Shield",
+                  "cardDescription": "Equip only to a Warrior-Type monster. Apply this effect, depending on its battle position.\n● Attack Position: It gains ATK equal to its original DEF.\n● Defense Position: It gains DEF equal to its original ATK.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.UnitedWeStandEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "United We Stand",
+                  "cardDescription": "The equipped monster gains 800 ATK/DEF for each face-up monster you control.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.6.effects.0"
+                  ],
+                  "cardName": "United We Stand",
+                  "cardDescription": "The equipped monster gains 800 ATK/DEF for each face-up monster you control.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.6.effects.0"
+                  ],
+                  "cardName": "United We Stand",
+                  "cardDescription": "The equipped monster gains 800 ATK/DEF for each face-up monster you control.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.ClosedForestEffect",
+                      "@val": {}
+                    }
+                  ],
+                  "cardName": "Closed Forest",
+                  "cardDescription": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.9.effects.0"
+                  ],
+                  "cardName": "Closed Forest",
+                  "cardDescription": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.9.effects.0"
+                  ],
+                  "cardName": "Closed Forest",
+                  "cardDescription": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.IncreaseAtkDefOfTypeEffect",
+                      "@val": {
+                        "attack": 200,
+                        "defence": 200,
+                        "monsterType": "Fiend"
+                      }
+                    },
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.IncreaseAtkDefOfTypeEffect",
+                      "@val": {
+                        "attack": 200,
+                        "defence": 200,
+                        "monsterType": "SpellCaster"
+                      }
+                    },
+                    {
+                      "@type": "model.card.SpellTrapCards.effects.IncreaseAtkDefOfTypeEffect",
+                      "@val": {
+                        "attack": -200,
+                        "defence": -200,
+                        "monsterType": "Fairy"
+                      }
+                    }
+                  ],
+                  "cardName": "Yami",
+                  "cardDescription": "All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.12.effects.0",
+                    "@root.1.userDeck.userDecks.1.sideDeck.12.effects.1",
+                    "@root.1.userDeck.userDecks.1.sideDeck.12.effects.2"
+                  ],
+                  "cardName": "Yami",
+                  "cardDescription": "All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "FIELD",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    "@root.1.userDeck.userDecks.1.sideDeck.12.effects.0",
+                    "@root.1.userDeck.userDecks.1.sideDeck.12.effects.1",
+                    "@root.1.userDeck.userDecks.1.sideDeck.12.effects.2"
+                  ],
+                  "cardName": "Yami",
+                  "cardDescription": "All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.",
+                  "price": 4300,
+                  "speed": 1
+                }
+              }
+            ]
           }
         ],
-        "activeDeck": "@root.1.userDeck.userDecks.0"
+        "activeDeck": "@root.1.userDeck.userDecks.1"
       },
       "lastDamageAmount": 0,
       "profilePicturePath": "src/main/resources/view/gui/pictureFiles/unknownUserProfileImage.jpg"
