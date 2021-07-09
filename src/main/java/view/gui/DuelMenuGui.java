@@ -797,7 +797,7 @@ public class DuelMenuGui extends MenuGui {
         pausePopupWindow.close();
         MusicPlayer.muteDuelMenuMusic();
         MainMenuGui mainMenuGui = new MainMenuGui();
-        mainMenuGui.setUsername(username);
+        MainMenuGui.setUsername(username);
         MusicPlayer.unMuteMainMenu();
         try {
             mainMenuGui.start(stage);
