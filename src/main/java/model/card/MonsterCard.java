@@ -129,6 +129,7 @@ public class MonsterCard extends Card {
             this.position = PositionMonsters.ATTACK;
         } else {
             this.position = PositionMonsters.DEFENSE;
+            this.defenceMode = DefensePosition.DO;
         }
     }
 

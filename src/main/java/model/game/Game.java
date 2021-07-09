@@ -440,7 +440,7 @@ public class Game {
 
     public int attackToOpponentCardInDefensePosition(MonsterCard playerCard, MonsterCard opponentCard,
                                                      GameBoard playerGameBoard, GameBoard opponentGameBoard) {
-        int result = 0;
+        int result;
         playerCard.attackMonster(opponentCard);
         if (opponentCard.getDefenceMode() == DefensePosition.DO) {
             if (opponentCard.getDefense() < playerCard.getAttack()) {
@@ -450,6 +450,7 @@ public class Game {
                 result = 10;
             } else result = 11;
         } else {
+            opponentCard.setDefenceMode(DefensePosition.DO);
             this.lastOpponentMonsterCard = opponentCard;
             if (opponentCard.getDefense() < playerCard.getAttack()) {
                 result = 12;
