@@ -259,10 +259,10 @@ public class Game {
     }
 
     public int summonMonster() {
-        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_SUMMON);
-        boolean canSummon = chain.startChain();
-
-        if (canSummon) {
+//        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_SUMMON);
+//        boolean canSummon = chain.startChain();
+//
+//        if (canSummon) {
             GameBoard gameBoard = getPlayerGameBoard();
             CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
                     getPlayerGameBoard().getMonsterField());
@@ -279,10 +279,10 @@ public class Game {
             this.selectedCard = null;
             return 6;
 
-        } else {
-            return -1;
-
-        }
+//        } else {
+//            return -1;
+//
+//        }
     }
 
     public void tributeSummon(ArrayList<Integer> cardsToTribute) {
@@ -369,31 +369,31 @@ public class Game {
     }
 
     public int flipSummon() {
-        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_FLIP_SUMMON);
-        boolean canFlipSummon = chain.startChain();
+//        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_FLIP_SUMMON);
+//        boolean canFlipSummon = chain.startChain();
 
-        if (canFlipSummon) {
+//        if (canFlipSummon) {
             MonsterCard playerCard = (MonsterCard) this.selectedCard;
             playerCard.setPosition(PositionMonsters.ATTACK);
             this.selectedCard = playerCard;
             return 5;
 
-        } else {
-            return -1;
+//        } else {
+//            return -1;
 
-        }
+//        }
     }
 
     public int attack(int numberOfEnemyMonsterZone) {
         int result = 0;
 
-        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_ATTACK);
-        boolean canAttack = chain.startChain();
-
-        if (!canAttack) {
-            result = -1;
-
-        } else {
+//        Chain chain = new Chain(this, selectedCard, getPlayerOfThisTurn(), getOpponentOfThisTurn(), ChainStartState.MONSTER_ATTACK);
+//        boolean canAttack = chain.startChain();
+//
+//        if (!canAttack) {
+//            result = -1;
+//
+//        } else {
             GameBoard opponentGameBoard = getOpponentGameBoard();
             GameBoard playerGameBoard = getPlayerGameBoard();
             MonsterCard playerCard = (MonsterCard) this.selectedCard;
@@ -416,7 +416,7 @@ public class Game {
                         , opponentGameBoard);
             }
             this.selectedCard = null;
-        }
+//        }
         return result;
     }
 
