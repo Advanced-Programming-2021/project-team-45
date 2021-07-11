@@ -1,0 +1,18 @@
+Request Format:
+{
+TOKEN
+CLASS_NAME
+METHOD_NAME
+OBJECT[]_FIELDS_YAGSON
+}
+
+
+Answer Fromat:
+{
+RETURN_TYPE_CLASS_NAME
+RESULT_OBJECT_YAGSON
+}
+
+
+
+
