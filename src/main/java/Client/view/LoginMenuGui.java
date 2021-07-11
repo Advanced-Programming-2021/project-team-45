@@ -1,7 +1,7 @@
 package Client.view;
 
 import Server.controller.DatabaseController;
-import Server.controller.LoginController;
+import Client.ClientServer.ClientLoginServer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class LoginMenuGui extends MenuGui {
 
-    private static LoginController loginController;
+    private static ClientLoginServer clientLoginServer;
     private static Stage stage;
 
     public TextField usernameSignUpTextBox;
@@ -58,9 +58,10 @@ public class LoginMenuGui extends MenuGui {
     }
 
 
-    private LoginController getLoginController() {
-        if (loginController == null) loginController = new LoginController();
-        return loginController;
+    private ClientLoginServer getClientLoginServer() {
+        if (clientLoginServer == null)
+            clientLoginServer = new ClientLoginServer();
+        return clientLoginServer;
     }
 
     private boolean isInputFormatCorrect(String username, String nickname, String password) {
@@ -79,7 +80,7 @@ public class LoginMenuGui extends MenuGui {
 
     private void signUp(String username, String nickname, String password) {
         if (isInputFormatCorrect(username, nickname, password)) {
-            int error = getLoginController().createUserErrorHandler(username, nickname, password);
+            int error = getClientLoginServer().createUserErrorHandler(username, nickname, password);
             if (error == 0) {
                 ShowOutput.showOutput("Success", "user created successfully!");
             } else if (error == 1) {
@@ -91,7 +92,7 @@ public class LoginMenuGui extends MenuGui {
     }
 
     private void login(String username, String password) throws Exception {
-        int error = getLoginController().loginUserErrorHandler(username, password);
+        int error = getClientLoginServer().loginUserErrorHandler(username, password);
         if (error == 0) {
             ShowOutput.showOutput("Success", "user logged in successfully!");
             MusicPlayer.muteLoginMenu();

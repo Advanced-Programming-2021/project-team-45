@@ -11,11 +11,34 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class DatabaseController extends Controller {
+    private static final HashMap<String, User> tokens;
+
+    static {
+        tokens = new HashMap<>();
+    }
 
     public DatabaseController(String username) {
         super(username);
+    }
+
+    public synchronized static String getToken(String username) {
+        UUID uuid = UUID.randomUUID();
+        String token = String.valueOf(uuid);
+        User user = User.getUserByUsername(username);
+        tokens.put(token, user);
+        return token;
+    }
+
+    public synchronized static boolean doesUserExists(String token) {
+        return tokens.containsKey(token);
+    }
+
+    public static User getUserByToken(String token) {
+        return tokens.get(token);
     }
 
     public static ArrayList<User> importUsers() {

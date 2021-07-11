@@ -2,9 +2,10 @@ package NetworkConfiguration;
 
 public enum PortConfig {
     PROFILE_PORT(69),
-    LOGIN_PORT(85);
+    LOGIN_PORT(85),
+    DUEL_PORT(1234);
 
-    private int port;
+    private final int port;
 
     PortConfig(int port) {
         this.port = port;

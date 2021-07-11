@@ -3,13 +3,13 @@ package Server.ServerController;
 import java.net.Socket;
 
 public class ProfileRequestHandler extends RequestHandler {
-    private final Socket socket;
 
     public ProfileRequestHandler(Socket socket) {
-        this.socket = socket;
+        super(socket);
     }
 
     @Override
-    public void run() {
+    protected String handle(String request) {
+        return null;
     }
 }
