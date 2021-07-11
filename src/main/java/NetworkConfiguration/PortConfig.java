@@ -1,3 +1,5 @@
+package NetworkConfiguration;
+
 public enum PortConfig {
     PROFILE_PORT(69),
     LOGIN_PORT(85);

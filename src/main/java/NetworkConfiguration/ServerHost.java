@@ -1,3 +1,5 @@
+package NetworkConfiguration;
+
 public enum ServerHost {
     HOST("localhost");
 
