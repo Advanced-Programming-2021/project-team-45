@@ -17,12 +17,14 @@ public class LoginController {
         return 0;
     }
 
-    public int loginUserErrorHandler(String username, String password) {
+    public String loginUserErrorHandler(String username, String password) {
         if (!User.isUserPassCorrect(username, password)) {
-            return 1;
-
+            return "null";
         }
-        return 0;
+        return getToken(username);
     }
 
+    private String getToken(String username) {
+        return DatabaseController.getToken(username);
+    }
 }

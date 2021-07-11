@@ -12,17 +12,20 @@ import java.net.Socket;
 public class SendRequest {
     private final String host;
     private final int port;
-    private final String token;
+    private static String token;
     private final String className;
 
-    public SendRequest(int port, String token, String className) {
+    public SendRequest(int port, String className) {
         this.host = ServerHost.HOST.getHostName();
         this.port = port;
-        this.token = token;
         this.className = className;
     }
 
-    public Object getMethodResult(String methodName, Object[] fields) {
+    public static void setToken(String token) {
+        SendRequest.token = token;
+    }
+
+    public Object getMethodResult(String methodName, Object... fields) {
         String request = initRequest(methodName, fields);
         try {
             Socket socket = new Socket(host, port);
@@ -30,9 +33,7 @@ public class SendRequest {
             dataOutputStream.writeUTF(request);
             dataOutputStream.flush();
             // get answer from server:
-            ServerSocket serverSocket = new ServerSocket(port);
-            Socket answerSocket = serverSocket.accept();
-            DataInputStream dataInputStream = new DataInputStream(answerSocket.getInputStream());
+            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String answer = dataInputStream.readUTF();
             return processAnswer(answer);
         } catch (IOException exception) {

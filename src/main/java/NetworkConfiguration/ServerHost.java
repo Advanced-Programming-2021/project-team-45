@@ -3,7 +3,7 @@ package NetworkConfiguration;
 public enum ServerHost {
     HOST("localhost");
 
-    private String hostName;
+    private final String hostName;
 
     ServerHost(String hostName) {
         this.hostName = hostName;

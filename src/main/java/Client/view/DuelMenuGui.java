@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientDuelServer;
 import Server.controller.MainMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -39,6 +40,9 @@ public class DuelMenuGui extends MenuGui {
             "opponent_monster",
             "opponent_spell"
     };
+
+    private static ClientDuelServer clientDuelServer;
+
     private static GameController gameController;
     private static Stage stage;
     private static Stage showGraveyardPopupWindow;
