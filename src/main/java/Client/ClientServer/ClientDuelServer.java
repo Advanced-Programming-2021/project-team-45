@@ -11,7 +11,6 @@ public class ClientDuelServer extends ClientServer {
     }
 
     public void updateGameData() {
-        Object object = new Object();
         gameData = (GameData) sendRequest.getMethodResult("getGameData");
     }
 

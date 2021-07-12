@@ -41,7 +41,7 @@ public class DuelMenuGui extends MenuGui {
             "opponent_spell"
     };
 
-    private static ClientDuelServer clientDuelServer;
+    private static ClientDuelServer clientDuelServer = new ClientDuelServer();
 
     private static GameController gameController;
     private static Stage stage;
@@ -717,7 +717,7 @@ public class DuelMenuGui extends MenuGui {
             // exit to MainMenu
             MusicPlayer.playMainMenuMusic();
             MainMenuGui mainMenu = new MainMenuGui();
-            mainMenu.setUsername(username);
+            MainMenuGui.setUsername(username);
             try {
                 mainMenu.start(stage);
             } catch (Exception e) {
