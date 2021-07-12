@@ -2,7 +2,6 @@ package Client.view;
 
 import Client.ClientServer.ClientShopServer;
 import Server.controller.MainMenuController;
-import Server.controller.ShopController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

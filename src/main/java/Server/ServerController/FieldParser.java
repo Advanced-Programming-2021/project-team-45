@@ -11,6 +11,7 @@ public class FieldParser {
 
     public String getAnswer(Object answer) {
         YaGson yaGson = new YaGson();
-        return answer.getClass().getName() + "\n" + yaGson.toJson(answer);
+        return answer.getClass().getName() + "\n"
+                + yaGson.toJson(answer);
     }
 }
