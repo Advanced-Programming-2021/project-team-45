@@ -1,6 +1,6 @@
 package Server.ServerController;
 
-import NetworkConfiguration.PortConfig;
+import Network.PortConfig;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,6 +24,8 @@ public abstract class RequestHandler extends Thread {
             requestHandler = new LoginRequestHandler(socket);
         } else if (port == PortConfig.PROFILE_PORT.getPort()) {
             requestHandler = new ProfileRequestHandler(socket);
+        } else if (port == PortConfig.DUEL_PORT.getPort()) {
+            requestHandler = new DuelRequestHandler(socket);
         }
         return requestHandler;
     }
