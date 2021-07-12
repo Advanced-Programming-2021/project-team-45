@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientShopServer;
 import Server.controller.MainMenuController;
 import Server.controller.ShopController;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ public class ShopMenuGui extends MenuGui {
     private static Stage stage;
     private static String logInUsername;
     private static ShopMenuGui shopMenuGui;
-    private static ShopController shopController;
+    private static ClientShopServer clientShopServer;
     @FXML
     public GridPane gridPane;
     private ArrayList<ShopCellMenu> shopCellMenus;
@@ -50,9 +51,8 @@ public class ShopMenuGui extends MenuGui {
     @FXML
     void initialize() {
         shopCellMenus = new ArrayList<>();
-        shopController = new ShopController(logInUsername);
-        HashMap<String, Integer> cards = shopController.getCardsPrices();
-        ShopCellMenu.setShopController(shopController);
+        HashMap<String, Integer> cards = getClientShopServer().getCardsPrices();
+        ShopCellMenu.setClientShopServer(clientShopServer);
         for (int index = 0; index < cards.keySet().size(); index++) {
             ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
             shopCellMenus.add(shopCellMenu);
@@ -74,8 +74,14 @@ public class ShopMenuGui extends MenuGui {
         MainMenuController.ShortCutsRunnable(stage);
     }
 
+    private ClientShopServer getClientShopServer() {
+        if (clientShopServer == null)
+            clientShopServer = new ClientShopServer();
+        return clientShopServer;
+    }
+
     public void increaseMoneyCheat(String input) {
         String moneyStr = input.replace("increase --money ", "");
-        shopController.increaseMoneyCheat(Integer.parseInt(moneyStr));
+        clientShopServer.increaseMoneyCheat(Integer.parseInt(moneyStr));
     }
 }

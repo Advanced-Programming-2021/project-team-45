@@ -26,6 +26,8 @@ public abstract class RequestHandler extends Thread {
             requestHandler = new ProfileRequestHandler(socket);
         } else if (port == PortConfig.DUEL_PORT.getPort()) {
             requestHandler = new DuelRequestHandler(socket);
+        } else if (port == PortConfig.SHOP_PORT.getPort()) {
+            requestHandler = new ShopRequestHandler(socket);
         }
         return requestHandler;
     }

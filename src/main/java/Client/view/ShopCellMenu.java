@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientShopServer;
 import Server.controller.ShopController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -14,7 +15,7 @@ import Client.view.elements.GetImage;
 import java.io.IOException;
 
 public class ShopCellMenu extends AnchorPane {
-    private static ShopController shopController;
+    private static ClientShopServer clientShopServer;
     private String cardName;
     private Button buyButton;
     private Text numberOfBoughtCardsText;
@@ -28,8 +29,8 @@ public class ShopCellMenu extends AnchorPane {
         setAnchorPane();
     }
 
-    public static void setShopController(ShopController shopController) {
-        ShopCellMenu.shopController = shopController;
+    public static void setClientShopServer(ClientShopServer clientShopServer) {
+        ShopCellMenu.clientShopServer = clientShopServer;
     }
 
     public void setAnchorPane() {
@@ -45,8 +46,8 @@ public class ShopCellMenu extends AnchorPane {
     public void setButton() {
         buyButton = new Button();
         buyButton.setTextFill(Color.color(1, 1, 1));
-        int price = shopController.getCardsPrices().get(cardName);
-        if (shopController.getUserMoney() >= price) {
+        int price = clientShopServer.getCardsPrices().get(cardName);
+        if (clientShopServer.getUserMoney() >= price) {
             buyButton.setText("buy");
             buyButton.setStyle("-fx-background-color: #0000ff");
         }
@@ -55,7 +56,7 @@ public class ShopCellMenu extends AnchorPane {
             buyButton.setStyle("-fx-background-color: orange");
         }
         buyButton.setOnMouseEntered(e -> {
-            if (shopController.getUserMoney() >= price) {
+            if (clientShopServer.getUserMoney() >= price) {
                 buyButton.setText("buy");
                 buyButton.setStyle("-fx-background-color: #0000ff");
             }
@@ -63,7 +64,7 @@ public class ShopCellMenu extends AnchorPane {
                 buyButton.setText("_");
                 buyButton.setStyle("-fx-background-color: orange");
             }
-            Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + shopController.getUserMoney());
+            Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + clientShopServer.getUserMoney());
             buyButton.setTooltip(tooltip);
         });
         buyButton.setOnMouseClicked(e -> {
@@ -81,7 +82,7 @@ public class ShopCellMenu extends AnchorPane {
     public void setCardText() {
         numberOfBoughtCardsText = new Text("");
         numberOfBoughtCardsText.setFont(new Font("Arial Bold", 12));
-        int number = shopController.numberOfBoughtCards(cardName);
+        int number = clientShopServer.numberOfBoughtCards(cardName);
         if (number != 0)
             numberOfBoughtCardsText.setText("bought cards: " + number);
         numberOfBoughtCardsText.setY(230);
@@ -89,13 +90,13 @@ public class ShopCellMenu extends AnchorPane {
     }
 
     public void buyCard() throws IOException {
-        if (shopController.getCardsPrices().get(cardName) <= shopController.getUserMoney()) {
-            int result = shopController.buyCardErrorHandler(cardName);
+        if (clientShopServer.getCardsPrices().get(cardName) <= clientShopServer.getUserMoney()) {
+            int result = clientShopServer.buyCardErrorHandler(cardName);
             if (result == 2)
                 ShowOutput.showOutput("Error", "not enough money");
             else {
                 ShowOutput.showOutput("Success", "Card added successfully");
-                numberOfBoughtCardsText.setText("bought cards: " + shopController.numberOfBoughtCards(cardName));
+                numberOfBoughtCardsText.setText("bought cards: " + clientShopServer.numberOfBoughtCards(cardName));
             }
         }
     }

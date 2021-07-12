@@ -8,6 +8,8 @@ public class StartServer {
         loginServer.start();
         ServerController duelServer = new ServerController(PortConfig.DUEL_PORT.getPort());
         duelServer.start();
+        ServerController shopServer = new ServerController(PortConfig.SHOP_PORT.getPort());
+        shopServer.start();
         // And so on for every port...
     }
 }
