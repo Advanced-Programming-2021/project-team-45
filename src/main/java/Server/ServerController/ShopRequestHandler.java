@@ -4,11 +4,9 @@ import Server.controller.DatabaseController;
 import Server.controller.ShopController;
 import Server.model.user.User;
 
-import java.io.DataOutputStream;
 import java.net.Socket;
 
 public class ShopRequestHandler extends RequestHandler{
-    private ShopController shopController;
     public ShopRequestHandler(Socket socket) {
         super(socket);
     }
