@@ -1,5 +1,6 @@
 package Server.controller;
 
+import Network.GameData;
 import Server.model.card.*;
 import Server.model.game.*;
 import Server.model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
@@ -11,6 +12,7 @@ import Client.view.MusicPlayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameController extends Controller {
 
@@ -41,7 +43,7 @@ public class GameController extends Controller {
         this.gameErrorHandler = new GameErrorHandler(game);
     }
 
-    public void checkGameEnd() {
+    private void checkGameEnd() {
         int playerMaxLp = 0;
         int opponentMaxLp = 0;
         if (game.isFinished()) {
@@ -426,13 +428,6 @@ public class GameController extends Controller {
         return game.showGraveyard();
     }
 
-    public ArrayList<String> getPlayerGraveyardCards() {
-        ArrayList<String> graveyardCards = new ArrayList<>();
-        for (Card card : game.getPlayerGameBoard().getGraveyard().getGraveyardCards())
-            graveyardCards.add(card.getCardName());
-        return graveyardCards;
-    }
-
     public String controlCardShow() {
         if (game.getSelectedCard() != null) {
             if (!game.isSelectedCardVisibleToPlayer()) {
@@ -564,11 +559,21 @@ public class GameController extends Controller {
         game.setWinner(nickname);
     }
 
-    public ArrayList<String> getFieldCards(String fieldName) {
+    public boolean isThereAnyMonsterOnOpponentMonsterField() {
+        for (int i = 0; i < 5; i++) {
+            if (!game.getOpponentGameBoard().getMonsterField().isFieldEmpty(i))
+                return true;
+        }
+        return false;
+    }
+
+    private ArrayList<String> getFieldCards(String fieldName, User user) {
         ArrayList<String> cardData = new ArrayList<>();
+        GameBoard playerGameBoard = getUserGameBoard(user);
+        GameBoard opponentGameBoard = getUserGameBoard(getOpponent(user));
         switch (fieldName) {
             case "player_monster":
-                MonsterCard[] monsters = game.getPlayerGameBoard().getMonsterField().getMonsterPositionsArray();
+                MonsterCard[] monsters = playerGameBoard.getMonsterField().getMonsterPositionsArray();
                 for (int i = 0; i < monsters.length; i++) {
                     String name = "";
                     if (monsters[i] != null) {
@@ -581,7 +586,7 @@ public class GameController extends Controller {
                 }
                 break;
             case "player_spell":
-                SpellTrapCard[] spells = game.getPlayerGameBoard().getSpellTrapField().getSpellTrapCardsPositionsArray();
+                SpellTrapCard[] spells = playerGameBoard.getSpellTrapField().getSpellTrapCardsPositionsArray();
                 for (int i = 0; i < spells.length; i++) {
                     if (spells[i] != null)
                         cardData.add(i + spells[i].getCardName());
@@ -590,7 +595,7 @@ public class GameController extends Controller {
                 }
                 break;
             case "opponent_monster":
-                MonsterCard[] opponentMonsters = game.getOpponentGameBoard().getMonsterField().getMonsterPositionsArray();
+                MonsterCard[] opponentMonsters = opponentGameBoard.getMonsterField().getMonsterPositionsArray();
                 for (int i = 0; i < opponentMonsters.length; i++) {
                     if (opponentMonsters[i] != null) {
                         if (opponentMonsters[i].getPosition() == PositionMonsters.DEFENSE) {
@@ -609,7 +614,7 @@ public class GameController extends Controller {
                 }
                 break;
             case "opponent_spell":
-                SpellTrapCard[] opponentSpells = game.getOpponentGameBoard().getSpellTrapField().getSpellTrapCardsPositionsArray();
+                SpellTrapCard[] opponentSpells = opponentGameBoard.getSpellTrapField().getSpellTrapCardsPositionsArray();
                 for (int i = 0; i < opponentSpells.length; i++) {
                     if (opponentSpells[i] != null)
                         cardData.add(i + "opponent_spell");
@@ -621,64 +626,78 @@ public class GameController extends Controller {
         return cardData;
     }
 
-    public ArrayList<String> getHand(boolean isOpponent) {
+    private ArrayList<String> getUserHand(User user) {
         ArrayList<String> handCardNames = new ArrayList<>();
-        ArrayList<Card> cards;
-        if (isOpponent) {
-            cards = game.getOpponentGameBoard().getHand().getCardsInHand();
-            for (Card ignored : cards)
-                handCardNames.add("opponent_hand");
-        } else {
-            cards = game.getPlayerGameBoard().getHand().getCardsInHand();
-            for (Card card : cards)
-                handCardNames.add(card.getCardName());
-        }
+        ArrayList<Card> userHand = getUserGameBoard(user).getHand().getCardsInHand();
+        for (Card card : userHand)
+            handCardNames.add(card.getCardName());
         return handCardNames;
     }
 
-    public boolean isThereAnyMonsterOnOpponentMonsterField() {
-        for (int i = 0; i < 5; i++) {
-            if (!game.getOpponentGameBoard().getMonsterField().isFieldEmpty(i))
-                return true;
-        }
-        return false;
+    private ArrayList<String> getOpponentHand(User user) {
+        ArrayList<String> handCardNames = new ArrayList<>();
+        ArrayList<Card> opponentHand = getUserGameBoard(getOpponent(user)).getHand().getCardsInHand();
+        for (Card ignored : opponentHand)
+            handCardNames.add("opponent_hand");
+        return handCardNames;
     }
 
-    public String[] getPlayerData() {
-        String[] playerData = new String[2];
-        playerData[0] = game.getPlayerOfThisTurn().getNickname();
-        playerData[1] = game.getPlayerOfThisTurn().getUsername();
-        return playerData;
+    private int getDeckSize(User user) {
+        return user.getUserDeck().getActiveDeck().getMainDeck().size();
     }
 
-    public int getPlayerLifePoint() {
-        return game.getPlayerOfThisTurn().getLifepoint().getLifepoint();
+    private User getOpponent(User user) {
+        if (player.equals(user))
+            return opponentPlayer;
+        else
+            return player;
     }
 
-    public String[] getOpponentData() {
-        String[] opponentData = new String[2];
-        opponentData[0] = game.getOpponentOfThisTurn().getNickname();
-        opponentData[1] = game.getOpponentOfThisTurn().getUsername();
-        return opponentData;
+    private GameBoard getUserGameBoard(User user) {
+        if (game.getPlayerOfThisTurn().equals(user))
+            return game.getPlayerGameBoard();
+        else
+            return game.getOpponentGameBoard();
     }
 
-    public int getOpponentLifePoint() {
-        return game.getOpponentOfThisTurn().getLifepoint().getLifepoint();
+    private ArrayList<String> getPlayerGraveyardCards(User user) {
+        ArrayList<String> graveyardCards = new ArrayList<>();
+        GameBoard gameBoard = getUserGameBoard(user);
+        for (Card card : gameBoard.getGraveyard().getGraveyardCards())
+            graveyardCards.add(card.getCardName());
+        return graveyardCards;
     }
 
-    public String[] getPlayersUsernames() {
-        return new String[]{player.getUsername(), opponentPlayer.getUsername()};
-    }
-
-    public int getPlayerDeckSize() {
-        return game.getPlayerGameBoard().getOwner().getUserDeck().getActiveDeck().getMainDeck().size();
-    }
-
-    public int getOpponentDeckSize() {
-        return game.getOpponentGameBoard().getOwner().getUserDeck().getActiveDeck().getMainDeck().size();
-    }
-
-    public String getGamePhase() {
+    private String getGamePhase() {
         return game.getPhase();
+    }
+
+    private HashMap<String, ArrayList<String>> getUserFields(User user) {
+        String[] fields = {"player_monster", "player_spell", "opponent_monster", "opponent_spell"};
+        HashMap<String, ArrayList<String>> result = new HashMap<>();
+        for (String fieldName : fields)
+            result.put(fieldName, getFieldCards(fieldName, user));
+        return result;
+    }
+
+    public GameData getGameData(User user) {
+        checkGameEnd();
+
+        GameData gameData = new GameData();
+        User opponent = getOpponent(user);
+        gameData.setFields(getUserFields(user));
+        gameData.setPlayerHand(getUserHand(user));
+        gameData.setOpponentHand(getOpponentHand(user));
+        gameData.setPlayerUsername(user.getUsername());
+        gameData.setPlayerNickname(user.getNickname());
+        gameData.setOpponentUsername(opponent.getUsername());
+        gameData.setOpponentNickname(opponent.getNickname());
+        gameData.setPlayerLifePoint(user.getLifepoint().getLifepoint());
+        gameData.setPlayerDeckSize(getDeckSize(user));
+        gameData.setOpponentLifePoint(opponent.getLifepoint().getLifepoint());
+        gameData.setOpponentDeckSize(getDeckSize(opponent));
+        gameData.setPlayerGraveyard(getPlayerGraveyardCards(user));
+        gameData.setGamePhase(getGamePhase());
+        return gameData;
     }
 }

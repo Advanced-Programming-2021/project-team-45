@@ -1,6 +1,6 @@
 package Client.ClientServer;
 
-import NetworkConfiguration.PortConfig;
+import Network.PortConfig;
 
 public class ClientLoginServer extends ClientServer {
     public ClientLoginServer() {

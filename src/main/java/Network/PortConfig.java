@@ -1,4 +1,4 @@
-package NetworkConfiguration;
+package Network;
 
 public enum PortConfig {
     PROFILE_PORT(69),

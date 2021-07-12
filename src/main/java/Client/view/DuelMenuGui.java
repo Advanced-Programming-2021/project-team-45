@@ -195,14 +195,14 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void updateGameBoard() {
-        gameController.checkGameEnd();
+        clientDuelServer.updateGameData();
 
         fieldPane.getChildren().clear();
         for (String fieldName : CARD_FIELDS) {
-            updateFields(gameController.getFieldCards(fieldName), fieldName);
+            updateFields(clientDuelServer.getGameData().getFieldCards(fieldName), fieldName);
         }
-        updateHands(gameController.getHand(false), false);
-        updateHands(gameController.getHand(true), true);
+        updateHands(clientDuelServer.getGameData().getPlayerHand(), false);
+        updateHands(clientDuelServer.getGameData().getOpponentHand(), true);
         updatePlayerLifePoint();
         updateOpponentLifePoint();
         updateDecks();
@@ -270,10 +270,9 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateOpponentLifePoint() {
-        String[] opponentData = gameController.getOpponentData();
-        opponentNickNameText.setText("opponent nickname: " + opponentData[0]);
-        opponentUserNameText.setText("opponent username: " + opponentData[1]);
-        opponentProgressBar.setProgress( (gameController.getOpponentLifePoint() / (double)8000));
+        opponentNickNameText.setText("opponent nickname: " + clientDuelServer.getGameData().getOpponentNickname());
+        opponentUserNameText.setText("opponent username: " + clientDuelServer.getGameData().getOpponentUsername());
+        opponentProgressBar.setProgress( (clientDuelServer.getGameData().getOpponentLifePoint() / (double)8000));
         if (opponentProgressBar.getProgress() >= 0.6)
             opponentProgressBar.setStyle("-fx-accent: green");
         else if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
@@ -283,10 +282,9 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePlayerLifePoint() {
-        String[] playerData = gameController.getPlayerData();
-        playerNickNameText.setText("player nickname: " + playerData[0]);
-        playerUserNameText.setText("player username: " + playerData[1]);
-        playerProgressBar.setProgress((gameController.getPlayerLifePoint() / (double) 8000));
+        playerNickNameText.setText("player nickname: " + clientDuelServer.getGameData().getPlayerNickname());
+        playerUserNameText.setText("player username: " + clientDuelServer.getGameData().getPlayerUsername());
+        playerProgressBar.setProgress((clientDuelServer.getGameData().getPlayerLifePoint() / (double) 8000));
         if (playerProgressBar.getProgress() >= 0.6)
             playerProgressBar.setStyle("-fx-accent: green");
         else if (playerProgressBar.getProgress() <= 0.6 && playerProgressBar.getProgress() >= 0.3)
@@ -296,8 +294,8 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updateDecks() {
-        int playerDeckSize = gameController.getPlayerDeckSize();
-        int opponentDeckSize = gameController.getOpponentDeckSize();
+        int playerDeckSize = clientDuelServer.getGameData().getPlayerDeckSize();
+        int opponentDeckSize = clientDuelServer.getGameData().getOpponentDeckSize();
         GameCard playerDeck = new GameCard(fieldPane, 0);
         GameCard opponentDeck = new GameCard(fieldPane, 180);
 
@@ -327,7 +325,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     private void updatePhase() {
-        String phase = gameController.getGamePhase();
+        String phase = clientDuelServer.getGameData().getGamePhase();
         phaseLabel.setText(phase);
     }
 
@@ -417,7 +415,7 @@ public class DuelMenuGui extends MenuGui {
 
     private ScrollPane getGraveyardCardsList() {
         GridPane gridPane = new GridPane();
-        ArrayList<String> graveyardCards = gameController.getPlayerGraveyardCards();
+        ArrayList<String> graveyardCards = clientDuelServer.getGameData().getPlayerGraveyardCards();
         if (graveyardCards.size() == 0) {
             Text text = new Text("there is no card at graveyard");
             gridPane.add(text, 0, 10);
@@ -726,22 +724,23 @@ public class DuelMenuGui extends MenuGui {
                 e.printStackTrace();
             }
         } else {
-            CoinTossMenu coinTossMenu = new CoinTossMenu();
-            String[] usernames = gameController.getPlayersUsernames();
-            CoinTossMenu.setUserNames(usernames[0], usernames[1]);
-            // get rounds:
-            Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
-                    "1", "3");
-            int rounds = 1;
-            if (!isSingleRound)
-                rounds = 3;
-            CoinTossMenu.setRounds(rounds);
-            coinTossMenu.tossCoin();
-            try {
-                coinTossMenu.start(stage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // TODO: fix what to do after game is ended
+//            CoinTossMenu coinTossMenu = new CoinTossMenu();
+//            String[] usernames = clientDuelServer.getPlayersUsernames();
+//            CoinTossMenu.setUserNames(usernames[0], usernames[1]);
+//            // get rounds:
+//            Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
+//                    "1", "3");
+//            int rounds = 1;
+//            if (!isSingleRound)
+//                rounds = 3;
+//            CoinTossMenu.setRounds(rounds);
+//            coinTossMenu.tossCoin();
+//            try {
+//                coinTossMenu.start(stage);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

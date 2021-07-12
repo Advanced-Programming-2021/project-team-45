@@ -1,12 +1,11 @@
 package Client.ClientServer;
 
-import NetworkConfiguration.ServerHost;
+import Network.ServerHost;
 import com.gilecode.yagson.YaGson;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SendRequest {
@@ -27,6 +26,10 @@ public class SendRequest {
 
     public Object getMethodResult(String methodName, Object... fields) {
         String request = initRequest(methodName, fields);
+
+        System.out.println(request);
+
+
         try {
             Socket socket = new Socket(host, port);
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
