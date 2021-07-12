@@ -26,10 +26,6 @@ public class SendRequest {
 
     public Object getMethodResult(String methodName, Object... fields) {
         String request = initRequest(methodName, fields);
-
-        System.out.println(request);
-
-
         try {
             Socket socket = new Socket(host, port);
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
