@@ -1,8 +1,14 @@
 package Server.ServerController;
 
+import Server.controller.DatabaseController;
+import Server.controller.LoginController;
+import Server.controller.ProfileController;
+import Server.model.user.User;
+
 import java.net.Socket;
 
 public class ProfileRequestHandler extends RequestHandler {
+    private ProfileController profileController;
 
     public ProfileRequestHandler(Socket socket) {
         super(socket);
@@ -10,6 +16,25 @@ public class ProfileRequestHandler extends RequestHandler {
 
     @Override
     protected String handle(String request) {
-        return null;
+        String[] parts = request.split("\n");
+        String token = parts[0];
+        String methodName = parts[2];
+        Object[] fields = fieldParser.getObjects(request);
+        Object answer ="";
+        profileController = new ProfileController(DatabaseController.getUserByToken(token).getUsername());
+        switch (methodName) {
+            case "setProfilePic":
+                profileController.setProfilePic((String) fields[0]);
+                break;
+            case "changeNicknameErrorHandler":
+                answer=profileController.changeNicknameErrorHandler((String) fields[0]);
+                break;
+            case "changePasswordErrorHandler":
+                answer=profileController.changePasswordErrorHandler((String) fields[1], (String) fields[0]);
+                break;
+            case "getUser":
+                answer=profileController.getUser();
+        }
+        return fieldParser.getAnswer(answer);
     }
 }

@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientProfileServer;
 import Server.controller.ProfileController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.*;
 
 public class ProfileMenuGui extends MenuGui {
+
+    private static ClientProfileServer profileServer;
     public ImageView imageView;
     public AnchorPane anchorPane;
     public TextField newNickname;
@@ -36,8 +39,14 @@ public class ProfileMenuGui extends MenuGui {
     }
 
     public void initialize() {
-        User user = profileController.getUser();
+        User user = getProfileServer().getUser();
         imageView.setImage(User.getPicture(user.getProfilePicturePath()));
+    }
+
+    private ClientProfileServer getProfileServer(){
+        if(profileServer!=null) return profileServer;
+        profileServer=new ClientProfileServer();
+        return profileServer;
     }
 
     public static void setProfileController(ProfileController profileController) {
@@ -56,7 +65,7 @@ public class ProfileMenuGui extends MenuGui {
             Image image = new Image(new FileInputStream(file.getPath()));
             imageView.setFitWidth(150);
             imageView.setImage(image);
-            profileController.getUser().setProfilePicturePath(file.getPath());
+            getProfileServer().setProfilePicPath(file.getPath());
         } else {
             ShowOutput.showOutput("error box","wrong file type please try again");
         }
@@ -73,8 +82,8 @@ public class ProfileMenuGui extends MenuGui {
         usernameText.setY(109);
         nicknameText.setY(149);
         nicknameText.setX(309);
-        usernameText.setText("username: " + profileController.getUser().getUsername());
-        nicknameText.setText("nickname: " + profileController.getUser().getNickname());
+        usernameText.setText("username: " + profileServer.getUser().getUsername());
+        nicknameText.setText("nickname: " + profileServer.getUser().getNickname());
         anchorPane.getChildren().add(usernameText);
         anchorPane.getChildren().add(nicknameText);
     }
@@ -88,7 +97,7 @@ public class ProfileMenuGui extends MenuGui {
     }
 
     public void changeNickname(MouseEvent mouseEvent) {
-        int error = profileController.changeNicknameErrorHandler(newNickname.getText());
+        int error = getProfileServer().changeNickNameErrorHandler(newNickname.getText());
         if (error == 1) {
             ShowOutput.showOutput("error box","this nickname is already exist please try again");
         } else {
@@ -101,7 +110,7 @@ public class ProfileMenuGui extends MenuGui {
     }
 
     public void changePassword(MouseEvent mouseEvent) {
-        int error = profileController.changePasswordErrorHandler(oldPassword.getText(), newPassword.getText());
+        int error = getProfileServer().changePasswordErrorHandler(oldPassword.getText(), newPassword.getText());
         if (error == 1) {
             ShowOutput.showOutput("error box","incorrect old password");
         } else if (error == 2) {

@@ -31,8 +31,11 @@ public class ProfileController extends Controller {
         } else {
             user.setPassword(newPassword);
             return 0;
-
         }
+    }
+
+    public void setProfilePic(String path){
+        getUser().setProfilePicturePath(path);
     }
 
     public User getUser(){
