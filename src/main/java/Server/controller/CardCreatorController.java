@@ -1,6 +1,5 @@
 package Server.controller;
 
-
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
@@ -13,7 +12,6 @@ import Client.view.MainMenuGui;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 public class CardCreatorController {
 
@@ -93,6 +91,7 @@ public class CardCreatorController {
         }
         return answer;
     }
+
 }
 
 class calculator extends Thread {

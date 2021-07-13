@@ -12,6 +12,8 @@ public class StartServer {
         shopServer.start();
         ServerController profileServer=new ServerController(PortConfig.PROFILE_PORT.getPort());
         profileServer.start();
+        ServerController cardCreatorServer=new ServerController(PortConfig.CARD_CREATOR_PORT.getPort());
+        cardCreatorServer.start();
         // And so on for every port...
     }
 }
