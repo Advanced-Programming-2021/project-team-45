@@ -10,6 +10,8 @@ public class StartServer {
         duelServer.start();
         ServerController shopServer = new ServerController(PortConfig.SHOP_PORT.getPort());
         shopServer.start();
+        ServerController profileServer=new ServerController(PortConfig.PROFILE_PORT.getPort());
+        profileServer.start();
         // And so on for every port...
     }
 }
