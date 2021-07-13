@@ -12,9 +12,23 @@ import java.net.SocketException;
 public abstract class RequestHandler extends Thread {
     protected final Socket socket;
     protected final FieldParser fieldParser;
+    protected final DataInputStream dataInputStream;
+    protected final DataOutputStream dataOutputStream;
 
     public RequestHandler(Socket socket) {
         this.socket = socket;
+        DataInputStream dataInputStream1;
+        DataOutputStream dataOutputStream1;
+        try {
+            dataInputStream1 = new DataInputStream(socket.getInputStream());
+            dataOutputStream1 = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException ioe) {
+            dataInputStream1 = null;
+            dataOutputStream1 = null;
+            ioe.printStackTrace();
+        }
+        dataInputStream = dataInputStream1;
+        dataOutputStream = dataOutputStream1;
         fieldParser = new FieldParser();
     }
 
@@ -36,8 +50,6 @@ public abstract class RequestHandler extends Thread {
     public void run() {
         while (true) {
             try {
-                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-                DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 String request = dataInputStream.readUTF();
                 String result = handle(request);
                 if (result != null) {

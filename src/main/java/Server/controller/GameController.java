@@ -1,21 +1,18 @@
 package Server.controller;
 
 import Network.GameData;
+import Server.ServerController.DuelRequestHandler;
 import Server.model.card.*;
 import Server.model.game.*;
 import Server.model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import Server.model.game.fields.CardField;
 import Server.model.user.User;
-import Client.view.DuelMenuGui;
-import Client.view.GetInput;
-import Client.view.MusicPlayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameController extends Controller {
-
     private final User player;
     private final User opponentPlayer;
     private final int rounds;
@@ -23,7 +20,6 @@ public class GameController extends Controller {
     private GameErrorHandler gameErrorHandler;
     private int playerWins = 0;
     private int opponentWins = 0;
-    private DuelMenuGui playerDuelMenu;
     private boolean isGameEnded = false;
 
 
@@ -32,10 +28,8 @@ public class GameController extends Controller {
         this.player = User.getUserByUsername(username);
         this.opponentPlayer = User.getUserByUsername(opponentUsername);
         this.rounds = rounds;
-    }
-
-    public void setPlayerDuelMenu(DuelMenuGui playerDuelMenu) {
-        this.playerDuelMenu = playerDuelMenu;
+        MatchMakingController.setGameController(player, this);
+        MatchMakingController.setGameController(opponentPlayer, this);
     }
 
     public void createNewGame() {
@@ -50,13 +44,14 @@ public class GameController extends Controller {
             // show winner of round:
             User winner = game.getWinner();
             if (winner.equals(player)) {
-                MusicPlayer.playWinMusic();
                 playerWins++;
             } else {
-                MusicPlayer.playLoseMusic();
                 opponentWins++;
             }
-            playerDuelMenu.showGameWinner(winner.getUsername(), playerWins, opponentWins);
+            playWinLoseMusic();
+
+            getPlayerRequestHandler(player).showGameWinner(winner.getUsername(), playerWins, opponentWins);
+            getPlayerRequestHandler(opponentPlayer).showGameWinner(winner.getUsername(), playerWins, opponentWins);
             // save maxLp
             int playerLp = player.getLifepoint().getLifepoint();
             if (playerLp > playerMaxLp) playerMaxLp = playerLp;
@@ -66,8 +61,9 @@ public class GameController extends Controller {
             // show match winner if there is 3 rounds:
             if (rounds == 3) {
                 if (playerWins == 2 || opponentWins == 2) {
-                    MusicPlayer.playWinMusic();
-                    playerDuelMenu.showMatchWinner(winner.getUsername(), playerWins, opponentWins);
+                    playWinLoseMusic();
+                    getPlayerRequestHandler(player).showMatchWinner(winner.getUsername(), playerWins, opponentWins);
+                    getPlayerRequestHandler(opponentPlayer).showMatchWinner(winner.getUsername(), playerWins, opponentWins);
                     isGameEnded = true;
                 } else {
                     createNewGame();
@@ -78,8 +74,20 @@ public class GameController extends Controller {
             // calculate and increase score and money after match:
             if (isGameEnded) {
                 increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
-                playerDuelMenu.endGame();
+                getPlayerRequestHandler(player).endGame();
+                getPlayerRequestHandler(opponentPlayer).endGame();
             }
+        }
+    }
+
+    private void playWinLoseMusic() {
+        User winner = game.getWinner();
+        if (winner.equals(player)) {
+            getPlayerRequestHandler(player).playWinMusic();
+            getPlayerRequestHandler(opponentPlayer).playLoseMusic();
+        } else {
+            getPlayerRequestHandler(opponentPlayer).playWinMusic();
+            getPlayerRequestHandler(player).playLoseMusic();
         }
     }
 
@@ -111,17 +119,12 @@ public class GameController extends Controller {
         game.surrenderGame();
     }
 
-    private void playRound() {
-//        playerDuelMenu = new DuelMenu(player.getUsername(), this);
-//        playerDuelMenu.show();
-
-        while (!game.isFinished()) {
-//            playerDuelMenu.getNextCommand();
-        }
-    }
-
     public void cancel() {
         game.cancelCommand();
+    }
+
+    private DuelRequestHandler getPlayerRequestHandler(User user) {
+        return MatchMakingController.getDuelRequestHandler(user);
     }
 
     ///////////////////////////////////////////// ERROR HANDLING:
@@ -224,7 +227,7 @@ public class GameController extends Controller {
                 return beastKingBarbaros.summonHandler(monster);
 
             } else if (monster.getLevel() > 10) {
-                cardsToTribute = playerDuelMenu.getCardsForTribute(3);
+                cardsToTribute = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(3);
                 if (cardsToTribute == null) return -1;
 
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
@@ -234,7 +237,7 @@ public class GameController extends Controller {
                     return 9;
                 }
             } else if (monster.getLevel() >= 7) {
-                cardsToTribute = playerDuelMenu.getCardsForTribute(2);
+                cardsToTribute = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(2);
                 if (cardsToTribute == null) return -1;
 
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
@@ -244,7 +247,7 @@ public class GameController extends Controller {
                     return 9;
                 }
             } else {
-                cardsToTribute = playerDuelMenu.getCardsForTribute(1);
+                cardsToTribute = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(1);
                 if (cardsToTribute == null) return -1;
 
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
@@ -457,15 +460,15 @@ public class GameController extends Controller {
     }
 
     public Boolean getYesNoAnswer(String question) {
-        return GetInput.getYesNoAnswer(question);
+        return getPlayerRequestHandler(game.getPlayerOfThisTurn()).getYesNoAnswer(question);
     }
 
     public ArrayList<Integer> getCardsForTribute(int n) {
-        return playerDuelMenu.getCardsForTribute(n);
+        return getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(n);
     }
 
     public MonsterCard getACardFromGraveyardForScanner(String view) {
-        String input = playerDuelMenu.getCardFromGraveYard(view);
+        String input = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardFromGraveYard(view);
         if (input != null) {
             ArrayList<Card> cards = game.getPlayerGameBoard().getGraveyard().getGraveyardCards();
             for (int i = 0; i < cards.size(); i++) {
@@ -493,7 +496,7 @@ public class GameController extends Controller {
         ArrayList<Card> selectedCards = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             while (true) {
-                String cardName = playerDuelMenu.getCardName();
+                String cardName = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardName();
                 // for surrender and cancel:
 
                 Card card = null;
@@ -511,7 +514,7 @@ public class GameController extends Controller {
                         errorMessage.append(field.getName()).append("\t");
                     }
                     errorMessage.append("(try again!)");
-                    playerDuelMenu.showOutput(errorMessage.toString());
+                    getPlayerRequestHandler(game.getPlayerOfThisTurn()).showOutput(errorMessage.toString());
                 }
             }
         }
@@ -519,22 +522,22 @@ public class GameController extends Controller {
     }
 
     public void showOutput(String text) {
-        playerDuelMenu.showOutput(text);
+        getPlayerRequestHandler(game.getPlayerOfThisTurn()).showOutput(text);
     }
 
     public int getNumberFromPlayer(String view) {
-        return playerDuelMenu.getNumber(view);
+        return getPlayerRequestHandler(game.getPlayerOfThisTurn()).getNumber(view);
     }
 
-    public boolean doesPlayerWantToAddToTheChain(User player) {
-        showOutput("now it will be " + player.getUsername() + "’s turn");
-        if (player == this.player) {
-            playerDuelMenu.updatePlayerGameBoard();
-        } else {
-            playerDuelMenu.updateOpponentGameBoard();
-        }
-        return getYesNoAnswer("do you want to add to this chain?");
-    }
+//    public boolean doesPlayerWantToAddToTheChain(User player) {
+//        showOutput("now it will be " + player.getUsername() + "’s turn");
+//        if (player == this.player) {
+//            getPlayerRequestHandler(game.getPlayerOfThisTurn()).updatePlayerGameBoard();
+//        } else {
+//            getPlayerRequestHandler(game.getPlayerOfThisTurn()).updateOpponentGameBoard();
+//        }
+//        return getYesNoAnswer("do you want to add to this chain?");
+//    }
 
     public SpellTrapCard getSpellToAddToChain(User player, Chain chain) {
         showOutput("please choose a valid spell to add to chain " + player.getUsername());

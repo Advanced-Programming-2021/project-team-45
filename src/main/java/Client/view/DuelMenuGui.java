@@ -272,7 +272,7 @@ public class DuelMenuGui extends MenuGui {
     private void updateOpponentLifePoint() {
         opponentNickNameText.setText("opponent nickname: " + clientDuelServer.getGameData().getOpponentNickname());
         opponentUserNameText.setText("opponent username: " + clientDuelServer.getGameData().getOpponentUsername());
-        opponentProgressBar.setProgress( (clientDuelServer.getGameData().getOpponentLifePoint() / (double)8000));
+        opponentProgressBar.setProgress((clientDuelServer.getGameData().getOpponentLifePoint() / (double) 8000));
         if (opponentProgressBar.getProgress() >= 0.6)
             opponentProgressBar.setStyle("-fx-accent: green");
         else if (opponentProgressBar.getProgress() <= 0.6 && opponentProgressBar.getProgress() >= 0.3)
@@ -821,7 +821,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
 
-    private void createShortCut(){
+    private void createShortCut() {
         MainMenuController.ShortCutsRunnable(stage);
     }
 
@@ -833,5 +833,17 @@ public class DuelMenuGui extends MenuGui {
     public void setWinnerCheat(String input) {
         String winnerNickname = input.replace("duel set-winner ", "");
         gameController.setWinnerCheat(winnerNickname);
+    }
+
+    public Boolean getYesNoAnswer(String question) {
+        return GetInput.getYesNoAnswer(question);
+    }
+
+    public void playWinMusic() {
+        MusicPlayer.playWinMusic();
+    }
+
+    public void playLoseMusic() {
+        MusicPlayer.playLoseMusic();
     }
 }

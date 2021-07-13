@@ -6,4 +6,8 @@ public abstract class ClientServer {
     protected ClientServer(int port, String className) {
         sendRequest = new SendRequest(port, className);
     }
+
+    protected String handleServerRequest(String serverRequest) {
+        return "";
+    }
 }
