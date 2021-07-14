@@ -165,4 +165,12 @@ public class MainMenuGui extends MenuGui {
             e.printStackTrace();
         }
     }
+
+    public void startLobbyMenu(MouseEvent mouseEvent) {
+        try {
+            new LobbyMenuGui().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

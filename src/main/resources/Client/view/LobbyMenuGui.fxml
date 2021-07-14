@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Client.view.LobbyMenuGui">
+    <left>
+        <AnchorPane prefHeight="423.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button layoutX="30.0" layoutY="374.0" mnemonicParsing="false" onAction="#play1RoundGame"
+                        text="1 round"/>
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>
