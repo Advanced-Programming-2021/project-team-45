@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientCardCreatorServer;
 import Server.controller.CardCreatorController;
 
 import javafx.fxml.FXML;
@@ -50,6 +51,7 @@ public class CardCreatorMenuGui extends MenuGui {
     public TextField Attack;
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
     CardCreatorController cardCreatorController;
+    private ClientCardCreatorServer cardCreatorServer;
 
 
     @Override
@@ -67,6 +69,12 @@ public class CardCreatorMenuGui extends MenuGui {
         chooseType.getItems().add("Spell Card");
         chooseType.getItems().add("Trap Card");
         calculatePrice();
+    }
+
+    private ClientCardCreatorServer getCardCreatorServer(){
+        if(cardCreatorServer!=null)return cardCreatorServer;
+        cardCreatorServer= new ClientCardCreatorServer();
+        return cardCreatorServer;
     }
 
     private void calculatePrice() {
@@ -112,9 +120,10 @@ public class CardCreatorMenuGui extends MenuGui {
                 if (matcher.find() && matcher1.find()) bol1 = true;
             }
             if (bol1 && bol && cardCreatorController.hasEnoughMoney()) {
-                CardCreatorController.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
+                cardCreatorController.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
                         , Integer.parseInt(Price.getText()), NameField.getText(), chooseType.getValue(),
                         Attack.getText(), Defense.getText());
+                getCardCreatorServer().addCardToTheNetwork(cardCreatorController);
                 ShowOutput.showOutput("successful", "card created successfully");
                 back(mouseEvent);
             } else {
