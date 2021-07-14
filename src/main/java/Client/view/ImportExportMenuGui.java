@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientShopServer;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.gilecode.yagson.YaGson;
@@ -65,7 +66,7 @@ public class ImportExportMenuGui extends MenuGui {
     void initialize() {
         buttons = new ArrayList<>();
         text.setText("selected card: ");
-        HashMap<String, Integer> cards = new ShopController(username).getCardsPrices();
+        HashMap<String, Integer> cards = new ClientShopServer().getCardsPrices();
         for (int index = 0; index < cards.keySet().size(); index++) {
             String cardName = (String) cards.keySet().toArray()[index];
             buttons.add(new CardButton(cardName, this));

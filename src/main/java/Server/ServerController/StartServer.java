@@ -18,6 +18,8 @@ public class StartServer {
         DeckServer.start();
         ServerController deckStarterServer=new ServerController(PortConfig.DeckStarter_PORT.getPort());
         deckStarterServer.start();
+        ServerController messengerServer = new ServerController(PortConfig.MESSENGER_PORT.getPort());
+        messengerServer.start();
         // And so on for every port...
     }
 }
