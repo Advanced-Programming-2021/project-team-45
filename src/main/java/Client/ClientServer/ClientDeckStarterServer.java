@@ -3,7 +3,6 @@ package Client.ClientServer;
 import Network.PortConfig;
 import Server.model.card.Deck;
 import Server.model.user.User;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;

@@ -33,7 +33,11 @@ public class DeckController extends Controller {
     private HashMap<Rectangle, Card> sideDeckHashMap = new HashMap<>();
     private CalculatorOfNumberOfCards calculator;
     private static Rectangle sourceRectangle;
-    Deck deck;
+    private Deck deck;
+
+    public Deck getDeck() {
+        return deck;
+    }
 
     public void createANewDeck(TextField textField, User user) {
         deck = new Deck(textField.getText(), user.getUsername());
@@ -269,7 +273,6 @@ public class DeckController extends Controller {
                 if (sideDeckHashMap.get(rectangle) != null) {
                     deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), true);
                     sideDeckHashMap.remove(rectangle);
-                    System.out.println("kos");
                 }
                 rectangle.setFill(Color.color(0, 0, 1, 0));
                 rectangle.setAccessibleText("null");
