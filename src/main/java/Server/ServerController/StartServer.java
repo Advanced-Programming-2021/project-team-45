@@ -12,6 +12,8 @@ public class StartServer {
         shopServer.start();
         ServerController profileServer=new ServerController(PortConfig.PROFILE_PORT.getPort());
         profileServer.start();
+        ServerController messengerServer = new ServerController(PortConfig.MESSENGER_PORT.getPort());
+        messengerServer.start();
         // And so on for every port...
     }
 }
