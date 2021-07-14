@@ -5,7 +5,8 @@ public enum PortConfig {
     LOGIN_PORT(85),
     SHOP_PORT(77),
     DUEL_PORT(1234),
-    CARD_CREATOR_PORT(8585);
+    CARD_CREATOR_PORT(8585),
+    MESSENGER_PORT(120);
 
     private final int port;
 

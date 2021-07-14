@@ -14,6 +14,8 @@ public class StartServer {
         profileServer.start();
         ServerController cardCreatorServer=new ServerController(PortConfig.CARD_CREATOR_PORT.getPort());
         cardCreatorServer.start();
+        ServerController messengerServer = new ServerController(PortConfig.MESSENGER_PORT.getPort());
+        messengerServer.start();
         // And so on for every port...
     }
 }
