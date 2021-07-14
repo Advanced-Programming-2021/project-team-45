@@ -76,9 +76,6 @@ public class CardCreatorController {
                     0, level, MonsterAttribute.EARTH, MonsterType.Dragon, Integer.parseInt(attack)
                     , Integer.parseInt(defense), null, null, false,
                     null, null);
-//            card.setEffects(allEffects);
-//            Card.allMonsterCards.put(name, card);
-//            Card.getAllCards().add(card);
             this.createdCard=card;
             this.cardName=name;
             this.allEffects=allEffects;
@@ -88,8 +85,6 @@ public class CardCreatorController {
             SpellTrapCard card = new SpellTrapCard(name, description, "Effect", price, null,
                     0, SpellAndTrapIcon.NORMAL, false, kind, bol, "unlimited", null,
                     allEffects);
-//            Card.allSpellTrapCards.put(name, card);
-//            Card.getAllCards().add(card);
             this.createdCard=card;
             this.cardName=name;
             this.allEffects=allEffects;
