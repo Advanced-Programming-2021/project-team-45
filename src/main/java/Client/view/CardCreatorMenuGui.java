@@ -96,7 +96,7 @@ public class CardCreatorMenuGui extends MenuGui {
         checkBoxes.add(TwinTwisters);
         checkBoxes.add(UnitedWeStands);
         cardCreatorController = new CardCreatorController();
-        getCardCreatorServer().calculate(checkBoxes, price, Level, Price, Attack, Defense);
+        cardCreatorController.calculate(checkBoxes, price, Level, Price, Attack, Defense);
 
     }
 
@@ -119,10 +119,11 @@ public class CardCreatorMenuGui extends MenuGui {
                 Matcher matcher1 = pattern.matcher(Defense.getText());
                 if (matcher.find() && matcher1.find()) bol1 = true;
             }
-            if (bol1 && bol && cardCreatorServer.hasEnoughMoney()) {
-                cardCreatorServer.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
+            if (bol1 && bol && cardCreatorController.hasEnoughMoney()) {
+                cardCreatorController.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
                         , Integer.parseInt(Price.getText()), NameField.getText(), chooseType.getValue(),
                         Attack.getText(), Defense.getText());
+                getCardCreatorServer().addCardToTheNetwork(cardCreatorController);
                 ShowOutput.showOutput("successful", "card created successfully");
                 back(mouseEvent);
             } else {

@@ -16,6 +16,31 @@ import java.util.regex.Pattern;
 public class CardCreatorController {
 
     private calculator calculator;
+    private ArrayList<CheckBox> checkBoxes=new ArrayList<>();
+    private Card createdCard;
+    private String cardName;
+    private ArrayList<Effect> allEffects=new ArrayList<>();
+
+
+    public void addToCheckBoxes(CheckBox checkBox){
+        checkBoxes.add(checkBox);
+    }
+
+    public ArrayList<CheckBox> getCheckBoxes() {
+        return checkBoxes;
+    }
+
+    public Card getCreatedCard() {
+        return createdCard;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public ArrayList<Effect> getAllEffects() {
+        return allEffects;
+    }
 
     public void calculate(ArrayList<CheckBox> allEffects, int price, Spinner<Integer> level, Text value
             , TextField attack, TextField defense) {
@@ -43,7 +68,7 @@ public class CardCreatorController {
         }
     }
 
-    public static void createACard(ArrayList<CheckBox> allEffect, int level, String description, int price, String name
+    public void createACard(ArrayList<CheckBox> allEffect, int level, String description, int price, String name
             , String type, String attack, String defense) {
         ArrayList<Effect> allEffects = changeToEffect(allEffect);
         if (type.equals("Monster Card")) {
@@ -51,20 +76,35 @@ public class CardCreatorController {
                     0, level, MonsterAttribute.EARTH, MonsterType.Dragon, Integer.parseInt(attack)
                     , Integer.parseInt(defense), null, null, false,
                     null, null);
-            card.setEffects(allEffects);
-            Card.allMonsterCards.put(name, card);
-            Card.getAllCards().add(card);
+//            card.setEffects(allEffects);
+//            Card.allMonsterCards.put(name, card);
+//            Card.getAllCards().add(card);
+            this.createdCard=card;
+            this.cardName=name;
+            this.allEffects=allEffects;
         } else {
             String kind = type.equals("Spell Card") ? "Spell" : "Trap";
             boolean bol = kind.equals("Spell");
             SpellTrapCard card = new SpellTrapCard(name, description, "Effect", price, null,
                     0, SpellAndTrapIcon.NORMAL, false, kind, bol, "unlimited", null,
                     allEffects);
-            Card.allSpellTrapCards.put(name, card);
+//            Card.allSpellTrapCards.put(name, card);
+//            Card.getAllCards().add(card);
+            this.createdCard=card;
+            this.cardName=name;
+            this.allEffects=allEffects;
+        }
+    }
+
+    public static void addCardToTheNetWork(Card card,ArrayList<Effect> allEffects,String name){
+        if(card instanceof MonsterCard){
+            ((MonsterCard)card).setEffects(allEffects);
+            Card.allMonsterCards.put(name, (MonsterCard) card);
+            Card.getAllCards().add(card);
+        }else{
+            Card.allSpellTrapCards.put(name, (SpellTrapCard) card);
             Card.getAllCards().add(card);
         }
-
-
     }
 
     private static ArrayList<Effect> changeToEffect(ArrayList<CheckBox> allCheckBoxes) {
