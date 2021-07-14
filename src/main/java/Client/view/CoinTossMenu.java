@@ -139,15 +139,20 @@ public class CoinTossMenu extends MenuGui {
 
     public void startGame() {
         MusicPlayer.muteMainMenu();
-        GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
-        DuelMenuGui.setGameController(gameController);
+
+        // TODO: move this to server side (VERY IMPORTANT)
+
+        GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
+//        DuelMenuGui.setGameController(gameController);
         gameController.createNewGame();
+
         try {
             MusicPlayer.playDuelMenuMusic();
             MusicPlayer.unMuteDuelMenuMusic();
             duelMenuGui.start(stage);
         } catch (Exception ignored) {
+            ignored.printStackTrace();
         }
     }
 

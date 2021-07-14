@@ -703,4 +703,12 @@ public class GameController extends Controller {
         gameData.setGamePhase(getGamePhase());
         return gameData;
     }
+
+    public String getAddedCardNameInDrawPhase() {
+        return getGame().getAddedCardInDrawPhase().getCardName();
+    }
+
+    public String getThisTurnPlayerNickname() {
+        return getGame().getPlayerOfThisTurn().getNickname();
+    }
 }

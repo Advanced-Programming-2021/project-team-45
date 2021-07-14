@@ -7,13 +7,14 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class CardInventory {
-
+    private final String username;
     HashMap<String, Integer> cardsCount;
     private final ArrayList<Card> cards;
 
-    public CardInventory() {
+    public CardInventory(String username) {
         cardsCount = new HashMap<>();
         cards = new ArrayList<>();
+        this.username = username;
     }
 
     public void addCardToInventory(Card card) {
@@ -48,7 +49,7 @@ public class CardInventory {
         for (Card card : cards) {
             if (card.getCardName().equals(cardName)) {
                 Card newCard = Card.copy(card);
-                newCard.setOwnerUsername(card.getOwner().getUsername());
+                newCard.setOwnerUsername(username);
                 return newCard;
             }
         }

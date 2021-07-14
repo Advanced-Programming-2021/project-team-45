@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Card {
-
     private static ArrayList<Card> allCards;
     public static HashMap<String, MonsterCard> allMonsterCards = new HashMap<>();
     public static HashMap<String, SpellTrapCard> allSpellTrapCards = new HashMap<>();
-
     protected String cardName;
     protected String cardDescription;
     protected String cardType;
