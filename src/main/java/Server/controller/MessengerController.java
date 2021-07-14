@@ -8,15 +8,12 @@ import java.util.ArrayList;
 
 public class MessengerController {
 
-    public static void addMessage(String token, String messageText) {
-        User user = DatabaseController.getUserByToken(token);
+    public static void addMessage(User user, String messageText) {
         Messenger.addMessage(user.getUsername(), messageText);
     }
 
-    public static int deleteMessageErrorHandler(String token, int id) {
+    public static int deleteMessageErrorHandler(User user, int id) {
         Message message = Messenger.getMessageById(id);
-        User user = DatabaseController.getUserByToken(token);
-
         if (!user.getUsername().equals(message.getSenderUserName()))
             return 1;
         else {
@@ -25,9 +22,8 @@ public class MessengerController {
         }
     }
 
-    public static int editMessageErrorHandler(String token, int id, String newMessageText) {
+    public static int editMessageErrorHandler(User user, int id, String newMessageText) {
         Message message = Messenger.getMessageById(id);
-        User user = DatabaseController.getUserByToken(token);
         if (!user.getUsername().equals(message.getSenderUserName()))
             return 1;
         else {

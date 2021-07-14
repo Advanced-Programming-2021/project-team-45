@@ -27,33 +27,43 @@ public class MainMenuGui extends MenuGui {
         mainMenuController = new MainMenuController(username);
     }
 
-    public void startDuel(MouseEvent mouseEvent) {
-        // get opponent username:
-        String opponentUsername = GetInput.getStringAnswerPopupWindow("Duel",
-                "Please enter second player's username.");
-        // get rounds:
-        Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
-                "1", "3");
-        int rounds = 1;
-        if (!isSingleRound)
-            rounds = 3;
-
-        String message = handleStartGame(opponentUsername, rounds);
-
-        if (message == null) {
-            CoinTossMenu coinTossMenu = new CoinTossMenu();
-            CoinTossMenu.setUserNames(username, opponentUsername);
-            CoinTossMenu.setRounds(rounds);
-            coinTossMenu.tossCoin();
-            try {
-                coinTossMenu.start(stage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            ShowOutput.showOutput("Error", message);
+    public void startLobbyMenu(MouseEvent mouseEvent) {
+        LobbyMenuGui lobbyMenuGui = new LobbyMenuGui();
+        LobbyMenuGui.setUsername(username);
+        try {
+            lobbyMenuGui.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+//    public void startDuel(MouseEvent mouseEvent) {
+//        // get opponent username:
+//        String opponentUsername = GetInput.getStringAnswerPopupWindow("Duel",
+//                "Please enter second player's username.");
+//        // get rounds:
+//        Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
+//                "1", "3");
+//        int rounds = 1;
+//        if (!isSingleRound)
+//            rounds = 3;
+//
+//        String message = handleStartGame(opponentUsername, rounds);
+//
+//        if (message == null) {
+//            CoinTossMenu coinTossMenu = new CoinTossMenu();
+//            CoinTossMenu.setUserNames(username, opponentUsername);
+//            CoinTossMenu.setRounds(rounds);
+//            coinTossMenu.tossCoin();
+//            try {
+//                coinTossMenu.start(stage);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            ShowOutput.showOutput("Error", message);
+//        }
+//    }
 
     private String handleStartGame(String opponentUsername, int rounds) {
         String message = "";
@@ -141,36 +151,6 @@ public class MainMenuGui extends MenuGui {
             MusicPlayer.muteMainMenu();
             muteButton.setText("unmute");
             isMusicMute = true;
-        }
-    }
-
-    public void startAiGame(MouseEvent mouseEvent) {
-        mainMenuController.startAi();
-        // get opponent username:
-        String opponentUsername = "AI";
-        // get rounds:
-        Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
-                "1", "3");
-        int rounds = 1;
-        if (!isSingleRound)
-            rounds = 3;
-
-        CoinTossMenu coinTossMenu = new CoinTossMenu();
-        CoinTossMenu.setUserNames(username, opponentUsername);
-        CoinTossMenu.setRounds(rounds);
-        coinTossMenu.tossCoin();
-        try {
-            coinTossMenu.start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void startLobbyMenu(MouseEvent mouseEvent) {
-        try {
-            new LobbyMenuGui().start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

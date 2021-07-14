@@ -1,6 +1,5 @@
 package Client.view;
 
-import Server.controller.GameController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,21 +16,18 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class CoinTossMenu extends MenuGui {
     private static final String coinImageRoute = "src/main/resources/Client/view/Gold/Gold_";
-    private static String firstUserName;
-    private static String secondUsername;
-    private static String firstPlayerUserName;
-    private static String secondPlayerUserName;
+    private static String playerUsername;
+    private static String opponentUsername;
+    private static String winnerUsername;
     private static Stage stage;
     public Button button;
     private ImageView imageView;
     private boolean canStartGame = false;
-    private static int rounds;
     @FXML
     public BorderPane borderPane;
     public VBox vBox;
@@ -40,24 +36,16 @@ public class CoinTossMenu extends MenuGui {
     public VBox firstPlayerHBox;
     public Text firstPlayerText;
 
-    public static void setUserNames(String firstUserName, String secondUsername) {
-        CoinTossMenu.firstUserName = firstUserName;
-        CoinTossMenu.secondUsername = secondUsername;
+    public static void setUserNames(String playerUsername, String opponentUsername) {
+        CoinTossMenu.playerUsername = playerUsername;
+        CoinTossMenu.opponentUsername = opponentUsername;
     }
 
-    public static void setRounds(int rounds) {
-        CoinTossMenu.rounds = rounds;
-    }
-
-    public void tossCoin() {
-        int random = new Random().nextInt(2);
-        if (random == 0) {
-            firstPlayerUserName = firstUserName;
-            secondPlayerUserName = secondUsername;
-        } else {
-            firstPlayerUserName = secondUsername;
-            secondPlayerUserName = firstUserName;
-        }
+    public static void setWinner(boolean isWinner) {
+        if (isWinner)
+            winnerUsername = playerUsername;
+        else
+            winnerUsername = opponentUsername;
     }
 
     @Override
@@ -69,8 +57,8 @@ public class CoinTossMenu extends MenuGui {
 
     @FXML
     void initialize() throws InterruptedException {
-        firstPlayerText.setText(firstUserName);
-        secondPlayerText.setText(secondUsername);
+        firstPlayerText.setText(playerUsername);
+        secondPlayerText.setText(opponentUsername);
         try {
             imageView = new ImageView(new Image(new FileInputStream(coinImageRoute + "1.png")));
         } catch (FileNotFoundException e) {
@@ -82,7 +70,7 @@ public class CoinTossMenu extends MenuGui {
     }
 
     public void showResult(String firstPlayerUserName) {
-        if (firstPlayerUserName.equals(firstUserName)) {
+        if (firstPlayerUserName.equals(playerUsername)) {
             firstPlayerText.setText(firstPlayerText.getText() + " plays first");
             try {
                 imageView.setImage(new Image(new FileInputStream(coinImageRoute + "1.png")));
@@ -128,7 +116,7 @@ public class CoinTossMenu extends MenuGui {
                         break;
                     }
                 }
-                showResult(firstPlayerUserName);
+                showResult(winnerUsername);
             }
         };
         Timer timer = new Timer();
@@ -140,13 +128,6 @@ public class CoinTossMenu extends MenuGui {
     public void startGame() {
         MusicPlayer.muteMainMenu();
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
-
-        // TODO: move this to server side (VERY IMPORTANT)
-
-        GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
-//        DuelMenuGui.setGameController(gameController);
-        gameController.createNewGame();
-
         try {
             MusicPlayer.playDuelMenuMusic();
             MusicPlayer.unMuteDuelMenuMusic();
