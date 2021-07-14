@@ -42,8 +42,12 @@ public abstract class RequestHandler extends Thread {
             requestHandler = new DuelRequestHandler(socket);
         } else if (port == PortConfig.SHOP_PORT.getPort()) {
             requestHandler = new ShopRequestHandler(socket);
-        } else if (port == PortConfig.CARD_CREATOR_PORT.getPort()) {
-            requestHandler = new CardCreatorRequestHandler(socket);
+        }else if(port==PortConfig.CARD_CREATOR_PORT.getPort()){
+            requestHandler=new CardCreatorRequestHandler(socket);
+        }else if(port==PortConfig.DECK_PORT.getPort()){
+            requestHandler=new DeckRequestHandler(socket);
+        }else if(port==PortConfig.DeckStarter_PORT.getPort()){
+            requestHandler=new DeckStarterRequestHandler(socket);
         }
         return requestHandler;
     }

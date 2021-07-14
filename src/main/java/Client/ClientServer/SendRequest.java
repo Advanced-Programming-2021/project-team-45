@@ -87,6 +87,7 @@ public class SendRequest {
     }
 
     private Object processAnswer(String answer) {
+        if(answer.equals("null")) return null;
         String[] parts = answer.split("\n");
         try {
             Class<?> clazz = Class.forName(parts[0]);

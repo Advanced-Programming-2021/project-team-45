@@ -33,7 +33,11 @@ public class DeckController extends Controller {
     private HashMap<Rectangle, Card> sideDeckHashMap = new HashMap<>();
     private CalculatorOfNumberOfCards calculator;
     private static Rectangle sourceRectangle;
-    Deck deck;
+    private Deck deck;
+
+    public Deck getDeck() {
+        return deck;
+    }
 
     public void createANewDeck(TextField textField, User user) {
         deck = new Deck(textField.getText(), user.getUsername());

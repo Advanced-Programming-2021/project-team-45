@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientDeckServer;
 import Server.controller.DeckController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class DeckMenuGui extends MenuGui {
+    private static ClientDeckServer deckServer;
     private static DeckController deckController;
     private static AnchorPane anchorPane;
     private static Stage stage;
@@ -41,6 +43,12 @@ public class DeckMenuGui extends MenuGui {
         DeckMenuGui.stage.setScene(scene);
         DeckMenuGui.stage.show();
         initialize();
+    }
+
+    private ClientDeckServer getDeckServer(){
+        if(deckServer!= null )return deckServer;
+        deckServer=new ClientDeckServer();
+        return deckServer;
     }
 
     void initialize() {
@@ -147,6 +155,7 @@ public class DeckMenuGui extends MenuGui {
     }
 
     public void back(MouseEvent mouseEvent) {
+        getDeckServer().setDeck(deckController.getDeck());
         try {
             new DeckStarterMenuGui().start(stage);
         } catch (Exception e) {
@@ -156,6 +165,7 @@ public class DeckMenuGui extends MenuGui {
     }
 
     public void deleteCurrentDeck(MouseEvent mouseEvent) {
+        getDeckServer().deleteDeck(deckController.getDeck());
         deckController.deleteDeck();
         try {
             new DeckStarterMenuGui().start(stage);
