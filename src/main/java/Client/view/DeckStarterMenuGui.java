@@ -1,6 +1,9 @@
 package Client.view;
 
+import Client.ClientServer.ClientDeckStarterServer;
 import Server.controller.DeckStarterController;
+import Server.model.card.Deck;
+import Server.model.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class DeckStarterMenuGui extends MenuGui {
     @FXML
     public ChoiceBox<String> chooseActiveDeck;
@@ -18,6 +23,13 @@ public class DeckStarterMenuGui extends MenuGui {
     private static AnchorPane anchorPane;
     private static Stage stage;
     private static DeckStarterController deckStarterController;
+    private static ClientDeckStarterServer deckStarterServer;
+
+    private ClientDeckStarterServer getServer(){
+        if(deckStarterServer!=null) return deckStarterServer;
+        deckStarterServer=new ClientDeckStarterServer();
+        return deckStarterServer;
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -30,14 +42,17 @@ public class DeckStarterMenuGui extends MenuGui {
     @FXML
     void initialize() {
         deckStarterController = new DeckStarterController(username);
-        deckStarterController.initialize(chooseActiveDeck, chooseEditDeck);
+        ArrayList<Deck> allUserDeck=getServer().getDecks();
+        Deck deck=getServer().getActiveDeck();
+        deckStarterController.initializeFromMenu(chooseActiveDeck, chooseEditDeck,allUserDeck,deck);
     }
 
     public void editADeck(MouseEvent mouseEvent) {
         if (chooseEditDeck.getValue() == null) {
             ShowOutput.showOutput("error box", "you have to choose a deck");
         } else {
-            deckStarterController.startEditDeck(stage, chooseEditDeck.getValue());
+            User user=getServer().getUser();
+            deckStarterController.startEditDeck(stage,user, chooseEditDeck.getValue());
         }
     }
 
@@ -46,7 +61,9 @@ public class DeckStarterMenuGui extends MenuGui {
             ShowOutput.showOutput("error box", "you have to write a name for your deck");
         } else {
             ShowOutput.showOutput("AlertBox", "new deck created successfully");
-            deckStarterController.startCreateADeck(stage, nameOfDeck);
+            User user=getServer().getUser();
+            Deck deck=getServer().createNewDeckAndGetIt(nameOfDeck,user);
+            deckStarterController.startCreateADeck(stage, user,deck);
         }
     }
 
