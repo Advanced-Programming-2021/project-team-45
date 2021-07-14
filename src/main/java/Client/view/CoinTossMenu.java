@@ -144,7 +144,7 @@ public class CoinTossMenu extends MenuGui {
         // TODO: move this to server side (VERY IMPORTANT)
 
         GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
-        DuelMenuGui.setGameController(gameController);
+//        DuelMenuGui.setGameController(gameController);
         gameController.createNewGame();
 
         try {
