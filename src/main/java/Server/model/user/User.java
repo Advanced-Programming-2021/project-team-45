@@ -31,7 +31,7 @@ public class User {
         this.money = 100000;
         this.score = 0;
         this.lifepoint = new Lifepoint();
-        this.cardInventory = new CardInventory();
+        this.cardInventory = new CardInventory(username);
         this.userDeck = new UserDeck();
 
         users.add(this);

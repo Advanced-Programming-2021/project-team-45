@@ -18,7 +18,6 @@ import javafx.stage.Modality;
 import Client.view.elements.GameCard;
 import Client.view.elements.GameElementSize;
 import Client.view.elements.GetGameElements;
-import Server.controller.GameController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,9 +40,8 @@ public class DuelMenuGui extends MenuGui {
             "opponent_spell"
     };
 
-    private static ClientDuelServer clientDuelServer = new ClientDuelServer();
+    private static ClientDuelServer clientDuelServer;
 
-    private static GameController gameController;
     private static Stage stage;
     private static Stage showGraveyardPopupWindow;
     private static Stage pausePopupWindow;
@@ -98,6 +96,9 @@ public class DuelMenuGui extends MenuGui {
 
     @FXML
     private void initialize() {
+        // TODO: NOT SURE about this
+        clientDuelServer = new ClientDuelServer();
+
         Image image = GetGameElements.getCardFieldImage();
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -109,13 +110,9 @@ public class DuelMenuGui extends MenuGui {
         updateSelectedCard();
     }
 
-    public static void setGameController(GameController gameController) {
-        DuelMenuGui.gameController = gameController;
-    }
-
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
-        gameController.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
+        clientDuelServer.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
     private static void showMessage(String message) {
@@ -132,6 +129,11 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public static DuelMenuGui getDuelMenuGui() {
+
+
+        System.out.println("getDuelMenuGui");
+
+
         if (duelMenuGui == null)
             duelMenuGui = new DuelMenuGui();
         return duelMenuGui;
@@ -379,7 +381,7 @@ public class DuelMenuGui extends MenuGui {
         }
         selectedCard.setFill(new ImagePattern(image));
 
-        selectedCardDescription.setText(gameController.controlCardShow());
+        selectedCardDescription.setText(clientDuelServer.controlCardShow());
     }
 
     public void showGraveyard() {
@@ -442,17 +444,17 @@ public class DuelMenuGui extends MenuGui {
 
     // methods similar to CLI:
     public void nextPhase() {
-        int error = gameController.nextPhaseInController();
+        int error = clientDuelServer.nextPhaseInController();
         String message = "";
         if (error == 1) {
             message = "phase: draw phase\n" +
                     "new card added to the hand : " +
-                    gameController.getGame().getAddedCardInDrawPhase().getCardName();
+                    clientDuelServer.getAddedCardNameInDrawPhase();
         } else if (error == 2) {
             message = "phase: Main phase 1";
         } else if (error == 5) {
             message = "phase: End Phase\n" +
-                    "its " + gameController.getGame().getPlayerOfThisTurn().getNickname() + "'s turn";
+                    "its " + clientDuelServer.getThisTurnPlayerNickname() + "'s turn";
         } else if (error == 0) {
             message = "phase: standby phase";
         } else if (error == 3) {
@@ -465,7 +467,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void summonCard() {
-        int error = gameController.summonErrorHandler();
+        int error = clientDuelServer.summonErrorHandler();
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -491,7 +493,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void setCard() {
-        int error = gameController.setCardErrorHandler();
+        int error = clientDuelServer.setCardErrorHandler();
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -514,7 +516,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void changePosition() {
-        int error = gameController.changePositionErrorHandler();
+        int error = clientDuelServer.changePositionErrorHandler();
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -533,27 +535,9 @@ public class DuelMenuGui extends MenuGui {
         updateGameBoard();
     }
 
-    public void flipSummon() {
-        int error = gameController.flipSummonErrorHandler();
-        String message = "";
-        if (error == 1) {
-            message = "no card is selected yet";
-        } else if (error == 2) {
-            message = "you can’t change this card position";
-        } else if (error == 3) {
-            message = "you can’t do this action in this phase";
-        } else if (error == 4) {
-            message = "you can’t flip summon this card";
-        } else if (error == 5) {
-            message = "flip summoned successfully";
-        }
-        showMessage(message);
-        updateGameBoard();
-    }
-
     public void attackCard(ArrayList<GameCard> cards) {
         int monsterPosition = cards.get(0).getPosition();
-        int error = gameController.attackErrorHandler(monsterPosition);
+        int error = clientDuelServer.attackErrorHandler(monsterPosition);
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -567,37 +551,37 @@ public class DuelMenuGui extends MenuGui {
             message = "there is no card to attack here";
         } else if (error == 6) {
             message = "your opponent’s monster is destroyed and your opponent receives " +
-                    gameController.damageOnOpponent() + " battle damage";
+                    clientDuelServer.damageOnOpponent() + " battle damage";
         } else if (error == 7) {
             message = "both you and your opponent monster cards are destroyed and no " +
                     "one receives damage";
         } else if (error == 8) {
             message = "Your monster card is destroyed and you received " +
-                    gameController.damageOnPlayer() + " battle damage";
+                    clientDuelServer.damageOnPlayer() + " battle damage";
         } else if (error == 9) {
             message = "the defense position monster is destroyed";
         } else if (error == 10) {
             message = "no card is destroyed";
         } else if (error == 11) {
-            message = "no card is destroyed and you received " + gameController.damageOnPlayer()
+            message = "no card is destroyed and you received " + clientDuelServer.damageOnPlayer()
                     + " battle damage";
         } else if (error == 12) {
             message = "the defense position monster " +
-                    gameController.getDefenseTargetCardName() + " is destroyed";
+                    clientDuelServer.getDefenseTargetCardName() + " is destroyed";
         } else if (error == 13) {
-            message = "opponent’s monster card was " + gameController.getDefenseTargetCardName()
+            message = "opponent’s monster card was " + clientDuelServer.getDefenseTargetCardName()
                     + " and no card is destroyed";
         } else if (error == 14) {
-            message = "opponent’s monster card was " + gameController.getDefenseTargetCardName()
+            message = "opponent’s monster card was " + clientDuelServer.getDefenseTargetCardName()
                     + " and no card is destroyed and you received " +
-                    gameController.damageOnPlayer() + " battle damage";
+                    clientDuelServer.damageOnPlayer() + " battle damage";
         }
         showMessage(message);
         updateGameBoard();
     }
 
     public void directAttack() {
-        int error = gameController.directAttackErrorHandler();
+        int error = clientDuelServer.directAttackErrorHandler();
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -610,7 +594,7 @@ public class DuelMenuGui extends MenuGui {
         } else if (error == 5) {
             message = "you can’t attack the opponent directly";
         } else if (error == 6) {
-            message = "you opponent receives " + gameController.damageOnOpponent()
+            message = "you opponent receives " + clientDuelServer.damageOnOpponent()
                     + " battle damage";
         }
         showMessage(message);
@@ -618,7 +602,7 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void activateEffect() {
-        int error = gameController.activeEffectErrorHandler();
+        int error = clientDuelServer.activeEffectErrorHandler();
         String message = "";
         if (error == 1) {
             message = "no card is selected yet";
@@ -641,12 +625,12 @@ public class DuelMenuGui extends MenuGui {
 
     public void surrender() {
         MusicPlayer.playLoseMusic();
-        gameController.surrender();
+        clientDuelServer.surrender();
         updateGameBoard();
     }
 
     public void cancel() {
-        gameController.cancel();
+        clientDuelServer.cancel();
         updateGameBoard();
     }
 
@@ -746,7 +730,7 @@ public class DuelMenuGui extends MenuGui {
 
     // button methods that aren't in CLI methods:
     public void attack(MouseEvent mouseEvent) {
-        if (!gameController.isThereAnyMonsterOnOpponentMonsterField()) {
+        if (!clientDuelServer.isThereAnyMonsterOnOpponentMonsterField()) {
             directAttack();
         } else {
             selectCards("attackCard", new String[]{"opponent_monster"}, 1);
@@ -827,12 +811,12 @@ public class DuelMenuGui extends MenuGui {
 
     public void increaseLpCheat(String input) {
         String lpStr = input.replace("increase --LP ", "");
-        gameController.increaseLpCheat(Integer.parseInt(lpStr));
+        clientDuelServer.increaseLpCheat(Integer.parseInt(lpStr));
     }
 
     public void setWinnerCheat(String input) {
         String winnerNickname = input.replace("duel set-winner ", "");
-        gameController.setWinnerCheat(winnerNickname);
+        clientDuelServer.setWinnerCheat(winnerNickname);
     }
 
     public Boolean getYesNoAnswer(String question) {
