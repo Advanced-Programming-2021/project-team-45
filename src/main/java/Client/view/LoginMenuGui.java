@@ -18,7 +18,6 @@ import Client.view.elements.GetImage;
 import java.io.IOException;
 
 public class LoginMenuGui extends MenuGui {
-
     private static ClientLoginServer clientLoginServer;
     private static Stage stage;
 

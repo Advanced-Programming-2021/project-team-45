@@ -9,6 +9,12 @@ public class MatchMakingController {
     private final static HashMap<User, GameController> userGameControllerHashMap;
     private final static HashMap<User, DuelRequestHandler> userDuelRequestHandlerHashMap;
 
+
+    // TODO: move this to server side (VERY IMPORTANT) after match is made below code should be executed:
+//    GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
+//        gameController.createNewGame();
+
+
     static {
         userGameControllerHashMap = new HashMap<>();
         userDuelRequestHandlerHashMap = new HashMap<>();
@@ -33,5 +39,9 @@ public class MatchMakingController {
 
     public synchronized static void setDuelRequestHandler(User user, DuelRequestHandler duelRequestHandler) {
         userDuelRequestHandlerHashMap.put(user, duelRequestHandler);
+    }
+
+    public synchronized static void makeMatch(User user, int rounds) {
+
     }
 }
