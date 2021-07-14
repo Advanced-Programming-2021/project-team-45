@@ -56,7 +56,7 @@ public class ServerSendRequest {
     }
 
     private String initRequest(String methodName, Object[] fields) {
-        return  "SERVER_REQUEST\n"
+        return "SERVER_REQUEST\n"
                 + methodName + "\n"
                 + objectsToJson(fields);
     }
