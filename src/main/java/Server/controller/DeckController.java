@@ -269,7 +269,6 @@ public class DeckController extends Controller {
                 if (sideDeckHashMap.get(rectangle) != null) {
                     deck.deleteCard(sideDeckHashMap.get(rectangle).getCardName(), true);
                     sideDeckHashMap.remove(rectangle);
-                    System.out.println("kos");
                 }
                 rectangle.setFill(Color.color(0, 0, 1, 0));
                 rectangle.setAccessibleText("null");

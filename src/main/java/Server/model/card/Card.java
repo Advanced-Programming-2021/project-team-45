@@ -7,25 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Card {
-
     private static ArrayList<Card> allCards;
     public static HashMap<String, MonsterCard> allMonsterCards = new HashMap<>();
     public static HashMap<String, SpellTrapCard> allSpellTrapCards = new HashMap<>();
-
-
-    public static void main(String[] args) {
-        MonsterCard monster = allMonsterCards.get("Scanner");
-        System.out.println(Card.showCard(monster));
-
-
-        Card card = Card.getCardByName("Scanner");
-        System.out.println(Card.showCard(card));
-
-        Card card2 = allCards.get(0);
-        System.out.println(Card.showCard(card2));
-    }
-
-
     protected String cardName;
     protected String cardDescription;
     protected String cardType;

@@ -129,11 +129,6 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public static DuelMenuGui getDuelMenuGui() {
-
-
-        System.out.println("getDuelMenuGui");
-
-
         if (duelMenuGui == null)
             duelMenuGui = new DuelMenuGui();
         return duelMenuGui;

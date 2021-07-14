@@ -156,7 +156,6 @@ public class ImportExportMenuGui extends MenuGui {
         File file = GetInput.chooseFile();
         if (file != null) {
             String[] parts = file.getName().split("\\.");
-            System.out.println(parts[1]);
             if (parts[1].equals("json")) {
                 File newFile = new File("src/main/resources/Client.view/gui/importFiles/" + file.getName());
                 FileUtils.copyFile(file, newFile);
