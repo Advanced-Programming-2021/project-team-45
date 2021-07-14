@@ -24,4 +24,8 @@ public class LobbyMenuGui extends Application {
     public void play1RoundGame(ActionEvent actionEvent) {
 
     }
+
+    public void play3RoundGame(ActionEvent actionEvent) {
+
+    }
 }
