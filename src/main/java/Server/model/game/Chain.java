@@ -162,7 +162,8 @@ public class Chain {
     }
 
     private boolean doesPlayerWantToAddToChain() {
-        return game.getGameController().doesPlayerWantToAddToTheChain(turnPlayer);
+//        return game.getGameController().doesPlayerWantToAddToTheChain(turnPlayer);
+        return false;
     }
 
     private void addToChain() {

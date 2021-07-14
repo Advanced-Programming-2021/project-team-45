@@ -22,7 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CoinTossMenu extends MenuGui {
-    private static final String coinImageRoute = "src/main/resources/Client.view/gui/Gold/Gold_";
+    private static final String coinImageRoute = "src/main/resources/Client/view/Gold/Gold_";
     private static String firstUserName;
     private static String secondUsername;
     private static String firstPlayerUserName;
@@ -141,7 +141,6 @@ public class CoinTossMenu extends MenuGui {
         MusicPlayer.muteMainMenu();
         GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
-        gameController.setPlayerDuelMenu(duelMenuGui);
         DuelMenuGui.setGameController(gameController);
         gameController.createNewGame();
         try {
