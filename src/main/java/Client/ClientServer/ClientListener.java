@@ -34,6 +34,4 @@ public class ClientListener extends Thread {
             ioException.printStackTrace();
         }
     }
-
-
 }

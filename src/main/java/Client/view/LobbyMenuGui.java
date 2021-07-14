@@ -1,7 +1,6 @@
 package Client.view;
 
 import Client.ClientServer.ClientLobbyServer;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
