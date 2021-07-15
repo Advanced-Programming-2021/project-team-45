@@ -6,6 +6,7 @@ public class Message {
     private int id;
     private String senderUserName;
     private String messageText;
+    private boolean isPinned = false;
 
     public Message(String senderUserName, String messageText) {
         this.senderUserName = senderUserName;
@@ -28,5 +29,13 @@ public class Message {
 
     public String getSenderUserName() {
         return senderUserName;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
+    }
+
+    public void setPinned(boolean pinned) {
+        isPinned = pinned;
     }
 }

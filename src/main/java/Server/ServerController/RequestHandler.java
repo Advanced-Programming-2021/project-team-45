@@ -48,6 +48,8 @@ public abstract class RequestHandler extends Thread {
             requestHandler=new DeckRequestHandler(socket);
         }else if(port==PortConfig.DeckStarter_PORT.getPort()){
             requestHandler=new DeckStarterRequestHandler(socket);
+        }else if (port == PortConfig.LOBBY_PORT.getPort()) {
+            requestHandler = new LobbyRequestHandler(socket);
         }
         return requestHandler;
     }
