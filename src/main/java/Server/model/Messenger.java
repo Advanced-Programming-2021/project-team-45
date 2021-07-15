@@ -34,6 +34,10 @@ public class Messenger {
             message.setMessageText(newMessageText);
     }
 
+    public static void setIsPinnedMessageById(int id, boolean isPinned)  {
+        Messenger.getMessageById(id).setPinned(isPinned);
+    }
+
     public static ArrayList<Message> getMessages() {
         return messages;
     }

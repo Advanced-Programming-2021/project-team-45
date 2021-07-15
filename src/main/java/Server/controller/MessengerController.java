@@ -36,6 +36,10 @@ public class MessengerController {
         return Messenger.getMessageById(id);
     }
 
+    public static void setIsPinnedMessageById(int id, boolean isPinned) {
+        Messenger.setIsPinnedMessageById(id, isPinned);
+    }
+
     public static ArrayList<Message> getAllMessages() {
         return Messenger.getMessages();
     }
