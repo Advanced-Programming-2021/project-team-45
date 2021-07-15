@@ -2,8 +2,13 @@ package Client.view;
 
 import Client.ClientServer.ClientLobbyServer;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -17,6 +22,10 @@ public class LobbyMenuGui extends MenuGui {
         clientLobbyServer = new ClientLobbyServer();
     }
 
+    @FXML
+    public GridPane messagesGridPane;
+    public TextArea textArea;
+
     @Override
     public void start(Stage stage) throws Exception {
         pane = FXMLLoader.load(getClass().getResource("LobbyMenuGui.fxml"));
@@ -29,6 +38,7 @@ public class LobbyMenuGui extends MenuGui {
         CoinTossMenu coinTossMenu = new CoinTossMenu();
         CoinTossMenu.setUserNames(username, opponentUsername);
         CoinTossMenu.setWinner(isWinner);
+        
         try {
             coinTossMenu.start(stage);
         } catch (Exception e) {
@@ -42,5 +52,15 @@ public class LobbyMenuGui extends MenuGui {
 
     public void play3RoundGame(ActionEvent actionEvent) {
         clientLobbyServer.makeMatch(3);
+    }
+
+    public void sendMessage(MouseEvent mouseEvent) {
+        OwnerMessageView ownerMessageView = new OwnerMessageView(username, textArea.getText(), username);
+        messagesGridPane.addRow(messagesGridPane.getRowCount() + 1,ownerMessageView);
+        textArea.setText(null);
+    }
+
+    public void refreshMessages(MouseEvent mouseEvent) {
+        messagesGridPane.getChildren().clear();
     }
 }
