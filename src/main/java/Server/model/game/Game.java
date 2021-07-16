@@ -266,9 +266,9 @@ public class Game {
             GameBoard gameBoard = getPlayerGameBoard();
             CommandKnight.CommandKnightOnFieldWithSummonMode((MonsterCard) selectedCard,
                     getPlayerGameBoard().getMonsterField());
-            if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
-                SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
-            }
+//            if (SpecialMonster.isSelectedCardASpecialMonster(selectedCard)) {
+//                SpecialMonster.specialMonsterController(selectedCard, EffectPlace.SUMMON, this);
+//            }
 
             // add monster to monsterField and remove from hand:
             gameBoard.getMonsterField().addMonsterToField(((MonsterCard) this.selectedCard));
@@ -306,9 +306,9 @@ public class Game {
     public void specialSummon(MonsterCard monster, GameBoard gameBoard) {
         CommandKnight.CommandKnightOnFieldWithSummonMode(monster,
                 getPlayerGameBoard().getMonsterField());
-        if (SpecialMonster.isSelectedCardASpecialMonster(monster)) {
-            SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, this);
-        }
+//        if (SpecialMonster.isSelectedCardASpecialMonster(monster)) {
+//            SpecialMonster.specialMonsterController(monster, EffectPlace.SUMMON, this);
+//        }
         monster.summon();
         numberOfSummonsInThisTurn++;
         // add card to monsterField and remove from hand:
@@ -347,9 +347,9 @@ public class Game {
         MonsterCard monsterCard = (MonsterCard) this.selectedCard;
         monsterCard.changePosition();
         this.changeCardPosition = true;
-        if (SpecialMonster.isSelectedCardASpecialMonster(monsterCard)) {
-            SpecialMonster.specialMonsterController(monsterCard, EffectPlace.CHANGEPOSITION, this);
-        }
+//        if (SpecialMonster.isSelectedCardASpecialMonster(monsterCard)) {
+//            SpecialMonster.specialMonsterController(monsterCard, EffectPlace.CHANGEPOSITION, this);
+//        }
     }
 
     private boolean isTargetCellInAttackPosition(int numberOfEnemyMonsterZone) {
@@ -404,10 +404,10 @@ public class Game {
                     ContinouesSpellActivatePlace.Attack) == 1) {
                 return 0;
             }
-            if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
-                SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
-                return 0;
-            }
+//            if (SpecialMonster.isSelectedCardASpecialMonsterOnDestroyMode(opponentCard)) {
+//                SpecialMonster.specialMonsterController(opponentCard, EffectPlace.DESTROY, this);
+//                return 0;
+//            }
             if (isTargetCellInAttackPosition(numberOfEnemyMonsterZone)) {
                 result = attackToOpponentCardInAttackPosition(playerCard, opponentCard, opponentGameBoard
                         , playerGameBoard);
