@@ -1,6 +1,8 @@
 package Server.ServerController;
 
 import Network.PortConfig;
+import Server.controller.DatabaseController;
+import Server.model.user.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -12,23 +14,9 @@ import java.net.SocketException;
 public abstract class RequestHandler extends Thread {
     protected final Socket socket;
     protected final FieldParser fieldParser;
-    protected final DataInputStream dataInputStream;
-    protected final DataOutputStream dataOutputStream;
 
     public RequestHandler(Socket socket) {
         this.socket = socket;
-        DataInputStream dataInputStream1;
-        DataOutputStream dataOutputStream1;
-        try {
-            dataInputStream1 = new DataInputStream(socket.getInputStream());
-            dataOutputStream1 = new DataOutputStream(socket.getOutputStream());
-        } catch (IOException ioe) {
-            dataInputStream1 = null;
-            dataOutputStream1 = null;
-            ioe.printStackTrace();
-        }
-        dataInputStream = dataInputStream1;
-        dataOutputStream = dataOutputStream1;
         fieldParser = new FieldParser();
     }
 
@@ -42,13 +30,13 @@ public abstract class RequestHandler extends Thread {
             requestHandler = new DuelRequestHandler(socket);
         } else if (port == PortConfig.SHOP_PORT.getPort()) {
             requestHandler = new ShopRequestHandler(socket);
-        }else if(port==PortConfig.CARD_CREATOR_PORT.getPort()){
-            requestHandler=new CardCreatorRequestHandler(socket);
-        }else if(port==PortConfig.DECK_PORT.getPort()){
-            requestHandler=new DeckRequestHandler(socket);
-        }else if(port==PortConfig.DeckStarter_PORT.getPort()){
-            requestHandler=new DeckStarterRequestHandler(socket);
-        }else if (port == PortConfig.LOBBY_PORT.getPort()) {
+        } else if (port == PortConfig.CARD_CREATOR_PORT.getPort()) {
+            requestHandler = new CardCreatorRequestHandler(socket);
+        } else if (port == PortConfig.DECK_PORT.getPort()) {
+            requestHandler = new DeckRequestHandler(socket);
+        } else if (port == PortConfig.DeckStarter_PORT.getPort()) {
+            requestHandler = new DeckStarterRequestHandler(socket);
+        } else if (port == PortConfig.LOBBY_PORT.getPort()) {
             requestHandler = new LobbyRequestHandler(socket);
         }
         return requestHandler;
@@ -58,7 +46,11 @@ public abstract class RequestHandler extends Thread {
     public void run() {
         while (true) {
             try {
+                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+                DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 String request = dataInputStream.readUTF();
+                // Update user data:
+                addUserServerSendRequest(request);
                 String result = handle(request);
                 if (result != null) {
                     dataOutputStream.writeUTF(result);
@@ -79,4 +71,15 @@ public abstract class RequestHandler extends Thread {
     }
 
     protected abstract String handle(String request);
+
+    private void addUserServerSendRequest(String request) {
+        String[] requestParts = request.split("\n");
+        if (!requestParts[0].equals("null")) {
+            User user = DatabaseController.getUserByToken(requestParts[0]);
+            String[] localSocketAddress = socket.getLocalSocketAddress().toString().split(":");
+            String host = localSocketAddress[0].replace("/", "");
+            // Add user host to database:
+            DatabaseController.addUserSendRequest(user, new ServerSendRequest(host));
+        }
+    }
 }

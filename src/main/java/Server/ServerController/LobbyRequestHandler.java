@@ -8,11 +8,8 @@ import Server.model.user.User;
 import java.net.Socket;
 
 public class LobbyRequestHandler extends RequestHandler {
-    private final ServerSendRequest serverSendRequest;
-
     public LobbyRequestHandler(Socket socket) {
         super(socket);
-        this.serverSendRequest = new ServerSendRequest(socket, dataInputStream, dataOutputStream);
     }
 
     @Override
@@ -45,10 +42,5 @@ public class LobbyRequestHandler extends RequestHandler {
         }
 
         return fieldParser.getAnswer(answer);
-    }
-
-    // Sending requests to client:
-    public void startCoinTossMenu(String opponentUsername, boolean isWinner) {
-        serverSendRequest.getMethodResult("startCoinTossMenu", opponentUsername, isWinner);
     }
 }

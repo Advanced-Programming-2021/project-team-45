@@ -2,6 +2,7 @@ package Server.controller;
 
 import Network.GameData;
 import Server.ServerController.DuelRequestHandler;
+import Server.ServerController.ServerSendRequest;
 import Server.model.card.*;
 import Server.model.game.*;
 import Server.model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
@@ -50,8 +51,8 @@ public class GameController extends Controller {
             }
             playWinLoseMusic();
 
-            getPlayerRequestHandler(player).showGameWinner(winner.getUsername(), playerWins, opponentWins);
-            getPlayerRequestHandler(opponentPlayer).showGameWinner(winner.getUsername(), playerWins, opponentWins);
+            getPlayerServerSendRequest(player).showGameWinner(winner.getUsername(), playerWins, opponentWins);
+            getPlayerServerSendRequest(opponentPlayer).showGameWinner(winner.getUsername(), playerWins, opponentWins);
             // save maxLp
             int playerLp = player.getLifepoint().getLifepoint();
             if (playerLp > playerMaxLp) playerMaxLp = playerLp;
@@ -62,8 +63,8 @@ public class GameController extends Controller {
             if (rounds == 3) {
                 if (playerWins == 2 || opponentWins == 2) {
                     playWinLoseMusic();
-                    getPlayerRequestHandler(player).showMatchWinner(winner.getUsername(), playerWins, opponentWins);
-                    getPlayerRequestHandler(opponentPlayer).showMatchWinner(winner.getUsername(), playerWins, opponentWins);
+                    getPlayerServerSendRequest(player).showMatchWinner(winner.getUsername(), playerWins, opponentWins);
+                    getPlayerServerSendRequest(opponentPlayer).showMatchWinner(winner.getUsername(), playerWins, opponentWins);
                     isGameEnded = true;
                 } else {
                     createNewGame();
@@ -74,8 +75,8 @@ public class GameController extends Controller {
             // calculate and increase score and money after match:
             if (isGameEnded) {
                 increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
-                getPlayerRequestHandler(player).endGame();
-                getPlayerRequestHandler(opponentPlayer).endGame();
+                getPlayerServerSendRequest(player).endGame();
+                getPlayerServerSendRequest(opponentPlayer).endGame();
             }
         }
     }
@@ -83,11 +84,11 @@ public class GameController extends Controller {
     private void playWinLoseMusic() {
         User winner = game.getWinner();
         if (winner.equals(player)) {
-            getPlayerRequestHandler(player).playWinMusic();
-            getPlayerRequestHandler(opponentPlayer).playLoseMusic();
+            getPlayerServerSendRequest(player).playWinMusic();
+            getPlayerServerSendRequest(opponentPlayer).playLoseMusic();
         } else {
-            getPlayerRequestHandler(opponentPlayer).playWinMusic();
-            getPlayerRequestHandler(player).playLoseMusic();
+            getPlayerServerSendRequest(opponentPlayer).playWinMusic();
+            getPlayerServerSendRequest(player).playLoseMusic();
         }
     }
 
@@ -123,8 +124,8 @@ public class GameController extends Controller {
         game.cancelCommand();
     }
 
-    private DuelRequestHandler getPlayerRequestHandler(User user) {
-        return MatchMakingController.getDuelRequestHandler(user);
+    private ServerSendRequest getPlayerServerSendRequest(User user) {
+        return ServerSendRequest.getUserServerSendRequest(user);
     }
 
     ///////////////////////////////////////////// ERROR HANDLING:
@@ -227,7 +228,7 @@ public class GameController extends Controller {
                 return beastKingBarbaros.summonHandler(monster);
 
             } else if (monster.getLevel() > 10) {
-                cardsToTribute = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(3);
+                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(3);
                 if (cardsToTribute == null) return -1;
 
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
@@ -237,7 +238,7 @@ public class GameController extends Controller {
                     return 9;
                 }
             } else if (monster.getLevel() >= 7) {
-                cardsToTribute = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(2);
+                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(2);
                 if (cardsToTribute == null) return -1;
 
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
@@ -247,7 +248,7 @@ public class GameController extends Controller {
                     return 9;
                 }
             } else {
-                cardsToTribute = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(1);
+                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(1);
                 if (cardsToTribute == null) return -1;
 
                 if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
@@ -460,15 +461,15 @@ public class GameController extends Controller {
     }
 
     public Boolean getYesNoAnswer(String question) {
-        return getPlayerRequestHandler(game.getPlayerOfThisTurn()).getYesNoAnswer(question);
+        return getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getYesNoAnswer(question);
     }
 
     public ArrayList<Integer> getCardsForTribute(int n) {
-        return getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardsForTribute(n);
+        return getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(n);
     }
 
     public MonsterCard getACardFromGraveyardForScanner(String view) {
-        String input = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardFromGraveYard(view);
+        String input = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardFromGraveYard(view);
         if (input != null) {
             ArrayList<Card> cards = game.getPlayerGameBoard().getGraveyard().getGraveyardCards();
             for (int i = 0; i < cards.size(); i++) {
@@ -496,7 +497,7 @@ public class GameController extends Controller {
         ArrayList<Card> selectedCards = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             while (true) {
-                String cardName = getPlayerRequestHandler(game.getPlayerOfThisTurn()).getCardName();
+                String cardName = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardName();
                 // for surrender and cancel:
 
                 Card card = null;
@@ -514,7 +515,7 @@ public class GameController extends Controller {
                         errorMessage.append(field.getName()).append("\t");
                     }
                     errorMessage.append("(try again!)");
-                    getPlayerRequestHandler(game.getPlayerOfThisTurn()).showOutput(errorMessage.toString());
+                    getPlayerServerSendRequest(game.getPlayerOfThisTurn()).showOutput(errorMessage.toString());
                 }
             }
         }
@@ -522,11 +523,11 @@ public class GameController extends Controller {
     }
 
     public void showOutput(String text) {
-        getPlayerRequestHandler(game.getPlayerOfThisTurn()).showOutput(text);
+        getPlayerServerSendRequest(game.getPlayerOfThisTurn()).showOutput(text);
     }
 
     public int getNumberFromPlayer(String view) {
-        return getPlayerRequestHandler(game.getPlayerOfThisTurn()).getNumber(view);
+        return getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getNumber(view);
     }
 
 //    public boolean doesPlayerWantToAddToTheChain(User player) {
