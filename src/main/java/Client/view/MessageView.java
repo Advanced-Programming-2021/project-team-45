@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +23,7 @@ public class MessageView extends HBox {
 
     private int id;
     private String message;
+    private String senderUserName;
     private boolean isPinned;
 
     public MessageView(String userName, int id, String message, boolean isPinned, String loggedInUserName) {
@@ -29,12 +31,13 @@ public class MessageView extends HBox {
         this.id = id;
         this.message = message;
         this.isPinned = isPinned;
+        this.senderUserName = userName;
 
         if (loggedInUserName.equals(userName))
             isOwnerMessage = true;
         else isOwnerMessage = false;
 
-        this.setPrefSize(801, 20);
+        this.setPrefSize(790, 20);
         if (isOwnerMessage) {
             this.setAlignment(Pos.CENTER_LEFT);
             this.setStyle("-fx-background-color: #54b74d");
@@ -55,7 +58,7 @@ public class MessageView extends HBox {
         this.setSpacing(10);
         if (isOwnerMessage)
             this.getChildren().addAll(optionButton, text);
-        else this.getChildren().add(text);
+        else this.getChildren().addAll(text, optionButton);
     }
 
     public static void setClientLobbyServer(ClientLobbyServer clientLobbyServer) {
@@ -72,10 +75,12 @@ public class MessageView extends HBox {
 
         BorderPane borderPane = new BorderPane();
         borderPane.setStyle("-fx-background-color: black");
+        Text text = new Text("sender username: " + senderUserName);
+        text.setFont(new Font("Arial", 14));
+        text.setStyle("-fx-fill: white");
         Button deleteButton = new Button("delete");
         setButtonStyle(deleteButton);
         deleteButton.setOnAction(e -> deleteMessage());
-
         Button editButton = new Button("edit");
         setButtonStyle(editButton);
         TextArea textArea = new TextArea(message);
@@ -91,7 +96,10 @@ public class MessageView extends HBox {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
-        vBox.getChildren().addAll(deleteButton, editButton, textArea,pinButton);
+        if (isOwnerMessage)
+            vBox.getChildren().addAll(text, deleteButton, editButton, textArea, pinButton);
+        else
+            vBox.getChildren().add(text);
         borderPane.setCenter(vBox);
 
         optionPopUpWindow.setScene(new Scene(borderPane, 250, 250));
