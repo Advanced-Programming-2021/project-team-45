@@ -8,7 +8,8 @@ public enum PortConfig {
     CARD_CREATOR_PORT(662),
     DECK_PORT(2345),
     DeckStarter_PORT(882),
-    LOBBY_PORT(3333);
+    LOBBY_PORT(3333),
+    CLIENT_PORT(111);
 
 
     private final int port;

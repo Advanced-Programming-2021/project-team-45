@@ -2,6 +2,7 @@ package Server.controller;
 
 import Server.ServerController.DuelRequestHandler;
 import Server.ServerController.LobbyRequestHandler;
+import Server.ServerController.ServerSendRequest;
 import Server.model.user.User;
 
 import java.util.ArrayList;
@@ -10,20 +11,11 @@ import java.util.Random;
 
 public class MatchMakingController {
     private final static HashMap<User, GameController> userGameControllerHashMap;
-    private final static HashMap<User, DuelRequestHandler> userDuelRequestHandlerHashMap;
-    private final static HashMap<User, LobbyRequestHandler> userLobbyRequestHandlerHashMap;
-    private final  static ArrayList<User> usersWaitingFor1RoundMatch;
-    private final  static ArrayList<User> usersWaitingFor3RoundMatch;
-
-    // TODO: move this to server side (VERY IMPORTANT) after match is made below code should be executed:
-//    GameController gameController = new GameController(firstPlayerUserName, secondPlayerUserName, rounds);
-//        gameController.createNewGame();
-
+    private final static ArrayList<User> usersWaitingFor1RoundMatch;
+    private final static ArrayList<User> usersWaitingFor3RoundMatch;
 
     static {
         userGameControllerHashMap = new HashMap<>();
-        userDuelRequestHandlerHashMap = new HashMap<>();
-        userLobbyRequestHandlerHashMap = new HashMap<>();
         usersWaitingFor1RoundMatch = new ArrayList<>();
         usersWaitingFor3RoundMatch = new ArrayList<>();
     }
@@ -39,18 +31,7 @@ public class MatchMakingController {
         userGameControllerHashMap.put(user, gameController);
     }
 
-    public synchronized static DuelRequestHandler getDuelRequestHandler(User user) {
-        if (userDuelRequestHandlerHashMap.containsKey(user))
-            return userDuelRequestHandlerHashMap.get(user);
-        return null;
-    }
-
-    public synchronized static void setDuelRequestHandler(User user, DuelRequestHandler duelRequestHandler) {
-        userDuelRequestHandlerHashMap.put(user, duelRequestHandler);
-    }
-
     public synchronized static void makeMatch(User user, int rounds, LobbyRequestHandler lobbyRequestHandler) {
-        userLobbyRequestHandlerHashMap.put(user, lobbyRequestHandler);
         // tokhmi algorithm:
         if (rounds == 1) {
             if (usersWaitingFor1RoundMatch.size() == 1) {
@@ -62,14 +43,12 @@ public class MatchMakingController {
     }
 
     public static void startUserCoinTossMenu(User user, String opponentUsername, boolean isWinner) {
-        LobbyRequestHandler lobbyRequestHandler = userLobbyRequestHandlerHashMap.get(user);
-        lobbyRequestHandler.startCoinTossMenu(opponentUsername, isWinner);
+        ServerSendRequest serverSendRequest = ServerSendRequest.getUserServerSendRequest(user);
+        serverSendRequest.startCoinTossMenu(opponentUsername, isWinner);
     }
 
     public static void startRandomGame(User user1, User user2, int rounds) {
         int rand = new Random().nextInt(2);
-        LobbyRequestHandler user1LobbyRequestHandler = userLobbyRequestHandlerHashMap.get(user1);
-        LobbyRequestHandler user2LobbyRequestHandler = userLobbyRequestHandlerHashMap.get(user2);
         if (rand == 0) {
             GameController gameController = new GameController(user1.getUsername(), user2.getUsername(), rounds);
             gameController.createNewGame();

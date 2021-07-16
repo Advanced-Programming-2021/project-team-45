@@ -1,5 +1,6 @@
 package Server.controller;
 
+import Server.ServerController.ServerSendRequest;
 import com.google.gson.reflect.TypeToken;
 import com.gilecode.yagson.YaGson;
 import Server.model.card.Card;
@@ -16,9 +17,11 @@ import java.util.UUID;
 
 public class DatabaseController extends Controller {
     private static final HashMap<String, User> tokens;
+    private static final HashMap<User, ServerSendRequest> usersSendRequestsHashMap;
 
     static {
         tokens = new HashMap<>();
+        usersSendRequestsHashMap =  new HashMap<>();
     }
 
     public DatabaseController(String username) {
@@ -39,6 +42,16 @@ public class DatabaseController extends Controller {
 
     public static User getUserByToken(String token) {
         return tokens.get(token);
+    }
+
+    public synchronized static void addUserSendRequest(User user, ServerSendRequest serverSendRequest) {
+        usersSendRequestsHashMap.put(user, serverSendRequest);
+    }
+
+    public static ServerSendRequest getUserServerSendRequest(User user) {
+        if (usersSendRequestsHashMap.containsKey(user))
+            return usersSendRequestsHashMap.get(user);
+        return null;
     }
 
     public static ArrayList<User> importUsers() {
