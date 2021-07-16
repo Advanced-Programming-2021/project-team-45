@@ -30,8 +30,8 @@ public class LobbyRequestHandler extends RequestHandler {
             answer = MessengerController.editMessageErrorHandler(user, (Integer) fields[0], (String) fields[1]);
         } else if (methodName.equals("getMessageById")) {
             answer = MessengerController.getMessageById((Integer) fields[0]);
-        } else if (methodName.equals("getAllMessages")) {
-            answer = MessengerController.getAllMessages();
+        } else if (methodName.equals("getAllMessagesData")) {
+            answer = MessengerController.getAllMessagesData();
         } else if (methodName.equals("setIsPinnedMessageById")) {
             MessengerController.setIsPinnedMessageById((int) fields[0], (boolean) fields[1]);
         }

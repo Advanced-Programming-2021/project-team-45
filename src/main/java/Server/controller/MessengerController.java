@@ -40,7 +40,7 @@ public class MessengerController {
         Messenger.setIsPinnedMessageById(id, isPinned);
     }
 
-    public static ArrayList<Message> getAllMessages() {
-        return Messenger.getMessages();
+    public static ArrayList<Object[]> getAllMessagesData() {
+        return Messenger.getAllMessagesData();
     }
 }

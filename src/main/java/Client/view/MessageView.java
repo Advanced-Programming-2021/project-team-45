@@ -34,7 +34,7 @@ public class MessageView extends HBox {
             isOwnerMessage = true;
         else isOwnerMessage = false;
 
-        this.setPrefSize(800, 20);
+        this.setPrefSize(801, 20);
         if (isOwnerMessage) {
             this.setAlignment(Pos.CENTER_LEFT);
             this.setStyle("-fx-background-color: #54b74d");

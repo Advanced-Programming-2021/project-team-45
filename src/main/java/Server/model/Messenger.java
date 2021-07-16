@@ -38,8 +38,17 @@ public class Messenger {
         Messenger.getMessageById(id).setPinned(isPinned);
     }
 
-    public static ArrayList<Message> getMessages() {
-        return messages;
+    public static ArrayList<Object[]> getAllMessagesData() {
+        ArrayList<Object[]> data = new ArrayList<>();
+        for (Message message : messages) {
+            Object[] objects = new Object[4];
+            objects[0] = message.getSenderUserName();
+            objects[1] = message.getId();
+            objects[2] = message.getMessageText();
+            objects[3] = message.isPinned();
+            data.add(objects);
+        }
+        return data;
     }
 
 }
