@@ -19,14 +19,8 @@ public class ClientLoginServer extends ClientServer {
             SendRequest.setToken(token);
             // Client starts listening for server requests:
             ClientListener clientListener = new ClientListener();
-
-            System.out.println("after new ClientListener");
-
             clientListener.setListen(true);
             clientListener.start();
-
-            System.out.println("after starting ClientListener");
-
             return 0;
         } else {
             return 1;
