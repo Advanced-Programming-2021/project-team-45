@@ -79,11 +79,12 @@ public class LobbyMenuGui extends MenuGui {
 
     public void refreshMessages() {
         messagesGridPane.getChildren().clear();
-        ArrayList<Message> messages = clientLobbyServer.getAllMessages();
+        ArrayList<Object[]> messagesData = clientLobbyServer.getAllMessagesData();
         MessageView.setClientLobbyServer(clientLobbyServer);
-        for (int i = 0; i < messages.size(); i++) {
-            MessageView messageView = new MessageView(messages.get(i).getSenderUserName(), messages.get(i).getId(),
-                    messages.get(i).getMessageText(), messages.get(i).isPinned(), username);
+        for (int i = 0; i < messagesData.size(); i++) {
+            Object[] objects = messagesData.get(i);
+            MessageView messageView = new MessageView((String) objects[0], (int) objects[1],
+                    (String) objects[2], (boolean) objects[3], username);
             messageView.setLobbyMenuGui(this);
             messagesGridPane.addRow(i, messageView);
         }
@@ -104,13 +105,13 @@ public class LobbyMenuGui extends MenuGui {
         BorderPane borderPane = new BorderPane();
         GridPane gridPane = new GridPane();
         gridPane.setVgap(10);
-        ArrayList<Message> messages = clientLobbyServer.getAllMessages();
-        for (Message message : messages) {
-            if (message.isPinned()) {
+        ArrayList<Object[]> messagesData = clientLobbyServer.getAllMessagesData();
+        for (Object[] data : messagesData) {
+            if ((boolean) data[3]) {
                 HBox hBox = new HBox();
                 hBox.setStyle("-fx-background-color: white");
 
-                Text text = new Text(message.getMessageText());
+                Text text = new Text((String) data[2]);
                 hBox.getChildren().add(text);
                 gridPane.addRow(gridPane.getRowCount() + 1, hBox);
             }

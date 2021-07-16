@@ -34,8 +34,8 @@ public class ClientLobbyServer extends ClientServer {
         sendRequest.getMethodResult("setIsPinnedMessageById", id, isPinned);
     }
 
-    public ArrayList<Message> getAllMessages() {
-        Object answer = sendRequest.getMethodResult("getAllMessages");
-        return (ArrayList<Message>) answer;
+    public ArrayList<Object[]> getAllMessagesData() {
+        Object answer = sendRequest.getMethodResult("getAllMessagesData");
+        return (ArrayList<Object[]>) answer;
     }
 }
