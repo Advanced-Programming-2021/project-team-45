@@ -10,16 +10,18 @@ public class StartServer {
         duelServer.start();
         ServerController shopServer = new ServerController(PortConfig.SHOP_PORT.getPort());
         shopServer.start();
-        ServerController profileServer=new ServerController(PortConfig.PROFILE_PORT.getPort());
+        ServerController profileServer = new ServerController(PortConfig.PROFILE_PORT.getPort());
         profileServer.start();
-        ServerController cardCreatorServer=new ServerController(PortConfig.CARD_CREATOR_PORT.getPort());
+        ServerController cardCreatorServer = new ServerController(PortConfig.CARD_CREATOR_PORT.getPort());
         cardCreatorServer.start();
-        ServerController DeckServer=new ServerController(PortConfig.DECK_PORT.getPort());
+        ServerController DeckServer = new ServerController(PortConfig.DECK_PORT.getPort());
         DeckServer.start();
-        ServerController deckStarterServer=new ServerController(PortConfig.DeckStarter_PORT.getPort());
+        ServerController deckStarterServer = new ServerController(PortConfig.DeckStarter_PORT.getPort());
         deckStarterServer.start();
         ServerController lobbyServer = new ServerController(PortConfig.LOBBY_PORT.getPort());
         lobbyServer.start();
+        ServerController updateClientServer = new ServerController(PortConfig.UPDATE_CLIENT_PORT.getPort());
+        updateClientServer.start();
         // And so on for every port...
     }
 }

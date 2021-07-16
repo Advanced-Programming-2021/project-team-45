@@ -17,10 +17,10 @@ public class ClientLoginServer extends ClientServer {
         String token = (String) result;
         if (!token.equals("null")) {
             SendRequest.setToken(token);
-            // Client starts listening for server requests:
-            ClientListener clientListener = new ClientListener();
-            clientListener.setListen(true);
-            clientListener.start();
+            // Start updating client:
+            ClientUpdater clientUpdater = new ClientUpdater();
+            clientUpdater.setUpdate(true);
+            clientUpdater.start();
             return 0;
         } else {
             return 1;

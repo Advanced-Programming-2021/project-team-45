@@ -1,8 +1,6 @@
 package Server.ServerController;
 
 import Network.PortConfig;
-import Server.controller.DatabaseController;
-import Server.model.user.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -38,6 +36,8 @@ public abstract class RequestHandler extends Thread {
             requestHandler = new DeckStarterRequestHandler(socket);
         } else if (port == PortConfig.LOBBY_PORT.getPort()) {
             requestHandler = new LobbyRequestHandler(socket);
+        } else if (port == PortConfig.UPDATE_CLIENT_PORT.getPort()) {
+            requestHandler = new ClientUpdateHandler(socket);
         }
         return requestHandler;
     }
@@ -49,9 +49,12 @@ public abstract class RequestHandler extends Thread {
                 DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
                 DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 String request = dataInputStream.readUTF();
-                // Update user data:
-                addUserServerSendRequest(request);
                 String result = handle(request);
+
+
+                System.out.println("{\nRequest:\n" + request + "\nResult:\n" + result + "\n}");
+
+
                 if (result != null) {
                     dataOutputStream.writeUTF(result);
                     dataOutputStream.flush();
@@ -71,15 +74,4 @@ public abstract class RequestHandler extends Thread {
     }
 
     protected abstract String handle(String request);
-
-    private void addUserServerSendRequest(String request) {
-        String[] requestParts = request.split("\n");
-        if (!requestParts[0].equals("null")) {
-            User user = DatabaseController.getUserByToken(requestParts[0]);
-            String[] localSocketAddress = socket.getLocalSocketAddress().toString().split(":");
-            String host = localSocketAddress[0].replace("/", "");
-            // Add user host to database:
-            DatabaseController.addUserSendRequest(user, new ServerSendRequest(host));
-        }
-    }
 }

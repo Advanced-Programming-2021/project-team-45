@@ -15,67 +15,86 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.view.LobbyMenuGui">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Client.view.LobbyMenuGui">
 
     <top>
         <HBox alignment="CENTER" prefHeight="38.0" prefWidth="1080.0" style="-fx-background-color: black;">
             <Text fill="WHITE" text="number of online users: " fx:id="onlineUsersText">
-            <font>
-               <Font name="Arial" size="14.0" />
-            </font></Text>
+                <font>
+                    <Font name="Arial" size="14.0"/>
+                </font>
+            </Text>
         </HBox>
     </top>
     <left>
-        <AnchorPane prefHeight="720.0" prefWidth="278.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="720.0" prefWidth="278.0" style="-fx-background-color: grey;"
+                    BorderPane.alignment="CENTER">
             <children>
-                <Button layoutX="71.0" layoutY="188.0" mnemonicParsing="false" onAction="#play1RoundGame" style="-fx-background-color: red;" text="1 round" textFill="WHITE" />
-                <TextField layoutX="63.0" layoutY="88.0" />
-                <Label layoutX="16.0" layoutY="53.0" prefHeight="18.0" prefWidth="246.0" text="please write your opponent user name to play" textFill="WHITE" />
-                <Button layoutX="156.0" layoutY="188.0" mnemonicParsing="false" onAction="#play3RoundGame" style="-fx-background-color: red;" text="3 round" textFill="WHITE" />
-            <Label layoutX="33.0" layoutY="343.0" text="please choose rounds for random game" textFill="WHITE" />
-            <Button layoutX="27.0" layoutY="398.0" mnemonicParsing="false" style="-fx-background-color: red;" text="1 round - random" textFill="WHITE" />
-            <Button layoutX="156.0" layoutY="398.0" mnemonicParsing="false" style="-fx-background-color: red;" text="2 round-random" textFill="WHITE" />
-            <Button layoutX="91.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu" prefWidth="100.0" text="back" />
-            <Line endX="142.0" layoutX="138.0" layoutY="296.0" startX="-138.0" />
+                <Button layoutX="71.0" layoutY="188.0" mnemonicParsing="false" onAction="#play1RoundGame"
+                        style="-fx-background-color: red;" text="1 round" textFill="WHITE"/>
+                <TextField layoutX="63.0" layoutY="88.0"/>
+                <Label layoutX="16.0" layoutY="53.0" prefHeight="18.0" prefWidth="246.0"
+                       text="please write your opponent user name to play" textFill="WHITE"/>
+                <Button layoutX="156.0" layoutY="188.0" mnemonicParsing="false" onAction="#play3RoundGame"
+                        style="-fx-background-color: red;" text="3 round" textFill="WHITE"/>
+                <Label layoutX="33.0" layoutY="343.0" text="please choose rounds for random game" textFill="WHITE"/>
+                <Button layoutX="27.0" layoutY="398.0" mnemonicParsing="false" style="-fx-background-color: red;"
+                        text="1 round - random" onAction="#play1RoundGame" textFill="WHITE"/>
+                <Button layoutX="156.0" layoutY="398.0" mnemonicParsing="false" style="-fx-background-color: red;"
+                        text="3 round-random" onAction="#play3RoundGame" textFill="WHITE"/>
+                <Button layoutX="91.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu"
+                        prefWidth="100.0" text="back"/>
+                <Line endX="142.0" layoutX="138.0" layoutY="296.0" startX="-138.0"/>
             </children>
         </AnchorPane>
     </left>
 
-   <center>
-      <ScrollPane prefHeight="691.0" prefWidth="801.0" style="-fx-background: black; -fx-background-color: black;" BorderPane.alignment="CENTER">
-        <content>
-            <GridPane fx:id="messagesGridPane" vgap="5.0" />
-        </content>
-      </ScrollPane>
-   </center>
+    <center>
+        <ScrollPane prefHeight="691.0" prefWidth="801.0" style="-fx-background: black; -fx-background-color: black;"
+                    BorderPane.alignment="CENTER">
+            <content>
+                <GridPane fx:id="messagesGridPane" vgap="5.0"/>
+            </content>
+        </ScrollPane>
+    </center>
 
     <bottom>
         <AnchorPane prefHeight="40.0" prefWidth="1080.0" style="-fx-background-color: black;">
             <children>
 
 
-                <TextArea fx:id="textArea" layoutX="118.0" layoutY="4.0" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" prefWidth="660.0" promptText="message">
+                <TextArea fx:id="textArea" layoutX="118.0" layoutY="4.0" maxHeight="35.0" minHeight="35.0"
+                          prefHeight="35.0" prefWidth="660.0" promptText="message">
                     <font>
-                        <Font name="Arial" size="12.0" />
-                    </font></TextArea>
-                <Button layoutX="792.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#sendMessage" prefHeight="35.0" prefWidth="24.0" style="-fx-background-color: blue;">
-               <graphic>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </TextArea>
+                <Button layoutX="792.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#sendMessage"
+                        prefHeight="35.0" prefWidth="24.0" style="-fx-background-color: blue;">
+                    <graphic>
                         <ImageView fitHeight="26.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@chatButtonImages/send.png" />
+                                <Image url="@chatButtonImages/send.png"/>
                             </image>
                         </ImageView>
-               </graphic></Button>
-                <Button layoutX="853.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#refreshMessages" prefHeight="35.0" style="-fx-background-color: purple;">
-               <graphic>
+                    </graphic>
+                </Button>
+                <Button layoutX="853.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#refreshMessages"
+                        prefHeight="35.0" style="-fx-background-color: purple;">
+                    <graphic>
                         <ImageView fitHeight="28.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@chatButtonImages/refresh.png" />
+                                <Image url="@chatButtonImages/refresh.png"/>
                             </image>
                         </ImageView>
-               </graphic></Button>
-                <Button layoutX="911.0" mnemonicParsing="false" onMouseClicked="#showPinnedMessages" prefHeight="45.0" prefWidth="139.0" style="-fx-background-color: orange;" text="show pinned messages" textFill="#5900ff" />
-            
+                    </graphic>
+                </Button>
+                <Button layoutX="911.0" mnemonicParsing="false" onMouseClicked="#showPinnedMessages" prefHeight="45.0"
+                        prefWidth="139.0" style="-fx-background-color: orange;" text="show pinned messages"
+                        textFill="#5900ff"/>
+
 
             </children>
         </AnchorPane>
