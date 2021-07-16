@@ -223,11 +223,11 @@ public class GameController extends Controller {
         if (!gameErrorHandler.isThereEnoughCardsToTribute(monster)) {
             return 7;
         } else {
-            if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
-                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this);
-                return beastKingBarbaros.summonHandler(monster);
+//            if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
+//                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this);
+//                return beastKingBarbaros.summonHandler(monster);
 
-            } else if (monster.getLevel() > 10) {
+            if (monster.getLevel() > 10) {
                 cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(3);
                 if (cardsToTribute == null) return -1;
 
