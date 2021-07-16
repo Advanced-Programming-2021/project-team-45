@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,6 +38,7 @@ public class LobbyMenuGui extends MenuGui {
     @FXML
     public GridPane messagesGridPane;
     public TextArea textArea;
+    public Text onlineUsersText;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -109,16 +111,18 @@ public class LobbyMenuGui extends MenuGui {
         for (Object[] data : messagesData) {
             if ((boolean) data[3]) {
                 HBox hBox = new HBox();
-                hBox.setStyle("-fx-background-color: white");
+                hBox.setStyle("-fx-background-color: grey");
 
-                Text text = new Text((String) data[2]);
+                Text text = new Text("senderUserName: " + data[0] + " -> " + data[2]);
+                text.setFont(new Font("Arial", 13));
+                text.setStyle("-fx-fill: white;");
                 hBox.getChildren().add(text);
                 gridPane.addRow(gridPane.getRowCount() + 1, hBox);
             }
         }
 
         ScrollPane scrollPane = new ScrollPane(gridPane);
-        scrollPane.setStyle("-fx-background: black");
+        scrollPane.setStyle("-fx-background: black; -fx-background-color: black");
         borderPane.setCenter(scrollPane);
 
         HBox hBox = new HBox();
