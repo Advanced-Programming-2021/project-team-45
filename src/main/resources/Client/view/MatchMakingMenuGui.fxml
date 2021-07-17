@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.geometry.Insets?>
-<?import java.net.URL?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Client.view.MatchMakingMenuGui"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.view.MatchMakingMenuGui">
 
     <stylesheets>
-        <URL value="@styles/LoginMenuGui.css"/>
+        <URL value="@styles/MatchMakingMenuGui.css"/>
     </stylesheets>
 
     <center>
-        <HBox alignment="CENTER">
-            <Button fx:id="Cancel" alignment="CENTER" onMouseClicked="#cancelMatchMaking" prefHeight="26.0"
-                    prefWidth="80.0" text="Login">
-                <cursor>
-                    <Cursor fx:constant="HAND"/>
-                </cursor>
-                <effect>
-                    <DropShadow>
-                        <color>
-                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
-                        </color>
-                    </DropShadow>
-                </effect>
+        <VBox alignment="CENTER">
+            <HBox alignment="CENTER">
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@elements/img/loading.gif"/>
+                    </image>
+                </ImageView>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label text="Searching for other players...">
+                </Label>
                 <HBox.margin>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    <Insets bottom="20.0" left="5.0" right="5.0" top="10.0"/>
                 </HBox.margin>
-            </Button>
-        </HBox>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Button alignment="CENTER" onMouseClicked="#cancelMatchMaking" prefHeight="26.0" prefWidth="80.0"
+                        text="Cancel">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <effect>
+                        <DropShadow>
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                            </color>
+                        </DropShadow>
+                    </effect>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="30.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+        </VBox>
     </center>
 
 </BorderPane>

@@ -45,6 +45,16 @@ public class LobbyMenuGui extends MenuGui {
         return lobbyMenuGui;
     }
 
+    public static void startMatchMakingMenuGui() {
+        MatchMakingMenuGui matchMakingMenuGui = MatchMakingMenuGui.getMatchMakingMenuGui();
+        MatchMakingMenuGui.setUsername(username);
+        try {
+            matchMakingMenuGui.start(stage);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         pane = FXMLLoader.load(getClass().getResource("LobbyMenuGui.fxml"));
@@ -58,24 +68,14 @@ public class LobbyMenuGui extends MenuGui {
         refreshMessages();
     }
 
-    public void startCoinTossMenu(String opponentUsername, boolean isWinner) {
-        CoinTossMenu coinTossMenu = new CoinTossMenu();
-        CoinTossMenu.setUsernames(username, opponentUsername);
-        CoinTossMenu.setWinner(isWinner);
-
-        try {
-            coinTossMenu.start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void play1RoundGame(ActionEvent actionEvent) {
         clientLobbyServer.makeMatch(1);
+        startMatchMakingMenuGui();
     }
 
     public void play3RoundGame(ActionEvent actionEvent) {
         clientLobbyServer.makeMatch(3);
+        startMatchMakingMenuGui();
     }
 
     public void sendMessage(MouseEvent mouseEvent) {
