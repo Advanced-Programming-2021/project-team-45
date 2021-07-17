@@ -50,11 +50,6 @@ public abstract class RequestHandler extends Thread {
                 DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 String request = dataInputStream.readUTF();
                 String result = handle(request);
-
-
-                System.out.println("{\nRequest:\n" + request + "\nResult:\n" + result + "\n}");
-
-
                 if (result != null) {
                     dataOutputStream.writeUTF(result);
                     dataOutputStream.flush();
