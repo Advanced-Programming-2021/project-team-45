@@ -105,7 +105,6 @@ public class MainMenuGui extends MenuGui {
     public void startProfileMenu(MouseEvent mouseEvent) {
         ProfileMenuGui profileMenuGui = new ProfileMenuGui();
         ProfileMenuGui.setUsername(username);
-        ProfileMenuGui.setProfileController(new ProfileController(username));
         try {
             profileMenuGui.start(stage);
         } catch (Exception e) {

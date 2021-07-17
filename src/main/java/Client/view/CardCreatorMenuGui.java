@@ -1,7 +1,6 @@
 package Client.view;
 
 import Client.ClientServer.ClientCardCreatorServer;
-import Server.controller.CardCreatorController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import Server.controller.CardCreatorController;
 import javafx.stage.Stage;
-
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

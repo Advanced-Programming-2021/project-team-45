@@ -1,7 +1,6 @@
 package Client.view;
 
 import Client.ClientServer.ClientProfileServer;
-import Server.controller.ProfileController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -13,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import Server.model.user.User;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
@@ -27,7 +25,7 @@ public class ProfileMenuGui extends MenuGui {
     public TextField oldPassword;
     public TextField newPassword;
     private static Stage stage;
-    private static ProfileController profileController;
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,8 +37,9 @@ public class ProfileMenuGui extends MenuGui {
     }
 
     public void initialize() {
-        User user = getProfileServer().getUser();
-        imageView.setImage(User.getPicture(user.getProfilePicturePath()));
+        String image=getProfileServer().getProfileImage();
+        // imageView.setImage(image);
+
     }
 
     private ClientProfileServer getProfileServer(){
@@ -49,9 +48,9 @@ public class ProfileMenuGui extends MenuGui {
         return profileServer;
     }
 
-    public static void setProfileController(ProfileController profileController) {
-        ProfileMenuGui.profileController = profileController;
-    }
+//    public static void setProfileController(ProfileController profileController) {
+////        ProfileMenuGui.profileController = profileController;
+//    }
 
     public void ChooseFile(MouseEvent mouseEvent) throws FileNotFoundException {
         File file = GetInput.choosePictureFile();

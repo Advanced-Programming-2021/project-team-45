@@ -2,6 +2,7 @@ package Client.ClientServer;
 
 import Network.PortConfig;
 import Server.model.user.User;
+import javafx.scene.image.Image;
 
 
 public class ClientProfileServer extends ClientServer{
@@ -24,5 +25,9 @@ public class ClientProfileServer extends ClientServer{
 
     public User getUser() {
         return (User) sendRequest.getMethodResult("getUser");
+    }
+
+    public String  getProfileImage() {
+        return (String) sendRequest.getMethodResult("getProfileImage");
     }
 }

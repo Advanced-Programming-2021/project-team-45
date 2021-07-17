@@ -1,7 +1,6 @@
 package Server.ServerController;
 
 import Server.controller.DatabaseController;
-import Server.controller.LoginController;
 import Server.controller.ProfileController;
 
 
@@ -34,6 +33,11 @@ public class ProfileRequestHandler extends RequestHandler {
                 break;
             case "getUser":
                 answer=profileController.getUser();
+                break;
+            case "getProfileImage":
+                answer=profileController.getProfileImage();
+                break;
+
         }
         return fieldParser.getAnswer(answer);
     }
