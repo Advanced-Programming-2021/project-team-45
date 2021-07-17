@@ -30,6 +30,10 @@ public class ClientUpdateHandler extends RequestHandler {
         }
     }
 
+    public static synchronized void addUpdateForAllClients(String update) {
+        clientUpdates.keySet().forEach((key) -> clientUpdates.get(key).add(update));
+    }
+
     public static synchronized String getUserUpdate(User user) {
         if (clientUpdates.containsKey(user)) {
             ArrayList<String> userUpdates = clientUpdates.get(user);

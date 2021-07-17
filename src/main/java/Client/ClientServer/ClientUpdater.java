@@ -32,12 +32,7 @@ public class ClientUpdater extends Thread {
                 dataOutputStream.flush();
                 String serverResponse = dataInputStream.readUTF();
                 if (!serverResponse.equals("null")) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            handleResponse(serverResponse);
-                        }
-                    });
+                    Platform.runLater(() -> handleResponse(serverResponse));
                 }
                 Thread.sleep(500);
             }
@@ -55,6 +50,7 @@ public class ClientUpdater extends Thread {
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
         LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
 
+        // DuelMenu Methods:
         if (methodName.equals("showGameWinner")) {
             duelMenuGui.showGameWinner((String) fields[0], (int) fields[1], (int) fields[2]);
         } else if (methodName.equals("showMatchWinner")) {
@@ -69,9 +65,16 @@ public class ClientUpdater extends Thread {
             duelMenuGui.playLoseMusic();
         }
 
+        // MatchMaking Methods:
         if (methodName.equals("startCoinTossMenu")) {
             lobbyMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
         }
+
+        // Messaging Methods:
+
+
+        // Scoreboards Methods:
+
     }
 
     private Object[] getObjects(String json) {
