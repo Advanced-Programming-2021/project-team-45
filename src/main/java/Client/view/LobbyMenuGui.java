@@ -30,15 +30,16 @@ public class LobbyMenuGui extends MenuGui {
     private static Pane pane;
     private static Stage stage;
     private static Stage showPinnedMessagesPopUpWindow;
+    @FXML
+    public GridPane messagesGridPane;
+    @FXML
+    public Text onlineUsersText;
+    @FXML
+    public TextArea textArea;
 
     static {
         clientLobbyServer = new ClientLobbyServer();
     }
-
-    @FXML
-    public GridPane messagesGridPane;
-    public TextArea textArea;
-    public Text onlineUsersText;
 
     @Override
     public void start(Stage stage) throws Exception {

@@ -1,8 +1,6 @@
 package Server.controller;
 
-import Server.ServerController.DuelRequestHandler;
 import Server.ServerController.LobbyRequestHandler;
-import Server.ServerController.ServerSendRequest;
 import Server.model.user.User;
 
 import java.util.ArrayList;
@@ -31,8 +29,8 @@ public class MatchMakingController {
         userGameControllerHashMap.put(user, gameController);
     }
 
-    public synchronized static void makeMatch(User user, int rounds, LobbyRequestHandler lobbyRequestHandler) {
-        // tokhmi algorithm:
+    public synchronized static void makeMatch(User user, int rounds) {
+        // TODO: better algorithm:
         if (rounds == 1) {
             if (usersWaitingFor1RoundMatch.size() == 1) {
                 User user2 = usersWaitingFor1RoundMatch.get(0);
@@ -43,7 +41,7 @@ public class MatchMakingController {
     }
 
     public static void startUserCoinTossMenu(User user, String opponentUsername, boolean isWinner) {
-        ServerSendRequest serverSendRequest = ServerSendRequest.getUserServerSendRequest(user);
+        ClientUpdateController serverSendRequest = ClientUpdateController.getClientUpdateController(user);
         serverSendRequest.startCoinTossMenu(opponentUsername, isWinner);
     }
 

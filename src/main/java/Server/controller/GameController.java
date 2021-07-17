@@ -1,11 +1,8 @@
 package Server.controller;
 
 import Network.GameData;
-import Server.ServerController.DuelRequestHandler;
-import Server.ServerController.ServerSendRequest;
 import Server.model.card.*;
 import Server.model.game.*;
-import Server.model.card.SpecialMonsters.AmazingAbility.BeastKingBarbaros;
 import Server.model.game.fields.CardField;
 import Server.model.user.User;
 
@@ -124,8 +121,8 @@ public class GameController extends Controller {
         game.cancelCommand();
     }
 
-    private ServerSendRequest getPlayerServerSendRequest(User user) {
-        return ServerSendRequest.getUserServerSendRequest(user);
+    private ClientUpdateController getPlayerServerSendRequest(User user) {
+        return ClientUpdateController.getClientUpdateController(user);
     }
 
     ///////////////////////////////////////////// ERROR HANDLING:

@@ -24,6 +24,10 @@ public class SendRequest {
         SendRequest.token = token;
     }
 
+    public static String getToken() {
+        return token;
+    }
+
     public Object getMethodResult(String methodName, Object... fields) {
         String request = initRequest(methodName, fields);
         try {

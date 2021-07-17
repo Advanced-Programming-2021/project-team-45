@@ -1,0 +1,14 @@
+Request Format:
+{
+token
+"UPDATE"
+}
+
+
+Answer Format:
+{
+METHOD_NAME_TO_CALL
+OBJECTS[]_TO_INVOKE_METHOD_YAGSON
+}   OR  {
+"null"
+}
