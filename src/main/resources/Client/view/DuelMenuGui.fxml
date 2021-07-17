@@ -85,7 +85,7 @@
                     <VBox alignment="CENTER">
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#nextPhase" prefHeight="26.0" prefWidth="110.0"
-                                    text="Next Phase">
+                                    text="Next Phase" fx:id="nextPhaseButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -103,7 +103,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#summonCard" prefHeight="26.0" prefWidth="110.0"
-                                    text="Summon">
+                                    text="Summon" fx:id="summonButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -121,7 +121,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#setCard" prefHeight="26.0" prefWidth="110.0"
-                                    text="Set">
+                                    text="Set" fx:id="setButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -139,7 +139,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#changePosition" prefHeight="26.0"
-                                    prefWidth="110.0" text="Change Position">
+                                    prefWidth="110.0" text="Change Position" fx:id="changePositionButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -157,7 +157,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#attack" prefHeight="26.0" prefWidth="110.0"
-                                    text="Attack">
+                                    text="Attack" fx:id="attackButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -175,7 +175,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#activateEffect" prefHeight="26.0"
-                                    prefWidth="110.0" text="Activate Effect">
+                                    prefWidth="110.0" text="Activate Effect" fx:id="activateEffectButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -193,7 +193,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#showGraveyard" prefHeight="26.0"
-                                    prefWidth="110.0" text="Show Graveyard">
+                                    prefWidth="110.0" text="Show Graveyard" fx:id="showGraveyardButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -211,7 +211,7 @@
                         </HBox>
                         <HBox>
                             <Button alignment="CENTER" onMouseClicked="#surrender" prefHeight="26.0" prefWidth="110.0"
-                                    text="Surrender">
+                                    text="Surrender" fx:id="surrenderButton">
                                 <cursor>
                                     <Cursor fx:constant="HAND"/>
                                 </cursor>
@@ -242,9 +242,5 @@
             </BorderPane>
         </HBox>
     </left>
-
-    <right>
-        <!--        chatBox-->
-    </right>
 
 </BorderPane>

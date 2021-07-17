@@ -154,6 +154,9 @@ public class GameController extends Controller {
     public int nextPhaseInController() {
         game.nextPhase();
         String phase = game.getPhase();
+        // Update both players GameBoards:
+        updatePlayerGameBoard();
+        updateOpponentGameBoard();
         switch (phase) {
             case "draw phase":
                 game.drawPhase();
@@ -216,46 +219,48 @@ public class GameController extends Controller {
     }
 
     private int tributeSummonErrorHandler(MonsterCard monster) {
-        ArrayList<Integer> cardsToTribute;
-        if (!gameErrorHandler.isThereEnoughCardsToTribute(monster)) {
-            return 7;
-        } else {
-//            if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
-//                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this);
-//                return beastKingBarbaros.summonHandler(monster);
-
-            if (monster.getLevel() > 10) {
-                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(3);
-                if (cardsToTribute == null) return -1;
-
-                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
-                    game.tributeSummon(cardsToTribute);
-                    return 6;
-                } else {
-                    return 9;
-                }
-            } else if (monster.getLevel() >= 7) {
-                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(2);
-                if (cardsToTribute == null) return -1;
-
-                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
-                    game.tributeSummon(cardsToTribute);
-                    return 6;
-                } else {
-                    return 9;
-                }
-            } else {
-                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(1);
-                if (cardsToTribute == null) return -1;
-
-                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
-                    game.tributeSummon(cardsToTribute);
-                    return 6;
-                } else {
-                    return 8;
-                }
-            }
-        }
+        game.summonMonster();
+        return 6;
+//        ArrayList<Integer> cardsToTribute;
+//        if (!gameErrorHandler.isThereEnoughCardsToTribute(monster)) {
+//            return 7;
+//        } else {
+////            if (monster.getSpecial() == SpecialMonsterEnum.BEAST_KING_BARBAROS) {
+////                BeastKingBarbaros beastKingBarbaros = new BeastKingBarbaros(game, gameErrorHandler, this);
+////                return beastKingBarbaros.summonHandler(monster);
+//
+//            if (monster.getLevel() > 10) {
+//                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(3);
+//                if (cardsToTribute == null) return -1;
+//
+//                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+//                    game.tributeSummon(cardsToTribute);
+//                    return 6;
+//                } else {
+//                    return 9;
+//                }
+//            } else if (monster.getLevel() >= 7) {
+//                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(2);
+//                if (cardsToTribute == null) return -1;
+//
+//                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+//                    game.tributeSummon(cardsToTribute);
+//                    return 6;
+//                } else {
+//                    return 9;
+//                }
+//            } else {
+//                cardsToTribute = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardsForTribute(1);
+//                if (cardsToTribute == null) return -1;
+//
+//                if (gameErrorHandler.isTributeCardsValid(cardsToTribute)) {
+//                    game.tributeSummon(cardsToTribute);
+//                    return 6;
+//                } else {
+//                    return 8;
+//                }
+//            }
+//        }
     }
 
     public int setCardErrorHandler() {
@@ -491,32 +496,33 @@ public class GameController extends Controller {
     }
 
     public ArrayList<Card> getCardFromPlayer(int n, CardField... fields) {
-        ArrayList<Card> selectedCards = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            while (true) {
-                String cardName = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardName();
-                // for surrender and cancel:
-
-                Card card = null;
-                for (CardField field : fields) {
-                    if (field.doesCardExist(cardName)) {
-                        card = field.getCardByName(cardName);
-                    }
-                }
-                if (card != null) {
-                    selectedCards.add(card);
-                    break;
-                } else {
-                    StringBuilder errorMessage = new StringBuilder("the selected card wasn't in: ");
-                    for (CardField field : fields) {
-                        errorMessage.append(field.getName()).append("\t");
-                    }
-                    errorMessage.append("(try again!)");
-                    getPlayerServerSendRequest(game.getPlayerOfThisTurn()).showOutput(errorMessage.toString());
-                }
-            }
-        }
-        return selectedCards;
+        return null;
+//        ArrayList<Card> selectedCards = new ArrayList<>();
+//        for (int i = 0; i < n; i++) {
+//            while (true) {
+//                String cardName = getPlayerServerSendRequest(game.getPlayerOfThisTurn()).getCardName();
+//                // for surrender and cancel:
+//
+//                Card card = null;
+//                for (CardField field : fields) {
+//                    if (field.doesCardExist(cardName)) {
+//                        card = field.getCardByName(cardName);
+//                    }
+//                }
+//                if (card != null) {
+//                    selectedCards.add(card);
+//                    break;
+//                } else {
+//                    StringBuilder errorMessage = new StringBuilder("the selected card wasn't in: ");
+//                    for (CardField field : fields) {
+//                        errorMessage.append(field.getName()).append("\t");
+//                    }
+//                    errorMessage.append("(try again!)");
+//                    getPlayerServerSendRequest(game.getPlayerOfThisTurn()).showOutput(errorMessage.toString());
+//                }
+//            }
+//        }
+//        return selectedCards;
     }
 
     public void showOutput(String text) {
@@ -682,8 +688,10 @@ public class GameController extends Controller {
     }
 
     public GameData getGameData(User user) {
-        checkGameEnd();
+        if (!user.equals(game.getOpponentOfThisTurn()))
+            updateOpponentGameBoard();
 
+        checkGameEnd();
         GameData gameData = new GameData();
         User opponent = getOpponent(user);
         gameData.setFields(getUserFields(user));
@@ -699,6 +707,7 @@ public class GameController extends Controller {
         gameData.setOpponentDeckSize(getDeckSize(opponent));
         gameData.setPlayerGraveyard(getPlayerGraveyardCards(user));
         gameData.setGamePhase(getGamePhase());
+        gameData.setTurn(game.getPlayerOfThisTurn().equals(user));
         return gameData;
     }
 
@@ -708,5 +717,17 @@ public class GameController extends Controller {
 
     public String getThisTurnPlayerNickname() {
         return getGame().getPlayerOfThisTurn().getNickname();
+    }
+
+    public void updateOpponentGameBoard() {
+        ClientUpdateController clientUpdateController =
+                ClientUpdateController.getClientUpdateController(game.getOpponentOfThisTurn());
+        clientUpdateController.updateUserGameBoard(game.getOpponentOfThisTurn());
+    }
+
+    public void updatePlayerGameBoard() {
+        ClientUpdateController clientUpdateController =
+                ClientUpdateController.getClientUpdateController(game.getPlayerOfThisTurn());
+        clientUpdateController.updateUserGameBoard(game.getPlayerOfThisTurn());
     }
 }

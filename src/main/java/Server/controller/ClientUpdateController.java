@@ -38,26 +38,27 @@ public class ClientUpdateController {
     }
 
     public void endGame() {
-        String update = ClientUpdateHandler.getUpdateStringFormat(
-                "endGame");
+        String update = ClientUpdateHandler.getUpdateStringFormat("endGame");
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 
     public void showOutput(String message) {
-        String update = ClientUpdateHandler.getUpdateStringFormat(
-                "showOutput", message);
+        String update = ClientUpdateHandler.getUpdateStringFormat("showOutput", message);
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 
     public void playWinMusic() {
-        String update = ClientUpdateHandler.getUpdateStringFormat(
-                "playWinMusic");
+        String update = ClientUpdateHandler.getUpdateStringFormat("playWinMusic");
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 
     public void playLoseMusic() {
-        String update = ClientUpdateHandler.getUpdateStringFormat(
-                "playLoseMusic");
+        String update = ClientUpdateHandler.getUpdateStringFormat("playLoseMusic");
+        ClientUpdateHandler.addClientUpdate(user, update);
+    }
+
+    public void updateUserGameBoard(User user) {
+        String update = ClientUpdateHandler.getUpdateStringFormat("updateGameBoard");
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 

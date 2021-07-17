@@ -17,6 +17,7 @@ public class GameData {
     private int playerDeckSize;
     private int opponentLifePoint;
     private int opponentDeckSize;
+    private boolean isTurn;
 
     public ArrayList<String> getFieldCards(String fieldName) {
         if (fields.containsKey(fieldName))
@@ -72,6 +73,10 @@ public class GameData {
         return opponentDeckSize;
     }
 
+    public boolean isTurn() {
+        return isTurn;
+    }
+
     public void setFields(HashMap<String, ArrayList<String>> fields) {
         this.fields = fields;
     }
@@ -122,5 +127,9 @@ public class GameData {
 
     public void setOpponentDeckSize(int opponentDeckSize) {
         this.opponentDeckSize = opponentDeckSize;
+    }
+
+    public void setTurn(boolean turn) {
+        isTurn = turn;
     }
 }

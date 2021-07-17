@@ -1,6 +1,5 @@
 package Client.view;
 
-import Server.controller.DatabaseController;
 import Client.ClientServer.ClientLoginServer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -128,7 +127,6 @@ public class LoginMenuGui extends MenuGui {
     }
 
     public void exit(MouseEvent mouseEvent) {
-        DatabaseController.exportUsers();
         System.exit(1);
     }
 }
