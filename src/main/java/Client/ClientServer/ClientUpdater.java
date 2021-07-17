@@ -2,6 +2,7 @@ package Client.ClientServer;
 
 import Client.view.DuelMenuGui;
 import Client.view.LobbyMenuGui;
+import Client.view.MatchMakingMenuGui;
 import Network.PortConfig;
 import Network.ServerHost;
 import com.gilecode.yagson.YaGson;
@@ -48,6 +49,7 @@ public class ClientUpdater extends Thread {
         Object[] fields = getObjects(parts[1]);
 
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
+        MatchMakingMenuGui matchMakingMenuGui = MatchMakingMenuGui.getMatchMakingMenuGui();
         LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
 
         // DuelMenu Methods:
@@ -69,7 +71,7 @@ public class ClientUpdater extends Thread {
 
         // MatchMaking Methods:
         if (methodName.equals("startCoinTossMenu")) {
-            lobbyMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
+            matchMakingMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
         }
 
         // Messaging Methods:

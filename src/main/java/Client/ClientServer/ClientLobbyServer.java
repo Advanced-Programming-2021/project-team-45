@@ -1,7 +1,6 @@
 package Client.ClientServer;
 
 import Network.PortConfig;
-import Server.model.Message;
 
 import java.util.ArrayList;
 
@@ -14,6 +13,10 @@ public class ClientLobbyServer extends ClientServer {
     // Sending Request to server:
     public void makeMatch(int rounds) {
         sendRequest.getMethodResult("makeMatch", rounds);
+    }
+
+    public void stopMakeMatch() {
+        sendRequest.getMethodResult("stopMakeMatch");
     }
 
     public void addMessage(String message) {
