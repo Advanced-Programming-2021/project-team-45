@@ -28,7 +28,7 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startLobbyMenu(MouseEvent mouseEvent) {
-        LobbyMenuGui lobbyMenuGui = new LobbyMenuGui();
+        LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
         LobbyMenuGui.setUsername(username);
         try {
             lobbyMenuGui.start(stage);
