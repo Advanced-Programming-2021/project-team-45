@@ -8,11 +8,15 @@ public class ClientDeckServer extends ClientServer{
         super(PortConfig.DECK_PORT.getPort(), "DeckController");
     }
 
-    public void setDeck(Deck deck) {
-        sendRequest.getMethodResult("setDeck",deck);
+    public void setDeck(String deckName) {
+        sendRequest.getMethodResult("setDeck",deckName);
     }
 
     public void deleteDeck(Deck deck) {
         sendRequest.getMethodResult("deleteDeck",deck);
+    }
+
+    public void setController() {
+        sendRequest.getMethodResult("setController");
     }
 }

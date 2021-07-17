@@ -1,5 +1,6 @@
 package Server.ServerController;
 
+import Client.view.DeckMenuGui;
 import Server.controller.DatabaseController;
 import Server.controller.DeckController;
 import Server.controller.DeckStarterController;
@@ -13,6 +14,11 @@ public class DeckRequestHandler extends RequestHandler {
     public DeckRequestHandler(Socket socket) {
         super(socket);
     }
+    private static DeckController deckController;
+
+    public static void setDeckController(DeckController deckController) {
+        DeckRequestHandler.deckController = deckController;
+    }
 
     @Override
     protected String handle(String request) {
@@ -22,25 +28,16 @@ public class DeckRequestHandler extends RequestHandler {
         Object[] fields = fieldParser.getObjects(request);
         Object answer = "";
         User user = DatabaseController.getUserByToken(token);
-        DeckController deckController = new DeckController(user.getUsername());
         switch (methodName) {
             case "setDeck":
-                if (user.getUserDeck().getActiveDeck() != null) {
-                    if (user.getUserDeck().getActiveDeck().getName().equals(((Deck) fields[0]).getName())) {
-                        user.getUserDeck().deleteDeckFromUserDecks(((Deck) fields[0]).getName());
-                        user.getUserDeck().getUserDecks().add((Deck) fields[0]);
-                        user.getUserDeck().activateDeck(((Deck) fields[0]).getName());
-                    } else {
-                        user.getUserDeck().deleteDeckFromUserDecks(((Deck) fields[0]).getName());
-                        user.getUserDeck().getUserDecks().add((Deck) fields[0]);
-                    }
-                } else {
-                    user.getUserDeck().deleteDeckFromUserDecks(((Deck) fields[0]).getName());
-                    user.getUserDeck().getUserDecks().add((Deck) fields[0]);
-                }
+                deckController.setDeck(user.getUserDeck().getDeckByName((String) fields[0]));
                 break;
             case "deleteDeck":
                 user.getUserDeck().deleteDeckFromUserDecks(((Deck) fields[0]).getName());
+                break;
+            case "setController":
+                setDeckController(new DeckController(DatabaseController.getUserByToken(token).getUsername()));
+                break;
 
         }
         return fieldParser.getAnswer(answer);

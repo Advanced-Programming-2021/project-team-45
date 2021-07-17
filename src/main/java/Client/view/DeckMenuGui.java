@@ -45,6 +45,10 @@ public class DeckMenuGui extends MenuGui {
         initialize();
     }
 
+    public static void setDeckServer(ClientDeckServer deckServer) {
+        DeckMenuGui.deckServer = deckServer;
+    }
+
     private ClientDeckServer getDeckServer(){
         if(deckServer!= null )return deckServer;
         deckServer=new ClientDeckServer();
@@ -155,7 +159,7 @@ public class DeckMenuGui extends MenuGui {
     }
 
     public void back(MouseEvent mouseEvent) {
-        getDeckServer().setDeck(deckController.getDeck());
+
         try {
             new DeckStarterMenuGui().start(stage);
         } catch (Exception e) {

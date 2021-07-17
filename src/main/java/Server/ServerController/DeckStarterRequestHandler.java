@@ -2,12 +2,14 @@ package Server.ServerController;
 
 import Server.controller.DatabaseController;
 import Server.controller.DeckStarterController;
+import Server.model.card.Deck;
 import Server.model.user.User;
 import javafx.scene.control.ChoiceBox;
 
 import java.net.Socket;
 
 public class DeckStarterRequestHandler extends RequestHandler{
+    private static DeckStarterController controller;
     public DeckStarterRequestHandler(Socket socket) {
         super(socket);
     }
@@ -20,7 +22,6 @@ public class DeckStarterRequestHandler extends RequestHandler{
         Object[] fields = fieldParser.getObjects(request);
         Object answer = "";
         User user = DatabaseController.getUserByToken(token);
-        DeckStarterController controller=new DeckStarterController(user.getUsername());
         switch (methodName){
             case "getAllDeck":
                 answer=controller.getAllDeck(user);
@@ -29,10 +30,25 @@ public class DeckStarterRequestHandler extends RequestHandler{
                 answer=controller.getActiveDeck(user);
                 break;
             case "getUser":
-                answer=user;
+                answer=user.getUsername();
                 break;
-            case "createNewDeckAndGetIt":
-                answer=controller.createNewDeckAndGetIt((String) fields[0],(User) fields[1]);
+            case "getDeckNames":
+                answer=controller.getDeckNames();
+                break;
+            case "getActiveDeckName":
+                answer=controller.getActiveDeckName();
+                break;
+            case "startDeckForEdit":
+                controller.startDeckForEdit();
+                break;
+            case "setDeckController":
+                controller=new DeckStarterController(DatabaseController.getUserByToken(token).getUsername());
+                break;
+            case "createDeck":
+                controller.createDeck((String) fields[0]);
+                break;
+            case "setActiveDeck":
+                controller.setActiveDeck((String) fields[0]);
                 break;
         }
         return fieldParser.getAnswer(answer);
