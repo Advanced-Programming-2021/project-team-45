@@ -5,6 +5,7 @@ import Client.view.LobbyMenuGui;
 import Network.PortConfig;
 import Network.ServerHost;
 import com.gilecode.yagson.YaGson;
+import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -30,8 +31,14 @@ public class ClientUpdater extends Thread {
                 dataOutputStream.writeUTF(updateRequest);
                 dataOutputStream.flush();
                 String serverResponse = dataInputStream.readUTF();
-                if (!serverResponse.equals("null"))
-                    handleResponse(serverResponse);
+                if (!serverResponse.equals("null")) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            handleResponse(serverResponse);
+                        }
+                    });
+                }
                 Thread.sleep(500);
             }
             socket.close();

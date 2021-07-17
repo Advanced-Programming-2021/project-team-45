@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Client.view.MatchMakingMenuGui"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <center>
+        <HBox alignment="CENTER">
+            <Button fx:id="Cancel" alignment="CENTER" onMouseClicked="#cancelMatchMaking" prefHeight="26.0"
+                    prefWidth="80.0" text="Login">
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+                <effect>
+                    <DropShadow>
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.15"/>
+                        </color>
+                    </DropShadow>
+                </effect>
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </center>
+
+</BorderPane>
