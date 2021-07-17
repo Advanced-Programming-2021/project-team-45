@@ -63,6 +63,8 @@ public class ClientUpdater extends Thread {
             duelMenuGui.playWinMusic();
         } else if (methodName.equals("playLoseMusic")) {
             duelMenuGui.playLoseMusic();
+        } else if (methodName.equals("updateGameBoard")) {
+            duelMenuGui.updateGameBoard();
         }
 
         // MatchMaking Methods:

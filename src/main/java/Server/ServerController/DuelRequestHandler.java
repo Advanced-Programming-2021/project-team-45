@@ -6,7 +6,6 @@ import Server.controller.MatchMakingController;
 import Server.model.user.User;
 
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class DuelRequestHandler extends RequestHandler {
     public DuelRequestHandler(Socket socket) {

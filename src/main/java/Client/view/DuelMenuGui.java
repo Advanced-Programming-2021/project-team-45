@@ -39,9 +39,7 @@ public class DuelMenuGui extends MenuGui {
             "opponent_monster",
             "opponent_spell"
     };
-
     private static ClientDuelServer clientDuelServer;
-
     private static Stage stage;
     private static Stage showGraveyardPopupWindow;
     private static Stage pausePopupWindow;
@@ -55,7 +53,7 @@ public class DuelMenuGui extends MenuGui {
     private static String[] selectCardFieldNames;
     private static String selectCardMethodName;
     private static final Method[] duelMenuMethods;
-
+    private static boolean isTurn;
     @FXML
     public Pane fieldPane;
     @FXML
@@ -76,6 +74,22 @@ public class DuelMenuGui extends MenuGui {
     public Text playerUserNameText;
     @FXML
     public Label phaseLabel;
+    @FXML
+    public Button nextPhaseButton;
+    @FXML
+    public Button summonButton;
+    @FXML
+    public Button setButton;
+    @FXML
+    public Button changePositionButton;
+    @FXML
+    public Button attackButton;
+    @FXML
+    public Button activateEffectButton;
+    @FXML
+    public Button surrenderButton;
+    @FXML
+    public Button showGraveyardButton;
 
     static {
         duelMenuMethods = DuelMenuGui.class.getDeclaredMethods();
@@ -96,23 +110,21 @@ public class DuelMenuGui extends MenuGui {
 
     @FXML
     private void initialize() {
-        // TODO: NOT SURE about this
         clientDuelServer = new ClientDuelServer();
-
         Image image = GetGameElements.getCardFieldImage();
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         fieldPane.setBackground(new Background(backgroundImage));
         DuelMenuGui.duelMenuGui = this;
-
         updateGameBoard();
         updateSelectedCard();
     }
 
     public static void setSelectedCard(GameCard card) {
         DuelMenuGui.selectedCardName = card.getCardName();
-        clientDuelServer.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
+        if (isTurn)
+            clientDuelServer.selectCardErrorHandler(card.getCardType(), card.getPosition(), card.isOpponent());
     }
 
     private static void showMessage(String message) {
@@ -177,6 +189,10 @@ public class DuelMenuGui extends MenuGui {
         }
     }
 
+    public static boolean isTurn() {
+        return isTurn;
+    }
+
     private static Method getMethodByName(String methodName) {
         for (Method method : duelMenuMethods) {
             if (method.getName().equals(methodName))
@@ -204,6 +220,20 @@ public class DuelMenuGui extends MenuGui {
         updateOpponentLifePoint();
         updateDecks();
         updatePhase();
+        setButtonsEnable();
+    }
+
+    private void setButtonsEnable() {
+        DuelMenuGui.isTurn = clientDuelServer.getGameData().isTurn();
+        boolean isDisabled = !clientDuelServer.getGameData().isTurn();
+        nextPhaseButton.setDisable(isDisabled);
+        summonButton.setDisable(isDisabled);
+        setButton.setDisable(isDisabled);
+        changePositionButton.setDisable(isDisabled);
+        attackButton.setDisable(isDisabled);
+        activateEffectButton.setDisable(isDisabled);
+        surrenderButton.setDisable(isDisabled);
+        showGraveyardButton.setDisable(isDisabled);
     }
 
     private void updateFields(ArrayList<String> cardData, String fieldName) {

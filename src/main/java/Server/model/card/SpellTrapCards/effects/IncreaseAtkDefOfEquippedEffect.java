@@ -29,7 +29,6 @@ public class IncreaseAtkDefOfEquippedEffect extends Effect {
 
         ArrayList<Card> input = gameController.getCardFromPlayer(1, playerField);
         if (input != null) {
-
             MonsterCard monster = (MonsterCard) input.get(0);
             for (MonsterType type : monsterTypes) {
                 if (monster.getType() == type) {
