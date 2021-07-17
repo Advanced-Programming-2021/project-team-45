@@ -1,7 +1,6 @@
 package Client.view;
 
 import Client.ClientServer.ClientLobbyServer;
-import Server.model.Message;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -20,12 +18,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.xml.sax.HandlerBase;
 
 import java.util.ArrayList;
 
 
 public class LobbyMenuGui extends MenuGui {
+    private static LobbyMenuGui lobbyMenuGui;
     private static ClientLobbyServer clientLobbyServer;
     private static Pane pane;
     private static Stage stage;
@@ -41,6 +39,12 @@ public class LobbyMenuGui extends MenuGui {
         clientLobbyServer = new ClientLobbyServer();
     }
 
+    public static LobbyMenuGui getLobbyMenuGui() {
+        if (lobbyMenuGui == null)
+            lobbyMenuGui = new LobbyMenuGui();
+        return lobbyMenuGui;
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         pane = FXMLLoader.load(getClass().getResource("LobbyMenuGui.fxml"));
@@ -54,11 +58,11 @@ public class LobbyMenuGui extends MenuGui {
         refreshMessages();
     }
 
-    public static void startCoinToss(String opponentUsername, boolean isWinner) {
+    public void startCoinTossMenu(String opponentUsername, boolean isWinner) {
         CoinTossMenu coinTossMenu = new CoinTossMenu();
-        CoinTossMenu.setUserNames(username, opponentUsername);
+        CoinTossMenu.setUsernames(username, opponentUsername);
         CoinTossMenu.setWinner(isWinner);
-        
+
         try {
             coinTossMenu.start(stage);
         } catch (Exception e) {

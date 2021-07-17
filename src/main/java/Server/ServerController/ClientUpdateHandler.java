@@ -57,7 +57,7 @@ public class ClientUpdateHandler extends RequestHandler {
         if (parts[1].equals("UPDATE")) {
             String update = getUserUpdate(user);
             if (update != null)
-                answer = fieldParser.getAnswer(update);
+                answer = update;
         }
         return answer;
     }

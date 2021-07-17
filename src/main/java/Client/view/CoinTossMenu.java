@@ -36,7 +36,7 @@ public class CoinTossMenu extends MenuGui {
     public VBox firstPlayerHBox;
     public Text firstPlayerText;
 
-    public static void setUserNames(String playerUsername, String opponentUsername) {
+    public static void setUsernames(String playerUsername, String opponentUsername) {
         CoinTossMenu.playerUsername = playerUsername;
         CoinTossMenu.opponentUsername = opponentUsername;
     }

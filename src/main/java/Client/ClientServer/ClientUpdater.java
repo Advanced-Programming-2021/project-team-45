@@ -40,12 +40,13 @@ public class ClientUpdater extends Thread {
         }
     }
 
-    private void handleResponse(String  serverResponse) {
+    private void handleResponse(String serverResponse) {
         String[] parts = serverResponse.split("\n");
         String methodName = parts[0];
         Object[] fields = getObjects(parts[1]);
 
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
+        LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
 
         if (methodName.equals("showGameWinner")) {
             duelMenuGui.showGameWinner((String) fields[0], (int) fields[1], (int) fields[2]);
@@ -61,8 +62,8 @@ public class ClientUpdater extends Thread {
             duelMenuGui.playLoseMusic();
         }
 
-        if (methodName.equals("startCoinToss")) {
-            LobbyMenuGui.startCoinToss((String) fields[0], (boolean) fields[1]);
+        if (methodName.equals("startCoinTossMenu")) {
+            lobbyMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
         }
     }
 

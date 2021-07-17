@@ -32,17 +32,19 @@ public class MatchMakingController {
     public synchronized static void makeMatch(User user, int rounds) {
         // TODO: better algorithm:
         if (rounds == 1) {
-            if (usersWaitingFor1RoundMatch.size() == 1) {
+            if (usersWaitingFor1RoundMatch.size() > 0) {
                 User user2 = usersWaitingFor1RoundMatch.get(0);
                 usersWaitingFor1RoundMatch.remove(0);
                 startRandomGame(user, user2, 1);
+            } else {
+                usersWaitingFor1RoundMatch.add(user);
             }
         }
     }
 
     public static void startUserCoinTossMenu(User user, String opponentUsername, boolean isWinner) {
-        ClientUpdateController serverSendRequest = ClientUpdateController.getClientUpdateController(user);
-        serverSendRequest.startCoinTossMenu(opponentUsername, isWinner);
+        ClientUpdateController clientUpdateController = ClientUpdateController.getClientUpdateController(user);
+        clientUpdateController.startCoinTossMenu(opponentUsername, isWinner);
     }
 
     public static void startRandomGame(User user1, User user2, int rounds) {
