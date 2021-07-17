@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientScoreBoardServer;
 import Server.controller.ScoreboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +23,8 @@ import java.util.LinkedHashMap;
 
 public class ScoreBoardMenuGui extends MenuGui {
     private static Stage stage;
-
+    private static ClientScoreBoardServer clientScoreBoardServer;
     public static BorderPane borderpane;
-
     public static GridPane scoreboard;
 
     @Override
@@ -65,10 +65,17 @@ public class ScoreBoardMenuGui extends MenuGui {
         update();
     }
 
+    private static ClientScoreBoardServer getClientScoreBoardServer() {
+        if (clientScoreBoardServer == null)
+            clientScoreBoardServer = new ClientScoreBoardServer();
+
+        return clientScoreBoardServer;
+    }
+
 
 
     public static void update() {
-        LinkedHashMap<String, Integer> list = ScoreboardController.getSortedNicknameScore();
+        LinkedHashMap<String, Integer> list = getClientScoreBoardServer().getSortedNicknameScore();
         ArrayList<String> keyList = new ArrayList<>();
         keyList.addAll(list.keySet());
 
@@ -89,7 +96,7 @@ public class ScoreBoardMenuGui extends MenuGui {
 
     private static void setList(int i, int rank, String nickName, Integer score) {
         boolean isLoginUser = false;
-        if (nickName.equals(ScoreboardController.getNickname(username)))
+        if (nickName.equals(getClientScoreBoardServer().getNickname(username)))
             isLoginUser = true;
 
         scoreboard.add(getLabel(String.valueOf(rank + 1), isLoginUser), 0, i + 1);
