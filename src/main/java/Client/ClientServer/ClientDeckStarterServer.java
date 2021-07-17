@@ -22,11 +22,35 @@ public class ClientDeckStarterServer extends ClientServer{
         return (Deck) sendRequest.getMethodResult("getActiveDeck");
     }
 
-    public User getUser() {
-        return (User) sendRequest.getMethodResult("getUser");
+    public String getUserName() {
+        return (String) sendRequest.getMethodResult("getUser");
     }
 
     public Deck createNewDeckAndGetIt(TextField nameOfDeck, User user) {
         return (Deck) sendRequest.getMethodResult("createNewDeckAndGetIt",nameOfDeck.getText(),user);
+    }
+
+    public ArrayList<String> getDeckNames() {
+        return (ArrayList<String>) sendRequest.getMethodResult("getDeckNames");
+    }
+
+    public String getActiveDeckName() {
+        return (String) sendRequest.getMethodResult("getActiveDeckName");
+    }
+
+    public void startDeckForEdit() {
+        sendRequest.getMethodResult("startDeckForEdit");
+    }
+
+    public void setDeckStarterController() {
+        sendRequest.getMethodResult("setDeckController");
+    }
+
+    public void createDeck(String text) {
+        sendRequest.getMethodResult("createDeck",text);
+    }
+
+    public void setActiveDeck(String value) {
+        sendRequest.getMethodResult("setActiveDeck",value);
     }
 }

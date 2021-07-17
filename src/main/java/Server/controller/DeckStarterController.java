@@ -114,4 +114,24 @@ public class DeckStarterController extends Controller {
     public void setActiveDeck(String name) {
         user.getUserDeck().activateDeck(name);
     }
+
+    public ArrayList<String> getDeckNames() {
+        ArrayList<String> answer=new ArrayList<>();
+        for(int i=0;i<user.getUserDeck().getUserDecks().size();i++){
+            answer.add(user.getUserDeck().getUserDecks().get(i).getName());
+        }
+        return answer;
+    }
+
+    public String getActiveDeckName() {
+        return user.getUserDeck().getActiveDeck().getName();
+    }
+
+    public void startDeckForEdit() {
+
+    }
+
+    public void createDeck(String field) {
+        user.getUserDeck().createDeck(field,user);
+    }
 }

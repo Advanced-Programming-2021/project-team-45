@@ -1,9 +1,7 @@
 package Client.view;
 
+import Client.ClientServer.ClientDeckServer;
 import Client.ClientServer.ClientDeckStarterServer;
-import Server.controller.DeckStarterController;
-import Server.model.card.Deck;
-import Server.model.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,7 +20,6 @@ public class DeckStarterMenuGui extends MenuGui {
     public TextField nameOfDeck;
     private static AnchorPane anchorPane;
     private static Stage stage;
-    private static DeckStarterController deckStarterController;
     private static ClientDeckStarterServer deckStarterServer;
 
     private ClientDeckStarterServer getServer(){
@@ -41,18 +38,37 @@ public class DeckStarterMenuGui extends MenuGui {
 
     @FXML
     void initialize() {
-        deckStarterController = new DeckStarterController(username);
-        ArrayList<Deck> allUserDeck=getServer().getDecks();
-        Deck deck=getServer().getActiveDeck();
-        deckStarterController.initializeFromMenu(chooseActiveDeck, chooseEditDeck,allUserDeck,deck);
+        getServer().setDeckStarterController();
+        ArrayList<String> allDeckNames=getServer().getDeckNames();
+        String activeDeck=getServer().getActiveDeckName();
+        for (String allDeckName : allDeckNames) {
+            chooseEditDeck.getItems().add(allDeckName);
+            chooseActiveDeck.getItems().add(allDeckName);
+        }
+        if(activeDeck!=null){
+            chooseActiveDeck.setValue(activeDeck);
+        }
     }
 
     public void editADeck(MouseEvent mouseEvent) {
         if (chooseEditDeck.getValue() == null) {
             ShowOutput.showOutput("error box", "you have to choose a deck");
         } else {
-            User user=getServer().getUser();
-            deckStarterController.startEditDeck(stage,user, chooseEditDeck.getValue());
+            startDeckMenuForEdit();
+        }
+    }
+
+    private void startDeckMenuForEdit() {
+        DeckMenuGui deckMenuGui=new DeckMenuGui();
+        DeckMenuGui.setUsername(getServer().getUserName());
+        ClientDeckServer deckServer=new ClientDeckServer();
+        deckServer.setController();
+        deckServer.setDeck(chooseEditDeck.getValue());
+        DeckMenuGui.setDeckServer(deckServer);
+        try {
+            deckMenuGui.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -61,9 +77,22 @@ public class DeckStarterMenuGui extends MenuGui {
             ShowOutput.showOutput("error box", "you have to write a name for your deck");
         } else {
             ShowOutput.showOutput("AlertBox", "new deck created successfully");
-            User user=getServer().getUser();
-            Deck deck=getServer().createNewDeckAndGetIt(nameOfDeck,user);
-            deckStarterController.startCreateADeck(stage, user,deck);
+            startCreateDeck();
+        }
+    }
+
+    private void startCreateDeck() {
+        DeckMenuGui deckMenuGui=new DeckMenuGui();
+        DeckMenuGui.setUsername(getServer().getUserName());
+        getServer().createDeck(nameOfDeck.getText());
+        ClientDeckServer deckServer=new ClientDeckServer();
+        deckServer.setController();
+        DeckMenuGui.setDeckServer(deckServer);
+        deckServer.setDeck(nameOfDeck.getText());
+        try {
+            deckMenuGui.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -79,7 +108,7 @@ public class DeckStarterMenuGui extends MenuGui {
         if (chooseActiveDeck.getValue() == null || chooseActiveDeck.getValue().equals("")) {
             ShowOutput.showOutput("Error Box", "please choose a active deck");
         } else {
-            deckStarterController.setActiveDeck(chooseActiveDeck.getValue());
+            getServer().setActiveDeck(chooseActiveDeck.getValue());
         }
     }
 }
