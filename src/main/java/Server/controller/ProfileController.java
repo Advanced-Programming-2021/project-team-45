@@ -42,4 +42,7 @@ public class ProfileController extends Controller {
         return user;
     }
 
+    public String getProfileImage() {
+        return user.getProfilePicturePath();
+    }
 }
