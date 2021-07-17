@@ -51,7 +51,7 @@ public class ClientUpdateHandler extends RequestHandler {
 
     @Override
     protected String handle(String request) {
-        String answer = null;
+        String answer = "null";
         String[] parts = request.split("\n");
         User user = DatabaseController.getUserByToken(parts[0]);
         if (parts[1].equals("UPDATE")) {
