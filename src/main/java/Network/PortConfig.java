@@ -9,7 +9,8 @@ public enum PortConfig {
     DECK_PORT(2345),
     DeckStarter_PORT(882),
     LOBBY_PORT(3333),
-    UPDATE_CLIENT_PORT(111);
+    UPDATE_CLIENT_PORT(111),
+    SCOREBOARD_PORT(300);
 
 
     private final int port;

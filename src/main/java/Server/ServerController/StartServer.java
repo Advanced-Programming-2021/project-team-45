@@ -22,6 +22,8 @@ public class StartServer {
         lobbyServer.start();
         ServerController updateClientServer = new ServerController(PortConfig.UPDATE_CLIENT_PORT.getPort());
         updateClientServer.start();
+        ServerController scoreboardServer = new ServerController(PortConfig.SCOREBOARD_PORT.getPort());
+        scoreboardServer.start();
         // And so on for every port...
     }
 }

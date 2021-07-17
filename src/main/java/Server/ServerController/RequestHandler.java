@@ -38,6 +38,8 @@ public abstract class RequestHandler extends Thread {
             requestHandler = new LobbyRequestHandler(socket);
         } else if (port == PortConfig.UPDATE_CLIENT_PORT.getPort()) {
             requestHandler = new ClientUpdateHandler(socket);
+        } else if (port == PortConfig.SCOREBOARD_PORT.getPort()) {
+            requestHandler = new ScoreboardRequestHandler(socket);
         }
         return requestHandler;
     }
