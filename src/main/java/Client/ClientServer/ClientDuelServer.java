@@ -1,9 +1,7 @@
 package Client.ClientServer;
 
-import Client.view.DuelMenuGui;
 import Network.GameData;
 import Network.PortConfig;
-import com.gilecode.yagson.YaGson;
 
 public class ClientDuelServer extends ClientServer {
     private GameData gameData;

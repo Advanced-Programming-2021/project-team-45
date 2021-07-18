@@ -5,7 +5,6 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.gilecode.yagson.YaGson;
 import com.google.gson.reflect.TypeToken;
-import Server.controller.ShopController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;

@@ -1,7 +1,6 @@
 package Client.view;
 
 import Client.ClientServer.ClientShopServer;
-import Server.controller.ShopController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
