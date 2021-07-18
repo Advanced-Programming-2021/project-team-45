@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import Server.controller.CardCreatorController;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -48,7 +47,6 @@ public class CardCreatorMenuGui extends MenuGui {
     public TextField Defense;
     public TextField Attack;
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
-    CardCreatorController cardCreatorController;
     private ClientCardCreatorServer cardCreatorServer;
 
 
@@ -93,8 +91,8 @@ public class CardCreatorMenuGui extends MenuGui {
         checkBoxes.add(TrapHole);
         checkBoxes.add(TwinTwisters);
         checkBoxes.add(UnitedWeStands);
-        cardCreatorController = new CardCreatorController();
-        cardCreatorController.calculate(checkBoxes, price, Level, Price, Attack, Defense);
+        calculator calculator=new calculator();
+        calculator.realRun(checkBoxes, price, Level, Price, Attack, Defense);
 
     }
 
@@ -117,11 +115,10 @@ public class CardCreatorMenuGui extends MenuGui {
                 Matcher matcher1 = pattern.matcher(Defense.getText());
                 if (matcher.find() && matcher1.find()) bol1 = true;
             }
-            if (bol1 && bol && cardCreatorController.hasEnoughMoney()) {
-                cardCreatorController.createACard(allOnEffects, Level.getValue(), DescriptionField.getText()
-                        , Integer.parseInt(Price.getText()), NameField.getText(), chooseType.getValue(),
-                        Attack.getText(), Defense.getText());
-                getCardCreatorServer().addCardToTheNetwork(cardCreatorController);
+            if (bol1 && bol) {
+                getCardCreatorServer().createCard(Level.getValue(),DescriptionField.getText(),
+                        Integer.parseInt(Price.getText()),NameField.getText(),chooseType.getValue()
+                        ,Attack.getText(),Defense.getText());
                 ShowOutput.showOutput("successful", "card created successfully");
                 back(mouseEvent);
             } else {
@@ -154,6 +151,86 @@ public class CardCreatorMenuGui extends MenuGui {
             new MainMenuGui().start(stage);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+}
+
+class calculator extends Thread {
+    ArrayList<CheckBox> allEffects;
+    private Spinner<Integer> level;
+    private Text value;
+    private TextField attack;
+    private TextField defense;
+    private long effectprice = 0;
+
+    public calculator realRun(ArrayList<CheckBox> allEffects, int price, Spinner<Integer> level, Text value, TextField attack
+            , TextField defense) {
+        this.allEffects = allEffects;
+        this.level = level;
+        this.value = value;
+        this.attack = attack;
+        this.defense = defense;
+        effectprice = price;
+        this.start();
+        return this;
+    }
+
+    public long getEffectPrice() {
+        return effectprice;
+    }
+
+    @Override
+    public void run() {
+        int allActives = 0;
+        for (CheckBox allEffect : allEffects) {
+            if (allEffect.isSelected()) allActives++;
+        }
+        effectprice = 1000 - level.getValue() * 100;
+        int newLevel = level.getValue();
+        int ATTACK = convertToNumber(attack);
+        int DEFENSE = convertToNumber(defense);
+        while (true) {
+            int newActivate = 0;
+            for (CheckBox allEffect : allEffects) {
+                if (allEffect.isSelected()) newActivate++;
+            }
+            if (allActives != newActivate) {
+                int diference = newActivate - allActives;
+                allActives = newActivate;
+                effectprice = (long) (1000 - level.getValue() * 100 + 500 * (long) Math.pow(2.718281828, allActives) -
+                        500 + Math.pow(ATTACK, 1) + Math.pow(DEFENSE, 1));
+            }
+            if (level.getValue() != newLevel) {
+                effectprice = effectprice + (newLevel - level.getValue()) * 100L;
+                newLevel = level.getValue();
+            }
+            if (convertToNumber(attack) != ATTACK) {
+                effectprice -= Math.pow(ATTACK, 1);
+                ATTACK =convertToNumber(attack);
+                effectprice += Math.pow(ATTACK, 1);
+            }
+            if (convertToNumber(defense) != DEFENSE) {
+                effectprice -= Math.pow(DEFENSE, 1);
+                DEFENSE = convertToNumber(defense);
+                effectprice += Math.pow(DEFENSE, 1);
+            }
+            value.setText(String.valueOf(effectprice));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+     int convertToNumber(TextField num) {
+        if (num.getText().equals("")) {
+            return 0;
+        } else {
+            Pattern pattern = Pattern.compile("^\\d+$");
+            Matcher matcher = pattern.matcher(num.getText());
+            if (matcher.find()) return Integer.parseInt(num.getText());
+            else return 0;
         }
     }
 }
