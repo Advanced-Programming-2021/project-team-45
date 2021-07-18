@@ -72,6 +72,8 @@ public class GameController extends Controller {
             // calculate and increase score and money after match:
             if (isGameEnded) {
                 increaseMoneyAndScore(playerMaxLp, opponentMaxLp);
+                // Update all users scoreboard:
+                ClientUpdateController.updateScoreboardForAllUsers();
                 getPlayerServerSendRequest(player).endGame();
                 getPlayerServerSendRequest(opponentPlayer).endGame();
             }

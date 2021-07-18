@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class ScoreBoardMenuGui extends MenuGui {
+    private static ScoreBoardMenuGui scoreBoardMenuGui;
     private static Stage stage;
     private static ClientScoreBoardServer clientScoreBoardServer;
     public static BorderPane borderpane;
@@ -56,19 +57,22 @@ public class ScoreBoardMenuGui extends MenuGui {
         Scene scene = new Scene(borderpane, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("Score Board");
-        update();
+        updateScoreboard();
+    }
+
+    public static ScoreBoardMenuGui getScoreBoardMenuGui() {
+        if (scoreBoardMenuGui == null)
+            scoreBoardMenuGui = new ScoreBoardMenuGui();
+        return scoreBoardMenuGui;
     }
 
     private static ClientScoreBoardServer getClientScoreBoardServer() {
         if (clientScoreBoardServer == null)
             clientScoreBoardServer = new ClientScoreBoardServer();
-
         return clientScoreBoardServer;
     }
 
-
-
-    public static void update() {
+    public static void updateScoreboard() {
         LinkedHashMap<String, Integer> list = getClientScoreBoardServer().getSortedNicknameScore();
         ArrayList<String> keyList = new ArrayList<>();
         keyList.addAll(list.keySet());

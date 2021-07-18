@@ -1,5 +1,6 @@
 package Server.ServerController;
 
+import Server.controller.ClientUpdateController;
 import Server.controller.DatabaseController;
 import Server.controller.MatchMakingController;
 import Server.controller.MessengerController;
@@ -34,6 +35,11 @@ public class LobbyRequestHandler extends RequestHandler {
             answer = MessengerController.getAllMessagesData();
         } else if (methodName.equals("setIsPinnedMessageById")) {
             MessengerController.setIsPinnedMessageById((int) fields[0], (boolean) fields[1]);
+        }
+
+        // Update messages for users:
+        if (methodName.contains("Message")) {
+            ClientUpdateController.updateMessagesForAllUsers();
         }
 
         // MatchMaking methods:

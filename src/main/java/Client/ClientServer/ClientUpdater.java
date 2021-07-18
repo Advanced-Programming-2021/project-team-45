@@ -3,6 +3,7 @@ package Client.ClientServer;
 import Client.view.DuelMenuGui;
 import Client.view.LobbyMenuGui;
 import Client.view.MatchMakingMenuGui;
+import Client.view.ScoreBoardMenuGui;
 import Network.PortConfig;
 import Network.ServerHost;
 import com.gilecode.yagson.YaGson;
@@ -73,12 +74,16 @@ public class ClientUpdater extends Thread {
         if (methodName.equals("startCoinTossMenu")) {
             matchMakingMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
         }
-
+        // TODO: check if user is in this menu!!!
         // Messaging Methods:
-
-
-        // Scoreboards Methods:
-
+        if (methodName.equals("updateMessages")) {
+            lobbyMenuGui.updateMessages();
+        }
+        // TODO: check if user is in this menu!!!
+        // Scoreboard Methods:
+        if (methodName.equals("updateScoreboard")) {
+            ScoreBoardMenuGui.updateScoreboard();
+        }
     }
 
     private Object[] getObjects(String json) {
