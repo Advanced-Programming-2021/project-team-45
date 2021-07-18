@@ -42,22 +42,6 @@ public class MainMenuController extends Controller {
     }
 
 
-    public static void ShortCutsRunnable(Stage stage) {
-        stage.getScene().getAccelerators().put(KeyCombination.keyCombination("CTRL+SHIFT+C"),
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            new CheatMenu().start(null);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-        );
-    }
-
-
     public void startAi() {
         new ArtificialIntelligence();
     }
