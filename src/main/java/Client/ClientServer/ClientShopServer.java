@@ -15,6 +15,16 @@ public class ClientShopServer extends ClientServer{
         return (int) result;
     }
 
+    public HashMap<String, Integer> getShopInventory() {
+        Object result = sendRequest.getMethodResult("getShopInventory");
+        return (HashMap<String, Integer>) result;
+    }
+
+    public HashMap<String, Boolean> getCardsStatus() {
+        Object result = sendRequest.getMethodResult("getCardsStatus");
+        return (HashMap<String, Boolean>) result;
+    }
+
     public int buyCardErrorHandler(String cardName) {
         Object result = sendRequest.getMethodResult("buyCardErrorHandler", cardName);
         return (int) result;

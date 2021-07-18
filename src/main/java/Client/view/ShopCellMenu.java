@@ -3,6 +3,8 @@ package Client.view;
 import Client.ClientServer.ClientShopServer;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -11,20 +13,23 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import Client.view.elements.GetImage;
 
-import java.io.IOException;
-
 public class ShopCellMenu extends AnchorPane {
     private static ClientShopServer clientShopServer;
+    private ShopMenuGui shopMenuGui;
     private String cardName;
+    private int shopInventory;
+    private boolean isBanned;
     private Button buyButton;
-    private Text numberOfBoughtCardsText;
+    private Text cardText;
 
-    public ShopCellMenu(String cardName) {
+    public ShopCellMenu(String cardName, int shopInventory, boolean isBanned) {
         super();
         this.setWidth(216);
         this.setHeight(322);
         this.setStyle("-fx-background-color: red; -fx-border-color: orange");
         this.cardName = cardName;
+        this.shopInventory = shopInventory;
+        this.isBanned = isBanned;
         setAnchorPane();
     }
 
@@ -32,9 +37,14 @@ public class ShopCellMenu extends AnchorPane {
         ShopCellMenu.clientShopServer = clientShopServer;
     }
 
+    public void setShopMenuGui(ShopMenuGui shopMenuGui) {
+        this.shopMenuGui = shopMenuGui;
+    }
+
     public void setAnchorPane() {
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(new ImagePattern(GetImage.getCardImage(cardName)));
+        ImageView imageView = new ImageView();
         rectangle.setHeight(218);
         rectangle.setWidth(146);
         this.getChildren().add(rectangle);
@@ -44,17 +54,12 @@ public class ShopCellMenu extends AnchorPane {
 
     public void setButton() {
         buyButton = new Button();
+        buyButton.setPrefSize(36, 25);
         buyButton.setTextFill(Color.color(1, 1, 1));
         int price = clientShopServer.getCardsPrices().get(cardName);
-        if (clientShopServer.getUserMoney() >= price) {
-            buyButton.setText("buy");
-            buyButton.setStyle("-fx-background-color: #0000ff");
-        }
-        else {
-            buyButton.setText("_");
-            buyButton.setStyle("-fx-background-color: orange");
-        }
-        buyButton.setOnMouseEntered(e -> {
+        if (isBanned) {
+            setImageButton(buyButton);
+        } else {
             if (clientShopServer.getUserMoney() >= price) {
                 buyButton.setText("buy");
                 buyButton.setStyle("-fx-background-color: #0000ff");
@@ -63,39 +68,56 @@ public class ShopCellMenu extends AnchorPane {
                 buyButton.setText("_");
                 buyButton.setStyle("-fx-background-color: orange");
             }
+        }
+        buyButton.setOnMouseEntered(e -> {
+            if (!isBanned) {
+                if (clientShopServer.getUserMoney() >= price) {
+                    buyButton.setText("buy");
+                    buyButton.setStyle("-fx-background-color: #0000ff");
+                }
+                else {
+                    buyButton.setText("_");
+                    buyButton.setStyle("-fx-background-color: orange");
+                }
+            }
             Tooltip tooltip = new Tooltip("card price: " + price + "\nyour money: " + clientShopServer.getUserMoney());
             buyButton.setTooltip(tooltip);
         });
         buyButton.setOnMouseClicked(e -> {
-            try {
-                buyCard();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            buyCard();
         });
         buyButton.setLayoutX(150);
         buyButton.setLayoutY(10);
         this.getChildren().add(buyButton);
     }
 
-    public void setCardText() {
-        numberOfBoughtCardsText = new Text("");
-        numberOfBoughtCardsText.setFont(new Font("Arial Bold", 12));
-        int number = clientShopServer.numberOfBoughtCards(cardName);
-        if (number != 0)
-            numberOfBoughtCardsText.setText("bought cards: " + number);
-        numberOfBoughtCardsText.setY(230);
-        this.getChildren().add(numberOfBoughtCardsText);
+    private void setImageButton(Button buyButton) {
+        ImageView imageView = new ImageView(new Image("src\\main\\resources\\Client\\view\\chatButtonImages\\forbidden.png"));
+        imageView.setFitWidth(19);
+        imageView.setFitHeight(17);
+        buyButton.setGraphic(imageView);
     }
 
-    public void buyCard() throws IOException {
+    public void setCardText() {
+        cardText = new Text("");
+        cardText.setFont(new Font("Arial Bold", 12));
+        int number = clientShopServer.numberOfBoughtCards(cardName);
+        if (number != 0)
+            cardText.setText("bought cards: " + number + "\nNo. of cards in shop: " + shopInventory);
+        else
+            cardText.setText("No. of cards in shop: " + shopInventory);
+        cardText.setY(230);
+        this.getChildren().add(cardText);
+    }
+
+    public void buyCard() {
         if (clientShopServer.getCardsPrices().get(cardName) <= clientShopServer.getUserMoney()) {
             int result = clientShopServer.buyCardErrorHandler(cardName);
             if (result == 2)
                 ShowOutput.showOutput("Error", "not enough money");
             else {
                 ShowOutput.showOutput("Success", "Card added successfully");
-                numberOfBoughtCardsText.setText("bought cards: " + clientShopServer.numberOfBoughtCards(cardName));
+                shopMenuGui.update();
             }
         }
     }

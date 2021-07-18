@@ -32,12 +32,47 @@ public class ShopController extends Controller {
         }
     }
 
+    public int increaseShopInventoryErrorHandler(String cardName, int number) {
+        if (!Shop.doesCardExist(cardName))
+            return 1;
+        else {
+            Shop.increaseCardInventoryInShop(cardName, number);
+            return 0;
+        }
+    }
+
+    public int decreaseShopInventoryErrorHandler(String cardName, int number) {
+        if (!Shop.doesCardExist(cardName))
+            return 1;
+        else {
+            Shop.decreaseCardInventoryInShop(cardName, number);
+            return 0;
+        }
+    }
+
+    public int setIsCardBannedErrorHandler(String cardName, boolean isBanned) {
+        if (!Shop.doesCardExist(cardName))
+            return 1;
+        else {
+            Shop.setIsCardBanned(cardName, isBanned);
+            return 0;
+        }
+    }
+
     public int numberOfBoughtCards(String cardName) {
         return user.getCardInventory().getCardCount(cardName);
     }
 
     public HashMap<String, Integer> getCardsPrices() {
         return Shop.getCardsPrices();
+    }
+
+    public HashMap<String, Integer> getShopInventory() {
+        return Shop.getShopInventory();
+    }
+
+    public HashMap<String, Boolean> getCardsStatus() {
+        return Shop.getCardsStatus();
     }
 
     public void increaseMoneyCheat(int money) {
