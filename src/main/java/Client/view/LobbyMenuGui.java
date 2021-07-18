@@ -65,7 +65,7 @@ public class LobbyMenuGui extends MenuGui {
 
     @FXML
     void initialize() {
-        refreshMessages();
+        updateMessages();
     }
 
     public void play1RoundGame(ActionEvent actionEvent) {
@@ -81,10 +81,10 @@ public class LobbyMenuGui extends MenuGui {
     public void sendMessage(MouseEvent mouseEvent) {
         clientLobbyServer.addMessage(textArea.getText());
         textArea.setText(null);
-        refreshMessages();
+        updateMessages();
     }
 
-    public void refreshMessages() {
+    public void updateMessages() {
         messagesGridPane.getChildren().clear();
         ArrayList<Object[]> messagesData = clientLobbyServer.getAllMessagesData();
         MessageView.setClientLobbyServer(clientLobbyServer);

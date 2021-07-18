@@ -1,7 +1,6 @@
 package Client.view;
 
 import Client.ClientServer.ClientDuelServer;
-import Server.controller.MainMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

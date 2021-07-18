@@ -1,7 +1,6 @@
 package Server.controller;
 
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import Server.model.card.Deck;
 import Server.model.user.User;

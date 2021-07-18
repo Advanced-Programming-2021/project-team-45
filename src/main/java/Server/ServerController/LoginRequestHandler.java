@@ -1,5 +1,5 @@
 package Server.ServerController;
-;
+
 import Server.controller.LoginController;
 
 import java.net.Socket;

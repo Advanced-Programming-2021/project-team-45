@@ -31,6 +31,10 @@ public class ShopRequestHandler extends RequestHandler{
            answer = shopController.getCardsPrices();
        else if (methodName.equals("increaseMoneyCheat"))
            shopController.increaseMoneyCheat((Integer) fields[0]);
+       else if (methodName.equals("getShopInventory"))
+           answer = shopController.getShopInventory();
+       else if (methodName.equals("getCardsStatus"))
+           answer = shopController.getCardsStatus();
 
        return fieldParser.getAnswer(answer);
     }
