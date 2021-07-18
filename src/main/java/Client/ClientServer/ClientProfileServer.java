@@ -2,7 +2,6 @@ package Client.ClientServer;
 
 import Network.PortConfig;
 
-
 public class ClientProfileServer extends ClientServer{
     public ClientProfileServer() {
         super(PortConfig.PROFILE_PORT.getPort(), "ProfileController");
