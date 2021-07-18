@@ -1,6 +1,5 @@
 package Server.controller;
 
-import Server.ServerController.LobbyRequestHandler;
 import Server.model.user.User;
 
 import java.util.ArrayList;

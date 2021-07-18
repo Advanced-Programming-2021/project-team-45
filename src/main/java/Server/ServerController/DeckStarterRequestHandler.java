@@ -2,9 +2,7 @@ package Server.ServerController;
 
 import Server.controller.DatabaseController;
 import Server.controller.DeckStarterController;
-import Server.model.card.Deck;
 import Server.model.user.User;
-import javafx.scene.control.ChoiceBox;
 
 import java.net.Socket;
 
