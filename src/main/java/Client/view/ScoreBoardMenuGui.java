@@ -1,27 +1,22 @@
 package Client.view;
 
 import Client.ClientServer.ClientScoreBoardServer;
-import Server.controller.ScoreboardController;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class ScoreBoardMenuGui extends MenuGui {
+    private static ScoreBoardMenuGui scoreBoardMenuGui;
     private static Stage stage;
     private static ClientScoreBoardServer clientScoreBoardServer;
     public static BorderPane borderpane;
@@ -62,19 +57,22 @@ public class ScoreBoardMenuGui extends MenuGui {
         Scene scene = new Scene(borderpane, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("Score Board");
-        update();
+        updateScoreboard();
+    }
+
+    public static ScoreBoardMenuGui getScoreBoardMenuGui() {
+        if (scoreBoardMenuGui == null)
+            scoreBoardMenuGui = new ScoreBoardMenuGui();
+        return scoreBoardMenuGui;
     }
 
     private static ClientScoreBoardServer getClientScoreBoardServer() {
         if (clientScoreBoardServer == null)
             clientScoreBoardServer = new ClientScoreBoardServer();
-
         return clientScoreBoardServer;
     }
 
-
-
-    public static void update() {
+    public static void updateScoreboard() {
         LinkedHashMap<String, Integer> list = getClientScoreBoardServer().getSortedNicknameScore();
         ArrayList<String> keyList = new ArrayList<>();
         keyList.addAll(list.keySet());

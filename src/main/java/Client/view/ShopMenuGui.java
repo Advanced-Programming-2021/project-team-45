@@ -1,14 +1,15 @@
 package Client.view;
 
 import Client.ClientServer.ClientShopServer;
-import Server.controller.MainMenuController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -37,24 +38,38 @@ public class ShopMenuGui extends MenuGui {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ShopMenuGui.stage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("ShopMenuGui.fxml"));
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setStyle("-fx-background-color: black");
-        scrollPane.setFitToWidth(true);
-        scrollPane.setContent(root);
+
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setPrefSize(1080, 720);
+        anchorPane.setStyle("-fx-background-color: black");
+        Button backButton = new Button("back");
+        backButton.setPrefSize(50, 26);
+        backButton.setLayoutY(20);
+        backButton.setLayoutX(1000);
+        backButton.setOnMouseClicked(e -> backToMainMenu());
+        gridPane = new GridPane();
+        gridPane.setVgap(5);
+        gridPane.setHgap(10);
+        anchorPane.getChildren().addAll(gridPane, backButton);
+        ScrollPane scrollPane = new ScrollPane(anchorPane);
         Scene scene = new Scene(scrollPane, 1080, 720);
         stage.setScene(scene);
         stage.setTitle("shop");
+        update();
         createShortCut();
     }
 
-    @FXML
-    void initialize() {
+
+    public void update() {
         shopCellMenus = new ArrayList<>();
         HashMap<String, Integer> cards = getClientShopServer().getCardsPrices();
+        HashMap<String, Integer> shopInventory = getClientShopServer().getShopInventory();
+        HashMap<String, Boolean> cardsStatus = getClientShopServer().getCardsStatus();
         ShopCellMenu.setClientShopServer(clientShopServer);
         for (int index = 0; index < cards.keySet().size(); index++) {
-            ShopCellMenu shopCellMenu = new ShopCellMenu((String) cards.keySet().toArray()[index]);
+            String cardName = (String) cards.keySet().toArray()[index];
+            ShopCellMenu shopCellMenu = new ShopCellMenu(cardName, shopInventory.get(cardName), cardsStatus.get(cardName));
+            shopCellMenu.setShopMenuGui(this);
             shopCellMenus.add(shopCellMenu);
         }
 
@@ -65,9 +80,12 @@ public class ShopMenuGui extends MenuGui {
         }
     }
 
-    public void backToMainMenu(MouseEvent mouseEvent) throws Exception {
+    public void backToMainMenu() {
         MainMenuGui mainMenuGui = new MainMenuGui();
-        mainMenuGui.start(stage);
+        try {
+            mainMenuGui.start(stage);
+        } catch(Exception ignored) {
+        }
     }
 
     private void createShortCut(){

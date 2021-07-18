@@ -1,13 +1,8 @@
 package Server.controller;
 
-
-import javafx.scene.input.KeyCombination;
-import javafx.stage.Stage;
-
 import Server.model.ArtificialIntelligence;
 
 import Server.model.user.User;
-import Client.view.CheatMenu;
 
 public class MainMenuController extends Controller {
 

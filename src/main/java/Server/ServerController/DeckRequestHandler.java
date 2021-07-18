@@ -2,6 +2,7 @@ package Server.ServerController;
 
 import Server.controller.DatabaseController;
 import Server.controller.DeckController;
+import Server.model.card.Deck;
 import Server.model.user.User;
 
 import java.net.Socket;
