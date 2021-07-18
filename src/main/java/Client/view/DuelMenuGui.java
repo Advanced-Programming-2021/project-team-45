@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
@@ -831,7 +832,18 @@ public class DuelMenuGui extends MenuGui {
 
 
     private void createShortCut() {
-        MainMenuController.ShortCutsRunnable(stage);
+        stage.getScene().getAccelerators().put(KeyCombination.keyCombination("CTRL+SHIFT+C"),
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new CheatMenu().start(null);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
     }
 
     public void increaseLpCheat(String input) {

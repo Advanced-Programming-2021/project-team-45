@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -70,7 +71,18 @@ public class ShopMenuGui extends MenuGui {
     }
 
     private void createShortCut(){
-        MainMenuController.ShortCutsRunnable(stage);
+        stage.getScene().getAccelerators().put(KeyCombination.keyCombination("CTRL+SHIFT+C"),
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new CheatMenu().start(null);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
     }
 
     private ClientShopServer getClientShopServer() {
