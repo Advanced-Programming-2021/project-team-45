@@ -11,6 +11,7 @@ public class DeckRequestHandler extends RequestHandler {
     public DeckRequestHandler(Socket socket) {
         super(socket);
     }
+
     private static DeckController deckController;
 
     public static void setDeckController(DeckController deckController) {
@@ -26,15 +27,43 @@ public class DeckRequestHandler extends RequestHandler {
         Object answer = "";
         User user = DatabaseController.getUserByToken(token);
         switch (methodName) {
+            case "initialize":
+                deckController.initialize();
+                break;
             case "setDeck":
                 deckController.setDeck(user.getUserDeck().getDeckByName((String) fields[0]));
                 break;
             case "deleteDeck":
-                user.getUserDeck().deleteDeckFromUserDecks(((Deck) fields[0]).getName());
+                deckController.deleteDeck();
                 break;
             case "setController":
                 setDeckController(new DeckController(DatabaseController.getUserByToken(token).getUsername()));
                 break;
+            case "deleteCardFromDeck":
+                deckController.deleteCardFromDeck((int) fields[0], (int) fields[1], (boolean) fields[2]);
+                break;
+            case "addCardToSideDeck":
+                deckController.addCardToSideDeck((String) fields[0]);
+                break;
+            case "addCardToMainDeck":
+                deckController.addCardToMainDeck((String) fields[0]);
+                break;
+            case "getAllCardNames":
+                answer=deckController.getAllCardsName();
+                break;
+            case "getMainCardNames":
+                answer=deckController.getMainCardNames();
+                break;
+            case "getSideCardNames":
+                answer=deckController.getSideCardNames();
+                break;
+            case "putCardToMainHashMap":
+                deckController.putCardToMainHashMap((int)fields[0],(int)fields[1],(String)fields[2]);
+                break;
+            case "putCardToSideHashMap":
+                deckController.putCardToSideHashMap((int)fields[0],(int)fields[1],(String)fields[2]);
+                break;
+
 
         }
         return fieldParser.getAnswer(answer);
