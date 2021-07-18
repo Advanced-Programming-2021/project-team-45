@@ -1,13 +1,10 @@
 package Server.ServerController;
 
-import Client.view.DeckMenuGui;
 import Server.controller.DatabaseController;
 import Server.controller.DeckController;
-import Server.controller.DeckStarterController;
 import Server.model.card.Deck;
 import Server.model.user.User;
 
-import javax.crypto.spec.DESKeySpec;
 import java.net.Socket;
 
 public class DeckRequestHandler extends RequestHandler {
