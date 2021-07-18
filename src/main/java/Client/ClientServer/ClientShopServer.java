@@ -25,6 +25,21 @@ public class ClientShopServer extends ClientServer{
         return (HashMap<String, Boolean>) result;
     }
 
+    public int setIsCardBannedErrorHandler(String cardName, boolean isBanned) {
+        Object result = sendRequest.getMethodResult("setIsCardBannedErrorHandler", cardName, isBanned);
+        return (int) result;
+    }
+
+    public int increaseShopInventoryErrorHandler(String cardName, int number) {
+        Object result = sendRequest.getMethodResult("increaseShopInventoryErrorHandler", cardName, number);
+        return (int) result;
+    }
+
+    public int decreaseShopInventoryErrorHandler(String cardName, int number) {
+        Object result = sendRequest.getMethodResult("decreaseShopInventoryErrorHandler", cardName, number);
+        return (int) result;
+    }
+
     public int buyCardErrorHandler(String cardName) {
         Object result = sendRequest.getMethodResult("buyCardErrorHandler", cardName);
         return (int) result;

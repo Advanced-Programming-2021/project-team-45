@@ -14,7 +14,11 @@ public class CheatMenu extends MenuGui {
     String[] CHEATS_REGEX = {
             "^(increase --LP (\\d+))$",
             "^(duel set-winner (\\w+))$",
-            "^(increase --money (\\d+))$"
+            "^(increase --money (\\d+))$",
+            "^setAvailable --cardname (.*)$",
+            "^setUnavailable --cardname (.*)$",
+            "^increaseCard --count (\\d+) --cardname (.*)$",
+            "^decreaseCard --count (\\d+) --cardname (.*)$"
     };
     AnchorPane anchorPane;
     private static Stage stage;
@@ -37,6 +41,7 @@ public class CheatMenu extends MenuGui {
 
     public void enterTheCheat(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            stage.close();
             String input = cheatField.getText();
             if (input.matches(CHEATS_REGEX[0]))
                 DuelMenuGui.getDuelMenuGui().increaseLpCheat(input);
@@ -44,7 +49,15 @@ public class CheatMenu extends MenuGui {
                 DuelMenuGui.getDuelMenuGui().setWinnerCheat(input);
             if (input.matches(CHEATS_REGEX[2]))
                 ShopMenuGui.getShopMenuGui().increaseMoneyCheat(input);
-            stage.close();
+            if (input.matches(CHEATS_REGEX[3]))
+                ShopMenuGui.getShopMenuGui().setAvailableCard(input);
+            if (input.matches(CHEATS_REGEX[4]))
+                ShopMenuGui.getShopMenuGui().setUnavailableCard(input);
+            if (input.matches(CHEATS_REGEX[5]))
+                ShopMenuGui.getShopMenuGui().increaseCard(input);
+            if (input.matches(CHEATS_REGEX[6]))
+                ShopMenuGui.getShopMenuGui().decreaseCard(input);
+            //stage.close();
         }
     }
 }
