@@ -1,7 +1,6 @@
 package Client.ClientServer;
 
 import Network.PortConfig;
-import Server.model.card.Deck;
 import java.util.ArrayList;
 
 public class ClientDeckServer extends ClientServer{
