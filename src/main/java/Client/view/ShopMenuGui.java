@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ShopMenuGui extends MenuGui {
     private static Stage stage;
@@ -112,5 +114,54 @@ public class ShopMenuGui extends MenuGui {
     public void increaseMoneyCheat(String input) {
         String moneyStr = input.replace("increase --money ", "");
         clientShopServer.increaseMoneyCheat(Integer.parseInt(moneyStr));
+    }
+
+    public void setAvailableCard(String input) {
+        String cardName = input.replace("setAvailable --cardname ", "");
+        int answer = clientShopServer.setIsCardBannedErrorHandler(cardName, false);
+        if (answer == 1)
+            ShowOutput.showOutput("Error", "there is no card with this name");
+        else
+            ShowOutput.showOutput("Success", "the " + cardName + " is available now");
+        ShopMenuGui.getShopMenuGui().update();
+    }
+
+    public void setUnavailableCard(String input) {
+        String cardName = input.replace("setUnavailable --cardname ", "");
+        int answer = clientShopServer.setIsCardBannedErrorHandler(cardName, true);
+        if (answer == 1)
+            ShowOutput.showOutput("Error", "there is no card with this name");
+        else {
+            ShowOutput.showOutput("Success", "the " + cardName + " is unavailable now");
+            ShopMenuGui.getShopMenuGui().update();
+        }
+    }
+
+    public void increaseCard(String input) {
+        Pattern pattern = Pattern.compile("^increaseCard --count (\\d+) --cardname (.*)$");
+        Matcher matcher = pattern.matcher(input);
+        matcher.find();
+        int number = Integer.parseInt(matcher.group(1));
+        int answer = clientShopServer.increaseShopInventoryErrorHandler(matcher.group(2), number);
+        if (answer == 1)
+            ShowOutput.showOutput("Error", "there is no card with this name");
+        else {
+            ShowOutput.showOutput("Success", "the " + matcher.group(2) + " increased successfully");
+            ShopMenuGui.getShopMenuGui().update();
+        }
+    }
+
+    public void decreaseCard(String input) {
+        Pattern pattern = Pattern.compile("^decreaseCard --count (\\d+) --cardname (.*)$");
+        Matcher matcher = pattern.matcher(input);
+        matcher.find();
+        int number = Integer.parseInt(matcher.group(1));
+        int answer = clientShopServer.decreaseShopInventoryErrorHandler(matcher.group(2), number);
+        if (answer == 1)
+            ShowOutput.showOutput("Error", "there is no card with this name");
+        else {
+            ShowOutput.showOutput("Success", "the " + matcher.group(2) + " decreased successfully");
+            ShopMenuGui.getShopMenuGui().update();
+        }
     }
 }

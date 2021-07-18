@@ -35,6 +35,12 @@ public class ShopRequestHandler extends RequestHandler{
            answer = shopController.getShopInventory();
        else if (methodName.equals("getCardsStatus"))
            answer = shopController.getCardsStatus();
+       else if (methodName.equals("setIsCardBannedErrorHandler"))
+           answer = shopController.setIsCardBannedErrorHandler((String) fields[0], (boolean) fields[1]);
+       else if (methodName.equals("increaseShopInventoryErrorHandler"))
+           answer = shopController.increaseShopInventoryErrorHandler((String) fields[0], (int) fields[1]);
+       else if (methodName.equals("decreaseShopInventoryErrorHandler"))
+           answer = shopController.decreaseShopInventoryErrorHandler((String) fields[0], (int) fields[1]);
 
        return fieldParser.getAnswer(answer);
     }

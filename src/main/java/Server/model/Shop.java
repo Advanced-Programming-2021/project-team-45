@@ -20,9 +20,7 @@ public class Shop {
 
         for (Card card : allCards) {
             shopInventory.put(card.getCardName(), 10);
-            if (card.getCardName().equals("Axe Raider"))
-                cardsStatus.put(card.getCardName(), true);
-            else cardsStatus.put(card.getCardName(), false);
+            cardsStatus.put(card.getCardName(), false);
         }
     }
 

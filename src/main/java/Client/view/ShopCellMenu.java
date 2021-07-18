@@ -111,13 +111,17 @@ public class ShopCellMenu extends AnchorPane {
     }
 
     public void buyCard() {
-        if (clientShopServer.getCardsPrices().get(cardName) <= clientShopServer.getUserMoney()) {
-            int result = clientShopServer.buyCardErrorHandler(cardName);
-            if (result == 2)
-                ShowOutput.showOutput("Error", "not enough money");
-            else {
-                ShowOutput.showOutput("Success", "Card added successfully");
-                shopMenuGui.update();
+        if (!isBanned) {
+            if (clientShopServer.getCardsPrices().get(cardName) <= clientShopServer.getUserMoney()) {
+                int result = clientShopServer.buyCardErrorHandler(cardName);
+                if (result == 2)
+                    ShowOutput.showOutput("Error", "not enough money");
+                else if (result == 3)
+                    ShowOutput.showOutput("Error", "the number of " + cardName + " in shop is 0");
+                else {
+                    ShowOutput.showOutput("Success", "Card added successfully");
+                    shopMenuGui.update();
+                }
             }
         }
     }
