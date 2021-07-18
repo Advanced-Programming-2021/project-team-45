@@ -45,5 +45,12 @@
                    strokeType="INSIDE" width="200.0"/>
         <Text layoutX="20.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number Of Cards: "/>
         <Text layoutX="127.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="578.0" layoutX="1.0" layoutY="42.0" stroke="BLACK"
+                   strokeType="INSIDE" width="200.0"/>
+        <ImageView fitHeight="578.0" fitWidth="200.0" layoutX="1.0" layoutY="44.0">
+            <image>
+                <Image url="@pictureFiles/MBB_004388.dds.png"/>
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>
