@@ -84,6 +84,7 @@ public class DeckMenuGui extends MenuGui {
                 sideRectangles[i][j].setFill(Color.color(0, 0, 1, 0));
                 mainSideRectangles.put(sideRectangles[i][j],"side");
                 anchorPane.getChildren().add(sideRectangles[i][j]);
+                setMouseClicked(sideRectangles[i][j]);
                 deckController.handlerOfCards(sideRectangles[i][j]);
             }
         }
