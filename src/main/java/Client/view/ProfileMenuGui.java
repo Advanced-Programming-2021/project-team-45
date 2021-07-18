@@ -36,21 +36,12 @@ public class ProfileMenuGui extends MenuGui {
         setUsernameAndNickname();
     }
 
-    public void initialize() {
-        String image=getProfileServer().getProfileImage();
-        // imageView.setImage(image);
-
-    }
-
     private ClientProfileServer getProfileServer(){
         if(profileServer!=null) return profileServer;
         profileServer=new ClientProfileServer();
         return profileServer;
     }
 
-//    public static void setProfileController(ProfileController profileController) {
-////        ProfileMenuGui.profileController = profileController;
-//    }
 
     public void ChooseFile(MouseEvent mouseEvent) throws FileNotFoundException {
         File file = GetInput.choosePictureFile();
@@ -81,8 +72,8 @@ public class ProfileMenuGui extends MenuGui {
         usernameText.setY(109);
         nicknameText.setY(149);
         nicknameText.setX(309);
-        usernameText.setText("username: " + profileServer.getUser().getUsername());
-        nicknameText.setText("nickname: " + profileServer.getUser().getNickname());
+        usernameText.setText("username: " + getProfileServer().getUserName());
+        nicknameText.setText("nickname: " + getProfileServer().getNickName());
         anchorPane.getChildren().add(usernameText);
         anchorPane.getChildren().add(nicknameText);
     }

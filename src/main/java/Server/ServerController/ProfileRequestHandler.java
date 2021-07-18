@@ -32,10 +32,13 @@ public class ProfileRequestHandler extends RequestHandler {
                 answer=profileController.changePasswordErrorHandler((String) fields[1], (String) fields[0]);
                 break;
             case "getUser":
-                answer=profileController.getUser();
+                answer=profileController.getUser().getUsername();
                 break;
             case "getProfileImage":
                 answer=profileController.getProfileImage();
+                break;
+            case "getNickName":
+                answer=profileController.getNickName();
                 break;
 
         }

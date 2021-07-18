@@ -2,6 +2,7 @@ package Client.view;
 
 import Client.ClientServer.ClientDeckServer;
 import Server.controller.DeckController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,6 +35,7 @@ public class DeckMenuGui extends MenuGui {
     private static Label description;
     private static Rectangle pictureOfCard;
     private static Rectangle rectanglePictureOfDescription;
+    private Rectangle mouseClicked;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -67,6 +69,7 @@ public class DeckMenuGui extends MenuGui {
                 mainRectangles[i][j].setFill(Color.color(1, 1, 1, 0));
                 mainSideRectangles.put(mainRectangles[i][j],"main");
                 anchorPane.getChildren().add(mainRectangles[i][j]);
+                setMouseClicked(mainRectangles[i][j]);
                 deckController.handlerOfCards(mainRectangles[i][j]);
             }
         }
@@ -176,5 +179,21 @@ public class DeckMenuGui extends MenuGui {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setMouseClicked(Rectangle rectangle){
+        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+
+                rectangle.setFill(Color.color(0, 0, 1, 0));
+                rectangle.setAccessibleText("null");
+            }
+        });
+    }
+
+    public Rectangle getMouseClicked() {
+        return mouseClicked;
     }
 }

@@ -45,4 +45,8 @@ public class ProfileController extends Controller {
     public String getProfileImage() {
         return user.getProfilePicturePath();
     }
+
+    public String getNickName() {
+        return user.getNickname();
+    }
 }
