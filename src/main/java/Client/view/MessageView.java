@@ -114,13 +114,13 @@ public class MessageView extends HBox {
     private void deleteMessage() {
         optionPopUpWindow.close();
         clientLobbyServer.deleteMessageErrorHandler(id);
-        lobbyMenuGui.refreshMessages();
+        lobbyMenuGui.updateMessages();
     }
 
     private void editMessage(String newMessage) {
         optionPopUpWindow.close();
         clientLobbyServer.editMessageErrorHandler(id, newMessage);
-        lobbyMenuGui.refreshMessages();
+        lobbyMenuGui.updateMessages();
     }
 
     private void pinMessage() {

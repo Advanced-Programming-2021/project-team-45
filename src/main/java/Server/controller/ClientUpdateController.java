@@ -24,6 +24,18 @@ public class ClientUpdateController {
         return userClientUpdateControllerHashMap.get(user);
     }
 
+    // Methods of Lobby to call from client:
+    public static void updateMessagesForAllUsers() {
+        String update = ClientUpdateHandler.getUpdateStringFormat("updateMessages");
+        ClientUpdateHandler.addUpdateForAllClients(update);
+    }
+
+    // Methods of Scoreboard to call from client:
+    public static void updateScoreboardForAllUsers() {
+        String update = ClientUpdateHandler.getUpdateStringFormat("updateScoreboard");
+        ClientUpdateHandler.addUpdateForAllClients(update);
+    }
+
     // Methods of GameController to call from Client:
     public void showGameWinner(String winnerUsername, int playerWins, int opponentWins) {
         String update = ClientUpdateHandler.getUpdateStringFormat(
@@ -62,7 +74,7 @@ public class ClientUpdateController {
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 
-    // Methods of Lobby to call from client:
+    // Methods of MatchMakingMenu to call from client:
     public void startCoinTossMenu(String opponentUsername, boolean isWinner) {
         String update = ClientUpdateHandler.getUpdateStringFormat(
                 "startCoinTossMenu", opponentUsername, isWinner);
