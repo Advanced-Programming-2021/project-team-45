@@ -25,10 +25,11 @@ public class ShopController extends Controller {
         } else if (!shop.hasEnoughMoney(cardName)) {
             return 2;
 
+        } else if (Shop.getShopInventory().get(cardName) == 0){
+            return 3;
         } else {
             shop.buy(cardName);
             return 0;
-
         }
     }
 
