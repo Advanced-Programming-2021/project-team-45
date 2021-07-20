@@ -1,6 +1,9 @@
 package Server.ServerController;
 
 import Network.PortConfig;
+import Server.controller.DatabaseController;
+
+import java.util.Scanner;
 
 public class StartServer {
     public static void main(String[] args) {
@@ -25,5 +28,12 @@ public class StartServer {
         ServerController scoreboardServer = new ServerController(PortConfig.SCOREBOARD_PORT.getPort());
         scoreboardServer.start();
         // And so on for every port...
+
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String ignored = scanner.nextLine();
+            DatabaseController.exportUsers();
+        }
     }
 }

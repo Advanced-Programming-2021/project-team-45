@@ -81,7 +81,7 @@ public class ScoreBoardMenuGui extends MenuGui {
         scoreboard.add(getLabel("nickname", false), 1, 0);
         scoreboard.add(getLabel("score", false), 2, 0);
 
-        setList(0,  0, keyList.get(0), list.get(keyList.get(0)));
+        setList(0, 0, keyList.get(0), list.get(keyList.get(0)));
         int counter = 0;
         for (int i = 1; i < list.size(); i++) {
             String key = keyList.get(i);
@@ -120,10 +120,11 @@ public class ScoreBoardMenuGui extends MenuGui {
     }
 
     public void backToMainMenu() {
+        MenuGui.setIsScoreboard(true);
         MainMenuGui mainMenuGui = new MainMenuGui();
         try {
             mainMenuGui.start(stage);
-        } catch(Exception e) {
+        } catch (Exception ignored) {
         }
     }
 }
