@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -34,10 +35,12 @@ public class LobbyMenuGui extends MenuGui {
     public Text onlineUsersText;
     @FXML
     public TextArea textArea;
-
+    @FXML
+    public TextField userNameText;
     static {
         clientLobbyServer = new ClientLobbyServer();
     }
+
 
     public static LobbyMenuGui getLobbyMenuGui() {
         if (lobbyMenuGui == null)
@@ -66,6 +69,48 @@ public class LobbyMenuGui extends MenuGui {
     @FXML
     void initialize() {
         updateMessages();
+    }
+
+    public void play1RoundGameWithAnotherUser() {
+        String opponentUserName = userNameText.getText();
+        userNameText.setText(null);
+        int answer = clientLobbyServer.makeMatchWithAnotherUser(opponentUserName, 1);
+        if (answer == 1)
+            ShowOutput.showOutput("Error", "there is no user with this username");
+        else if (answer == 2)
+            ShowOutput.showOutput("Error", "you must play with another user except yourself!");
+        else if (answer == 3)
+            ShowOutput.showOutput("Error", "the user is offline now");
+        else {
+            startMatchMakingMenuGui();
+            // wait for opponent answer;
+        }
+    }
+
+    public void play3RoundGameWithAnotherUser() {
+        String opponentUserName = userNameText.getText();
+        userNameText.setText(null);
+        int answer = clientLobbyServer.makeMatchWithAnotherUser(opponentUserName, 3);
+        if (answer == 1)
+            ShowOutput.showOutput("Error", "there is no user with this username");
+        else if (answer == 2)
+            ShowOutput.showOutput("Error", "you must play with another user except yourself!");
+        else if (answer == 3)
+            ShowOutput.showOutput("Error", "the user is offline now");
+        else if (answer == 4)
+            ShowOutput.showOutput("Error", "the user waits for another game");
+        else {
+            startMatchMakingMenuGui();
+            // wait for opponent answer;
+        }
+    }
+
+    public void askForDuel(String opponentUserName, int rounds) {
+        boolean answer = GetInput.getYesNoAnswer("do you want to play with " + opponentUserName + " in " + rounds + " rounds?");
+        if (answer)
+            clientLobbyServer.startMatchWithAnotherUser(opponentUserName, username, rounds);
+        else
+            clientLobbyServer.refuseMatch(opponentUserName, username, rounds);
     }
 
     public void play1RoundGame(ActionEvent actionEvent) {
@@ -102,6 +147,17 @@ public class LobbyMenuGui extends MenuGui {
         try {
             mainMenuGui.start(stage);
         } catch (Exception ignored) {
+        }
+    }
+
+    public void startLobbyCoinTossMenu(String opponentUsername, boolean isWinner) {
+        CoinTossMenu coinTossMenu = new CoinTossMenu();
+        CoinTossMenu.setUsernames(username, opponentUsername);
+        CoinTossMenu.setWinner(isWinner);
+        try {
+            coinTossMenu.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -10,11 +10,15 @@ public class MatchMakingController {
     private final static HashMap<User, GameController> userGameControllerHashMap;
     private final static ArrayList<User> usersWaitingFor1RoundMatch;
     private final static ArrayList<User> usersWaitingFor3RoundMatch;
+    private final static ArrayList<User> usersWaitingFor1RoundMatchWithAnotherUser;
+    private final static ArrayList<User> usersWaitingFor3RoundMatchWithAnotherUser;
 
     static {
         userGameControllerHashMap = new HashMap<>();
         usersWaitingFor1RoundMatch = new ArrayList<>();
         usersWaitingFor3RoundMatch = new ArrayList<>();
+        usersWaitingFor1RoundMatchWithAnotherUser = new ArrayList<>();
+        usersWaitingFor3RoundMatchWithAnotherUser = new ArrayList<>();
     }
 
     // we have to set the gameController for both users after MatchMaking: (I put it in GameController constructor)
@@ -26,6 +30,55 @@ public class MatchMakingController {
 
     public synchronized static void setGameController(User user, GameController gameController) {
         userGameControllerHashMap.put(user, gameController);
+    }
+
+    public synchronized static int makeMatchWithAnotherUser(User user, String opponentUserName, int rounds) {
+        if (User.getUserByUsername(opponentUserName) == null)
+            return 1;
+        else if (user.getUsername().equals(opponentUserName))
+            return 2;
+        else if (!DatabaseController.isUserOnline(User.getUserByUsername(opponentUserName)))
+            return 3;
+        else if (usersWaitingFor1RoundMatchWithAnotherUser.contains(User.getUserByUsername(opponentUserName)) ||
+                usersWaitingFor3RoundMatchWithAnotherUser.contains(User.getUserByUsername(opponentUserName)) ||
+                usersWaitingFor1RoundMatch.contains(User.getUserByUsername(opponentUserName)) ||
+                usersWaitingFor3RoundMatch.contains(User.getUserByUsername(opponentUserName)))
+            return 4;
+        else {
+            ClientUpdateController.getClientUpdateController(User.getUserByUsername(opponentUserName)).askForDuel(user.getUsername(), rounds);
+            usersWaitingFor1RoundMatchWithAnotherUser.add(user);
+            return 0;
+        }
+    }
+
+    public synchronized static void startMatchWithAnotherUser(String username, String opponentUsername, int rounds) {
+        if (rounds == 1)
+            usersWaitingFor1RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
+        else
+            usersWaitingFor3RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
+
+        int rand = new Random().nextInt(2);
+        if (rand == 0) {
+            GameController gameController = new GameController(username, opponentUsername, rounds);
+            gameController.createNewGame();
+            startUserCoinTossMenu(User.getUserByUsername(username), opponentUsername, true);
+            startLobbyUserCoinTossMenu(User.getUserByUsername(opponentUsername), username, false);
+        } else {
+            GameController gameController = new GameController(opponentUsername, username, rounds);
+            gameController.createNewGame();
+            startUserCoinTossMenu(User.getUserByUsername(username), opponentUsername, false);
+            startLobbyUserCoinTossMenu(User.getUserByUsername(opponentUsername), username, true);
+        }
+    }
+
+    public static synchronized void refuseMatch(String username, String opponentUsername, int rounds) {
+        if (rounds == 1)
+            usersWaitingFor1RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
+        else
+            usersWaitingFor3RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
+
+        ClientUpdateController clientUpdateController = ClientUpdateController.getClientUpdateController(User.getUserByUsername(username));
+        clientUpdateController.startRefuseMatchView(opponentUsername);
     }
 
     public synchronized static void makeMatch(User user, int rounds) {
@@ -44,6 +97,11 @@ public class MatchMakingController {
     public static void startUserCoinTossMenu(User user, String opponentUsername, boolean isWinner) {
         ClientUpdateController clientUpdateController = ClientUpdateController.getClientUpdateController(user);
         clientUpdateController.startCoinTossMenu(opponentUsername, isWinner);
+    }
+
+    public static void startLobbyUserCoinTossMenu(User user, String opponentUsername, boolean isWinner) {
+        ClientUpdateController clientUpdateController = ClientUpdateController.getClientUpdateController(user);
+        clientUpdateController.startLobbyCoinTossMenu(opponentUsername, isWinner);
     }
 
     public static void startRandomGame(User user1, User user2, int rounds) {

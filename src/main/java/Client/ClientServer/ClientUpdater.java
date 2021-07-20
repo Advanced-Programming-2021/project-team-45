@@ -47,6 +47,8 @@ public class ClientUpdater extends Thread {
         Object[] fields = getObjects(parts[1]);
 
         DuelMenuGui duelMenuGui = DuelMenuGui.getDuelMenuGui();
+        MatchMakingMenuGui matchMakingMenuGui = MatchMakingMenuGui.getMatchMakingMenuGui();
+        LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
 
         // DuelMenu Methods:
         if (methodName.equals("showGameWinner")) {
@@ -67,10 +69,15 @@ public class ClientUpdater extends Thread {
 
         // MatchMaking Methods:
         if (methodName.equals("startCoinTossMenu")) {
-            MatchMakingMenuGui matchMakingMenuGui = MatchMakingMenuGui.getMatchMakingMenuGui();
+            MatchMakingMenuGui matchMakingMenuGuis = MatchMakingMenuGui.getMatchMakingMenuGui();
             matchMakingMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
-        }
-
+        } else if (methodName.equals("askForDuel")) {
+            lobbyMenuGui.askForDuel((String) fields[0], (int) fields[1]);
+        } else if (methodName.equals("startLobbyCoinTossMenu"))
+            lobbyMenuGui.startLobbyCoinTossMenu((String) fields[0], (boolean) fields[1]);
+        else if (methodName.equals("startRefuseMatchView"))
+            matchMakingMenuGui.startRefuseMatchView((String) fields[0]);
+        // TODO: check if user is in this menu!!!
         // Scoreboard Methods:
         if (methodName.equals("updateScoreboard")
                 && MenuGui.isScoreboard()) {

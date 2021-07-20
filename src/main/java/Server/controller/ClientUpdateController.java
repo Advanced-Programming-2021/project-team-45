@@ -69,9 +69,25 @@ public class ClientUpdateController {
     }
 
     // Methods of MatchMakingMenu to call from client:
+
+    public void askForDuel(String opponentUserName, int rounds) {
+        String update = ClientUpdateHandler.getUpdateStringFormat("askForDuel", opponentUserName, rounds);
+        ClientUpdateHandler.addClientUpdate(user, update);
+    }
+
     public void startCoinTossMenu(String opponentUsername, boolean isWinner) {
         String update = ClientUpdateHandler.getUpdateStringFormat(
                 "startCoinTossMenu", opponentUsername, isWinner);
+        ClientUpdateHandler.addClientUpdate(user, update);
+    }
+
+    public void startLobbyCoinTossMenu(String opponentUsername, boolean isWinner) {
+        String update = ClientUpdateHandler.getUpdateStringFormat("startLobbyCoinTossMenu", opponentUsername, isWinner);
+        ClientUpdateHandler.addClientUpdate(user, update);
+    }
+
+    public void startRefuseMatchView(String opponentUsername) {
+        String update = ClientUpdateHandler.getUpdateStringFormat("startRefuseMatchView", opponentUsername);
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 

@@ -15,6 +15,19 @@ public class ClientLobbyServer extends ClientServer {
         sendRequest.getMethodResult("makeMatch", rounds);
     }
 
+    public int makeMatchWithAnotherUser(String opponentUserName, int rounds) {
+        Object result = sendRequest.getMethodResult("makeMatchWithAnotherUser", opponentUserName, rounds);
+        return (int) result;
+    }
+
+    public void startMatchWithAnotherUser(String username, String opponentUsername, int rounds) {
+        sendRequest.getMethodResult("startMatchWithAnotherUser", username, opponentUsername, rounds);
+    }
+
+    public void refuseMatch(String username, String opponentUsername, int rounds) {
+        sendRequest.getMethodResult("refuseMatch", username, opponentUsername, rounds);
+    }
+
     public void stopMakeMatch() {
         sendRequest.getMethodResult("stopMakeMatch");
     }
