@@ -1,5 +1,6 @@
 package Client.view;
 
+import Client.ClientServer.ClientLoginServer;
 import Server.controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -125,6 +126,7 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        (new ClientLoginServer()).logout();
         MusicPlayer.muteMainMenu();
         MusicPlayer.unMuteLoginMenu();
         LoginMenuGui loginMenuGui = new LoginMenuGui();

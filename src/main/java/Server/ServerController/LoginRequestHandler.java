@@ -23,6 +23,8 @@ public class LoginRequestHandler extends RequestHandler {
             answer = loginController.createUserErrorHandler((String) fields[0], (String) fields[1], (String) fields[2]);
         } else if (methodName.equals("loginUserErrorHandler")) {
             answer = loginController.loginUserErrorHandler((String) fields[0], (String) fields[1]);
+        } else if (methodName.equals("logout")) {
+            loginController.logout(parts[0]);
         }
 
         return fieldParser.getAnswer(answer);

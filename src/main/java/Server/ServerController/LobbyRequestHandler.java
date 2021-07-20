@@ -37,11 +37,6 @@ public class LobbyRequestHandler extends RequestHandler {
             MessengerController.setIsPinnedMessageById((int) fields[0], (boolean) fields[1]);
         }
 
-        // Update messages for users:
-        if (methodName.contains("Message")) {
-            ClientUpdateController.updateMessagesForAllUsers();
-        }
-
         // MatchMaking methods:
         if (methodName.equals("makeMatch")) {
             MatchMakingController.makeMatch(user, (int) fields[0]);

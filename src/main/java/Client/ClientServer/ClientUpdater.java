@@ -75,11 +75,6 @@ public class ClientUpdater extends Thread {
             matchMakingMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
         }
         // TODO: check if user is in this menu!!!
-        // Messaging Methods:
-        if (methodName.equals("updateMessages")) {
-            lobbyMenuGui.updateMessages();
-        }
-        // TODO: check if user is in this menu!!!
         // Scoreboard Methods:
         if (methodName.equals("updateScoreboard")) {
             ScoreBoardMenuGui.updateScoreboard();

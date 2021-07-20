@@ -37,6 +37,14 @@ public class DatabaseController extends Controller {
         return tokens.containsKey(token);
     }
 
+    public synchronized static void logout(String token) {
+        tokens.remove(token);
+    }
+
+    public static boolean isUserOnline(User user) {
+        return tokens.containsValue(user);
+    }
+
     public static User getUserByToken(String token) {
         return tokens.get(token);
     }

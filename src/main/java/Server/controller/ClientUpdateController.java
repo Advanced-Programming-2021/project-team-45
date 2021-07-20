@@ -24,12 +24,6 @@ public class ClientUpdateController {
         return userClientUpdateControllerHashMap.get(user);
     }
 
-    // Methods of Lobby to call from client:
-    public static void updateMessagesForAllUsers() {
-        String update = ClientUpdateHandler.getUpdateStringFormat("updateMessages");
-        ClientUpdateHandler.addUpdateForAllClients(update);
-    }
-
     // Methods of Scoreboard to call from client:
     public static void updateScoreboardForAllUsers() {
         String update = ClientUpdateHandler.getUpdateStringFormat("updateScoreboard");

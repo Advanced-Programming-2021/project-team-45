@@ -26,4 +26,8 @@ public class ClientLoginServer extends ClientServer {
             return 1;
         }
     }
+
+    public void logout() {
+        sendRequest.getMethodResult("logout", SendRequest.getToken());
+    }
 }

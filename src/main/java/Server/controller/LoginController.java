@@ -24,6 +24,10 @@ public class LoginController {
         return getToken(username);
     }
 
+    public void logout(String token) {
+        DatabaseController.logout(token);
+    }
+
     private String getToken(String username) {
         return DatabaseController.getToken(username);
     }
