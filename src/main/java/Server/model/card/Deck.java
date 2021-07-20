@@ -25,18 +25,20 @@ public class Deck {
 
     public void addCard(String cardName, boolean isSideDeck, User user) {
         Card card = user.getCardInventory().getCardByCardName(cardName);
+        Card addedCard = Card.copy(card);
+        addedCard.setOwnerUsername(user.getUsername());
         if (isSideDeck) {
-            sideDeck.add(Card.copy(card));
+            sideDeck.add(addedCard);
         } else {
-            mainDeck.add(Card.copy(card));
+            mainDeck.add(addedCard);
         }
     }
 
     public void deleteCard(String cardName, boolean isSideDeck) {
         if (isSideDeck) {
-            sideDeck.removeIf(card -> card.getCardName().equals(cardName));
+            sideDeck.removeIf((card) -> card.getCardName().equals(cardName));
         } else {
-            mainDeck.removeIf(card -> card.getCardName().equals(cardName));
+            mainDeck.removeIf((card) -> card.getCardName().equals(cardName));
         }
     }
 
