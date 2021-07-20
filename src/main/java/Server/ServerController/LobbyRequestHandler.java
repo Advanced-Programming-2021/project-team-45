@@ -40,7 +40,14 @@ public class LobbyRequestHandler extends RequestHandler {
         // MatchMaking methods:
         if (methodName.equals("makeMatch")) {
             MatchMakingController.makeMatch(user, (int) fields[0]);
-        } else if (methodName.equals("stopMakeMatch")) {
+        } else if (methodName.equals("makeMatchWithAnotherUser")) {
+            answer = MatchMakingController.makeMatchWithAnotherUser(user, (String) fields[0], (int) fields[1]);
+        } else if (methodName.equals("startMatchWithAnotherUser")) {
+            MatchMakingController.startMatchWithAnotherUser((String) fields[0], (String) fields[1], (int) fields[2]);
+        } else if (methodName.equals("refuseMatch")) {
+            MatchMakingController.refuseMatch((String) fields[0], (String) fields[1], (int) fields[2]);
+        }
+        else if (methodName.equals("stopMakeMatch")) {
             // TODO: stop match-making for user
         }
 
