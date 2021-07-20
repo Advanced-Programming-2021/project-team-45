@@ -1,9 +1,6 @@
 package Client.ClientServer;
 
-import Client.view.DuelMenuGui;
-import Client.view.LobbyMenuGui;
-import Client.view.MatchMakingMenuGui;
-import Client.view.ScoreBoardMenuGui;
+import Client.view.*;
 import Network.PortConfig;
 import Network.ServerHost;
 import com.gilecode.yagson.YaGson;
@@ -72,6 +69,7 @@ public class ClientUpdater extends Thread {
 
         // MatchMaking Methods:
         if (methodName.equals("startCoinTossMenu")) {
+            MatchMakingMenuGui matchMakingMenuGuis = MatchMakingMenuGui.getMatchMakingMenuGui();
             matchMakingMenuGui.startCoinTossMenu((String) fields[0], (boolean) fields[1]);
         } else if (methodName.equals("askForDuel")) {
             lobbyMenuGui.askForDuel((String) fields[0], (int) fields[1]);
@@ -81,7 +79,8 @@ public class ClientUpdater extends Thread {
             matchMakingMenuGui.startRefuseMatchView((String) fields[0]);
         // TODO: check if user is in this menu!!!
         // Scoreboard Methods:
-        if (methodName.equals("updateScoreboard")) {
+        if (methodName.equals("updateScoreboard")
+                && MenuGui.isScoreboard()) {
             ScoreBoardMenuGui.updateScoreboard();
         }
     }

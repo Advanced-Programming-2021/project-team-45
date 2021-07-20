@@ -720,36 +720,12 @@ public class DuelMenuGui extends MenuGui {
     }
 
     public void endGame() {
-        Boolean isExitToMainMenu = GetInput.getTwoChoiceAnswer("What do you want to do now?",
-                "Back to Main Menu", "Play Again");
-        if (isExitToMainMenu) {
-            // exit to MainMenu
-            MusicPlayer.playMainMenuMusic();
-            MainMenuGui mainMenu = new MainMenuGui();
-            MainMenuGui.setUsername(username);
-            try {
-                mainMenu.start(stage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            // TODO: fix what to do after game is ended
-//            CoinTossMenu coinTossMenu = new CoinTossMenu();
-//            String[] usernames = clientDuelServer.getPlayersUsernames();
-//            CoinTossMenu.setUserNames(usernames[0], usernames[1]);
-//            // get rounds:
-//            Boolean isSingleRound = GetInput.getTwoChoiceAnswer("How many rounds do you want to play?",
-//                    "1", "3");
-//            int rounds = 1;
-//            if (!isSingleRound)
-//                rounds = 3;
-//            CoinTossMenu.setRounds(rounds);
-//            coinTossMenu.tossCoin();
-//            try {
-//                coinTossMenu.start(stage);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+        LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
+        LobbyMenuGui.setUsername(username);
+        try {
+            lobbyMenuGui.start(stage);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 

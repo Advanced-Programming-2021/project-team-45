@@ -60,8 +60,9 @@ public class ClientUpdateHandler extends RequestHandler {
         User user = DatabaseController.getUserByToken(parts[0]);
         if (parts[1].equals("UPDATE")) {
             String update = getUserUpdate(user);
-            if (update != null)
+            if (update != null) {
                 answer = update;
+            }
         }
         return answer;
     }
