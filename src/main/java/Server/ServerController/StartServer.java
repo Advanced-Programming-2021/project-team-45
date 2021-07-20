@@ -27,13 +27,15 @@ public class StartServer {
         updateClientServer.start();
         ServerController scoreboardServer = new ServerController(PortConfig.SCOREBOARD_PORT.getPort());
         scoreboardServer.start();
-        // And so on for every port...
 
-
+        // update database or terminate server
         Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String ignored = scanner.nextLine();
-            DatabaseController.exportUsers();
+        String input = "";
+        while (!input.equalsIgnoreCase("exit")) {
+            input = scanner.nextLine();
+            if (input.equalsIgnoreCase("export"))
+                DatabaseController.exportUsers();
         }
+        System.exit(1);
     }
 }

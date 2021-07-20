@@ -1,1 +1,3195 @@
-[{"@type":"Server.model.user.User","@val":{"username":"kasra","password":"kasra","nickname":"kysre","money":733885,"score":0,"lifepoint":{"lifepoint":8000},"cardInventory":{"cardsCount":{"Terratiger, the Empowered Warrior":1,"Wattkid":1,"Warrior Dai Grepher":1,"Axe Raider":1,"Beast King Barbaros":1,"The Tricky":1,"Blue-Eyes white dragon":1,"Suijin":1,"Terraforming":1,"Flame manipulator":1,"Dark Blade":2,"Command Knight":2,"Silver Fang":1,"Alexandrite Dragon":2,"Slot Machine":1,"Dark magician":1,"Hero of the east":1,"Bitron":1,"Leotron ":1,"Exploder Dragon":1,"Horn Imp":1,"Yomi Ship":2,"Herald of Creation":1,"Battle warrior":1,"Vanity's Emptiness":1,"Trap Hole":1,"Curtain of the dark ones":2,"Texchanger":1,"Man-Eater Bug":1,"Battle OX":1,"Dark Hole":1,"Spiral Serpent":2,"Wattaildragon":1,"Gate Guardian":2,"Feral Imp":1,"Baby Dragon":2,"Fireyarou":1,"The Calculator":1,"Haniwa":1,"Crab Turtle":2,"Crawling dragon":1,"Mirage Dragon":1},"cards":[{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"NORMAL","activated":false,"type":"Spell","isSpell":true,"status":"Limited","effects":[{"@type":"Server.model.card.SpellTrapCards.effects.TerraformingEffect","@val":{}}],"cardName":"Terraforming","cardDescription":"Add 1 Field Spell from your Deck to your hand.","price":2500,"ownerUsername":"kasra","speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Warrior","attack":1800,"defense":1500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark Blade","cardDescription":"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.","cardType":"Normal","price":3500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1700,"defense":1150,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Axe Raider","cardDescription":"An axe-wielding monster of tremendous strength and agility.","cardType":"Normal","price":3100,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"DARK","attack":600,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Curtain of the dark ones","cardDescription":"A curtain that a spellcaster made, it is said to raise a dark power.","cardType":"Normal","price":700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WIND","type":"Dragon","attack":1200,"defense":700,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Baby Dragon","cardDescription":"Much more than just a child, this dragon is gifted with untapped power.","cardType":"Normal","price":1600,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"NORMAL","activated":false,"type":"Trap","isSpell":false,"status":"Unlimited","effects":[{"@type":"Server.model.card.SpellTrapCards.effects.TrapHoleEffect","@val":{}}],"cardName":"Trap Hole","cardDescription":"When your opponent Normal or Flip Summons 1 monster with 1000 or more ATK: Target that monster; destroy that target.","price":2000,"ownerUsername":"kasra","speed":2}},{"@type":"Server.model.card.MonsterCard","@val":{"level":11,"attribute":"DARK","type":"Warrior","attack":3750,"defense":3400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Gate Guardian","cardDescription":"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".","cardType":"Effect","price":20000,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":2000,"defense":100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Alexandrite Dragon","cardDescription":"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.","cardType":"Normal","price":2600,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"WIND","attack":2000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_TRICKY","effects":[],"cardName":"The Tricky","cardDescription":"You can Special Summon this card (from your hand) by discarding 1 card.","cardType":"Effect","price":4300,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1800,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TERRATIGER","effects":[],"cardName":"Terratiger, the Empowered Warrior","cardDescription":"When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.","cardType":"Effect","price":3200,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Dragon","attack":1000,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"EXPLODER_DRAGON","effects":[],"cardName":"Exploder Dragon","cardDescription":"If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.","cardType":"Effect","price":1000,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Cyberse","attack":2000,"defense":0,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Leotron ","cardDescription":"A territorial electronic monster that guards its own domain.","cardType":"Normal","price":2500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Trap","isSpell":false,"status":"Limited","effects":[],"cardName":"Vanity's Emptiness","cardDescription":"Neither player can Special Summon monsters. If a card is sent from the Deck or the field to your Graveyard: Destroy this card.","price":3500,"ownerUsername":"kasra","speed":2}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"NORMAL","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":[{"@type":"Server.model.card.SpellTrapCards.effects.DestroyAllCardsOfFieldEffect","@val":{"fieldTypes":["PLAYER_MONSTER","OPPONENT_MONSTER"]}}],"cardName":"Dark Hole","cardDescription":"Destroy all monsters on the field.","price":2500,"ownerUsername":"kasra","speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Rock","attack":500,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Haniwa","cardDescription":"An earthen figure that protects the tomb of an ancient ruler.","cardType":"Normal","price":600,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"EARTH","type":"Dragon","attack":1600,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Crawling dragon","cardDescription":"This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.","cardType":"Normal","price":3900,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1700,"defense":1600,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Warrior Dai Grepher","cardDescription":"The warrior who can manipulate dragons. Nobody knows his mysterious past.","cardType":"Normal","price":3400,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"LIGHT","type":"Thunder","attack":1000,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattkid","cardDescription":"A creature that electrocutes opponents with bolts of lightning.","cardType":"Normal","price":1300,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":1600,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MIRAGE_DRAGON","effects":[],"cardName":"Mirage Dragon","cardDescription":"Your opponent cannot activate Trap Cards during the Battle Phase.","cardType":"Effect","price":2500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"LIGHT","type":"Dragon","attack":3000,"defense":2500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Blue-Eyes white dragon","cardDescription":"This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.","cardType":"Normal","price":11300,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"WATER","type":"Aqua","attack":2500,"defense":2400,"wasAttackedInThisTurn":false,"specialMonsterEnum":"SUIJIN","effects":[],"cardName":"Suijin","cardDescription":"During damage calculation in your opponent's turn, if this card is being attacked: You can target the attacking monster; make that target's ATK 0 during damage calculation only (this is a Quick Effect). This effect can only be used once while this card is face-up on the field.","cardType":"Effect","price":8700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"EARTH","type":"Beast_Warrior","attack":3000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"BEAST_KING_BARBAROS","effects":[],"cardName":"Beast King Barbaros","cardDescription":"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.","cardType":"Effect","price":9200,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1000,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Command Knight","cardDescription":"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.","cardType":"Effect","price":2100,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"FIRE","attack":900,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Flame manipulator","cardDescription":"This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".","cardType":"Normal","price":1500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Beast","attack":1200,"defense":800,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Silver Fang","cardDescription":"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.","cardType":"Normal","price":1700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","type":"Machine","attack":2000,"defense":2300,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Slot Machine","cardDescription":"The machine's ability is said to vary according to its slot results.","cardType":"Normal","price":7500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","attack":2500,"defense":2100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark magician","cardDescription":"The ultimate wizard in terms of attack and defense.","cardType":"Normal","price":8300,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":1100,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Hero of the east","cardDescription":"Feel da strength ah dis sword-swinging samurai from da Far East.","cardType":"Normal","price":1700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Cyberse","attack":200,"defense":2000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Bitron","cardDescription":"A new species found in electronic space. There's not much information on it.","cardType":"Normal","price":1000,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Horn Imp","cardDescription":"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.","cardType":"Normal","price":2500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WATER","type":"Aqua","attack":800,"defense":1400,"wasAttackedInThisTurn":false,"specialMonsterEnum":"YOMI_SHIP","effects":[],"cardName":"Yomi Ship","cardDescription":"If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.","cardType":"Effect","price":1700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","attack":1800,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"HERALD_OF_CREATION","effects":[],"cardName":"Herald of Creation","cardDescription":"Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.","cardType":"Effect","price":2700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Sea_Serpent","attack":2900,"defense":2900,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Spiral Serpent","cardDescription":"When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.","cardType":"Normal","price":11700,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":1,"attribute":"DARK","type":"Cyberse","attack":100,"defense":100,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TEXCHANGER","effects":[],"cardName":"Texchanger","cardDescription":"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.","cardType":"Effect","price":200,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Insect","attack":450,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MAN_EATER_BUG","effects":[],"cardName":"Man-Eater Bug","cardDescription":"FLIP: Target 1 monster on the field; destroy that target.","cardType":"Effect","price":600,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Beast_Warrior","attack":1700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle OX","cardDescription":"A monster with tremendous power, it destroys enemies with a swing of its axe.","cardType":"Normal","price":2900,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle warrior","cardDescription":"A warrior that fights with his bare hands!!!","cardType":"Normal","price":1300,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":6,"attribute":"LIGHT","type":"Dragon","attack":2500,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattaildragon","cardDescription":"Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.","cardType":"Normal","price":5800,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Feral Imp","cardDescription":"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.","cardType":"Normal","price":2800,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"FIRE","type":"Pyro","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Fireyarou","cardDescription":"A malevolent creature wrapped in flames that attacks enemies with intense fire.","cardType":"Normal","price":2500,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"LIGHT","type":"Thunder","attack":0,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_CALCULATOR","effects":[],"cardName":"The Calculator","cardDescription":"The ATK of this card is the combined Levels of all face-up monsters you control x 300.","cardType":"Effect","price":8000,"ownerUsername":"kasra","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Aqua","attack":2550,"defense":2500,"wasAttackedInThisTurn":false,"specialMonsterEnum":"CRAB_TURTLE","effects":[],"cardName":"Crab Turtle","cardDescription":"This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.","cardType":"Ritual","price":10200,"ownerUsername":"kasra","speed":0}}]},"userDeck":{"userDecks":[{"name":"deck1","username":"kasra","mainDeck":[{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Warrior","attack":1800,"defense":1500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark Blade","cardDescription":"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.","cardType":"Normal","price":3500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1700,"defense":1150,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Axe Raider","cardDescription":"An axe-wielding monster of tremendous strength and agility.","cardType":"Normal","price":3100,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"DARK","attack":600,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Curtain of the dark ones","cardDescription":"A curtain that a spellcaster made, it is said to raise a dark power.","cardType":"Normal","price":700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WIND","type":"Dragon","attack":1200,"defense":700,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Baby Dragon","cardDescription":"Much more than just a child, this dragon is gifted with untapped power.","cardType":"Normal","price":1600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":11,"attribute":"DARK","type":"Warrior","attack":3750,"defense":3400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Gate Guardian","cardDescription":"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".","cardType":"Effect","price":20000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":2000,"defense":100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Alexandrite Dragon","cardDescription":"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.","cardType":"Normal","price":2600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"WIND","attack":2000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_TRICKY","effects":[],"cardName":"The Tricky","cardDescription":"You can Special Summon this card (from your hand) by discarding 1 card.","cardType":"Effect","price":4300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1800,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TERRATIGER","effects":[],"cardName":"Terratiger, the Empowered Warrior","cardDescription":"When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.","cardType":"Effect","price":3200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Dragon","attack":1000,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"EXPLODER_DRAGON","effects":[],"cardName":"Exploder Dragon","cardDescription":"If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.","cardType":"Effect","price":1000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Cyberse","attack":2000,"defense":0,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Leotron ","cardDescription":"A territorial electronic monster that guards its own domain.","cardType":"Normal","price":2500,"speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Trap","isSpell":false,"status":"Limited","effects":[],"cardName":"Vanity's Emptiness","cardDescription":"Neither player can Special Summon monsters. If a card is sent from the Deck or the field to your Graveyard: Destroy this card.","price":3500,"speed":2}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Rock","attack":500,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Haniwa","cardDescription":"An earthen figure that protects the tomb of an ancient ruler.","cardType":"Normal","price":600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"EARTH","type":"Dragon","attack":1600,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Crawling dragon","cardDescription":"This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.","cardType":"Normal","price":3900,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1700,"defense":1600,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Warrior Dai Grepher","cardDescription":"The warrior who can manipulate dragons. Nobody knows his mysterious past.","cardType":"Normal","price":3400,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"LIGHT","type":"Thunder","attack":1000,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattkid","cardDescription":"A creature that electrocutes opponents with bolts of lightning.","cardType":"Normal","price":1300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":1600,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MIRAGE_DRAGON","effects":[],"cardName":"Mirage Dragon","cardDescription":"Your opponent cannot activate Trap Cards during the Battle Phase.","cardType":"Effect","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"LIGHT","type":"Dragon","attack":3000,"defense":2500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Blue-Eyes white dragon","cardDescription":"This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.","cardType":"Normal","price":11300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"WATER","type":"Aqua","attack":2500,"defense":2400,"wasAttackedInThisTurn":false,"specialMonsterEnum":"SUIJIN","effects":[],"cardName":"Suijin","cardDescription":"During damage calculation in your opponent's turn, if this card is being attacked: You can target the attacking monster; make that target's ATK 0 during damage calculation only (this is a Quick Effect). This effect can only be used once while this card is face-up on the field.","cardType":"Effect","price":8700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"EARTH","type":"Beast_Warrior","attack":3000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"BEAST_KING_BARBAROS","effects":[],"cardName":"Beast King Barbaros","cardDescription":"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.","cardType":"Effect","price":9200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1000,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Command Knight","cardDescription":"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.","cardType":"Effect","price":2100,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"FIRE","attack":900,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Flame manipulator","cardDescription":"This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".","cardType":"Normal","price":1500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Beast","attack":1200,"defense":800,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Silver Fang","cardDescription":"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.","cardType":"Normal","price":1700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","type":"Machine","attack":2000,"defense":2300,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Slot Machine","cardDescription":"The machine's ability is said to vary according to its slot results.","cardType":"Normal","price":7500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","attack":2500,"defense":2100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark magician","cardDescription":"The ultimate wizard in terms of attack and defense.","cardType":"Normal","price":8300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":1100,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Hero of the east","cardDescription":"Feel da strength ah dis sword-swinging samurai from da Far East.","cardType":"Normal","price":1700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Cyberse","attack":200,"defense":2000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Bitron","cardDescription":"A new species found in electronic space. There's not much information on it.","cardType":"Normal","price":1000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Horn Imp","cardDescription":"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.","cardType":"Normal","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WATER","type":"Aqua","attack":800,"defense":1400,"wasAttackedInThisTurn":false,"specialMonsterEnum":"YOMI_SHIP","effects":[],"cardName":"Yomi Ship","cardDescription":"If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.","cardType":"Effect","price":1700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","attack":1800,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"HERALD_OF_CREATION","effects":[],"cardName":"Herald of Creation","cardDescription":"Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.","cardType":"Effect","price":2700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Sea_Serpent","attack":2900,"defense":2900,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Spiral Serpent","cardDescription":"When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.","cardType":"Normal","price":11700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":1,"attribute":"DARK","type":"Cyberse","attack":100,"defense":100,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TEXCHANGER","effects":[],"cardName":"Texchanger","cardDescription":"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.","cardType":"Effect","price":200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":1,"attribute":"DARK","type":"Cyberse","attack":100,"defense":100,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TEXCHANGER","effects":[],"cardName":"Texchanger","cardDescription":"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.","cardType":"Effect","price":200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Insect","attack":450,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MAN_EATER_BUG","effects":[],"cardName":"Man-Eater Bug","cardDescription":"FLIP: Target 1 monster on the field; destroy that target.","cardType":"Effect","price":600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Beast_Warrior","attack":1700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle OX","cardDescription":"A monster with tremendous power, it destroys enemies with a swing of its axe.","cardType":"Normal","price":2900,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle warrior","cardDescription":"A warrior that fights with his bare hands!!!","cardType":"Normal","price":1300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":6,"attribute":"LIGHT","type":"Dragon","attack":2500,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattaildragon","cardDescription":"Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.","cardType":"Normal","price":5800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Feral Imp","cardDescription":"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.","cardType":"Normal","price":2800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Feral Imp","cardDescription":"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.","cardType":"Normal","price":2800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":6,"attribute":"LIGHT","type":"Dragon","attack":2500,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattaildragon","cardDescription":"Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.","cardType":"Normal","price":5800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Feral Imp","cardDescription":"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.","cardType":"Normal","price":2800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"FIRE","type":"Pyro","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Fireyarou","cardDescription":"A malevolent creature wrapped in flames that attacks enemies with intense fire.","cardType":"Normal","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"LIGHT","type":"Thunder","attack":0,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_CALCULATOR","effects":[],"cardName":"The Calculator","cardDescription":"The ATK of this card is the combined Levels of all face-up monsters you control x 300.","cardType":"Effect","price":8000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Aqua","attack":2550,"defense":2500,"wasAttackedInThisTurn":false,"specialMonsterEnum":"CRAB_TURTLE","effects":[],"cardName":"Crab Turtle","cardDescription":"This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.","cardType":"Ritual","price":10200,"speed":0}}],"sideDeck":[]}],"activeDeck":"@root.0.userDeck.userDecks.0"},"lastDamageAmount":0,"profilePicturePath":"src/main/resources/Client/view/pictureFiles/unknownUserProfileImage.jpg"}},{"@type":"Server.model.user.User","@val":{"username":"hossein","password":"hossein","nickname":"HajHossein","money":21800,"score":0,"lifepoint":{"lifepoint":8000},"cardInventory":{"cardsCount":{"Terratiger, the Empowered Warrior":1,"Wattkid":1,"Warrior Dai Grepher":1,"Axe Raider":1,"Beast King Barbaros":1,"The Tricky":1,"Blue-Eyes white dragon":1,"Dark Blade":1,"Command Knight":2,"Spell Absorption":1,"Silver Fang":1,"Alexandrite Dragon":1,"Slot Machine":1,"Dark magician":1,"Hero of the east":1,"Leotron ":1,"Exploder Dragon":1,"Messenger of peace":1,"Horn Imp":1,"Yomi Ship":1,"Herald of Creation":1,"Battle warrior":1,"Call of The Haunted":1,"Curtain of the dark ones":1,"Man-Eater Bug":1,"Texchanger":1,"Battle OX":1,"Black Pendant":1,"Spiral Serpent":1,"Wattaildragon":1,"Gate Guardian":1,"Feral Imp":1,"Baby Dragon":1,"Fireyarou":1,"The Calculator":1,"Haniwa":1,"Crab Turtle":1,"Wall of Revealing Light":1,"Crawling dragon":1,"Skull Guardian":1,"Mirage Dragon":1},"cards":[{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1800,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TERRATIGER","effects":[],"cardName":"Terratiger, the Empowered Warrior","cardDescription":"When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.","cardType":"Effect","price":3200,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1700,"defense":1150,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Axe Raider","cardDescription":"An axe-wielding monster of tremendous strength and agility.","cardType":"Normal","price":3100,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"WIND","attack":2000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_TRICKY","effects":[],"cardName":"The Tricky","cardDescription":"You can Special Summon this card (from your hand) by discarding 1 card.","cardType":"Effect","price":4300,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Warrior","attack":1800,"defense":1500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark Blade","cardDescription":"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.","cardType":"Normal","price":3500,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Cyberse","attack":2000,"defense":0,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Leotron ","cardDescription":"A territorial electronic monster that guards its own domain.","cardType":"Normal","price":2500,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":2000,"defense":100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Alexandrite Dragon","cardDescription":"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.","cardType":"Normal","price":2600,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Dragon","attack":1000,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"EXPLODER_DRAGON","effects":[],"cardName":"Exploder Dragon","cardDescription":"If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.","cardType":"Effect","price":1000,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"DARK","attack":600,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Curtain of the dark ones","cardDescription":"A curtain that a spellcaster made, it is said to raise a dark power.","cardType":"Normal","price":700,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Trap","isSpell":false,"status":"Unlimited","effects":[],"cardName":"Call of The Haunted","cardDescription":"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.","price":3500,"ownerUsername":"hossein","speed":2}},{"@type":"Server.model.card.MonsterCard","@val":{"level":11,"attribute":"DARK","type":"Warrior","attack":3750,"defense":3400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Gate Guardian","cardDescription":"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".","cardType":"Effect","price":20000,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WIND","type":"Dragon","attack":1200,"defense":700,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Baby Dragon","cardDescription":"Much more than just a child, this dragon is gifted with untapped power.","cardType":"Normal","price":1600,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"EQUIP","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":[{"@type":"Server.model.card.SpellTrapCards.effects.IncreaseAtkDefOfEquippedEffect","@val":{"attack":500,"defence":0,"monsterTypes":["Beast_Warrior","Warrior","Aqua","Fiend","Beast","Pyro","SpellCaster","Thunder","Dragon","Machine","Rock","Insect","Cyberse","Fairy","Sea_Serpent"]}}],"cardName":"Black Pendant","cardDescription":"The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.","price":4300,"ownerUsername":"hossein","speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Rock","attack":500,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Haniwa","cardDescription":"An earthen figure that protects the tomb of an ancient ruler.","cardType":"Normal","price":600,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Trap","isSpell":false,"status":"Limited","effects":[],"cardName":"Wall of Revealing Light","cardDescription":"Activate by paying any multiple of 1000 Life Points. Monsters your opponent controls cannot attack if their ATK is less than or equal to the amount you paid.","price":3500,"ownerUsername":"hossein","speed":2}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"EARTH","type":"Dragon","attack":1600,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Crawling dragon","cardDescription":"This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.","cardType":"Normal","price":3900,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1700,"defense":1600,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Warrior Dai Grepher","cardDescription":"The warrior who can manipulate dragons. Nobody knows his mysterious past.","cardType":"Normal","price":3400,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"LIGHT","type":"Thunder","attack":1000,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattkid","cardDescription":"A creature that electrocutes opponents with bolts of lightning.","cardType":"Normal","price":1300,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":1600,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MIRAGE_DRAGON","effects":[],"cardName":"Mirage Dragon","cardDescription":"Your opponent cannot activate Trap Cards during the Battle Phase.","cardType":"Effect","price":2500,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"LIGHT","type":"Warrior","attack":2050,"defense":2500,"wasAttackedInThisTurn":false,"specialMonsterEnum":"SKULL_GUARDIAN","effects":[],"cardName":"Skull Guardian","cardDescription":"This monster can only be Ritual Summoned with the Ritual Spell Card, \"Novox's Prayer\". You must also offer monsters whose total Level Stars equal 7 or more as a Tribute from the field or your hand.","cardType":"Ritual","price":7900,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"EARTH","type":"Beast_Warrior","attack":3000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"BEAST_KING_BARBAROS","effects":[],"cardName":"Beast King Barbaros","cardDescription":"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.","cardType":"Effect","price":9200,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"LIGHT","type":"Dragon","attack":3000,"defense":2500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Blue-Eyes white dragon","cardDescription":"This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.","cardType":"Normal","price":11300,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Beast","attack":1200,"defense":800,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Silver Fang","cardDescription":"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.","cardType":"Normal","price":1700,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1000,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Command Knight","cardDescription":"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.","cardType":"Effect","price":2100,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":[{"@type":"Server.model.card.SpellTrapCards.effects.Continiuous.SpellAbsorption","@val":{"isActive":false}}],"cardName":"Spell Absorption","cardDescription":"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.","price":4000,"ownerUsername":"hossein","speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","type":"Machine","attack":2000,"defense":2300,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Slot Machine","cardDescription":"The machine's ability is said to vary according to its slot results.","cardType":"Normal","price":7500,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","attack":2500,"defense":2100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark magician","cardDescription":"The ultimate wizard in terms of attack and defense.","cardType":"Normal","price":8300,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":1100,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Hero of the east","cardDescription":"Feel da strength ah dis sword-swinging samurai from da Far East.","cardType":"Normal","price":1700,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":[],"cardName":"Messenger of peace","cardDescription":"Monsters with 1500 or more ATK cannot declare an attack. Once per turn, during your Standby Phase, pay 100 LP or destroy this card.","price":4000,"ownerUsername":"hossein","speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Horn Imp","cardDescription":"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.","cardType":"Normal","price":2500,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WATER","type":"Aqua","attack":800,"defense":1400,"wasAttackedInThisTurn":false,"specialMonsterEnum":"YOMI_SHIP","effects":[],"cardName":"Yomi Ship","cardDescription":"If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.","cardType":"Effect","price":1700,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","attack":1800,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"HERALD_OF_CREATION","effects":[],"cardName":"Herald of Creation","cardDescription":"Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.","cardType":"Effect","price":2700,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Insect","attack":450,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MAN_EATER_BUG","effects":[],"cardName":"Man-Eater Bug","cardDescription":"FLIP: Target 1 monster on the field; destroy that target.","cardType":"Effect","price":600,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":1,"attribute":"DARK","type":"Cyberse","attack":100,"defense":100,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TEXCHANGER","effects":[],"cardName":"Texchanger","cardDescription":"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.","cardType":"Effect","price":200,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Sea_Serpent","attack":2900,"defense":2900,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Spiral Serpent","cardDescription":"When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.","cardType":"Normal","price":11700,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Beast_Warrior","attack":1700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle OX","cardDescription":"A monster with tremendous power, it destroys enemies with a swing of its axe.","cardType":"Normal","price":2900,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle warrior","cardDescription":"A warrior that fights with his bare hands!!!","cardType":"Normal","price":1300,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Feral Imp","cardDescription":"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.","cardType":"Normal","price":2800,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":6,"attribute":"LIGHT","type":"Dragon","attack":2500,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattaildragon","cardDescription":"Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.","cardType":"Normal","price":5800,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"FIRE","type":"Pyro","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Fireyarou","cardDescription":"A malevolent creature wrapped in flames that attacks enemies with intense fire.","cardType":"Normal","price":2500,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"LIGHT","type":"Thunder","attack":0,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_CALCULATOR","effects":[],"cardName":"The Calculator","cardDescription":"The ATK of this card is the combined Levels of all face-up monsters you control x 300.","cardType":"Effect","price":8000,"ownerUsername":"hossein","speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Aqua","attack":2550,"defense":2500,"wasAttackedInThisTurn":false,"specialMonsterEnum":"CRAB_TURTLE","effects":[],"cardName":"Crab Turtle","cardDescription":"This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.","cardType":"Ritual","price":10200,"ownerUsername":"hossein","speed":0}}]},"userDeck":{"userDecks":[{"name":"deck1","username":"hossein","mainDeck":[{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1800,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TERRATIGER","effects":[],"cardName":"Terratiger, the Empowered Warrior","cardDescription":"When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.","cardType":"Effect","price":3200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":2000,"defense":100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Alexandrite Dragon","cardDescription":"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.","cardType":"Normal","price":2600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"WIND","attack":2000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_TRICKY","effects":[],"cardName":"The Tricky","cardDescription":"You can Special Summon this card (from your hand) by discarding 1 card.","cardType":"Effect","price":4300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Warrior","attack":1800,"defense":1500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark Blade","cardDescription":"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.","cardType":"Normal","price":3500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Cyberse","attack":2000,"defense":0,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Leotron ","cardDescription":"A territorial electronic monster that guards its own domain.","cardType":"Normal","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":2000,"defense":100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Alexandrite Dragon","cardDescription":"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.","cardType":"Normal","price":2600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Dragon","attack":1000,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"EXPLODER_DRAGON","effects":[],"cardName":"Exploder Dragon","cardDescription":"If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.","cardType":"Effect","price":1000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"DARK","attack":600,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Curtain of the dark ones","cardDescription":"A curtain that a spellcaster made, it is said to raise a dark power.","cardType":"Normal","price":700,"speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Trap","isSpell":false,"status":"Unlimited","effects":[],"cardName":"Call of The Haunted","cardDescription":"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.","price":3500,"speed":2}},{"@type":"Server.model.card.MonsterCard","@val":{"level":11,"attribute":"DARK","type":"Warrior","attack":3750,"defense":3400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Gate Guardian","cardDescription":"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".","cardType":"Effect","price":20000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WIND","type":"Dragon","attack":1200,"defense":700,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Baby Dragon","cardDescription":"Much more than just a child, this dragon is gifted with untapped power.","cardType":"Normal","price":1600,"speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"EQUIP","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":["@root.1.cardInventory.cards.11.effects.0"],"cardName":"Black Pendant","cardDescription":"The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.","price":4300,"speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Rock","attack":500,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Haniwa","cardDescription":"An earthen figure that protects the tomb of an ancient ruler.","cardType":"Normal","price":600,"speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Trap","isSpell":false,"status":"Limited","effects":[],"cardName":"Wall of Revealing Light","cardDescription":"Activate by paying any multiple of 1000 Life Points. Monsters your opponent controls cannot attack if their ATK is less than or equal to the amount you paid.","price":3500,"speed":2}},{"@type":"Server.model.card.MonsterCard","@val":{"level":5,"attribute":"EARTH","type":"Dragon","attack":1600,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Crawling dragon","cardDescription":"This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.","cardType":"Normal","price":3900,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"EARTH","type":"Warrior","attack":1700,"defense":1600,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Warrior Dai Grepher","cardDescription":"The warrior who can manipulate dragons. Nobody knows his mysterious past.","cardType":"Normal","price":3400,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","type":"Dragon","attack":1600,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MIRAGE_DRAGON","effects":[],"cardName":"Mirage Dragon","cardDescription":"Your opponent cannot activate Trap Cards during the Battle Phase.","cardType":"Effect","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"LIGHT","type":"Thunder","attack":1000,"defense":500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattkid","cardDescription":"A creature that electrocutes opponents with bolts of lightning.","cardType":"Normal","price":1300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"LIGHT","type":"Warrior","attack":2050,"defense":2500,"wasAttackedInThisTurn":false,"specialMonsterEnum":"SKULL_GUARDIAN","effects":[],"cardName":"Skull Guardian","cardDescription":"This monster can only be Ritual Summoned with the Ritual Spell Card, \"Novox's Prayer\". You must also offer monsters whose total Level Stars equal 7 or more as a Tribute from the field or your hand.","cardType":"Ritual","price":7900,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"EARTH","type":"Beast_Warrior","attack":3000,"defense":1200,"wasAttackedInThisTurn":false,"specialMonsterEnum":"BEAST_KING_BARBAROS","effects":[],"cardName":"Beast King Barbaros","cardDescription":"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.","cardType":"Effect","price":9200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"LIGHT","type":"Dragon","attack":3000,"defense":2500,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Blue-Eyes white dragon","cardDescription":"This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.","cardType":"Normal","price":11300,"speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":["@root.1.cardInventory.cards.23.effects.0"],"cardName":"Spell Absorption","cardDescription":"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.","price":4000,"speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","type":"Machine","attack":2000,"defense":2300,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Slot Machine","cardDescription":"The machine's ability is said to vary according to its slot results.","cardType":"Normal","price":7500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":7,"attribute":"DARK","attack":2500,"defense":2100,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Dark magician","cardDescription":"The ultimate wizard in terms of attack and defense.","cardType":"Normal","price":8300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":1100,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Hero of the east","cardDescription":"Feel da strength ah dis sword-swinging samurai from da Far East.","cardType":"Normal","price":1700,"speed":0}},{"@type":"Server.model.card.SpellTrapCard","@val":{"icon":"CONTINUOUS","activated":false,"type":"Spell","isSpell":true,"status":"Unlimited","effects":[],"cardName":"Messenger of peace","cardDescription":"Monsters with 1500 or more ATK cannot declare an attack. Once per turn, during your Standby Phase, pay 100 LP or destroy this card.","price":4000,"speed":1}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Horn Imp","cardDescription":"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.","cardType":"Normal","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"LIGHT","attack":1800,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"HERALD_OF_CREATION","effects":[],"cardName":"Herald of Creation","cardDescription":"Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.","cardType":"Effect","price":2700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"EARTH","type":"Insect","attack":450,"defense":600,"wasAttackedInThisTurn":false,"specialMonsterEnum":"MAN_EATER_BUG","effects":[],"cardName":"Man-Eater Bug","cardDescription":"FLIP: Target 1 monster on the field; destroy that target.","cardType":"Effect","price":600,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":1,"attribute":"DARK","type":"Cyberse","attack":100,"defense":100,"wasAttackedInThisTurn":false,"specialMonsterEnum":"TEXCHANGER","effects":[],"cardName":"Texchanger","cardDescription":"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.","cardType":"Effect","price":200,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Beast_Warrior","attack":1700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle OX","cardDescription":"A monster with tremendous power, it destroys enemies with a swing of its axe.","cardType":"Normal","price":2900,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Sea_Serpent","attack":2900,"defense":2900,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Spiral Serpent","cardDescription":"When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.","cardType":"Normal","price":11700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Warrior","attack":700,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Battle warrior","cardDescription":"A warrior that fights with his bare hands!!!","cardType":"Normal","price":1300,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"DARK","type":"Fiend","attack":1300,"defense":1400,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Feral Imp","cardDescription":"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.","cardType":"Normal","price":2800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"attribute":"FIRE","type":"Pyro","attack":1300,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Fireyarou","cardDescription":"A malevolent creature wrapped in flames that attacks enemies with intense fire.","cardType":"Normal","price":2500,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":6,"attribute":"LIGHT","type":"Dragon","attack":2500,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Wattaildragon","cardDescription":"Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.","cardType":"Normal","price":5800,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":2,"attribute":"LIGHT","type":"Thunder","attack":0,"defense":0,"wasAttackedInThisTurn":false,"specialMonsterEnum":"THE_CALCULATOR","effects":[],"cardName":"The Calculator","cardDescription":"The ATK of this card is the combined Levels of all face-up monsters you control x 300.","cardType":"Effect","price":8000,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":8,"attribute":"WATER","type":"Aqua","attack":2550,"defense":2500,"wasAttackedInThisTurn":false,"specialMonsterEnum":"CRAB_TURTLE","effects":[],"cardName":"Crab Turtle","cardDescription":"This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.","cardType":"Ritual","price":10200,"speed":0}}],"sideDeck":[{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"WATER","type":"Aqua","attack":800,"defense":1400,"wasAttackedInThisTurn":false,"specialMonsterEnum":"YOMI_SHIP","effects":[],"cardName":"Yomi Ship","cardDescription":"If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.","cardType":"Effect","price":1700,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1700,"defense":1150,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Axe Raider","cardDescription":"An axe-wielding monster of tremendous strength and agility.","cardType":"Normal","price":3100,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":4,"type":"Warrior","attack":1000,"defense":1000,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Command Knight","cardDescription":"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.","cardType":"Effect","price":2100,"speed":0}},{"@type":"Server.model.card.MonsterCard","@val":{"level":3,"attribute":"EARTH","type":"Beast","attack":1200,"defense":800,"wasAttackedInThisTurn":false,"effects":[],"cardName":"Silver Fang","cardDescription":"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.","cardType":"Normal","price":1700,"speed":0}}]}],"activeDeck":"@root.1.userDeck.userDecks.0"},"lastDamageAmount":0,"profilePicturePath":"src/main/resources/Client/view/pictureFiles/unknownUserProfileImage.jpg"}}]
+[
+  {
+    "@type": "Server.model.user.User",
+    "@val": {
+      "username": "kasra",
+      "password": "kasra",
+      "nickname": "kysre",
+      "money": 733885,
+      "score": 0,
+      "lifepoint": {
+        "lifepoint": 8000
+      },
+      "cardInventory": {
+        "cardsCount": {
+          "Terratiger, the Empowered Warrior": 1,
+          "Wattkid": 1,
+          "Warrior Dai Grepher": 1,
+          "Axe Raider": 1,
+          "Beast King Barbaros": 1,
+          "The Tricky": 1,
+          "Blue-Eyes white dragon": 1,
+          "Suijin": 1,
+          "Terraforming": 1,
+          "Flame manipulator": 1,
+          "Dark Blade": 2,
+          "Command Knight": 2,
+          "Silver Fang": 1,
+          "Alexandrite Dragon": 2,
+          "Slot Machine": 1,
+          "Dark magician": 1,
+          "Hero of the east": 1,
+          "Bitron": 1,
+          "Leotron ": 1,
+          "Exploder Dragon": 1,
+          "Horn Imp": 1,
+          "Yomi Ship": 2,
+          "Herald of Creation": 1,
+          "Battle warrior": 1,
+          "Vanity's Emptiness": 1,
+          "Trap Hole": 1,
+          "Curtain of the dark ones": 2,
+          "Texchanger": 1,
+          "Man-Eater Bug": 1,
+          "Battle OX": 1,
+          "Dark Hole": 1,
+          "Spiral Serpent": 2,
+          "Wattaildragon": 1,
+          "Gate Guardian": 2,
+          "Feral Imp": 1,
+          "Baby Dragon": 2,
+          "Fireyarou": 1,
+          "The Calculator": 1,
+          "Haniwa": 1,
+          "Crab Turtle": 2,
+          "Crawling dragon": 1,
+          "Mirage Dragon": 1
+        },
+        "cards": [
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "NORMAL",
+              "activated": false,
+              "type": "Spell",
+              "isSpell": true,
+              "status": "Limited",
+              "effects": [
+                {
+                  "@type": "Server.model.card.SpellTrapCards.effects.TerraformingEffect",
+                  "@val": {}
+                }
+              ],
+              "cardName": "Terraforming",
+              "cardDescription": "Add 1 Field Spell from your Deck to your hand.",
+              "price": 2500,
+              "ownerUsername": "kasra",
+              "speed": 1
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "DARK",
+              "type": "Warrior",
+              "attack": 1800,
+              "defense": 1500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Dark Blade",
+              "cardDescription": "They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.",
+              "cardType": "Normal",
+              "price": 3500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "type": "Warrior",
+              "attack": 1700,
+              "defense": 1150,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Axe Raider",
+              "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+              "cardType": "Normal",
+              "price": 3100,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "DARK",
+              "attack": 600,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Curtain of the dark ones",
+              "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+              "cardType": "Normal",
+              "price": 700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "WIND",
+              "type": "Dragon",
+              "attack": 1200,
+              "defense": 700,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Baby Dragon",
+              "cardDescription": "Much more than just a child, this dragon is gifted with untapped power.",
+              "cardType": "Normal",
+              "price": 1600,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "NORMAL",
+              "activated": false,
+              "type": "Trap",
+              "isSpell": false,
+              "status": "Unlimited",
+              "effects": [
+                {
+                  "@type": "Server.model.card.SpellTrapCards.effects.TrapHoleEffect",
+                  "@val": {}
+                }
+              ],
+              "cardName": "Trap Hole",
+              "cardDescription": "When your opponent Normal or Flip Summons 1 monster with 1000 or more ATK: Target that monster; destroy that target.",
+              "price": 2000,
+              "ownerUsername": "kasra",
+              "speed": 2
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 11,
+              "attribute": "DARK",
+              "type": "Warrior",
+              "attack": 3750,
+              "defense": 3400,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Gate Guardian",
+              "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+              "cardType": "Effect",
+              "price": 20000,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 2000,
+              "defense": 100,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Alexandrite Dragon",
+              "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+              "cardType": "Normal",
+              "price": 2600,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 5,
+              "attribute": "WIND",
+              "attack": 2000,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "THE_TRICKY",
+              "effects": [],
+              "cardName": "The Tricky",
+              "cardDescription": "You can Special Summon this card (from your hand) by discarding 1 card.",
+              "cardType": "Effect",
+              "price": 4300,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 1800,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "TERRATIGER",
+              "effects": [],
+              "cardName": "Terratiger, the Empowered Warrior",
+              "cardDescription": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+              "cardType": "Effect",
+              "price": 3200,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Dragon",
+              "attack": 1000,
+              "defense": 0,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "EXPLODER_DRAGON",
+              "effects": [],
+              "cardName": "Exploder Dragon",
+              "cardDescription": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+              "cardType": "Effect",
+              "price": 1000,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "EARTH",
+              "type": "Cyberse",
+              "attack": 2000,
+              "defense": 0,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Leotron ",
+              "cardDescription": "A territorial electronic monster that guards its own domain.",
+              "cardType": "Normal",
+              "price": 2500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "CONTINUOUS",
+              "activated": false,
+              "type": "Trap",
+              "isSpell": false,
+              "status": "Limited",
+              "effects": [],
+              "cardName": "Vanity's Emptiness",
+              "cardDescription": "Neither player can Special Summon monsters. If a card is sent from the Deck or the field to your Graveyard: Destroy this card.",
+              "price": 3500,
+              "ownerUsername": "kasra",
+              "speed": 2
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "NORMAL",
+              "activated": false,
+              "type": "Spell",
+              "isSpell": true,
+              "status": "Unlimited",
+              "effects": [
+                {
+                  "@type": "Server.model.card.SpellTrapCards.effects.DestroyAllCardsOfFieldEffect",
+                  "@val": {
+                    "fieldTypes": [
+                      "PLAYER_MONSTER",
+                      "OPPONENT_MONSTER"
+                    ]
+                  }
+                }
+              ],
+              "cardName": "Dark Hole",
+              "cardDescription": "Destroy all monsters on the field.",
+              "price": 2500,
+              "ownerUsername": "kasra",
+              "speed": 1
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "EARTH",
+              "type": "Rock",
+              "attack": 500,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Haniwa",
+              "cardDescription": "An earthen figure that protects the tomb of an ancient ruler.",
+              "cardType": "Normal",
+              "price": 600,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 5,
+              "attribute": "EARTH",
+              "type": "Dragon",
+              "attack": 1600,
+              "defense": 1400,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Crawling dragon",
+              "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+              "cardType": "Normal",
+              "price": 3900,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 1700,
+              "defense": 1600,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Warrior Dai Grepher",
+              "cardDescription": "The warrior who can manipulate dragons. Nobody knows his mysterious past.",
+              "cardType": "Normal",
+              "price": 3400,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "LIGHT",
+              "type": "Thunder",
+              "attack": 1000,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Wattkid",
+              "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+              "cardType": "Normal",
+              "price": 1300,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 1600,
+              "defense": 600,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "MIRAGE_DRAGON",
+              "effects": [],
+              "cardName": "Mirage Dragon",
+              "cardDescription": "Your opponent cannot activate Trap Cards during the Battle Phase.",
+              "cardType": "Effect",
+              "price": 2500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 3000,
+              "defense": 2500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Blue-Eyes white dragon",
+              "cardDescription": "This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.",
+              "cardType": "Normal",
+              "price": 11300,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 7,
+              "attribute": "WATER",
+              "type": "Aqua",
+              "attack": 2500,
+              "defense": 2400,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "SUIJIN",
+              "effects": [],
+              "cardName": "Suijin",
+              "cardDescription": "During damage calculation in your opponent's turn, if this card is being attacked: You can target the attacking monster; make that target's ATK 0 during damage calculation only (this is a Quick Effect). This effect can only be used once while this card is face-up on the field.",
+              "cardType": "Effect",
+              "price": 8700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "EARTH",
+              "type": "Beast_Warrior",
+              "attack": 3000,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "BEAST_KING_BARBAROS",
+              "effects": [],
+              "cardName": "Beast King Barbaros",
+              "cardDescription": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.",
+              "cardType": "Effect",
+              "price": 9200,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "type": "Warrior",
+              "attack": 1000,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Command Knight",
+              "cardDescription": "All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.",
+              "cardType": "Effect",
+              "price": 2100,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "FIRE",
+              "attack": 900,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Flame manipulator",
+              "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+              "cardType": "Normal",
+              "price": 1500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Beast",
+              "attack": 1200,
+              "defense": 800,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Silver Fang",
+              "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+              "cardType": "Normal",
+              "price": 1700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 7,
+              "attribute": "DARK",
+              "type": "Machine",
+              "attack": 2000,
+              "defense": 2300,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Slot Machine",
+              "cardDescription": "The machine's ability is said to vary according to its slot results.",
+              "cardType": "Normal",
+              "price": 7500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 7,
+              "attribute": "DARK",
+              "attack": 2500,
+              "defense": 2100,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Dark magician",
+              "cardDescription": "The ultimate wizard in terms of attack and defense.",
+              "cardType": "Normal",
+              "price": 8300,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 1100,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Hero of the east",
+              "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+              "cardType": "Normal",
+              "price": 1700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "EARTH",
+              "type": "Cyberse",
+              "attack": 200,
+              "defense": 2000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Bitron",
+              "cardDescription": "A new species found in electronic space. There's not much information on it.",
+              "cardType": "Normal",
+              "price": 1000,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "DARK",
+              "type": "Fiend",
+              "attack": 1300,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Horn Imp",
+              "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+              "cardType": "Normal",
+              "price": 2500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "WATER",
+              "type": "Aqua",
+              "attack": 800,
+              "defense": 1400,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "YOMI_SHIP",
+              "effects": [],
+              "cardName": "Yomi Ship",
+              "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+              "cardType": "Effect",
+              "price": 1700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "attack": 1800,
+              "defense": 600,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "HERALD_OF_CREATION",
+              "effects": [],
+              "cardName": "Herald of Creation",
+              "cardDescription": "Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.",
+              "cardType": "Effect",
+              "price": 2700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "WATER",
+              "type": "Sea_Serpent",
+              "attack": 2900,
+              "defense": 2900,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Spiral Serpent",
+              "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+              "cardType": "Normal",
+              "price": 11700,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 1,
+              "attribute": "DARK",
+              "type": "Cyberse",
+              "attack": 100,
+              "defense": 100,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "TEXCHANGER",
+              "effects": [],
+              "cardName": "Texchanger",
+              "cardDescription": "Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.",
+              "cardType": "Effect",
+              "price": 200,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "EARTH",
+              "type": "Insect",
+              "attack": 450,
+              "defense": 600,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "MAN_EATER_BUG",
+              "effects": [],
+              "cardName": "Man-Eater Bug",
+              "cardDescription": "FLIP: Target 1 monster on the field; destroy that target.",
+              "cardType": "Effect",
+              "price": 600,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "type": "Beast_Warrior",
+              "attack": 1700,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Battle OX",
+              "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+              "cardType": "Normal",
+              "price": 2900,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 700,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Battle warrior",
+              "cardDescription": "A warrior that fights with his bare hands!!!",
+              "cardType": "Normal",
+              "price": 1300,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 6,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 2500,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Wattaildragon",
+              "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+              "cardType": "Normal",
+              "price": 5800,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "DARK",
+              "type": "Fiend",
+              "attack": 1300,
+              "defense": 1400,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Feral Imp",
+              "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+              "cardType": "Normal",
+              "price": 2800,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "FIRE",
+              "type": "Pyro",
+              "attack": 1300,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Fireyarou",
+              "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+              "cardType": "Normal",
+              "price": 2500,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "LIGHT",
+              "type": "Thunder",
+              "attack": 0,
+              "defense": 0,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "THE_CALCULATOR",
+              "effects": [],
+              "cardName": "The Calculator",
+              "cardDescription": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+              "cardType": "Effect",
+              "price": 8000,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "WATER",
+              "type": "Aqua",
+              "attack": 2550,
+              "defense": 2500,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "CRAB_TURTLE",
+              "effects": [],
+              "cardName": "Crab Turtle",
+              "cardDescription": "This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.",
+              "cardType": "Ritual",
+              "price": 10200,
+              "ownerUsername": "kasra",
+              "speed": 0
+            }
+          }
+        ]
+      },
+      "userDeck": {
+        "userDecks": [
+          {
+            "name": "deck",
+            "username": "kasra",
+            "mainDeck": [
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 1800,
+                  "defense": 1500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark Blade",
+                  "cardDescription": "They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.",
+                  "cardType": "Normal",
+                  "price": 3500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WIND",
+                  "type": "Dragon",
+                  "attack": 1200,
+                  "defense": 700,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Baby Dragon",
+                  "cardDescription": "Much more than just a child, this dragon is gifted with untapped power.",
+                  "cardType": "Normal",
+                  "price": 1600,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 11,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 3750,
+                  "defense": 3400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Gate Guardian",
+                  "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+                  "cardType": "Effect",
+                  "price": 20000,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "WIND",
+                  "attack": 2000,
+                  "defense": 1200,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "THE_TRICKY",
+                  "effects": [],
+                  "cardName": "The Tricky",
+                  "cardDescription": "You can Special Summon this card (from your hand) by discarding 1 card.",
+                  "cardType": "Effect",
+                  "price": 4300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1800,
+                  "defense": 1200,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "TERRATIGER",
+                  "effects": [],
+                  "cardName": "Terratiger, the Empowered Warrior",
+                  "cardDescription": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+                  "cardType": "Effect",
+                  "price": 3200,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1000,
+                  "defense": 0,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "EXPLODER_DRAGON",
+                  "effects": [],
+                  "cardName": "Exploder Dragon",
+                  "cardDescription": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+                  "cardType": "Effect",
+                  "price": 1000,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "type": "Cyberse",
+                  "attack": 2000,
+                  "defense": 0,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Leotron ",
+                  "cardDescription": "A territorial electronic monster that guards its own domain.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "type": "Rock",
+                  "attack": 500,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Haniwa",
+                  "cardDescription": "An earthen figure that protects the tomb of an ancient ruler.",
+                  "cardType": "Normal",
+                  "price": 600,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1600,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Warrior Dai Grepher",
+                  "cardDescription": "The warrior who can manipulate dragons. Nobody knows his mysterious past.",
+                  "cardType": "Normal",
+                  "price": 3400,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 600,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "MIRAGE_DRAGON",
+                  "effects": [],
+                  "cardName": "Mirage Dragon",
+                  "cardDescription": "Your opponent cannot activate Trap Cards during the Battle Phase.",
+                  "cardType": "Effect",
+                  "price": 2500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 3000,
+                  "defense": 2500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Blue-Eyes white dragon",
+                  "cardDescription": "This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.",
+                  "cardType": "Normal",
+                  "price": 11300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 2500,
+                  "defense": 2400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "SUIJIN",
+                  "effects": [],
+                  "cardName": "Suijin",
+                  "cardDescription": "During damage calculation in your opponent's turn, if this card is being attacked: You can target the attacking monster; make that target's ATK 0 during damage calculation only (this is a Quick Effect). This effect can only be used once while this card is face-up on the field.",
+                  "cardType": "Effect",
+                  "price": 8700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "EARTH",
+                  "type": "Beast_Warrior",
+                  "attack": 3000,
+                  "defense": 1200,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "BEAST_KING_BARBAROS",
+                  "effects": [],
+                  "cardName": "Beast King Barbaros",
+                  "cardDescription": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.",
+                  "cardType": "Effect",
+                  "price": 9200,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1000,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Command Knight",
+                  "cardDescription": "All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.",
+                  "cardType": "Effect",
+                  "price": 2100,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "attack": 900,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Flame manipulator",
+                  "cardDescription": "This Spellcaster attacks enemies with fire-related spells such as \"Sea of Flames\" and \"Wall of Fire\".",
+                  "cardType": "Normal",
+                  "price": 1500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "type": "Machine",
+                  "attack": 2000,
+                  "defense": 2300,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Slot Machine",
+                  "cardDescription": "The machine's ability is said to vary according to its slot results.",
+                  "cardType": "Normal",
+                  "price": 7500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1100,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Hero of the east",
+                  "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "type": "Cyberse",
+                  "attack": 200,
+                  "defense": 2000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Bitron",
+                  "cardDescription": "A new species found in electronic space. There's not much information on it.",
+                  "cardType": "Normal",
+                  "price": 1000,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "attack": 1800,
+                  "defense": 600,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "HERALD_OF_CREATION",
+                  "effects": [],
+                  "cardName": "Herald of Creation",
+                  "cardDescription": "Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.",
+                  "cardType": "Effect",
+                  "price": 2700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Sea_Serpent",
+                  "attack": 2900,
+                  "defense": 2900,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Spiral Serpent",
+                  "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+                  "cardType": "Normal",
+                  "price": 11700,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 1,
+                  "attribute": "DARK",
+                  "type": "Cyberse",
+                  "attack": 100,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "TEXCHANGER",
+                  "effects": [],
+                  "cardName": "Texchanger",
+                  "cardDescription": "Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.",
+                  "cardType": "Effect",
+                  "price": 200,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "type": "Insect",
+                  "attack": 450,
+                  "defense": 600,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "MAN_EATER_BUG",
+                  "effects": [],
+                  "cardName": "Man-Eater Bug",
+                  "cardDescription": "FLIP: Target 1 monster on the field; destroy that target.",
+                  "cardType": "Effect",
+                  "price": 600,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 6,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2500,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattaildragon",
+                  "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+                  "cardType": "Normal",
+                  "price": 5800,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 0,
+                  "defense": 0,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "THE_CALCULATOR",
+                  "effects": [],
+                  "cardName": "The Calculator",
+                  "cardDescription": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+                  "cardType": "Effect",
+                  "price": 8000,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 2550,
+                  "defense": 2500,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "CRAB_TURTLE",
+                  "effects": [],
+                  "cardName": "Crab Turtle",
+                  "cardDescription": "This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.",
+                  "cardType": "Ritual",
+                  "price": 10200,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "kasra",
+                  "speed": 0
+                }
+              }
+            ],
+            "sideDeck": []
+          }
+        ],
+        "activeDeck": "@root.0.userDeck.userDecks.0"
+      },
+      "lastDamageAmount": 0,
+      "profilePicturePath": "src/main/resources/Client/view/pictureFiles/unknownUserProfileImage.jpg"
+    }
+  },
+  {
+    "@type": "Server.model.user.User",
+    "@val": {
+      "username": "hossein",
+      "password": "hossein",
+      "nickname": "HajHossein",
+      "money": 21800,
+      "score": 0,
+      "lifepoint": {
+        "lifepoint": 8000
+      },
+      "cardInventory": {
+        "cardsCount": {
+          "Terratiger, the Empowered Warrior": 1,
+          "Wattkid": 1,
+          "Warrior Dai Grepher": 1,
+          "Axe Raider": 1,
+          "Beast King Barbaros": 1,
+          "The Tricky": 1,
+          "Blue-Eyes white dragon": 1,
+          "Dark Blade": 1,
+          "Command Knight": 2,
+          "Spell Absorption": 1,
+          "Silver Fang": 1,
+          "Alexandrite Dragon": 1,
+          "Slot Machine": 1,
+          "Dark magician": 1,
+          "Hero of the east": 1,
+          "Leotron ": 1,
+          "Exploder Dragon": 1,
+          "Messenger of peace": 1,
+          "Horn Imp": 1,
+          "Yomi Ship": 1,
+          "Herald of Creation": 1,
+          "Battle warrior": 1,
+          "Call of The Haunted": 1,
+          "Curtain of the dark ones": 1,
+          "Man-Eater Bug": 1,
+          "Texchanger": 1,
+          "Battle OX": 1,
+          "Black Pendant": 1,
+          "Spiral Serpent": 1,
+          "Wattaildragon": 1,
+          "Gate Guardian": 1,
+          "Feral Imp": 1,
+          "Baby Dragon": 1,
+          "Fireyarou": 1,
+          "The Calculator": 1,
+          "Haniwa": 1,
+          "Crab Turtle": 1,
+          "Wall of Revealing Light": 1,
+          "Crawling dragon": 1,
+          "Skull Guardian": 1,
+          "Mirage Dragon": 1
+        },
+        "cards": [
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 1800,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "TERRATIGER",
+              "effects": [],
+              "cardName": "Terratiger, the Empowered Warrior",
+              "cardDescription": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+              "cardType": "Effect",
+              "price": 3200,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "type": "Warrior",
+              "attack": 1700,
+              "defense": 1150,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Axe Raider",
+              "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+              "cardType": "Normal",
+              "price": 3100,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 5,
+              "attribute": "WIND",
+              "attack": 2000,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "THE_TRICKY",
+              "effects": [],
+              "cardName": "The Tricky",
+              "cardDescription": "You can Special Summon this card (from your hand) by discarding 1 card.",
+              "cardType": "Effect",
+              "price": 4300,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "DARK",
+              "type": "Warrior",
+              "attack": 1800,
+              "defense": 1500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Dark Blade",
+              "cardDescription": "They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.",
+              "cardType": "Normal",
+              "price": 3500,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "EARTH",
+              "type": "Cyberse",
+              "attack": 2000,
+              "defense": 0,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Leotron ",
+              "cardDescription": "A territorial electronic monster that guards its own domain.",
+              "cardType": "Normal",
+              "price": 2500,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 2000,
+              "defense": 100,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Alexandrite Dragon",
+              "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+              "cardType": "Normal",
+              "price": 2600,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Dragon",
+              "attack": 1000,
+              "defense": 0,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "EXPLODER_DRAGON",
+              "effects": [],
+              "cardName": "Exploder Dragon",
+              "cardDescription": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+              "cardType": "Effect",
+              "price": 1000,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "DARK",
+              "attack": 600,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Curtain of the dark ones",
+              "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+              "cardType": "Normal",
+              "price": 700,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "CONTINUOUS",
+              "activated": false,
+              "type": "Trap",
+              "isSpell": false,
+              "status": "Unlimited",
+              "effects": [],
+              "cardName": "Call of The Haunted",
+              "cardDescription": "Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.",
+              "price": 3500,
+              "ownerUsername": "hossein",
+              "speed": 2
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 11,
+              "attribute": "DARK",
+              "type": "Warrior",
+              "attack": 3750,
+              "defense": 3400,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Gate Guardian",
+              "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+              "cardType": "Effect",
+              "price": 20000,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "WIND",
+              "type": "Dragon",
+              "attack": 1200,
+              "defense": 700,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Baby Dragon",
+              "cardDescription": "Much more than just a child, this dragon is gifted with untapped power.",
+              "cardType": "Normal",
+              "price": 1600,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "EQUIP",
+              "activated": false,
+              "type": "Spell",
+              "isSpell": true,
+              "status": "Unlimited",
+              "effects": [
+                {
+                  "@type": "Server.model.card.SpellTrapCards.effects.IncreaseAtkDefOfEquippedEffect",
+                  "@val": {
+                    "attack": 500,
+                    "defence": 0,
+                    "monsterTypes": [
+                      "Beast_Warrior",
+                      "Warrior",
+                      "Aqua",
+                      "Fiend",
+                      "Beast",
+                      "Pyro",
+                      "SpellCaster",
+                      "Thunder",
+                      "Dragon",
+                      "Machine",
+                      "Rock",
+                      "Insect",
+                      "Cyberse",
+                      "Fairy",
+                      "Sea_Serpent"
+                    ]
+                  }
+                }
+              ],
+              "cardName": "Black Pendant",
+              "cardDescription": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
+              "price": 4300,
+              "ownerUsername": "hossein",
+              "speed": 1
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "EARTH",
+              "type": "Rock",
+              "attack": 500,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Haniwa",
+              "cardDescription": "An earthen figure that protects the tomb of an ancient ruler.",
+              "cardType": "Normal",
+              "price": 600,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "CONTINUOUS",
+              "activated": false,
+              "type": "Trap",
+              "isSpell": false,
+              "status": "Limited",
+              "effects": [],
+              "cardName": "Wall of Revealing Light",
+              "cardDescription": "Activate by paying any multiple of 1000 Life Points. Monsters your opponent controls cannot attack if their ATK is less than or equal to the amount you paid.",
+              "price": 3500,
+              "ownerUsername": "hossein",
+              "speed": 2
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 5,
+              "attribute": "EARTH",
+              "type": "Dragon",
+              "attack": 1600,
+              "defense": 1400,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Crawling dragon",
+              "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+              "cardType": "Normal",
+              "price": 3900,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 1700,
+              "defense": 1600,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Warrior Dai Grepher",
+              "cardDescription": "The warrior who can manipulate dragons. Nobody knows his mysterious past.",
+              "cardType": "Normal",
+              "price": 3400,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "LIGHT",
+              "type": "Thunder",
+              "attack": 1000,
+              "defense": 500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Wattkid",
+              "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+              "cardType": "Normal",
+              "price": 1300,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 1600,
+              "defense": 600,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "MIRAGE_DRAGON",
+              "effects": [],
+              "cardName": "Mirage Dragon",
+              "cardDescription": "Your opponent cannot activate Trap Cards during the Battle Phase.",
+              "cardType": "Effect",
+              "price": 2500,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 7,
+              "attribute": "LIGHT",
+              "type": "Warrior",
+              "attack": 2050,
+              "defense": 2500,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "SKULL_GUARDIAN",
+              "effects": [],
+              "cardName": "Skull Guardian",
+              "cardDescription": "This monster can only be Ritual Summoned with the Ritual Spell Card, \"Novox's Prayer\". You must also offer monsters whose total Level Stars equal 7 or more as a Tribute from the field or your hand.",
+              "cardType": "Ritual",
+              "price": 7900,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "EARTH",
+              "type": "Beast_Warrior",
+              "attack": 3000,
+              "defense": 1200,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "BEAST_KING_BARBAROS",
+              "effects": [],
+              "cardName": "Beast King Barbaros",
+              "cardDescription": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.",
+              "cardType": "Effect",
+              "price": 9200,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 3000,
+              "defense": 2500,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Blue-Eyes white dragon",
+              "cardDescription": "This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.",
+              "cardType": "Normal",
+              "price": 11300,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Beast",
+              "attack": 1200,
+              "defense": 800,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Silver Fang",
+              "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+              "cardType": "Normal",
+              "price": 1700,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "type": "Warrior",
+              "attack": 1000,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Command Knight",
+              "cardDescription": "All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.",
+              "cardType": "Effect",
+              "price": 2100,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "CONTINUOUS",
+              "activated": false,
+              "type": "Spell",
+              "isSpell": true,
+              "status": "Unlimited",
+              "effects": [
+                {
+                  "@type": "Server.model.card.SpellTrapCards.effects.Continiuous.SpellAbsorption",
+                  "@val": {
+                    "isActive": false
+                  }
+                }
+              ],
+              "cardName": "Spell Absorption",
+              "cardDescription": "Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.",
+              "price": 4000,
+              "ownerUsername": "hossein",
+              "speed": 1
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 7,
+              "attribute": "DARK",
+              "type": "Machine",
+              "attack": 2000,
+              "defense": 2300,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Slot Machine",
+              "cardDescription": "The machine's ability is said to vary according to its slot results.",
+              "cardType": "Normal",
+              "price": 7500,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 7,
+              "attribute": "DARK",
+              "attack": 2500,
+              "defense": 2100,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Dark magician",
+              "cardDescription": "The ultimate wizard in terms of attack and defense.",
+              "cardType": "Normal",
+              "price": 8300,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 1100,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Hero of the east",
+              "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+              "cardType": "Normal",
+              "price": 1700,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.SpellTrapCard",
+            "@val": {
+              "icon": "CONTINUOUS",
+              "activated": false,
+              "type": "Spell",
+              "isSpell": true,
+              "status": "Unlimited",
+              "effects": [],
+              "cardName": "Messenger of peace",
+              "cardDescription": "Monsters with 1500 or more ATK cannot declare an attack. Once per turn, during your Standby Phase, pay 100 LP or destroy this card.",
+              "price": 4000,
+              "ownerUsername": "hossein",
+              "speed": 1
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "DARK",
+              "type": "Fiend",
+              "attack": 1300,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Horn Imp",
+              "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+              "cardType": "Normal",
+              "price": 2500,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "WATER",
+              "type": "Aqua",
+              "attack": 800,
+              "defense": 1400,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "YOMI_SHIP",
+              "effects": [],
+              "cardName": "Yomi Ship",
+              "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+              "cardType": "Effect",
+              "price": 1700,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "LIGHT",
+              "attack": 1800,
+              "defense": 600,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "HERALD_OF_CREATION",
+              "effects": [],
+              "cardName": "Herald of Creation",
+              "cardDescription": "Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.",
+              "cardType": "Effect",
+              "price": 2700,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "EARTH",
+              "type": "Insect",
+              "attack": 450,
+              "defense": 600,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "MAN_EATER_BUG",
+              "effects": [],
+              "cardName": "Man-Eater Bug",
+              "cardDescription": "FLIP: Target 1 monster on the field; destroy that target.",
+              "cardType": "Effect",
+              "price": 600,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 1,
+              "attribute": "DARK",
+              "type": "Cyberse",
+              "attack": 100,
+              "defense": 100,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "TEXCHANGER",
+              "effects": [],
+              "cardName": "Texchanger",
+              "cardDescription": "Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.",
+              "cardType": "Effect",
+              "price": 200,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "WATER",
+              "type": "Sea_Serpent",
+              "attack": 2900,
+              "defense": 2900,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Spiral Serpent",
+              "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+              "cardType": "Normal",
+              "price": 11700,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "type": "Beast_Warrior",
+              "attack": 1700,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Battle OX",
+              "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+              "cardType": "Normal",
+              "price": 2900,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 3,
+              "attribute": "EARTH",
+              "type": "Warrior",
+              "attack": 700,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Battle warrior",
+              "cardDescription": "A warrior that fights with his bare hands!!!",
+              "cardType": "Normal",
+              "price": 1300,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "DARK",
+              "type": "Fiend",
+              "attack": 1300,
+              "defense": 1400,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Feral Imp",
+              "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+              "cardType": "Normal",
+              "price": 2800,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 6,
+              "attribute": "LIGHT",
+              "type": "Dragon",
+              "attack": 2500,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Wattaildragon",
+              "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+              "cardType": "Normal",
+              "price": 5800,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 4,
+              "attribute": "FIRE",
+              "type": "Pyro",
+              "attack": 1300,
+              "defense": 1000,
+              "wasAttackedInThisTurn": false,
+              "effects": [],
+              "cardName": "Fireyarou",
+              "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+              "cardType": "Normal",
+              "price": 2500,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 2,
+              "attribute": "LIGHT",
+              "type": "Thunder",
+              "attack": 0,
+              "defense": 0,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "THE_CALCULATOR",
+              "effects": [],
+              "cardName": "The Calculator",
+              "cardDescription": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+              "cardType": "Effect",
+              "price": 8000,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          },
+          {
+            "@type": "Server.model.card.MonsterCard",
+            "@val": {
+              "level": 8,
+              "attribute": "WATER",
+              "type": "Aqua",
+              "attack": 2550,
+              "defense": 2500,
+              "wasAttackedInThisTurn": false,
+              "specialMonsterEnum": "CRAB_TURTLE",
+              "effects": [],
+              "cardName": "Crab Turtle",
+              "cardDescription": "This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.",
+              "cardType": "Ritual",
+              "price": 10200,
+              "ownerUsername": "hossein",
+              "speed": 0
+            }
+          }
+        ]
+      },
+      "userDeck": {
+        "userDecks": [
+          {
+            "name": "deck",
+            "username": "hossein",
+            "mainDeck": [
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1800,
+                  "defense": 1200,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "TERRATIGER",
+                  "effects": [],
+                  "cardName": "Terratiger, the Empowered Warrior",
+                  "cardDescription": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+                  "cardType": "Effect",
+                  "price": 3200,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1150,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Axe Raider",
+                  "cardDescription": "An axe-wielding monster of tremendous strength and agility.",
+                  "cardType": "Normal",
+                  "price": 3100,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "WIND",
+                  "attack": 2000,
+                  "defense": 1200,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "THE_TRICKY",
+                  "effects": [],
+                  "cardName": "The Tricky",
+                  "cardDescription": "You can Special Summon this card (from your hand) by discarding 1 card.",
+                  "cardType": "Effect",
+                  "price": 4300,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 1800,
+                  "defense": 1500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark Blade",
+                  "cardDescription": "They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.",
+                  "cardType": "Normal",
+                  "price": 3500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "type": "Cyberse",
+                  "attack": 2000,
+                  "defense": 0,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Leotron ",
+                  "cardDescription": "A territorial electronic monster that guards its own domain.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2000,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Alexandrite Dragon",
+                  "cardDescription": "Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.",
+                  "cardType": "Normal",
+                  "price": 2600,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1000,
+                  "defense": 0,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "EXPLODER_DRAGON",
+                  "effects": [],
+                  "cardName": "Exploder Dragon",
+                  "cardDescription": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+                  "cardType": "Effect",
+                  "price": 1000,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "DARK",
+                  "attack": 600,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Curtain of the dark ones",
+                  "cardDescription": "A curtain that a spellcaster made, it is said to raise a dark power.",
+                  "cardType": "Normal",
+                  "price": 700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "CONTINUOUS",
+                  "activated": false,
+                  "type": "Trap",
+                  "isSpell": false,
+                  "status": "Unlimited",
+                  "effects": [],
+                  "cardName": "Call of The Haunted",
+                  "cardDescription": "Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.",
+                  "price": 3500,
+                  "ownerUsername": "hossein",
+                  "speed": 2
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 11,
+                  "attribute": "DARK",
+                  "type": "Warrior",
+                  "attack": 3750,
+                  "defense": 3400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Gate Guardian",
+                  "cardDescription": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"Sanga of the Thunder\", \"Kazejin\", and \"Suijin\".",
+                  "cardType": "Effect",
+                  "price": 20000,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WIND",
+                  "type": "Dragon",
+                  "attack": 1200,
+                  "defense": 700,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Baby Dragon",
+                  "cardDescription": "Much more than just a child, this dragon is gifted with untapped power.",
+                  "cardType": "Normal",
+                  "price": 1600,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.SpellTrapCard",
+                "@val": {
+                  "icon": "EQUIP",
+                  "activated": false,
+                  "type": "Spell",
+                  "isSpell": true,
+                  "status": "Unlimited",
+                  "effects": [
+                    {
+                      "@type": "Server.model.card.SpellTrapCards.effects.IncreaseAtkDefOfEquippedEffect",
+                      "@val": {
+                        "attack": 500,
+                        "defence": 0,
+                        "monsterTypes": [
+                          "Beast_Warrior",
+                          "Warrior",
+                          "Aqua",
+                          "Fiend",
+                          "Beast",
+                          "Pyro",
+                          "SpellCaster",
+                          "Thunder",
+                          "Dragon",
+                          "Machine",
+                          "Rock",
+                          "Insect",
+                          "Cyberse",
+                          "Fairy",
+                          "Sea_Serpent"
+                        ]
+                      }
+                    }
+                  ],
+                  "cardName": "Black Pendant",
+                  "cardDescription": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
+                  "price": 4300,
+                  "ownerUsername": "hossein",
+                  "speed": 1
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "type": "Rock",
+                  "attack": 500,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Haniwa",
+                  "cardDescription": "An earthen figure that protects the tomb of an ancient ruler.",
+                  "cardType": "Normal",
+                  "price": 600,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 5,
+                  "attribute": "EARTH",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Crawling dragon",
+                  "cardDescription": "This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.",
+                  "cardType": "Normal",
+                  "price": 3900,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1700,
+                  "defense": 1600,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Warrior Dai Grepher",
+                  "cardDescription": "The warrior who can manipulate dragons. Nobody knows his mysterious past.",
+                  "cardType": "Normal",
+                  "price": 3400,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 1000,
+                  "defense": 500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattkid",
+                  "cardDescription": "A creature that electrocutes opponents with bolts of lightning.",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 1600,
+                  "defense": 600,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "MIRAGE_DRAGON",
+                  "effects": [],
+                  "cardName": "Mirage Dragon",
+                  "cardDescription": "Your opponent cannot activate Trap Cards during the Battle Phase.",
+                  "cardType": "Effect",
+                  "price": 2500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "LIGHT",
+                  "type": "Warrior",
+                  "attack": 2050,
+                  "defense": 2500,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "SKULL_GUARDIAN",
+                  "effects": [],
+                  "cardName": "Skull Guardian",
+                  "cardDescription": "This monster can only be Ritual Summoned with the Ritual Spell Card, \"Novox's Prayer\". You must also offer monsters whose total Level Stars equal 7 or more as a Tribute from the field or your hand.",
+                  "cardType": "Ritual",
+                  "price": 7900,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "EARTH",
+                  "type": "Beast_Warrior",
+                  "attack": 3000,
+                  "defense": 1200,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "BEAST_KING_BARBAROS",
+                  "effects": [],
+                  "cardName": "Beast King Barbaros",
+                  "cardDescription": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.",
+                  "cardType": "Effect",
+                  "price": 9200,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 3000,
+                  "defense": 2500,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Blue-Eyes white dragon",
+                  "cardDescription": "This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.",
+                  "cardType": "Normal",
+                  "price": 11300,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Warrior",
+                  "attack": 1000,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Command Knight",
+                  "cardDescription": "All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.",
+                  "cardType": "Effect",
+                  "price": 2100,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Beast",
+                  "attack": 1200,
+                  "defense": 800,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Silver Fang",
+                  "cardDescription": "A snow wolf that's beautiful to the eye, but absolutely vicious in battle.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "type": "Machine",
+                  "attack": 2000,
+                  "defense": 2300,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Slot Machine",
+                  "cardDescription": "The machine's ability is said to vary according to its slot results.",
+                  "cardType": "Normal",
+                  "price": 7500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 7,
+                  "attribute": "DARK",
+                  "attack": 2500,
+                  "defense": 2100,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Dark magician",
+                  "cardDescription": "The ultimate wizard in terms of attack and defense.",
+                  "cardType": "Normal",
+                  "price": 8300,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 1100,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Hero of the east",
+                  "cardDescription": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+                  "cardType": "Normal",
+                  "price": 1700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Horn Imp",
+                  "cardDescription": "A small fiend that dwells in the dark, its single horn makes it a formidable opponent.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "attack": 1800,
+                  "defense": 600,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "HERALD_OF_CREATION",
+                  "effects": [],
+                  "cardName": "Herald of Creation",
+                  "cardDescription": "Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.",
+                  "cardType": "Effect",
+                  "price": 2700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "type": "Insect",
+                  "attack": 450,
+                  "defense": 600,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "MAN_EATER_BUG",
+                  "effects": [],
+                  "cardName": "Man-Eater Bug",
+                  "cardDescription": "FLIP: Target 1 monster on the field; destroy that target.",
+                  "cardType": "Effect",
+                  "price": 600,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 1,
+                  "attribute": "DARK",
+                  "type": "Cyberse",
+                  "attack": 100,
+                  "defense": 100,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "TEXCHANGER",
+                  "effects": [],
+                  "cardName": "Texchanger",
+                  "cardDescription": "Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.",
+                  "cardType": "Effect",
+                  "price": 200,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Sea_Serpent",
+                  "attack": 2900,
+                  "defense": 2900,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Spiral Serpent",
+                  "cardDescription": "When huge whirlpools lay cities asunder, it is the hunger of this sea serpent at work. No one has ever escaped its dreaded Spiral Wave to accurately describe the terror they experienced.",
+                  "cardType": "Normal",
+                  "price": 11700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "type": "Beast_Warrior",
+                  "attack": 1700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle OX",
+                  "cardDescription": "A monster with tremendous power, it destroys enemies with a swing of its axe.",
+                  "cardType": "Normal",
+                  "price": 2900,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "DARK",
+                  "type": "Fiend",
+                  "attack": 1300,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Feral Imp",
+                  "cardDescription": "A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.",
+                  "cardType": "Normal",
+                  "price": 2800,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 6,
+                  "attribute": "LIGHT",
+                  "type": "Dragon",
+                  "attack": 2500,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Wattaildragon",
+                  "cardDescription": "Capable of indefinite flight. Attacks by wrapping its body with electricity and ramming into opponents.\nIMPORTANT: Capturing the \"Wattaildragon\" is forbidden by the Ancient Rules and is a Level 6 offense, the minimum sentence for which is imprisonment for no less than 2500 heliocycles.",
+                  "cardType": "Normal",
+                  "price": 5800,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 2,
+                  "attribute": "LIGHT",
+                  "type": "Thunder",
+                  "attack": 0,
+                  "defense": 0,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "THE_CALCULATOR",
+                  "effects": [],
+                  "cardName": "The Calculator",
+                  "cardDescription": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+                  "cardType": "Effect",
+                  "price": 8000,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 8,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 2550,
+                  "defense": 2500,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "CRAB_TURTLE",
+                  "effects": [],
+                  "cardName": "Crab Turtle",
+                  "cardDescription": "This monster can only be Ritual Summoned with the Ritual Spell Card, \"Turtle Oath\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.",
+                  "cardType": "Ritual",
+                  "price": 10200,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "type": "Pyro",
+                  "attack": 1300,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Fireyarou",
+                  "cardDescription": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+                  "cardType": "Normal",
+                  "price": 2500,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "type": "Warrior",
+                  "attack": 700,
+                  "defense": 1000,
+                  "wasAttackedInThisTurn": false,
+                  "effects": [],
+                  "cardName": "Battle warrior",
+                  "cardDescription": "A warrior that fights with his bare hands!!!",
+                  "cardType": "Normal",
+                  "price": 1300,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              },
+              {
+                "@type": "Server.model.card.MonsterCard",
+                "@val": {
+                  "level": 3,
+                  "attribute": "WATER",
+                  "type": "Aqua",
+                  "attack": 800,
+                  "defense": 1400,
+                  "wasAttackedInThisTurn": false,
+                  "specialMonsterEnum": "YOMI_SHIP",
+                  "effects": [],
+                  "cardName": "Yomi Ship",
+                  "cardDescription": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "cardType": "Effect",
+                  "price": 1700,
+                  "ownerUsername": "hossein",
+                  "speed": 0
+                }
+              }
+            ],
+            "sideDeck": []
+          }
+        ],
+        "activeDeck": "@root.1.userDeck.userDecks.0"
+      },
+      "lastDamageAmount": 0,
+      "profilePicturePath": "src/main/resources/Client/view/pictureFiles/unknownUserProfileImage.jpg"
+    }
+  }
+]
