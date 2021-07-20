@@ -35,6 +35,17 @@ public class MatchMakingMenuGui extends MenuGui {
         }
     }
 
+    public void startRefuseMatchView(String opponentUsername) {
+        ShowOutput.showOutput("Error", "the " + opponentUsername + " refused the duel with you!");
+
+        LobbyMenuGui lobbyMenuGui = LobbyMenuGui.getLobbyMenuGui();
+        try {
+            lobbyMenuGui.start(stage);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         MatchMakingMenuGui.stage = stage;
