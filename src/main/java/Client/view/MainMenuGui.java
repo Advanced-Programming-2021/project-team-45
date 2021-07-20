@@ -98,6 +98,7 @@ public class MainMenuGui extends MenuGui {
     }
 
     public void startScoreBoardMenu(MouseEvent mouseEvent) throws Exception {
+        MenuGui.setIsScoreboard(true);
         ScoreBoardMenuGui scoreBoardMenuGui = ScoreBoardMenuGui.getScoreBoardMenuGui();
         ScoreBoardMenuGui.setUsername(username);
         scoreBoardMenuGui.start(stage);
