@@ -45,8 +45,7 @@ public class MessageView extends HBox {
         if (isOwnerMessage) {
             this.setAlignment(Pos.CENTER_LEFT);
             this.setStyle("-fx-background-color: #54b74d");
-        }
-        else {
+        } else {
             this.setAlignment(Pos.CENTER_RIGHT);
             this.setStyle("-fx-background-color: #ffff");
         }
@@ -55,8 +54,8 @@ public class MessageView extends HBox {
         optionButton.setOnAction(e -> showOption());
         ImageView imageView = null;
         try {
-            imageView = new ImageView(new Image(new FileInputStream("src/main/resources/Client/view" +
-                    "/chatButtonImages/options.png")));
+            imageView = new ImageView(new Image(
+                    new FileInputStream("src/main/resources/Client/view/chatButtonImages/options.png")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

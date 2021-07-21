@@ -13,6 +13,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import Client.view.elements.GetImage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class ShopCellMenu extends AnchorPane {
     private static ClientShopServer clientShopServer;
     private ShopMenuGui shopMenuGui;
@@ -63,8 +66,7 @@ public class ShopCellMenu extends AnchorPane {
             if (clientShopServer.getUserMoney() >= price) {
                 buyButton.setText("buy");
                 buyButton.setStyle("-fx-background-color: #0000ff");
-            }
-            else {
+            } else {
                 buyButton.setText("_");
                 buyButton.setStyle("-fx-background-color: orange");
             }
@@ -74,8 +76,7 @@ public class ShopCellMenu extends AnchorPane {
                 if (clientShopServer.getUserMoney() >= price) {
                     buyButton.setText("buy");
                     buyButton.setStyle("-fx-background-color: #0000ff");
-                }
-                else {
+                } else {
                     buyButton.setText("_");
                     buyButton.setStyle("-fx-background-color: orange");
                 }
@@ -92,10 +93,15 @@ public class ShopCellMenu extends AnchorPane {
     }
 
     private void setImageButton(Button buyButton) {
-        ImageView imageView = new ImageView(new Image("src\\main\\resources\\Client\\view\\chatButtonImages\\forbidden.png"));
-        imageView.setFitWidth(19);
-        imageView.setFitHeight(17);
-        buyButton.setGraphic(imageView);
+        try {
+            ImageView imageView = new ImageView(new Image(
+                    new FileInputStream("src\\main\\resources\\Client\\view\\chatButtonImages\\forbidden.png")));
+            imageView.setFitWidth(19);
+            imageView.setFitHeight(17);
+            buyButton.setGraphic(imageView);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
     }
 
     public void setCardText() {
