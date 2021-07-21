@@ -2,9 +2,7 @@ package Server.controller;
 
 import Server.model.user.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class MatchMakingController {
     private final static HashMap<User, GameController> userGameControllerHashMap;
@@ -12,8 +10,10 @@ public class MatchMakingController {
     private final static ArrayList<User> usersWaitingFor3RoundMatch;
     private final static ArrayList<User> usersWaitingFor1RoundMatchWithAnotherUser;
     private final static ArrayList<User> usersWaitingFor3RoundMatchWithAnotherUser;
+    private static long timeStamp;
 
     static {
+        timeStamp = System.currentTimeMillis() / 1000;
         userGameControllerHashMap = new HashMap<>();
         usersWaitingFor1RoundMatch = new ArrayList<>();
         usersWaitingFor3RoundMatch = new ArrayList<>();
@@ -82,15 +82,57 @@ public class MatchMakingController {
     }
 
     public synchronized static void makeMatch(User user, int rounds) {
-        // TODO: better algorithm:
-        if (rounds == 1) {
-            if (usersWaitingFor1RoundMatch.size() > 0) {
-                User user2 = usersWaitingFor1RoundMatch.get(0);
-                usersWaitingFor1RoundMatch.remove(0);
-                startRandomGame(user, user2, 1);
-            } else {
+        long newTime = System.currentTimeMillis() / 1000;
+        if (newTime - timeStamp > 5) {
+            timeStamp = System.currentTimeMillis() / 1000;
+            if (rounds == 1) {
                 usersWaitingFor1RoundMatch.add(user);
+                play1Round();
+            } else {
+                usersWaitingFor3RoundMatch.add(user);
+                play3Round();
             }
+        } else {
+            if (rounds == 1) {
+                usersWaitingFor1RoundMatch.add(user);
+            } else {
+                usersWaitingFor3RoundMatch.add(user);
+            }
+        }
+
+    }
+
+    private static void play3Round() {
+        usersWaitingFor3RoundMatch.sort(Comparator.comparing(User::getScore));
+        ArrayList<User> all = usersWaitingFor3RoundMatch;
+        for (int i = 0; i < usersWaitingFor3RoundMatch.size(); i += 2) {
+            if (all.get(i) != null && all.get(i + 1) != null) {
+                startRandomGame(all.get(i), all.get(i + 1), 3);
+            }
+        }
+        if (usersWaitingFor3RoundMatch.size() % 2 == 1) {
+            User user = usersWaitingFor3RoundMatch.get(usersWaitingFor3RoundMatch.size() - 1);
+            usersWaitingFor3RoundMatch.clear();
+            usersWaitingFor3RoundMatch.add(user);
+        } else {
+            usersWaitingFor3RoundMatch.clear();
+        }
+    }
+
+    private static void play1Round() {
+        usersWaitingFor1RoundMatch.sort(Comparator.comparing(User::getScore));
+        ArrayList<User> all = usersWaitingFor1RoundMatch;
+        for (int i = 0; i < usersWaitingFor1RoundMatch.size(); i += 2) {
+            if (all.get(i) != null && all.get(i + 1) != null) {
+                startRandomGame(all.get(i), all.get(i + 1), 1);
+            }
+        }
+        if (usersWaitingFor1RoundMatch.size() % 2 == 1) {
+            User user = usersWaitingFor1RoundMatch.get(usersWaitingFor1RoundMatch.size() - 1);
+            usersWaitingFor1RoundMatch.clear();
+            usersWaitingFor1RoundMatch.add(user);
+        } else {
+            usersWaitingFor1RoundMatch.clear();
         }
     }
 
