@@ -77,6 +77,9 @@ public class ClientUpdater extends Thread {
             lobbyMenuGui.startLobbyCoinTossMenu((String) fields[0], (boolean) fields[1]);
         else if (methodName.equals("startRefuseMatchView"))
             matchMakingMenuGui.startRefuseMatchView((String) fields[0]);
+        else if (methodName.equals("startRefusedMatchView")) {
+
+        }
 
         // Scoreboard Methods:
         if (methodName.equals("updateScoreboard")
