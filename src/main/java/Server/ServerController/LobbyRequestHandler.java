@@ -47,9 +47,8 @@ public class LobbyRequestHandler extends RequestHandler {
             MatchMakingController.startMatchWithAnotherUser((String) fields[0], (String) fields[1], (int) fields[2]);
         } else if (methodName.equals("refuseMatch")) {
             MatchMakingController.refuseMatch((String) fields[0], (String) fields[1], (int) fields[2]);
-        }
-        else if (methodName.equals("stopMakeMatch")) {
-            // TODO: stop match-making for user
+        } else if (methodName.equals("stopMakeMatch")) {
+            MatchMakingController.cancelMakeMatch(user);
         }
 
         return fieldParser.getAnswer(answer);
