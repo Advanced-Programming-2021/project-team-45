@@ -15,6 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class MessageView extends HBox {
     private static Stage optionPopUpWindow;
     private boolean isOwnerMessage;
@@ -49,7 +53,13 @@ public class MessageView extends HBox {
 
         Button optionButton = new Button();
         optionButton.setOnAction(e -> showOption());
-        ImageView imageView = new ImageView(new Image("src\\main\\resources\\Client\\view\\chatButtonImages\\options.png"));
+        ImageView imageView = null;
+        try {
+            imageView = new ImageView(new Image(new FileInputStream("src/main/resources/Client/view" +
+                    "/chatButtonImages/options.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         imageView.setFitWidth(20);
         imageView.setPreserveRatio(true);
         optionButton.setGraphic(imageView);
