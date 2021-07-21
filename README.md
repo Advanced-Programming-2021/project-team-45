@@ -2,6 +2,6 @@
 ## Team 45
 
 ### Team Members:
-- Kasra Hajian 99109411
-- Amir hosein haji mohammad rezaie 99109252
-- Hossein Mohammadi 99109274
+- Kasra Hajian 
+- Amir hosein haji mohammad rezaie 
+- Hossein Mohammadi 
