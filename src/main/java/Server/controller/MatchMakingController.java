@@ -96,6 +96,11 @@ public class MatchMakingController {
         }
     }
 
+    public synchronized static void cancelMakeMatch(User user) {
+        usersWaitingFor1RoundMatch.remove(user);
+        usersWaitingFor3RoundMatch.remove(user);
+    }
+
     public static void play3Round() {
         usersWaitingFor3RoundMatch.sort(Comparator.comparing(User::getScore));
         ArrayList<User> all = usersWaitingFor3RoundMatch;
