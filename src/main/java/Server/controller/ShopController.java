@@ -18,7 +18,7 @@ public class ShopController extends Controller {
     }
 
 
-    public int buyCardErrorHandler(String cardName) {
+    public synchronized int buyCardErrorHandler(String cardName) {
         if (!Shop.doesCardExist(cardName)) {
             return 1;
 
@@ -33,7 +33,7 @@ public class ShopController extends Controller {
         }
     }
 
-    public int increaseShopInventoryErrorHandler(String cardName, int number) {
+    public synchronized int increaseShopInventoryErrorHandler(String cardName, int number) {
         if (!Shop.doesCardExist(cardName))
             return 1;
         else {
@@ -42,7 +42,7 @@ public class ShopController extends Controller {
         }
     }
 
-    public int decreaseShopInventoryErrorHandler(String cardName, int number) {
+    public synchronized int decreaseShopInventoryErrorHandler(String cardName, int number) {
         if (!Shop.doesCardExist(cardName))
             return 1;
         else {
@@ -51,7 +51,7 @@ public class ShopController extends Controller {
         }
     }
 
-    public int setIsCardBannedErrorHandler(String cardName, boolean isBanned) {
+    public synchronized int setIsCardBannedErrorHandler(String cardName, boolean isBanned) {
         if (!Shop.doesCardExist(cardName))
             return 1;
         else {
