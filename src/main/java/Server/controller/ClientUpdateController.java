@@ -91,6 +91,11 @@ public class ClientUpdateController {
         ClientUpdateHandler.addClientUpdate(user, update);
     }
 
+    public void startRefusedMatchView(String username) {
+        String update = ClientUpdateHandler.getUpdateStringFormat("startRefusedMatchView", username);
+        ClientUpdateHandler.addClientUpdate(user, update);
+    }
+
     // Methods that shouldn't be used:
     public ArrayList<Integer> getCardsForTribute(int n) {
 //        return (ArrayList<Integer>) getMethodResult("getCardsForTribute", n);

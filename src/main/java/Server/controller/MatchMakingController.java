@@ -57,22 +57,36 @@ public class MatchMakingController {
     }
 
     public synchronized static void startMatchWithAnotherUser(String username, String opponentUsername, int rounds) {
-        if (rounds == 1)
+        boolean result = true;
+        if (rounds == 1) {
+            if (usersWaitingFor1RoundMatchWithAnotherUser.contains(User.getUserByUsername(username)))
             usersWaitingFor1RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
-        else
-            usersWaitingFor3RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
+            else result = false;
+        }
+        else {
+            if (usersWaitingFor3RoundMatchWithAnotherUser.contains(User.getUserByUsername(username)))
+                usersWaitingFor3RoundMatchWithAnotherUser.remove(User.getUserByUsername(username));
+            else result = false;
+        }
 
-        int rand = new Random().nextInt(2);
-        if (rand == 0) {
-            GameController gameController = new GameController(username, opponentUsername, rounds);
-            gameController.createNewGame();
-            startUserCoinTossMenu(User.getUserByUsername(username), opponentUsername, true);
-            startLobbyUserCoinTossMenu(User.getUserByUsername(opponentUsername), username, false);
+        if (result) {
+            int rand = new Random().nextInt(2);
+            if (rand == 0) {
+                GameController gameController = new GameController(username, opponentUsername, rounds);
+                gameController.createNewGame();
+                startUserCoinTossMenu(User.getUserByUsername(username), opponentUsername, true);
+                startLobbyUserCoinTossMenu(User.getUserByUsername(opponentUsername), username, false);
+            } else {
+                GameController gameController = new GameController(opponentUsername, username, rounds);
+                gameController.createNewGame();
+                startUserCoinTossMenu(User.getUserByUsername(username), opponentUsername, false);
+                startLobbyUserCoinTossMenu(User.getUserByUsername(opponentUsername), username, true);
+            }
         } else {
-            GameController gameController = new GameController(opponentUsername, username, rounds);
-            gameController.createNewGame();
-            startUserCoinTossMenu(User.getUserByUsername(username), opponentUsername, false);
-            startLobbyUserCoinTossMenu(User.getUserByUsername(opponentUsername), username, true);
+            ClientUpdateController clientUpdateController = ClientUpdateController.getClientUpdateController(
+                    User.getUserByUsername(opponentUsername));
+
+            clientUpdateController.startRefusedMatchView(username);
         }
     }
 
@@ -99,6 +113,8 @@ public class MatchMakingController {
     public synchronized static void cancelMakeMatch(User user) {
         usersWaitingFor1RoundMatch.remove(user);
         usersWaitingFor3RoundMatch.remove(user);
+        usersWaitingFor1RoundMatchWithAnotherUser.remove(user);
+        usersWaitingFor3RoundMatchWithAnotherUser.remove(user);
     }
 
     public static void play3Round() {

@@ -162,6 +162,10 @@ public class LobbyMenuGui extends MenuGui {
         }
     }
 
+    public void startRefusedMatchView(String username) {
+        ShowOutput.showOutput("Error", "the " + username + " refused duel with you!");
+    }
+
     public void showPinnedMessages(MouseEvent mouseEvent) {
         showPinnedMessagesPopUpWindow = new Stage();
         showPinnedMessagesPopUpWindow.initModality(Modality.APPLICATION_MODAL);
