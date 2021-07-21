@@ -6,14 +6,20 @@ import java.util.*;
 
 public class MatchMakingController {
     private final static HashMap<User, GameController> userGameControllerHashMap;
-    private final static ArrayList<User> usersWaitingFor1RoundMatch;
-    private final static ArrayList<User> usersWaitingFor3RoundMatch;
+    public final static ArrayList<User> usersWaitingFor1RoundMatch;
+    public final static ArrayList<User> usersWaitingFor3RoundMatch;
     private final static ArrayList<User> usersWaitingFor1RoundMatchWithAnotherUser;
     private final static ArrayList<User> usersWaitingFor3RoundMatchWithAnotherUser;
-    private static long timeStamp;
+    public static long timeStamp;
+    public static long timeStamp1;
+    private final static Play1Round play1Round;
+    private final static Play3Round play3Round;
 
     static {
+        play1Round = new Play1Round();
+        play3Round = new Play3Round();
         timeStamp = System.currentTimeMillis() / 1000;
+        timeStamp1 = System.currentTimeMillis() / 1000;
         userGameControllerHashMap = new HashMap<>();
         usersWaitingFor1RoundMatch = new ArrayList<>();
         usersWaitingFor3RoundMatch = new ArrayList<>();
@@ -21,7 +27,6 @@ public class MatchMakingController {
         usersWaitingFor3RoundMatchWithAnotherUser = new ArrayList<>();
     }
 
-    // we have to set the gameController for both users after MatchMaking: (I put it in GameController constructor)
     public synchronized static GameController getGameControllerByUser(User user) {
         if (userGameControllerHashMap.containsKey(user))
             return userGameControllerHashMap.get(user);
@@ -82,27 +87,16 @@ public class MatchMakingController {
     }
 
     public synchronized static void makeMatch(User user, int rounds) {
-        long newTime = System.currentTimeMillis() / 1000;
-        if (newTime - timeStamp > 5) {
-            timeStamp = System.currentTimeMillis() / 1000;
-            if (rounds == 1) {
-                usersWaitingFor1RoundMatch.add(user);
-                play1Round();
-            } else {
-                usersWaitingFor3RoundMatch.add(user);
-                play3Round();
-            }
+        if (rounds == 1) {
+            usersWaitingFor1RoundMatch.add(user);
+            if (!play1Round.isAlive()) play1Round.start();
         } else {
-            if (rounds == 1) {
-                usersWaitingFor1RoundMatch.add(user);
-            } else {
-                usersWaitingFor3RoundMatch.add(user);
-            }
+            usersWaitingFor3RoundMatch.add(user);
+            if (play3Round.isAlive()) play3Round.start();
         }
-
     }
 
-    private static void play3Round() {
+    public static void play3Round() {
         usersWaitingFor3RoundMatch.sort(Comparator.comparing(User::getScore));
         ArrayList<User> all = usersWaitingFor3RoundMatch;
         for (int i = 0; i < usersWaitingFor3RoundMatch.size(); i += 2) {
@@ -119,7 +113,7 @@ public class MatchMakingController {
         }
     }
 
-    private static void play1Round() {
+    public static void play1Round() {
         usersWaitingFor1RoundMatch.sort(Comparator.comparing(User::getScore));
         ArrayList<User> all = usersWaitingFor1RoundMatch;
         for (int i = 0; i < usersWaitingFor1RoundMatch.size(); i += 2) {
@@ -131,6 +125,7 @@ public class MatchMakingController {
             User user = usersWaitingFor1RoundMatch.get(usersWaitingFor1RoundMatch.size() - 1);
             usersWaitingFor1RoundMatch.clear();
             usersWaitingFor1RoundMatch.add(user);
+
         } else {
             usersWaitingFor1RoundMatch.clear();
         }
@@ -159,5 +154,29 @@ public class MatchMakingController {
             startUserCoinTossMenu(user1, user2.getUsername(), false);
             startUserCoinTossMenu(user2, user1.getUsername(), true);
         }
+    }
+}
+
+class Play1Round extends Thread {
+    @Override
+    public void run() {
+        long firstTime = MatchMakingController.timeStamp;
+        while ((System.currentTimeMillis() / 1000) - firstTime < 5) {
+            MatchMakingController.usersWaitingFor1RoundMatch.sort(Comparator.comparing(User::getScore));
+        }
+        MatchMakingController.timeStamp = System.currentTimeMillis() / 1000;
+        MatchMakingController.play1Round();
+    }
+}
+
+class Play3Round extends Thread {
+    @Override
+    public void run() {
+        long firstTime = MatchMakingController.timeStamp1;
+        while ((System.currentTimeMillis() / 1000) - firstTime < 5) {
+            MatchMakingController.usersWaitingFor3RoundMatch.sort(Comparator.comparing(User::getScore));
+        }
+        MatchMakingController.timeStamp1 = System.currentTimeMillis() / 1000;
+        MatchMakingController.play3Round();
     }
 }
