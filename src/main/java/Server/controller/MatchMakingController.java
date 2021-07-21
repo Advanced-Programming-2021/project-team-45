@@ -104,21 +104,35 @@ public class MatchMakingController {
 
     private static void play3Round() {
         usersWaitingFor3RoundMatch.sort(Comparator.comparing(User::getScore));
-        ArrayList<User> all=usersWaitingFor3RoundMatch;
+        ArrayList<User> all = usersWaitingFor3RoundMatch;
         for (int i = 0; i < usersWaitingFor3RoundMatch.size(); i += 2) {
-            if(all.get(i)!=null && all.get(i+1)!=null){
-                startRandomGame(all.get(i),all.get(i+1),3);
+            if (all.get(i) != null && all.get(i + 1) != null) {
+                startRandomGame(all.get(i), all.get(i + 1), 3);
             }
+        }
+        if (usersWaitingFor3RoundMatch.size() % 2 == 1) {
+            User user = usersWaitingFor3RoundMatch.get(usersWaitingFor3RoundMatch.size() - 1);
+            usersWaitingFor3RoundMatch.clear();
+            usersWaitingFor3RoundMatch.add(user);
+        } else {
+            usersWaitingFor3RoundMatch.clear();
         }
     }
 
     private static void play1Round() {
         usersWaitingFor1RoundMatch.sort(Comparator.comparing(User::getScore));
-        ArrayList<User> all=usersWaitingFor1RoundMatch;
+        ArrayList<User> all = usersWaitingFor1RoundMatch;
         for (int i = 0; i < usersWaitingFor1RoundMatch.size(); i += 2) {
-            if(all.get(i)!=null && all.get(i+1)!=null){
-                startRandomGame(all.get(i),all.get(i+1),1);
+            if (all.get(i) != null && all.get(i + 1) != null) {
+                startRandomGame(all.get(i), all.get(i + 1), 1);
             }
+        }
+        if (usersWaitingFor1RoundMatch.size() % 2 == 1) {
+            User user = usersWaitingFor1RoundMatch.get(usersWaitingFor1RoundMatch.size() - 1);
+            usersWaitingFor1RoundMatch.clear();
+            usersWaitingFor1RoundMatch.add(user);
+        } else {
+            usersWaitingFor1RoundMatch.clear();
         }
     }
 
