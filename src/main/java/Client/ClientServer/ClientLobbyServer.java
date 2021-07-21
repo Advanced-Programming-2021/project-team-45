@@ -50,6 +50,11 @@ public class ClientLobbyServer extends ClientServer {
         sendRequest.getMethodResult("setIsPinnedMessageById", id, isPinned);
     }
 
+    public int getNumberOfLoggedInUsers() {
+        Object result = sendRequest.getMethodResult("getNumberOfLoggedInUsers");
+        return (int) result;
+    }
+
     public ArrayList<Object[]> getAllMessagesData() {
         Object answer = sendRequest.getMethodResult("getAllMessagesData");
         return (ArrayList<Object[]>) answer;

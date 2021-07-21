@@ -35,7 +35,8 @@ public class LobbyRequestHandler extends RequestHandler {
             answer = MessengerController.getAllMessagesData();
         } else if (methodName.equals("setIsPinnedMessageById")) {
             MessengerController.setIsPinnedMessageById((int) fields[0], (boolean) fields[1]);
-        }
+        } else if (methodName.equals("getNumberOfLoggedInUsers"))
+            answer = DatabaseController.getNumberOfLoggedInUsers();
 
         // MatchMaking methods:
         if (methodName.equals("makeMatch")) {

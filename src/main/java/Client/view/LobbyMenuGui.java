@@ -130,6 +130,7 @@ public class LobbyMenuGui extends MenuGui {
     }
 
     public void updateMessages() {
+        onlineUsersText.setText("number of online users: " + clientLobbyServer.getNumberOfLoggedInUsers());
         messagesGridPane.getChildren().clear();
         ArrayList<Object[]> messagesData = clientLobbyServer.getAllMessagesData();
         MessageView.setClientLobbyServer(clientLobbyServer);

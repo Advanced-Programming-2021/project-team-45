@@ -45,6 +45,10 @@ public class DatabaseController extends Controller {
         return tokens.containsValue(user);
     }
 
+    public static int getNumberOfLoggedInUsers() {
+        return tokens.size();
+    }
+
     public static User getUserByToken(String token) {
         return tokens.get(token);
     }
